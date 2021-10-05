@@ -75,10 +75,17 @@ WSGI_APPLICATION = 'corpus.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'simonkim902$Corpus_Management_System',  
+        'USER': 'simonkim902',
+        'PASSWORD': 'admin123',
+        'HOST': 'simonkim902.mysql.pythonanywhere-services.com',
+        'OPTIONS': {
+            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
     }
 }
+
 
 
 # Password validation
