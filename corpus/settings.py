@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['simonkim902.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'signup'
+    'signup',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
