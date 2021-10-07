@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 def home(request):
     form = UserCreationForm()
     context = {'form'}
-    return render(request, 'templates/register.html', context)
+    return render(request, 'register.html', context)
 #    return HttpResponse("Testing website")
 
 def registerPage(request):
