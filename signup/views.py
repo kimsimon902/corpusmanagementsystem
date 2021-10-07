@@ -6,10 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 
 def home(request):
-    form = UserCreationForm()
-    context = {'form'}
-    return render(request, 'signup/register.html', context)
-#    return HttpResponse("Testing website")
+   return HttpResponse("Testing website")
 
 def registerView(request):
     form = UserCreationForm()
