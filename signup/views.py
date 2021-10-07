@@ -11,6 +11,6 @@ def home(request):
 def registerView(request):
     form = UserCreationForm()
     context = {'form'}
-    return render(request, 'registration/register.html', context)
+    return render(request, 'registration/register.html')
 
 
