@@ -11,9 +11,9 @@ def home(request):
     return render(request, 'signup/register.html', context)
 #    return HttpResponse("Testing website")
 
-def registerPage(request):
+def registerView(request):
     form = UserCreationForm()
     context = {'form'}
-    return render(request, 'templates/register.html', context)
+    return render(request, 'registration/register.html', context)
 
 
