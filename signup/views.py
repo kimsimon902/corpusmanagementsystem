@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 
 def home(request):
-    return HttpResponse("Tutorial how to test code on website")
+    return HttpResponse("Testing website")
 
 def registerPage(request):
     form = UserCreationForm()
