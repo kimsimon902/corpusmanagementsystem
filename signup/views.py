@@ -21,7 +21,7 @@ def registerView(request):
             saverecord.password = request.POST.get('password')
             saverecord.first_name = request.POST.get('first_name')
             saverecord.last_name = request.POST.get('last_name')
-            saverecord.date_joined = date.today()
+            saverecord.date_joined = request.POST.get('date_joined')
             saverecord.save()
             messages.success(request, "Your Account Was Successfully Created")
             return render(request, 'registration/register.html')
