@@ -1,4 +1,4 @@
-{% extends 'registration/site.html' %}
+<!--{% extends 'registration/site.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
 
@@ -18,4 +18,47 @@
       </div>
     </form>
     </div>
-{% endblock %}
+{% endblock %} -->
+
+<!doctype html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register Account</h1>
+    <h4>Account</h4>
+    <hr/>
+    <form method="POST">
+        {% csrf_token %}
+    <table border="1">
+        <tr>
+            <td>Username</td>
+            <td><input type="text" placeholder="Enter Username" name="username" required/></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" placeholder="Enter Password" required onchange="form.repwd.pattern=this.value" name="password"/></td>
+        </tr>
+        <tr>
+            <td>Re-Password</td>
+            <td><input type="password" placeholder="Confirm Password" name="repwd" pattern="" required/></td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td><input type="text" placeholder="Enter First Name" name="first_name"/></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input type="text" placeholder="Enter Last Name" name="last_name"/></td>
+        </tr>
+    </table>
+    <hr/>
+        <input type="submit" value="submit"/>
+        {% if messages %}
+        {% for result in messages %}
+        <b style="color: green;">{{result}}</b>
+        {% endfor %}
+        {% endif %}
+    </form>
+</body>
+</html>
