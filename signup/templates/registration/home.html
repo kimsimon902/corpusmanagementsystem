@@ -1,6 +1,7 @@
 {% extends 'registration/site.html' %}
 {% if request.session.email %}
-{{request.session.email}} &nbsp;&nbsp; <a href="{% url 'logout' %}"></a>
+{{request.session.email}} &nbsp;&nbsp; <a href="{% url 'logout' %}">Logout</a>
+{% else %}
 {% load static %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
