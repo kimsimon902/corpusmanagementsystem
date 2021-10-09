@@ -13,9 +13,10 @@ def home(request):
 
 def registerView(request):
     if request.method=='POST':
-        if request.POST.get('username') and request.POST.get('password') and request.POST.get('first_name') and request.POST.get('last_name'):
+        if request.POST.get('username') and request.POST.get('email') and request.POST.get('password') and request.POST.get('first_name') and request.POST.get('last_name'):
             saverecord = Userreg()
             saverecord.username = request.POST.get('username')
+            saverecord.email = request.POST.get('email')
             saverecord.password = request.POST.get('password')
             saverecord.first_name = request.POST.get('first_name')
             saverecord.last_name = request.POST.get('last_name')
@@ -26,7 +27,7 @@ def registerView(request):
             return render(request, 'registration/register.html')
 
 
-            
+
 
     # if request.method == "POST":
     #     form = UserRegisterForm(request.POST)
