@@ -24,6 +24,10 @@ def registerView(request):
             return render(request, 'registration/register.html')
     else:
             return render(request, 'registration/register.html')
+
+
+            
+
     # if request.method == "POST":
     #     form = UserRegisterForm(request.POST)
     #     if form.is_valid():
