@@ -27,8 +27,23 @@ def registerView(request):
             return render(request, 'registration/register.html')
 
 
+def loginView(request):
+    if request.method=='POST':
+        try:
+            Userdetails=Userreg.objects.get(email=request.POST['email'],password=request.POST['password'])
+            print("Username=",Userdetails)
+            request.session['email']=Userdetails.email
+            return render(request,'registration/home.html')
+        except Userreg.DoesNotExist as e:
+            messages.success(request,'Username or Password Invalid.')
+    return render(request,'registration/login.html')
 
-
+def logoutView(request):
+    try:
+        del request.session['email']
+    except:
+        return render(request,'registration/home.html')
+    return render(request,'registration/home.html')
     # if request.method == "POST":
     #     form = UserRegisterForm(request.POST)
     #     if form.is_valid():
