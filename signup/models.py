@@ -10,7 +10,6 @@ class Userreg(models.Model):
     password = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    date_joined = date.today()
 
     class Meta:
         db_table = "auth_user"
