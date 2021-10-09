@@ -5,6 +5,7 @@ from .forms import UserRegisterForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .models import Userreg
+from datetime import date
 
 # Create your views here.
 
@@ -20,6 +21,7 @@ def registerView(request):
             saverecord.password = request.POST.get('password')
             saverecord.first_name = request.POST.get('first_name')
             saverecord.last_name = request.POST.get('last_name')
+            saverecord.date_joined = date.today()
             saverecord.save()
             messages.success(request, "Your Account Was Successfully Created")
             return render(request, 'registration/register.html')
