@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+        <title>Fetching data from MySQL DB test</title>
+</head>
+
+<body>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Abstract</th>
+            <th>URL</th>
+        </tr>
+        {% for getdata in testData %}
+        <tr>
+            <td>{{getdata.id}</td>
+            <td>{{getdata.title}}</td>
+            <td>{{getdata.author}}</td>
+            <td>{{getdata.abstract}}</td>
+            <td>{{getdata.url}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>

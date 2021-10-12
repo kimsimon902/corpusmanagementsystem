@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, connections
 from django.db.models.fields import EmailField
 from datetime import date
 
@@ -13,3 +13,12 @@ class Userreg(models.Model):
 
     class Meta:
         db_table = "auth_user"
+
+
+class testData(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=100)
+    abstract = models.CharField(max_length=100)
+    url = models.CharField(max_length=100)
+    class Meta:
+        db_table = "test_data"

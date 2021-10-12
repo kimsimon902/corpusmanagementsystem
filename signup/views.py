@@ -5,6 +5,7 @@ from .forms import UserRegisterForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .models import Userreg
+from .models import testData
 
 # Create your views here.
 
@@ -56,4 +57,6 @@ def logoutView(request):
 
     # return render(request, 'registration/register.html',{'form':form})
 
-
+def showTest(request):
+    results = testData.objects.all()
+    return render(request, 'test/test.html',{'testData':results})
