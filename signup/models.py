@@ -16,7 +16,6 @@ class Userreg(models.Model):
 
 
 class testData(models.Model):
-    id = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     abstract = models.CharField(max_length=100)
