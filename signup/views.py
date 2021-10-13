@@ -64,7 +64,7 @@ def showTest(request):
 def searchTest(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        results = testData.objects.filter(title__contains=searched)
+        results = testData.objects.filter(title__icontains=searched)
         return render(request, 'test/search.html',{'searched':searched, 'results':results})
     else:
         return render(request, 'test/search.html',{})
