@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+        <title>Fetching data from MySQL DB test</title>
+</head>
+
+<body>
+    <div class="topnav">
+        <form method=POST action="{% url 'search' %}">
+            {% csrf_token %}
+            <input type="search" placeholder="Search" name="searched">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    {% if searched %}
+        <h1>You searched for {{searched}}</h1>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Abstract</th>
+                <th>URL</th>
+            </tr>
+            {% for result in results %}
+            <tr>
+                <td>{{result.id}}</td>
+                <td>{{result.title}}</td>
+                <td>{{result.author}}</td>
+                <td>{{result.abstract}}</td>
+                <td>{{result.url}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1>No search keyword input...</h1>
+    {% end if %}
+</body>

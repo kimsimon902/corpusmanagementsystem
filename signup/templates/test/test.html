@@ -4,6 +4,14 @@
 </head>
 
 <body>
+    <div class="topnav">
+        <form method=POST action="{% url 'search' %}">
+            {% csrf_token %}
+            <input type="search" placeholder="Search" name="searched">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
     <table border="1">
         <tr>
             <th>ID</th>

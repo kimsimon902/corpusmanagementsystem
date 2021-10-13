@@ -60,3 +60,11 @@ def logoutView(request):
 def showTest(request):
     results = testData.objects.all()
     return render(request, 'test/test.html',{'testData':results})
+
+def searchTest(request):
+    if request.METHOD == "POST":
+        searched = request.POST['searched']
+        results = testData.objects.filter(title__contains=searched)
+        return render(request, 'test/search.html',{'searched':searched, 'results':results})
+    else:
+        return render(request, 'test/search.html',{})
