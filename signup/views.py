@@ -10,7 +10,8 @@ from .models import testData
 # Create your views here.
 
 def home(request):
-   return render(request, 'registration/home.html')
+    results = testData.objects.all()
+    return render(request, 'registration/home.html',{'testData':results})
 
 def registerView(request):
     if request.method=='POST':
