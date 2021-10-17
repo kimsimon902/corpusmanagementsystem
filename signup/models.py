@@ -4,7 +4,7 @@ from datetime import date
 
 # Create your models here.
 
-class Userreg(models.Model):
+class registerUser(models.Model):
     username = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     password = models.CharField(max_length=100)

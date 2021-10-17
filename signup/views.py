@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from .forms import UserRegisterForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .models import register
+from .models import registerUser
 from .models import testData
 
 # Create your views here.
@@ -16,7 +16,7 @@ def home(request):
 def registerView(request):
     if request.method=='POST':
         if request.POST.get('username') and request.POST.get('email') and request.POST.get('password') and request.POST.get('first_name') and request.POST.get('last_name'):
-            saverecord = register()
+            saverecord = registerUser()
             saverecord.username = request.POST.get('username')
             saverecord.email = request.POST.get('email')
             saverecord.password = request.POST.get('password')
@@ -32,11 +32,11 @@ def registerView(request):
 def loginView(request):
     if request.method=='POST':
         try:
-            Userdetails=register.objects.get(email=request.POST['email'],password=request.POST['password'])
+            Userdetails=registerUser.objects.get(email=request.POST['email'],password=request.POST['password'])
             print("Username=",Userdetails)
             request.session['email']=Userdetails.email
             return render(request,'registration/home.html')
-        except register.DoesNotExist as e:
+        except registerUser.DoesNotExist as e:
             messages.success(request,'Username or Password Invalid.')
     return render(request,'registration/login.html')
 
