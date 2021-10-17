@@ -11,7 +11,7 @@ from .models import testData
 
 def home(request):
     results = testData.objects.all()
-    return render(request, 'registration/home.html',{'testData':results})
+    return render(request, 'main/home.html',{'testData':results})
 
 def registerView(request):
     if request.method=='POST':
@@ -55,6 +55,6 @@ def searchTest(request):
     if request.method == "POST":
         searched = request.POST['searched']
         results = testData.objects.filter(title__icontains=searched)
-        return render(request, 'test/search.html',{'searched':searched, 'results':results})
+        return render(request, 'main/search.html',{'searched':searched, 'results':results})
     else:
-        return render(request, 'test/search.html',{})
+        return render(request, 'main/search.html',{})

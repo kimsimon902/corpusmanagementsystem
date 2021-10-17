@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-44(*rnzbi(447&i4o$20!ba4pg_#@!!g9@n%7#m=sj7-!2)7n=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#ALLOWED_HOSTS = ['simonkim902.pythonanywhere.com', '127.0.0.1']
 ALLOWED_HOSTS = ['simonkim902.pythonanywhere.com']
-
 
 # Application definition
 
@@ -89,7 +89,18 @@ DATABASES = {
     }
 }
 
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'simonkim902$Corpus_Management_System',  
+#         'USER': 'simonkim902',
+#         'PASSWORD': 'admin123',
+#         'HOST': '127.0.0.1',
+#         'OPTIONS': {
+#             "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+#         }
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
