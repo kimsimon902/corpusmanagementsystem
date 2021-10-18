@@ -4,19 +4,35 @@
     <title>Register</title>
 </head>
 <body>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <div class="container">
-            <div class="row g-0">
-                <div class="col-sm-6 col-md-8" id="header-text">
-                  <h1 id="header-h1">Corpus Management System</h1>
-                  <p id="header-paragraph">Home</p>
-                  <a class="btn" href="{% url 'register' %}" style="color: green; background-color: #fd5e14;"type="submit" id="body-link-row">Register</a>
-                  <a class="btn" href="{% url 'login' %}" style="color: green; background-color: #fd5e14;"type="submit" id="body-link-row">Login</a>
-                  <br>
-                </div>
-
-                <div class="col-6 col-md-4" id="header-image"><img src="images/in-liquid-slide-2.svg " alt=""></div>
+    <div class="container-fluid">
+        <!-- Navbar on top -->
+          <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+              <a class="navbar-brand" href="#">Corpus Management System</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          {% if request.session.email %}
+                          <a class="dropdown-item" href="{% url 'logout' %}">{{request.session.email}}</a>
+                          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                          {% else %}
+                          <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                          <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+                          {% endif %}
+                      </div>
+                    </li>
+                </ul>
               </div>
+            </nav>
     </div>
     <h1>Register Account</h1>
     <h4>Account</h4>
