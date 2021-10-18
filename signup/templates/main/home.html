@@ -7,24 +7,22 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    
+    <link rel="stylesheet" href="signup\static\users\css\home.css">
     <title>Corpus Management System</title>
   </head>
   <body>
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Navbar on top -->
+        <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
             <a class="navbar-brand" href="#">Corpus Management System</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-          
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                   <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Disabled</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,18 +35,27 @@
                         <a class="dropdown-item" href="{% url 'login' %}">Login</a>
                         <a class="dropdown-item" href="{% url 'register' %}">Register</a>
                         {% endif %}
-                        <div class="dropdown-divider"></div>
                     </div>
                   </li>
               </ul>
             </div>
           </nav>
+      <!-- End navbar -->
         <div>
-            <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'search' %}">
-                {% csrf_token %}
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searched">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <!-- Search bar -->
+          <div class="container-fluid" id="search-bar">
+            <form method="POST" action="{% url 'search' %}" id="search-form">
+              {% csrf_token %}
+              <div class = "input-group">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searched">
+                <div class="input-group-btn">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-button">Search</button>
+                </div>
+              </div>
             </form>
+          </div>
+          <!-- End search bar -->
+          <!-- Table block-->
             {% block table %}
             <table class="table">
                 <thead>
@@ -73,6 +80,7 @@
                 </tbody>
             </table>
             {% endblock %}
+          <!-- End table block -->
         </div>
     </div>
 
