@@ -1,7 +1,6 @@
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .forms import UserRegisterForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .models import registerUser
