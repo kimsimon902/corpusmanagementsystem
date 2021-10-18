@@ -31,7 +31,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% if request.session.email %}
-                        {{request.session.email}} <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">{{request.session.email}}</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                         {% else %}
                         <a class="dropdown-item" href="{% url 'login' %}">Login</a>
                         <a class="dropdown-item" href="{% url 'register' %}">Register</a>
