@@ -16,34 +16,6 @@
 
                 <div class="col-6 col-md-4" id="header-image"><img src="images/in-liquid-slide-2.svg " alt=""></div>
               </div>
-              <div>
-                <div class="topnav">
-                    <form method=POST action="{% url 'search' %}">
-                        {% csrf_token %}
-                        <input type="search" placeholder="Search" name="searched">
-                        <button type="submit">Search</button>
-                    </form>
-                </div>
-            
-                <table border="1">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Abstract</th>
-                        <th>URL</th>
-                    </tr>
-                    {% for getdata in testData %}
-                    <tr>
-                        <td>{{getdata.id}}</td>
-                        <td>{{getdata.title}}</td>
-                        <td>{{getdata.author}}</td>
-                        <td>{{getdata.abstract}}</td>
-                        <td>{{getdata.url}}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
     </div>
     <h1>Register Account</h1>
     <h4>Account</h4>
