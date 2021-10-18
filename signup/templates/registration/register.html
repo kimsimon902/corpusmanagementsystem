@@ -2,9 +2,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {% block content %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">   
 <link rel="stylesheet" href="{% static '\users\css\home.css' %}">
+<link rel="stylesheet" href="{% static '\users\css\bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static '\users\css\Login-Form-Clean.css' %}">
+<link rel="stylesheet" href="{% static '\users\css\Registration-Form-with-Photo.css' %}">
 <head>
     <title>Register</title>
 </head>
@@ -39,45 +41,27 @@
               </div>
             </nav>
     </div>
-    <h1>Register Account</h1>
-    <h4>Account</h4>
-    <hr/>
-    <form method="POST">
-        {% csrf_token %}
-    <table border="1">
-        <tr>
-            <td>Username</td>
-            <td><input type="text" placeholder="Enter Username" name="username" required/></td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td><input type="email" placeholder="Enter Email" name="email" required/></td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" placeholder="Enter Password" required onchange="form.repwd.pattern=this.value" name="password"/></td>
-        </tr>
-        <tr>
-            <td>Re-Password</td>
-            <td><input type="password" placeholder="Confirm Password" name="repwd" pattern="" required/></td>
-        </tr>
-        <tr>
-            <td>First Name</td>
-            <td><input type="text" placeholder="Enter First Name" name="first_name"/></td>
-        </tr>
-        <tr>
-            <td>Last Name</td>
-            <td><input type="text" placeholder="Enter Last Name" name="last_name"/></td>
-        </tr>
-    </table>
-    <hr/>
-        <input type="submit" value="submit"/>
-        {% if messages %}
-        {% for result in messages %}
-        <b style="color: green;">{{result}}</b>
-        {% endfor %}
-        {% endif %}
-    </form>
-    <em>Already a Member? <a href="{% url 'login' %}">Login</a></em>
+    <section class="login-clean">
+        <section class="register-photo">
+            <div class="form-container">
+                <div class="image-holder"></div>
+                <form method="post">
+                    <h2 class="text-center"><strong>Create</strong> an account.</h2>
+                    <div class="form-group"><input class="form-control" type="text" name="username" placeholder="Username"></div>
+                    <div class="form-group"><input class="form-control" type="text" name="fname" placeholder="First Name"></div>
+                    <div class="form-group"><input class="form-control" type="text" name="lname" placeholder="Last Name"></div>
+                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+                    <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+                    <div class="form-group"><input class="form-control" type="password" name="password-repeat" placeholder="Password (repeat)"></div>
+                    <div class="form-group">
+                        <div class="form-check"><label class="form-check-label"><input class="form-check-input" type="checkbox">I agree to the license terms.</label></div>
+                    </div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div><a class="already" href="{% url 'login' %}">You already have an account? Login here.</a>
+                </form>
+            </div>
+        </section>
+    </section>
+    <script src="static\users\js\jquery.min.js"></script>
+    <script src="static\users\js\bootstrap.min.js"></script>
 </body>
 {% endblock content %}
