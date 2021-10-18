@@ -45,7 +45,7 @@
         <section class="register-photo">
             <div class="form-container">
                 <div class="image-holder"></div>
-                <form method="post">
+                <form target="_blank" action="https://simonkim902.pythonanywhere.com/register/" method="post">
                     {% csrf_token %}
                     <h2 class="text-center"><strong>Create</strong> an account.</h2>
                     <div class="form-group"><input class="form-control" type="text" name="username" placeholder="Username" required></div>

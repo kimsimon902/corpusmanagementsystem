@@ -24,7 +24,7 @@ def registerView(request):
             saverecord.last_name = request.POST.get('last_name')
             saverecord.save()
             messages.success(request, "Your Account Was Successfully Created")
-            return render(request, 'registration/login.html')
+            return redirect('registration/login.html') #render(request, 'registration/login.html')
     else:
             return render(request, 'registration/register.html')
 
