@@ -12,7 +12,7 @@ class registerUser(models.Model):
     last_name = models.CharField(max_length=100)
 
     class Meta:
-        db_table = "auth_user1"
+        db_table = "auth_user"
 
 
 class testData(models.Model):
