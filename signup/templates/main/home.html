@@ -29,15 +29,6 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Account
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% if request.session.email %}
-                        <a class="dropdown-item" href="{% url 'logout' %}">{{request.session.email}}</a>
-                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                        {% else %}
-                        <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                        <a class="dropdown-item" href="{% url 'register' %}">Register</a>
-                        {% endif %}
-                    </div>
                   </li>
               </ul>
             </div>
