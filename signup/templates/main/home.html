@@ -16,20 +16,25 @@
     <div class="container-fluid">
       <!-- Navbar on top -->
         <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-            <a class="navbar-brand" href="#">Corpus Management System</a>
+            <a class="navbar-brand" href="{% url 'home' %}">Corpus Management System</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Account
-                    </a>
-                  </li>
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Account
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      {% if request.session.email %}
+                      {{request.session.email}} <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                      {% else %}
+                      <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                      <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+                      {% endif %}
+                  </div>
+              </li>
               </ul>
             </div>
           </nav>
@@ -50,7 +55,7 @@
           <!-- End search bar -->
           <!-- Table block-->
             {% block table %}
-            <table class="table">
+            <table class="table table-hover"> <!-- class="table-row" data-href="http://tutorialsplane.com" -->
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
@@ -62,7 +67,7 @@
                 </thead>
                 <tbody>
                     {% for getdata in testData %}
-                    <tr>
+                    <tr data-href="{% url 'login' %}">
                         <td>{{getdata.id}}</td>
                         <td>{{getdata.title}}</td>
                         <td>{{getdata.author}}</td>
@@ -82,5 +87,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static '\users\js\home.js' %}"></script>
   </body>
 </html>
