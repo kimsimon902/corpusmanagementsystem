@@ -45,8 +45,8 @@ def logoutView(request):
     try:
         del request.session['email']
     except:
-        return redirect('/home')
-    return redirect('/home')
+        return redirect('')
+    return redirect('')
 
 def showTest(request):
     results = testData.objects.all()
