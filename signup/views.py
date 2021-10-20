@@ -45,8 +45,8 @@ def logoutView(request):
     try:
         del request.session['email']
     except:
-        return render(request,'main/search.html')
-    return render(request,'main/search.html')
+        return redirect('/search')
+    return redirect('/search')
 
 def showTest(request):
     results = testData.objects.all()
