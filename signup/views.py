@@ -36,7 +36,7 @@ def loginView(request):
             Userdetails=registerUser.objects.get(email=request.POST['email'],password=request.POST['password'])
             print("Username=",Userdetails)
             request.session['email']=Userdetails.email
-            return render(request,'main/search.html')
+            return render(request,'main/home.html')
         except registerUser.DoesNotExist as e:
             messages.success(request,'Username or Password Invalid.')
     return render(request,'registration/login.html')
@@ -45,8 +45,8 @@ def logoutView(request):
     try:
         del request.session['email']
     except:
-        return redirect('/search')
-    return redirect('/search')
+        return redirect('/home')
+    return redirect('/home')
 
 def showTest(request):
     results = testData.objects.all()
