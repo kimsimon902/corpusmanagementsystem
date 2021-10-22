@@ -24,7 +24,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'signup:home' %}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,11 +32,11 @@
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           {% if request.session.email %}
-                          <a class="dropdown-item" href="{% url 'signup:logout' %}">{{request.session.email}}</a>
-                          <a class="dropdown-item" href="{% url 'signup:logout' %}">Logout</a>
+                          <a class="dropdown-item" href="{% url 'logout' %}">{{request.session.email}}</a>
+                          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                           {% else %}
-                          <a class="dropdown-item" href="{% url 'signup:login' %}">Login</a>
-                          <a class="dropdown-item" href="{% url 'signup:register' %}">Register</a>
+                          <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                          <a class="dropdown-item" href="{% url 'register' %}">Register</a>
                           {% endif %}
                       </div>
                     </li>
@@ -63,7 +63,7 @@
                     {% if request.GET.next %}
                         <input type="hidden" name="text" value="{{ request.GET.next }}">
                     {% endif %}
-                    <div class="form-group"><input class="btn btn-primary btn-block" type="submit" value="Sign Up"></input></div><a class="already" href="{% url 'signup:login' %}">You already have an account? Login here.</a>
+                    <div class="form-group"><input class="btn btn-primary btn-block" type="submit" value="Sign Up"></input></div><a class="already" href="{% url 'login' %}">You already have an account? Login here.</a>
                 </form>
             </div>
         </section>

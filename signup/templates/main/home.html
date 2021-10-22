@@ -16,7 +16,7 @@
     <div class="container-fluid">
       <!-- Navbar on top -->
         <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-            <a class="navbar-brand" href="{% url 'signup:home' %}">Corpus Management System</a>
+            <a class="navbar-brand" href="{% url 'home' %}">Corpus Management System</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,10 +28,10 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       {% if request.session.email %}
-                      {{request.session.email}} <a class="dropdown-item" href="{% url 'signup:logout' %}">Logout</a>
+                      {{request.session.email}} <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                       {% else %}
-                      <a class="dropdown-item" href="{% url 'signup:login' %}">Login</a>
-                      <a class="dropdown-item" href="{% url 'signup:register' %}">Register</a>
+                      <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                      <a class="dropdown-item" href="{% url 'register' %}">Register</a>
                       {% endif %}
                   </div>
               </li>
@@ -74,9 +74,9 @@
                 </thead>
                 <tbody>
                     {% for getdata in testData %}
-                    <tr data-href="{% url 'signup:publication' getdata.id %}">
+                    <tr>
                         <td>{{getdata.id}}</td>
-                        <td>{{getdata.title}}</td>
+                        <td><a href="/publication/{{getdata.id}}">{{getdata.title}}</a></td>
                         <td>{{getdata.author}}</td>
                         <td>{{getdata.abstract}}</td>
                         <td>{{getdata.url}}</td>
