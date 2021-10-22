@@ -45,22 +45,21 @@
             <form method="POST" action="{% url 'search' %}" id="search-form">
               {% csrf_token %}
               <div class = "input-group">
-                <button class="btn btn-success dropdown-toggle" data-toggle="dropdown" id="filterData">Filter</button>
-                <div class ="dropdown-menu">
-                    <a href="#" class="dropdown-item">Title</a>
-                    <a href="#" class="dropdown-item">Abstract</a>
-                    <a href="#" class="dropdown-item">Author</a>
-                    <a href="#" class="dropdown-item">URL</a>
-                </div>
+                <select class="form-select" aria-label="Filter" name="filterData">
+                  <option selected value="default">Filter</option>
+                  <option value="title">Title</option>
+                  <option value="author">Author</option>
+                  <option value="abstract">Abstract</option>
+                  <option value="url">URL</option>
+                </select>
                 <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searched">
                 <div class="input-group-btn">
                   <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-button">Search</button>
                 </div>
               </div>
             </form>
-        </div>
+          </div>
           <!-- End search bar -->
-
           <!-- Table block-->
             {% block table %}
             <table class="table table-hover"> <!-- class="table-row" data-href="http://tutorialsplane.com" -->
