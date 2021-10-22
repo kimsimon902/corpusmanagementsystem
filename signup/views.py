@@ -78,4 +78,4 @@ def searchTest(request):
 
 def PublicationPage(request, id):
     results = testData.objects.filter(id_icontains = id)
-    return render(request, 'publication.html',{'publication':results})
+    return render(request, '/publication.html',{'publication':results})
