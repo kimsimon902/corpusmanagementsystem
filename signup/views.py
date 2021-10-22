@@ -55,8 +55,21 @@ def showTest(request):
 def searchTest(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        searchFilter = request.POST.['filterData']
-        results = testData.objects.filter(title__icontains=searched)
-        return render(request, 'main/search.html',{'searched':searched, 'results':results})
+        searchFilter = request.POST['filterData']
+
+        if searchFilter == "title":
+            results = testData.objects.filter(title__icontains=searched)
+            return render(request, 'main/search.html',{'searched':searched, 'results':results})
+        else if searchFilter == "author":
+            results = testData.objects.filter(author__icontains=searched)
+            return render(request, 'main/search.html',{'searched':searched, 'results':results})
+        else if searchFilter == "abstract":
+            results = testData.objects.filter(abstract__icontains=searched)
+            return render(request, 'main/search.html',{'searched':searched, 'results':results})
+        else if searchFilter == "url":
+            results = testData.objects.filter(url__icontains=searched)
+            return render(request, 'main/search.html',{'searched':searched, 'results':results})
+        else
+        
     else:
         return render(request, 'main/search.html',{})
