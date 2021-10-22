@@ -60,16 +60,17 @@ def searchTest(request):
         if searchFilter == "title":
             results = testData.objects.filter(title__icontains=searched)
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
-        else if searchFilter == "author":
+        elif searchFilter == "author":
             results = testData.objects.filter(author__icontains=searched)
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
-        else if searchFilter == "abstract":
+        elif searchFilter == "abstract":
             results = testData.objects.filter(abstract__icontains=searched)
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
-        else if searchFilter == "url":
+        elif searchFilter == "url":
             results = testData.objects.filter(url__icontains=searched)
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
-        else
+        else:
+            return render(request, 'main/search.html',{})
         
     else:
         return render(request, 'main/search.html',{})
