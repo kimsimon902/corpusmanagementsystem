@@ -42,7 +42,7 @@
         <div>
           <!-- Search bar -->
           <div class="container-fluid" id="search-bar">
-            <form method="POST" action="{% url 'signup:search' %}" id="search-form">
+            <form method="POST" action="{% url 'search' %}" id="search-form">
               {% csrf_token %}
               <div class = "input-group">
                 <select class="form-select" aria-label="Filter" name="filterData">
