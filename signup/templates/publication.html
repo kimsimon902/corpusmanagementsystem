@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             {% for getdata in publication %}
-            <tr data-href="{% url 'publication/{{getdata.id}}' %}">
+            <tr>
                 <td>{{getdata.id}}</td>
                 <td>{{getdata.title}}</td>
                 <td>{{getdata.author}}</td>
