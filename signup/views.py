@@ -74,3 +74,8 @@ def searchTest(request):
         
     else:
         return render(request, 'main/search.html',{})
+
+
+def PublicationPage(request, id):
+    results = testData.objects.filter(id_icontains = id)
+    return render(request, 'publication.html',{'publication':results})

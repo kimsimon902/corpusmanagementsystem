@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+    {% block table %}
+    <table class="table table-hover"> <!-- class="table-row" data-href="http://tutorialsplane.com" -->
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Abstract</th>
+            <th scope="col">URL</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for getdata in publication %}
+            <tr data-href="{% url 'publication/{{getdata.id}}' %}">
+                <td>{{getdata.id}}</td>
+                <td>{{getdata.title}}</td>
+                <td>{{getdata.author}}</td>
+                <td>{{getdata.abstract}}</td>
+                <td>{{getdata.url}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+</html>
