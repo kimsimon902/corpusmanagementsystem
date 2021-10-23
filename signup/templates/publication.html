@@ -10,7 +10,55 @@
 {% load static %}
 
 <link rel="stylesheet" href="{% static '\users\css\publicationpage.css' %}">
-<div class="student-profile py-4">
+<link rel="stylesheet" href="{% static '\users\css\home.css' %}">
+
+<body>
+  <!-- Navbar on top -->
+  <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+    <a class="navbar-brand" href="{% url 'home' %}">Corpus Management System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account
+            </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% if request.session.email %}
+                {{request.session.email}} <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+                {% endif %}
+              </div>
+          </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- End navbar -->
+  <!-- Search bar -->
+  <div class="container-fluid" id="search-bar">
+    <form method="POST" action="{% url 'search' %}" id="search-form">
+      {% csrf_token %}
+      <div class = "input-group">
+        <select class="form-select" aria-label="Filter" name="filterData">
+          <option selected>Filter</option>
+          <option value="title">Title</option>
+          <option value="author">Author</option>
+          <option value="abstract">Abstract</option>
+          <option value="url">URL</option>
+        </select>
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searched">
+        <div class="input-group-btn">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-button">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- End search bar -->
+  <div class="student-profile py-4">
     <div class="container">
       <div class="row">
 
@@ -54,4 +102,5 @@
       </div>
     </div>
   </div>
+</body>
 </html>
