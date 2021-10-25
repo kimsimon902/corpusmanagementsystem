@@ -16,33 +16,29 @@
 <body>
     <div class="container-fluid">
         <!-- Navbar on top -->
-          <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-              <a class="navbar-brand" href="#">Corpus Management System</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Account
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          {% if request.session.email %}
-                          <a class="dropdown-item" href="{% url 'logout' %}">{{request.session.email}}</a>
-                          <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                          {% else %}
-                          <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                          <a class="dropdown-item" href="{% url 'register' %}">Register</a>
-                          {% endif %}
-                      </div>
-                    </li>
-                </ul>
-              </div>
-            </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+          <a class="navbar-brand" href="{% url 'home' %}">Corpus Management System</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Account
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% if request.session.email %}
+                    {{request.session.email}} <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                    <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+                    {% endif %}
+                </div>
+            </li>
+            </ul>
+          </div>
+        </nav>
     </div>
     <section class="login-clean">
         <form method="post">
@@ -52,11 +48,6 @@
             <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Email" required></div>
             <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password" required></div>
             <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Log In</button></div><a class="forgot" href="#">Forgot your email or password?</a><a class="forgot" href="{% url 'register' %}">Don't have an account?</a>
-            {% if messages %}
-            {% for result in messages %}
-            <b style="color: red;">{{result}}</b>
-            {% endfor %}
-            {% endif %}
         </form>
     </section>
     <script src="static\users\js\bootstrap.min.js"></script>
