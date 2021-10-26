@@ -27,3 +27,7 @@ body {
     padding: 5px 10px;
     color: #000;
 }
+
+.col-lg-8{
+    padding-left:-100px;
+}
