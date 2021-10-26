@@ -58,49 +58,50 @@
     </form>
   </div>
   <!-- End search bar -->
- 
-    <div class="test">
-      <div class="row">
+ <div class= "custom">
+  <div class="container">
+    <div class="row">
 
-        <div class="col-lg-8" >
-          <div class="card shadow-sm">
-            <div class="card-header bg-transparent border-0">
-                {% for getdata in publication %}
-              <h3 class="mb-0"><i class="far fa-clone pr-1"></i>{{getdata.title}}</h3>
-            </div>
-            <div class="card-body pt-0">
-              <table class="table table-bordered">
-                <tr>
-                  <th width="30%">Author</th>
-                  <td width="2%">:</td>
-                  <td>{{getdata.author}}</td>
-                </tr>
-                <tr>
-                  <th width="30%">Abstract</th>
-                  <td width="2%">:</td>
-                  <td>{{getdata.abstract}}</td>
-                </tr>
-                <tr>
-                  <th width="30%">URL</th>
-                  <td width="2%">:</td>
-                  <td>{{getdata.url}}</td>
-                </tr>
-              </table>
-            </div>
+      <div class="col-lg-8">
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent border-0">
+              {% for getdata in publication %}
+            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>{{getdata.title}}</h3>
           </div>
-          {% endfor %}
-            <div style="height: 26px"></div>
-          <div class="card shadow-sm">
-            <div class="card-header bg-transparent border-0">
-              <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Other Information</h3>
-            </div>
-            <div class="card-body pt-0">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </div>
+          <div class="card-body pt-0">
+            <table class="table table-bordered">
+              <tr>
+                <th width="30%">Author</th>
+                <td width="2%">:</td>
+                <td>{{getdata.author}}</td>
+              </tr>
+              <tr>
+                <th width="30%">Abstract</th>
+                <td width="2%">:</td>
+                <td>{{getdata.abstract}}</td>
+              </tr>
+              <tr>
+                <th width="30%">URL</th>
+                <td width="2%">:</td>
+                <td>{{getdata.url}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        {% endfor %}
+          <div style="height: 26px"></div>
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent border-0">
+            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Other Information</h3>
+          </div>
+          <div class="card-body pt-0">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
           </div>
         </div>
       </div>
     </div>
-  
+  </div>
+</div>
+
 </body>
 </html>
