@@ -15,10 +15,10 @@ class registerUser(models.Model):
         db_table = "auth_user"
 
 
-class testData(models.Model):
+class publications(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     abstract = models.CharField(max_length=100)
     url = models.CharField(max_length=100)
     class Meta:
-        db_table = "test_data"
+        db_table = "publications"

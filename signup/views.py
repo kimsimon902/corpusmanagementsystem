@@ -4,13 +4,14 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .models import registerUser
-from .models import testData
+from .models import publications
+from django.db.models import Q
 
 # Create your views here.
 
 def home(request):
-    results = testData.objects.all()
-    return render(request, 'main/home.html',{'testData':results})
+    results = publications.objects.all()
+    return render(request, 'main/home.html',{'publications':results})
 
 def registerView(request):
     if request.method=='POST':
@@ -49,25 +50,33 @@ def logoutView(request):
     return redirect('/')
 
 def showTest(request):
-    results = testData.objects.all()
-    return render(request, 'test/test.html',{'testData':results})
+    results = publications.objects.all()
+    return render(request, 'test/test.html',{'publications':results})
 
-def searchTest(request):
+def searchPublication(request):
     if request.method == "POST":
         searched = request.POST['searched']
         searchFilter = request.POST['filterData']
 
-        if searchFilter == "title":
-            results = testData.objects.filter(title__icontains=searched)
+        if  searchFilter == "default":
+            results = publications.objects.filter(
+                Q(title__icontains=searched) |
+                Q(author__icontains=searched) |
+                Q(abstract__icontains=searched) |
+                Q(url__icontains=searched)
+            )
+            return render(request, 'main/search.html',{'searched':searched, 'results':results})
+        elif searchFilter == "title":
+            results = publications.objects.filter(title__icontains=searched)
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
         elif searchFilter == "author":
-            results = testData.objects.filter(author__icontains=searched)
+            results = publications.objects.filter(author__icontains=searched)
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
         elif searchFilter == "abstract":
-            results = testData.objects.filter(abstract__icontains=searched)
+            results = publications.objects.filter(abstract__icontains=searched)
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
         elif searchFilter == "url":
-            results = testData.objects.filter(url__icontains=searched)
+            results = publications.objects.filter(url__icontains=searched)
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
         else:
             return render(request, 'main/search.html',{})
@@ -77,5 +86,5 @@ def searchTest(request):
 
 
 def PublicationPage(request, id):
-    results = testData.objects.filter(id__icontains = id)
+    results = publications.objects.filter(id__icontains = id)
     return render(request, 'publication.html',{'publication':results})
