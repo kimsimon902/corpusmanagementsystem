@@ -46,9 +46,9 @@ def loginView(request):
 
 def logoutView(request):
     try:
-        auth_user = registerUser.objects.get(id=5)
+        auth_user = registerUser.objects.get(id=29)
         auth_user.last_login = "tester"
-        auth_user.save()
+        auth_user.save(update_fields=['last_login'])
         del request.session['email']
     except:
         return redirect('/')
