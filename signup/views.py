@@ -8,7 +8,7 @@ from django.contrib import messages
 from .models import registerUser
 from .models import publications
 from django.db.models import Q
-from datetime import datetime
+import time
 
 # Create your views here.
 
@@ -48,7 +48,7 @@ def loginView(request):
 def logoutView(request):
     try:
         auth_user = registerUser.objects.get(id=29)
-        auth_user.last_login = "tester"
+        auth_user.last_login = time.strftime('%Y-%m-%d %H:%M:%S')
         auth_user.save()
         del request.session['email']
     except registerUser.DoesNotExist:
