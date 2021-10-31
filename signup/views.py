@@ -1,4 +1,5 @@
 from django.db import reset_queries
+from django.db.models.fields import EmailField
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
@@ -48,9 +49,11 @@ def logoutView(request):
     try:
         auth_user = registerUser.objects.get(id=29)
         auth_user.last_login = "tester"
-        auth_user.save(update_fields=['last_login'])
+        auth_user.save()
         del request.session['email']
-    except:
+    except registerUser.DoesNotExist:
+        obj = registerUser(first_name='John', last_name='Lennon', username='Lennon', email= 'Lennon', password = 'Lennon')
+        obj.save()
         return redirect('/')
     return redirect('/')
 
