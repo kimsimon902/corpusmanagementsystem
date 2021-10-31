@@ -47,7 +47,7 @@ def loginView(request):
 
 def logoutView(request):
     try:
-        auth_user = registerUser.objects.get(id=29)
+        auth_user = registerUser.objects.get(email = request.session['email'])
         auth_user.last_login = time.strftime('%Y-%m-%d %H:%M:%S')
         auth_user.save()
         del request.session['email']
