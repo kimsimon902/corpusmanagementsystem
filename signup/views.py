@@ -48,10 +48,10 @@ def loginView(request):
 def logoutView(request):
     try:
         #Userdetails=registerUser.objects.get(email=request.POST['email'])
-        del request.session['email']
-        saverecord = logoutUser.objects.get(id=5)
+        saverecord = logoutUser.objects.get(username="John")
         saverecord.last_login = 999
         saverecord.save()
+        del request.session['email']
     except:
         return redirect('/')
     return redirect('/')
