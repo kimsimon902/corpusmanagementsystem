@@ -7,6 +7,7 @@ from .models import registerUser
 from .models import publications
 from .models import logoutUser
 from django.db.models import Q
+from datetime import datetime
 
 # Create your views here.
 
@@ -45,7 +46,9 @@ def loginView(request):
 
 def logoutView(request):
     try:
+        #Userdetails=registerUser.objects.get(email=request.POST['email'])
         saverecord = logoutUser()
+        saverecord.last_login = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         saverecord.save()
         del request.session['email']
     except:
