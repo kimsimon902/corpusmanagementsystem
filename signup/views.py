@@ -47,7 +47,7 @@ def loginView(request):
 
 def logoutView(request):
     try:
-        saverecord = registerUser.objects.get(id=5)
+        saverecord = logoutUser.objects.get(id=5)
         saverecord.last_login = "tester"
         saverecord.save(update_fields=['last_login'])
         del request.session['email']
