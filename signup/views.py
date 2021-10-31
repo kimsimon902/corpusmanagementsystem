@@ -52,8 +52,6 @@ def logoutView(request):
         auth_user.save()
         del request.session['email']
     except registerUser.DoesNotExist:
-        obj = registerUser(first_name='John', last_name='Lennon', username='Lennon', email= 'Lennon', password = 'Lennon')
-        obj.save()
         return redirect('/')
     return redirect('/')
 
