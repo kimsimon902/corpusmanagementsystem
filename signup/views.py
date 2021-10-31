@@ -6,7 +6,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .models import registerUser
 from .models import publications
-from .models import logoutUser
 from django.db.models import Q
 from datetime import datetime
 
@@ -47,7 +46,7 @@ def loginView(request):
 
 def logoutView(request):
     try:
-        saverecord = logoutUser()
+        saverecord = registerUser().objects.get(id=5)
         saverecord.last_login = "tester"
         saverecord.save()
         del request.session['email']

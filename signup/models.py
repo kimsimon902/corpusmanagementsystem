@@ -15,12 +15,6 @@ class registerUser(models.Model):
     class Meta:
         db_table = "auth_user"
 
-class logoutUser(models.Model):
-    username = models.CharField(max_length=100)
-    last_login = models.CharField(max_length=100)
-    class Meta:
-        db_table = "auth_user"
-
 
 class publications(models.Model):
     title = models.CharField(max_length=100)
