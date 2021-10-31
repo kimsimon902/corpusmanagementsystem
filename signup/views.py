@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .models import registerUser
 from .models import publications
+from .models import logoutUser
 from django.db.models import Q
 
 # Create your views here.
@@ -44,6 +45,8 @@ def loginView(request):
 
 def logoutView(request):
     try:
+        saverecord = logoutUser()
+        saverecord.save()
         del request.session['email']
     except:
         return redirect('/')
