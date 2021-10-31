@@ -47,10 +47,10 @@ def loginView(request):
 def logoutView(request):
     try:
         #Userdetails=registerUser.objects.get(email=request.POST['email'])
+        del request.session['email']
         saverecord = logoutUser()
         saverecord.last_login = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         saverecord.save()
-        del request.session['email']
     except:
         return redirect('/')
     return redirect('/')
