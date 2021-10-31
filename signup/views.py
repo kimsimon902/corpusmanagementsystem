@@ -1,3 +1,4 @@
+from django.db import reset_queries
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
@@ -47,10 +48,11 @@ def loginView(request):
 def logoutView(request):
     try:
         #Userdetails=registerUser.objects.get(email=request.POST['email'])
-        del request.session['email']
+        results = logoutUser.objects.get(email=request.session['email'])
         saverecord = logoutUser()
         saverecord.last_login = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         saverecord.save()
+        del request.session['email']
     except:
         return redirect('/')
     return redirect('/')
