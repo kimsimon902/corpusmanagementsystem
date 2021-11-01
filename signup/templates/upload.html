@@ -13,11 +13,12 @@
 <body>
     <section class="contact-clean">
         <form method="post">
+            {% csrf_token %}
             <h2 class="text-center">Upload Literature</h2>
-            <div class="mb-3"><input class="form-control" type="text" name="name" placeholder="Title"></div>
-            <div class="mb-3"><input class="form-control is-invalid" type="text" name="author" placeholder="Author"><small class="form-text text-danger"></small></div>
+            <div class="mb-3"><input class="form-control" type="text" name="title" placeholder="Title" required></div>
+            <div class="mb-3"><input class="form-control is-invalid" type="text" name="author" placeholder="Author" required></div>
             <div class="mb-3"><textarea class="form-control" name="abstract" placeholder="Abstract" rows="14" style="resize: none;"></textarea></div>
-            <div class="mb-3"><input class="form-control" type="text" name="url" placeholder="Url"></div>
+            <div class="mb-3"><input class="form-control" type="text" name="url" placeholder="Url" required></div>
             <div class="mb-3"><button class="btn btn-primary" type="submit">Upload</button></div>
         </form>
     </section>
