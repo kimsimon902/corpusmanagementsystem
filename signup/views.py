@@ -96,4 +96,4 @@ def PublicationPage(request, id):
     return render(request, 'publication.html',{'publication':results})
 
 def uploadLiterature(request):
-    return redirect('/upload')
+    return render(request,'upload.html')
