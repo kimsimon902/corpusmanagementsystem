@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>uform</title>
+    <link rel="stylesheet" href="{% static '\users\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '\users\css\uform.css' %}">
+    <link rel="stylesheet" href="{% static '\users\css\Registration-Form-with-Photo.css' %}">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <section class="contact-clean">
+        <form method="post">
+            <h2 class="text-center">Upload</h2>
+            <div class="mb-3"><input class="form-control" type="text" name="name" placeholder="Name"></div>
+            <div class="mb-3"><input class="form-control is-invalid" type="email" name="email" placeholder="Email"><small class="form-text text-danger"></small></div>
+            <div class="mb-3"><textarea class="form-control" name="message" placeholder="Message" rows="14"></textarea></div>
+            <div class="mb-3"><input class="form-control" type="text" name="name" placeholder="Name"></div>
+            <div class="mb-3"><button class="btn btn-primary" type="submit">send </button></div>
+        </form>
+    </section>
+    <script src="static\users\js\bootstrap.min.js"></script>
+</body>
+
+</html>

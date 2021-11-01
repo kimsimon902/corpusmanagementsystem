@@ -94,3 +94,6 @@ def searchPublication(request):
 def PublicationPage(request, id):
     results = publications.objects.filter(id__icontains = id)
     return render(request, 'publication.html',{'publication':results})
+
+def uploadLiterature(request):
+    return redirect('/upload')

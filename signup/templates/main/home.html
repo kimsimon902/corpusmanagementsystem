@@ -28,8 +28,9 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       {% if request.session.email %}
-                      <a>{{request.session.email}}</a>
+                      <a class="dropdown-item">{{request.session.email}}</a>
                       <a type="submit" class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                      <a type="submit" class="dropdown-item" href="{% url 'upload' %}">Upload Literature</a>
                       {% else %}
                       <a class="dropdown-item" href="{% url 'login' %}">Login</a>
                       <a class="dropdown-item" href="{% url 'register' %}">Register</a>
