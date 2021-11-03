@@ -100,13 +100,10 @@ def uploadLiterature(request):
     if request.method=='POST':
         if request.POST.get('title') and request.POST.get('author') and request.POST.get('url'):
             savepub = publications(request.POST, request.FILES)
-            uploaded_file = request.FILES['document']
-            fs = FileSystemStorage()
-            name = fs.save(uploaded_file.name, uploaded_file)
             savepub.title = request.POST.get('title')
             savepub.author = request.POST.get('author')
             savepub.url = request.POST.get('url')
-            savepub.pdf = fs.url(name)
+            savepub.pdf = request.FILES.get('document')
             savepub.save()
             messages.success(request, "Your Account Was Successfully Created")
             return redirect('/')#render(request, 'registration/login.html')
