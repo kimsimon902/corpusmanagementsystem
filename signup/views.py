@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.core.files.storage import FileSystemStorage
 from .models import registerUser
 from .models import publications
 from django.db.models import Q
@@ -98,10 +99,11 @@ def PublicationPage(request, id):
 def uploadLiterature(request):
     if request.method=='POST':
         if request.POST.get('title') and request.POST.get('author') and request.POST.get('url'):
-            savepub = publications()
+            savepub = publications(request.POST, request.FILE)
             savepub.title = request.POST.get('title')
             savepub.author = request.POST.get('author')
             savepub.url = request.POST.get('url')
+            savepub.url = request.POST.get('document')
             savepub.save()
             messages.success(request, "Your Account Was Successfully Created")
             return redirect('/')#render(request, 'registration/login.html')
