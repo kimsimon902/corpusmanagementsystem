@@ -103,7 +103,6 @@ def uploadLiterature(request):
             savepub.title = request.POST.get('title')
             savepub.author = request.POST.get('author')
             savepub.url = request.POST.get('url')
-            savepub.pdf = request.POST.get('document')
             savepub.save()
             messages.success(request, "Your Account Was Successfully Created")
             return redirect('/')#render(request, 'registration/login.html')
