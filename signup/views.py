@@ -99,7 +99,7 @@ def PublicationPage(request, id):
 def uploadLiterature(request):
     if request.method=='POST':
         if request.POST.get('title') and request.POST.get('author') and request.POST.get('url'):
-            savepub = publications(request.POST, request.FILES)
+            savepub = publications()
             savepub.title = request.POST.get('title')
             savepub.author = request.POST.get('author')
             savepub.url = request.POST.get('url')
