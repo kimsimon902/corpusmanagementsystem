@@ -29,9 +29,7 @@ def registerView(request):
             saverecord.last_login = time.strftime('%Y-%m-%d %H:%M:%S')
             saverecord.save()
             messages.success(request, "Your Account Was Successfully Created")
-            if 'next' in request.POST:
-                return redirect(request.POST.get('next'))
-            return redirect('/login')#render(request, 'registration/login.html')
+            return redirect('login')#render(request, 'registration/login.html')
     else:
             return render(request, 'registration/register.html')
 
