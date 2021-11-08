@@ -26,6 +26,7 @@ def registerView(request):
             saverecord.password = request.POST.get('password')
             saverecord.first_name = request.POST.get('first_name')
             saverecord.last_name = request.POST.get('last_name')
+            saverecord.last_login = time.strftime('%Y-%m-%d %H:%M:%S')
             saverecord.save()
             messages.success(request, "Your Account Was Successfully Created")
             if 'next' in request.POST:
@@ -44,7 +45,7 @@ def loginView(request):
             return render(request,'main/home.html')
         except registerUser.DoesNotExist as e:
             messages.success(request,'Username or Password Invalid.')
-    return redirect(request,'/')
+    return redirect(request,'registration/login.html')
 
 def logoutView(request):
     try:
