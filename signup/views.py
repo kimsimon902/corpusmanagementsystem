@@ -40,10 +40,10 @@ def loginView(request):
             Userdetails=registerUser.objects.get(email=request.POST['email'],password=request.POST['password'])
             print("Username=",Userdetails)
             request.session['email']=Userdetails.email
-            return render(request,'main/home.html')
+            return redirect('home')
         except registerUser.DoesNotExist as e:
             messages.success(request,'Username or Password Invalid.')
-    return redirect(request,'registration/login.html')
+    return render(request,'registration/login.html')
 
 def logoutView(request):
     try:
