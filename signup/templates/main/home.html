@@ -80,7 +80,11 @@
                         <td>{{getdata.id}}</td>
                         <td><a href="/publication/{{getdata.id}}">{{getdata.title}}</a></td>
                         <td>{{getdata.author}}</td>
-                        <td>{{getdata.abstract}}</td>
+                        <td style=
+                        "max-width:200px;
+                          white-space: nowrap;
+                          overflow: hidden;
+                          text-overflow: ellipsis">{{getdata.abstract}}</td>
                         <td>{{getdata.url}}</td>
                     </tr>
                     {% endfor %}

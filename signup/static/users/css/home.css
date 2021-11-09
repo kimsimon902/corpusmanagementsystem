@@ -16,9 +16,4 @@ tr[data-href]{
     cursor: pointer;
 }
 
-td {
-    max-width: 200px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
+
