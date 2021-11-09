@@ -91,8 +91,8 @@ def searchPublication(request):
         return render(request, 'main/search.html',{})
 
 
-def PublicationPage(request, title):
-    results = publications.objects.filter(title__icontains = title)
+def PublicationPage(request, id):
+    results = publications.objects.filter(id=id)
     return render(request, 'publication.html',{'publication':results})
 
 def uploadLiterature(request):
