@@ -18,7 +18,7 @@ class registerUser(models.Model):
 
 class publications(models.Model):
     title = models.CharField(max_length=100)
-    author = models.CharField(max_length=100)
+    author = models.CharField(max_length=200)
     abstract = models.CharField(max_length=100)
     url = models.CharField(max_length=100)
     pdf = models.FileField(upload_to='literature/pdfs/')

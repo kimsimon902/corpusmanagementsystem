@@ -90,7 +90,7 @@ def searchPublication(request):
     else:
         return render(request, 'main/search.html',{})
 
-
+#this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
     results = publications.objects.filter(id=id)
     return render(request, 'publication.html',{'publication':results})
