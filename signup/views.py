@@ -13,6 +13,9 @@ import time
 
 # Create your views here.
 
+def index(request):
+    return render(request, 'main/index.html')
+
 def home(request):
     results = publications.objects.all()
     return render(request, 'main/home.html',{'publications':results})
