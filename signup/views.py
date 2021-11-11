@@ -30,12 +30,17 @@ def registerView(request):
                 messages.error(request, 'Sorry. This username is taken', extra_tags='name')
                 return redirect('register')
             saverecord.email = request.POST.get('email')
+            if registerUser.objects.filter(email=request.POST.get('email')).exists():
+                messages.error(request, 'Email already has an account', extra_tags='name')
+                return redirect('register')
             saverecord.password = request.POST.get('password')
+            if saverecord.username != request.POST.get('repwd'):
+                messages.error(request, 'Password does not match', extra_tags='name')
+                return redirect('register')
             saverecord.first_name = request.POST.get('first_name')
             saverecord.last_name = request.POST.get('last_name')
             saverecord.last_login = time.strftime('%Y-%m-%d %H:%M:%S')
             saverecord.save()
-            messages.success(request, "Your Account Was Successfully Created")
             return redirect('login')#render(request, 'registration/login.html')
     else:
             return render(request, 'registration/register.html')
