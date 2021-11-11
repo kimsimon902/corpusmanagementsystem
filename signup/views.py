@@ -20,6 +20,7 @@ def home(request):
     results = publications.objects.all()
     return render(request, 'main/home.html',{'publications':results})
 
+#Creates a user account and stores it in the database
 def registerView(request):
     if request.method=='POST':
         if request.POST.get('username') and request.POST.get('email') and request.POST.get('password') and request.POST.get('first_name') and request.POST.get('last_name'):
@@ -36,7 +37,7 @@ def registerView(request):
     else:
             return render(request, 'registration/register.html')
 
-
+#Checks database if account exists and authenticates the user
 def loginView(request):
     if request.method=='POST':
         try:
@@ -105,6 +106,7 @@ def uploadLiterature(request):
             savepub.title = request.POST.get('title')
             savepub.author = request.POST.get('author')
             savepub.url = request.POST.get('url')
+            savepub.url = request.POST.get('source')
             savepub.pdf = request.FILES.get('document')
             savepub.save()
             messages.success(request, "Your Account Was Successfully Created")

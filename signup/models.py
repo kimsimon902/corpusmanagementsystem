@@ -22,5 +22,6 @@ class publications(models.Model):
     abstract = models.CharField(max_length=100)
     url = models.CharField(max_length=100)
     pdf = models.FileField(upload_to='literature/pdfs/')
+    source = models.CharField(max_length=100)
     class Meta:
         db_table = "publications"
