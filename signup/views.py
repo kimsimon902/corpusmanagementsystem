@@ -26,7 +26,7 @@ def registerView(request):
         if request.POST.get('username') and request.POST.get('username') and request.POST.get('email') and request.POST.get('password') and request.POST.get('first_name') and request.POST.get('last_name'):
             saverecord = registerUser()
             saverecord.username = request.POST.get('username')
-            if saverecord.objects.filter(username=request.POST.get('username')).exists():
+            if registerUser.objects.filter(username=request.POST.get('username')).exists():
                 messages.error(request, 'Sorry. This username is taken', extra_tags='name')
                 return redirect('register')
             saverecord.email = request.POST.get('email')
