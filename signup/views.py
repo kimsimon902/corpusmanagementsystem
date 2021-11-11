@@ -55,7 +55,8 @@ def loginView(request):
             request.session['username']=Userdetails.username
             return redirect('home')
         except registerUser.DoesNotExist as e:
-            messages.success(request,'Username or Password Invalid.')
+            messages.error(request,'Username or Password Invalid.', extra_tags='name')
+            return redirect('login')
     return render(request,'registration/login.html')
 
 def logoutView(request):
