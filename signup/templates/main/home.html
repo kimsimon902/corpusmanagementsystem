@@ -21,7 +21,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
+              <ul class="navbar-nav mr-auto navbar-right">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Account
@@ -29,8 +29,8 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       {% if request.session.email %}
                       <a class="dropdown-item">{{request.session.email}}</a>
-                      <a type="submit" class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                       <a type="submit" class="dropdown-item" href="{% url 'upload' %}">Upload Literature</a>
+                      <a type="submit" class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                       {% else %}
                       <a class="dropdown-item" href="{% url 'login' %}">Login</a>
                       <a class="dropdown-item" href="{% url 'register' %}">Register</a>
