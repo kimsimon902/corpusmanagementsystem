@@ -61,3 +61,7 @@ html,body{
     background-color:#087830;
     color: white;
 }
+
+#navbarSupportedContent {
+    float: right;
+}
