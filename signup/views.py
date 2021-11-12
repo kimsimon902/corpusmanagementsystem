@@ -114,7 +114,7 @@ def uploadLiterature(request):
     if request.method=='POST':
         if request.POST.get('title') and request.POST.get('author') and request.POST.get('url'):
             savepub = publications()
-            savetag = tags
+            savetag = tags()
             savepub.title = request.POST.get('title')
             savepub.author = request.POST.get('author')
             savepub.url = request.POST.get('url')
@@ -125,7 +125,7 @@ def uploadLiterature(request):
                 try:
                     savetag = tags.objects.get(tagname=request.POST.get('textbox' , x))
                 except tags.DoesNotExist:
-                    savetag = tags(tagname=request.POST.get('textbox' + x))
+                    savetag.tagname = request.POST.get('textbox' + x)
                     savetag.save()
             return redirect('/')#render(request, 'registration/login.html')
     else:
