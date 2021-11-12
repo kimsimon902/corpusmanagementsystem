@@ -121,7 +121,7 @@ def uploadLiterature(request):
             savepub.source = request.POST.get('source')
             savepub.pdf = request.FILES.get('document')
             savepub.save()
-            for x in range (1,request.POST.get('counter')):
+            for x in range (1,10):
                 try:
                     savetag = tags.objects.get(tagname=request.POST.get('textbox' + x))
                 except tags.DoesNotExist:
