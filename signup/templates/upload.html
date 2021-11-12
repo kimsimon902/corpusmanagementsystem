@@ -23,14 +23,14 @@
           $("#addButton").click(function () {
       
           if(counter>10){
-                  alert("Only 10 textboxes allow");
+                  alert("Only 10 tags allow");
                   return false;
           }   
       
           var newTextBoxDiv = $(document.createElement('div'))
                .attr("id", 'TextBoxDiv' + counter);
       
-          newTextBoxDiv.after().html('<label>Textbox #'+ counter + ' : </label>' +
+          newTextBoxDiv.after().html('<label>Tag #'+ counter + ' : </label>' +
                 '<input type="text" name="textbox' + counter + 
                 '" id="textbox' + counter + '" value="" >');
       
@@ -42,7 +42,7 @@
       
            $("#removeButton").click(function () {
           if(counter==1){
-                alert("No more textbox to remove");
+                alert("No more tags to remove");
                 return false;
              }   
       
