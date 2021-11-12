@@ -1,5 +1,5 @@
 from django.db import reset_queries
-from django.db.models.fields import EmailField
+from django.db.models.fields import EmailField, NullBooleanField
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
@@ -122,7 +122,7 @@ def uploadLiterature(request):
             savepub.save()
             insert_list = []
             for i in range(1,10):
-                if request.POST.get('textbox' + str(i)) != "":
+                if request.POST.get('textbox' + str(i)) is None:
                     insert_list.append(tags(tagname=request.POST.get('textbox' + str(i))))
             tags.objects.bulk_create(insert_list)
             return redirect('/')#render(request, 'registration/login.html')
