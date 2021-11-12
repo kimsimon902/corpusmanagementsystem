@@ -9,6 +9,7 @@ from django.core.files.storage import FileSystemStorage
 from .models import registerUser
 from .models import publications
 from .models import tags
+from .models import annotations
 from django.db.models import Q
 import time
 
@@ -108,7 +109,28 @@ def searchPublication(request):
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
     results = publications.objects.filter(id=id)
-    return render(request, 'publication.html',{'publication':results})
+    author= request.session['username']
+    annotation = annotations.objects.filter(publicationID=id, author=author)
+    return render(request, 'publication.html', {'publication':results, 'annotations':annotation})
+
+def PublicationPageAnnotate(request, id):
+    results = publications.objects.filter(id=id)
+    author= request.session['username']
+    annotation = annotations.objects.filter(publicationID=id, author=author)
+    
+    if request.method=='POST':
+        body= request.POST['annotation']
+        author= request.session['username']
+        # author="localtest"
+        pubID = id
+        saveAnnotation = annotations()
+        saveAnnotation.author = author
+        saveAnnotation.body = body
+        saveAnnotation.publicationID = pubID
+        saveAnnotation.save()
+        return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
+    else:
+        return render(request, 'publication.html', {'publication':results, 'annotations':annotation})
 
 def uploadLiterature(request):
     if request.method=='POST':
@@ -128,3 +150,16 @@ def uploadLiterature(request):
             return redirect('/')#render(request, 'registration/login.html')
     else:
             return render(request, 'upload.html')
+
+# def annotateFromPub(request):
+#     results = publications.objects.filter(id=id)
+#     if request.method=='POST':
+#         body= request.POST['annotation']
+#         author= request.session['username']
+#         pubID = id
+#         saveAnnotation = annotations()
+#         saveAnnotation.author = author
+#         saveAnnotation.body = body
+#         saveAnnotation.publicationID = pubID
+#         saveAnnotation.save()
+#         return render(request, 'publication.html',{'publication':results})

@@ -86,6 +86,26 @@
                 <td>{{getdata.url}}</td>
               </tr>
             </table>
+            <!-- initial annotation input -->
+            <div class="card">
+              <div class="card-body">
+                <form method="POST" action="/publication/{{getdata.id}}/annotate" id="annotate-from-pub">
+                  {% csrf_token %}
+                  {% if annotations %}
+                  {% for body in annotations %}
+                  <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation" readonly>{{body.body}}</textarea>
+                  <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit" onclick="clickEditOnAnnotation()" style="display:inline">Edit</button>
+                  <button type="button" class="btn btn-link" id="pubsAnnotation_btnSave" onclick="clickCancelAnnotation()" style="display:none">Save</button>
+                  <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel" onclick="clickCancelAnnotation()" style="display:none">Cancel</button>
+                  <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete">Delete</button>
+                  {% endfor %}
+                  {% else %}
+                  <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
+                  <button type="submit" class="btn btn-link" id="pubsAnnotation_btnAnnotate">Annotate</button>
+                  {% endif %}
+                </form>
+              </div>
+            </div>
             
           </div>
          
