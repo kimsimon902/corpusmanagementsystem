@@ -87,6 +87,7 @@
               </tr>
             </table>
             <!-- initial annotation input -->
+            {% if request.user.is_authenticated %}
             <div class="card">
               <div class="card-body">
                 <form method="POST" action="/publication/{{getdata.id}}/annotate" id="annotate-from-pub">
@@ -106,6 +107,7 @@
                 </form>
               </div>
             </div>
+            {% endif %}
             
           </div>
          
