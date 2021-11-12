@@ -56,7 +56,7 @@
       
           var msg = '';
           for(i=1; i<counter; i++){
-            msg += "\n Textbox #" + i + " : " + $('#textbox' + i).val();
+            msg += "\n Tag #" + i + " : " + $('#textbox' + i).val();
           }
                 alert(msg);
            });
@@ -112,8 +112,9 @@
                   <label>Tag #1 : </label><input type='textbox' id='textbox1' >
               </div>
             </div>
-            <input type='button' value='Add Button' id='addButton'>
-            <input type='button' value='Remove Button' id='removeButton'>
+            <input type='button' value='+' id='addButton'>
+            <input type='button' value='-' id='removeButton'>
+            <input type='button' value='Get TextBox Value' id='getButtonValue'>
             <div class="mb-3"><button class="btn btn-primary" type="submit">Upload</button></div>
         </form>
     </section>
