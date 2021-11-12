@@ -122,7 +122,7 @@ def uploadLiterature(request):
             savepub.save()
             insert_list = []
             for i in range(1,10):
-                insert_list.append(tags(tagname=request.POST.get('textbox' + str(1))))
+                insert_list.append(tags(tagname=request.POST.get('textbox' + str(i))))
             tags.objects.bulk_create(insert_list)
             return redirect('/')#render(request, 'registration/login.html')
     else:
