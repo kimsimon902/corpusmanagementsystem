@@ -25,3 +25,9 @@ class publications(models.Model):
     source = models.CharField(max_length=100)
     class Meta:
         db_table = "publications"
+
+class tags(models.Model):
+    tagname = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = "tags"

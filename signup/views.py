@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from .models import registerUser
 from .models import publications
+from .models import tags
 from django.db.models import Q
 import time
 
@@ -113,13 +114,19 @@ def uploadLiterature(request):
     if request.method=='POST':
         if request.POST.get('title') and request.POST.get('author') and request.POST.get('url'):
             savepub = publications()
+            savetag = tags
             savepub.title = request.POST.get('title')
             savepub.author = request.POST.get('author')
             savepub.url = request.POST.get('url')
-            savepub.url = request.POST.get('source')
+            savepub.source = request.POST.get('source')
             savepub.pdf = request.FILES.get('document')
             savepub.save()
-            messages.success(request, "Your Account Was Successfully Created")
+            for x in range (1,request.POST.get('counter')):
+                try:
+                    savetag = tags.objects.get(tagname=request.POST.get('textbox' + x))
+                except tags.DoesNotExist:
+                    savetag = tags(tagname=request.POST.get('textbox' + x))
+                    savetag.save()
             return redirect('/')#render(request, 'registration/login.html')
     else:
             return render(request, 'upload.html')
