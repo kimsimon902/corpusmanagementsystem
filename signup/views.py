@@ -125,7 +125,7 @@ def uploadLiterature(request):
                 try:
                     savetag = tags.objects.get(tagname=request.POST.get('textbox' , x))
                 except tags.DoesNotExist:
-                    savetag.tagname = request.POST.get('textbox' + x)
+                    savetag.tagname = request.POST.get('textbox' , x)
                     savetag.save()
             return redirect('/')#render(request, 'registration/login.html')
     else:
