@@ -109,18 +109,23 @@ def searchPublication(request):
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
     results = publications.objects.filter(id=id)
-    author= request.session['username']
+    if (request.session['username']):
+        author= request.session['username']
+    else:
+        author="null"
     annotation = annotations.objects.filter(publicationID=id, author=author)
     return render(request, 'publication.html', {'publication':results, 'annotations':annotation})
 
 def PublicationPageAnnotate(request, id):
     results = publications.objects.filter(id=id)
-    author= request.session['username']
+    if (request.session['username']):
+        author= request.session['username']
+    else:
+        author="null"
     annotation = annotations.objects.filter(publicationID=id, author=author)
     
     if request.method=='POST':
         body= request.POST['annotation']
-        author= request.session['username']
         # author="localtest"
         pubID = id
         saveAnnotation = annotations()
