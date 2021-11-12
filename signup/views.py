@@ -121,16 +121,10 @@ def uploadLiterature(request):
             savepub.source = request.POST.get('source')
             savepub.pdf = request.FILES.get('document')
             savepub.save()
-            try:
-                savetag = tags.objects.get(tagname=request.POST.get('textbox1'))
-            except tags.DoesNotExist:
-                savetag.tagname = request.POST.get('textbox1')
-                savetag.save()
-            try:
-                savetag = tags.objects.get(tagname=request.POST.get('textbox2'))
-            except tags.DoesNotExist:
-                savetag.tagname = request.POST.get('textbox2')
-                savetag.save()
+            insert_list = []
+            for i in range(10):
+                insert_list.append(tags(tagname=request.POST.get('textbox',i)))
+            tags.objects.bulk_create()
             return redirect('/')#render(request, 'registration/login.html')
     else:
             return render(request, 'upload.html')
