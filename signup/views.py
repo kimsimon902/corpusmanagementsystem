@@ -114,7 +114,6 @@ def uploadLiterature(request):
     if request.method=='POST':
         if request.POST.get('title') and request.POST.get('author') and request.POST.get('url'):
             savepub = publications()
-            savetag = tags()
             savepub.title = request.POST.get('title')
             savepub.author = request.POST.get('author')
             savepub.url = request.POST.get('url')
@@ -122,7 +121,7 @@ def uploadLiterature(request):
             savepub.pdf = request.FILES.get('document')
             savepub.save()
             insert_list = []
-            for i in range(request.POST.get('counter')):
+            for i in range(3):
                 insert_list.append(tags(request.POST.get('textbox',i)))
             tags.objects.bulk_create(insert_list)
             return redirect('/')#render(request, 'registration/login.html')
