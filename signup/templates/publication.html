@@ -99,10 +99,16 @@
                   <button type="button" class="btn btn-link" id="pubsAnnotation_btnSave" onclick="clickCancelAnnotation()" style="display:none">Save</button>
                   <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel" onclick="clickCancelAnnotation()" style="display:none">Cancel</button>
                   <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete">Delete</button>
+                  <div class="float-right">
+                    <button type="submit" class="btn btn-outline-success float-right"><i class="bi bi-bookmark"></i>Bookmark</button>
+                  </div>
                   {% endfor %}
                   {% else %}
                   <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
                   <button type="submit" class="btn btn-link" id="pubsAnnotation_btnAnnotate">Annotate</button>
+                  <div class="float-right">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0"><i class="bi bi-bookmark"></i>Bookmark</button>
+                  </div> 
                   {% endif %}
                 </form>
               </div>
