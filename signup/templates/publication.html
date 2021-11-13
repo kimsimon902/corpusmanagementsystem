@@ -95,19 +95,25 @@
                   {% if annotations %}
                   {% for body in annotations %}
                   <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation" readonly>{{body.body}}</textarea>
+                  <br>
                   <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit" onclick="clickEditOnAnnotation()" style="display:inline">Edit</button>
                   <button type="button" class="btn btn-link" id="pubsAnnotation_btnSave" onclick="clickCancelAnnotation()" style="display:none">Save</button>
                   <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel" onclick="clickCancelAnnotation()" style="display:none">Cancel</button>
                   <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete">Delete</button>
                   <div class="float-right">
-                    <button type="submit" class="btn btn-outline-success float-right"><i class="bi bi-bookmark"></i>Bookmark</button>
+                    <button type="submit" class="btn btn-outline-success float-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                      <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                    </svg>Bookmark</button>
                   </div>
                   {% endfor %}
                   {% else %}
                   <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
+                  <br>
                   <button type="submit" class="btn btn-link" id="pubsAnnotation_btnAnnotate">Annotate</button>
                   <div class="float-right">
-                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0"><i class="bi bi-bookmark"></i>Bookmark</button>
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                      <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                    </svg></i>Bookmark</button>
                   </div> 
                   {% endif %}
                 </form>
