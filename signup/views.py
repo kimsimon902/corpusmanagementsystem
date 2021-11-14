@@ -10,6 +10,7 @@ from .models import registerUser
 from .models import publications
 from .models import tags
 from .models import annotations
+from .models import bookmarks
 from django.db.models import Q
 import time
 
