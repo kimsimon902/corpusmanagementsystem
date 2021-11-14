@@ -148,6 +148,7 @@ def PublicationBookmark(request, id):
         user = "null"
 
     bookmark = bookmarks.objects.filter(publicationID=id, user=user)
+    annotation = annotations.objects.filter(publicationID=id, author=user)
 
     if request.method=='POST':
         if 'bookmark-add' in request.POST:
@@ -156,12 +157,14 @@ def PublicationBookmark(request, id):
             addBookmark.user = user
             addBookmark.publicationID = pubID
             addBookmark.save()
-            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark})
+            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
         elif 'bookmark-delete' in request.POST:
             bookmark.delete()
-            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark})
+            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
         else:
-            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark})
+            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
+    else:
+        return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
 
 
 def uploadLiterature(request):
