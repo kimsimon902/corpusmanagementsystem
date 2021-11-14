@@ -120,7 +120,7 @@ def PublicationPage(request, id):
 
 def PublicationPageAnnotate(request, id):
     results = publications.objects.filter(id=id)
-    if (request.user.is_authenticated()):
+    if (request.user.is_authenticated):
         author= request.session['username']
     else:
         author="null"
@@ -142,7 +142,7 @@ def PublicationPageAnnotate(request, id):
 def PublicationBookmark(request, id):
     results = publications.objects.filter(id=id)
 
-    if(request.user.is_authenticated()):
+    if(request.user):
         user = request.session['username']
     else:
         user = "null"
