@@ -29,7 +29,7 @@
                 {% if request.session.email %}
                 <!--{{request.session.email}} -->
                 <a type="submit" class="dropdown-item" href="{% url 'upload' %}">Upload Literature</a>
-                <a type="submit" class="dropdown-item" href="{% url 'upload' %}">My Bookmarks</a>
+                <a type="submit" class="dropdown-item" href="{% url 'bookmarks' %}">My Bookmarks</a>
                 <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                 {% else %}
                 <a class="dropdown-item" href="{% url 'login' %}">Login</a>

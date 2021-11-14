@@ -35,6 +35,7 @@
                   <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                       {% if request.session.email %}
                       <a type="submit" class="dropdown-item" href="{% url 'upload' %}">Upload Literature</a>
+                      <a type="submit" class="dropdown-item" href="{% url 'bookmarks' %}">My Bookmarks</a>
                       <a type="submit" class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                       {% else %}
                       <a class="dropdown-item" href="{% url 'login' %}">Login</a>
@@ -48,6 +49,7 @@
           </nav>
       <!-- End navbar -->
           <!-- Search bar -->
+          {% block bookmark %}
           <div class="container-fluid" id="search-bar">
             <form method="POST" action="{% url 'search' %}" id="search-form">
               {% csrf_token %}
@@ -96,6 +98,7 @@
                 </tbody>
             </table>
             {% endblock %}
+            {% endblock bookmark %}
           <!-- End table block -->
         </div>
     </div>

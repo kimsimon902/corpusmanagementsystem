@@ -23,6 +23,9 @@ def home(request):
     results = publications.objects.all()
     return render(request, 'main/home.html',{'publications':results})
 
+def viewBookmarks(request):
+    return render(request, 'bookmarks.html')
+
 #Creates a user account and stores it in the database
 def registerView(request):
     if request.method=='POST':
