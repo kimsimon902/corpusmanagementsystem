@@ -27,7 +27,7 @@ def viewBookmarks(request):
     user = request.session['username']
     bookmark = bookmarks.objects.filter(user=user)
 
-    publication = publications.objects.filter(id__in=bookmark)
+    publication = publications.objects.filter(id__in=bookmark.publicationID)
 
     return render(request, 'bookmarks.html', {'publications':publication})
 
