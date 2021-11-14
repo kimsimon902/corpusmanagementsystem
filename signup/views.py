@@ -147,7 +147,7 @@ def PublicationBookmark(request, id):
     else:
         user = "null"
 
-    bookmark = bookmark.objects.filter(publicationID=id, user=user)
+    bookmark = bookmarks.objects.filter(publicationID=id, user=user)
 
     if request.method=='POST':
         if 'bookmark-add' in request.POST:
