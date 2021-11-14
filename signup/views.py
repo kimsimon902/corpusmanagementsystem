@@ -110,7 +110,7 @@ def searchPublication(request):
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
     results = publications.objects.filter(id=id)
-    if (request.user.is_authenticated):
+    if (request.user):
         author= request.session['username']
     else:
         author="null"
@@ -120,7 +120,7 @@ def PublicationPage(request, id):
 
 def PublicationPageAnnotate(request, id):
     results = publications.objects.filter(id=id)
-    if (request.user.is_authenticated):
+    if (request.user):
         author= request.session['username']
     else:
         author="null"
