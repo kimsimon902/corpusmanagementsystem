@@ -39,3 +39,10 @@ class annotations(models.Model):
 
     class Meta:
         db_table = "annotations"
+
+class bookmarks(models.Model):
+    user = models.CharField(max_length=100)
+    publicationID = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = "bookmarks"

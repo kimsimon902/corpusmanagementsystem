@@ -16,7 +16,9 @@ urlpatterns =[
     path('search/',views.searchPublication, name ='search'),
     path('publication/<id>/',views.PublicationPage, name ='publicationpage'),
     path('publication/<id>/annotate',views.PublicationPageAnnotate, name ='publicationpageannotate'),
+    path('publication/<id>/bookmark', views.PublicationBookmark, name = 'publicationbookmark'),
     path('upload/',views.uploadLiterature, name ='upload')
+    
 ]
 
 if settings.DEBUG:

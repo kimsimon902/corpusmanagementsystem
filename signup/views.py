@@ -114,7 +114,8 @@ def PublicationPage(request, id):
     else:
         author="null"
     annotation = annotations.objects.filter(publicationID=id, author=author)
-    return render(request, 'publication.html', {'publication':results, 'annotations':annotation})
+    bookmark = bookmark.objects.filter(publicationID=id, user=user)
+    return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'bookmarks':bookmark})
 
 def PublicationPageAnnotate(request, id):
     results = publications.objects.filter(id=id)
@@ -136,6 +137,31 @@ def PublicationPageAnnotate(request, id):
         return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
     else:
         return render(request, 'publication.html', {'publication':results, 'annotations':annotation})
+
+def PublicationBookmark(request, id):
+    results = publications.objects.filter(id=id)
+
+    if(request.user.is_authenticated):
+        user = request.session['username']
+    else:
+        user = "null"
+
+    bookmark = bookmark.objects.filter(publicationID=id, user=user)
+
+    if request.method=='POST':
+        if 'bookmark-add' in request.POST:
+            pubID = id
+            addBookmark = bookmarks()
+            addBookmark.user = user
+            addBookmark.publicationID = pubID
+            addBookmark.save()
+            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark})
+        elif 'bookmark-delete' in request.POST:
+            bookmark.delete()
+            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark})
+        else:
+            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark})
+
 
 def uploadLiterature(request):
     if request.method=='POST':
