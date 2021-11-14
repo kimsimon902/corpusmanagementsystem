@@ -17,7 +17,7 @@ urlpatterns =[
     path('publication/<id>/',views.PublicationPage, name ='publicationpage'),
     path('publication/<id>/annotate',views.PublicationPageAnnotate, name ='publicationpageannotate'),
     path('publication/<id>/bookmark', views.PublicationBookmark, name = 'publicationbookmark'),
-    path('upload/',views.uploadLiterature, name ='upload')
+    path('upload/',views.uploadLiterature, name ='upload'),
     path('bookmarks/',views.viewBookmarks, name ='viewbookmarks')
 ]
 
