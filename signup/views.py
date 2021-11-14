@@ -25,13 +25,13 @@ def home(request):
 
 def viewBookmarks(request):
     user = request.session['username']
-    publication = publications.objects.all()
-
-    bookmark = bookmarks.objects.filter(publicationID__in=publication, user=user)
+  
+    bookmark = bookmarks.objects.filter(user=user).values('publicationID')
+    publication = publications.objects.filter(id__in=bookmark)
 
     
 
-    return render(request, 'bookmarks.html', {'publications':bookmark})
+    return render(request, 'bookmarks.html', {'publications':publication})
 
 #Creates a user account and stores it in the database
 def registerView(request):
