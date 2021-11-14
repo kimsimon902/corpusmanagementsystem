@@ -115,7 +115,7 @@ def PublicationPage(request, id):
     else:
         author="null"
     annotation = annotations.objects.filter(publicationID=id, author=author)
-    bookmark = bookmarks.objects.filter(publicationID=id, user=user)
+    bookmark = bookmarks.objects.filter(publicationID=id, user=author)
     return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'bookmarks':bookmark})
 
 def PublicationPageAnnotate(request, id):
