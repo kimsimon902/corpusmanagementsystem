@@ -147,7 +147,7 @@ def PublicationPageAnnotate(request, id):
             saveAnnotation.publicationID = pubID
             saveAnnotation.save()
             #return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('')
         elif 'annotate-save' in request.POST:
             annotation.delete()
             body= request.POST['annotation-exist']
@@ -158,11 +158,11 @@ def PublicationPageAnnotate(request, id):
             saveAnnotation.publicationID = pubID
             saveAnnotation.save()
             #return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('')
         else:
             annotation.delete()
             #return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('')
     else:
         return render(request, 'publication.html', {'publication':results, 'annotations':annotation})
 
