@@ -22,22 +22,23 @@ function clickEditOnAnnotation() {
     if (save.style.display === "none" && cancel.style.display === "none") {
       save.style.display = "inline";
       cancel.style.display = "inline";
-      del.style.display = "none";
     } else {
       save.style.display = "none";
       cancel.style.display = "none";
-      del.style.display = "inline";
     }
 
     var edit = document.getElementById("pubsAnnotation_btnEdit");
     edit.style.display = "none";
+    del.style.display = "none";
 }
 
 function clickCancelAnnotation(){
     var edit = document.getElementById("pubsAnnotation_btnEdit");
     var save = document.getElementById("pubsAnnotation_btnSave");
     var cancel = document.getElementById("pubsAnnotation_btnCancel");
+    var del = document.getElementById("pubsAnnotation_btnDelete");
     edit.style.display = "inline";
+    del.style.display = "inline";
     save.style.display = "none";
     cancel.style.display = "none";
     document.getElementById("pubsAnnotationTextArea").setAttribute('readonly',true);
