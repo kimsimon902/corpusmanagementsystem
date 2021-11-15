@@ -194,10 +194,9 @@ def uploadLiterature(request):
             pub_id = []
             for i in range(1,10):
                 if request.POST.get('textbox' + str(i)) is not None:
-                    try: 
-                        if tags.objects.filter(tagname=request.POST.get('textbox' + str(i))).exists():
+                    if tags.objects.filter(tagname=request.POST.get('textbox' + str(i))).exists():
                             name_id.append(request.POST.get('textbox' + str(i)))
-                    except tags.DoesNotExist:
+                    else:
                         insert_list.append(tags(tagname=request.POST.get('textbox' + str(i))))
                         name_id.append(request.POST.get('textbox' + str(i)))
             tags.objects.bulk_create(insert_list)
