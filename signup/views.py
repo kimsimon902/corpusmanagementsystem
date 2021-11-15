@@ -139,7 +139,6 @@ def PublicationPageAnnotate(request, id):
     
     if request.method=='POST':
         body= request.POST['annotation']
-        # author="localtest"
         pubID = id
         saveAnnotation = annotations()
         saveAnnotation.author = author
