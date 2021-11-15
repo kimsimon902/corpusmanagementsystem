@@ -202,11 +202,11 @@ def uploadLiterature(request):
                         name_id.append(request.POST.get('textbox' + str(i)))
             tags.objects.bulk_create(insert_list)
             results = publications.objects.filter(title = savepub.title)
-            for j in range(0,len(name_id)-1):
-                store = tags.objects.filter(tagname=name_id[j])
-                pub_id.append(pubtags(publication_id=int(results.id)))
-                insert_id.append(pubtags(tag_id=int(store.id)))
-            pubtags.objects.bulk_create(insert_id, pub_id)
+ #           for j in range(0,len(name_id)-1):
+ #               store = tags.objects.filter(tagname=name_id[j])
+ #               pub_id.append(pubtags(publication_id=int(results.id)))
+ #               insert_id.append(pubtags(tag_id=int(store.id)))
+ #           pubtags.objects.bulk_create(insert_id, pub_id)
             return redirect('/')#render(request, 'registration/login.html')
     else:
             return render(request, 'upload.html')
