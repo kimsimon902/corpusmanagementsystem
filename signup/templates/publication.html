@@ -100,14 +100,14 @@
                   <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation-exist" readonly>{{body.body}}</textarea>
                   <br>
                   <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit" onclick="clickEditOnAnnotation()" style="display:inline" name="annotate-edit">Edit</button>
-                  <button type="button" class="btn btn-link" id="pubsAnnotation_btnSave" onclick="clickCancelAnnotation()" style="display:none" name="annotate-save">Save</button>
+                  <button type="submit" class="btn btn-link" id="pubsAnnotation_btnSave" onclick="clickCancelAnnotation()" style="display:none" name="annotate-save">Save</button>
                   <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel" onclick="clickCancelAnnotation()" style="display:none" name="annotate-cancel">Cancel</button>
                   <button type="button" class="btn btn-link" id="pubsAnnotation_btnDelete" name="annotate-delete">Delete</button>
                   {% endfor %}
                   {% else %}
                   <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
                   <br>
-                  <button type="submit" class="btn btn-link" id="pubsAnnotation_btnAnnotate">Annotate</button>
+                  <button type="submit" class="btn btn-link" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
                   {% endif %}
                 </form>
 
