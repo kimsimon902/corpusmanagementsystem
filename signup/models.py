@@ -49,7 +49,7 @@ class bookmarks(models.Model):
 
 class pubtags(models.Model):
     publication_id = models.CharField(max_length=100)
-    tags_id = models.CharField(max_length=100)
+    tag_id = models.CharField(max_length=100)
 
     class Meta:
         db_table = "publication_tags"
