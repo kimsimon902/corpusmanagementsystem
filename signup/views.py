@@ -203,8 +203,8 @@ def uploadLiterature(request):
             results = publications.objects.get(title = savepub.title)
             for j in range(0,len(name_id)-1):
                 store = tags.objects.get(tagname=name_id[j])
-                pub_id.append(pubtags(publication_id=results.id))
-                insert_id.append(pubtags(tag_id=store.id))
+                pub_id.append(pubtags(publication_id=results.pk))
+                insert_id.append(pubtags(tag_id=store.pk))
             pubtags.objects.bulk_create(insert_id, pub_id)
             return redirect('/')#render(request, 'registration/login.html')
     else:
