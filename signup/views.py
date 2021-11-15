@@ -190,18 +190,23 @@ def uploadLiterature(request):
             savepub.pdf = request.FILES.get('document')
             savepub.save()
             insert_list = []
+            name_id = []
             insert_id = []
             pub_id = []
             for i in range(1,10):
                 if request.POST.get('textbox' + str(i)) is not None:
                     try: 
-                        tags.objects.filter(tagname=request.POST.get('textbox' + str(i))).exists()
+                        if tags.objects.filter(tagname=request.POST.get('textbox' + str(i))).exists():
+                            name_id.append(request.POST.get('textbox' + str(i)))
                     except tags.DoesNotExist:
                         insert_list.append(tags(tagname=request.POST.get('textbox' + str(i))))
+                        name_id.append(request.POST.get('textbox' + str(i)))
             tags.objects.bulk_create(insert_list)
-            for j in range(0,len(insert_list)-1):
-                insert_id.append(pubtags(publication_id=request.POST.get('textbox' + str(j))))
-                insert_id.append(pubtags(tag_id=request.POST.get('textbox' + str(j))))
+            results = publications.objects.filter(title = savepub.title)
+            for j in range(0,len(name_id)-1):
+                store = tags.objects.get(tagname=name_id[j])
+                pub_id.append(pubtags(publication_id=results.id))
+                insert_id.append(pubtags(tag_id=store.id))
             pubtags.objects.bulk_create(insert_id, pub_id)
             return redirect('/')#render(request, 'registration/login.html')
     else:
