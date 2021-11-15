@@ -1,6 +1,6 @@
 from django.db import reset_queries
 from django.db.models.fields import EmailField, NullBooleanField
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
@@ -146,7 +146,8 @@ def PublicationPageAnnotate(request, id):
             saveAnnotation.body = body
             saveAnnotation.publicationID = pubID
             saveAnnotation.save()
-            return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
+            #return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
+            return HttpResponseRedirect('/')
         elif 'annotate-save' in request.POST:
             annotation.delete()
             body= request.POST['annotation-exist']
@@ -156,10 +157,12 @@ def PublicationPageAnnotate(request, id):
             saveAnnotation.body = body
             saveAnnotation.publicationID = pubID
             saveAnnotation.save()
-            return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
+            #return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
+            return HttpResponseRedirect('/')
         else:
             annotation.delete()
-            return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
+            #return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
+            return HttpResponseRedirect('/')
     else:
         return render(request, 'publication.html', {'publication':results, 'annotations':annotation})
 
