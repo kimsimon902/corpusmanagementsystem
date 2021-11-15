@@ -183,6 +183,9 @@ def uploadLiterature(request):
         if request.POST.get('title') and request.POST.get('author') and request.POST.get('url'):
             savepub = publications()
             savepub.title = request.POST.get('title')
+            if publications.objects.filter(title=request.POST.get('title')).exists():
+                messages.error(request, 'Title already taken', extra_tags='name')
+                return redirect('upload')
             savepub.author = request.POST.get('author')
             savepub.url = request.POST.get('url')
             savepub.source = request.POST.get('source')
