@@ -190,7 +190,11 @@ def uploadLiterature(request):
             insert_list = []
             for i in range(1,10):
                 if request.POST.get('textbox' + str(i)) is not None:
-                    insert_list.append(tags(tagname=request.POST.get('textbox' + str(i))))
+                    try: 
+                        tags.objects.filter(tagname=request.POST.get('textbox' + str(i))).exists()
+                        
+                    except tags.DoesNotExist:
+                        insert_list.append(tags(tagname=request.POST.get('textbox' + str(i))))
             tags.objects.bulk_create(insert_list)
             return redirect('/')#render(request, 'registration/login.html')
     else:
