@@ -190,7 +190,6 @@ def uploadLiterature(request):
             savepub.save()
             insert_list = []
             name_id = []
-            insert_id = []
             pub_id = []
             for i in range(1,10):
                 if request.POST.get('textbox' + str(i)) is not None:
@@ -203,9 +202,8 @@ def uploadLiterature(request):
             results = publications.objects.get(title = savepub.title)
             for j in range(0,len(name_id)-1):
                 store = tags.objects.get(tagname=name_id[j])
-                pub_id.append(pubtags(publication_id=int(results.id)))
-                insert_id.append(pubtags(tag_id=int(store.id)))
-            pubtags.objects.bulk_create(insert_id, pub_id)
+                pub_id.append(pubtags(publication_id=results.id, tag_id=store.id))
+            pubtags.objects.bulk_create(pub_id)
             return redirect('/')#render(request, 'registration/login.html')
     else:
             return render(request, 'upload.html')
