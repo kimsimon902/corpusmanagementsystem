@@ -6,11 +6,12 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
-from .models import registerUser
+from .models import pubtags, registerUser
 from .models import publications
 from .models import tags
 from .models import annotations
 from .models import bookmarks
+from .models import pubtags
 from django.db.models import Q
 import time
 
@@ -181,6 +182,7 @@ def uploadLiterature(request):
     if request.method=='POST':
         if request.POST.get('title') and request.POST.get('author') and request.POST.get('url'):
             savepub = publications()
+            savetag = pubtags()
             savepub.title = request.POST.get('title')
             savepub.author = request.POST.get('author')
             savepub.url = request.POST.get('url')
@@ -192,10 +194,11 @@ def uploadLiterature(request):
                 if request.POST.get('textbox' + str(i)) is not None:
                     try: 
                         tags.objects.filter(tagname=request.POST.get('textbox' + str(i))).exists()
-                        
                     except tags.DoesNotExist:
                         insert_list.append(tags(tagname=request.POST.get('textbox' + str(i))))
             tags.objects.bulk_create(insert_list)
+            for j in range(1,len(insert_list)):
+                
             return redirect('/')#render(request, 'registration/login.html')
     else:
             return render(request, 'upload.html')
