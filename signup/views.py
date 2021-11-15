@@ -136,7 +136,7 @@ def PublicationPageAnnotate(request, id):
     else:
         author="null"
     annotation = annotations.objects.filter(publicationID=id, author=author)
-    next = request.POST.get('next')
+    next = request.POST.get('next', '/')
     
     if request.method=='POST':
         if 'annotate-add' in request.POST:
