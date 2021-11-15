@@ -18,12 +18,15 @@ function clickEditOnAnnotation() {
 
     var save = document.getElementById("pubsAnnotation_btnSave");
     var cancel = document.getElementById("pubsAnnotation_btnCancel");
+    var del = document.getElementById("pubsAnnotation_btnDelete");
     if (save.style.display === "none" && cancel.style.display === "none") {
       save.style.display = "inline";
       cancel.style.display = "inline";
+      del.style.display = "none";
     } else {
       save.style.display = "none";
       cancel.style.display = "none";
+      del.style.display = "inline";
     }
 
     var edit = document.getElementById("pubsAnnotation_btnEdit");
