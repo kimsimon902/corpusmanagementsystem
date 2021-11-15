@@ -136,6 +136,7 @@ def PublicationPageAnnotate(request, id):
     else:
         author="null"
     annotation = annotations.objects.filter(publicationID=id, author=author)
+    next = request.POST.get('next', '/')
     
     if request.method=='POST':
         if 'annotate-add' in request.POST:
@@ -147,7 +148,7 @@ def PublicationPageAnnotate(request, id):
             saveAnnotation.publicationID = pubID
             saveAnnotation.save()
             #return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
-            return HttpResponseRedirect('')
+            return HttpResponseRedirect(next)
         elif 'annotate-save' in request.POST:
             annotation.delete()
             body= request.POST['annotation-exist']
@@ -158,11 +159,11 @@ def PublicationPageAnnotate(request, id):
             saveAnnotation.publicationID = pubID
             saveAnnotation.save()
             #return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
-            return HttpResponseRedirect('')
+            return HttpResponseRedirect(next)
         else:
             annotation.delete()
             #return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
-            return HttpResponseRedirect('')
+            return HttpResponseRedirect(next)
     else:
         return render(request, 'publication.html', {'publication':results, 'annotations':annotation})
 
