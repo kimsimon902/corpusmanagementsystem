@@ -148,8 +148,10 @@ def PublicationPageAnnotate(request, id):
             saveAnnotation.save()
             return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
         elif 'annotate-save' in request.POST:
-            annotation.body = request.POST['annotation']
-            annotation.save()
+            body= request.POST['annotation']
+            saveAnnotation = annotations()
+            saveAnnotation.body = body
+            saveAnnotation.save()
             return render(request, 'publication.html',{'publication':results, 'annotations':annotation})
         else:
             annotation.delete()
