@@ -196,6 +196,11 @@ def PublicationBookmark(request, id):
 
 
 def uploadLiterature(request):
+    if(request.user):
+        user = request.session['username']
+    else:
+        user = "null"
+        
     if request.method=='POST':
         if request.POST.get('title') and request.POST.get('author') and request.POST.get('url'):
             savepub = publications()
@@ -224,6 +229,10 @@ def uploadLiterature(request):
                 store = tags.objects.get(tagname=name_id[j])
                 pub_id.append(pubtags(publication_id=results.id, tag_id=store.id))
             pubtags.objects.bulk_create(pub_id)
+            addBookmark = bookmarks()
+            addBookmark.user = user
+            addBookmark.publicationID = results.id
+            addBookmark.save()
             return redirect('/')#render(request, 'registration/login.html')
     else:
             return render(request, 'upload.html')
