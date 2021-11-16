@@ -32,7 +32,7 @@
       
           newTextBoxDiv.after().html('<label>Tag #'+ counter + ' : </label>' +
                 '<input type="text" name="textbox' + counter + 
-                '" id="textbox' + counter + '" value="" >');
+                '" id="textbox' + counter + '" value="" required>');
       
           newTextBoxDiv.appendTo("#TextBoxesGroup");
       
@@ -112,7 +112,7 @@
             <input type="file" name="document">
             <div id='TextBoxesGroup'>
               <div id="TextBoxDiv1">
-                  <label>Tag #1 : </label><input type='textbox' name='textbox1' id='textbox1' >
+                  <label>Tag #1 : </label><input type='textbox' name='textbox1' id='textbox1' required>
               </div>
             </div>
             <input type='button' value='+' id='addButton'>
