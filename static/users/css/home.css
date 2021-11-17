@@ -61,3 +61,8 @@ html,body{
     background-color:#087830;
     color: white;
 }
+
+#annotationButton {
+    font-size: 1.17em;
+    align-self: flex-end;
+}
