@@ -191,9 +191,11 @@ def PublicationBookmark(request, id):
             addBookmark.user = user
             addBookmark.publicationID = pubID
             addBookmark.save()
+            messages.success(request, "Added to your bookmarks")
             return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
         elif 'bookmark-delete' in request.POST:
             bookmark.delete()
+            messages.success(request, "Deleted from your bookmarks")
             return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
         else:
             return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})

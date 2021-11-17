@@ -95,7 +95,8 @@
             </table>
             <!-- initial annotation input -->
             {% if request.session.email %}
-            <div class="card">
+            <i class="far fa-clipboard" onclick="clickShowHideAnnotation()"></i>
+            <div class="card" id="annotationCard" style="display:inline">
               <div class="card-body">
                 <form method="POST" action="/publication/{{getdata.id}}/annotate" id="annotate-from-pub">
                   {% csrf_token %}

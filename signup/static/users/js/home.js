@@ -43,3 +43,12 @@ function clickCancelAnnotation(){
     cancel.style.display = "none";
     document.getElementById("pubsAnnotationTextArea").setAttribute('readonly',true);
 }
+
+function clickShowHideAnnotation(){
+    var card = document.getElementById("annotationCard");
+    if (card.style.display === "inline"){
+        card.style.display = "none";
+    } else {
+        card.style.display = "inline";
+    }
+}
