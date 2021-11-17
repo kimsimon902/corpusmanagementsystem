@@ -164,9 +164,11 @@ def PublicationPageAnnotate(request, id):
             saveAnnotation.body = body
             saveAnnotation.publicationID = pubID
             saveAnnotation.save()
+            messages.success(request, "Annotation edited")
             return HttpResponseRedirect(next)
         else:
             annotation.delete()
+            messages.success(request, "Annotation deleted")
             return HttpResponseRedirect(next)
     else:
         return render(request, 'publication.html', {'publication':results, 'annotations':annotation})
