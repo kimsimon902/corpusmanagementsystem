@@ -64,7 +64,7 @@ def loginView(request):
     if request.method=='POST':
         try:
             Userdetails=registerUser.objects.get(email=request.POST['email'],password=request.POST['password'])
-            if Userdetails.is_superuser == 1:
+            if Userdetails.email == 'admin@user.com':
                 request.session['email']=Userdetails.email
                 request.session['username']=Userdetails.username
                 context = {
