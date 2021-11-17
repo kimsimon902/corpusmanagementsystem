@@ -108,21 +108,21 @@ def searchPublication(request):
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched) |
                     Q(abstract__icontains=searched) |
-                    Q(url__icontains=searched), source__icontains="ais")
+                    Q(url__icontains=searched), source__icontains="ais"
             )
             elif libFilter == "scopus":
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched) |
                     Q(abstract__icontains=searched) |
-                    Q(url__icontains=searched), source__icontains="scopus")
+                    Q(url__icontains=searched), source__icontains="scopus"
             )
             elif libFilter == "ieee":
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched) |
                     Q(abstract__icontains=searched) |
-                    Q(url__icontains=searched), source__icontains="ieee")
+                    Q(url__icontains=searched), source__icontains="ieee"
             )
             else:
                 results = publications.objects.filter(
