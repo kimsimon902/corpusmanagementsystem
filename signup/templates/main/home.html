@@ -8,7 +8,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <!-- Font Awesome CSS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
     <link rel="stylesheet" href="{% static '\users\css\home.css' %}">
     <title>Corpus Management System</title>
   </head>
@@ -99,9 +100,7 @@
                         <td>
                           {% for annotation in annotations %}
                             {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username %}
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                              <i class="far fa-clipboard"></i>
-                            </button>
+                            <h3 style="text-align: right;"><i class="far fa-clipboard" onclick="toggleAnnotationButton()" id="annotationButton"></i></h3>
                             {% endif %}
                           {% endfor %}
                         </td>
