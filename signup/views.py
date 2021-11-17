@@ -246,14 +246,8 @@ def uploadLiterature(request):
             return render(request, 'upload.html')
     
 def viewAdmin(request):
-    Userdetails = registerUser.objects.get(email=request.session['email'])
-    if Userdetails.is_superuser == 1:
-        results = publications.objects.all()
-        context = {
-            "is_superuser": True,
-            'publications': results
-        }
-        return render(request,'main/adminpage.html', context)
+    results = publications.objects.all()
+    return render(request, 'main/adminpage.html',{'publications':results})
 
 # def annotateFromPub(request):
 #     results = publications.objects.filter(id=id)
