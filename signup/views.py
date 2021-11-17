@@ -245,7 +245,7 @@ def uploadLiterature(request):
             return render(request, 'upload.html')
     
 def viewAdmin(request):
-    results = publications.objects.all()
+    results = publications.objects.filter(status='pending')
     return render(request, 'main/adminpage.html',{'publications':results})
 
 # def annotateFromPub(request):

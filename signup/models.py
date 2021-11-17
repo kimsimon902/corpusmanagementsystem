@@ -25,6 +25,7 @@ class publications(models.Model):
     pdf = models.FileField(upload_to='literature/pdfs/')
     source = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
+    
     class Meta:
         db_table = "publications"
 
