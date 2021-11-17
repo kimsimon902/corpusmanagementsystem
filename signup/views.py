@@ -108,7 +108,7 @@ def searchPublication(request):
                 Q(title__icontains=searched) |
                 Q(author__icontains=searched) |
                 Q(abstract__icontains=searched) |
-                Q(url__icontains=searched)
+                Q(url__icontains=searched) &
                 Q(source__icontains="ais")
             )
             elif libFilter == "scopus":
@@ -116,7 +116,7 @@ def searchPublication(request):
                 Q(title__icontains=searched) |
                 Q(author__icontains=searched) |
                 Q(abstract__icontains=searched) |
-                Q(url__icontains=searched)
+                Q(url__icontains=searched) &
                 Q(source__icontains="scopus")
             )
             elif libFilter == "ieee":
@@ -124,7 +124,7 @@ def searchPublication(request):
                 Q(title__icontains=searched) |
                 Q(author__icontains=searched) |
                 Q(abstract__icontains=searched) |
-                Q(url__icontains=searched)
+                Q(url__icontains=searched) &
                 Q(source__icontains="ieee")
             )
             else:
