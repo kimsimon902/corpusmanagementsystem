@@ -18,7 +18,8 @@ urlpatterns =[
     path('publication/<id>/annotate',views.PublicationPageAnnotate, name ='publicationpageannotate'),
     path('publication/<id>/bookmark', views.PublicationBookmark, name = 'publicationbookmark'),
     path('upload/',views.uploadLiterature, name ='upload'),
-    path('bookmarks/',views.viewBookmarks, name ='bookmarks')
+    path('bookmarks/',views.viewBookmarks, name ='bookmarks'),
+    path('adminpage/',views.viewAdmin, name ='bookmarks')
 ]
 
 if settings.DEBUG:

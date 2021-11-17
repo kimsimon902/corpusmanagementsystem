@@ -64,10 +64,14 @@ def loginView(request):
     if request.method=='POST':
         try:
             Userdetails=registerUser.objects.get(email=request.POST['email'],password=request.POST['password'])
-            print("Username=",Userdetails)
-            request.session['email']=Userdetails.email
-            request.session['username']=Userdetails.username
-            return redirect('home')
+            if Userdetails.is_superuser == 1:
+                request.session['email']=Userdetails.email
+                request.session['username']=Userdetails.username
+                return redirect('adminpage')
+            else:
+                request.session['email']=Userdetails.email
+                request.session['username']=Userdetails.username
+                return redirect('home')
         except registerUser.DoesNotExist as e:
             messages.error(request,'Username or Password Invalid.', extra_tags='name')
             return redirect('login')
@@ -211,6 +215,8 @@ def uploadLiterature(request):
             savepub.abstract = request.POST.get('abstract')
             savepub.author = request.POST.get('author')
             savepub.pdf = request.FILES.get('document')
+            savepub.status = 'pending'
+            savepub.source = 'uploaded'
             savepub.save()
             insert_list = []
             name_id = []
@@ -235,6 +241,10 @@ def uploadLiterature(request):
             return redirect('/')#render(request, 'registration/login.html')
     else:
             return render(request, 'upload.html')
+    
+def viewAdmin(request):
+    results = publications.objects.all()
+    return render(request, 'main/adminpage.html',{'publications':results})
 
 # def annotateFromPub(request):
 #     results = publications.objects.filter(id=id)

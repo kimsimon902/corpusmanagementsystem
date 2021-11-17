@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="{% static '\users\css\home.css' %}">
+    <title>Corpus Management System</title>
+  </head>
+  <body>
+      <!-- Navbar on top -->
+        <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+          <div class="container-fluid">
+            <div class="ms-auto order-0">
+            <a class="navbar-brand" href="{% url 'home' %}">Corpus Management System</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {% if request.session.email %}
+                      {{request.session.username}}
+                      {% else %}
+                      Account
+                      {% endif %}
+                    </a>
+                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                      {% if request.session.email %}
+                      <a type="submit" class="dropdown-item" href="{% url 'upload' %}">Upload Literature</a>
+                      <a type="submit" class="dropdown-item" href="{% url 'bookmarks' %}">My Bookmarks</a>
+                      <a type="submit" class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                      {% else %}
+                      <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                      <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+                      {% endif %}
+                  </div>
+              </li>
+              </ul>
+            </div>
+            </div>
+          </nav>
+      <!-- End navbar -->
+          <!-- Search bar -->
+          {% block bookmark %}
+          <div class="container-fluid" id="search-bar">
+            <form method="POST" action="{% url 'search' %}" id="search-form">
+              {% csrf_token %}
+              <div class = "input-group">
+                <select class="form-select" aria-label="Filter" name="filterData">
+                  <option selected value="default">Filter</option>
+                  <option value="title">Title</option>
+                  <option value="author">Author</option>
+                  <option value="abstract">Abstract</option>
+                  <option value="url">URL</option>
+                </select>
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searched">
+                <div class="input-group-btn">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-button">Search</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- End search bar -->
+          <!-- Table block-->
+            {% block table %}
+            <table class="table table-hover"> <!-- class="table-row" data-href="http://tutorialsplane.com" -->
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Abstract</th>
+                    <th scope="col">URL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for getdata in publications %}
+                    <tr>
+                        <td>{{getdata.id}}</td>
+                        <td><a href="/publication/{{getdata.id}}">{{getdata.title}}</a></td>
+                        <td>{{getdata.author}}</td>
+                        <td style=
+                          "max-width:500px;
+                          white-space: nowrap;
+                          overflow: hidden;
+                          text-overflow: ellipsis">{{getdata.abstract}}</td>
+                        <td>{{getdata.url}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endblock %}
+            {% endblock bookmark %}
+          <!-- End table block -->
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static '\users\js\home.js' %}"></script>
+  </body>
+</html>
