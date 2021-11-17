@@ -128,6 +128,7 @@
                 <form method="POST" action="/publication/{{getdata.id}}/bookmark" id="bookmark-pub">
                   {% csrf_token %}
                   {% if bookmarks %}
+                  <input type="hidden" name="next" value="{{ request.path }}"/>
                   <div class="float-right">
                     <button type="submit" class="btn btn-outline-danger" name="bookmark-delete">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-dash" viewBox="0 0 16 16">
