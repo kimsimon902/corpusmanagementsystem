@@ -43,3 +43,31 @@ function clickCancelAnnotation(){
     cancel.style.display = "none";
     document.getElementById("pubsAnnotationTextArea").setAttribute('readonly',true);
 }
+
+function clickEditOnAnnotationClass() {
+    var save = document.getElementsByClassName("btn btn-link btnSave");
+    var cancel = document.getElementsByClassName("btn btn-link btnCancel");
+    var del = document.getElementsByClassName("btn btn-link btnDelete");
+    if (save.style.display === "none" && cancel.style.display === "none") {
+      save.style.display = "inline";
+      cancel.style.display = "inline";
+    } else {
+      save.style.display = "none";
+      cancel.style.display = "none";
+    }
+
+    var edit = document.getElementsByClassName("btn btn-link btnEdit");
+    edit.style.display = "none";
+    del.style.display = "none";
+}
+
+function clickCancelAnnotationClass(){
+    var edit = document.getElementsByClassName("btn btn-link btnEdit");
+    var save = document.getElementsByClassName("btn btn-link btnSave");
+    var cancel = document.getElementsByClassName("btn btn-link btnCancel");
+    var del = document.getElementsByClassName("btn btn-link btnDelete");
+    edit.style.display = "inline";
+    del.style.display = "inline";
+    save.style.display = "none";
+    cancel.style.display = "none";
+}

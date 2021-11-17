@@ -118,10 +118,10 @@
                                       <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
                                       <input type="hidden" name="next" value="{{ request.path }}"/>
                                       <br>
-                                      <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit" onclick="clickEditOnAnnotation()" style="display:inline" name="annotate-edit">Edit</button>
-                                      <button type="submit" class="btn btn-link" id="pubsAnnotation_btnSave" onclick="clickCancelAnnotation()" style="display:none" name="annotate-save">Save</button>
-                                      <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel" onclick="clickCancelAnnotation()" style="display:none" name="annotate-cancel">Cancel</button>
-                                      <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete" style="display:inline" name="annotate-delete">Delete</button>
+                                      <button type="button" class="btn btn-link btnEdit" id="pubsAnnotation_btnEdit" onclick="clickEditOnAnnotation()" style="display:inline" name="annotate-edit">Edit</button>
+                                      <button type="submit" class="btn btn-link btnSave" id="pubsAnnotation_btnSave" onclick="clickCancelAnnotation()" style="display:none" name="annotate-save">Save</button>
+                                      <button type="button" class="btn btn-link btnCancel" id="pubsAnnotation_btnCancel" onclick="clickCancelAnnotation()" style="display:none" name="annotate-cancel">Cancel</button>
+                                      <button type="submit" class="btn btn-link btnDelete" id="pubsAnnotation_btnDelete" style="display:inline" name="annotate-delete">Delete</button>
                                     </form>
                                   </div>
                                   <div class="modal-footer">
