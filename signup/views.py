@@ -185,6 +185,7 @@ def PublicationBookmark(request, id):
 
     bookmark = bookmarks.objects.filter(publicationID=id, user=user)
     annotation = annotations.objects.filter(publicationID=id, author=user)
+    next = request.POST.get('next', '/')
 
     if request.method=='POST':
         if 'bookmark-add' in request.POST:
@@ -194,13 +195,17 @@ def PublicationBookmark(request, id):
             addBookmark.publicationID = pubID
             addBookmark.save()
             messages.success(request, "Added to your bookmarks")
-            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
+
+            # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
+            return HttpResponseRedirect(next)
         elif 'bookmark-delete' in request.POST:
             bookmark.delete()
             messages.success(request, "Deleted from your bookmarks")
-            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
+            return HttpResponseRedirect(next)
+            # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
         else:
-            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
+            return HttpResponseRedirect(next)
+            # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
     else:
         return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
 
