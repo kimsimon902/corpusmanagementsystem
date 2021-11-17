@@ -74,7 +74,10 @@ def loginView(request):
             else:
                 request.session['email']=Userdetails.email
                 request.session['username']=Userdetails.username
-                return redirect('home')
+                context = {
+                    "is_superuser": False
+                }
+                return render(request,'main/adminpage.html', context)
         except registerUser.DoesNotExist as e:
             messages.error(request,'Username or Password Invalid.', extra_tags='name')
             return redirect('login')
