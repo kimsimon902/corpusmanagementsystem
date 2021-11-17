@@ -96,6 +96,7 @@
             <!-- initial annotation input -->
             {% if request.session.email %}
             <i class="far fa-clipboard" onclick="toggleAnnotation()"></i>
+            <button type="button" class="btn btn-primary" onclick="toggleAnnotation()"><i class="far fa-clipboard"></i></button>
             <div class="card" id="annotationCard" style="display:none">
               <div class="card-body">
                 <form method="POST" action="/publication/{{getdata.id}}/annotate" id="annotate-from-pub">
