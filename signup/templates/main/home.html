@@ -100,7 +100,7 @@
                           {% for annotation in annotations %}
                             {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username %}
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                              Launch demo modal
+                              <i class="far fa-clipboard"></i>
                             </button>
                             {% endif %}
                           {% endfor %}
