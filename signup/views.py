@@ -242,7 +242,7 @@ def uploadLiterature(request):
             addBookmark.save()
             return redirect('/')#render(request, 'registration/login.html')
     else:
-            return render(request, 'upload.html')
+        return render(request, 'upload.html')
     
 def viewAdmin(request):
     results = publications.objects.filter(status='pending')
