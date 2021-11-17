@@ -6,28 +6,30 @@
     <h2>My Bookmarks</h2>
 </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            
-            <th scope="col">Title</th>
-            <th scope="col">Author</th>
-            <th scope="col">Abstract</th>
-            <th scope="col">URL</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for publication in publications %}
-        <tr>
-            
-            <td><a href="/publication/{{publication.id}}">{{publication.title}}</a></td>
-            <td>{{publication.author}}</td>
-            <td>{{publication.abstract}}</td>
-            <td>{{publication.url}}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Abstract</th>
+                <th scope="col">URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for publication in publications %}
+            <tr>
+                
+                <td><a href="/publication/{{publication.id}}">{{publication.title}}</a></td>
+                <td>{{publication.author}}</td>
+                <td>{{publication.abstract}}</td>
+                <td>{{publication.url}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 <br>
 
