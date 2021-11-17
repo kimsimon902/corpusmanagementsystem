@@ -14,6 +14,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Author</th>
                 <th scope="col">Abstract</th>
+                <th scope="col">Source</th>
                 <th scope="col">URL</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td><a href="/publication/{{publication.id}}">{{publication.title}}</a></td>
                 <td>{{publication.author}}</td>
                 <td>{{publication.abstract}}</td>
+                <td>{{getdata.source}}</td>
                 <td>{{publication.url}}</td>
             </tr>
             {% endfor %}
