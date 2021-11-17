@@ -24,8 +24,12 @@
                 
                 <td><a href="/publication/{{publication.id}}">{{publication.title}}</a></td>
                 <td>{{publication.author}}</td>
-                <td>{{publication.abstract}}</td>
-                <td>{{getdata.source}}</td>
+                <td style=
+                "max-width:500px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis">{{publication.abstract}}</td>
+                <td>{{publication.source}}</td>
                 <td>{{publication.url}}</td>
             </tr>
             {% endfor %}
