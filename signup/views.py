@@ -134,7 +134,7 @@ def searchPublication(request):
                     Q(abstract__icontains=searched) |
                     Q(url__icontains=searched)
             )
-        return render(request, 'main/search.html',{'searched':searched, 'results':results})
+            return render(request, 'main/search.html',{'searched':searched, 'results':results})
 
         elif searchFilter == "title":
 
