@@ -64,8 +64,12 @@
  
   <div class="container-fluid">
     <div class="row">
-
       <div class="col-lg-8">
+        <div class="container-fluid">
+          {% include 'main/messages.html' %}
+          {% block content %}
+          {% endblock %}
+        </div>
         <div class="card shadow-sm">
           <div class="card-header bg-transparent border-0">
               {% for getdata in publication %}
