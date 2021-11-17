@@ -98,7 +98,6 @@
                         <td>{{getdata.source}}</td>
                         <td>{{getdata.url}}</td>
                         <td>
-                          {% set found = false %}
                           {% for annotation in annotations %}
                             {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username and found === false %}
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-{{getdata.id}}">
@@ -134,12 +133,8 @@
                                 </div>
                               </div>
                             </div>
-                            {% set found = true %}
                             {% endif %}
                           {% endfor %}
-                          {% if found === false %}
-                            <p>Not found</p>
-                          {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
