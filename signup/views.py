@@ -241,6 +241,8 @@ def uploadLiterature(request):
             addBookmark.publicationID = results.id
             addBookmark.save()
             return redirect('/')#render(request, 'registration/login.html')
+        else:
+            return render(request, 'upload.html') 
     else:
         return render(request, 'upload.html')
     
