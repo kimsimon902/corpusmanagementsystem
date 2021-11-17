@@ -97,8 +97,10 @@
                         <td>{{getdata.source}}</td>
                         <td>{{getdata.url}}</td>
                         <td>
-                          {% for publicationID, getdata.id in annotations %}
-                          <p>Key {{ publicationID }}, Value {{ getdata.id }}</p>
+                          {% for annotation in annotations %}
+                          {% if annotations.publicationID == getdata.id  and annotations.author == request.session.username %}
+                          <p>Yes</p>
+                          {% endif %}
                           {% endfor %}
                         </td>
                     </tr>
