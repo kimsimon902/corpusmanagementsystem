@@ -67,8 +67,10 @@ def loginView(request):
             if Userdetails.is_superuser == 1:
                 request.session['email']=Userdetails.email
                 request.session['username']=Userdetails.username
-                request.session['is_superuser']= True
-                return redirect('adminpage')
+                context = {
+                    "is_superuser": True
+                }
+                return render(request,'main/adminpage.html', context)
             else:
                 request.session['email']=Userdetails.email
                 request.session['username']=Userdetails.username
