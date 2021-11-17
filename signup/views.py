@@ -22,7 +22,8 @@ def index(request):
 
 def home(request):
     results = publications.objects.all()
-    return render(request, 'main/home.html',{'publications':results})
+    annotation = annotations.objects.all()
+    return render(request, 'test/test.html',{'publications':results, 'annotations': annotation})
 
 def viewBookmarks(request):
     user = request.session['username']
