@@ -99,7 +99,7 @@
                         <td>
                           {% for annotation in annotations %}
                           <p>Yes1</p>
-                          {% if annotations.publicationID == getdata.id  and annotations.author == request.session.username %}
+                          {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username %}
                           <p>Yes2</p>
                           {% endif %}
                           {% endfor %}
