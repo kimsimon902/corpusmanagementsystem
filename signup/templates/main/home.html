@@ -99,9 +99,8 @@
                         <td>
                           {% for annotation in annotations %}
                             {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username %}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <i class="far fa-clipboard" onclick="toggleAnnotationButton()" id="annotationButton"></i>
-                              <span aria-hidden="true">&times;</span>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                              Launch demo modal
                             </button>
                             {% endif %}
                           {% endfor %}
