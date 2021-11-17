@@ -11,6 +11,7 @@ class registerUser(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     last_login = models.CharField(max_length=100)
+    is_superuser = models.CharField(max_length=100)
 
     class Meta:
         db_table = "auth_user"
@@ -23,6 +24,7 @@ class publications(models.Model):
     url = models.CharField(max_length=100)
     pdf = models.FileField(upload_to='literature/pdfs/')
     source = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)
     class Meta:
         db_table = "publications"
 
