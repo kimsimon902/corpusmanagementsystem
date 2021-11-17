@@ -1,8 +1,11 @@
-{% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-{{ messages.tags }}" role="alert">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
+{% extends 'registration/publication.html' %}
 
+{% block messages %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ messages.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
