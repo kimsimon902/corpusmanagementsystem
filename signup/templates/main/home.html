@@ -79,6 +79,7 @@
                     <th scope="col">Author</th>
                     <th scope="col">Abstract</th>
                     <th scope="col">URL</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -93,6 +94,11 @@
                           overflow: hidden;
                           text-overflow: ellipsis">{{getdata.abstract}}</td>
                         <td>{{getdata.url}}</td>
+                        <td>
+                          {% for publicationID, getdata.id in annotations %}
+                            With annotation
+                          {% endfor}
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
