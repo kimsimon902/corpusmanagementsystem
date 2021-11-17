@@ -98,8 +98,9 @@
                         <td>{{getdata.url}}</td>
                         <td>
                           {% for annotation in annotations %}
+                          <p>Yes1</p>
                           {% if annotations.publicationID == getdata.id  and annotations.author == request.session.username %}
-                          <p>Yes</p>
+                          <p>Yes2</p>
                           {% endif %}
                           {% endfor %}
                         </td>
