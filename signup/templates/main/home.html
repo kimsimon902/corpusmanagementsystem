@@ -101,7 +101,6 @@
                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-{{getdata.id}}">
                             <i class="far fa-clipboard"></i>
                           </button>
-                          {% with %}
                           {% for annotation in annotations %}
                             {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username %}
                             <div class="modal fade" id="exampleModal-{{getdata.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
