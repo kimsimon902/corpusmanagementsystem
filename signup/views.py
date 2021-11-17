@@ -208,7 +208,7 @@ def uploadLiterature(request):
         user = "null"
         
     if request.method=='POST':
-        if request.POST.get('title') and request.POST.get('author') and request.POST.get('url'):
+        if request.POST.get('title') and request.POST.get('author'):
             savepub = publications()
             savepub.title = request.POST.get('title')
             if publications.objects.filter(title=request.POST.get('title')).exists():
