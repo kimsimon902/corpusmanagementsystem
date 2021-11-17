@@ -5,6 +5,6 @@ function toggleAnnotationButton(){
         document.getElementById("pubsAnnotationTextArea").setAttribute('class','far fa-clipboard');
     } else {
         card.style.display = "inline";
-        document.getElementById("pubsAnnotationTextArea").setAttribute('class','fas fa-clipboard');
+        document.getElementById("annotationButton").setAttribute('class','fas fa-clipboard');
     }
 }
