@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-{% if request.session.email %}
+{% if is_superuser %}
   <head>
     {% load static %}
     <!-- Required meta tags -->
