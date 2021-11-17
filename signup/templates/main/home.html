@@ -96,7 +96,7 @@
                         <td>{{getdata.url}}</td>
                         <td>
                           {% for publicationID, getdata.id in annotations %}
-                            With annotation
+                          <p>Key {{ publicationID }}, Value {{ getdata.id }}</p>
                           {% endfor %}
                         </td>
                     </tr>
