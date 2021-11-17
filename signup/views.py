@@ -91,7 +91,8 @@ def logoutView(request):
 
 def showTest(request):
     results = publications.objects.all()
-    return render(request, 'test/test.html',{'publications':results})
+    annotations = annotations.objects.all()
+    return render(request, 'test/test.html',{'publications':results, 'annotations': annotations})
 
 def searchPublication(request):
     if request.method == "POST":
