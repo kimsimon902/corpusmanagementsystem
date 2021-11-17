@@ -124,9 +124,7 @@
                   <button type="submit" class="btn btn-link" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
                   {% endif %}
                 </form>
-
-             
-
+                
                 <form method="POST" action="/publication/{{getdata.id}}/bookmark" id="bookmark-pub">
                   {% csrf_token %}
                   {% if bookmarks %}
@@ -148,7 +146,6 @@
                   </div> 
                   {% endif %}
                 </form>
-
               </div>
             </div>
             {% endif %}
