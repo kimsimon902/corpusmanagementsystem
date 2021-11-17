@@ -44,7 +44,7 @@ function clickCancelAnnotation(){
     document.getElementById("pubsAnnotationTextArea").setAttribute('readonly',true);
 }
 
-function toggleAnnotation(){
+function toggleAnnotationButton(){
     var card = document.getElementById("annotationCard");
     if (card.style.display === "inline"){
         card.style.display = "none";
