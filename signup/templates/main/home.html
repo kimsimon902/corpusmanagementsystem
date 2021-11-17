@@ -99,7 +99,7 @@
                         <td>
                           {% for annotation in annotations %}
                             {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username %}
-                            <h3 style="text-align: right;"><i class="far fa-clipboard" onclick="toggleAnnotationButton()" id="annotationButton"></i></h3>
+                            <h3><i class="far fa-clipboard" onclick="toggleAnnotationButton()" id="annotationButton"></i></h3>
                             <div class="card" id="annotationCard" style="display:none">
                               <form method="POST" action="/publication/{{getdata.id}}/annotate" id="annotate-from-pub">
                                 {% csrf_token %}
