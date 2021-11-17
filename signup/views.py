@@ -246,7 +246,7 @@ def uploadLiterature(request):
             return render(request, 'upload.html')
     
 def viewAdmin(request):
-    Userdetails = registerUser.objects.get(email=request.session['email'],password=request.session['password'])
+    Userdetails = registerUser.objects.get(email=request.session['email'])
     if Userdetails.is_superuser == 1:
         results = publications.objects.all()
         context = {
