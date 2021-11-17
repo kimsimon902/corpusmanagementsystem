@@ -99,9 +99,8 @@
                         <td>
                           {% for annotation in annotations %}
                             {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username %}
-                              <i class="far fa-clipboard" onclick="toggleAnnotationButton()" id="annotationButton"></i>
+                              {{ annotation.body }} 
                             {% endif %}
-                            <!-- endif -->
                           {% endfor %}
                         </td>
                     </tr>
