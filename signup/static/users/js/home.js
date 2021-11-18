@@ -45,9 +45,9 @@ function clickCancelAnnotation(){
 }
 
 function clickEditOnAnnotationClass() {
-    var save = document.getElementsByClassName("btn btn-link btnSave");
-    var cancel = document.getElementsByClassName("btn btn-link btnCancel");
-    var del = document.getElementsByClassName("btn btn-link btnDelete");
+    var save = document.getElementsByClassName("btnSave");
+    var cancel = document.getElementsByClassName("btnCancel");
+    var del = document.getElementsByClassName("btnDelete");
     if (save.style.display === "none" && cancel.style.display === "none") {
       save.style.display = "inline";
       cancel.style.display = "inline";
