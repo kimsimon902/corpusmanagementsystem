@@ -1,24 +1,21 @@
-<!doctype html>
-<html lang="en">
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
-<!-- Bootstrap CSS -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-<!-- Font Awesome CSS -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
+<!DOCTYPE html>
+<html>
 
-{% load static %}
-
-<link rel="stylesheet" href="{% static '\users\css\publicationpage.css' %}">
-<link rel="stylesheet" href="{% static '\users\css\home.css' %}">
-<link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="{% static '\users\assets\css\index.css' %}">
-<link rel="stylesheet" href="{% static '\users\assets\css\Pretty-Search-Form.css' %}">
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>CMS</title>
+  <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static '\users\assets\css\index.css' %}">
+  <link rel="stylesheet" href="{% static '\users\assets\css\Pretty-Search-Form.css' %}">
+  <link rel="stylesheet" href="{% static '\users\assets\css\publication.css' %}">
+  <link rel="stylesheet" href="{% static '\users\assets\css\search.css' %}">
+</head>
 
 <body>
-  <!-- Navbar on top -->
   <nav class="navbar navbar-light navbar-expand navigation-clean" style="background: #087830;">
     <div class="container"><a class="navbar-brand" href="{% url 'home' %}">Brand</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
         <div class="collapse navbar-collapse" id="navcol-1">
@@ -31,9 +28,7 @@
         </div>
     </div>
   </nav>
-  <!-- End navbar -->
-  <!-- Search bar -->
-  <form method="POST" action="{% url 'search' %}" id="search-form">
+    <form method="POST" action="{% url 'search' %}" id="search-form">
     {% csrf_token %}
     <div class = "input-group">
       <select class="form-select" aria-label="Filter" name="filterData">
@@ -58,120 +53,45 @@
       <label class="form-check-label" for="inlineRadio2">IEEE</label>
     </div> 
   </form>
-  <!-- End search bar -->
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-8">
-        <div class="container-fluid">
-          {% include 'main/messages.html' %}
-          {% block content %}
-          {% endblock %}
-        </div>
-        <div class="card shadow-sm">
-          <div class="card-header bg-transparent border-0">
-              {% for getdata in publication %}
-            <h3 class="mb-0"><i class="far fa-clone pr-1"></i> {{getdata.title}}</h3>
-          </div>
-          <div class="card-body pt-0">
-            <table class="table table-bordered">
-              <tr>
-                <th width="15%">Author</th>
-                <td width="2%">:</td>
-                <td>{{getdata.author}}</td>
-              </tr>
-              <tr>
-                <th width="15%">Abstract</th>
-                <td width="2%">:</td>
-                <td>{{getdata.abstract}}</td>
-              </tr>
-              <tr>
-                <th width="15%">Source</th>
-                <td width="2%">:</td>
-                <td>{{getdata.source}}</td>
-              </tr>
-              <tr>
-                <th width="15%">URL</th>
-                <td width="2%">:</td>
-                <td>{{getdata.url}}</td>
-              </tr>
-            </table>
-            <!-- initial annotation input -->
-            {% if request.session.email %}
-            <div class="container-fluid">
-              <h3 style="text-align: right;"><i class="far fa-clipboard" onclick="toggleAnnotationButton()" id="annotationButton"></i></h3>
-            </div>
-            <div class="card" id="annotationCard" style="display:none">
-              <div class="card-body">
-                <form method="POST" action="/publication/{{getdata.id}}/annotate" id="annotate-from-pub">
-                  {% csrf_token %}
-                  {% if annotations %}
-                  {% for body in annotations %}
-                  <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation-exist" readonly>{{body.body}}</textarea>
-                  <input type="hidden" name="next" value="{{ request.path }}"/>
-                  <br>
-                  <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit" onclick="clickEditOnAnnotation()" style="display:inline" name="annotate-edit">Edit</button>
-                  <button type="submit" class="btn btn-link" id="pubsAnnotation_btnSave" onclick="clickCancelAnnotation()" style="display:none" name="annotate-save">Save</button>
-                  <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel" onclick="clickCancelAnnotation()" style="display:none" name="annotate-cancel">Cancel</button>
-                  <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete" style="display:inline" name="annotate-delete">Delete</button>
-                  {% endfor %}
-                  {% else %}
-                  <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
-                  <input type="hidden" name="next" value="{{ request.path }}"/>
-                  <br>
-                  <button type="submit" class="btn btn-link" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
-                  {% endif %}
-                </form>
-                
-                <form method="POST" action="/publication/{{getdata.id}}/bookmark" id="bookmark-pub">
-                  {% csrf_token %}
-                  {% if bookmarks %}
-                  <input type="hidden" name="next" value="{{ request.path }}"/>
-                  <div class="float-right">
-                    <button type="submit" class="btn btn-outline-danger" name="bookmark-delete">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-dash" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M5.5 6.5A.5.5 0 0 1 6 6h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
-                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                      </svg>
-                    Delete</button>
+  {% for getdata in publication %}
+  <section class="article-dual-column">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-10 offset-md-1">
+                  <div class="intro">
+                      <h1 class="text-center">{{getdata.title}}</h1>
                   </div>
-                  {% else %}
-                  <div class="float-right">
-                    <input type="hidden" name="next" value="{{ request.path }}"/>
-                    <button type="submit" class="btn btn-outline-success" name="bookmark-add">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
-                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                      </svg>
-                    Bookmark</button>
-                  </div> 
-                  {% endif %}
-                </form>
               </div>
-            </div>
-            {% endif %}
-            
-          </div>
-         
-        </div>
-        {% endfor %}
+           </div>
+           <div class="row">
+               <div class="col-md-10 col-lg-3 offset-md-1">
+                   <div class="toc">
+                       <p>Keywords</p>
+                       <ul style="list-style-type:none;">
+                           <li><a href="#">Aliquam In Arcu </a> </li>
+                           <li><a href="#">Ut vehicula rhoncus</a></li>
+                           <li><a href="#">Lorem Ipsum </a> </li>
+                           <li><a href="#">Dolor sit amet</a> </li>
+                       </ul>
+                   </div>
+               </div>
+               <div class="col-md-10 col-lg-7 offset-md-1 offset-lg-0">
+                   <div class="text">
+                       <p style="margin-bottom: 5px;">Authors:</p>
+                       <p>{{getdata.author}}</p>
+                       <p style="margin-bottom: 5px;">Source:</p>
+                       <p>{{getdata.source}}</p>
+                       <p style="margin-bottom: 5px;">URL:</p>
+                       <p>{{getdata.url}}</p>
+                       <h2>Abstract:</h2>
+                       <p>{{getdata.abstract}}</p>
+                   </div>
+               </div>
+           </div>
+       </div>
+  </section>
+  {% endfor %}
 
-          <!-- <div style="height: 26px"></div>
-        <div class="card shadow-sm">
-          <div class="card-header bg-transparent border-0">
-            <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Other Information</h3>
-          </div>
-          <div class="card-body pt-0">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="{% static '\users\js\home.js' %}"></script>
-  <script src="{% static '\users\js\main.js' %}"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
