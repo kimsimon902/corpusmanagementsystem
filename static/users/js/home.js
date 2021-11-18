@@ -77,3 +77,15 @@ function clickCancelAnnotationClass(id){
     cancel.style.display = "none";
     document.getElementById("pubsAnnotationTextArea_"+id).setAttribute('readonly',true);
 }
+
+function checkIfFound(id){
+    var found = document.getElementById("exist-modal-"+id);
+    var addDiv = document.getElementById("add-modal-"+id);
+
+    if (found){
+        addDiv.style.display = "inline";
+    }
+    else {
+        addDiv.style.display = "none";
+    }
+}

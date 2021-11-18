@@ -149,7 +149,7 @@
                               </div>
                             </div>
                             {% elif forloop.last %}
-                            <div id="add-modal-{{getdata.id}}">
+                            <div id="add-modal-{{getdata.id}}" onload="checkIfFound('{{getdata.id}}')" style="display: none;">
                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal-{{getdata.id}}">
                                 <i class="fas fa-plus"></i>
                               </button>
