@@ -151,8 +151,8 @@
                             {% elif forloop.last %}
                             <div id="add-modal-{{getdata.id}}" style="display: inline;">
                               <script>
-                                var found = document.getElementById("exist-modal-"+id);
-                                var addDiv = document.getElementById("add-modal-"+id);
+                                var found = document.getElementById("exist-modal-"+"{{getdata.id}}");
+                                var addDiv = document.getElementById("add-modal-"+"{{getdata.id}}");
 
                                 if (found == null){
                                     addDiv.style.display = "inline";
