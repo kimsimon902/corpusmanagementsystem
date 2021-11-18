@@ -28,6 +28,7 @@
         </div>
     </div>
   </nav>
+  <!-- search bar -->
     <form method="POST" action="{% url 'search' %}" id="search-form">
     {% csrf_token %}
     <div class = "input-group">
@@ -52,6 +53,7 @@
       <label class="form-check-label" for="formCheck-IEEE">IEEE</label>
     </div>
   </form>
+  <!-- end search bar-->
   {% for getdata in publication %}
   <section class="article-dual-column">
       <div class="container">

@@ -36,27 +36,26 @@
                     <form method="POST" action="{% url 'search' %}" id="search-form">
                         {% csrf_token %}
                         <div class = "input-group">
-                          <select class="form-select" aria-label="Filter" name="filterData">
-                            <option selected value="default">Filter</option>
-                            <option value="title">Title</option>
-                            <option value="author">Author</option>
-                            <option value="abstract">Abstract</option>
-                            <option value="url">URL</option>
+                          <label for="inputState">Search by</label>
+                          <select id="inputState" class="form-control" aria-label="Filter" name="filterData">
+                                <option selected value="default">All</option>
+                                <option value="title">Title</option>
+                                <option value="author">Author</option>
                           </select>
                           <span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control form-control-lg" type="search" placeholder="I am looking for..." name="searched" aria-label="Search"><button class="btn btn-light" type="submit">Search </button>
                         </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="filterLib" value="ais">
-                          <label class="form-check-label" for="inlineRadio1">AIS</label>
+                        <div class="form-check">
+                          <input id="formCheck-AIS" class="form-check-input" type="checkbox" />
+                          <label class="form-check-label" for="formCheck-AIS">AIS</label>
                         </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="filterLib" value="scopus">
-                          <label class="form-check-label" for="inlineRadio2">Scopus</label>
+                        <div class="form-check">
+                          <input id="formCheck-Scopus" class="form-check-input" type="checkbox" />
+                          <label class="form-check-label" for="formCheck-Scopus">Scopus</label>
                         </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="filterLib" value="ieee">
-                          <label class="form-check-label" for="inlineRadio2">IEEE</label>
-                        </div> 
+                        <div class="form-check">
+                          <input id="formCheck-IEEE" class="form-check-input" type="checkbox" />
+                          <label class="form-check-label" for="formCheck-IEEE">IEEE</label>
+                        </div>
                       </form>
                 </div>
             </div>
