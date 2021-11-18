@@ -149,9 +149,9 @@
                               </div>
                             </div>
                             {% elif forloop.last %}
-                            <div id="add-modal-{{getdata.id}}" onload="checkIfFound('{{getdata.id}}')" style="display: inline;">
+                            <div id="add-modal-{{getdata.id}}" style="display: inline;">
                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal-{{getdata.id}}">
-                                <i class="fas fa-plus"></i>
+                                <i class="fas fa-plus" onload="checkIfFound('{{getdata.id}}')"></i>
                               </button>
                               <div class="modal fade" id="addModal-{{getdata.id}}" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
