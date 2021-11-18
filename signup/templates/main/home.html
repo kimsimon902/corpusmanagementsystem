@@ -131,13 +131,13 @@
                                   <div class="modal-body">
                                     <form method="POST" action="/publication/{{getdata.id}}/annotate" id="annotate-from-pub">
                                       {% csrf_token %}
-                                      <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
+                                      <textarea class="form-control" id="pubsAnnotationTextArea_{{getdata.id}}" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
                                       <input type="hidden" name="next" value="{{ request.path }}"/>
                                       <br>
-                                      <button type="button" class="btn btn-link btnEdit" id="pubsAnnotation_btnEdit" onclick="clickEditOnAnnotationClass()" style="display:inline" name="annotate-edit">Edit</button>
-                                      <button type="submit" class="btn btn-link btnSave" id="pubsAnnotation_btnSave" onclick="clickCancelAnnotationClass()" style="display:none" name="annotate-save">Save</button>
-                                      <button type="button" class="btn btn-link btnCancel" id="pubsAnnotation_btnCancel" onclick="clickCancelAnnotationClass()" style="display:none" name="annotate-cancel">Cancel</button>
-                                      <button type="submit" class="btn btn-link btnDelete" id="pubsAnnotation_btnDelete" style="display:inline" name="annotate-delete">Delete</button>
+                                      <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit_{{getdata.id}}" onclick="clickEditOnAnnotationClass()" style="display:inline" name="annotate-edit">Edit</button>
+                                      <button type="submit" class="btn btn-link" id="pubsAnnotation_btnSave_{{getdata.id}}" onclick="clickCancelAnnotationClass()" style="display:none" name="annotate-save">Save</button>
+                                      <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel_{{getdata.id}}" onclick="clickCancelAnnotationClass()" style="display:none" name="annotate-cancel">Cancel</button>
+                                      <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete_{{getdata.id}}" style="display:inline" name="annotate-delete">Delete</button>
                                     </form>
                                   </div>
                                   <div class="modal-footer">

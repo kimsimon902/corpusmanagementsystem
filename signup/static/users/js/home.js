@@ -44,30 +44,36 @@ function clickCancelAnnotation(){
     document.getElementById("pubsAnnotationTextArea").setAttribute('readonly',true);
 }
 
-function clickEditOnAnnotationClass() {
-    var save = document.getElementsByClassName("btnSave");
-    var cancel = document.getElementsByClassName("btnCancel");
-    var del = document.getElementsByClassName("btnDelete");
-    if (save[0].style.display === "none" && cancel[0].style.display === "none") {
-      save[0].style.display = "inline";
-      cancel[0].style.display = "inline";
+function clickEditOnAnnotationClass(id) {
+    if(document.getElementById("pubsAnnotationTextArea_"+id).hasAttribute('readonly'))
+        document.getElementById("pubsAnnotationTextArea_"+id).removeAttribute('readonly');
+    else
+    document.getElementById("pubsAnnotationTextArea_"+id).setAttribute('readonly',true);
+
+    var save = document.getElementById("pubsAnnotation_btnSave_"+id);
+    var cancel = document.getElementById("pubsAnnotation_btnCancel_"+id);
+    var del = document.getElementById("pubsAnnotation_btnDelete_"+id);
+    if (save.style.display === "none" && cancel.style.display === "none") {
+      save.style.display = "inline";
+      cancel.style.display = "inline";
     } else {
-      save[0].style.display = "none";
-      cancel[0].style.display = "none";
+      save.style.display = "none";
+      cancel.style.display = "none";
     }
 
-    var edit = document.getElementsByClassName("btnEdit");
-    edit[0].style.display = "none";
-    del[0].style.display = "none";
+    var edit = document.getElementById("pubsAnnotation_btnEdit_"+id);
+    edit.style.display = "none";
+    del.style.display = "none";
 }
 
 function clickCancelAnnotationClass(){
-    var edit = document.getElementsByClassName("btnEdit");
-    var save = document.getElementsByClassName("btnSave");
-    var cancel = document.getElementsByClassName("btnCancel");
-    var del = document.getElementsByClassName("btnDelete");
+    var edit = document.getElementById("pubsAnnotation_btnEdit_"+id);
+    var save = document.getElementById("pubsAnnotation_btnSave_"+id);
+    var cancel = document.getElementById("pubsAnnotation_btnCancel_"+id);
+    var del = document.getElementById("pubsAnnotation_btnDelete_"+id);
     edit.style.display = "inline";
     del.style.display = "inline";
     save.style.display = "none";
     cancel.style.display = "none";
+    document.getElementById("pubsAnnotationTextArea_"+id).setAttribute('readonly',true);
 }
