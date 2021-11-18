@@ -117,7 +117,8 @@
                             <i class="far fa-clipboard"></i>
                           </button>
                           {% for annotation in annotations %}
-                            {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username %}
+                            <!-- {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username %} -->
+                            {% if annotation.objects.filter(publicationID=getdata.id, request.session.username) %}
                             <div class="modal fade" id="exampleModal-{{getdata.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -148,8 +149,6 @@
                             {% else %}
                             {% endif %}
                           {% endfor %}
-
-
                         </td>
                     </tr>
                     {% endfor %}
