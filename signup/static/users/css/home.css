@@ -7,4 +7,13 @@
     background-color: #087830;
     color: white;
   }
+
+.masthead {
+    background: url('/static/users/img/library.jpg') no-repeat center center fixed;
+    display: table;
+    height: 100%;
+    position: relative;
+    width:100%;
+    background-size: cover;
+}
   
