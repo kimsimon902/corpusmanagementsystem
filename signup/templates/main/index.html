@@ -1,154 +1,67 @@
-<!doctype html>
-<html lang="en">
-  <head>
+<html>
+<head>
     {% load static %}
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
     <link rel="stylesheet" href="{% static '\users\css\home.css' %}">
     <title>Corpus Management System</title>
-  </head>
-  <body>
-      <!-- Navbar on top -->
-      <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-        <div class="container-fluid">
-          <div class="ms-auto order-0">
-          <a class="navbar-brand" href="{% url 'home' %}">Corpus Management System</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+</head>
+<body>
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
+        <div class="container"><a class="navbar-brand" href="#">Brand</a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"></button>
+            <div id="navcol-1" class="collapse navbar-collapse"><a class="btn btn-primary ms-auto login-button" role="button" href="#">Log in</a></div>
         </div>
-          <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {% if request.session.email %}
-                    {{request.session.username}}
-                    {% else %}
-                    Account
-                    {% endif %}
-                  </a>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    {% if request.session.email %}
-                    <a type="submit" class="dropdown-item" href="{% url 'upload' %}">Upload Literature</a>
-                    <a type="submit" class="dropdown-item" href="{% url 'bookmarks' %}">My Bookmarks</a>
-                    <a type="submit" class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                    {% else %}
-                    <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                    <a class="dropdown-item" href="{% url 'register' %}">Register</a>
-                    {% endif %}
+    </nav>
+    <header class="text-center text-white masthead" style="background:url('/static/users/img/library.jpg') no-repeat center center;background-size:cover;">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto position-relative">
+                    <h1 class="mb-5">Corpus Management System</h1>
+                    <p><br />Find various publications coming from reliable sources such as AIS eLibrary, Scopus, IEEE Xplore, and DLSU published works.<br /></p>
                 </div>
-            </li>
-            </ul>
-          </div>
-          </div>
-        </nav>
-      <!-- End navbar -->
-        <!-- first row -->
-        <div id="home">
-            <div class="landing-text">
-                <h1 id="landing-title">Corpus Management System</h1>
-                <h5 id="landing-parag">Find various publications coming from reliable sources such as AIS eLibrary, Scopus, IEEE Xplore, and DLSU published works.</h5>
-                <div class="container-fluid" id="search-bar">
-                    <form method="POST" action="{% url 'search' %}" id="search-form">
-                      {% csrf_token %}
-                      <div class = "input-group">
-                        <select class="form-select" aria-label="Filter" name="filterData">
-                          <option selected value="default">Search by</option>
-                          <option value="title">Title</option>
-                          <option value="author">Author</option>
-                          <option value="abstract">Abstract</option>
-                          <option value="url">URL</option>
-                        </select>
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searched">
-                        <div class="input-group-btn">
-                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-button">Search</button>
+                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto position-relative">
+                    <form>
+                        <div class="row">
+                            <div class="col-12 col-md-9 mb-2 mb-md-0"><input class="form-control form-control-lg" type="email" placeholder="Enter your email..." /></div>
+                            <div class="col-12 col-md-3"><button class="btn btn-primary btn-lg signup-button" type="submit">Sign up!</button></div>
                         </div>
-                      </div>
-
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="filterLib" value="ais">
-                        <label class="form-check-label" for="inlineRadio1">AIS</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="filterLib" value="scopus">
-                        <label class="form-check-label" for="inlineRadio2">Scopus</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="filterLib" value="ieee">
-                        <label class="form-check-label" for="inlineRadio2">IEEE</label>
-                      </div>
-
                     </form>
-                  </div>
-            </div>
-        </div>
-        <!-- end first row -->
-        <!-- second row -->
-        <div>
-            <div class="container">
-                <h2 id="second-title">Explore topics</h2>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="card h-100" style="width: 18rem;">
-                            <img src="{% static '\users\img\writing.jpg' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title">Recently Published</h5>
-                              <p class="card-text">Topics that are published recently</p>
-                              <a href="#" class="btn" id="btn-explore-recent">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card h-100" style="width: 18rem;">
-                            <img src="{% static '\users\img\reading.jpg' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title">Most Searched</h5>
-                              <p class="card-text">Topics that are most searched by specific times</p>
-                              <a href="#" class="btn" id="btn-explore-searched">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card h-100" style="width: 18rem;">
-                            <img src="{% static '\users\img\working.jpg' %}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title">Trending</h5>
-                              <p class="card-text">Topics that are most searched today</p>
-                              <a href="#" class="btn" id="btn-explore-trending">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <!-- end second row -->
-
-    <!-- footer -->
-    <footer class="container-fluid" id="footer">
-        <div class="row">
-            <div class="col-sm-6">
-                <h5>Contact Us</h5>
-                <br>
-                <h6>Simon Kim - simon_kim@dlsu.edu.ph</h6>
-                <h6>Troy Mikael Esguerra - troy_mikael_esguerra@dlsu.edu.ph</h6>
-                <h6>Maron Leonard Fabelico - maron_fabelico@dlsu.edu.ph</h6>
-                <h6>Kyle Rafael Lagado - kyle_lagado@dlsu.edu.ph</h6>
-            </div>
-            <div class="col-sm-6">
+    </header>
+    <footer class="bg-light footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-start my-auto h-100">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item"><a href="#">About</a></li>
+                        <li class="list-inline-item"><span>⋅</span></li>
+                        <li class="list-inline-item"><a href="#">Contact</a></li>
+                        <li class="list-inline-item"><span>⋅</span></li>
+                        <li class="list-inline-item"><a href="#">Terms of  Use</a></li>
+                        <li class="list-inline-item"><span>⋅</span></li>
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">© Brand 2021. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 text-center text-lg-end my-auto h-100">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook fa-2x fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-twitter fa-2x fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-instagram fa-2x fa-fw"></i></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </footer>
-    <!-- end footer -->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="{% static '\users\js\home.js' %}"></script>
-  </body>
+</body>
+
 </html>
