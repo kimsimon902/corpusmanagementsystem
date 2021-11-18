@@ -57,7 +57,7 @@ def registerView(request):
             saverecord.is_superuser = 0
             saverecord.last_login = time.strftime('%Y-%m-%d %H:%M:%S')
             saverecord.save()
-            return redirect('login')#render(request, 'registration/login.html')
+            return redirect('/')#render(request, 'registration/login.html')
     else:
             return render(request, 'registration/register.html')
 
