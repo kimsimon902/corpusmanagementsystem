@@ -16,8 +16,8 @@
     <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
         <div class="container"><a class="navbar-brand" href="#">Brand</a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"></button>
             <div id="navcol-1" class="collapse navbar-collapse">
-                <button class="btn btn-success ms-auto" type="button" style="margin-right: 15px; color: white;">Login</button>
-                <button class="btn btn-success" type="button" style="color: white;">Signup</button></div>
+                <a class="btn btn-success ms-auto" type="button" href="{% url 'login' %}" style="margin-right: 15px; color: white;">Login</a>
+                <a class="btn btn-success" type="button" href="{% url 'register' %}" style="color: white;">Signup</a></div>
         </div>
     </nav>
     <header class="text-center text-white masthead">
