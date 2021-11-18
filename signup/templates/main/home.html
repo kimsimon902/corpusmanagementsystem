@@ -134,9 +134,9 @@
                                       <textarea class="form-control" id="pubsAnnotationTextArea_{{getdata.id}}" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
                                       <input type="hidden" name="next" value="{{ request.path }}"/>
                                       <br>
-                                      <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit_{{getdata.id}}" onclick="clickEditOnAnnotationClass()" style="display:inline" name="annotate-edit">Edit</button>
-                                      <button type="submit" class="btn btn-link" id="pubsAnnotation_btnSave_{{getdata.id}}" onclick="clickCancelAnnotationClass()" style="display:none" name="annotate-save">Save</button>
-                                      <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel_{{getdata.id}}" onclick="clickCancelAnnotationClass()" style="display:none" name="annotate-cancel">Cancel</button>
+                                      <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit_{{getdata.id}}" onclick="clickEditOnAnnotationClass( {{getdata.id}} )" style="display:inline" name="annotate-edit">Edit</button>
+                                      <button type="submit" class="btn btn-link" id="pubsAnnotation_btnSave_{{getdata.id}}" onclick="clickCancelAnnotationClass({{getdata.id}})" style="display:none" name="annotate-save">Save</button>
+                                      <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel_{{getdata.id}}" onclick="clickCancelAnnotationClass({{getdata.id}})" style="display:none" name="annotate-cancel">Cancel</button>
                                       <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete_{{getdata.id}}" style="display:inline" name="annotate-delete">Delete</button>
                                     </form>
                                   </div>
