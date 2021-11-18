@@ -33,9 +33,31 @@
                 <div class="col-xl-9 mx-auto position-relative">
                     <h1 class="mb-5">Corpus Management System</h1>
                     <h2><br>Find various publications coming from reliable sources such as AIS eLibrary, Scopus, IEEE Xplore, and DLSU published works.<br></h2>
-                    <form class="search-form">
-                        <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control form-control-lg" type="text" placeholder="I am looking for..."><button class="btn btn-light" type="button">Search </button></div>
-                    </form>
+                    <form method="POST" action="{% url 'search' %}" id="search-form">
+                        {% csrf_token %}
+                        <div class = "input-group">
+                          <select class="form-select" aria-label="Filter" name="filterData">
+                            <option selected value="default">Filter</option>
+                            <option value="title">Title</option>
+                            <option value="author">Author</option>
+                            <option value="abstract">Abstract</option>
+                            <option value="url">URL</option>
+                          </select>
+                          <span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control form-control-lg" type="text" placeholder="I am looking for..."><button class="btn btn-light" type="button">Search </button>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="filterLib" value="ais">
+                          <label class="form-check-label" for="inlineRadio1">AIS</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="filterLib" value="scopus">
+                          <label class="form-check-label" for="inlineRadio2">Scopus</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="filterLib" value="ieee">
+                          <label class="form-check-label" for="inlineRadio2">IEEE</label>
+                        </div> 
+                      </form>
                 </div>
             </div>
         </div>

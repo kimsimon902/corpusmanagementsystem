@@ -25,6 +25,7 @@
             </div>
         </div>
     </nav>
+    {% if searched %}
     <div class="container-fluid">
         <div class="row">
             <div class="col">
@@ -52,19 +53,23 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for result in results %}
                             <tr>
-                                <td>"title"</td>
-                                <td>"authors"</td>
-                                <td>"abstract"</td>
-                                <td>"source"</td>
-                                <td>"url"</td>
+                                <td>{{result.id}}</td>
+                                <td><a href="/publication/{{result.id}}">{{result.title}}</a></td>
+                                <td>{{result.author}}</td>
+                                <td>{{result.abstract}}</td>
+                                <td>{{result.source}}</td>
+                                <td>{{result.url}}</td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    {% endif %}
     <footer class="bg-light footer">
         <div class="container">
             <div class="row">
