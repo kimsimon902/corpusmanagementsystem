@@ -31,8 +31,7 @@
         <form method="POST" action="{% url 'search' %}" id="search-form">
             {% csrf_token %}
             <div class = "input-group">
-              <span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control form-control-lg" type="search" placeholder="I am looking for..." name="searched" aria-label="Search"><button class="btn btn-light" type="submit">Search </button>
-                <div class="row">
+                                <div class="row">
                     <div class="col-md-4">
                         <label for="inputState">Search by</label>
                         <select id="inputState" class="form-control">
@@ -58,6 +57,7 @@
                         </div>
                     </div>
                 </div>
+              <span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control form-control-lg" type="search" placeholder="I am looking for..." name="searched" aria-label="Search"><button class="btn btn-light" type="submit">Search </button>
             </div>
         </form>
         <div class="row">
