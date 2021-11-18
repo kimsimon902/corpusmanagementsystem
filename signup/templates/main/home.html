@@ -117,7 +117,6 @@
                             <i class="far fa-clipboard"></i>
                           </button>
                           {% for annotation in annotations %}
-                            {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username %}
                             <div class="modal fade" id="exampleModal-{{getdata.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -129,14 +128,21 @@
                                   </div>
                                   <div class="modal-body">
                                     <form method="POST" action="/publication/{{getdata.id}}/annotate" id="annotate-from-pub">
-                                      {% csrf_token %}
-                                      <textarea class="form-control" id="pubsAnnotationTextArea_{{getdata.id}}" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
+                                    {% csrf_token %}
+                                    {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username %}
+                                        <textarea class="form-control" id="pubsAnnotationTextArea_{{getdata.id}}" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
+                                        <input type="hidden" name="next" value="{{ request.path }}"/>
+                                        <br>
+                                        <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit_{{getdata.id}}" onclick="clickEditOnAnnotationClass('{{getdata.id}}')" style="display:inline" name="annotate-edit">Edit</button>
+                                        <button type="submit" class="btn btn-link" id="pubsAnnotation_btnSave_{{getdata.id}}" onclick="clickCancelAnnotationClass('{{getdata.id}}')" style="display:none" name="annotate-save">Save</button>
+                                        <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel_{{getdata.id}}" onclick="clickCancelAnnotationClass('{{getdata.id}}')" style="display:none" name="annotate-cancel">Cancel</button>
+                                        <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete_{{getdata.id}}" style="display:inline" name="annotate-delete">Delete</button>
+                                    {% else %}
+                                      <textarea class="form-control" id="pubsAnnotationTextArea_{{getdata.id}}" rows="3" name="annotation"></textarea>
                                       <input type="hidden" name="next" value="{{ request.path }}"/>
                                       <br>
-                                      <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit_{{getdata.id}}" onclick="clickEditOnAnnotationClass('{{getdata.id}}')" style="display:inline" name="annotate-edit">Edit</button>
-                                      <button type="submit" class="btn btn-link" id="pubsAnnotation_btnSave_{{getdata.id}}" onclick="clickCancelAnnotationClass('{{getdata.id}}')" style="display:none" name="annotate-save">Save</button>
-                                      <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel_{{getdata.id}}" onclick="clickCancelAnnotationClass('{{getdata.id}}')" style="display:none" name="annotate-cancel">Cancel</button>
-                                      <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete_{{getdata.id}}" style="display:inline" name="annotate-delete">Delete</button>
+                                      <button type="submit" class="btn btn-link" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
+                                    {% endif %}
                                     </form>
                                   </div>
                                   <div class="modal-footer">
@@ -145,8 +151,9 @@
                                 </div>
                               </div>
                             </div>
-                            {% endif %}
                           {% endfor %}
+
+
                         </td>
                     </tr>
                     {% endfor %}
