@@ -1,0 +1,33 @@
+{% extends 'main/home copy.html' %}
+
+{% block table %}
+    {% if searched %}
+        <p>You searched for {{searched}}</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Abstract</th>
+                    <th scope="col">URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                <tr>
+                    <td>{{result.id}}</td>
+                    <td><a href="/publication/{{result.id}}">{{result.title}}</a></td>
+                    <td>{{result.author}}</td>
+                    <td>{{result.abstract}}</td>
+                    <td>{{result.source}}</td>
+                    <td>{{result.url}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <br>
+        <h1>No search keyword input...</h1>
+    {% endif %}
+{% endblock %}
