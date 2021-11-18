@@ -100,7 +100,11 @@ def searchPublication(request):
     if request.method == "POST":
         searched = request.POST['searched']
         searchFilter = request.POST['filterData']
-        libFilter = request.POST['filterLib']
+        
+        if 'filterLib' in request.POST:
+            libFilter = request.POST['filterLib']
+        else:
+            libFilter = False
 
         if  searchFilter == "default":
 
