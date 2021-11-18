@@ -48,17 +48,17 @@ function clickEditOnAnnotationClass() {
     var save = document.getElementsByClassName("btnSave");
     var cancel = document.getElementsByClassName("btnCancel");
     var del = document.getElementsByClassName("btnDelete");
-    if (save.style.display === "none" && cancel.style.display === "none") {
-      save.style.display = "inline";
-      cancel.style.display = "inline";
+    if (save[0].style.display === "none" && cancel[0].style.display === "none") {
+      save[0].style.display = "inline";
+      cancel[0].style.display = "inline";
     } else {
-      save.style.display = "none";
-      cancel.style.display = "none";
+      save[0].style.display = "none";
+      cancel[0].style.display = "none";
     }
 
     var edit = document.getElementsByClassName("btnEdit");
-    edit.style.display = "none";
-    del.style.display = "none";
+    edit[0].style.display = "none";
+    del[0].style.display = "none";
 }
 
 function clickCancelAnnotationClass(){
