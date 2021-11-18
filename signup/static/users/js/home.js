@@ -56,16 +56,16 @@ function clickEditOnAnnotationClass() {
       cancel.style.display = "none";
     }
 
-    var edit = document.getElementsByClassName("btn btn-link btnEdit");
+    var edit = document.getElementsByClassName("btnEdit");
     edit.style.display = "none";
     del.style.display = "none";
 }
 
 function clickCancelAnnotationClass(){
-    var edit = document.getElementsByClassName("btn btn-link btnEdit");
-    var save = document.getElementsByClassName("btn btn-link btnSave");
-    var cancel = document.getElementsByClassName("btn btn-link btnCancel");
-    var del = document.getElementsByClassName("btn btn-link btnDelete");
+    var edit = document.getElementsByClassName("btnEdit");
+    var save = document.getElementsByClassName("btnSave");
+    var cancel = document.getElementsByClassName("btnCancel");
+    var del = document.getElementsByClassName("btnDelete");
     edit.style.display = "inline";
     del.style.display = "inline";
     save.style.display = "none";
