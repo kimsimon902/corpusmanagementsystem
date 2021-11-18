@@ -150,8 +150,19 @@
                             </div>
                             {% elif forloop.last %}
                             <div id="add-modal-{{getdata.id}}" style="display: inline;">
+                              <script>
+                                var found = document.getElementById("exist-modal-"+id);
+                                var addDiv = document.getElementById("add-modal-"+id);
+
+                                if (found == null){
+                                    addDiv.style.display = "inline";
+                                }
+                                else {
+                                    addDiv.style.display = "none";
+                                }
+                              </script>
                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal-{{getdata.id}}">
-                                <i class="fas fa-plus" onload="checkIfFound('{{getdata.id}}')"></i>
+                                <i class="fas fa-plus"></i>
                               </button>
                               <div class="modal fade" id="addModal-{{getdata.id}}" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
