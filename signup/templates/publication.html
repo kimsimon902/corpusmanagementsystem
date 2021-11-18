@@ -14,68 +14,46 @@
 
 <body>
   <!-- Navbar on top -->
-  <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-    <a class="navbar-brand" href="{% url 'home' %}">Corpus Management System</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-       <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Account
-            </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% if request.session.email %}
-                <!--{{request.session.email}} -->
-                <a type="submit" class="dropdown-item" href="{% url 'upload' %}">Upload Literature</a>
-                <a type="submit" class="dropdown-item" href="{% url 'bookmarks' %}">My Bookmarks</a>
-                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                {% else %}
-                <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                <a class="dropdown-item" href="{% url 'register' %}">Register</a>
-                {% endif %}
-              </div>
-          </li>
-      </ul>
+  <nav class="navbar navbar-light navbar-expand navigation-clean" style="background: #087830;">
+    <div class="container"><a class="navbar-brand" href="{% url 'home' %}">Brand</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color:white">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'upload' %}" style="color:white">Upload Literature</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'bookmarks' %}" style="color:white">My Bookmarks</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color:white">Logout</a></li>
+            </ul>
+        </div>
     </div>
   </nav>
   <!-- End navbar -->
   <!-- Search bar -->
-  <div class="container-fluid" id="search-bar">
-    <form method="POST" action="{% url 'search' %}" id="search-form">
-      {% csrf_token %}
-      <div class = "input-group">
-        <select class="form-select" aria-label="Filter" name="filterData">
-          <option selected>Filter</option>
-          <option value="title">Title</option>
-          <option value="author">Author</option>
-          <option value="abstract">Abstract</option>
-          <option value="url">URL</option>
-        </select>
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searched">
-        <div class="input-group-btn">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-button">Search</button>
-        </div>
-      </div>
-
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="filterLib" value="ais">
-        <label class="form-check-label" for="inlineRadio1">AIS</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="filterLib" value="scopus">
-        <label class="form-check-label" for="inlineRadio2">Scopus</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="filterLib" value="ieee">
-        <label class="form-check-label" for="inlineRadio2">IEEE</label>
-      </div>
-
-    </form>
-  </div>
+  <form method="POST" action="{% url 'search' %}" id="search-form">
+    {% csrf_token %}
+    <div class = "input-group">
+      <select class="form-select" aria-label="Filter" name="filterData">
+        <option selected value="default">Filter</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="abstract">Abstract</option>
+        <option value="url">URL</option>
+      </select>
+      <span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control form-control-lg" type="search" placeholder="I am looking for..." name="searched" aria-label="Search"><button class="btn btn-light" type="submit">Search </button>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="filterLib" value="ais">
+      <label class="form-check-label" for="inlineRadio1">AIS</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="filterLib" value="scopus">
+      <label class="form-check-label" for="inlineRadio2">Scopus</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="filterLib" value="ieee">
+      <label class="form-check-label" for="inlineRadio2">IEEE</label>
+    </div> 
+  </form>
   <!-- End search bar -->
- 
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-8">
