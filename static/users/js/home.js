@@ -66,7 +66,7 @@ function clickEditOnAnnotationClass(id) {
     del.style.display = "none";
 }
 
-function clickCancelAnnotationClass(){
+function clickCancelAnnotationClass(id){
     var edit = document.getElementById("pubsAnnotation_btnEdit_"+id);
     var save = document.getElementById("pubsAnnotation_btnSave_"+id);
     var cancel = document.getElementById("pubsAnnotation_btnCancel_"+id);
