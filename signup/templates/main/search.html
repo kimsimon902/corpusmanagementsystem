@@ -29,7 +29,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <h5>Search results for "keyword"</h5>
+                <h5>Search results for {{searched}}</h5>
             </div>
         </div>
         <div class="row">
@@ -55,7 +55,6 @@
                         <tbody>
                             {% for result in results %}
                             <tr>
-                                <td>{{result.id}}</td>
                                 <td><a href="/publication/{{result.id}}">{{result.title}}</a></td>
                                 <td>{{result.author}}</td>
                                 <td>{{result.abstract}}</td>
