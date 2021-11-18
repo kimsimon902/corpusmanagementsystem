@@ -82,7 +82,7 @@ function checkIfFound(id){
     var found = document.getElementById("exist-modal-"+id);
     var addDiv = document.getElementById("add-modal-"+id);
 
-    if (found){
+    if (found == null){
         addDiv.style.display = "inline";
     }
     else {
