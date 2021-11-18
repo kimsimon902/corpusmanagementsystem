@@ -9,7 +9,7 @@
   }
 
 .masthead {
-    background: url('/static/users/img/library.jpg') no-repeat center center fixed;
+    background: whitesmoke;
     display: table;
     height: 100%;
     position: relative;
