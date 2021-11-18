@@ -77,3 +77,7 @@ function clickCancelAnnotationClass(id){
     cancel.style.display = "none";
     document.getElementById("pubsAnnotationTextArea_"+id).setAttribute('readonly',true);
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+});

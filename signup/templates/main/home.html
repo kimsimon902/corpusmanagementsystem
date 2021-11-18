@@ -116,60 +116,64 @@
                         <td>
                           {% for annotation in annotations %}
                             {% if annotation.publicationID == getdata.id  and annotation.author == request.session.username %}
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-{{getdata.id}}">
-                              <i class="far fa-clipboard"></i>
-                            </button>
-                            <div class="modal fade" id="exampleModal-{{getdata.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Annotate</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <form method="POST" action="/publication/{{getdata.id}}/annotate" id="annotate-from-pub">
-                                      {% csrf_token %}
-                                      <textarea class="form-control" id="pubsAnnotationTextArea_{{getdata.id}}" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
-                                      <input type="hidden" name="next" value="{{ request.path }}"/>
-                                      <br>
-                                      <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit_{{getdata.id}}" onclick="clickEditOnAnnotationClass('{{getdata.id}}')" style="display:inline" name="annotate-edit">Edit</button>
-                                      <button type="submit" class="btn btn-link" id="pubsAnnotation_btnSave_{{getdata.id}}" onclick="clickCancelAnnotationClass('{{getdata.id}}')" style="display:none" name="annotate-save">Save</button>
-                                      <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel_{{getdata.id}}" onclick="clickCancelAnnotationClass('{{getdata.id}}')" style="display:none" name="annotate-cancel">Cancel</button>
-                                      <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete_{{getdata.id}}" style="display:inline" name="annotate-delete">Delete</button>
-                                    </form>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <div id="exist-modal-{{getdata.id}}">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-{{getdata.id}}">
+                                <i class="far fa-clipboard"></i>
+                              </button>
+                              <div class="modal fade" id="exampleModal-{{getdata.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Annotate</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form method="POST" action="/publication/{{getdata.id}}/annotate" id="annotate-from-pub">
+                                        {% csrf_token %}
+                                        <textarea class="form-control" id="pubsAnnotationTextArea_{{getdata.id}}" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
+                                        <input type="hidden" name="next" value="{{ request.path }}"/>
+                                        <br>
+                                        <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit_{{getdata.id}}" onclick="clickEditOnAnnotationClass('{{getdata.id}}')" style="display:inline" name="annotate-edit">Edit</button>
+                                        <button type="submit" class="btn btn-link" id="pubsAnnotation_btnSave_{{getdata.id}}" onclick="clickCancelAnnotationClass('{{getdata.id}}')" style="display:none" name="annotate-save">Save</button>
+                                        <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel_{{getdata.id}}" onclick="clickCancelAnnotationClass('{{getdata.id}}')" style="display:none" name="annotate-cancel">Cancel</button>
+                                        <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete_{{getdata.id}}" style="display:inline" name="annotate-delete">Delete</button>
+                                      </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                             {% elif forloop.last %}
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal-{{getdata.id}}">
-                              <i class="fas fa-plus"></i>
-                            </button>
-                            <div class="modal fade" id="addModal-{{getdata.id}}" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="addModalLabel">Annotate</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <form method="POST" action="/publication/{{getdata.id}}/annotate" id="annotate-from-pub">
-                                      {% csrf_token %}
-                                      <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
-                                      <input type="hidden" name="next" value="{{ request.path }}"/>
-                                      <br>
-                                      <button type="submit" class="btn btn-link" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
-                                    </form>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <div id="add-modal-{{getdata.id}}">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal-{{getdata.id}}">
+                                <i class="fas fa-plus"></i>
+                              </button>
+                              <div class="modal fade" id="addModal-{{getdata.id}}" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="addModalLabel">Annotate</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form method="POST" action="/publication/{{getdata.id}}/annotate" id="annotate-from-pub">
+                                        {% csrf_token %}
+                                        <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
+                                        <input type="hidden" name="next" value="{{ request.path }}"/>
+                                        <br>
+                                        <button type="submit" class="btn btn-link" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
+                                      </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
