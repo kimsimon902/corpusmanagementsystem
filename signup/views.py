@@ -54,6 +54,7 @@ def registerView(request):
                 return redirect('register')
             saverecord.first_name = request.POST.get('first_name')
             saverecord.last_name = request.POST.get('last_name')
+            saverecord.is_superuser = 0
             saverecord.last_login = time.strftime('%Y-%m-%d %H:%M:%S')
             saverecord.save()
             return redirect('login')#render(request, 'registration/login.html')
@@ -188,7 +189,7 @@ def searchPublication(request):
 def PublicationPage(request, id):
     results = publications.objects.filter(id=id)
     if (request.user):
-        author= request.session['username']
+        author = request.session['username']
     else:
         author="null"
     annotation = annotations.objects.filter(publicationID=id, author=author)
