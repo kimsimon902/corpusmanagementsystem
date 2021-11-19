@@ -149,6 +149,9 @@ def searchPublication(request):
                     Q(author__icontains=searched)
             )
 
+            if(results.url == "doi.org/"):
+                results.url = "https://scholar.google.com/scholar?q=" + results.title
+
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
 
         elif searchFilter == "title":
@@ -177,6 +180,9 @@ def searchPublication(request):
             else:
                 results = publications.objects.filter(title__icontains=searched)
 
+            if(results.url == "doi.org/"):
+                results.url = "https://scholar.google.com/scholar?q=" + results.title
+
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
         elif searchFilter == "author":
 
@@ -203,8 +209,13 @@ def searchPublication(request):
                 results = publications.objects.filter(author__icontains=searched, source__icontains="scopus")    
             else:
                 results = publications.objects.filter(author__icontains=searched)
+
+            if(results.url == "doi.org/"):
+                results.url = "https://scholar.google.com/scholar?q=" + results.title
+
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
     else:
+        
         return render(request, 'main/search.html',{})
 
 #this function displays the details of a publication that has been selected from the home page
