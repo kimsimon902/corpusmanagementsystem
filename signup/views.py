@@ -319,8 +319,8 @@ def uploadLiterature(request):
     
 def viewAdmin(request):
     results = publications.objects.filter(status='pending')
-    if request.method == "POST":
-        currpub = publications()
+    #if request.method == "POST":
+        #currpub = publications.objects.filter(id=)
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
