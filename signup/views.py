@@ -127,7 +127,7 @@ def searchPublication(request):
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains='ieee'
             )
-            elif 'ais' in libFilter and 'ieee' in libFilter):
+            elif 'ais' in libFilter and 'ieee' in libFilter:
                 results = publications.objects.filter(
                     # Q(title__icontains=searched) |
                     # Q(author__icontains=searched) , source__icontains="ais"
