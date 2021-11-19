@@ -162,7 +162,9 @@ def searchPublication(request):
 
             for x in results:
                 if publications.objects.get('url') == "doi.org/":
-                    publications.objects.get('url') = "scholar.google.com/scholar?q=" + publications.title
+                    publications.objects.get('url') = "scholar.google.com/scholar?q=" + publications.objects.get('title')
+                    publications.save()
+                    
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
 
