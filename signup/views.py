@@ -125,12 +125,12 @@ def searchPublication(request):
             elif filterAis & filterIeee:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
-                    Q(author__icontains=searched), source__icontains="ais", source__icontains="ieee"
+                    Q(author__icontains=searched), source__icontains="ais", "ieee"
             )
             elif filterAis & filterScopus:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
-                    Q(author__icontains=searched), source__icontains="ais", source__icontains="scopus"
+                    Q(author__icontains=searched), source__icontains="ais", "scopus"
             )
             elif filterIeee:
                 results = publications.objects.filter(
@@ -140,7 +140,7 @@ def searchPublication(request):
             elif filterIeee & filterScopus:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
-                    Q(author__icontains=searched), source__icontains="ieee", source__icontains="scopus"
+                    Q(author__icontains=searched), source__icontains="ieee", "scopus"
             )
             elif filterScopus:
                 results = publications.objects.filter(
@@ -160,13 +160,13 @@ def searchPublication(request):
             if filterAis:
                 results = publications.objects.filter(title__icontains=searched,source__icontains="ais")
             elif filterAis & filterIeee:
-                results = publications.objects.filter(title__icontains=searched,source__icontains="ais", source__icontains="ieee")
+                results = publications.objects.filter(title__icontains=searched,source__icontains="ais", "ieee")
             elif filterAis & filterScopus:
-                results = publications.objects.filter(title__icontains=searched,source__icontains="ais", source__icontains="scopus")
+                results = publications.objects.filter(title__icontains=searched,source__icontains="ais", "scopus")
             elif filterIeee:
                 results = publications.objects.filter(title__icontains=searched,source__icontains="ieee")
             elif filterIeee & filterScopus:
-                results = publications.objects.filter(title__icontains=searched,source__icontains="ieee", source__icontains="scopus")
+                results = publications.objects.filter(title__icontains=searched,source__icontains="ieee", "scopus")
             elif filterScopus:
                 results = publications.objects.filter(title__icontains=searched, source__icontains="scopus")
             else:
@@ -178,13 +178,13 @@ def searchPublication(request):
             if filterAis:
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ais")
             elif filterAis & filterIeee:
-                results = publications.objects.filter(author__icontains=searched,source__icontains="ais", source__icontains="ieee")
+                results = publications.objects.filter(author__icontains=searched,source__icontains="ais", "ieee")
             elif filterAis & filterScopus:
-                results = publications.objects.filter(author__icontains=searched,source__icontains="ais", source__icontains="scopus")
+                results = publications.objects.filter(author__icontains=searched,source__icontains="ais", "scopus")
             elif filterIeee:
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ieee")
             elif filterIeee & filterScopus:
-                results = publications.objects.filter(author__icontains=searched,source__icontains="ieee", source__icontains="scopus")
+                results = publications.objects.filter(author__icontains=searched,source__icontains="ieee", "scopus")
             elif filterScopus:
                 results = publications.objects.filter(author__icontains=searched, source__icontains="scopus")    
             else:
