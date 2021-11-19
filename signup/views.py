@@ -120,7 +120,7 @@ def searchPublication(request):
 
         if  searchFilter == "default":
 
-            if 'ais' in libFilter and libFilter.len() = 1:
+            if 'ais' in libFilter and libFilter.len() == 1:
                 results = publications.objects.filter(
                     # Q(title__icontains=searched) |
                     # Q(author__icontains=searched), source__icontains="ais"
