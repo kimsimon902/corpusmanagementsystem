@@ -52,6 +52,8 @@
                 <div class="col-xl-9 mx-auto position-relative">
                     <h1 class="mb-5">Corpus Management System</h1>
                     <h2><br>Find various publications coming from reliable sources such as AIS eLibrary, Scopus, IEEE Xplore, and DLSU published works.<br></h2>
+
+                    <!--
                     <form method="POST" action="{% url 'search' %}" id="search-form">
                         {% csrf_token %}
                         <div class = "input-group">
@@ -83,7 +85,9 @@
                             </div>
                           <span class="input-group-text"><i class="fa fa-search" style="height:17px;"></i></span><input class="form-control form-control-sm" type="search" placeholder="I am looking for..." name="searched" aria-label="Search" style="height:20px;"><button class="btn btn-success btn-sm" type="submit">Search</button>
                         </div>
-                    </form>
+                    </form> 
+                    -->
+                    <div class="row"></div>
                     {% include 'main/search-bar.html' %}
                 </div>
             </div>
