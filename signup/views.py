@@ -122,7 +122,7 @@ def searchPublication(request):
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="ais"
             )
-            elif filterAis is not None and filterIeee is not None:
+            elif filterAis is not None and filterIeee is not None and filterScopus is None:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched) , source__icontains="ais"
