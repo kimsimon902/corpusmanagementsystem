@@ -161,8 +161,8 @@ def searchPublication(request):
             )
 
             for x in results:
-                if publications.url == "doi.org/":
-                    publications.url = "scholar.google.com/scholar?q=" + publications.title
+                if publications.objects.get('url') == "doi.org/":
+                    publications.objects.get('url') = "scholar.google.com/scholar?q=" + publications.title
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
 
