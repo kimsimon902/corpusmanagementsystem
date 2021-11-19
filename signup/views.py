@@ -123,7 +123,7 @@ def searchPublication(request):
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="ais"
             )
-            elif filterAis in request.POST and filterScopus in request.POST:
+            elif "filterAis" in request.POST and "filterScopus" in request.POST:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched) , source__icontains="ais"
