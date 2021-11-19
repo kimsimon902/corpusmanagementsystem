@@ -149,8 +149,8 @@ def searchPublication(request):
                     Q(author__icontains=searched)
             )
 
-            if(results.url == "doi.org/"):
-                results.url = "https://scholar.google.com/scholar?q=" + results.title
+            if(publications.url == "doi.org/"):
+                publications.url = "https://scholar.google.com/scholar?q=" + publications.title
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
 
@@ -180,8 +180,8 @@ def searchPublication(request):
             else:
                 results = publications.objects.filter(title__icontains=searched)
 
-            if(results.url == "doi.org/"):
-                results.url = "https://scholar.google.com/scholar?q=" + results.title
+            if(publications.url == "doi.org/"):
+                publications.url = "https://scholar.google.com/scholar?q=" + publications.title
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
         elif searchFilter == "author":
@@ -210,8 +210,8 @@ def searchPublication(request):
             else:
                 results = publications.objects.filter(author__icontains=searched)
 
-            if(results.url == "doi.org/"):
-                results.url = "https://scholar.google.com/scholar?q=" + results.title
+            if(publications.url == "doi.org/"):
+                publications.url = "https://scholar.google.com/scholar?q=" + publications.title
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
     else:
