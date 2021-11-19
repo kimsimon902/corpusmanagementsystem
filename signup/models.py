@@ -29,11 +29,11 @@ class publications(models.Model):
     class Meta:
         db_table = "publications"
 
-class tags(models.Model):
-    tagname = models.CharField(max_length=100)
+class keywords(models.Model):
+    keywordname = models.CharField(max_length=100)
 
     class Meta:
-        db_table = "tags"
+        db_table = "keywords"
 
 class annotations(models.Model):
     author = models.CharField(max_length=100)
@@ -50,9 +50,9 @@ class bookmarks(models.Model):
     class Meta:
         db_table = "bookmarks"
 
-class pubtags(models.Model):
+class pubkeys(models.Model):
     publication_id = models.CharField(max_length=100)
-    tag_id = models.CharField(max_length=100)
+    keywords_id = models.CharField(max_length=100)
 
     class Meta:
-        db_table = "publication_tags"
+        db_table = "publication_keywords"

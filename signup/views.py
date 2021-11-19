@@ -6,12 +6,11 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
-from .models import pubtags, registerUser
+from .models import pubkeys, registerUser
 from .models import publications
-from .models import tags
+from .models import keywords
 from .models import annotations
 from .models import bookmarks
-from .models import pubtags
 from django.db.models import Q
 import time
 
@@ -297,17 +296,17 @@ def uploadLiterature(request):
             pub_id = []
             for i in range(1,10):
                 if request.POST.get('textbox' + str(i)) is not None:
-                    if tags.objects.filter(tagname=request.POST.get('textbox' + str(i))).exists():
+                    if keywords.objects.filter(tagname=request.POST.get('textbox' + str(i))).exists():
                             name_id.append(request.POST.get('textbox' + str(i)))
                     else:
-                        insert_list.append(tags(tagname=request.POST.get('textbox' + str(i))))
+                        insert_list.append(keywords(tagname=request.POST.get('textbox' + str(i))))
                         name_id.append(request.POST.get('textbox' + str(i)))
-            tags.objects.bulk_create(insert_list)
+            keywords.objects.bulk_create(insert_list)
             results = publications.objects.get(title = savepub.title)
             for j in range(0,len(name_id)):
-                store = tags.objects.get(tagname=name_id[j])
-                pub_id.append(pubtags(publication_id=results.id, tag_id=store.id))
-            pubtags.objects.bulk_create(pub_id)
+                store = keywords.objects.get(tagname=name_id[j])
+                pub_id.append(pubkeys(publication_id=results.id, tag_id=store.id))
+            pubkeys.objects.bulk_create(pub_id)
             addBookmark = bookmarks()
             addBookmark.user = user
             addBookmark.publicationID = results.id
