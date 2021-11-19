@@ -116,16 +116,18 @@ def searchPublication(request):
         # else:
         #     filterScopus = None
 
+        libFilter = request.POST.getlist('filterLib')
+
         if  searchFilter == "default":
 
-            if request.POST.get('filterAis', True):
+            if 'ais' in libFilter:
                 results = publications.objects.filter(
                     # Q(title__icontains=searched) |
                     # Q(author__icontains=searched), source__icontains="ais"
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains='ieee'
             )
-            elif request.POST.get('filterAis', True) and request.POST.get('filterIeee', True):
+            elif 'ais' in libFilter and 'ieee' in libFilter):
                 results = publications.objects.filter(
                     # Q(title__icontains=searched) |
                     # Q(author__icontains=searched) , source__icontains="ais"
