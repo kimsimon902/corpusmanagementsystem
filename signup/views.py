@@ -103,52 +103,52 @@ def searchPublication(request):
         if 'filterAis' in request.POST:
             filterAis = request.POST['filterAis']
         else:
-            filterAis = null
+            filterAis = None
 
         if 'filterIeee' in request.POST:
             filterIeee = request.POST['filterIeee']
         else:
-            filterIeee = null
+            filterIeee = None
 
         if 'filterScopus' in request.POST:
             filterScopus = request.POST['filterScopus']
         else:
-            filterScopus = null
+            filterScopus = None
 
         if  searchFilter == "default":
 
-            if filterAis:
+            if filterAis is not None:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="ais"
             )
-            elif filterAis & filterIeee:
+            elif filterAis is not None & filterIeee is not None:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched) |
                     Q(source__icontains="ais") |
                     Q(source__icontains="ieee") 
             )
-            elif filterAis & filterScopus:
+            elif filterAis is not None & filterScopus is not None:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched) |
                     Q(source__icontains="ais") |
                     Q(source__icontains="scopus")
             )
-            elif filterIeee:
+            elif filterIeee is not None:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="ieee"
             )
-            elif filterIeee & filterScopus:
+            elif filterIeee is not None & filterScopus is not None:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched) |
                     Q(source__icontains="ieee") |
                     Q(source__icontains="scopus")
             )
-            elif filterScopus:
+            elif filterScopus is not None:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="scopus"
@@ -163,26 +163,26 @@ def searchPublication(request):
         elif searchFilter == "title":
             
            
-            if filterAis:
+            if filterAis is not None:
                 results = publications.objects.filter(title__icontains=searched,source__icontains="ais")
-            elif filterAis & filterIeee:
+            elif filterAis is not None & filterIeee is not None:
                 results = publications.objects.filter( 
                     Q(source__icontains="ais") |
                     Q(source__icontains="ieee"), title__icontains=searched
                 )
-            elif filterAis & filterScopus:
+            elif filterAis is not None & filterScopus is not None:
                 results = publications.objects.filter(
                     Q(source__icontains="ais") |
                     Q(source__icontains="scopus"), title__icontains=searched
                 )
-            elif filterIeee:
+            elif filterIeee is not None:
                 results = publications.objects.filter(title__icontains=searched,source__icontains="ieee")
-            elif filterIeee & filterScopus:
+            elif filterIeee is not None & filterScopus is not None:
                 results = publications.objects.filter(
                     Q(source__icontains="ieee") |
                     Q(source__icontains="scopus"), title__icontains=searched
                 )
-            elif filterScopus:
+            elif filterScopus is not None:
                 results = publications.objects.filter(title__icontains=searched, source__icontains="scopus")
             else:
                 results = publications.objects.filter(title__icontains=searched)
@@ -190,26 +190,26 @@ def searchPublication(request):
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
         elif searchFilter == "author":
 
-            if filterAis:
+            if filterAis is not None:
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ais")
-            elif filterAis & filterIeee:
+            elif filterAis is not None & filterIeee is not None:
                 results = publications.objects.filter(
                     Q(source__icontains="ais") |
                     Q(source__icontains="ieee"), author__icontains=searched
                 )
-            elif filterAis & filterScopus:
+            elif filterAis is not None & filterScopus is not None:
                 results = publications.objects.filter(
                     Q(source__icontains="ais") |
                     Q(source__icontains="scopus"), author__icontains=searched
                 )
-            elif filterIeee:
+            elif filterIeee is not None:
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ieee")
-            elif filterIeee & filterScopus:
+            elif filterIeee is not None & filterScopus is not None:
                 results = publications.objects.filter(
                     Q(source__icontains="ieee") |
                     Q(source__icontains="scopus"), author__icontains=searched
                 )
-            elif filterScopus:
+            elif filterScopus is not None:
                 results = publications.objects.filter(author__icontains=searched, source__icontains="scopus")    
             else:
                 results = publications.objects.filter(author__icontains=searched)
