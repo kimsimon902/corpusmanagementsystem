@@ -126,7 +126,7 @@ def searchPublication(request):
             elif "filterAis" in request.POST and "filterIeee" in request.POST:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
-                    Q(author__icontains=searched) , source__icontains="ais"
+                    Q(author__icontains=searched) , source__icontains="ieee"
                 )
             else:
                 results = publications.objects.filter(
