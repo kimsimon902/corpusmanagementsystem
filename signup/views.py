@@ -294,18 +294,18 @@ def uploadLiterature(request):
             insert_list = []
             name_id = []
             pub_id = []
-            for i in range(1,10):
-                if request.POST.get('textbox' + str(i)) is not None:
-                    if keywords.objects.filter(tagname=request.POST.get('textbox' + str(i))).exists():
-                            name_id.append(request.POST.get('textbox' + str(i)))
-                    else:
-                        insert_list.append(keywords(tagname=request.POST.get('textbox' + str(i))))
-                        name_id.append(request.POST.get('textbox' + str(i)))
+            key_id = request.POST.get('keywords').split(",")
+            for i in range(0,len(key_id)-1):
+                if keywords.objects.filter(keywordname=key_id[i]):
+                    name_id.append(key_id[i])
+                else:
+                    insert_list.append(keywords(keywordname=key_id[i]))
+                    name_id.append(key_id[i])
             keywords.objects.bulk_create(insert_list)
             results = publications.objects.get(title = savepub.title)
             for j in range(0,len(name_id)):
-                store = keywords.objects.get(tagname=name_id[j])
-                pub_id.append(pubkeys(publication_id=results.id, tag_id=store.id))
+                store = keywords.objects.get(keywordname=name_id[j])
+                pub_id.append(pubkeys(publication_id=results.id, keywords_id=store.id))
             pubkeys.objects.bulk_create(pub_id)
             addBookmark = bookmarks()
             addBookmark.user = user
