@@ -116,7 +116,7 @@ def searchPublication(request):
         # else:
         #     filterScopus = None
 
-        libFilter = request.POST.getlist('filterLib')
+        libFilter = request.POST.getlist('filterLib[]')
 
         if  searchFilter == "default":
 
