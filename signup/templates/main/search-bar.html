@@ -16,9 +16,10 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
                             <form method="POST" action="#">
+                                {% csrf_token %}
                                 <div class="input-group">
                                     <label class="label">Search for:</label>
-                                    <input class="input--style-1" type="text" name="address" placeholder="Article, Title, Author, Abstract, Keywords" required="required">
+                                    <input class="input--style-1" type="search" name="searched" placeholder="Article, Title, Author, Abstract, Keywords" required="required">
                                 </div>
                                 <!-- <div class="row row-space">
                                     <div class="col-2">
@@ -72,14 +73,15 @@
                                     </div>
                                 </div> -->
                                 <div class="container">
-                                    <span class="choose">Filter by:</span>
+                                    <span class="choose text-dark">Filter by:</span>
                                   
                                       <div class="dropdown">
-                                        <div class="select">
+                                        <!--<div class="select">
                                           <span>All</span>
                                           <i class="fa fa-chevron-left"></i>
                                         </div>
                                         <input type="hidden" name="gender">
+                                    -->
                                         <ul class="dropdown-menu">
                                           <li id="male">All</li>
                                           <li id="male">Title</li>
@@ -90,15 +92,15 @@
                                 </div>
                                 <div class="p-t-5">
                                     <label class="checkbox-container m-r-45">AIS
-                                        <input type="checkbox" name="AIS">
+                                        <input type="checkbox" name="filterLib" value="ais">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <label class="checkbox-container m-r-45">IEE
-                                        <input type="checkbox" name="IEE">
+                                    <label class="checkbox-container m-r-45">IEEE
+                                        <input type="checkbox" name="filterLib" value="ieee">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="checkbox-container">Scopus
-                                        <input type="checkbox" name="Scopus">
+                                        <input type="checkbox" name="filterLib" value="scopus">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
