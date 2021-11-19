@@ -103,17 +103,17 @@ def searchPublication(request):
         if 'filterAis' in request.POST:
             filterAis = request.POST['filterAis']
         else:
-            filterAis = "false"
+            filterAis = null
 
         if 'filterIeee' in request.POST:
             filterIeee = request.POST['filterIeee']
         else:
-            filterIeee = "false"
+            filterIeee = null
 
         if 'filterScopus' in request.POST:
             filterScopus = request.POST['filterScopus']
         else:
-            filterScopus = "false"
+            filterScopus = null
 
         if  searchFilter == "default":
 
