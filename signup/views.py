@@ -288,8 +288,8 @@ def uploadLiterature(request):
             savepub.abstract = request.POST.get('abstract')
             savepub.author = request.POST.get('author')
             savepub.pdf = request.FILES.get('document')
-            savepub.status = 'pending'
-            savepub.source = 'uploaded'
+            savepub.status = 'Pending'
+            savepub.source = 'Uploaded'
             savepub.save()
             insert_list = []
             name_id = []
@@ -311,7 +311,7 @@ def uploadLiterature(request):
             addBookmark.user = user
             addBookmark.publicationID = results.id
             addBookmark.save()
-            return redirect('/')#render(request, 'registration/login.html')
+            return redirect('/home')#render(request, 'registration/login.html')
         else:
             return render(request, 'upload.html') 
     else:
