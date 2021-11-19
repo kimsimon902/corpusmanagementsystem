@@ -127,9 +127,6 @@ def searchPublication(request):
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched) , source__icontains="ais"
-                ).filter(
-                    Q(title__icontains=searched) |
-                    Q(author__icontains=searched) , source__icontains="ieee"
                 )
             else:
                 results = publications.objects.filter(
