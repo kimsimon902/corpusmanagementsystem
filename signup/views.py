@@ -118,7 +118,7 @@ def searchPublication(request):
 
         if  searchFilter == "default":
 
-            if "filterAis" in request.POST:
+            if request.POST.get('filterAis', True):
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="ais"
