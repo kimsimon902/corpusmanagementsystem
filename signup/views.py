@@ -122,14 +122,14 @@ def searchPublication(request):
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="ais"
             )
-            elif filterAis is not None & filterIeee is not None:
+            elif filterAis is not None and filterIeee is not None:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched) |
                     Q(source__icontains="ais") |
                     Q(source__icontains="ieee") 
             )
-            elif filterAis is not None & filterScopus is not None:
+            elif filterAis is not None and filterScopus is not None:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched) |
@@ -141,7 +141,7 @@ def searchPublication(request):
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="ieee"
             )
-            elif filterIeee is not None & filterScopus is not None:
+            elif filterIeee is not None and filterScopus is not None:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched) |
@@ -165,19 +165,19 @@ def searchPublication(request):
            
             if filterAis is not None:
                 results = publications.objects.filter(title__icontains=searched,source__icontains="ais")
-            elif filterAis is not None & filterIeee is not None:
+            elif filterAis is not None and filterIeee is not None:
                 results = publications.objects.filter( 
                     Q(source__icontains="ais") |
                     Q(source__icontains="ieee"), title__icontains=searched
                 )
-            elif filterAis is not None & filterScopus is not None:
+            elif filterAis is not None and filterScopus is not None:
                 results = publications.objects.filter(
                     Q(source__icontains="ais") |
                     Q(source__icontains="scopus"), title__icontains=searched
                 )
             elif filterIeee is not None:
                 results = publications.objects.filter(title__icontains=searched,source__icontains="ieee")
-            elif filterIeee is not None & filterScopus is not None:
+            elif filterIeee is not None and filterScopus is not None:
                 results = publications.objects.filter(
                     Q(source__icontains="ieee") |
                     Q(source__icontains="scopus"), title__icontains=searched
@@ -192,19 +192,19 @@ def searchPublication(request):
 
             if filterAis is not None:
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ais")
-            elif filterAis is not None & filterIeee is not None:
+            elif filterAis is not None and filterIeee is not None:
                 results = publications.objects.filter(
                     Q(source__icontains="ais") |
                     Q(source__icontains="ieee"), author__icontains=searched
                 )
-            elif filterAis is not None & filterScopus is not None:
+            elif filterAis is not None and filterScopus is not None:
                 results = publications.objects.filter(
                     Q(source__icontains="ais") |
                     Q(source__icontains="scopus"), author__icontains=searched
                 )
             elif filterIeee is not None:
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ieee")
-            elif filterIeee is not None & filterScopus is not None:
+            elif filterIeee is not None and filterScopus is not None:
                 results = publications.objects.filter(
                     Q(source__icontains="ieee") |
                     Q(source__icontains="scopus"), author__icontains=searched
