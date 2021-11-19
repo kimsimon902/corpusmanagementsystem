@@ -4,7 +4,7 @@
                 <div class="card-body">
                     <ul class="tab-list">
                         <li class="tab-list__item active">
-                            <a class="tab-list__link" href="#tab1" data-toggle="tab">hotels</a>
+                            <a class="tab-list__link" href="#tab1" data-toggle="tab">Search</a>
                         </li>
 <!--                         <li class="tab-list__item">
                             <a class="tab-list__link" href="#tab2" data-toggle="tab">car</a>
@@ -17,10 +17,10 @@
                         <div class="tab-pane active" id="tab1">
                             <form method="POST" action="#">
                                 <div class="input-group">
-                                    <label class="label">where:</label>
+                                    <label class="label">Search for:</label>
                                     <input class="input--style-1" type="text" name="address" placeholder="City, region or specific hotel" required="required">
                                 </div>
-                                <div class="row row-space">
+                                <!-- <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group">
                                             <label class="label">check-in:</label>
@@ -33,17 +33,17 @@
                                             <input class="input--style-1" type="text" name="check-out" placeholder="mm/dd/yyyy" id="input-end">
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="input-group">
-                                    <label class="label">travellers:</label>
+                                    <label class="label">Search by</label>
                                     <div class="input-group-icon" id="js-select-special">
-                                        <input class="input--style-1" type="text" name="traveller" value="1 Adult, 0 Children, 1 Room" disabled="disabled" id="info">
+                                        <input class="input--style-1" type="text" name="traveller" value="All" disabled="disabled" id="info">
                                         <i class="zmdi zmdi-chevron-down input-icon"></i>
                                     </div>
                                     <div class="dropdown-select">
                                         <ul class="list-room">
                                             <li class="list-room__item">
-                                                <span class="list-room__name">Room 1</span>
+<!--                                                 <span class="list-room__name">Room 1</span>
                                                 <ul class="list-person">
                                                     <li class="list-person__item">
                                                         <span class="name">Adults</span>
@@ -61,7 +61,13 @@
                                                             <span class="plus">+</span>
                                                         </div>
                                                     </li>
-                                                </ul>
+                                                </ul> -->
+                                                <span class="name">Adults</span>
+                                                <div class="quantity quantity1">
+                                                    <span class="minus">-</span>
+                                                    <input class="inputQty" type="number" min="0" value="1">
+                                                    <span class="plus">+</span>
+                                                </div>
                                             </li>
                                         </ul>
                                         <div class="list-room__footer">
@@ -70,11 +76,15 @@
                                     </div>
                                 </div>
                                 <div class="p-t-5">
-                                    <label class="checkbox-container m-r-45">Add a flight
+                                    <label class="checkbox-container m-r-45">AIS
                                         <input type="checkbox" checked="checked" name="add-flight">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <label class="checkbox-container">Add a car
+                                    <label class="checkbox-container">IEE
+                                        <input type="checkbox" name="add-car">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox-container">Scopus
                                         <input type="checkbox" name="add-car">
                                         <span class="checkmark"></span>
                                     </label>
