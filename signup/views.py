@@ -100,142 +100,110 @@ def searchPublication(request):
         searched = request.POST['searched']
         searchFilter = request.POST['filterData']
         
-        
-        # if 'filterAis' in request.POST:
-        #     filterAis = request.POST['filterAis']
-        # else:
-        #     filterAis = None
-
-        # if 'filterIeee' in request.POST:
-        #     filterIeee = request.POST['filterIeee']
-        # else:
-        #     filterIeee = None
-
-        # if 'filterScopus' in request.POST:
-        #     filterScopus = request.POST['filterScopus']
-        # else:
-        #     filterScopus = None
-
         libFilter = request.POST.getlist('filterLib')
 
         if  searchFilter == "default":
 
             if 'ais' in libFilter and len(libFilter) == 1:
                 results = publications.objects.filter(
-                    # Q(title__icontains=searched) |
-                    # Q(author__icontains=searched), source__icontains="ais"
                     Q(title__icontains=searched) |
-                    Q(author__icontains=searched), source__icontains='ieee'
+                    Q(author__icontains=searched), source__icontains='ais'
             )
             elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
                 results = publications.objects.filter(
-                    Q(source__icontains='ieee') |
-                    Q(source__icontains='scopus')
+                    Q(source__icontains='ais') |
+                    Q(source__icontains='ieee')
+                ).filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched)
+                )          
+            elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter(
+                    Q(source__icontains="ais")
+                    Q(source__icontains="scopus")
                 ).filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched)
                 )
+            elif 'ieee' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), source__icontains="ieee"
+            )
+            elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
+               results = publications.objects.filter(
+                    Q(source__icontains="ieee")
+                    Q(source__icontains="scopus")
+                ).filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched)
+                )
+            elif 'scopus' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), source__icontains="scopus"
+            )
             else:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched)
             )
-                
+
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
-        #     elif filterAis is not None and filterScopus is not None:
-        #         results = publications.objects.filter(
-        #             Q(title__icontains=searched) |
-        #             Q(author__icontains=searched), source__icontains="ais"
-        #         ).filter(
-        #             Q(title__icontains=searched) |
-        #             Q(author__icontains=searched), source__icontains="scopus"
-        #         )
-        #     elif filterIeee is not None:
-        #         results = publications.objects.filter(
-        #             Q(title__icontains=searched) |
-        #             Q(author__icontains=searched), source__icontains="ieee"
-        #     )
-        #     elif filterIeee is not None and filterScopus is not None:
-        #         results = publications.objects.filter(
-        #             Q(title__icontains=searched) |
-        #             Q(author__icontains=searched), source__icontains="ieee"
-        #         ).filter(
-        #             Q(title__icontains=searched) |
-        #             Q(author__icontains=searched), source__icontains="scopus"
-        #         )
-        #     elif filterScopus is not None:
-        #         results = publications.objects.filter(
-        #             Q(title__icontains=searched) |
-        #             Q(author__icontains=searched), source__icontains="scopus"
-        #     )
-        #     else:
-        #         results = publications.objects.filter(
-        #             Q(title__icontains=searched) |
-        #             Q(author__icontains=searched)
-        #     )
 
-        #     return render(request, 'main/search.html',{'searched':searched, 'results':results})
-
-        # elif searchFilter == "title":
+        elif searchFilter == "title":
             
-           
-        #     if filterAis is not None:
-        #         results = publications.objects.filter(title__icontains=searched,source__icontains="ais")
-        #     elif filterAis is not None and filterIeee is not None:
-        #         results = publications.objects.filter( 
-        #             title__icontains=searched, source__icontains="ais"
-        #         ).filter(
-        #             title__icontains=searched, source__icontains="ieee"
-        #         )
-        #     elif filterAis is not None and filterScopus is not None:
-        #         results = publications.objects.filter(
-        #             title__icontains=searched, source__icontains="ais"
-        #         ).filter(
-        #             title__icontains=searched, source__icontains="scopus"
-        #         )
-        #     elif filterIeee is not None:
-        #         results = publications.objects.filter(title__icontains=searched,source__icontains="ieee")
-        #     elif filterIeee is not None and filterScopus is not None:
-        #         results = publications.objects.filter(
-        #             title__icontains=searched, source__icontains="ieee"
-        #         ).filter(
-        #             title__icontains=searched, source__icontains="scopus"
-        #         )
-        #     elif filterScopus is not None:
-        #         results = publications.objects.filter(title__icontains=searched, source__icontains="scopus")
-        #     else:
-        #         results = publications.objects.filter(title__icontains=searched)
+            if 'ais' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(title__icontains=searched,source__icontains="ais")
+            elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter( 
+                    Q(source__icontains="ais") |
+                    Q(source__icontains="ieee"), title__icontains=searched
+                )
+            elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter( 
+                    Q(source__icontains="ais") |
+                    Q(source__icontains="scopus"), title__icontains=searched
+                )
+            elif 'ieee' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(title__icontains=searched,source__icontains="ieee")
+            elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter( 
+                    Q(source__icontains="ieee") |
+                    Q(source__icontains="scopus"), title__icontains=searched
+                )
+            elif 'scopus' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(title__icontains=searched, source__icontains="scopus")
+            else:
+                results = publications.objects.filter(title__icontains=searched)
 
-        #     return render(request, 'main/search.html',{'searched':searched, 'results':results})
-        # elif searchFilter == "author":
+            return render(request, 'main/search.html',{'searched':searched, 'results':results})
+        elif searchFilter == "author":
 
-        #     if filterAis is not None:
-        #         results = publications.objects.filter(author__icontains=searched,source__icontains="ais")
-        #     elif filterAis is not None and filterIeee is not None:
-        #         results = publications.objects.filter(
-        #             author__icontains=searched,source__icontains="ais"
-        #         ).filter(
-        #             author__icontains=searched,source__icontains="ieee"
-        #         )
-        #     elif filterAis is not None and filterScopus is not None:
-        #         results = publications.objects.filter(
-        #             author__icontains=searched,source__icontains="ais"
-        #         ).filter(
-        #             author__icontains=searched,source__icontains="scopus"
-        #         )
-        #     elif filterIeee is not None:
-        #         results = publications.objects.filter(author__icontains=searched,source__icontains="ieee")
-        #     elif filterIeee is not None and filterScopus is not None:
-        #         results = publications.objects.filter(
-        #             author__icontains=searched,source__icontains="ieee"
-        #         ).filter(
-        #             author__icontains=searched,source__icontains="scopus"
-        #         )
-        #     elif filterScopus is not None:
-        #         results = publications.objects.filter(author__icontains=searched, source__icontains="scopus")    
-        #     else:
-        #         results = publications.objects.filter(author__icontains=searched)
-        #     return render(request, 'main/search.html',{'searched':searched, 'results':results})
+            if 'ais' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(author__icontains=searched,source__icontains="ais")
+            elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter(
+                    Q(source__icontains="ais")|
+                    Q(source__icontains="ieee"), author__icontains=searched
+                )
+            elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter(
+                    Q(source__icontains="ais")|
+                    Q(source__icontains="scopus"), author__icontains=searched
+                )
+            elif 'ieee' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(author__icontains=searched,source__icontains="ieee")
+            elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter(
+                    Q(source__icontains="ieee")|
+                    Q(source__icontains="scopus"), author__icontains=searched
+                )
+            elif 'scopus' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(author__icontains=searched, source__icontains="scopus")    
+            else:
+                results = publications.objects.filter(author__icontains=searched)
+            return render(request, 'main/search.html',{'searched':searched, 'results':results})
     else:
         return render(request, 'main/search.html',{})
 
