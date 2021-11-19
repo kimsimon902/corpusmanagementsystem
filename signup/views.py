@@ -119,7 +119,7 @@ def searchPublication(request):
                 )          
             elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
                 results = publications.objects.filter(
-                    Q(source__icontains="ais")
+                    Q(source__icontains="ais") |
                     Q(source__icontains="scopus")
                 ).filter(
                     Q(title__icontains=searched) |
@@ -132,7 +132,7 @@ def searchPublication(request):
             )
             elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
                results = publications.objects.filter(
-                    Q(source__icontains="ieee")
+                    Q(source__icontains="ieee") |
                     Q(source__icontains="scopus")
                 ).filter(
                     Q(title__icontains=searched) |
