@@ -137,6 +137,7 @@ def searchPublication(request):
                     Q(author__icontains=searched)
             )
                 
+            return render(request, 'main/search.html',{'searched':searched, 'results':results})
         #     elif filterAis is not None and filterScopus is not None:
         #         results = publications.objects.filter(
         #             Q(title__icontains=searched) |
