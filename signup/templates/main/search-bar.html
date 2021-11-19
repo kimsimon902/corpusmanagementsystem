@@ -15,7 +15,7 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
-                            <form method="POST" action="#">
+                            <form method="POST" action="{% url 'search' %}">
                                 {% csrf_token %}
                                 <div class="input-group">
                                     <label class="label">Search for:</label>
@@ -98,15 +98,15 @@
                                 </div>
                                 <div class="p-t-5">
                                     <label class="checkbox-container m-r-45">AIS
-                                        <input type="checkbox" name="filterLib" value="ais">
+                                        <input type="checkbox" name="filterAis" value="ais">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="checkbox-container m-r-45">IEEE
-                                        <input type="checkbox" name="filterLib" value="ieee">
+                                        <input type="checkbox" name="filterIeee" value="ieee">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="checkbox-container">Scopus
-                                        <input type="checkbox" name="filterLib" value="scopus">
+                                        <input type="checkbox" name="filterScopus" value="scopus">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
