@@ -125,7 +125,9 @@ def searchPublication(request):
             elif filterAis & filterIeee:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
-                    Q(author__icontains=searched), source__icontains="ais", "ieee"
+                    Q(author__icontains=searched) |
+                    Q(source__icontains="ais") |
+                    Q(source__icontains="ieee") 
             )
             elif filterAis & filterScopus:
                 results = publications.objects.filter(
