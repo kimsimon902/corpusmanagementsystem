@@ -161,8 +161,8 @@ def searchPublication(request):
             )
 
             for publication in results.iterator():
-                if publication.url == "doi.org/":
-                    publication.url = "scholar.google.com/scholar?q="
+                if publication.url.startswith("doi.org/"):
+                    publication.url = "scholar.google.com/scholar?q=" + publication.title
                     publication.save()
                     
 
