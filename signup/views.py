@@ -160,10 +160,10 @@ def searchPublication(request):
                     Q(author__icontains=searched)
             )
 
-            for x in results.iterator():
-                if publications.url == "doi.org/":
-                    publications.url = "scholar.google.com/scholar?q="
-                    publications.save()
+            for publication in results.iterator():
+                if publication.url == "doi.org/":
+                    publication.url = "scholar.google.com/scholar?q="
+                    publication.save()
                     
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
