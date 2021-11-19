@@ -162,7 +162,7 @@ def searchPublication(request):
 
             for x in results:
                 if publications.objects.get('url') == "doi.org/":
-                    publications.objects.get('url') = "scholar.google.com/scholar?q=" + publications.objects.get('title')
+                    publications.url = "scholar.google.com/scholar?q="
                     publications.save()
                     
 
