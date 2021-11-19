@@ -109,6 +109,10 @@ def searchPublication(request):
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains='ais'
             )
+
+            if(publications.url == "doi.org/"):
+                publications.url = "https://scholar.google.com/scholar?q=" + publications.title
+
             elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
                 results = publications.objects.filter(
                     Q(source__icontains='ais') |
@@ -116,7 +120,11 @@ def searchPublication(request):
                 ).filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched)
-                )          
+                )        
+
+                if(publications.url == "doi.org/"):
+                    publications.url = "https://scholar.google.com/scholar?q=" + publications.title
+
             elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
                 results = publications.objects.filter(
                     Q(source__icontains="ais") |
@@ -125,11 +133,19 @@ def searchPublication(request):
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched)
                 )
+
+                if(publications.url == "doi.org/"):
+                    publications.url = "https://scholar.google.com/scholar?q=" + publications.title
+
             elif 'ieee' in libFilter and len(libFilter) == 1:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="ieee"
             )
+
+            if(publications.url == "doi.org/"):
+                publications.url = "https://scholar.google.com/scholar?q=" + publications.title
+
             elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
                results = publications.objects.filter(
                     Q(source__icontains="ieee") |
@@ -138,6 +154,10 @@ def searchPublication(request):
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched)
                 )
+
+               if(publications.url == "doi.org/"):
+                publications.url = "https://scholar.google.com/scholar?q=" + publications.title
+
             elif 'scopus' in libFilter and len(libFilter) == 1:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
@@ -168,6 +188,7 @@ def searchPublication(request):
                     Q(source__icontains="ais") |
                     Q(source__icontains="scopus"), title__icontains=searched
                 )
+                
             elif 'ieee' in libFilter and len(libFilter) == 1:
                 results = publications.objects.filter(title__icontains=searched,source__icontains="ieee")
             elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
@@ -180,8 +201,7 @@ def searchPublication(request):
             else:
                 results = publications.objects.filter(title__icontains=searched)
 
-            if(publications.url == "doi.org/"):
-                publications.url = "https://scholar.google.com/scholar?q=" + publications.title
+            
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
         elif searchFilter == "author":
