@@ -112,6 +112,7 @@ def searchPublication(request):
 
             if(publications.url == "doi.org/"):
                 publications.url = "https://scholar.google.com/scholar?q=" + publications.title
+                publications.save()
 
             elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
                 results = publications.objects.filter(
@@ -124,6 +125,7 @@ def searchPublication(request):
 
                 if(publications.url == "doi.org/"):
                     publications.url = "https://scholar.google.com/scholar?q=" + publications.title
+                    publications.save()
 
             elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
                 results = publications.objects.filter(
@@ -136,6 +138,7 @@ def searchPublication(request):
 
                 if(publications.url == "doi.org/"):
                     publications.url = "https://scholar.google.com/scholar?q=" + publications.title
+                    publications.save()
 
             elif 'ieee' in libFilter and len(libFilter) == 1:
                 results = publications.objects.filter(
@@ -145,7 +148,8 @@ def searchPublication(request):
 
             if(publications.url == "doi.org/"):
                 publications.url = "https://scholar.google.com/scholar?q=" + publications.title
-
+                publications.save()
+                
             elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
                results = publications.objects.filter(
                     Q(source__icontains="ieee") |
@@ -157,6 +161,7 @@ def searchPublication(request):
 
                if(publications.url == "doi.org/"):
                 publications.url = "https://scholar.google.com/scholar?q=" + publications.title
+                publications.save()
 
             elif 'scopus' in libFilter and len(libFilter) == 1:
                 results = publications.objects.filter(
@@ -171,6 +176,7 @@ def searchPublication(request):
 
             if(publications.url == "doi.org/"):
                 publications.url = "https://scholar.google.com/scholar?q=" + publications.title
+                publications.save()
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
 
