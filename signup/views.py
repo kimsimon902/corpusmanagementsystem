@@ -161,7 +161,7 @@ def searchPublication(request):
             )
 
             for x in results:
-                if publications.objects.get('url') == "doi.org/":
+                if publications.url == "doi.org/":
                     publications.url = "scholar.google.com/scholar?q="
                     publications.save()
                     
