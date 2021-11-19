@@ -181,7 +181,7 @@ def searchPublication(request):
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ais", source__icontains="ieee")
             elif filterAis & filterScopus:
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ais", source__icontains="scopus")
-            elif filterIeee
+            elif filterIeee:
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ieee")
             elif filterIeee & filterScopus:
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ieee", source__icontains="scopus")
