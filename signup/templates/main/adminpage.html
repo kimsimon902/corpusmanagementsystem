@@ -44,8 +44,6 @@
                   <option value="author">Author</option>
                   <option value="abstract">Abstract</option>
                   <option value="url">URL</option>
-                  <button type="button">Accept</button>
-                  <button type="button">Decline</button>
                 </select>
                 <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searched">
                 <div class="input-group-btn">
@@ -74,7 +72,6 @@
             <table class="table table-hover"> <!-- class="table-row" data-href="http://tutorialsplane.com" -->
                 <thead>
                   <tr>
-                    <th scope="col">ID</th>
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
                     <th scope="col">Abstract</th>
@@ -84,7 +81,6 @@
                 <tbody>
                     {% for getdata in publications %}
                     <tr>
-                        <td>{{getdata.id}}</td>
                         <td><a href="/publication/{{getdata.id}}">{{getdata.title}}</a></td>
                         <td>{{getdata.author}}</td>
                         <td style=
@@ -93,6 +89,8 @@
                           overflow: hidden;
                           text-overflow: ellipsis">{{getdata.abstract}}</td>
                         <td>{{getdata.url}}</td>
+                        <button type="button">Accept</button>
+                        <button type="button">Decline</button>
                     </tr>
                     {% endfor %}
                 </tbody>
