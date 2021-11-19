@@ -166,21 +166,21 @@ def searchPublication(request):
             if filterAis:
                 results = publications.objects.filter(title__icontains=searched,source__icontains="ais")
             elif filterAis & filterIeee:
-                results = publications.objects.filter(title__icontains=searched, 
+                results = publications.objects.filter( 
                     Q(source__icontains="ais") |
-                    Q(source__icontains="ieee")
+                    Q(source__icontains="ieee"), title__icontains=searched
                 )
             elif filterAis & filterScopus:
-                results = publications.objects.filter(title__icontains=searched,
+                results = publications.objects.filter(
                     Q(source__icontains="ais") |
-                    Q(source__icontains="scopus")
+                    Q(source__icontains="scopus"), title__icontains=searched
                 )
             elif filterIeee:
                 results = publications.objects.filter(title__icontains=searched,source__icontains="ieee")
             elif filterIeee & filterScopus:
-                results = publications.objects.filter(title__icontains=searched,
+                results = publications.objects.filter(
                     Q(source__icontains="ieee") |
-                    Q(source__icontains="scopus")
+                    Q(source__icontains="scopus"), title__icontains=searched
                 )
             elif filterScopus:
                 results = publications.objects.filter(title__icontains=searched, source__icontains="scopus")
@@ -193,21 +193,21 @@ def searchPublication(request):
             if filterAis:
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ais")
             elif filterAis & filterIeee:
-                results = publications.objects.filter(author__icontains=searched,
+                results = publications.objects.filter(
                     Q(source__icontains="ais") |
-                    Q(source__icontains="ieee")
+                    Q(source__icontains="ieee"), author__icontains=searched
                 )
             elif filterAis & filterScopus:
-                results = publications.objects.filter(author__icontains=searched,
+                results = publications.objects.filter(
                     Q(source__icontains="ais") |
-                    Q(source__icontains="scopus")
+                    Q(source__icontains="scopus"), author__icontains=searched
                 )
             elif filterIeee:
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ieee")
             elif filterIeee & filterScopus:
-                results = publications.objects.filter(author__icontains=searched,
+                results = publications.objects.filter(
                     Q(source__icontains="ieee") |
-                    Q(source__icontains="scopus")
+                    Q(source__icontains="scopus"), author__icontains=searched
                 )
             elif filterScopus:
                 results = publications.objects.filter(author__icontains=searched, source__icontains="scopus")    
