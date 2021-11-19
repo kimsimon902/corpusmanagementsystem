@@ -16,6 +16,22 @@
     <link rel="stylesheet" href="{% static '\users\assets\css\Pretty-Search-Form.css' %}">
     <link rel="stylesheet" href="{% static '\users\css\home.css' %}">
     <title>Corpus Management System</title>
+    <script>
+
+      $(accept).live ('click', function ()
+      {
+          $(this).closest ('tr').remove ();
+      }
+      );
+
+      $(decline).live ('click', function ()
+      {
+          $(this).closest ('tr').remove ();
+      }
+      );
+
+    </script>
+
   </head>
   <body>
       <!-- Navbar on top -->
@@ -93,8 +109,8 @@
                           text-overflow: ellipsis">{{getdata.abstract}}</td>
                         <td>{{getdata.url}}</td>
                         <td><a href="/media/{{getdata.pdf}}">{{getdata.pdf}}</a></td>
-                        <td><button type="button">Accept</button></td>
-                        <td><button type="button">Decline</button></td>
+                        <td><button type="button" id="accept">Accept</button></td>
+                        <td><button type="button" id="decline">Decline</button></td>
                     </tr>
                     {% endfor %}
                 </tbody>
