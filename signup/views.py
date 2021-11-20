@@ -209,7 +209,11 @@ def searchPublication(request):
                 results = publications.objects.filter(title__icontains=searched)
  
 
-            
+            for publication in results.objects.all():
+                    if publication.url == "doi.org/":
+                     publication.url = "scholar.google.com/scholar?q=" + publication.title
+                     publication.save()
+
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
 
         elif searchFilter == "author":
@@ -252,6 +256,10 @@ def searchPublication(request):
             if(publications.url == "doi.org/"):
                 publications.url = "https://scholar.google.com/scholar?q=" + publications.title
 
+            for publication in results.objects.all():
+                    if publication.url == "doi.org/":
+                             publication.url = "scholar.google.com/scholar?q=" + publication.title
+                             publication.save()
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
     else:
