@@ -209,7 +209,7 @@ def searchPublication(request):
 
             xlist =     list(results)
             for publication in xlist:
-                if publication.url == 'doi.org' or len(publication.url) == 0:
+                if publication.url == 'doi.org' or len(publication.url) == 0 or (publication.url).isspace():
                     publication.url = 'scholar.google.com/scholar?q=' + publication.title
                     publication.save()   
 
@@ -256,7 +256,7 @@ def searchPublication(request):
 
             xlist =     list(results)
             for publication in xlist:
-                if publication.url == 'doi.org' or len(publication.url) == 0:
+                if publication.url == 'doi.org' or len(publication.url) == 0 or (publication.url).isspace():
                     publication.url = 'scholar.google.com/scholar?q=' + publication.title
                     publication.save()   
 
@@ -267,7 +267,7 @@ def searchPublication(request):
         xlist =     list(pubs)
 
         for publication in xlist:
-                if publication.url == 'doi.org' or len(publication.url) == 0:
+                if publication.url == 'doi.org' or len(publication.url) == 0 or (publication.url).isspace():
                     publication.url = 'scholar.google.com/scholar?q=' + publication.title
                     publication.save()
 
