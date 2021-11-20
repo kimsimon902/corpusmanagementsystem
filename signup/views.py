@@ -162,7 +162,7 @@ def searchPublication(request):
 
             xlist =     list(results)
             for publication in xlist:
-                if publication.url == 'doi.org':
+                if publication.url == 'doi.org' or publication.url == "":
                     publication.url = 'scholar.google.com/scholar?q=' + publication.title
                     publication.save()   
                     
@@ -209,7 +209,7 @@ def searchPublication(request):
 
             xlist =     list(results)
             for publication in xlist:
-                if publication.url == 'doi.org':
+                if publication.url == 'doi.org' or publication.url == "":
                     publication.url = 'scholar.google.com/scholar?q=' + publication.title
                     publication.save()   
 
@@ -256,7 +256,7 @@ def searchPublication(request):
 
             xlist =     list(results)
             for publication in xlist:
-                if publication.url == 'doi.org':
+                if publication.url == 'doi.org' or publication.url == "":
                     publication.url = 'scholar.google.com/scholar?q=' + publication.title
                     publication.save()   
 
@@ -265,8 +265,9 @@ def searchPublication(request):
         
         pubs = publications.objects.all()
         xlist =     list(pubs)
+
         for publication in xlist:
-                if publication.url == 'doi.org':
+                if publication.url == 'doi.org' or publication.url == "":
                     publication.url = 'scholar.google.com/scholar?q=' + publication.title
                     publication.save()
 
