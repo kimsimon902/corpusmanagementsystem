@@ -263,7 +263,8 @@ def searchPublication(request):
         return render(request, 'main/search.html',{})
 
 def ProfilePage(request, username):
-    return render(request, 'main/profile.html')
+    sample = publications.objects.filter(author__icontains="Richardson, Joan",source__icontains="ais")
+    return render(request, 'main/profile.html',{"sample":sample})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):

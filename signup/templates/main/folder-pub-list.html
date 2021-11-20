@@ -19,13 +19,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for result in results %}
+                        {% if sample %}
+                        {% for sam in sample %}
                         <tr>
-                            <td><a href="/publication/{{result.id}}">{{result.title}}</a></td>
-                            <td>{{result.author}}</td>
-                            <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td>
-                            <td>{{result.source}}</td>
-                            <td id="url">{{result.url}}</td>
+                            <td><a href="/publication/{{result.id}}">{{sam.title}}</a></td>
+                            <td>{{sam.author}}</td>
+                            <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{sam.abstract}}</td>
+                            <td>{{sam.source}}</td>
+                            <td id="url">{{sam.url}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

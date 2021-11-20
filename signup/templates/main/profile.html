@@ -27,16 +27,8 @@
                 <p>{{request.session.username}}</p>
                 <p>{{request.session.email}}</p>
             </div>
+            
             <div class="col-9 tabs-content" data-tab="1">
-                {% include 'main/folder-pub-list.html' %}
-            </div>
-            <div class="col-9 tabs-content" data-tab="2">
-                <h2>Folder 2</h2>
-                <p>Publication 1</p>
-                <p>Publication 2</p>
-                <p>Publication 3</p>
-            </div>
-            <div class="col-9 tabs-content" data-tab="3">
                 {% include 'main/folder-pub-list.html' %}
             </div>
             <!-- this will be one row only -->
