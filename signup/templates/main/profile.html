@@ -24,8 +24,8 @@
             <!-- this will be one row only -->
             <div class="col-9 tabs-content tabs-content-active" data-tab="0">
                 <h2>Profile</h2>
-                <p>{{ user.username }}</p>
-                <p>{{ user.email }}</p>
+                <p>{{request.session.username}}</p>
+                <p>{{request.session.email}}</p>
             </div>
             <div class="col-9 tabs-content" data-tab="1">
                 {% include 'main/folder-pub-list.html' %}
