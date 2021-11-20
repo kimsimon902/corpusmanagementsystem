@@ -256,10 +256,10 @@ def searchPublication(request):
             if(publications.url == "doi.org/"):
                 publications.url = "https://scholar.google.com/scholar?q=" + publications.title
 
-            for publication in results.objects.all():
-                    if publication.url == "doi.org/":
-                             publication.url = "scholar.google.com/scholar?q=" + publication.title
-                             publication.save()
+            for results in results.objects.all():
+                    if results.url == "doi.org/":
+                             results.url = "scholar.google.com/scholar?q=" + results.title
+                             results.save()
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
     else:
