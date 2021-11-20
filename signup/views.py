@@ -160,10 +160,11 @@ def searchPublication(request):
                     Q(author__icontains=searched)
             )
 
-                for publication in publications.objects.all():
-                    if publication.url == "doi.org/":
-                        publication.url = "scholar.google.com/scholar?q=" + publication.title
-                        publication.save()
+            xlist =     list(results)
+            for publication in xlist:
+                if publication.url == 'doi.org':
+                    publication.url = 'scholar.google.com/scholar?q=' + publication.title
+                    publication.save()   
                     
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
@@ -206,10 +207,11 @@ def searchPublication(request):
                 results = publications.objects.filter(title__icontains=searched)
  
 
-            for publication in publications.objects.all():
-                if publication.url == "doi.org/":
-                    publication.url = "scholar.google.com/scholar?q=" + publication.title
-                    publication.save()
+            xlist =     list(results)
+            for publication in xlist:
+                if publication.url == 'doi.org':
+                    publication.url = 'scholar.google.com/scholar?q=' + publication.title
+                    publication.save()   
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
 
@@ -252,14 +254,15 @@ def searchPublication(request):
 
             
 
-            for publication in publications.objects.all():
-                if publication.url == "doi.org/":
-                    publication.url = "scholar.google.com/scholar?q=" + publication.title
-                    publication.save()
+            xlist =     list(results)
+            for publication in xlist:
+                if publication.url == 'doi.org':
+                    publication.url = 'scholar.google.com/scholar?q=' + publication.title
+                    publication.save()   
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
     else:
-
+        
         return render(request, 'main/search.html',{})
 
 def ProfilePage(request, username):
