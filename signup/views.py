@@ -262,8 +262,9 @@ def searchPublication(request):
 
         return render(request, 'main/search.html',{})
 
-def ProfilePage(request, id):
-    return render(request, 'main/profile.html', {'authorID':id})
+def ProfilePage(request, username):
+    user = registerUser.objects.filter(username=username)
+    return render(request, 'main/profile.html', {'user':user})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
