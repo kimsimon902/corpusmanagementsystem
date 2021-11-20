@@ -9,45 +9,36 @@
     <link rel="stylesheet" href="{% static '\users\css\profile.css' %}">
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>JavaScript Wizard</h1>
-            <ul class="tabs">
-                <li class="tab is-active">
-                    <a data-switcher data-tab="1">Home</a>
-                </li>
-                <li class="tab">
-                    <a data-switcher data-tab="2">About</a>
-                </li>
-                <li class="tab">
-                    <a data-switcher data-tab="3">Services</a>
-                </li>
-                <li class="tab">
-                    <a data-switcher data-tab="4">Contact</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="pages">
-            <div class="page is-active" data-page="1">
-                <h2>Page 1</h2>
-                <p>Welcome to the home page</p>
-            </div>
-            <div class="page" data-page="2">
-                <h2>Page 2</h2>
-                <p>Welcome to the about page</p>
-            </div>
-            <div class="page" data-page="3">
-                <h2>Page 3</h2>
-                <p>Welcome to the services page</p>
-            </div>
-            <div class="page" data-page="4">
-                <h2>Page 4</h2>
-                <p>Welcome to the contact page</p>
-            </div>
-        </section>
-    </main>
+    <div class="tabs-body">
+        <div class="tabs-sidebar">
+            <button class="tabs-button tabs-button-active" data-for-tab="1">Folder 1</button>
+            <button class="tabs-button" data-for-tab="2">Folder 2</button>
+            <button class="tabs-button" data-for-tab="3">Folder 3</button>
+        </div>
+        <div class="tabs-content tabs-content-active" data-tab="0">
+            <h2>Profile</h2>
+            <p>Username</p>
+            <p>Email</p>
+        </div>
+        <div class="tabs-content" data-tab="1">
+            <h2>Folder 1</h2>
+            <p>Publication 1</p>
+            <p>Publication 2</p>
+            <p>Publication 3</p>
+        </div>
+        <div class="tabs-content" data-tab="2">
+            <h2>Folder 2</h2>
+            <p>Publication 1</p>
+            <p>Publication 2</p>
+            <p>Publication 3</p>
+        </div>
+        <div class="tabs-content" data-tab="3">
+            <h2>Folder 3</h2>
+            <p>Publication 1</p>
+            <p>Publication 2</p>
+            <p>Publication 3</p>
+        </div>
+    </div>
 
     <script src="{% static '\users\js\profile.js' %}"></script>
 </body>

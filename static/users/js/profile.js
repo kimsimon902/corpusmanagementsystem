@@ -1,4 +1,4 @@
-window.onload = () => {
+/* window.onload = () => {
     const tab_switchers = document.querySelectorAll('[data-switcher]');
 
     for (let i = 0; i < tab_switchers.length; i++) {
@@ -22,4 +22,30 @@ function SwitchPage (page_id) {
 
     const next_page = document.querySelector(`.pages .page[data-page="${page_id}"]`);
     next_page.classList.add('is-active');
+} */
+
+function setupTabs(){
+    document.querySelectorAll('.tabs-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const sideBar = button.parentElement;
+            const tabsCon = sideBar.parentElement;
+            const tabNum = button.dataset.forTab;
+            const tabToActivate = tabsCon.querySelector('.tabs-content[data-tab="${tabNum}"]');
+
+            sideBar.querySelectorAll(".tabs-button").forEach(button => {
+                button.classList.remove("tabs-button-active");
+            });
+
+            tabsCon.querySelectorAll(".tabs-content").forEach(tab => {
+                tab.classList.remove("tabs-content-active");
+            });
+
+            button.classList.add("tabs-button-active");
+            tabToActivate.classList.add("tabs-content-active");
+        });
+    });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupTabs();
+});
