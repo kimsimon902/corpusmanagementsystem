@@ -160,10 +160,10 @@ def searchPublication(request):
                     Q(author__icontains=searched)
             )
 
-                for publication in results.objects.all():
-                    if publication.url == "doi.org/":
-                     publication.url = "scholar.google.com/scholar?q=" + publication.title
-                     publication.save()
+                for result in results.objects.all():
+                    if result.url == "doi.org/":
+                        result.url = "scholar.google.com/scholar?q=" + result.title
+                        result.save()
                     
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
@@ -209,10 +209,10 @@ def searchPublication(request):
                 results = publications.objects.filter(title__icontains=searched)
  
 
-            for publication in results.objects.all():
-                    if publication.url == "doi.org/":
-                     publication.url = "scholar.google.com/scholar?q=" + publication.title
-                     publication.save()
+            for result in results.objects.all():
+                if result.url == "doi.org/":
+                    result.url = "scholar.google.com/scholar?q=" + result.title
+                    result.save()
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
 
@@ -256,10 +256,10 @@ def searchPublication(request):
             if(publications.url == "doi.org/"):
                 publications.url = "https://scholar.google.com/scholar?q=" + publications.title
 
-            for results in results.objects.all():
-                    if results.url == "doi.org/":
-                             results.url = "scholar.google.com/scholar?q=" + results.title
-                             results.save()
+            for result in results.objects.all():
+                if result.url == "doi.org/":
+                    result.url = "scholar.google.com/scholar?q=" + result.title
+                    result.save()
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
     else:
