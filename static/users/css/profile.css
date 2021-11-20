@@ -9,7 +9,7 @@ html, body{
 
 .tabs-sidebar {
     height: 100%;
-    /* width: 125px; */
+    width: auto;
     flex-shrink: 0;
     background: #cccccc;
 }
