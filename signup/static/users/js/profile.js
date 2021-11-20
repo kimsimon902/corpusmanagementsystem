@@ -30,7 +30,7 @@ function setupTabs(){
             const sideBar = button.parentElement;
             const tabsCon = sideBar.parentElement;
             const tabNum = button.dataset.forTab;
-            const tabToActivate = tabsCon.querySelector('.tabs-content[data-tab="${tabNum}"]');
+            const tabToActivate = tabsCon.querySelector(`.tabs-content[data-tab="${tabNum}"]`);
 
             sideBar.querySelectorAll(".tabs-button").forEach(button => {
                 button.classList.remove("tabs-button-active");
