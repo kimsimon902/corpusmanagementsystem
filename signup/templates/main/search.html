@@ -14,18 +14,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light navbar-expand navigation-clean" style="background: #087830;">
-        <div class="container"><a class="navbar-brand" href="{% url 'home' %}">Brand</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color:white">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'upload' %}" style="color:white">Upload Literature</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'bookmarks' %}" style="color:white">My Bookmarks</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color:white">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {% include 'main/nav-bar.html' %}
     
     {% if searched %}
     <div class="container-fluid" style="background: #efefef;">
