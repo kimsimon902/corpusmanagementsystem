@@ -1,0 +1,36 @@
+<div class="container-fluid" style="background: #efefef;">
+    <br><br>
+    <div class="row">
+        <div class="col">
+            <h5>Folder name</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive" style="min-height: 100vh;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author/s</th>
+                            <th>Abstract</th>
+                            <th>Source</th>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                        <tr>
+                            <td><a href="/publication/{{result.id}}">{{result.title}}</a></td>
+                            <td>{{result.author}}</td>
+                            <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td>
+                            <td>{{result.source}}</td>
+                            <td id="url">{{result.url}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
