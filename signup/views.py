@@ -263,6 +263,13 @@ def searchPublication(request):
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
     else:
         
+        pubs = publications.objects.all()
+        xlist =     list(pubs)
+        for publication in xlist:
+                if publication.url == 'doi.org':
+                    publication.url = 'scholar.google.com/scholar?q=' + publication.title
+                    publication.save()
+
         return render(request, 'main/search.html',{})
 
 def ProfilePage(request, username):
