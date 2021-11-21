@@ -16,61 +16,10 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light navbar-expand navigation-clean" style="background: #087830;">
-    <div class="container"><a class="navbar-brand" href="{% url 'home' %}">Brand</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
-        <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color:white">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'upload' %}" style="color:white">Upload Literature</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'bookmarks' %}" style="color:white">My Bookmarks</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color:white">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-  </nav>
-  <!-- search bar -->
-  <form method="POST" action="{% url 'search' %}" id="search-form">
-    {% csrf_token %}
-    <div class = "input-group">
-        <div class="row">
-            
-            <div class="col-3">
-            <label for="inputState">Search by</label>
-            <select id="inputState" class="form-control" aria-label="Filter" name="filterData">
-                    <option selected value="default">All</option>
-                    <option value="title">Title</option>
-                    <option value="author">Author</option>
-            </select>
-            </div>
-            <div class="col-3">
-                <div class="row">
-                    <div class="form-check col-md-4">
-                        <input id="formCheck-AIS" class="form-check-input" type="checkbox" name="filterLib" value="ais"/>
-                        <label class="form-check-label" for="formCheck-AIS">AIS</label>
-                    </div>
-                    <div class="form-check col-md-8">
-                        <input id="formCheck-IEEE" class="form-check-input" type="checkbox" name="filterLib" value="ieee"/>
-                        <label class="form-check-label" for="formCheck-IEEE">IEEE</label>
-                    </div>
-                    <div class="form-check col-md-4">
-                        <input id="formCheck-Scopus" class="form-check-input" type="checkbox" name="filterLib" value="scopus"/>
-                        <label class="form-check-label" for="formCheck-Scopus">Scopus</label>
-                    </div> 
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="input-group input-group-lg mb-3" style="width: max-content;">
-                <span class="input-group-text"><i class="fa fa-search"></i></span>
-                <input class="form-control" type="search" placeholder="I am looking for..." name="searched" aria-label="Search" required="required">
-                <button class="btn btn-success btn-sm" type="submit">Search</button>
-                </div>
-            </div>
-            
-        </div>
-        
-    </div>
-</form>
-  <!-- end search bar-->
+ 
+
+{% include 'main/nav-bar.html' %}
+
 {% for getdata in publication %}
   <section class="article-dual-column">
       <div class="container">
@@ -160,26 +109,37 @@
                       </svg>
                 -->
                 
-                {% for x in my_folders %}
                 <div class="container">
+                    
+                {%for x in my_folders%}
+                    {% for bookmark in bookmarks %}
 
-                    <div class="row align-items-center mb-2">
-                        <div name="{{x.id}}" class="col-2 d-flex">{{x.folder_name}}</div>
-                        <div class="col-2 d-flex">
-                        <input type="hidden" name="folder_id" value="{{x.id}}"/>
-
-                        {% if x.id in filterfolders %}
-                        <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button>
-                        {% else %}
-                        <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">+</button>
-                        {% endif %}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <span class="border-bottom-0"></span>
-                    </div>
-
-                {% endfor %}
+                        {% if bookmark.folderID == x.id  %}
+                    
+                            <div class="row align-items-center mb-2">
+                                <div name="{{x.id}}" class="col-2 d-flex">{{x.folder_name}}</div>
+                                <div class="col-2 d-flex">
+                                <input type="hidden" name="folder_id" value="{{x.id}}"/>
+                                <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <span class="border-bottom-0"></span>
+                            </div>
+                        {%else%}
+                            <div class="row align-items-center mb-2">
+                                <div name="{{x.id}}" class="col-2 d-flex">{{x.folder_name}}</div>
+                                <div class="col-2 d-flex">
+                                <input type="hidden" name="folder_id" value="{{x.id}}"/>
+                                <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">+</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <span class="border-bottom-0"></span>
+                            </div>
+                        {%endif%}
+                    {%endfor%}
+                {%endfor%}
                 </div>
                 
             </div>
