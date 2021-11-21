@@ -22,15 +22,17 @@
                     <tbody>
                         {% if bookmarks %}
                             {% for x in bookmarks %}
-                                {% if folder.id == x.folderID %}
-                            <tr>
-                                <td><a href="/publication/{{x.publicationID}}">{{x.title}}</a></td>
-                                <td>{{x.author}}</td>
-                                <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{x.abstract}}</td>
-                                <td>{{x.source}}</td>
-                                <td id="url">{{x.url}}</td>
-                            </tr>
-                                {% endif %}
+                                { % for y in rawbookmarks %}
+                                    {% if folder.id == y.folderID and y.publicationID == x.id%}
+                                    <tr>
+                                        <td><a href="/publication/{{x.publicationID}}">{{x.title}}</a></td>
+                                        <td>{{x.author}}</td>
+                                        <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{x.abstract}}</td>
+                                        <td>{{x.source}}</td>
+                                        <td id="url">{{x.url}}</td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
                             {% endfor %}
                         {% endif %}
                     </tbody>
