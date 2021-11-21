@@ -27,9 +27,9 @@ def home(request):
     return render(request, 'main/home.html',{'publications':results, 'annotations': annotation})
 
 def viewBookmarks(request):
-    user = request.session['username']
+    email = request.session['email']
   
-    bookmark = bookmarks.objects.filter(user=user).values('publicationID')
+    bookmark = bookmarks.objects.filter(email=email).values('publicationID')
     publication = publications.objects.filter(id__in=bookmark)
 
     
@@ -295,8 +295,11 @@ def PublicationPage(request, id):
         author = request.session['username']
     else:
         author="null"
+
+    email = request.session['email']
+
     annotation = annotations.objects.filter(publicationID=id, author=author)
-    bookmark = bookmarks.objects.filter(publicationID=id, user=author)
+    bookmark = bookmarks.objects.filter(publicationID=id, user=email)
     return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'bookmarks':bookmark})
 
 def PublicationPageAnnotate(request, id):
