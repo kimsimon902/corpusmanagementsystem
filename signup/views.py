@@ -11,6 +11,8 @@ from .models import publications
 from .models import keywords
 from .models import annotations
 from .models import bookmarks
+from .models import bookmarks_folder
+from .models import collaborators
 from django.db.models import Q
 import time
 

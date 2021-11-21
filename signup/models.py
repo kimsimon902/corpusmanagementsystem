@@ -45,10 +45,26 @@ class annotations(models.Model):
 
 class bookmarks(models.Model):
     user = models.CharField(max_length=100)
-    publicationID = models.CharField(max_length=100)
+    publicationID = models.IntegerField()
+    folderID = models.IntegerField()
 
     class Meta:
         db_table = "bookmarks"
+
+class bookmarks_folder(models.Model):
+    folder_name = models.CharField(max_length=100)
+    user = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = "bookmarks_folder"
+
+class collaborators(models.Model):
+    owner = models.CharField(max_length=100)
+    collab = models.CharField(max_length=100)
+    folderID = models.IntegerField(max_length=100)
+
+    class Meta:
+        db_table = "collaborators"
 
 class pubkeys(models.Model):
     publication_id = models.CharField(max_length=100)
