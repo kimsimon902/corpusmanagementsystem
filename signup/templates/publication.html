@@ -162,9 +162,7 @@
 
                 {% for x in folders%}
 
-                {% for y in bookmarks%}
-
-                {% if y.folderID == x.id %}
+             
 
                 
                 <div class="float-left">
@@ -172,16 +170,13 @@
                     <button type="submit" class="btn btn-dark" id="{{x.folder_name}}" name="bookmark-delete">x</button>
                 </div>
 
-                {% else %}
+
 
                 <div class="float-left">
                     <label for="{{x.folder_name}}">{{x.folder_name}}</label>
                     <button type="submit" class="btn btn-dark" id="{{x.folder_name}}" name="bookmark-add">+</button>
                 </div>
 
-                {% endif %}
-
-                {% endfor %}
 
                 {% endfor %}
 
