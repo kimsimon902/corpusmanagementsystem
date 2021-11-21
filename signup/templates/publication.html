@@ -163,9 +163,9 @@
                 <div class="container">
                 {% for x in folders%}
 
-                    {% for y in check %}
+                  
                     
-                        {% if x.id == y.id%}
+                        {% if x.id in check%}
                             <div class="row align-items-center">
                                 <div name="{{x.folder_name}}" class="col-2 d-flex" >{{x.folder_name}}</div>
                                 <div class="col-2 d-flex">
@@ -183,7 +183,6 @@
 
                     
 
-                    {% endfor %}
 
                 {% endfor %}
                 </div>
