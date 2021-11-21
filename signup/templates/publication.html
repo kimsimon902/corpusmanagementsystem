@@ -164,7 +164,7 @@
                 
                     {% for x in my_folders%}
                         
-                        {% for filterfolder in filterfolders}
+                        {% for filterfolder in filterfolders %}
 
                         {% if x.id == filterfolder.id  %}
                             <div class="row align-items-center mb-2">
@@ -189,7 +189,8 @@
                                 <span class="border-bottom-0"></span>
                             </div>
                         {% endif %}
-
+                        
+                        {% endfor %}
 
                     {% endfor %}
                 </div>
