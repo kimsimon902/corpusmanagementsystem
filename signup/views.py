@@ -279,13 +279,13 @@ def ProfilePage(request, username):
 
     email = request.session['email']
 
-    bookmarks= bookmarks.objects.filter(user=email)
+    bookmark= bookmarks.objects.filter(user=email)
     folders = bookmarks_folder.objects.filter(user=email)
 
 
     #sample = publications.objects.filter(author__icontains="Richardson, Joan",source__icontains="ais")
 
-    return render(request, 'main/profile.html',{'bookmarks':bookmarks, 'folders':folders})
+    return render(request, 'main/profile.html',{'bookmarks':bookmark, 'folders':folders})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
