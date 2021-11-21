@@ -87,7 +87,7 @@
                     <div class="col-6">
                         <div class="input-group input-group-lg mb-3" style="width: max-content;">
                         <span class="input-group-text"><i class="fa fa-search"></i></span>
-                        <input class="form-control" type="search" placeholder="I am looking for..." name="searched" aria-label="Search" required="required">
+                        <input class="form-control" type="search" placeholder="I am looking for..." name="searched" aria-label="Search">
                         <button class="btn btn-success btn-sm" type="submit">Search</button>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                                 <td>{{result.author}}</td>
                                 <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td>
                                 <td>{{result.source}}</td>
-                                <td id="url"><a href={{result.url}} style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
+                                <td id="url"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
 
                             
 
