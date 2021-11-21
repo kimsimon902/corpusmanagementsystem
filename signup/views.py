@@ -367,7 +367,7 @@ def PublicationBookmark(request, id):
             addBookmark = bookmarks()
             addBookmark.user = email
             addBookmark.publicationID = pubID
-            addBookmark.folderID = request['folder_id']
+            addBookmark.folderID = request.POST.get('folder_id')
             addBookmark.save()
             messages.success(request, "Added to your bookmarks")
 
