@@ -164,7 +164,7 @@ def searchPublication(request):
 
             xlist =     list(results)
             for publication in xlist:
-                if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url:
+                if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url or 'https://' not in publication.url:
                     publication.url = 'scholar.google.com/scholar?q=' + publication.title
                     publication.save()   
                     
@@ -211,7 +211,7 @@ def searchPublication(request):
 
             xlist =     list(results)
             for publication in xlist:
-                if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url:
+                if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url or 'https://' not in publication.url:
                     publication.url = 'scholar.google.com/scholar?q=' + publication.title
                     publication.save()   
 
@@ -258,7 +258,7 @@ def searchPublication(request):
 
             xlist =     list(results)
             for publication in xlist:
-                if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url:
+                if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url or 'https://' not in publication.url:
                     publication.url = 'scholar.google.com/scholar?q=' + publication.title
                     publication.save()    
 
@@ -269,7 +269,7 @@ def searchPublication(request):
         xlist =     list(pubs)
 
         for publication in xlist:
-            if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url:
+            if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url or 'https://' not in publication.url:
                 publication.url = 'scholar.google.com/scholar?q=' + publication.title
                 publication.save()  
 
