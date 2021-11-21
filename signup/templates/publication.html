@@ -109,12 +109,12 @@
        </div>
   </section>
 
-  <form method="POST" action="/publication/{{getdata.id}}/bookmark" id="bookmark-pub">
+  <form method="POST" action="" > <!-- action="/publication/{{getdata.id}}/bookmark" id="bookmark-pub" -->
     {% csrf_token %}
     {% if bookmarks %}
     <input type="hidden" name="next" value="{{ request.path }}"/>
     <div class="">
-      <button type="button" data-toggle="modal" data-target="#bookmark-delete" class="btn btn-outline-danger">
+      <button type="button" data-toggle="modal" data-target="#bookmark-delete" class="btn btn-danger">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
             <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
           </svg>
@@ -142,12 +142,34 @@
     {% else %}
     <div class="">
       <input type="hidden" name="next" value="{{ request.path }}"/>
-      <button type="button" class="btn btn-outline-success">
+      <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#bookmark-add">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
             <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
           </svg>
       </button>
-    </div> 
+    </div>
+    
+    <div class="modal fade bd-example-modal-lg" id="bookmark-add" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add bookmark</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
     {% endif %}
   </form>
 
