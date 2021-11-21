@@ -19,15 +19,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% if sample %}
-                            {% for sam in sample %}
+                        {% if bookmarks %}
+                            {% for x in bookmarks %}
+                            {% if folder.id = x.folderID %}
                             <tr>
-                                <td><a href="/publication/{{sam.id}}">{{sam.title}}</a></td>
-                                <td>{{sam.author}}</td>
-                                <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{sam.abstract}}</td>
-                                <td>{{sam.source}}</td>
-                                <td id="url">{{sam.url}}</td>
+                                <td><a href="/publication/{{x.id}}">{{x.title}}</a></td>
+                                <td>{{x.author}}</td>
+                                <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{x.abstract}}</td>
+                                <td>{{x.source}}</td>
+                                <td id="url">{{x.url}}</td>
                             </tr>
+                            {% endif %}
                             {% endfor %}
                         {% endif %}
                     </tbody>
