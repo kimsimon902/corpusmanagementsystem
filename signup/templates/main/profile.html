@@ -37,12 +37,11 @@
             </div>
             
             {% if folders %}
-
-            {{% for folder in folders%}}
+            {% for folder in folders%}
             <div class="col-9 tabs-content" data-tab="{{forloop.counter}}">
                 {% include 'main/folder-pub-list.html' %}
             </div>
-            {{% endfor %}}
+            {% endfor %}
 
             {% else%}
             {% endif %}
