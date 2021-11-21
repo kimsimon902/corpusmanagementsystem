@@ -109,7 +109,7 @@
        </div>
   </section>
 
-  <form method="POST" action="" > <!-- action="/publication/{{getdata.id}}/bookmark" id="bookmark-pub" -->
+  <form method="POST" action="/publication/{{getdata.id}}/bookmark" id="bookmark-pub" > 
     {% csrf_token %}
     <div class="">
       <input type="hidden" name="next" value="{{ request.path }}"/>
@@ -129,11 +129,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
-           
-
             <div class="modal-body">
-                
                 <div class="float-end">
                     <button type="button" class="btn btn-primary btn-sm m-1" data-toggle="collapse" data-target="#newFolder" aria-expanded="false" aria-controls="newFolder"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
@@ -141,7 +137,7 @@
                       <br>
                 </div>
 
-                <div class="collapse" id="newFolder">
+                <div class="collapse m-1" id="newFolder">
                     <div class="card card-body">
 
                             {% csrf_token %}
@@ -150,26 +146,46 @@
                                 <label for="folder-name" class="col-form-label">Folder name:</label>
                                 <input type="text" class="form-control" name="folder-name">
                             </div>                            
-                        <div class="modal-footer float-right">
+                        <div class="modal-footer float-end">
                             <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#newFolder">Close</button>
                             <button type="submit" class="btn btn-primary btn-sm" name="create-folder">Create folder</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="float-left">
-                    <label for="folder1">Folder 1</label>
-                    <button type="submit" class="btn btn-light" id="folder1" name="bookmark-add"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-plus-lg" viewBox="0 2 14 14">
+
+                <!--
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-plus-lg" viewBox="0 2 14 14">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
-                      </svg></button>
+                      </svg>
+                -->
+
+                {% for x in folders%}
+
+                {% for y in bookmarks%}
+
+                {% if y.folderID == x.id %}
+
+                
+                <div class="float-left">
+                    <label for="{{x.folder_name}}">{{x.folder_name}}</label>
+                    <button type="submit" class="btn btn-dark" id="{{x.folder_name}}" name="bookmark-delete">x</button>
                 </div>
 
+                {% else %}
+
                 <div class="float-left">
-                    <label for="folder2">Folder 2</label>
-                    <button type="submit" class="btn btn-light" id="folder2" name="bookmark-add"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-plus-lg" viewBox="0 2 14 14">
-                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
-                      </svg></button>
+                    <label for="{{x.folder_name}}">{{x.folder_name}}</label>
+                    <button type="submit" class="btn btn-dark" id="{{x.folder_name}}" name="bookmark-add">+</button>
                 </div>
+
+                {% endif %}
+
+                {% endfor %}
+
+                {% endfor %}
+
+                
             </div>
 
             <div class="modal-footer">
