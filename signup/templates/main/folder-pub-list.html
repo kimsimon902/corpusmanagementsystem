@@ -21,7 +21,7 @@
                     <tbody>
                         {% if bookmarks %}
                             {% for x in bookmarks %}
-                            {% if folder.id = x.folderID %}
+                            {% if folder.id == x.folderID %}
                             <tr>
                                 <td><a href="/publication/{{x.id}}">{{x.title}}</a></td>
                                 <td>{{x.author}}</td>
