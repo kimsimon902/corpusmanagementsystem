@@ -58,7 +58,7 @@
             </button>
             </div>
             <div class="modal-body">
-            <form method="POST" action="/createfolder">
+            <form method="POST" action="/profile/{{request.session.username}}/createfolder">
                 <input type="hidden" name="next" value="{{ request.path }}"/>
                 <div class="form-group">
                 <label for="folder-name" class="col-form-label">Folder name:</label>
