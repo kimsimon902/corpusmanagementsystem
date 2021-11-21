@@ -161,9 +161,9 @@
                 -->
                 
                 <div class="container">
-                    
+                {% for bookmark in bookmarks %}
                 {%for x in my_folders%}
-                    {% for bookmark in bookmarks %}
+                    
 
                         {% if bookmark.folderID == x.id  %}
                     
