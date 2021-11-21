@@ -20,6 +20,8 @@
         <div class="row h-100">
             <div class="col-md-auto tabs-sidebar h-100" >
                 <button class="tabs-button tabs-button-active" data-for-tab="0">Profile</button>
+
+
                 <button class="tabs-button" data-for-tab="1">Folder 1</button>
                 <button class="tabs-button" data-for-tab="2">Folder 2</button>
                 <button class="tabs-button" data-for-tab="3">Folder 3</button>
@@ -56,16 +58,17 @@
             </button>
             </div>
             <div class="modal-body">
-            <form method="POST" action="">
+            <form method="POST" action="profile/{{request.session.username}}/createfolder">
+                <input type="hidden" name="next" value="{{ request.path }}"/>
                 <div class="form-group">
                 <label for="folder-name" class="col-form-label">Folder name:</label>
-                <input type="text" class="form-control" id="folder-name">
+                <input type="text" class="form-control" name="folder-name">
                 </div>
             
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Create folder</button>
+            <button type="submit" class="btn btn-primary">Create folder</button>
             </form>
             </div>
         </div>

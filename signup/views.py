@@ -276,8 +276,16 @@ def searchPublication(request):
         return render(request, 'main/search.html',{})
 
 def ProfilePage(request, username):
-    sample = publications.objects.filter(author__icontains="Richardson, Joan",source__icontains="ais")
-    return render(request, 'main/profile.html',{"sample":sample})
+
+    email = request.session['email']
+
+    bookmarks= bookmarks.objects.filter(user=email)
+    folders = bookmarks_folder.objects.filter(user=email)
+
+
+    #sample = publications.objects.filter(author__icontains="Richardson, Joan",source__icontains="ais")
+
+    return render(request, 'main/profile.html',{'bookmarks':bookmarks, 'folders':folders})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
@@ -361,6 +369,24 @@ def PublicationBookmark(request, id):
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
     else:
         return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
+
+def createFolder(request, username):
+
+    email = request.session['email']
+    next = request.POST.get('next', '/')
+
+    if request.method == 'POST':
+        newFolder = bookmarks_folder()
+        newFolder.folder_name = request.POST.get('folder-name')
+        newFolder.user = email
+        newFolder.save()
+
+        return HttpResponseRedirect(next)
+    else:
+        return HttpResponseRedirect(next)
+
+    
+
 
 
 def uploadLiterature(request):
