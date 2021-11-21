@@ -22,9 +22,8 @@
                     <tbody>
                         {% if bookmarks %}
                             {% for x in bookmarks %}
-                                
                             <tr>
-                                <td><a href="/publication/{{x.id}}">{{x.title}}</a></td>
+                                <td><a href="/publication/{{x.publicationID}}">{{x.title}}</a></td>
                                 <td>{{x.author}}</td>
                                 <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{x.abstract}}</td>
                                 <td>{{x.source}}</td>

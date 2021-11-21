@@ -279,11 +279,11 @@ def ProfilePage(request, username):
 
     email = request.session['email']
 
-    bookmark= bookmarks.objects.filter(user=email)
+    filterpub = bookmarks.objects.filter(user=email).values('publicationID')
     folders = bookmarks_folder.objects.filter(user=email)
 
 
-    #sample = publications.objects.filter(author__icontains="Richardson, Joan",source__icontains="ais")
+    bookmark = publications.objects.filter(id__in=filterpub)
 
     return render(request, 'main/profile.html',{'bookmarks':bookmark, 'folders':folders})
 
