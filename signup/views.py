@@ -165,7 +165,7 @@ def searchPublication(request):
             xlist =     list(results)
             for publication in xlist:
                 if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url or 'https://' not in publication.url:
-                    publication.url = 'scholar.google.com/scholar?q=' + publication.title
+                    publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
                     publication.save()   
                     
 
@@ -212,7 +212,7 @@ def searchPublication(request):
             xlist =     list(results)
             for publication in xlist:
                 if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url or 'https://' not in publication.url:
-                    publication.url = 'scholar.google.com/scholar?q=' + publication.title
+                    publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
                     publication.save()   
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
@@ -259,7 +259,7 @@ def searchPublication(request):
             xlist =     list(results)
             for publication in xlist:
                 if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url or 'https://' not in publication.url:
-                    publication.url = 'scholar.google.com/scholar?q=' + publication.title
+                    publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
                     publication.save()    
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results})
@@ -270,7 +270,7 @@ def searchPublication(request):
 
         for publication in xlist:
             if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url or 'https://' not in publication.url:
-                publication.url = 'scholar.google.com/scholar?q=' + publication.title
+                publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
                 publication.save()  
 
         return render(request, 'main/search.html',{})
