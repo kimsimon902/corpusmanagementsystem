@@ -113,14 +113,14 @@
     {% csrf_token %}
     <div class="">
       <input type="hidden" name="next" value="{{ request.path }}"/>
-      <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#bookmark-add">
+      <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#bookmark">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
             <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
           </svg>
       </button>
     </div>
     
-    <div class="modal fade bd-example-modal-lg" id="bookmark-add" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="bookmark" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -130,22 +130,40 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="float-right">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#newFolder"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                <div class="float-left">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#newFolder" aria-expanded="false" aria-controls="newFolder"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
                       </svg> Folder </button>
                 </div>
 
+                <div class="collapse" id="newFolder">
+                    <div class="card card-body">
+
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.path }}"/>
+                            <div class="form-group">
+                                <label for="folder-name" class="col-form-label">Folder name:</label>
+                                <input type="text" class="form-control" name="folder-name">
+                            </div>
+                        
+                            
+
+                        <button type="button" class="btn btn-secondary float-right" data-toggle="collapse">Close</button>
+                        <button type="submit" class="btn btn-primary float-right" name="folder-create">Create folder</button>
+
+                    </div>
+                </div>
+
                 <div class="float-left">
                     <label for="folder1">Folder 1</label>
-                    <button type="submit" class="btn btn-light" id="folder1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <button type="submit" class="btn btn-light" id="folder1" name="bookmark-add"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
                       </svg></button>
                 </div>
 
                 <div class="float-left">
                     <label for="folder2">Folder 2</label>
-                    <button type="submit" class="btn btn-light" id="folder2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <button type="submit" class="btn btn-light" id="folder2" name="bookmark-add"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
                       </svg></button>
                 </div>
