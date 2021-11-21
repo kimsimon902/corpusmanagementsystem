@@ -130,7 +130,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="float-start">
+                <div class="row float-start">
                     <button type="button" class="btn btn-primary btn-sm mb-4 m-1" data-toggle="collapse" data-target="#newFolder" aria-expanded="false" aria-controls="newFolder"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
                       </svg> Folder </button>
@@ -165,18 +165,19 @@
              
 
                 
-                <div class="float-left">
+                <div class="row float-left">
                     <div name="{{x.folder_name}}">{{x.folder_name}}</div>
                     <button type="submit" class="btn btn-light float-end" id="{{x.folder_name}}" name="bookmark-delete">x</button>
                 </div>
 
+                <span class="border border-dark border-bottom"></span>
 
-
-                <div class="float-left">
+                <!--
+                <div class="row float-left">
                     <label for="{{x.folder_name}}">{{x.folder_name}}</label>
                     <button type="submit" class="btn btn-light float-end" id="{{x.folder_name}}" name="bookmark-add">+</button>
                 </div>
-
+                -->
 
                 {% endfor %}
 
