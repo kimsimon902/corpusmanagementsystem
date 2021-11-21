@@ -299,10 +299,15 @@ def PublicationPage(request, id):
     email = request.session['email']
 
     annotation = annotations.objects.filter(publicationID=id, author=author)
+
     bookmark = bookmarks.objects.filter(publicationID=id, user=email)
     folders = bookmarks_folder.objects.filter(user=email)
+
+    filterfolder = bookmarks.objects.filter(publicationID=id, user=email).values('folderID')
+
+    check = bookmarks_folder.objectsfilter(id__in=filterfolder)
     
-    return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'bookmarks':bookmark, 'folders':folders})
+    return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'bookmarks':bookmark, 'folders':folders, 'check':check})
 
 def PublicationPageAnnotate(request, id):
     results = publications.objects.filter(id=id)

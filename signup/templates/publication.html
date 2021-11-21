@@ -163,9 +163,9 @@
                 <div class="container">
                 {% for x in folders%}
 
-                    {% for y in bookmarks %}
+                    {% for y in check %}
                     
-                    {% if y.publicationID == publication.id and x.id == y.folderID%}
+                    {% if x.id == y.id}
 
                     <div class="row align-items-center">
                         <div name="{{x.folder_name}}" class="col-2 d-flex" >{{x.folder_name}}</div>
