@@ -305,7 +305,7 @@ def PublicationPage(request, id):
 
     filterfolder = bookmarks.objects.filter(publicationID=id, user=email).values('folderID')
 
-    check = bookmarks_folder.objectsfilter(id__in=filterfolder)
+    check = bookmarks_folder.objects.filter(id__in=filterfolder)
     
     return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'bookmarks':bookmark, 'folders':folders, 'check':check})
 
