@@ -112,27 +112,19 @@
                 <div class="container">
                     {% for folder in my_folders%}
                     <input type="hidden" name="folder_id" value="{{folder.id}}"/>
-                    {% if folder.id in filterfolder %}
                     <div class="row align-items-center mb-2">
                         <div name="{{folder.id}}" class="col-2 d-flex">{{folder.folder_name}}</div>
                         <div class="col-2 d-flex">
+                        {% if folder == filterfolder % }
                         <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <span class="border-bottom-0"></span>
-                    </div>
-                    {% else %}
-                    <div class="row align-items-center mb-2">
-                        <div name="{{folder.id}}" class="col-2 d-flex">{{folder.folder_name}}</div>
-                        <div class="col-2 d-flex">
+                        {% else %}
                         <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">+</button>
+                        {%endif%}
                         </div>
                     </div>
                     <div class="row">
                         <span class="border-bottom-0"></span>
                     </div>
-                    {% endif %}
                     {% endfor %}
                 </div>
                 
