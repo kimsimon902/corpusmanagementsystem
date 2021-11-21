@@ -357,7 +357,7 @@ def PublicationBookmark(request, id):
         user = "null"
 
     email = request.session['email']
-    bookmark = bookmarks.objects.filter(publicationID=id, user=user,folderID=request['folder_id'])
+    bookmark = bookmarks.objects.filter(publicationID=id, user=user)
     annotation = annotations.objects.filter(publicationID=id, author=user)
     next = request.POST.get('next', '/')
 
