@@ -163,9 +163,9 @@
                 <div class="container">
                 {% for x in folders%}
 
-                    <div class="row align-items-baseline">
-                        <div name="{{x.folder_name}}" class="col" >{{x.folder_name}}</div>
-                        <div class="col">
+                    <div class="row align-items-center">
+                        <div name="{{x.folder_name}}" class="col d-flex" >{{x.folder_name}}</div>
+                        <div class="col d-flex">
                         <button type="submit" class="btn btn-light btn-sm" id="{{x.folder_name}}" name="bookmark-delete">x</button>
                         </div>
                     </div>
