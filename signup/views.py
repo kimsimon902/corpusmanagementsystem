@@ -355,7 +355,7 @@ def PublicationPageAnnotate(request, id):
 
 def PublicationBookmark(request, id):
     results = publications.objects.filter(id=id)
-
+    pubID = id
     if(request.user):
         user = request.session['username']
     else:
@@ -381,7 +381,7 @@ def PublicationBookmark(request, id):
 
         if 'bookmark-delete' in request.POST:
             folder_value = request.POST.get('folder_id')
-            delete_value = bookmarks.objects.filter(folderID=folder_value).filter(publicationID=id).filter(user=email)
+            delete_value = bookmarks.objects.filter(folderID=folder_value, publicationID=pubID, user=email)
             delete_value.delete()
             messages.success(request, "Deleted from your bookmarks")
             return HttpResponseRedirect(next)
