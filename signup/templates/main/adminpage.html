@@ -52,8 +52,8 @@
                         <td><a href="/media/{{getdata.pdf}}">{{getdata.pdf}}</a></td>
                         <td><form method="post">
                           {% csrf_token %}
-                        <input type="submit" onClick="$(this).closest('tr').remove()" name="{{getdata.id}}|{{getdata.title}}" value="Accept">Accept</a>
-                        <input type="submit" onClick="$(this).closest('tr').remove()" name="{{getdata.id}}|{{getdata.title}}" value="Decline">Decline</a></td>
+                        <input type="submit" onClick="$(this).closest('tr').remove()" name="{{getdata.id}}|{{getdata.title}}" value="Accept"></input>
+                        <input type="submit" onClick="$(this).closest('tr').remove()" name="{{getdata.id}}|{{getdata.title}}" value="Decline"></input></td>
                     </tr>
                     {% endfor %}
                 </tbody>
