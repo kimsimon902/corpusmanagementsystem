@@ -362,7 +362,7 @@ def PublicationBookmark(request, id):
         user = "null"
 
     email = request.session['email']
-    bookmark = bookmarks.objects.filter(publicationID=id, user=user)
+    bookmark = bookmarks.objects.filter(publicationID=id, user=email)
     annotation = annotations.objects.filter(publicationID=id, author=user)
     next = request.POST.get('next', '/')
 
@@ -379,7 +379,8 @@ def PublicationBookmark(request, id):
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
             return HttpResponseRedirect(next)
         elif 'bookmark-delete' in request.POST:
-            bookmark.delete()
+            folder = request.POST.get('folder_id')
+            bookmarks.objects.filter(folderID=folder).delete()
             messages.success(request, "Deleted from your bookmarks")
             return HttpResponseRedirect(next)
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
