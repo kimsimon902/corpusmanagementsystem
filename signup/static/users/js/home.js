@@ -17,7 +17,7 @@ function clickEditOnAnnotationClass(id) {
 
     else{
         document.getElementById("pubsAnnotationTextArea_"+id).setAttribute('readonly',true);
-        document.getElementById("pubsMarkerSelect_"+id).setAttribute('disabled');
+        document.getElementById("pubsMarkerSelect_"+id).setAttribute('disabled', true);
     }
     
 
