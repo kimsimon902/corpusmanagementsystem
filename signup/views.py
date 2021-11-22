@@ -383,11 +383,12 @@ def PublicationPageAnnotateEdit(request, username, folderid, id, annoID):
     annotation = annotations.objects.filter(publicationID=id, author=author, id=annoID)
     next = request.POST.get('next', '/')
     current_datetime = datetime.now()
-    mark = request.POST['selectMark']
+    
     
     if request.method=='POST':
         if 'annotate-save' in request.POST:
             annotation.delete()
+            mark = request.POST['selectMark']
             body= request.POST['annotation-exist']
             pubID = id
             saveAnnotation = annotations()
