@@ -67,27 +67,15 @@
         <p>posted on {{annotation.dateTime}}</p>
         <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
             {% csrf_token %}
-            {% if annotation.author == request.session.username %}
-                <select class="custom-select">
-                    <option selected>{{annotation.mark}}</option>
-                    <option value="1">To-do</option>
-                    <option value="2">On progress</option>
-                    <option value="3">Finished</option>
-                    <option value="3">Important information</option>
-                    <option value="3">Supporting information</option>
-                    <option value="4">None</option>
-                </select>
-            {% else %}
-                <select class="custom-select disabled">
-                    <option selected>{{annotation.mark}}</option>
-                    <option value="1">To-do</option>
-                    <option value="2">On progress</option>
-                    <option value="3">Finished</option>
-                    <option value="3">Important information</option>
-                    <option value="3">Supporting information</option>
-                    <option value="4">None</option>
-                </select>
-            {% endif %}
+            <select class="custom-select" id="markerSelect_{{annotation.id}}" disabled>
+                <option selected>{{annotation.mark}}</option>
+                <option value="1">To-do</option>
+                <option value="2">On progress</option>
+                <option value="3">Finished</option>
+                <option value="3">Important information</option>
+                <option value="3">Supporting information</option>
+                <option value="4">None</option>
+            </select>
             <textarea class="form-control" id="pubsAnnotationTextArea_{{annotation.id}}" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
             <input type="hidden" name="next" value="{{ request.path }}"/>
             <br>
