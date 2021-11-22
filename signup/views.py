@@ -422,7 +422,7 @@ def PublicationBookmark(request, id):
     next = request.POST.get('next', '/')
 
     if request.method=='POST':
-        if 'bookmark-add' in request.POST:
+        if request.POST.get("bookmark_action") == 'add':
             pubID = id
             addBookmark = bookmarks()
             addBookmark.user = email
@@ -433,17 +433,16 @@ def PublicationBookmark(request, id):
 
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
             return HttpResponseRedirect(next)
-
-        if 'bookmark-delete' in request.POST:
+        elif request.POST.get("bookmark_action") == 'delete':
             folder_value = request.POST.get('folder_id')
             bookmarks.objects.filter(folderID=folder_value, publicationID=pubID, user=email).delete()
 
             messages.success(request, "Deleted from your bookmarks")
             return HttpResponseRedirect(next)
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
-        # else:
-        #     return HttpResponseRedirect(next)
-        #     # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
+        else:
+            return HttpResponseRedirect(next)
+            # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
     else:
         return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
 
