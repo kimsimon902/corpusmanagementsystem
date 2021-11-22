@@ -324,7 +324,7 @@ def PublicationPageInFolder(request, folderid, username, id):
 
     email = request.session['email']
 
-    annotation = annotations.objects.filter(publicationID=id, author=author)
+    annotation = annotations.objects.filter(publicationID=id, author=author, folderID=folderid)
 
     my_folders = bookmarks_folder.objects.filter(user=email)
     folders_value = bookmarks_folder.objects.filter(user=email).values('id')
