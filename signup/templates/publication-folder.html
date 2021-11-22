@@ -114,7 +114,7 @@
                     </div>
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
                         {% csrf_token %}
-                        <span class="choose text-dark">Marker:  </span>
+                        <span class="choose text-dark" style="margin-right: 10px;">Marker:</span>
                         <select class="custom-select" id="pubsMarkerSelect" name="selectMark">
                             <option selected value="None">None <i class="fas fa-circle"></i></option>
                             <option value="To-do">To-do</option>
