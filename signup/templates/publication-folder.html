@@ -116,9 +116,9 @@
                         {% csrf_token %}
                         <select class="custom-select" id="pubsMarkerSelect" name="selectMark">
                             <option selected value="None">None <i class="fas fa-circle"></i></option>
-                            <option value="To-do">To-do <i class="fas fa-circle" style="color:#039be5"></i></option>
-                            <option value="On progress">On progress <i class="fas fa-circle" style="color:#ffeb3b"></i></option>
-                            <option value="Finished">Finished <i class="fas fa-circle" style="color:#43a047"></i></option>
+                            <option value="To-do" style="color:#039be5">To-do <i class="fas fa-circle" ></i></option>
+                            <option value="On progress" style="color:#ffeb3b">On progress <i class="fas fa-circle" ></i></option>
+                            <option value="Finished" style="color:#43a047">Finished <i class="fas fa-circle" ></i></option>
                         </select>
                         <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
                         <input type="hidden" name="next" value="{{ request.path }}"/>
