@@ -41,6 +41,7 @@ class annotations(models.Model):
     body = models.CharField(max_length=1000)
     folderID = models.IntegerField()
     dateTime = models.CharField(max_length=50)
+    marker = models.CharField(max_length=45)
 
     class Meta:
         db_table = "annotations"

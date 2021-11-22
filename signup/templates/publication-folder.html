@@ -67,7 +67,7 @@
         <p>posted on {{annotation.dateTime}}</p>
         <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
             {% csrf_token %}
-            <select class="custom-select" id="markerSelect_{{annotation.id}}" disabled>
+            <select class="custom-select" id="pubsMarkerSelect_{{annotation.id}}" disabled>
                 <option selected>{{annotation.mark}}</option>
                 <option value="1">To-do</option>
                 <option value="2">On progress</option>
