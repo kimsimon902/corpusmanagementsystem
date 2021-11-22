@@ -113,7 +113,8 @@
                 <div class="container">
                     {% for x in in_bookmark %}
                     <form method="POST" action="/publication/{{getdata.id}}/bookmark">
-                        {% csrf_token %} 
+                        {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}"/>
                     <input type="hidden" name="folder_id" value="{{x.id}}"/>
                     <input type="hidden" name="bookmark_action" value="delete">
                     <div class="row align-items-center mb-2">
@@ -131,6 +132,7 @@
                     {% for y in not_bookmark %}
                     <form method="POST" action="/publication/{{getdata.id}}/bookmark">
                         {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}"/>
                     <input type="hidden" name="folder_id" value="{{y.id}}"/>
                     <input type="hidden" name="bookmark_action" value="add">
                     <div class="row align-items-center mb-2">
