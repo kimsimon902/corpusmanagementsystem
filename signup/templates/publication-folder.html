@@ -94,7 +94,7 @@
   {% endif %}
   <div class="card" id="annotationCard" style="display:block">
     <div class="card-body">
-    <h4 class="card-title">{{ annotation.author }}</h4>
+    <h4 class="card-title">{{ request.session.username }}</h4>
       <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
         {% csrf_token %}
         <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
