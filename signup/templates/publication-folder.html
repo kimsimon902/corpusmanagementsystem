@@ -89,6 +89,7 @@
                     <option value="3">Supporting information</option>
                     <option value="4">None</option>
                 </select>
+            {% endif %}
             <br>
             {% if annotation.author == request.session.username %}
             <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit_{{annotation.id}}" onclick="clickEditOnAnnotationClass('{{annotation.id}}')" style="display:inline" name="annotate-edit">Edit</button>
