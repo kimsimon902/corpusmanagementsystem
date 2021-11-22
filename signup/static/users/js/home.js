@@ -65,6 +65,8 @@ function clickCancelAnnotationClass(id, body, marker){
 
     document.getElementById("pubsAnnotationTextArea_"+id).value = body;
     document.getElementById("pubsMarkerSelect_"+id).value = marker;
+
+    console.log("clicked");
 }
 
 function checkIfFound(id){
