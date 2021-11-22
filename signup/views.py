@@ -369,7 +369,21 @@ def PublicationPageAnnotate(request, username, folderid, id):
             saveAnnotation.save()
             messages.success(request, "Annotation saved")
             return HttpResponseRedirect(next)
-        elif 'annotate-save' in request.POST:
+    else:
+        return render(request, 'publication.html', {'publication':results, 'annotations':annotation})
+
+def PublicationPageAnnotateEdit(request, username, folderid, id, annoID):
+    results = publications.objects.filter(id=id)
+    if (request.user):
+        author= request.session['username']
+    else:
+        author="null"
+    annotation = annotations.objects.filter(publicationID=id, author=author, id=annoID)
+    next = request.POST.get('next', '/')
+    current_datetime = datetime.now() 
+    
+    if request.method=='POST':
+        if 'annotate-save' in request.POST:
             annotation.delete()
             body= request.POST['annotation-exist']
             pubID = id
