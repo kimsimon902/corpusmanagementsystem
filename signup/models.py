@@ -39,6 +39,7 @@ class annotations(models.Model):
     author = models.CharField(max_length=100)
     publicationID = models.IntegerField()
     body = models.CharField(max_length=1000)
+    folderID = models.IntegerField()
 
     class Meta:
         db_table = "annotations"

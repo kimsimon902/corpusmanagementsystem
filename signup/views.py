@@ -355,6 +355,7 @@ def PublicationPageAnnotate(request, username, folderID, id):
             saveAnnotation.author = author
             saveAnnotation.body = body
             saveAnnotation.publicationID = pubID
+            saveAnnotation.folderID = folderID
             saveAnnotation.save()
             messages.success(request, "Annotation saved")
             return HttpResponseRedirect(next)
@@ -366,6 +367,7 @@ def PublicationPageAnnotate(request, username, folderID, id):
             saveAnnotation.author = author
             saveAnnotation.body = body
             saveAnnotation.publicationID = pubID
+            saveAnnotation.folderID = folderID
             saveAnnotation.save()
             messages.success(request, "Annotation edited")
             return HttpResponseRedirect(next)
