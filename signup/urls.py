@@ -23,7 +23,7 @@ urlpatterns =[
     path('upload/',views.uploadLiterature, name ='upload'),
     path('bookmarks/',views.viewBookmarks, name ='bookmarks'),
     path('adminpage/',views.viewAdmin, name ='adminpage'),
-    path(r'^delete/(?P<part_id>[0-9]+)/$', views.statusAdmin, name='delete_view')
+    path('^delete/(?P<part_id>[0-9]+)/$', views.statusAdmin, name='delete_view')
 ]
 
 if settings.DEBUG:
