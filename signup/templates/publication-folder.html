@@ -63,7 +63,7 @@
     {% for annotation in annotations %}
     <div class="card" id="annotationCard" style="display:block">
         <div class="card-body">
-        <h5>Author: {{ request.session.username }} Posted: {{annotation.dateTime}}</h5>
+        <h5>{{ request.session.username }} posted on {{annotation.dateTime}}</h5>
         <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
             {% csrf_token %}
             <textarea class="form-control" id="pubsAnnotationTextArea_{{annotation.id}}" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
