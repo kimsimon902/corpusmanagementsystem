@@ -74,11 +74,11 @@
                     </div>
                     <div class="col">
                         {% if annotation.marker == "To-do" %}
-                            <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#039be5"></i></h6>
+                            <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#039be5; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
                         {% elif annotation.marker == "On progress" %}
-                            <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#ffeb3b"></i></h6>
+                            <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#ffeb3b; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
                         {% elif annotation.marker == "Finished" %}
-                            <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#43a047"></i></h6>
+                            <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#43a047; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
                         {% endif %}
                     </div>
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
