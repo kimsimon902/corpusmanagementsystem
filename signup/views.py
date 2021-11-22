@@ -381,7 +381,7 @@ def PublicationBookmark(request, id):
 
         if 'bookmark-delete' in request.POST:
             folder_value = request.POST.get('folder_id')
-            delete_value = bookmarks.objects.get(folderID=folder_value, id=id, user=email)
+            delete_value = bookmarks.objects.get(folderID=folder_value, publcationID=id, user=email)
             delete_value.delete()
             messages.success(request, "Deleted from your bookmarks")
             return HttpResponseRedirect(next)
