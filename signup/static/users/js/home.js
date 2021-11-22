@@ -13,9 +13,8 @@ function clickEditOnAnnotationClass(id) {
     if(document.getElementById("pubsAnnotationTextArea_"+id).hasAttribute('readonly')){
         document.getElementById("pubsAnnotationTextArea_"+id).removeAttribute('readonly');
         document.getElementById("pubsMarkerSelect_"+id).removeAttribute('disabled');
-    }
-
-    else{
+        console.log("yes");
+    } else{
         document.getElementById("pubsAnnotationTextArea_"+id).setAttribute('readonly',true);
         document.getElementById("pubsMarkerSelect_"+id).setAttribute('disabled', true);
     }
