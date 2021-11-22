@@ -16,6 +16,7 @@ urlpatterns =[
     path('search/',views.searchPublication, name ='search'),
     path('folders/<username>/',views.FoldersPage, name ='folders'),
     path('profile/<username>/createfolder',views.createFolder, name ='createfolder'),
+    path('folders/<username>/publication/<id>/',views.PublicationPageInFolder, name ='folders-publicationpage'),
     path('publication/<id>/',views.PublicationPage, name ='publicationpage'),
     path('publication/<id>/annotate',views.PublicationPageAnnotate, name ='publicationpageannotate'),
     path('publication/<id>/bookmark', views.PublicationBookmark, name = 'publicationbookmark'),
