@@ -73,7 +73,7 @@
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
                         {% csrf_token %}
                         <select class="custom-select" id="pubsMarkerSelect_{{annotation.id}}" name="selectMark" disabled>
-                            <option selected>{{annotation.mark}}</option>
+                            <option selected>{{annotation.marker}}</option>
                             <option value="To-do">To-do</option>
                             <option value="On progress">On progress</option>
                             <option value="Finished">Finished</option>
@@ -106,7 +106,7 @@
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
                         {% csrf_token %}
                         <select class="custom-select" id="pubsMarkerSelect" name="selectMark">
-                            <option selected>{{annotation.mark}}</option>
+                            <option selected>None</option>
                             <option value="To-do">To-do</option>
                             <option value="On progress">On progress</option>
                             <option value="Finished">Finished</option>
