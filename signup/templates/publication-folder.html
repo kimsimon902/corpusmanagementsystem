@@ -67,8 +67,6 @@
         <p>posted on {{annotation.dateTime}}</p>
         <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
             {% csrf_token %}
-            <textarea class="form-control" id="pubsAnnotationTextArea_{{annotation.id}}" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
-            <input type="hidden" name="next" value="{{ request.path }}"/>
             {% if annotation.author == request.session.username %}
                 <select class="custom-select">
                     <option selected>{{annotation.mark}}</option>
@@ -90,6 +88,8 @@
                     <option value="4">None</option>
                 </select>
             {% endif %}
+            <textarea class="form-control" id="pubsAnnotationTextArea_{{annotation.id}}" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
+            <input type="hidden" name="next" value="{{ request.path }}"/>
             <br>
             {% if annotation.author == request.session.username %}
             <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit_{{annotation.id}}" onclick="clickEditOnAnnotationClass('{{annotation.id}}')" style="display:inline" name="annotate-edit">Edit</button>
