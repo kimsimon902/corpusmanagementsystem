@@ -29,11 +29,7 @@
         
             {% if folders %}
                 {% for folder in folders%}
-                {% if forloop.counter == 1 %}
-                <div class="col-9 tabs-content tabs-content-active" data-tab="{{forloop.counter}}">
-                {% else %}
                 <div class="col-9 tabs-content" data-tab="{{forloop.counter}}"></div>
-                {% endif %}
                         {% include 'main/folder-pub-list.html' %}
                 </div>
                 {% endfor %}
