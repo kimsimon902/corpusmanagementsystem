@@ -494,7 +494,9 @@ def viewAdmin(request):
     if request.method == 'POST':
         if 'Accept' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")
-            publications.objects.get(id=pair[0]).update(status=None)
+            stat = publications.objects.get(id=pair[0],title=pair[1])
+            stat.status = None
+            stat.save()
         elif 'Decline' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")
             #pair will be a list containing x and y
