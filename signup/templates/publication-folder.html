@@ -69,9 +69,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h4 class="card-title">{{ annotation.author }} <i class="fas fa-circle"></i></h4>
+                        <h4 class="card-title">{{ annotation.author }} </h4>
                         <h6 class="text-muted card-subtitle mb-2">posted on {{annotation.dateTime}}</h6>
                     </div>
+                    <div class="col"><i class="fas fa-circle"></i></div>
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
                         {% csrf_token %}
                         <select class="custom-select" id="pubsMarkerSelect_{{annotation.id}}" name="selectMark" disabled>
