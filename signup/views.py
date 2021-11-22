@@ -494,17 +494,19 @@ def viewAdmin(request):
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
-def statusAdmin(request):
+def declineAdmin(request,getdata_id=None):
     results = publications.objects.filter(status='pending')
-    if 'Accept' in request.POST.values():
-        pair = [key for key in request.POST.keys()][1].split("|")
+    #pair = [key for key in request.POST.keys()][1].split("|")
             #pair will be a list containing x and y
-        publications.objects.get(id=pair[0]).update(status=None)
-    elif 'Decline' in request.POST.values():
-        pair = [key for key in request.POST.keys()][1].split("|")
+    dec = publications.objects.get(id=getdata_id)
+    dec.delete()
+    return render(request, 'main/adminpage.html',{'publications':results})
+
+def acceptAdmin(request,getdata_id=None):
+    results = publications.objects.filter(status='pending')
+    #pair = [key for key in request.POST.keys()][1].split("|")
             #pair will be a list containing x and y
-        dec = publications.objects.get(id=pair[0],title=pair[1])
-        dec.delete()
+    publications.objects.get(id=getdata_id).update(status=None)
     return render(request, 'main/adminpage.html',{'publications':results})
 # def annotateFromPub(request):
 #     results = publications.objects.filter(id=id)
