@@ -50,10 +50,10 @@
                           text-overflow: ellipsis">{{getdata.abstract}}</td>
                         <td>{{getdata.url}}</td>
                         <td><a href="/media/{{getdata.pdf}}">{{getdata.pdf}}</a></td>
-                        <td><form method="post">
+                        <td><form action="{% url views %}" method="post">
                           {% csrf_token %}
-                        <input type="submit" onClick="$(this).closest('tr').remove()" name="{{getdata.id}}|{{getdata.title}}" value="Accept"></input>
-                        <input type="submit" onClick="$(this).closest('tr').remove()" name="{{getdata.id}}|{{getdata.title}}" value="Decline"></input></td>
+                        <input type="submit" name="{{getdata.id}}|{{getdata.title}}" value="Accept"></input>
+                        <input type="submit" name="{{getdata.id}}|{{getdata.title}}" value="Decline"></input></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -61,7 +61,7 @@
             <button type="button" onClick="$('#tblit tbody tr').remove()">Decline All</button>
             {% endblock %}
             {% endblock bookmark %}
-          <!-- End table block -->
+          <!-- End table block onClick="$(this).closest('tr').remove()"-->
         </div>
     </div>
 
