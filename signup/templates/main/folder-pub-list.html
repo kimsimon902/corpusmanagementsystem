@@ -25,7 +25,7 @@
                                 {% for y in rawbookmarks %}
                                     {% if folder.id == y.folderID and y.publicationID == x.id %}
                                     <tr>
-                                        <td><a href=" folders/{{request.session.username}}/publication/{{x.id}}">{{x.title}}</a></td>  folders/{{request.session.username}}/publication/{{x.id}}/
+                                        <td><a href="/folders/{{request.session.username}}/publication/{{x.id}}">{{x.title}}</a></td>
                                         <td>{{x.author}}</td>
                                         <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{x.abstract}}</td>
                                         <td>{{x.source}}</td>
