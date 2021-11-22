@@ -382,7 +382,8 @@ def PublicationPageAnnotateEdit(request, username, folderid, id, annoID):
         author="null"
     annotation = annotations.objects.filter(publicationID=id, author=author, id=annoID)
     next = request.POST.get('next', '/')
-    current_datetime = datetime.now() 
+    current_datetime = datetime.now()
+    mark = request.POST['selectMark']
     
     if request.method=='POST':
         if 'annotate-save' in request.POST:
@@ -395,6 +396,7 @@ def PublicationPageAnnotateEdit(request, username, folderid, id, annoID):
             saveAnnotation.publicationID = pubID
             saveAnnotation.folderID = folderid
             saveAnnotation.dateTime = current_datetime
+            saveAnnotation.marker = mark
             saveAnnotation.save()
             messages.success(request, "Annotation edited")
             return HttpResponseRedirect(next)
