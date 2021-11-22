@@ -338,7 +338,7 @@ def PublicationPageInFolder(request, folderid, username, id):
     return render(request, 'publication-folder.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark, 'folderID': folderid, 'pubID': id})
 
 
-def PublicationPageAnnotate(request, username, folderID, id):
+def PublicationPageAnnotate(request, username, folderid, id):
     results = publications.objects.filter(id=id)
     if (request.user):
         author= request.session['username']
@@ -355,7 +355,7 @@ def PublicationPageAnnotate(request, username, folderID, id):
             saveAnnotation.author = author
             saveAnnotation.body = body
             saveAnnotation.publicationID = pubID
-            saveAnnotation.folderID = folderID
+            saveAnnotation.folderID = folderid
             saveAnnotation.save()
             messages.success(request, "Annotation saved")
             return HttpResponseRedirect(next)
@@ -367,7 +367,7 @@ def PublicationPageAnnotate(request, username, folderID, id):
             saveAnnotation.author = author
             saveAnnotation.body = body
             saveAnnotation.publicationID = pubID
-            saveAnnotation.folderID = folderID
+            saveAnnotation.folderID = folderid
             saveAnnotation.save()
             messages.success(request, "Annotation edited")
             return HttpResponseRedirect(next)
