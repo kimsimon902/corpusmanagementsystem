@@ -60,11 +60,13 @@
 
 <!-- Annotation -->
   {% if annotations %}
+  <div class="row">
+      <div class="col" style="padding: 50px;">
     {% for annotation in annotations %}
     <div class="card" id="annotationCard" style="display:block">
         <div class="card-body">
-        <h5>{{ annotation.author }} </h5>
-        <p>posted on {{annotation.dateTime}}</p>
+        <h4 class="card-title">{{ annotation.author }}</h4>
+        <h6 class="text-muted card-subtitle mb-2">posted on {{annotation.dateTime}}</h6>
         <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
             {% csrf_token %}
             <select class="custom-select" id="pubsMarkerSelect_{{annotation.id}}" disabled>
@@ -80,10 +82,10 @@
             <input type="hidden" name="next" value="{{ request.path }}"/>
             <br>
             {% if annotation.author == request.session.username %}
-            <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit_{{annotation.id}}" onclick="clickEditOnAnnotationClass('{{annotation.id}}')" style="display:inline" name="annotate-edit">Edit</button>
-            <button type="submit" class="btn btn-link" id="pubsAnnotation_btnSave_{{annotation.id}}" onclick="clickCancelAnnotationClass('{{annotation.id}}')" style="display:none" name="annotate-save">Save</button>
-            <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel_{{annotation.id}}" onclick="clickCancelAnnotationClass('{{annotation.id}}')" style="display:none" name="annotate-cancel">Cancel</button>
-            <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete_{{annotation.id}}" style="display:inline" name="annotate-delete">Delete</button>
+            <button type="button" class="btn btn-primary" id="pubsAnnotation_btnEdit_{{annotation.id}}" onclick="clickEditOnAnnotationClass('{{annotation.id}}')" style="display:inline; margin-right:20px;" name="annotate-edit">Edit</button>
+            <button type="submit" class="btn btn-success" id="pubsAnnotation_btnSave_{{annotation.id}}" onclick="clickCancelAnnotationClass('{{annotation.id}}')" style="display:none; margin-right:20px;" name="annotate-save">Save</button>
+            <button type="button" class="btn btn-warning" id="pubsAnnotation_btnCancel_{{annotation.id}}" onclick="clickCancelAnnotationClass('{{annotation.id}}')" style="display:none; margin-right:20px;" name="annotate-cancel">Cancel</button>
+            <button type="submit" class="btn btn-danger" id="pubsAnnotation_btnDelete_{{annotation.id}}" style="display:inline" name="annotate-delete">Delete</button>
             {% endif %}
         </form>
         </div>
@@ -92,16 +94,18 @@
   {% endif %}
   <div class="card" id="annotationCard" style="display:block">
     <div class="card-body">
-        <h5>{{ request.session.username }}</h5>
+    <h4 class="card-title">{{ annotation.author }}</h4>
       <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
         {% csrf_token %}
         <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
         <input type="hidden" name="next" value="{{ request.path }}"/>
         <br>
-        <button type="submit" class="btn btn-link" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
+        <button type="submit" class="btn btn-primary" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
       </form>
     </div>
   </div>
+  </div>
+</div>
 <!-- End Annotation -->
 {% endfor %}
 
