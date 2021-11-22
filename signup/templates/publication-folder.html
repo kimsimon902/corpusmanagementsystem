@@ -72,14 +72,14 @@
                     </div>
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
                         {% csrf_token %}
-                        <select class="custom-select" id="pubsMarkerSelect_{{annotation.id}}" disabled>
+                        <select class="custom-select" id="pubsMarkerSelect_{{annotation.id}}" name="selectMark" disabled>
                             <option selected>{{annotation.mark}}</option>
-                            <option value="1">To-do</option>
-                            <option value="2">On progress</option>
-                            <option value="3">Finished</option>
-                            <option value="3">Important information</option>
-                            <option value="3">Supporting information</option>
-                            <option value="4">None</option>
+                            <option value="To-do">To-do</option>
+                            <option value="On progress">On progress</option>
+                            <option value="Finished">Finished</option>
+                            <option value="Important information">Important information</option>
+                            <option value="Supporting information">Supporting information</option>
+                            <option value="None">None</option>
                         </select>
 
                         <textarea class="form-control" id="pubsAnnotationTextArea_{{annotation.id}}" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
@@ -105,6 +105,15 @@
                     </div>
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
                         {% csrf_token %}
+                        <select class="custom-select" id="pubsMarkerSelect" name="selectMark">
+                            <option selected>{{annotation.mark}}</option>
+                            <option value="To-do">To-do</option>
+                            <option value="On progress">On progress</option>
+                            <option value="Finished">Finished</option>
+                            <option value="Important information">Important information</option>
+                            <option value="Supporting information">Supporting information</option>
+                            <option value="None">None</option>
+                        </select>
                         <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
                         <input type="hidden" name="next" value="{{ request.path }}"/>
                         <br>

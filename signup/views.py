@@ -354,7 +354,8 @@ def PublicationPageAnnotate(request, username, folderid, id):
         author="null"
     annotation = annotations.objects.filter(publicationID=id, author=author)
     next = request.POST.get('next', '/')
-    current_datetime = datetime.now() 
+    current_datetime = datetime.now()
+    mark = request.POST['selectMark']
     
     if request.method=='POST':
         if 'annotate-add' in request.POST:
@@ -366,6 +367,7 @@ def PublicationPageAnnotate(request, username, folderid, id):
             saveAnnotation.publicationID = pubID
             saveAnnotation.folderID = folderid
             saveAnnotation.dateTime = current_datetime
+            saveAnnotation.marker = mark
             saveAnnotation.save()
             messages.success(request, "Annotation saved")
             return HttpResponseRedirect(next)
