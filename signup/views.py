@@ -491,6 +491,11 @@ def uploadLiterature(request):
     
 def viewAdmin(request):
     results = publications.objects.filter(status='pending')
+
+    return render(request, 'main/adminpage.html',{'publications':results})
+
+def statusAdmin(request):
+    results = publications.objects.filter(status='pending')
     if request.method == "POST":
         if 'Accept' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")
@@ -501,9 +506,7 @@ def viewAdmin(request):
             #pair will be a list containing x and y
             dec = publications.objects.get(id=pair[0],title=pair[1])
             dec.delete()
-
     return render(request, 'main/adminpage.html',{'publications':results})
-
 # def annotateFromPub(request):
 #     results = publications.objects.filter(id=id)
 #     if request.method=='POST':
