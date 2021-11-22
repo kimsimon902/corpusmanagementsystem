@@ -58,6 +58,35 @@
        </div>
   </section>
 
+<!-- Annotation -->
+  <div class="container-fluid">
+    <h3 style="text-align: right;"><i class="far fa-clipboard" onclick="toggleAnnotationButton()" id="annotationButton"></i></h3>
+  </div>
+  <div class="card" id="annotationCard" style="display:none">
+    <div class="card-body">
+      <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
+        {% csrf_token %}
+        {% if annotations %}
+        {% for body in annotations %}
+        <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation-exist" readonly>{{body.body}}</textarea>
+        <input type="hidden" name="next" value="{{ request.path }}"/>
+        <br>
+        <button type="button" class="btn btn-link" id="pubsAnnotation_btnEdit" onclick="clickEditOnAnnotation()" style="display:inline" name="annotate-edit">Edit</button>
+        <button type="submit" class="btn btn-link" id="pubsAnnotation_btnSave" onclick="clickCancelAnnotation()" style="display:none" name="annotate-save">Save</button>
+        <button type="button" class="btn btn-link" id="pubsAnnotation_btnCancel" onclick="clickCancelAnnotation()" style="display:none" name="annotate-cancel">Cancel</button>
+        <button type="submit" class="btn btn-link" id="pubsAnnotation_btnDelete" style="display:inline" name="annotate-delete">Delete</button>
+        {% endfor %}
+        {% else %}
+        <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
+        <input type="hidden" name="next" value="{{ request.path }}"/>
+        <br>
+        <button type="submit" class="btn btn-link" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+  <!-- End Annotation -->
+
   <!-- <form method="POST" action="/publication/{{getdata.id}}/bookmark" id="bookmark-pub" > 
     {% csrf_token %}
     <div class="">
