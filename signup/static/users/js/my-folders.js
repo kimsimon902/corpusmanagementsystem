@@ -24,6 +24,40 @@ function SwitchPage (page_id) {
     next_page.classList.add('is-active');
 } */
 
+function clickEditOnAnnotation(id) {
+    if(document.getElementById("pubsAnnotationTextArea_"+id).hasAttribute('readonly'))
+        document.getElementById("pubsAnnotationTextArea_"+id).removeAttribute('readonly');
+    else
+    document.getElementById("pubsAnnotationTextArea_"+id).setAttribute('readonly',true);
+
+    var save = document.getElementById("pubsAnnotation_btnSave_"+id);
+    var cancel = document.getElementById("pubsAnnotation_btnCancel_"+id);
+    var del = document.getElementById("pubsAnnotation_btnDelete_"+id);
+    if (save.style.display === "none" && cancel.style.display === "none") {
+      save.style.display = "inline";
+      cancel.style.display = "inline";
+    } else {
+      save.style.display = "none";
+      cancel.style.display = "none";
+    }
+
+    var edit = document.getElementById("pubsAnnotation_btnEdit_"+id);
+    edit.style.display = "none";
+    del.style.display = "none";
+}
+
+function clickCancelAnnotation(id){
+    var edit = document.getElementById("pubsAnnotation_btnEdit_"+id);
+    var save = document.getElementById("pubsAnnotation_btnSave_"+id);
+    var cancel = document.getElementById("pubsAnnotation_btnCancel_"+id);
+    var del = document.getElementById("pubsAnnotation_btnDelete_"+id);
+    edit.style.display = "inline";
+    del.style.display = "inline";
+    save.style.display = "none";
+    cancel.style.display = "none";
+    document.getElementById("pubsAnnotationTextArea_"+id).setAttribute('readonly',true);
+}
+
 function setupTabs(){
     document.querySelectorAll('.tabs-button').forEach(button => {
         button.addEventListener('click', () => {
