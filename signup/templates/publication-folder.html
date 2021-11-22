@@ -9,10 +9,12 @@
   <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
   <link rel="stylesheet" href="{% static '\users\assets\css\index.css' %}">
   <link rel="stylesheet" href="{% static '\users\assets\css\Pretty-Search-Form.css' %}">
   <link rel="stylesheet" href="{% static '\users\assets\css\publication.css' %}">
   <link rel="stylesheet" href="{% static '\users\assets\css\search.css' %}">
+      
 </head>
 
 <body>
@@ -67,7 +69,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h4 class="card-title">{{ annotation.author }}</h4>
+                        <h4 class="card-title">{{ annotation.author }} <i class="fas fa-circle"></i></h4>
                         <h6 class="text-muted card-subtitle mb-2">posted on {{annotation.dateTime}}</h6>
                     </div>
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
