@@ -2,41 +2,31 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {% block content %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">   
-<link rel="stylesheet" href="{% static '\users\css\home.css' %}">
-<link rel="stylesheet" href="{% static '\users\css\bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static '\users\css\Login-Form-Clean.css' %}">
-<link rel="stylesheet" href="{% static '\users\css\Registration-Form-with-Photo.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">   
+    <link rel="stylesheet" href="{% static '\users\css\home.css' %}">
+    <link rel="stylesheet" href="{% static '\users\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '\users\css\Login-Form-Clean.css' %}">
+    <link rel="stylesheet" href="{% static '\users\css\Registration-Form-with-Photo.css' %}">
+    <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static '\users\assets\css\index.css' %}">
 <head>
     <title>Register</title>
 </head>
 <body>
-    <div class="container-fluid">
-        <!-- Navbar on top -->
-        <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-          <a class="navbar-brand" href="{% url 'home' %}">Corpus Management System</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Account
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {% if request.session.email %}
-                    {{request.session.email}} <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                    {% else %}
-                    <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                    <a class="dropdown-item" href="{% url 'register' %}">Register</a>
-                    {% endif %}
-                </div>
-            </li>
-            </ul>
-          </div>
-        </nav>
-    </div>
+    <nav class="navbar navbar-light navbar-expand navigation-clean" style="background: #087830;">
+        <div class="container"><a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static '\users\img\dlsu.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        </a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}" style="color:white">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'register' %}" style="color:white">Sign Up</a></li>
+              </ul>
+            </div>
+        </div>
+    </nav>
     <section class="login-clean">
         <section class="register-photo">
             <div class="form-container">
