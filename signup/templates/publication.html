@@ -91,6 +91,7 @@
 
                             {% csrf_token %}
                             <input type="hidden" name="next" value="{{ request.path }}"/>
+                            <input type="hidden" name="newFolder" value="newFolder">
                             <div class="form-group">
                                 <label for="folder-name" class="col-form-label">Folder name:</label>
                                 <input type="text" class="form-control" name="folder-name">

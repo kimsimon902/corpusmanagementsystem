@@ -443,6 +443,15 @@ def PublicationBookmark(request, id):
         else:
             return HttpResponseRedirect(next)
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
+
+        if request.POST.get("newFolder") == 'newFolder':
+            
+            newFolder = bookmarks_folder()
+            newFolder.folder_name = request.POST.get('folder-name')
+            newFolder.user = email
+            newFolder.save()
+            return HttpResponseRedirect(next)
+
     else:
         return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
 
