@@ -481,7 +481,7 @@ def uploadLiterature(request):
             addBookmark = bookmarks()
             addBookmark.user = userid
             addBookmark.publicationID = results.id
-            bkfolderid= bookmarks_folder.objects.filter(user=userid,folder_name='My Uploads')
+            bkfolderid = bookmarks_folder.objects.get(user=userid,folder_name='My Uploads')
             addBookmark.folderID = bkfolderid.id
             addBookmark.save()
             return redirect('/home')#render(request, 'registration/login.html')
