@@ -14,7 +14,10 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand navigation-clean" style="background: #087830;">
-        <div class="container"><a class="navbar-brand" href="{% url 'index' %}">Brand</a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"></button>
+        <div class="container"><a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static '\users\img\dlsu.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        </a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"></button>
+        </button>
             <div id="navcol-1" class="collapse navbar-collapse">
                 <!--
                 <a class="btn btn-success ms-auto" type="button" href="{% url 'login' %}" style="margin-right: 15px; color: white;">Login</a>
