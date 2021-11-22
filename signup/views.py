@@ -315,7 +315,7 @@ def PublicationPage(request, id):
 
     return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark})
 
-def PublicationPageInFolder(request, id):
+def PublicationPageInFolder(request, username, id):
     results = publications.objects.filter(id=id)
     if (request.user):
         author = request.session['username']
