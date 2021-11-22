@@ -62,6 +62,9 @@ def registerView(request):
             myupload.folder_name = 'My Uploads'
             myupload.user = request.POST.get('email')
             myupload.save()
+            request.session['email']= request.POST.get('email')
+            request.session['username']= request.POST.get('username')
+            request.session['is_superuser'] = 0
             return redirect('home')#render(request, 'registration/login.html')
     else:
             return render(request, 'registration/register.html')
