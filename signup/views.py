@@ -466,7 +466,7 @@ def uploadLiterature(request):
             name_id = []
             pub_id = []
             key_id = request.POST.get('keywords').split(",")
-            for i in range(0,len(key_id)-1):
+            for i in range(0,len(key_id)):
                 if keywords.objects.filter(keywordname=key_id[i]):
                     name_id.append(key_id[i])
                 else:
