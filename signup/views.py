@@ -39,7 +39,7 @@ def viewBookmarks(request):
 #Creates a user account and stores it in the database
 def registerView(request):
     if request.method=='POST':
-        if request.POST.get('username') and request.POST.get('username') and request.POST.get('email') and request.POST.get('password') and request.POST.get('first_name') and request.POST.get('last_name'):
+        if request.POST.get('username') and request.POST.get('email') and request.POST.get('password') and request.POST.get('first_name') and request.POST.get('last_name'):
             saverecord = registerUser()
             saverecord.username = request.POST.get('username')
             if registerUser.objects.filter(username=request.POST.get('username')).exists():
@@ -58,6 +58,9 @@ def registerView(request):
             saverecord.is_superuser = 0
             saverecord.last_login = time.strftime('%Y-%m-%d %H:%M:%S')
             saverecord.save()
+            myupload = bookmarks_folder()
+            myupload.folder_name = 'My Uploads'
+            myupload.user = request.POST.get('email')
             return redirect('/')#render(request, 'registration/login.html')
     else:
             return render(request, 'registration/register.html')
@@ -438,9 +441,9 @@ def createFolder(request, username):
 
 def uploadLiterature(request):
     if(request.user):
-        user = request.session['username']
+        userid = request.session['username']
     else:
-        user = "null"
+        userid = "null"
         
     if request.method=='POST':
         if request.POST.get('title') and request.POST.get('author'):
@@ -472,9 +475,10 @@ def uploadLiterature(request):
                 pub_id.append(pubkeys(publication_id=results.id, keywords_id=store.id))
             pubkeys.objects.bulk_create(pub_id)
             addBookmark = bookmarks()
-            addBookmark.user = user
+            addBookmark.user = userid
             addBookmark.publicationID = results.id
-            addBookmark.save()
+            folderID = bookmarks_folder.objects.filter(user=userid,folder_name='My Uploads')
+            addBookmark.folderID = folderID.id
             return redirect('/home')#render(request, 'registration/login.html')
         else:
             return render(request, 'upload.html') 
