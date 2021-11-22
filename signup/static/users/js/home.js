@@ -38,7 +38,7 @@ function clickEditOnAnnotationClass(id) {
     del.style.display = "none";
 }
 
-function clickCancelAnnotationClass(id){
+function clickSaveAnnotationClass(id){
     var edit = document.getElementById("pubsAnnotation_btnEdit_"+id);
     var save = document.getElementById("pubsAnnotation_btnSave_"+id);
     var cancel = document.getElementById("pubsAnnotation_btnCancel_"+id);
@@ -49,6 +49,22 @@ function clickCancelAnnotationClass(id){
     cancel.style.display = "none";
     document.getElementById("pubsAnnotationTextArea_"+id).setAttribute('readonly',true);
     document.getElementById("pubsMarkerSelect_"+id).setAttribute('disabled', true);
+}
+
+function clickCancelAnnotationClass(id, body, marker){
+    var edit = document.getElementById("pubsAnnotation_btnEdit_"+id);
+    var save = document.getElementById("pubsAnnotation_btnSave_"+id);
+    var cancel = document.getElementById("pubsAnnotation_btnCancel_"+id);
+    var del = document.getElementById("pubsAnnotation_btnDelete_"+id);
+    edit.style.display = "inline";
+    del.style.display = "inline";
+    save.style.display = "none";
+    cancel.style.display = "none";
+    document.getElementById("pubsAnnotationTextArea_"+id).setAttribute('readonly',true);
+    document.getElementById("pubsMarkerSelect_"+id).setAttribute('disabled', true);
+
+    document.getElementById("pubsAnnotationTextArea_"+id).value = body;
+    document.getElementById("pubsMarkerSelect_"+id).value = marker;
 }
 
 function checkIfFound(id){
