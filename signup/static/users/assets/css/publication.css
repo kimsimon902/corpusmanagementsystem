@@ -106,3 +106,18 @@
   color: inherit;
 }
 
+.custom-select {
+  padding: 8px 12px;
+  color: #333;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.custom-select:focus, .custom-select:hover{
+  outline: none;
+  border: 1px solid #bbb;
+}
+
