@@ -72,7 +72,7 @@
                         <h4 class="card-title">{{ annotation.author }} </h4>
                         <h6 class="text-muted card-subtitle mb-2">posted on {{annotation.dateTime}}</h6>
                     </div>
-                    <div class="col"><h6 class="float-end"><i class="fas fa-circle"></i> {{annotation.marker}}</h6></div>
+                    <div class="col"><h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle"></i></h6></div>
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
                         {% csrf_token %}
                         <select class="custom-select" id="pubsMarkerSelect_{{annotation.id}}" name="selectMark" disabled>
@@ -80,8 +80,6 @@
                             <option value="To-do">To-do</option>
                             <option value="On progress">On progress</option>
                             <option value="Finished">Finished</option>
-                            <option value="Important information">Important information</option>
-                            <option value="Supporting information">Supporting information</option>
                             <option value="None">None</option>
                         </select>
 
@@ -109,12 +107,10 @@
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
                         {% csrf_token %}
                         <select class="custom-select" id="pubsMarkerSelect" name="selectMark">
-                            <option selected value="None">None</option>
-                            <option value="To-do">To-do</option>
-                            <option value="On progress">On progress</option>
-                            <option value="Finished">Finished</option>
-                            <option value="Important information">Important information</option>
-                            <option value="Supporting information">Supporting information</option>
+                            <option selected value="None">None <i class="fas fa-circle"></i></option>
+                            <option value="To-do">To-do <i class="fas fa-circle" style="color:#0288d1"></i></option>
+                            <option value="On progress">On progress <i class="fas fa-circle" style="color:#ffeb3b"></i></option>
+                            <option value="Finished">Finished <i class="fas fa-circle" style="color:#43a047"></i></option>
                         </select>
                         <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
                         <input type="hidden" name="next" value="{{ request.path }}"/>
