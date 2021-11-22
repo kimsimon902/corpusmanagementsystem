@@ -275,7 +275,7 @@ def searchPublication(request):
 
         return render(request, 'main/search.html',{})
 
-def ProfilePage(request, username):
+def FoldersPage(request, username):
 
     email = request.session['email']
 
@@ -286,7 +286,7 @@ def ProfilePage(request, username):
 
     bookmark = publications.objects.filter(id__in=filterpub)
 
-    return render(request, 'main/profile.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks})
+    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):

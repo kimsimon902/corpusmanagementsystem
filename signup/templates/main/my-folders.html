@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
 
-    <link rel="stylesheet" href="{% static '\users\css\profile.css' %}">
+    <link rel="stylesheet" href="{% static '\users\css\my-folders.css' %}">
     <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,26 +19,17 @@
     <div class="tabs-body h-100">
         <div class="row h-100">
             <div class="col-md-auto tabs-sidebar h-100" >
-                <button class="tabs-button tabs-button-active" data-for-tab="0">Profile</button>
-
                 {% if folders %}
                 {% for folder in folders%}
                 <button class="tabs-button" data-for-tab="{{forloop.counter}}">{{folder.folder_name}}</button>
                 {% endfor %}
                 {% else %}
                 {% endif %}
-
             </div>
-            
-            <div class="col-9 tabs-content tabs-content-active" data-tab="0">
-                <h2>Profile</h2>
-                <p>{{request.session.username}}</p>
-                <p>{{request.session.email}}</p>
-            </div>
-            
+        
             {% if folders %}
                 {% for folder in folders%}
-            <div class="col-9 tabs-content" data-tab="{{forloop.counter}}">
+            <div class="col-9 tabs-content tabs-content-active" data-tab="{{forloop.counter}}">
                     {% include 'main/folder-pub-list.html' %}
             </div>
                 {% endfor %}
@@ -84,7 +75,7 @@
         </div>
     </div>
 
-    <script src="{% static '\users\js\profile.js' %}"></script>
+    <script src="{% static '\users\js\my-folders.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

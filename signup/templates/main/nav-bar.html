@@ -10,7 +10,7 @@
                 {% endif %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color:white">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'upload' %}" style="color:white">Upload Literature</a></li>
-                <li class="nav-item"><a class="nav-link" href="/profile/{{request.session.username}}" style="color:white">My Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="/folders/{{request.session.username}}" style="color:white">My Folders</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color:white">Logout</a></li>
             </ul>
         </div>
