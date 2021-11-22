@@ -14,32 +14,20 @@
 </head>
 
 <body>
-    <div class="container-fluid">
         <!-- Navbar on top -->
-        <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-          <a class="navbar-brand" href="{% url 'home' %}">Corpus Management System</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Account
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {% if request.session.email %}
-                    {{request.session.email}} <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                    {% else %}
-                    <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                    <a class="dropdown-item" href="{% url 'register' %}">Register</a>
-                    {% endif %}
-                </div>
-            </li>
-            </ul>
+        <nav class="navbar navbar-light navbar-expand navigation-clean" style="background: #087830;">
+          <div class="container"><a class="navbar-brand" href="{% url 'index' %}">Brand</a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1"></button>
+              <div id="navcol-1" class="collapse navbar-collapse">
+                  <!--
+                  <a class="btn btn-success ms-auto" type="button" href="{% url 'login' %}" style="margin-right: 15px; color: white;">Login</a>
+                  <a class="btn btn-success" type="button" href="{% url 'register' %}" style="color: white;">Signup</a></div>
+                  -->
+                  <ul class="navbar-nav ms-auto">
+                      <li class="nav-item"><a class="nav-link" href="{% url 'login' %}" style="color:white">Login</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{% url 'register' %}" style="color:white">Sign Up</a></li>
+                  </ul>
           </div>
-        </nav>
-    </div>
+      </nav>
     <section class="login-clean">
         <form method="post">
             {% csrf_token %}
