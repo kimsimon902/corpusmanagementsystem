@@ -22,7 +22,8 @@ urlpatterns =[
     path('publication/<id>/bookmark', views.PublicationBookmark, name = 'publicationbookmark'),
     path('upload/',views.uploadLiterature, name ='upload'),
     path('bookmarks/',views.viewBookmarks, name ='bookmarks'),
-    path('adminpage/',views.viewAdmin, name ='adminpage')
+    path('adminpage/',views.viewAdmin, name ='adminpage'),
+    path(r'^delete/(?P<part_id>[0-9]+)/$', views.function, name='delete_view')
 ]
 
 if settings.DEBUG:
