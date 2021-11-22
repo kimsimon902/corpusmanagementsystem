@@ -12,15 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
 function clickEditOnAnnotationClass(id) {
     if(document.getElementById("pubsAnnotationTextArea_"+id).hasAttribute('readonly')){
         document.getElementById("pubsAnnotationTextArea_"+id).removeAttribute('readonly');
-        document.getElementById("pubsMarkerSelect_"+id).removeAttribute('disabled');
-        console.log("yes");
     } else{
         document.getElementById("pubsAnnotationTextArea_"+id).setAttribute('readonly',true);
-        document.getElementById("pubsMarkerSelect_"+id).setAttribute('disabled', true);
-        console.log("no");
     }
-    
-    document.getElementById("pubsMarkerSelect_"+id).removeAttribute('disabled');
 
     var save = document.getElementById("pubsAnnotation_btnSave_"+id);
     var cancel = document.getElementById("pubsAnnotation_btnCancel_"+id);
@@ -32,6 +26,8 @@ function clickEditOnAnnotationClass(id) {
       save.style.display = "none";
       cancel.style.display = "none";
     }
+
+    console.log("clicked");
 
     var edit = document.getElementById("pubsAnnotation_btnEdit_"+id);
     edit.style.display = "none";
