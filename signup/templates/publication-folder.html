@@ -82,10 +82,10 @@
             <input type="hidden" name="next" value="{{ request.path }}"/>
             <br>
             {% if annotation.author == request.session.username %}
-            <button type="button" class="btn btn-primary btn-sm" id="pubsAnnotation_btnEdit_{{annotation.id}}" onclick="clickEditOnAnnotationClass('{{annotation.id}}')" style="display:inline; margin-right:20px;" name="annotate-edit">Edit</button>
-            <button type="submit" class="btn btn-success btn-sm" id="pubsAnnotation_btnSave_{{annotation.id}}" onclick="clickCancelAnnotationClass('{{annotation.id}}')" style="display:none; margin-right:20px;" name="annotate-save">Save</button>
-            <button type="button" class="btn btn-warning btn-sm" id="pubsAnnotation_btnCancel_{{annotation.id}}" onclick="clickCancelAnnotationClass('{{annotation.id}}')" style="display:none; margin-right:20px;" name="annotate-cancel">Cancel</button>
-            <button type="submit" class="btn btn-danger btn-sm" id="pubsAnnotation_btnDelete_{{annotation.id}}" style="display:inline" name="annotate-delete">Delete</button>
+            <button type="button" class="btn btn-primary btn-sm float-right" id="pubsAnnotation_btnEdit_{{annotation.id}}" onclick="clickEditOnAnnotationClass('{{annotation.id}}')" style="display:inline; margin-right:20px;" name="annotate-edit">Edit</button>
+            <button type="submit" class="btn btn-success btn-sm float-right" id="pubsAnnotation_btnSave_{{annotation.id}}" onclick="clickCancelAnnotationClass('{{annotation.id}}')" style="display:none; margin-right:20px;" name="annotate-save">Save</button>
+            <button type="button" class="btn btn-warning btn-sm float-right" id="pubsAnnotation_btnCancel_{{annotation.id}}" onclick="clickCancelAnnotationClass('{{annotation.id}}')" style="display:none; margin-right:20px;" name="annotate-cancel">Cancel</button>
+            <button type="submit" class="btn btn-danger btn-sm float-right" id="pubsAnnotation_btnDelete_{{annotation.id}}" style="display:inline" name="annotate-delete">Delete</button>
             {% endif %}
         </form>
         </div>
@@ -100,7 +100,7 @@
         <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
         <input type="hidden" name="next" value="{{ request.path }}"/>
         <br>
-        <button type="submit" class="btn btn-primary btn-sm" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
+        <button type="submit" class="btn btn-primary btn-sm float-right" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
       </form>
     </div>
   </div>
