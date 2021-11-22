@@ -24,7 +24,7 @@ function SwitchPage (page_id) {
     next_page.classList.add('is-active');
 } */
 
-function clickEditOnAnnotation(id) {
+function clickEditOnAnnotationClass(id) {
     if(document.getElementById("pubsAnnotationTextArea_"+id).hasAttribute('readonly'))
         document.getElementById("pubsAnnotationTextArea_"+id).removeAttribute('readonly');
     else
@@ -46,7 +46,7 @@ function clickEditOnAnnotation(id) {
     del.style.display = "none";
 }
 
-function clickCancelAnnotation(id){
+function clickCancelAnnotationClass(id){
     var edit = document.getElementById("pubsAnnotation_btnEdit_"+id);
     var save = document.getElementById("pubsAnnotation_btnSave_"+id);
     var cancel = document.getElementById("pubsAnnotation_btnCancel_"+id);
@@ -57,6 +57,7 @@ function clickCancelAnnotation(id){
     cancel.style.display = "none";
     document.getElementById("pubsAnnotationTextArea_"+id).setAttribute('readonly',true);
 }
+
 
 function setupTabs(){
     document.querySelectorAll('.tabs-button').forEach(button => {
