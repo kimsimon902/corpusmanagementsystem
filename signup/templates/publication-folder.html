@@ -72,7 +72,15 @@
                         <h4 class="card-title">{{ annotation.author }} </h4>
                         <h6 class="text-muted card-subtitle mb-2">posted on {{annotation.dateTime}}</h6>
                     </div>
-                    <div class="col"><h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle"></i></h6></div>
+                    <div class="col">
+                        {% if annotation.marker == "To-do" %}
+                            <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#039be5"></i></h6>
+                        {% elif annotation.marker == "On progress" %}
+                            <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#ffeb3b"></i></h6>
+                        {% elif annotation.marker == "Finished" %}
+                            <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#43a047"></i></h6>
+                        {%endif %}
+                    </div>
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
                         {% csrf_token %}
                         <select class="custom-select" id="pubsMarkerSelect_{{annotation.id}}" name="selectMark" disabled>
@@ -108,7 +116,7 @@
                         {% csrf_token %}
                         <select class="custom-select" id="pubsMarkerSelect" name="selectMark">
                             <option selected value="None">None <i class="fas fa-circle"></i></option>
-                            <option value="To-do">To-do <i class="fas fa-circle" style="color:#0288d1"></i></option>
+                            <option value="To-do">To-do <i class="fas fa-circle" style="color:#039be5"></i></option>
                             <option value="On progress">On progress <i class="fas fa-circle" style="color:#ffeb3b"></i></option>
                             <option value="Finished">Finished <i class="fas fa-circle" style="color:#43a047"></i></option>
                         </select>
