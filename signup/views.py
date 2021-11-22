@@ -445,7 +445,7 @@ def createFolder(request, username):
 
 def uploadLiterature(request):
     if(request.user):
-        userid = request.session['username']
+        userid = request.session['email']
     else:
         userid = "null"
         
@@ -481,8 +481,8 @@ def uploadLiterature(request):
             addBookmark = bookmarks()
             addBookmark.user = userid
             addBookmark.publicationID = results.id
-            folderID = bookmarks_folder.objects.filter(user=userid,folder_name='My Uploads')
-            addBookmark.folderID = folderID.id
+            bkfolderid= bookmarks_folder.objects.filter(user=userid,folder_name='My Uploads')
+            addBookmark.folderID = bkfolderid.id
             addBookmark.save()
             return redirect('/home')#render(request, 'registration/login.html')
         else:
