@@ -338,7 +338,7 @@ def PublicationPageInFolder(request, folderid, username, id):
     return render(request, 'publication-folder.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark, 'folderID': folderid, 'pubID': id})
 
 
-def PublicationPageAnnotate(request, id):
+def PublicationPageAnnotate(request, username, folderID, id):
     results = publications.objects.filter(id=id)
     if (request.user):
         author= request.session['username']
