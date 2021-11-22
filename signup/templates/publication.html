@@ -110,7 +110,7 @@
                 -->
                 
                 <div class="container">
-                    {% for folder in my_folders%}
+                    {% for x in in_bookmark%}
                     <input type="hidden" name="folder_id" value="{{folder.id}}"/>
                     <div class="row align-items-center mb-2">
                         <div name="{{folder.id}}" class="col-2 d-flex">{{folder.folder_name}}</div>
@@ -121,7 +121,9 @@
                     <div class="row">
                         <span class="border-bottom-0"></span>
                     </div>
-                    {% else %}
+                    {% endfor %}
+                    
+                    {% for y in not_bookmark %}
                     <div class="row align-items-center mb-2">
                         <div name="{{folder.id}}" class="col-2 d-flex">{{folder.folder_name}}</div>
                         <div class="col-2 d-flex">
@@ -131,7 +133,6 @@
                     <div class="row">
                         <span class="border-bottom-0"></span>
                     </div>
-                    {% endif %}
                     {% endfor %}
                 </div>
                 
