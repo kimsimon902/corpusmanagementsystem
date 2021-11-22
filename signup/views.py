@@ -61,7 +61,8 @@ def registerView(request):
             myupload = bookmarks_folder()
             myupload.folder_name = 'My Uploads'
             myupload.user = request.POST.get('email')
-            return redirect('/')#render(request, 'registration/login.html')
+            myupload.save()
+            return redirect('home')#render(request, 'registration/login.html')
     else:
             return render(request, 'registration/register.html')
 
