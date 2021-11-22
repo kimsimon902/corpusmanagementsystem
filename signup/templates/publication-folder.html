@@ -82,7 +82,6 @@
     <div class="card-body">
       <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
         {% csrf_token %}
-        {% for annotation in annotations %}
         <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
         <input type="hidden" name="next" value="{{ request.path }}"/>
         <br>
