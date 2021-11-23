@@ -522,10 +522,6 @@ def PublicationBookmarkInFolder(request, username, folderid, id):
     else:
          return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs})
 
-        
-
-    else:
-         return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs})
 
 def createFolder(request, username):
 
