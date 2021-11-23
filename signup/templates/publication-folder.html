@@ -87,7 +87,7 @@
                   <br>
             </div>
             
-            <form method="POST" action="/publication/{{getdata.id}}/bookmark" id="bookmark-pub"> 
+            <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/publicationbookmarkinfolder" id="bookmark-pub"> 
             <div class="collapse mb-1" id="newFolder">
                 <div class="card card-body">
 
@@ -108,7 +108,7 @@
 
             <div class="container">
                 {% for x in in_bookmark %}
-                <form method="POST" action="/publication/{{getdata.id}}/bookmark">
+                <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/publicationbookmarkinfolder">
                     {% csrf_token %}
                 <input type="hidden" name="next" value="{{ request.path }}"/>
                 <input type="hidden" name="folder_id" value="{{x.id}}"/>
@@ -127,7 +127,7 @@
                 
                 {% for y in not_bookmark %}
                 {% if not forloop.first %}
-                <form method="POST" action="/publication/{{getdata.id}}/bookmark">
+                <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/publicationbookmarkinfolder">
                     {% csrf_token %}
                 <input type="hidden" name="next" value="{{ request.path }}"/>
                 <input type="hidden" name="folder_id" value="{{y.id}}"/>
