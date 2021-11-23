@@ -291,10 +291,12 @@ def FoldersPage(request, username):
     filterpub = bookmarks.objects.filter(user=email).values('publicationID')
     folders = bookmarks_folder.objects.filter(user=email)
     collaborator = collaborators.objects.filter(owner=email)
+    collabs = collaborators.objects.filter(collab=email)
+    collabFolders = bookmarks_folder.objects.filter(id=collabs.folderID)
 
     bookmark = publications.objects.filter(id__in=filterpub)
 
-    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator})
+    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabFolders':collabFolders})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
@@ -513,6 +515,7 @@ def deleteFolder(request, username):
 
     if request.method == 'POST':
         folder_value = request.POST.get('delete-folder-id')
+        annotations.objects.filter(folderID=folder_value).delete()
         bookmarks_folder.objects.get(id=folder_value).delete()
         collaborators.objects.filter(folderID=folder_value).delete()
         bookmarks.objects.filter(folderID=folder_value).delete()

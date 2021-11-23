@@ -43,8 +43,21 @@
                         </div>
                     {% endif %}
                 {% endfor %}
+            {% endif %}
 
-            {% else %}
+                    
+            {% if collabFolders %}
+                {% for folder in collabFolders%}
+                    {% if forloop.first %}
+                        <div class="col-9 tabs-content tabs-content-active" data-tab="{{forloop.counter}}">
+                                {% include 'main/folder-pub-list.html' %}
+                        </div>
+                    {% else %}
+                        <div class="col-9 tabs-content" data-tab="{{forloop.counter}}">
+                            {% include 'main/folder-pub-list.html' %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
             {% endif %}
 
             <div class="col-1">
