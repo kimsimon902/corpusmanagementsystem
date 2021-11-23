@@ -23,9 +23,9 @@
                 <form method="POST" action="{% url 'search' %}" id="search-form">
                     {% csrf_token %}
                     <div class = "input-group">
-                        <div class="row">
-                            <div class="col">
-                                <div class="input-group input-group-lg mb-3" style="width: max-content;">
+                        <div class="row w-100">
+                            <div class="col w-100">
+                                <div class="input-group input-group-lg mb-3" style="width: 100%;">
                                     <span class="input-group-text"><i class="fa fa-search"></i></span>
                                     <input class="form-control" type="search" placeholder="I am looking for..." name="searched" aria-label="Search">
                                     <button class="btn btn-success btn-sm" type="submit">Search</button>
