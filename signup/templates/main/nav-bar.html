@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light navbar-expand navigation-clean" style="background: #087830;">
     <div class="container-fluid"><a class="navbar-brand" href="{% url 'home' %}" style="color:white;">
         {% load static %}
-        <img src="{% static '\users\img\dlsu.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" style="margin-right: 5px;">DLSU Corpus</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
+        <img src="{% static '\users\img\dlsu.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" style="margin-right: 10px;">DLSU Corpus</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ms-auto">
                 {% if request.session.is_superuser == 1 %}
