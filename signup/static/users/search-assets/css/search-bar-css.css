@@ -479,7 +479,7 @@ button {
 .input-group {
   position: relative;
   border-bottom: 2px solid #cccccc;
-  margin-bottom: 41px;
+  margin-bottom: 15px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
