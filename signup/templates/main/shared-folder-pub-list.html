@@ -124,9 +124,9 @@
                     </thead>
                     <tbody>
                         {% if sharedbookmarks %}
-                            <p>{{sharedbookmarks}}</p>
+                            <p>Shared bookmarks {{sharedbookmarks}}</p>
                             {% for x in sharedpubs %}
-                            <p>{{sharedpubs}}</p>
+                            <p>Shared pubs {{sharedpubs}}</p>
                                 {% for y in sharedbookmarks %}
                                     {{ y }}
                                     {% if folder.id == y.folderID and y.publicationID == x.id %}
