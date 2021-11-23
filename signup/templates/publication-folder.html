@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% if request.session.email %}
 <html>
 
 <head>
@@ -332,3 +333,4 @@
    <script src="{% static '\users\js\home.js' %}"></script>
 </body>
 </html>
+{% endif %}
