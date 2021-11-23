@@ -1,3 +1,4 @@
+from django.core import paginator
 from django.db import reset_queries
 from django.db.models.fields import EmailField, NullBooleanField
 from django.http.response import HttpResponse, HttpResponseRedirect
@@ -15,6 +16,7 @@ from .models import bookmarks_folder
 from .models import collaborators
 from datetime import datetime
 from django.db.models import Q
+from django.core.paginator import Paginator
 import time
 
 # Create your views here.
@@ -111,7 +113,6 @@ def searchPublication(request):
         searchFilter = request.POST['filterData']
         
         libFilter = request.POST.getlist('filterLib')
-        
 
         if  searchFilter == "default":
 
@@ -175,9 +176,12 @@ def searchPublication(request):
                 if publication.url == 'doi.org/' or len(publication.url) == 0 or '.' not in publication.url or 'https' not in publication.url:
                     publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
                     publication.save()   
-                    
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results})
+            page_results = Paginator(results, 50)
+            page_number = 1
+            page_obj = page_results.get_page(page_number)        
+
+            return render(request, 'main/search.html',{'searched':searched, 'results':page_obj })
 
         elif searchFilter == "title":
             
