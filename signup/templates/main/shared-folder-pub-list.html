@@ -123,17 +123,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% if sharedpubs %}
+                        {% if sharedbookmarks %}
                             {% for x in sharedpubs %}
-                                {% if folder.id == x.folderID %}
-                                <tr>
-                                    <td><a href="/folders/{{request.session.username}}/{{folder.id}}/publication/{{x.id}}">{{x.title}}</a></td>
-                                    <td>{{x.author}}</td>
-                                    <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{x.abstract}}</td>
-                                    <td>{{x.source}}</td>
-                                    <td id="url">{{x.url}}</td>
-                                </tr>
-                                {% endif %}
+                                {% for y in sharedbookmarks %}
+                                    {% if folder.id == y.folderID and y.publicationID == x.id %}
+                                        <tr>
+                                            <td><a href="/folders/{{request.session.username}}/{{folder.id}}/publication/{{x.id}}">{{x.title}}</a></td>
+                                            <td>{{x.author}}</td>
+                                            <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{x.abstract}}</td>
+                                            <td>{{x.source}}</td>
+                                            <td id="url">{{x.url}}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
                             {% endfor %}
                         {% endif %}
                     </tbody>

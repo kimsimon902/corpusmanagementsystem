@@ -302,10 +302,11 @@ def FoldersPage(request, username):
     shared_folders = bookmarks_folder.objects.filter(id__in=collabs) #The folders that have collaborators
 
     shared_folders_ids = bookmarks_folder.objects.filter(id__in=collabs).values('id') #Get the ids of the folders that have collaborators
-    shared_folders_pubs = bookmark.filter(folderID__in=shared_folders_ids) #Get the publications that are shared
+    shared_folders_bookmarks = rawbookmarks.filter(folderID__in=shared_folders_ids) #Get all bookmarks that have collaborators
+    shared_folders_pubs = bookmark.filter(id__in=shared_folders_ids) #Get the publications that are shared
     
 
-    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedpubs':shared_folders_pubs})
+    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
