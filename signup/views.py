@@ -299,7 +299,10 @@ def FoldersPage(request, username):
 
     bookmark = publications.objects.filter(id__in=filterpub)
 
-    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs})
+    collabs = collaborators.objects.filter(collab=email).values('folderID')
+    shared_with_me = bookmarks_folder.objects.filter(id__in=collabs)
+
+    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'shared': shared_with_me})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
@@ -347,11 +350,8 @@ def PublicationPageInFolder(request, folderid, username, id):
     in_bookmark = bookmarks_folder.objects.filter(id__in=bookmark_value)
     not_bookmark = bookmarks_folder.objects.exclude(id__in=bookmark_value).filter(id__in=folders_value)
 
-    collabs = collaborators.objects.filter(collab=email).values('folderID')
-    shared_with_me = bookmarks_folder.objects.filter(id__in=collabs)
 
-
-    return render(request, 'publication-folder.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark, 'folderID': folderid, 'pubID': id, 'collaborators':collaborator, 'collabFolders': shared_with_me})
+    return render(request, 'publication-folder.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark, 'folderID': folderid, 'pubID': id, 'collaborators':collaborator})
 
 
 def PublicationPageAnnotate(request, username, folderid, id):
@@ -485,6 +485,9 @@ def PublicationBookmarkInFolder(request, username, folderid, id):
 
     bookmark = publications.objects.filter(id__in=filterpub)
 
+    collabs = collaborators.objects.filter(collab=email).values('folderID')
+    shared_with_me = bookmarks_folder.objects.filter(id__in=collabs)
+
     next = request.POST.get('next', '/')
 
     if request.method=='POST':
@@ -498,13 +501,13 @@ def PublicationBookmarkInFolder(request, username, folderid, id):
             messages.success(request, "Added to your bookmarks")
 
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
-            return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs})
+            return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'shared':shared_with_me})
         elif request.POST.get("bookmark_action") == 'delete':
             folder_value = request.POST.get('folder_id')
             bookmarks.objects.filter(folderID=folder_value, publicationID=pubID, user=email).delete()
 
             messages.success(request, "Deleted from your bookmarks")
-            return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs})
+            return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'shared':shared_with_me})
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
 
         elif request.POST.get("newFolder") == 'newFolder':
@@ -512,9 +515,9 @@ def PublicationBookmarkInFolder(request, username, folderid, id):
             newFolder.folder_name = request.POST.get('folder-name')
             newFolder.user = email
             newFolder.save()
-            return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs})
+            return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'shared':shared_with_me})
         else:
-            return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs})
+            return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'shared':shared_with_me})
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
 
         
