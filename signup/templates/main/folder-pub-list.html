@@ -4,7 +4,7 @@
         <div class="col">
             <h5 style="display: inline;">{{folder.folder_name}}</h5>
             <button class="btn btn-danger float-end" style="margin-left: 2px;" data-toggle="modal" data-target="#deletefolder">Delete</button>
-            <button class="btn btn-secondary float-end" style="margin-right: 2px;" data-toggle="modal" data-target="#collaborator">Collaborators</button>
+            <button class="btn btn-secondary float-end" style="margin-right: 2px;" data-toggle="modal" data-target="#collaborator-{{folder.id}}">Collaborators</button>
         </div>
     </div>
     
@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <div class="modal fade bd-example-modal-lg" id="collaborator" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="collaborator-{{folder.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -43,13 +43,13 @@
             <div class="modal-body">
                 <div>
                     <div class="col-2 mb-1" style="margin-bottom: 5px;">
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#newCollaborator" aria-expanded="false" aria-controls="newCollaborator"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#newCollaborator-{{folder.id}}" aria-expanded="false" aria-controls="newCollaborator-{{folder.id}}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
                         </svg> Add </button>
                         <br>
                     </div>
 
-                    <div class=" col-5 collapse mb-2" id="newCollaborator" style="width: 40%; height:25%;">
+                    <div class=" col-5 collapse mb-2" id="newCollaborator-{{folder.id}}" style="width: 40%; height:25%;">
                         <div class="card card-body">
                             <form method="post" action="/folders/{{request.session.username}}/addcollab">
                                 {% csrf_token %}
@@ -61,7 +61,7 @@
                                     <input type="text" class="form-control" name="email-collab">
                                 </div>                            
                             <div class="modal-footer float-end">
-                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#newCollaborator">Close</button>
+                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#newCollaborator-{{folder.id}}">Close</button>
                                 <button type="submit" class="btn btn-primary btn-sm" name="add-collab">Add</button>
                             </div>
                             </form>
