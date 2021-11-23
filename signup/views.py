@@ -290,11 +290,11 @@ def FoldersPage(request, username):
     rawbookmarks = bookmarks.objects.filter(user=email)
     filterpub = bookmarks.objects.filter(user=email).values('publicationID')
     folders = bookmarks_folder.objects.filter(user=email)
-
+    collaborator = collaborators.objects.filter(owner=email)
 
     bookmark = publications.objects.filter(id__in=filterpub)
 
-    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks})
+    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
@@ -333,6 +333,7 @@ def PublicationPageInFolder(request, folderid, username, id):
     email = request.session['email']
 
     annotation = annotations.objects.filter(publicationID=id, folderID=folderid)
+    collaborator = collaborators.objects.filter(owner=email)
 
     my_folders = bookmarks_folder.objects.filter(user=email)
     folders_value = bookmarks_folder.objects.filter(user=email).values('id')
@@ -343,7 +344,7 @@ def PublicationPageInFolder(request, folderid, username, id):
     not_bookmark = bookmarks_folder.objects.exclude(id__in=bookmark_value)
 
 
-    return render(request, 'publication-folder.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark, 'folderID': folderid, 'pubID': id})
+    return render(request, 'publication-folder.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark, 'folderID': folderid, 'pubID': id, 'collaborators':collaborator})
 
 
 def PublicationPageAnnotate(request, username, folderid, id):
@@ -352,7 +353,10 @@ def PublicationPageAnnotate(request, username, folderid, id):
         author= request.session['username']
     else:
         author="null"
+    
+    email = request.session['email']
     annotation = annotations.objects.filter(publicationID=id, author=author)
+    collaborator = collaborators.objects.filter(owner=email)
     next = request.POST.get('next', '/')
     current_datetime = datetime.now()
     mark = request.POST['selectMark']
@@ -372,7 +376,7 @@ def PublicationPageAnnotate(request, username, folderid, id):
             messages.success(request, "Annotation saved")
             return HttpResponseRedirect(next)
     else:
-        return render(request, 'publication.html', {'publication':results, 'annotations':annotation})
+        return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'collaborators':collaborator})
 
 def PublicationPageAnnotateEdit(request, username, folderid, id, annoID):
     results = publications.objects.filter(id=id)
@@ -380,7 +384,10 @@ def PublicationPageAnnotateEdit(request, username, folderid, id, annoID):
         author= request.session['username']
     else:
         author="null"
+
+    email = request.session['email']
     annotation = annotations.objects.filter(publicationID=id, author=author, id=annoID)
+    collaborator = collaborators.objects.filter(owner=email)
     next = request.POST.get('next', '/')
     current_datetime = datetime.now()
     
@@ -406,7 +413,7 @@ def PublicationPageAnnotateEdit(request, username, folderid, id, annoID):
             messages.success(request, "Annotation deleted")
             return HttpResponseRedirect(next)
     else:
-        return render(request, 'publication.html', {'publication':results, 'annotations':annotation})
+        return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'collaborators':collaborator})
 
 def PublicationBookmark(request, id):
     results = publications.objects.filter(id=id)
