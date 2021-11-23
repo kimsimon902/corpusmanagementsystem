@@ -29,15 +29,22 @@
     <div class="tabs-body">
         <div class="row">
             <div class="col-md-auto tabs-sidebar" style="margin-top: 15px; background: white; margin-left: 20px; position: -webkit-sticky; position: sticky; top: 0;">
+                <h6>My folders</h6>
                 {% if folders %}
                 {% for folder in folders%}
                     {% if forloop.first %}
-                        <button class="tabs-button tabs-button-active" data-for-tab="{{forloop.counter}}">{{folder.folder_name}}</button>
+                        <button class="tabs-button tabs-button-active" data-for-tab="my-{{forloop.counter}}">{{folder.folder_name}}</button>
                     {% else %}
-                        <button class="tabs-button" data-for-tab="{{forloop.counter}}">{{folder.folder_name}}</button>
+                        <button class="tabs-button" data-for-tab="my-{{forloop.counter}}">{{folder.folder_name}}</button>
                     {% endif %}
                 {% endfor %}
-                {% else %}
+                {% endif %}
+
+                <h6>Shared with me</h6>
+                {% if collabFolders %}
+                {% for folder in collabFolders %}
+                    <button class="tabs-button" data-for-tab="collab-{{forloop.counter}}">{{folder.folder_name}}</button>
+                {% endfor %}
                 {% endif %}
                 <div>
                     <br>
@@ -48,18 +55,26 @@
             </div>
         
             {% if folders %}
-                {% for folder in folders%}
+                {% for folder in folders %}
                     {% if forloop.first %}
-                        <div class="col-10 tabs-content tabs-content-active" data-tab="{{forloop.counter}}">
+                        <div class="col-10 tabs-content tabs-content-active" data-tab="my-{{forloop.counter}}">
                                 {% include 'main/folder-pub-list.html' %}
                         </div>
                     {% else %}
-                        <div class="col-10 tabs-content" data-tab="{{forloop.counter}}">
+                        <div class="col-10 tabs-content" data-tab="my-{{forloop.counter}}">
                             {% include 'main/folder-pub-list.html' %}
                         </div>
                     {% endif %}
                 {% endfor %}
             {% endif %}
+
+            {% if collabFolders %}
+            {% for folder in collabFolders %}
+                <div class="col-10 tabs-content" data-tab="collab-{{forloop.counter}}">
+                    {% include 'main/folder-pub-list.html' %}
+                </div>
+            {% endfor %}
+        {% endif %}
         </div>
     </div>
 
