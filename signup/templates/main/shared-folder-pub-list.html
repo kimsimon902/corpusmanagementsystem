@@ -124,8 +124,11 @@
                     </thead>
                     <tbody>
                         {% if sharedbookmarks %}
+                            <p>{{sharedbookmarks}}</p>
                             {% for x in sharedpubs %}
+                            <p>{{sharedpubs}}</p>
                                 {% for y in sharedbookmarks %}
+                                    {{ y }}
                                     {% if folder.id == y.folderID and y.publicationID == x.id %}
                                         <tr>
                                             <td><a href="/folders/{{request.session.username}}/{{folder.id}}/publication/{{x.id}}">{{x.title}}</a></td>
