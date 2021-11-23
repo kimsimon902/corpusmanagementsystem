@@ -128,7 +128,7 @@
                             {% for x in sharedpubs %}
                             <p>Shared pubs {{sharedpubs}}</p>
                                 {% for y in sharedbookmarks %}
-                                    {{ y }}
+                                    <p>{{ folder.id }} and {{ y }}</p>
                                     {% if folder.id == y.folderID and y.publicationID == x.id %}
                                         <tr>
                                             <td><a href="/folders/{{request.session.username}}/{{folder.id}}/publication/{{x.id}}">{{x.title}}</a></td>
