@@ -495,9 +495,19 @@ def addCollab(request, username):
     else:
         return HttpResponseRedirect(next)
 
+def deleteCollab(request, username):
+    email = request.session['email']
+    next = request.POST.get('next', '/')
 
+    if request.method == 'POST':
+        collab_value = request.POST.get('delete-collab')
+        collaborators.objects.get(id=collab_value).delete()
+        
+        return HttpResponseRedirect(next)
+    else:
+        return HttpResponseRedirect(next)
     
-
+    
 
 
 def uploadLiterature(request):

@@ -59,14 +59,17 @@
                                 {% for x in collaborators %}
                                     {% if x.folderID == folder.id %}
                                         <tr>
-                                            
+                                            <form method="post" action="/folders/{{request.session.username}}/removecollab">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="delete-collab" value="{{x.id}}"/>
+                                            <input type="hidden" name="next" value="{{ request.path }}"/>
                                             <td>{{x.collab}}</td>
-                                            <td><button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button></td>
-                                                
+                                            <td><button type="submit" class="btn btn-outline-danger btn-sm" name="collab-delete">x</button></td>
+                                            </form>    
                                         </tr>
+                                    {% endif %}
+                                {% endfor %}
                         {% endif %}
-                        {% endfor %}
-                    {% endif %}
                     </tbody>
                 </table>
             
