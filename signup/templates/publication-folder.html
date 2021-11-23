@@ -154,11 +154,13 @@
 <!-- Annotation -->
   {% if annotations %}
   <div class="row">
-      <h5>Annotations</h5>
+      <div class="col"></div>
+      <div class="col-10"><h6>Annotations</h6></div>
+      <div class="col"></div>
   </div>
   <div class="row">
     <div class="col"></div>
-    <div class="col-10" style="padding: 50px;">
+    <div class="col-10" style="padding-left: 50px; padding-right: 50px;">
         {% for annotation in annotations %}
         <div class="card" id="annotationCard" style="display:block; margin-top: 20px;">
             <div class="card-body">
