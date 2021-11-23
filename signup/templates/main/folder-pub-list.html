@@ -3,8 +3,31 @@
     <div class="row">
         <div class="col">
             <h5 style="display: inline;">{{folder.folder_name}}</h5>
-            <button class="btn btn-danger float-end" style="margin-left: 2px;">Delete</button>
+            <button class="btn btn-danger float-end" style="margin-left: 2px;" data-toggle="modal" data-target="#deletefolder">Delete</button>
             <button class="btn btn-secondary float-end" style="margin-right: 2px;" data-toggle="modal" data-target="#collaborator">Collaborators</button>
+        </div>
+    </div>
+    
+    <div class="modal fade bd-example-modal-sm" id="deletefolder" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete {{folder.folder_name}}?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="/folders/{{request.session.username}}/deletefolder">
+            {% csrf_token %}
+            <input type="hidden" name="delete-folder-id" value="{{folder.id}}"/>
+            <input type="hidden" name="next" value="{{ request.path }}"/>
+            <div class="modal-footer float-end">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-warning btn-sm" name="delete-folder">Delete</button>
+            </div>
+            </form>
+
+          </div>
         </div>
     </div>
 

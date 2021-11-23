@@ -21,6 +21,7 @@ urlpatterns =[
     path('folders/<username>/<folderid>/publication/<id>/annotate/<annoID>',views.PublicationPageAnnotateEdit, name ='publicationpageannotateedit'),
     path('folders/<username>/addcollab',views.addCollab, name ='addcollab'),
     path('folders/<username>/removecollab',views.deleteCollab, name = 'deletecollab'),
+    path('folders/<username>/deletefolder',views.deleteFolder, name = 'deletefolder'),
     path('publication/<id>/',views.PublicationPage, name ='publicationpage'),
     path('publication/<id>/bookmark', views.PublicationBookmark, name = 'publicationbookmark'),
     path('upload/',views.uploadLiterature, name ='upload'),
