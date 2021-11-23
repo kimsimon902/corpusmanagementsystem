@@ -589,6 +589,8 @@ def viewAdmin(request):
             #pair will be a list containing x and y
             dec = publications.objects.get(id=pair[0],title=pair[1])
             dec.delete()
+            bkmrk = bookmarks.objects.get(publicationID=pair[0])
+            bkmrk.delete()
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
