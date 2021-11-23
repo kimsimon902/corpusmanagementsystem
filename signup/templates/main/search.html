@@ -22,39 +22,33 @@
             <div class="col">
                 <form method="POST" action="{% url 'search' %}" id="search-form">
                     {% csrf_token %}
-                    <div class = "input-group">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-3">
-                                    <label for="inputState">Search by</label>
-                                    <select id="inputState" class="form-control" aria-label="Filter" name="filterData">
-                                            <option selected value="default">All</option>
-                                            <option value="title">Title</option>
-                                            <option value="author">Author</option>
-                                    </select>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-check form-check-inline">
-                                        <input id="formCheck-AIS" class="form-check-input" type="checkbox" name="filterLib" value="ais"/>
-                                        <label class="form-check-label" for="formCheck-AIS">AIS</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input id="formCheck-IEEE" class="form-check-input" type="checkbox" name="filterLib" value="ieee"/>
-                                        <label class="form-check-label" for="formCheck-IEEE">IEEE</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input id="formCheck-Scopus" class="form-check-input" type="checkbox" name="filterLib" value="scopus"/>
-                                        <label class="form-check-label" for="formCheck-Scopus">Scopus</label>
-                                    </div> 
-                                </div>
-                                <div class="col">
-                                    <div class="input-group input-group-lg mb-3" style="width: 100%;">
-                                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                        <input class="form-control" type="search" placeholder="I am looking for..." name="searched" aria-label="Search">
-                                        <button class="btn btn-success btn-sm" type="submit">Search</button>
-                                    </div>
-                                </div> 
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            <input class="form-control" type="search" placeholder="I am looking for..." name="searched" aria-label="Search">
+                            <button class="btn btn-success btn-sm" type="submit">Search</button>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputState">Search by</label>
+                            <select id="inputState" class="form-control" aria-label="Filter" name="filterData">
+                                    <option selected value="default">All</option>
+                                    <option value="title">Title</option>
+                                    <option value="author">Author</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check form-check-inline">
+                                <input id="formCheck-AIS" class="form-check-input" type="checkbox" name="filterLib" value="ais"/>
+                                <label class="form-check-label" for="formCheck-AIS">AIS</label>
                             </div>
+                            <div class="form-check form-check-inline">
+                                <input id="formCheck-IEEE" class="form-check-input" type="checkbox" name="filterLib" value="ieee"/>
+                                <label class="form-check-label" for="formCheck-IEEE">IEEE</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input id="formCheck-Scopus" class="form-check-input" type="checkbox" name="filterLib" value="scopus"/>
+                                <label class="form-check-label" for="formCheck-Scopus">Scopus</label>
+                            </div> 
                         </div>
                     </div>
                 </form> 
