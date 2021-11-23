@@ -1,0 +1,144 @@
+<div class="container-fluid" style="background: #efefef;">
+    <br><br>
+    <div class="row">
+        <div class="col">
+            <h5 style="display: inline;">{{folder.folder_name}}</h5>
+            {% if not forloop.first %}
+                <button class="btn btn-danger float-end" style="margin-left: 2px;" data-toggle="modal" data-target="#deletefolder-{{folder.id}}">Delete</button>
+                <button class="btn btn-secondary float-end" style="margin-right: 2px;" data-toggle="modal" data-target="#collaborator-{{folder.id}}">Collaborators</button>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="modal fade bd-example-modal-sm" id="deletefolder-{{folder.id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete {{folder.folder_name}}?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="/folders/{{request.session.username}}/deletefolder">
+            {% csrf_token %}
+            <input type="hidden" name="delete-folder-id" value="{{folder.id}}"/>
+            <input type="hidden" name="next" value="{{ request.path }}"/>
+            <div class="modal-footer float-end">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger btn-sm" name="delete-folder">Delete</button>
+            </div>
+            </form>
+
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="collaborator-{{folder.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Collaborators for {{folder.folder_name}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="col-2 mb-1" style="margin-bottom: 5px;">
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#newCollaborator-{{folder.id}}" aria-expanded="false" aria-controls="newCollaborator-{{folder.id}}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+                        </svg> Add </button>
+                        <br>
+                    </div>
+
+                    <div class=" col-5 collapse mb-2" id="newCollaborator-{{folder.id}}" style="width: 40%; height:25%;">
+                        <div class="card card-body">
+                            <form method="post" action="/folders/{{request.session.username}}/addcollab">
+                                {% csrf_token %}
+                                <input type="hidden" name="new-folder-id" value="{{folder.id}}"/>
+                                <input type="hidden" name="next" value="{{ request.path }}"/>
+                                <input type="hidden" name="newCollab" value="newCollab">
+                                <div class="form-group">
+                                    <label for="email-collab" class="col-form-label">Email:</label>
+                                    <input type="text" class="form-control" name="email-collab">
+                                </div>                            
+                            <div class="modal-footer float-end">
+                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#newCollaborator-{{folder.id}}">Close</button>
+                                <button type="submit" class="btn btn-primary btn-sm" name="add-collab">Add</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Collaborators</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if collaborators %}
+                                {% for x in collaborators %}
+                                    {% if x.folderID == folder.id %}
+                                        <tr>
+                                            <form method="post" action="/folders/{{request.session.username}}/removecollab">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="delete-collab" value="{{x.id}}"/>
+                                            <input type="hidden" name="next" value="{{ request.path }}"/>
+                                            <td>{{x.collab}}</td>
+                                            <td><button type="submit" class="btn btn-outline-danger btn-sm" name="collab-delete">x</button></td>
+                                            </form>    
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            
+                
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive" style="min-height: 80vh;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author/s</th>
+                            <th>Abstract</th>
+                            <th>Source</th>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if sharedpubs %}
+                            {% for x in sharedpubs %}
+                                {% if folder.id == x.folderID %}
+                                <tr>
+                                    <td><a href="/folders/{{request.session.username}}/{{folder.id}}/publication/{{x.id}}">{{x.title}}</a></td>
+                                    <td>{{x.author}}</td>
+                                    <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{x.abstract}}</td>
+                                    <td>{{x.source}}</td>
+                                    <td id="url">{{x.url}}</td>
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

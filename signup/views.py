@@ -291,18 +291,21 @@ def FoldersPage(request, username):
 
     email = request.session['email']
 
-    rawbookmarks = bookmarks.objects.filter(user=email)
-    filterpub = bookmarks.objects.filter(user=email).values('publicationID')
-    folders = bookmarks_folder.objects.filter(user=email)
-    collaborator = collaborators.objects.filter(owner=email)
-    collabs = collaborators.objects.filter(collab=email)
+    rawbookmarks = bookmarks.objects.filter(user=email) #All bookmarks of the user
+    filterpub = bookmarks.objects.filter(user=email).values('publicationID') #Get the publicationIDs of bookmarks of the user
+    folders = bookmarks_folder.objects.filter(user=email) #Get folders made by the user
+    collaborator = collaborators.objects.filter(owner=email) #Get the collaborators
 
-    bookmark = publications.objects.filter(id__in=filterpub)
+    bookmark = publications.objects.filter(id__in=filterpub) #Get the publications that is bookmarked
 
-    collabs = collaborators.objects.filter(collab=email).values('folderID')
-    shared_with_me = bookmarks_folder.objects.filter(id__in=collabs)
+    collabs = collaborators.objects.filter(collab=email).values('folderID') #Get the folderIDs of the folders that have collaborators
+    shared_folders = bookmarks_folder.objects.filter(id__in=collabs) #The folders that have collaborators
 
-    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'shared': shared_with_me})
+    shared_folders_ids = bookmarks_folder.objects.filter(id__in=collabs).values('id') #Get the ids of the folders that have collaborators
+    shared_folders_pubs = bookmark.objects.filter(folderID__in=shared_folders_ids) #Get the publications that are shared
+    
+
+    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedpubs':shared_folders_pubs})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
