@@ -292,11 +292,10 @@ def FoldersPage(request, username):
     folders = bookmarks_folder.objects.filter(user=email)
     collaborator = collaborators.objects.filter(owner=email)
     collabs = collaborators.objects.filter(collab=email)
-    collabFolders = bookmarks_folder.objects.filter(id=collabs.folderID)
 
     bookmark = publications.objects.filter(id__in=filterpub)
 
-    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabFolders':collabFolders})
+    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
