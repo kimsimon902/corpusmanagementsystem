@@ -44,13 +44,13 @@
                         <div class="form-check"><label class="form-check-label"><input class="form-check-input" type="checkbox">I agree to the license terms.</label></div>
                     </div>
                     {% if messages %}
-                    <ul class="messages">
+                    <div class="messages">
                         {% for message in messages %}
-                        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                        <div  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </div>
                         {% endfor %}
-                    </ul>
+                    </div>
                     {% endif %}
-                    <div class="form-group"><input class="btn btn-primary btn-block" type="submit" value="Sign Up"></input></div><a class="already" href="{% url 'login' %}">You already have an account? Login here.</a>
+                    <div class="form-group"><input class="btn btn-primary btn-block" type="submit" value="Sign Up"></input></div><a class="already" href="{% url 'login' %}">Already have an account? Login here.</a>
                 </form>
             </div>
         </section>
