@@ -529,12 +529,12 @@ def deleteFolder(request, username):
 
 
 def uploadLiterature(request):
-    if(request.user):
-        userid = request.session['email']
-    else:
-        userid = "null"
         
     if request.method=='POST':
+        if(request.user):
+            userid = request.session['email']
+        else:
+            userid = "null"
         if request.POST.get('title') and request.POST.get('author'):
             savepub = publications()
             savepub.title = request.POST.get('title')
