@@ -42,8 +42,8 @@
                 {% endif %}
 
                 <h6>Shared with me</h6>
-                {% if sharedfolder %}
-                {% for folder in sharedfolder %}
+                {% if sharedfolders %}
+                {% for folder in sharedfolders %}
                     <button class="tabs-button" data-for-tab="collab-{{forloop.counter}}">{{folder.folder_name}}</button>
                 {% endfor %}
                 {% endif %}
