@@ -203,43 +203,41 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col"></div>
         {% endfor %}
-  {% endif %}
-  <div class="row">
-    <div class="col"></div>
-    <div class="col-10">
-        <div class="card" id="annotationCard" style="display:block; margin-top: 20px;">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <h4 class="card-title">{{ request.session.username }}</h4>
-                    </div>
-                    <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
-                        {% csrf_token %}
-                        <span class="choose text-dark" style="margin-right: 10px;">Marker:</span>
-                        <select class="custom-select" id="pubsMarkerSelect" name="selectMark">
-                            <option selected value="None">None <i class="fas fa-circle"></i></option>
-                            <option value="To-do">To-do</option>
-                            <option value="On progress">On progress</option>
-                            <option value="Finished">Finished</option>
-                        </select>
-                        <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
-                        <input type="hidden" name="next" value="{{ request.path }}"/>
-                        <br>
-                        <button type="submit" class="btn btn-primary btn-sm float-end" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="col"></div>
   </div>
-
+  {% endif %}
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10">
+            <div class="card" id="annotationCard" style="display:block; margin-top: 20px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="card-title">{{ request.session.username }}</h4>
+                        </div>
+                        <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
+                            {% csrf_token %}
+                            <span class="choose text-dark" style="margin-right: 10px;">Marker:</span>
+                            <select class="custom-select" id="pubsMarkerSelect" name="selectMark">
+                                <option selected value="None">None <i class="fas fa-circle"></i></option>
+                                <option value="To-do">To-do</option>
+                                <option value="On progress">On progress</option>
+                                <option value="Finished">Finished</option>
+                            </select>
+                            <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
+                            <input type="hidden" name="next" value="{{ request.path }}"/>
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-sm float-end" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
     </div>
-    <div class="col"></div>
-</div>
 <!-- End Annotation -->
 {% endfor %}
 
