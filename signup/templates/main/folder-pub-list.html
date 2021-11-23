@@ -8,9 +8,9 @@
         </div>
     </div>
 
-    <div class="modal fade bd-example-modal-lg" id="collaborator" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="collaborator" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: inline-flex;">
         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
+          <div class="modal-content" style="display: inline-flex;">
             <div class="modal-header">
                 <h4 class="modal-title">Collaborators for {{folder.folder_name}}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -26,7 +26,7 @@
                         <br>
                     </div>
 
-                    <div class="col-6 collapse mb-1" id="newCollaborator" style="width: 50%; height:auto;">
+                    <div class="col-6 collapse mb-1" id="newCollaborator" style="width: auto; height:auto; display: inline;">
                         <div class="card card-body">
 
                                 {% csrf_token %}
