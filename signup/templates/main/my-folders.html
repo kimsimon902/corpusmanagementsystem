@@ -21,7 +21,11 @@
             <div class="col-md-auto tabs-sidebar h-100">
                 {% if folders %}
                 {% for folder in folders%}
-                <button class="tabs-button" data-for-tab="{{forloop.counter}}">{{folder.folder_name}}</button>
+                    {% if forloop.first %}
+                        <button class="tabs-button" data-for-tab="{{forloop.counter}}">{{folder.folder_name}}</button>
+                    {% else %}
+                        <button class="tabs-button tabs-button-active" data-for-tab="{{forloop.counter}}">{{folder.folder_name}}</button>
+                    {% endif %}
                 {% endfor %}
                 {% else %}
                 {% endif %}
