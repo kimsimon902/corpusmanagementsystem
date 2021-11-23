@@ -478,6 +478,24 @@ def createFolder(request, username):
     else:
         return HttpResponseRedirect(next)
 
+
+def addCollab(request):
+
+    email = request.session['email']
+    next = request.POST.get('next', '/')
+
+    if request.method == 'POST':
+        newCollab = collaborators()
+        newCollab.collab = request.POST.get('email-collab')
+        newCollab.owner = email
+        newCollab.folderID = request.POST.get('new-folder-id')
+        newCollab.save()
+
+        return HttpResponseRedirect(next)
+    else:
+        return HttpResponseRedirect(next)
+
+
     
 
 

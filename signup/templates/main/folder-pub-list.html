@@ -28,8 +28,9 @@
 
                     <div class=" col-5 collapse mb-2" id="newCollaborator" style="width: 40%; height:25%;">
                         <div class="card card-body">
-
+                            <form method="post" action="/folders/{{request.session.username}}/addcollab">
                                 {% csrf_token %}
+                                <input type="hidden" name="new-folder-id" value="{{folder.id}}"/>
                                 <input type="hidden" name="next" value="{{ request.path }}"/>
                                 <input type="hidden" name="newCollab" value="newCollab">
                                 <div class="form-group">
@@ -40,6 +41,7 @@
                                 <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#newCollaborator">Close</button>
                                 <button type="submit" class="btn btn-primary btn-sm" name="add-collab">Add</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
