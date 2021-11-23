@@ -21,7 +21,7 @@ class publications(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=200)
     abstract = models.CharField(max_length=100)
-    url = models.CharField(max_length=100)
+    url = models.FileField(upload_to='literature/pdfs/')
     pdf = models.FileField(upload_to='literature/pdfs/')
     source = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
