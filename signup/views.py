@@ -177,7 +177,7 @@ def searchPublication(request):
                     publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
                     publication.save()   
 
-            page_results = Paginator(results, 50)
+            page_results = Paginator(results, 10)
             page_number = 1
             page_obj = page_results.get_page(page_number)        
 
