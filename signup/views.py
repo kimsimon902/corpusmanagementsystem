@@ -180,13 +180,19 @@ def searchPublication(request):
             publication_keys = pubkeys.objects.all()
             keywords_list = keywords.objects.all()
             keyword_results = []
+            keyword_count = []
 
             for publication in xlist:
                 for pubkey in publication_keys:
                     if publication.id == pubkey.publication_id:
                         for pubid in keywords_list:
                             if pubkey.keywords_id == pubid.id:
-                                keyword_results.append(pubid.keywordname)
+                                for word in keyword_results:
+                                    if pubid.keywordname == word:
+                                        keyword_count += 1
+                                    else: 
+                                        keyword_results.append(pubid.keywordname)
+                                        keyword_count.append(1)
 
 
             page_results = Paginator(results, 10)
