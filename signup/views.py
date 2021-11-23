@@ -193,7 +193,7 @@ def searchPublication(request):
             page_number = 1
             page_obj = page_results.get_page(page_number)        
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keywords':keyword_results })
+            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results })
 
         elif searchFilter == "title":
             
