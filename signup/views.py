@@ -479,7 +479,7 @@ def createFolder(request, username):
         return HttpResponseRedirect(next)
 
 
-def addCollab(request):
+def addCollab(request, username):
 
     email = request.session['email']
     next = request.POST.get('next', '/')
