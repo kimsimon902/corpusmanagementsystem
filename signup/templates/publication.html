@@ -58,7 +58,7 @@
                         <p style="margin-bottom: 5px;">URL:</p>
 
                         {% if getdata.url == 'uploaded' %}
-                            <a href="/media/{{result.pdf}}">{{getdata.pdf}}</a>
+                            <a href="/media/{{getdata.pdf}}">{{getdata.pdf}}</a>
                         {% else %}
                             <a href="{{getdata.url}}">{{getdata.url}}</a>
                         {% endif %}
