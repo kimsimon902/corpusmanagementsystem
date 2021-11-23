@@ -322,7 +322,7 @@ def PublicationPage(request, id):
 
 
     in_bookmark = bookmarks_folder.objects.filter(id__in=bookmark_value)
-    not_bookmark = bookmarks_folder.objects.filter(id__in=folders_value).exclude(id__in=bookmark_value)
+    not_bookmark = bookmarks_folder.objects.exclude(id__in=bookmark_value).filter(id__in=folders_value)
 
 
     return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark})
