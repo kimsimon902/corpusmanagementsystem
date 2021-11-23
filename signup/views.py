@@ -302,7 +302,7 @@ def FoldersPage(request, username):
     shared_folders = bookmarks_folder.objects.filter(id__in=collabs) #The folders that have collaborators
 
     shared_folders_ids = bookmarks_folder.objects.filter(id__in=collabs).values('id') #Get the ids of the folders that have collaborators
-    shared_folders_bookmarks = bookmarks.objects.filter(folderID__in=shared_folders_ids).values('publicationID') #Get all bookmarks that have collaborators
+    shared_folders_bookmarks = bookmarks.objects.filter(folderID__in=shared_folders_ids) #Get all bookmarks that have collaborators
     shared_folders_pubs = publications.objects.filter(id__in=shared_folders_bookmarks) #Get the publications that are shared
     
 
