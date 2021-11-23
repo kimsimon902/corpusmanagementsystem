@@ -598,7 +598,7 @@ def uploadLiterature(request):
             savepub.abstract = request.POST.get('abstract')
             savepub.author = request.POST.get('author')
             savepub.pdf = request.FILES.get('document')
-            savepub.url = request.FILES.get('document')
+            savepub.url = 'uploaded'
             savepub.status = 'Pending'
             savepub.source = 'Uploaded'
             savepub.save()
