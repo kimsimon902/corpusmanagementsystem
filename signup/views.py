@@ -175,13 +175,25 @@ def searchPublication(request):
             for publication in xlist:
                 if publication.url == 'doi.org/' or len(publication.url) == 0:
                     publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
-                    publication.save()   
+                    publication.save()
+
+            publication_keys = pubkeys.objects.all()
+            keywords_list = keywords.objects.all()
+            keyword_results = []
+
+            for publication in xlist:
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id:
+                        for pubid in keywords_list:
+                            if pubkey.keywords_id == pubid.id:
+                                keyword_results.append(pubid.keywordname)
+
 
             page_results = Paginator(results, 10)
             page_number = 1
             page_obj = page_results.get_page(page_number)        
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results })
+            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keywords':keyword_results })
 
         elif searchFilter == "title":
             
