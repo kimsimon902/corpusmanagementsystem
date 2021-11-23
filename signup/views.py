@@ -512,8 +512,10 @@ def deleteFolder(request, username):
     next = request.POST.get('next', '/')
 
     if request.method == 'POST':
-        collab_value = request.POST.get('delete-collab')
-        collaborators.objects.get(id=collab_value).delete()
+        folder_value = request.POST.get('delete-folder-id')
+        bookmarks_folder.objects.get(id=folder_value).delete()
+        collaborators.objects.filter(folderID=folder_value).delete()
+        bookmarks.objects.filter(folderID=folder_value).delete()
         
         return HttpResponseRedirect(next)
     else:
