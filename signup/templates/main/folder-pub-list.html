@@ -55,16 +55,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            {% if collaborators %}
+                        {% if collaborators %}
                                 {% for x in collaborators %}
                                     {% if x.folderID == folder.id %}
-                                        <td>{{x.collab}}</td>
-                                        <td><button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button></td>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                        </tr>
+                                        <tr>
+                                            
+                                            <td>{{x.collab}}</td>
+                                            <td><button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button></td>
+                                                
+                                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    {% endif %}
                     </tbody>
                 </table>
             
