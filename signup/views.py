@@ -598,6 +598,7 @@ def uploadLiterature(request):
             savepub.abstract = request.POST.get('abstract')
             savepub.author = request.POST.get('author')
             savepub.pdf = request.FILES.get('document')
+            savepub.url = request.FILES.get('document')
             savepub.status = 'Pending'
             savepub.source = 'Uploaded'
             savepub.save()
@@ -635,7 +636,7 @@ def viewAdmin(request):
         if 'Accept' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")
             stat = publications.objects.get(id=pair[0],title=pair[1])
-            stat.status = None
+            stat.status = 'Approved'
             stat.save()
         elif 'Decline' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")

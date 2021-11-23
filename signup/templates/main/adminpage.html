@@ -32,7 +32,6 @@
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
                     <th scope="col">Abstract</th>
-                    <th scope="col">URL</th>
                     <th scope="col">PDF</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -48,7 +47,6 @@
                           white-space: nowrap;
                           overflow: hidden;
                           text-overflow: ellipsis">{{getdata.abstract}}</td>
-                        <td>{{getdata.url}}</td>
                         <td><a href="/media/{{getdata.pdf}}">{{getdata.pdf}}</a></td>
                         <td><form action="{% url 'adminpage' %}" method="post">
                           {% csrf_token %}
