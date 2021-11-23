@@ -59,8 +59,10 @@
                        <p>{{getdata.source}}</p>
                        <p style="margin-bottom: 5px;">URL:</p>
                        <a href="{{getdata.url}}">{{getdata.url}}</a>
-                       <h2>Abstract:</h2>
+                       {% if getdata.abstract %}
+                       <p style="margin-bottom: 5px;">Abstract:</p>
                        <p style="text-align: justify;">{{getdata.abstract}}</p>
+                        {% endif %}
                    </div>
                </div>
            </div>
