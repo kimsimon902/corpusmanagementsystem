@@ -345,7 +345,7 @@ def PublicationPageInFolder(request, folderid, username, id):
     bookmark_value = bookmarks.objects.filter(publicationID=id, folderID__in=folders_value).values('folderID')
 
     in_bookmark = bookmarks_folder.objects.filter(id__in=bookmark_value)
-    not_bookmark = bookmarks_folder.objects.filter(publicationID=id, folderID__in=folders_value).exclude(id__in=bookmark_value)
+    not_bookmark = bookmarks_folder.objects.exclude(id__in=bookmark_value).filter(id__in=folders_value)
 
     collabs = collaborators.objects.filter(collab=email).values('folderID')
     shared_with_me = bookmarks_folder.objects.filter(id__in=collabs)
