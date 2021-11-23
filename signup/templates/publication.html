@@ -56,7 +56,13 @@
                         <p style="margin-bottom: 5px;">Source:</p>
                         <p>{{getdata.source}}</p>
                         <p style="margin-bottom: 5px;">URL:</p>
-                        <a href="{{getdata.url}}">{{getdata.url}}</a>
+
+                        {% if getdata.url == 'uploaded' %}
+                            <a href="{{getdata.pdf}}">{{getdata.pdf}}</a>
+                        {% else %}
+                            <a href="{{getdata.url}}">{{getdata.url}}</a>
+                        {% endif %}
+
                         {% if getdata.abstract %}
                             <p style="margin-bottom: 5px;">Abstract:</p>
                             <p style="text-align: justify;">{{getdata.abstract}}</p>
