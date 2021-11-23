@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+{% if request.session.email %}
 <head>
     {% load static %}
     <meta charset="utf-8">
@@ -93,5 +93,22 @@
     <!-- Main JS-->
     <script src="{% static '\users\search-assets\js\search-bar.js' %}"></script>
 </body>
-
+{% else %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static '\users\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '\users\fonts\ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static '\users\css\Login-Form-Clean.css' %}">
+    <link rel="stylesheet" href="{% static '\users\css\home.css' %}">
+    <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static '\users\assets\css\index.css' %}">
+  </head>
+  <body>
+    <p>You need an account to access. Click here to go <a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">Sign Up</a></p>
+  </body>
+{% endif %}
 </html>
