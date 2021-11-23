@@ -313,7 +313,6 @@ def PublicationPage(request, id):
 
     annotation = annotations.objects.filter(publicationID=id, author=author)
 
-    
 
     my_folders = bookmarks_folder.objects.filter(user=email)
     folders_value = bookmarks_folder.objects.filter(user=email).values('id')
