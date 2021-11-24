@@ -336,6 +336,7 @@ def PublicationPage(request, id):
     email = request.session['email']
 
     annotation = annotations.objects.filter(publicationID=id, author=author)
+    collaborator = collaborators.objects.filter(owner=email)
 
 
     my_folders = bookmarks_folder.objects.filter(user=email)
@@ -348,8 +349,17 @@ def PublicationPage(request, id):
     in_bookmark = bookmarks_folder.objects.filter(id__in=bookmark_value)
     not_bookmark = bookmarks_folder.objects.exclude(id__in=bookmark_value).filter(id__in=folders_value)
 
+    collabs = collaborators.objects.filter(collab=email).values('folderID') #Get the folderIDs of the folders that have collaborators
+    shared_folders = bookmarks_folder.objects.filter(id__in=collabs) #The folders that have collaborators
 
-    return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark})
+    shared_folders_ids = bookmarks_folder.objects.filter(id__in=collabs).values('id') #Get the ids of the folders that have collaborators
+    shared_folders_bookmarks = bookmarks.objects.filter(folderID__in=shared_folders_ids) #Get all bookmarks that have collaborators
+    shared_folders_pubs = publications.objects.filter(id__in=shared_folders_bookmarks.values('publicationID')) #Get the publications that are shared
+
+    in_shared_bookmark = bookmarks_folder.objects.filter(id__in=shared_folders_bookmarks.values('folderID'))
+    not_shared_bookmark = bookmarks_folder.objects.exclude(id__in=shared_folders_bookmarks.values('folderID')).filter(id__in=collabs)
+
+    return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark, 'pubID': id, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs, 'inshared':in_shared_bookmark, 'notinshared':not_shared_bookmark})
 
 def PublicationPageInFolder(request, folderid, username, id):
     results = publications.objects.filter(id=id)
