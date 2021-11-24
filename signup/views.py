@@ -505,6 +505,7 @@ def PublicationPageAnnotateEdit(request, username, folderid, id, annoID):
             saveAnnotation.folderID = folderid
             saveAnnotation.dateTime = current_datetime
             saveAnnotation.marker = mark
+            saveAnnotation.isEdited = 1
             saveAnnotation.save()
             # messages.success(request, "Annotation edited")
             return HttpResponseRedirect(next)

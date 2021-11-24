@@ -208,7 +208,11 @@
                 <div class="row">
                     <div class="col">
                         <h4 class="card-title">{{ annotation.author }} </h4>
-                        <h6 class="text-muted card-subtitle mb-2">Posted on {{annotation.dateTime}}</h6>
+                        {% if annotation.isEdited == 1%}
+                            <h6 class="text-muted card-subtitle mb-2">Edited on {{annotation.dateTime}}</h6>
+                        {% else %}
+                            <h6 class="text-muted card-subtitle mb-2">Posted on {{annotation.dateTime}}</h6>
+                        {% endif %}
                     </div>
                     <div class="col">
                         {% if annotation.marker == "To-do" %}
