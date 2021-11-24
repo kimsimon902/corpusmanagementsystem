@@ -222,7 +222,7 @@
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
                         {% csrf_token %}
                         <select class="custom-select invisible" id="pubsMarkerSelect_{{annotation.id}}" name="selectMark" disabled>
-                            <option disabled selected>Change marker</option>
+                            <option disabled selected value="{{annotation.marker}}">Change marker</option>
                             <option value="To-do">To-do</option>
                             <option value="On progress">On progress</option>
                             <option value="Finished">Finished</option>
