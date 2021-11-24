@@ -22,7 +22,10 @@ import time
 # Create your views here.
 
 def index(request):
-    return render(request, 'main/index.html')
+    if (request.session['email']):
+        return render(request, 'main/home.html')
+    else:
+        return render(request, 'main/index.html')
 
 def home(request):
     results = publications.objects.all()

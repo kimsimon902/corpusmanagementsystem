@@ -12,22 +12,18 @@
 </head>
 
 <body>
-    {% if request.session.email %}
-        {% include 'main/nav-bar.html' %}
-    {% else %}
-        <nav class="navbar navbar-light navbar-expand navigation-clean" style="background: #087830;">
-            <div class="container-fluid"><a class="navbar-brand" href="{% url 'home' %}" style="color:white;">
-                {% load static %}
-                <img src="{% static '\users\img\dlsu.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" style="margin-right: 10px;">DLSU Corpus</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}" style="color:white">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}" style="color:white">Sign Up</a></li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-light navbar-expand navigation-clean" style="background: #087830;">
+        <div class="container-fluid"><a class="navbar-brand" href="{% url 'home' %}" style="color:white;">
+            {% load static %}
+            <img src="{% static '\users\img\dlsu.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" style="margin-right: 10px;">DLSU Corpus</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}" style="color:white">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}" style="color:white">Sign Up</a></li>
+                </ul>
             </div>
-        </nav>
-    {% endif %}
+        </div>
+    </nav>
 
     <header class="text-center text-white masthead">
         <div class="overlay"></div>
