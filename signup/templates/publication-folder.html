@@ -145,6 +145,7 @@
                 {% endif %}
                 {% endfor %}
 
+                <p>{{inshared}}</p>
                 {% for a in inshared%}
                 <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/publicationbookmarkinfolder">
                     {% csrf_token %}
@@ -163,6 +164,7 @@
                 </form>
                 {% endfor %}
 
+                <p>{{notinshared}}</p>
                 {% for b in notinshared%}
                 <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/publicationbookmarkinfolder">
                     {% csrf_token %}
