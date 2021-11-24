@@ -208,7 +208,7 @@
                 <div class="row">
                     <div class="col">
                         <h4 class="card-title">{{ annotation.author }} </h4>
-                        <h6 class="text-muted card-subtitle mb-2">posted on {{annotation.dateTime}}</h6>
+                        <h6 class="text-muted card-subtitle mb-2">Posted on {{annotation.dateTime}}</h6>
                     </div>
                     <div class="col">
                         {% if annotation.marker == "To-do" %}
@@ -229,7 +229,7 @@
                             <option value="None">None</option>
                         </select>
 
-                        <textarea class="form-control" id="pubsAnnotationTextArea_{{annotation.id}}" rows="3" name="annotation-exist" readonly>{{annotation.body}}</textarea>
+                        <textarea class="form-control" id="pubsAnnotationTextArea_{{annotation.id}}" rows="3" name="annotation-exist" readonly style="resize:none">{{annotation.body}}</textarea>
                         <input type="hidden" name="next" value="{{ request.path }}"/>
                         <br>
                         {% if annotation.author == request.session.username %}
@@ -265,7 +265,7 @@
                                 <option value="On progress">On progress</option>
                                 <option value="Finished">Finished</option>
                             </select>
-                            <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation"></textarea>
+                            <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation" style="resize:none"></textarea>
                             <input type="hidden" name="next" value="{{ request.path }}"/>
                             <br>
                             <button type="submit" class="btn btn-primary btn-sm float-end" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
