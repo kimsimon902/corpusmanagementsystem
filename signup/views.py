@@ -430,19 +430,19 @@ def PublicationPageInFolder(request, folderid, username, id):
     in_shared_bookmark = bookmarks_folder.objects.filter(id__in=shared_folders_bookmarks.values('folderID'))
     not_shared_bookmark = bookmarks_folder.objects.exclude(id__in=shared_folders_bookmarks.values('folderID')).filter(id__in=collabs)
 
-            publication_keys = pubkeys.objects.all()
-            keywords_list = keywords.objects.all()
-            keyword_results = []
-            keyword_count = []
-            xlist = list(results)
+    publication_keys = pubkeys.objects.all()
+    keywords_list = keywords.objects.all()
+    keyword_results = []
+    keyword_count = []
+    xlist = list(results)
 
-            for publication in xlist:
-                for pubkey in publication_keys:
-                    if publication.id == pubkey.publication_id:
-                        for pubid in keywords_list:
-                            if pubkey.keywords_id == pubid.id:
-                                if pubid.keywordname not in keyword_results:
-                                    keyword_results.append(pubid.keywordname)
+    for publication in xlist:
+        for pubkey in publication_keys:
+            if publication.id == pubkey.publication_id:
+                for pubid in keywords_list:
+                    if pubkey.keywords_id == pubid.id:
+                        if pubid.keywordname not in keyword_results:
+                            keyword_results.append(pubid.keywordname)
 
     return render(request, 'publication-folder.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark, 'folderID': folderid, 'pubID': id, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs, 'inshared':in_shared_bookmark, 'notinshared':not_shared_bookmark})
 

@@ -33,11 +33,10 @@
                 <div class="col-md-10 col-lg-3 offset-md-1">
                     <div class="toc">
                         <p>Keywords</p>
+                        {% for keyword in keyword_results %}
                         <ul style="list-style-type:none;">
-                            <li><a href="#">Aliquam In Arcu </a> </li>
-                            <li><a href="#">Ut vehicula rhoncus</a></li>
-                            <li><a href="#">Lorem Ipsum </a> </li>
-                            <li><a href="#">Dolor sit amet</a> </li>
+                            <li><a href="#">{{keyword}} </a> </li>
+                           
                         </ul>
                         <br>
                         <span style="margin-right: 10px;">Bookmarks</span>
@@ -46,7 +45,7 @@
                                 <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
                             </svg>
                         </button>
-
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="col-md-10 col-lg-7 offset-md-1 offset-lg-0">
