@@ -74,7 +74,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Choose folder to add bookmark</h4>
+            <h4 class="modal-title">Folders</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -142,6 +142,32 @@
                     <span class="border-bottom-0"></span>
                 </div>
                 </form>
+                {% endif %}
+                {% endfor %}
+
+                {% for z in sharedfolders%}
+                {% if sharedbookmarks %}
+                {% for x in sharedpubs %}
+                    {% for y in sharedbookmarks %}
+                        {% if folder.id == y.folderID and y.publicationID == x.id %}
+                            <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/publicationbookmarkinfolder">
+                                {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.path }}"/>
+                            <input type="hidden" name="folder_id" value="{{x.id}}"/>
+                            <input type="hidden" name="bookmark_action" value="delete">
+                            <div class="row align-items-center mb-2">
+                                <div name="{{x.id}}" class="col-2 d-flex">{{x.folder_name}}</div>
+                                <div class="col-2 d-flex">
+                                <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <span class="border-bottom-0"></span>
+                            </div>
+                            </form>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
                 {% endif %}
                 {% endfor %}
             </div>
