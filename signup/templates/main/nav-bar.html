@@ -8,7 +8,9 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'adminpage' %}" style="color:white">Upload Requests</a></li>
                 {% endif %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color:white">Home</a></li>
+                {% if request.session.is_superuser == 0 %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'upload' %}" style="color:white">Upload Literature</a></li>
+                {% endif %}
                 {% if request.session.is_superuser == 0 %}
                 <li class="nav-item"><a class="nav-link" href="/folders/{{request.session.username}}" style="color:white">My Folders</a></li>
                 {% endif %}
