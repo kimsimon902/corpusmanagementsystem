@@ -421,7 +421,7 @@ def PublicationPageAnnotate(request, username, folderid, id):
             saveAnnotation.dateTime = current_datetime
             saveAnnotation.marker = mark
             saveAnnotation.save()
-            messages.success(request, "Annotation saved")
+            # messages.success(request, "Annotation saved")
             return HttpResponseRedirect(next)
     else:
         return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'collaborators':collaborator})
@@ -454,11 +454,11 @@ def PublicationPageAnnotateEdit(request, username, folderid, id, annoID):
             saveAnnotation.dateTime = current_datetime
             saveAnnotation.marker = mark
             saveAnnotation.save()
-            messages.success(request, "Annotation edited")
+            # messages.success(request, "Annotation edited")
             return HttpResponseRedirect(next)
         else:
             annotation.delete()
-            messages.success(request, "Annotation deleted")
+            # messages.success(request, "Annotation deleted")
             return HttpResponseRedirect(next)
     else:
         return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'collaborators':collaborator})
@@ -484,7 +484,7 @@ def PublicationBookmark(request, id):
             addBookmark.publicationID = pubID
             addBookmark.folderID = request.POST.get('folder_id')
             addBookmark.save()
-            messages.success(request, "Added to your bookmarks")
+            # messages.success(request, "Added to your bookmarks")
 
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
             return HttpResponseRedirect(next)
@@ -492,7 +492,7 @@ def PublicationBookmark(request, id):
             folder_value = request.POST.get('folder_id')
             bookmarks.objects.filter(folderID=folder_value, publicationID=pubID, user=email).delete()
 
-            messages.success(request, "Deleted from your bookmarks")
+            # messages.success(request, "Deleted from your bookmarks")
             return HttpResponseRedirect(next)
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
 
@@ -542,7 +542,7 @@ def PublicationBookmarkInFolder(request, username, folderid, id):
             addBookmark.publicationID = pubID
             addBookmark.folderID = request.POST.get('folder_id')
             addBookmark.save()
-            messages.success(request, "Added to your bookmarks")
+            # messages.success(request, "Added to your bookmarks")
 
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
             return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs})
@@ -550,7 +550,7 @@ def PublicationBookmarkInFolder(request, username, folderid, id):
             folder_value = request.POST.get('folder_id')
             bookmarks.objects.filter(folderID=folder_value, publicationID=pubID, user=email).delete()
 
-            messages.success(request, "Deleted from your bookmarks")
+            # messages.success(request, "Deleted from your bookmarks")
             return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs})
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
 
