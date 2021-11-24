@@ -35,7 +35,12 @@
                         <p>Keywords</p>
                         {% for keyword in keyword_results %}
                         <ul style="list-style-type:none;">
-                            <li><a href="#">{{keyword}} </a> </li>
+                            <form method="POST" action="{% url 'search' %}" id="search-form">
+                                {% csrf_token %}
+                                <li><button type="submit" value="Submit" class= "btn btn-link">{{keyword}}</button></li>
+                                <input type="hidden" name="searched" value="{{keyword}}">
+                            </form> 
+                            
                            
                         </ul>
                         {% endfor %}
