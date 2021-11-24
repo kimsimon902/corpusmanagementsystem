@@ -145,8 +145,6 @@
                 {% endif %}
                 {% endfor %}
 
-                <p>Inshared</p>
-                <p>{{inshared}}</p>
                 {% for a in inshared%}
                 <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/publicationbookmarkinfolder">
                     {% csrf_token %}
@@ -154,7 +152,7 @@
                 <input type="hidden" name="folder_id" value="{{x.id}}"/>
                 <input type="hidden" name="bookmark_action" value="delete">
                 <div class="row align-items-center mb-2">
-                    <div name="{{x.id}}" class="col-2 d-flex">{{x.folder_name}}</div>
+                    <div name="{{x.id}}" class="col-2 d-flex">{{a.folder_name}}</div>
                     <div class="col-2 d-flex">
                     <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button>
                     </div>
@@ -165,8 +163,6 @@
                 </form>
                 {% endfor %}
 
-                <p>NotInShared</p>
-                <p>{{notinshared}}</p>
                 {% for b in notinshared%}
                 <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/publicationbookmarkinfolder">
                     {% csrf_token %}
@@ -174,7 +170,7 @@
                 <input type="hidden" name="folder_id" value="{{y.id}}"/>
                 <input type="hidden" name="bookmark_action" value="add">
                 <div class="row align-items-center mb-2">
-                    <div name="{{y.id}}" class="col-2 d-flex">{{y.folder_name}}</div>
+                    <div name="{{y.id}}" class="col-2 d-flex">{{b.folder_name}}</div>
                     <div class="col-2 d-flex">
                     <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">+</button>
                     </div>
