@@ -33,17 +33,18 @@
                 <div class="col-md-10 col-lg-3 offset-md-1">
                     <div class="toc">
                         <p>Keywords</p>
-                        {% for keyword in keyword_results %}
+                        
                         <ul style="list-style-type:none;">
+                        {% for keyword in keyword_results %}
                             <form method="POST" action="{% url 'search' %}" id="search-form">
                                 {% csrf_token %}
                                 <li><button type="submit" value="Submit" class= "btn btn-link">{{keyword}}</button></li>
                                 <input type="hidden" name="searched" value="{{keyword}}">
                             </form> 
                             
-                           
-                        </ul>
                         {% endfor %}
+                        </ul>
+                        
                         <br>
                         <span style="margin-right: 10px;">Bookmarks</span>
                         <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#bookmark">
