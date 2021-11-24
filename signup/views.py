@@ -722,11 +722,11 @@ def uploadLiterature(request):
             pub_id = []
             key_id = request.POST.get('keywords').split(",")
             for i in range(0,len(key_id)):
-                if keywords.objects.filter(keywordname=key_id[i]):
-                    name_id.append(key_id[i])
+                if keywords.objects.filter(keywordname=key_id[i].strip()):
+                    name_id.append(key_id[i].strip())
                 else:
-                    insert_list.append(keywords(keywordname=key_id[i]))
-                    name_id.append(key_id[i])
+                    insert_list.append(keywords(keywordname=key_id[i].strip()))
+                    name_id.append(key_id[i].strip())
             keywords.objects.bulk_create(insert_list)
             results = publications.objects.get(title = savepub.title)
             for j in range(0,len(name_id)):
