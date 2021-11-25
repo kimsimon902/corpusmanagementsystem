@@ -3,10 +3,6 @@
     <div class="row">
         <div class="col">
             <h5 style="display: inline;">{{folder.folder_name}}</h5>
-            {% if not forloop.first %}
-                <button class="btn btn-danger float-end" style="margin-left: 2px;" data-toggle="modal" data-target="#deletefolder-{{folder.id}}">Delete</button>
-                <button class="btn btn-secondary float-end" style="margin-right: 2px;" data-toggle="modal" data-target="#collaborator-{{folder.id}}">Collaborators</button>
-            {% endif %}
         </div>
     </div>
     
@@ -50,7 +46,6 @@
                         </svg> Add </button>
                         <br>
                     </div>
-
                     <div class=" col-5 collapse mb-2" id="newCollaborator-{{folder.id}}" style="width: 40%; height:25%;">
                         <div class="card card-body">
                             <form method="post" action="/folders/{{request.session.username}}/addcollab">
@@ -70,8 +65,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <table class="table">
                     <thead>
                         <tr>
@@ -96,18 +89,14 @@
                                 {% endfor %}
                         {% endif %}
                     </tbody>
-                </table>
-            
-                
+                </table>   
             </div>
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
-
-          </div>
+            </div>
         </div>
-      </div>
+    </div>
 
     <div class="row">
         <div class="col">
@@ -141,6 +130,14 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {% if not forloop.first %}
+            <button class="btn btn-danger float-end" style="margin-left: 2px;" data-toggle="modal" data-target="#deletefolder-{{folder.id}}">Delete</button>
+            <button class="btn btn-secondary float-end" style="margin-right: 2px;" data-toggle="modal" data-target="#collaborator-{{folder.id}}">Collaborators</button>
+            {% endif %}
         </div>
     </div>
 </div>

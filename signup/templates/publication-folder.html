@@ -215,22 +215,18 @@
                         {% endif %}
                     </div>
                     <div class="col">
-                        {% if annotation.marker == "To-do" %}
+                        {% if annotation.marker == "Task" %}
                             <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#039be5; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
-                        {% elif annotation.marker == "On progress" %}
+                        {% elif annotation.marker == "Comment" %}
                             <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#ffeb3b; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
-                        {% elif annotation.marker == "Finished" %}
-                            <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#43a047; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
                         {% endif %}
                     </div>
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
                         {% csrf_token %}
                         <select class="custom-select invisible" id="pubsMarkerSelect_{{annotation.id}}" name="selectMark" disabled>
                             <option selected value="{{annotation.marker}}">Change marker</option>
-                            <option value="To-do">To-do</option>
-                            <option value="On progress">On progress</option>
-                            <option value="Finished">Finished</option>
-                            <option value="None">None</option>
+                            <option value="Task">Task</option>
+                            <option value="Comment">Comment</option>
                         </select>
 
                         <textarea class="form-control" id="pubsAnnotationTextArea_{{annotation.id}}" rows="3" name="annotation-exist" readonly style="resize:none">{{annotation.body}}</textarea>
@@ -264,10 +260,8 @@
                             {% csrf_token %}
                             <span class="choose text-dark" style="margin-right: 10px;">Marker:</span>
                             <select class="custom-select" id="pubsMarkerSelect" name="selectMark">
-                                <option selected value="None">None <i class="fas fa-circle"></i></option>
-                                <option value="To-do">To-do</option>
-                                <option value="On progress">On progress</option>
-                                <option value="Finished">Finished</option>
+                                <option selected value="Task">Task <i class="fas fa-circle"></i></option>
+                                <option value="Comment">Comment</option>
                             </select>
                             <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation" style="resize:none"></textarea>
                             <input type="hidden" name="next" value="{{ request.path }}"/>
