@@ -24,6 +24,7 @@ html, body{
     cursor: pointer;
 }
 
+
 .tabs-button:active {
     background: #ddd;
 }
