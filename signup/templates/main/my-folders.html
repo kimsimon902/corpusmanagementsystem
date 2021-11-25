@@ -30,7 +30,7 @@
     <div class="tabs-body">
         <div class="row g-0">
             <div class="col-md-auto tabs-sidebar">
-                <h6>My folders</h6>
+                <h6 style="margin-left: 5px;">My folders</h6>
                 {% if folders %}
                 {% for folder in folders%}
                     {% if forloop.first %}
@@ -41,7 +41,7 @@
                 {% endfor %}
                 {% endif %}
 
-                <h6>Shared with me</h6>
+                <h6 style="margin-left: 5px; margin-top: 10px;">Shared with me</h6>
                 {% if sharedfolders %}
                 {% for folder in sharedfolders %}
                     <button class="tabs-button" data-for-tab="collab-{{forloop.counter}}">{{folder.folder_name}}</button>
