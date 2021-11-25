@@ -215,8 +215,10 @@
                         {% endif %}
                     </div>
                     <div class="col">
-                        {% if annotation.marker == "Task" %}
+                        {% if annotation.marker == "Task (To-do)" %}
                             <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#039be5; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
+                        {% if annotation.marker == "Task (Finished)" %}
+                            <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:green; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
                         {% elif annotation.marker == "Comment" %}
                             <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#ffeb3b; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
                         {% endif %}
@@ -224,8 +226,8 @@
                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
                         {% csrf_token %}
                         <select class="custom-select invisible" id="pubsMarkerSelect_{{annotation.id}}" name="selectMark" disabled>
-                            <option selected value="{{annotation.marker}}">Change marker</option>
-                            <option value="Task">Task</option>
+                            <option selected value="Task (To-do)">Task (To-do)</option>
+                            <option value="Task (Finished)">Task (Finished)</option>
                             <option value="Comment">Comment</option>
                         </select>
 
@@ -260,7 +262,8 @@
                             {% csrf_token %}
                             <span class="choose text-dark" style="margin-right: 10px;">Marker:</span>
                             <select class="custom-select" id="pubsMarkerSelect" name="selectMark">
-                                <option selected value="Task">Task <i class="fas fa-circle"></i></option>
+                                <option selected value="Task (To-do)">Task (To-do)</option>
+                                <option value="Task (Finished)">Task (Finished)</option>
                                 <option value="Comment">Comment</option>
                             </select>
                             <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation" style="resize:none"></textarea>
