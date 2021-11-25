@@ -71,7 +71,7 @@
             <!-- Shared with me -->
             {% if sharedfolders %}
             {% for folder in sharedfolders %}
-                <div class="col-10 tabs-content" data-tab="collab-{{forloop.counter}}">
+                <div class="col tabs-content" data-tab="collab-{{forloop.counter}}">
                     {% include 'main/shared-folder-pub-list.html' %}
                 </div>
             {% endfor %}
