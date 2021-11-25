@@ -58,11 +58,11 @@
             {% if folders %}
                 {% for folder in folders %}
                     {% if forloop.first %}
-                        <div class="col-10 tabs-content tabs-content-active" data-tab="my-{{forloop.counter}}">
+                        <div class="col tabs-content tabs-content-active" data-tab="my-{{forloop.counter}}">
                                 {% include 'main/my-folder-pub-list.html' %}
                         </div>
                     {% else %}
-                        <div class="col-10 tabs-content" data-tab="my-{{forloop.counter}}">
+                        <div class="col tabs-content" data-tab="my-{{forloop.counter}}">
                             {% include 'main/my-folder-pub-list.html' %}
                         </div>
                     {% endif %}
