@@ -181,6 +181,7 @@ def searchPublication(request):
             keywords_list = keywords.objects.all()
             keyword_results = []
             keyword_count = []
+            
 
             for publication in xlist:
                 for pubkey in publication_keys:

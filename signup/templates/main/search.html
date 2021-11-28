@@ -66,6 +66,11 @@
                 <a href="{% url 'search' %}" style = "color:black"><div class="link" style="background-color: none; color:black; box-shadow: none !important;">{{keyword}}</a></div>
 
                 {% endfor %}
+                <h5 style="margin-top: 20px;">Year</h5>
+                {% for result in results %}
+                <a href="{% url 'search' %}" style = "color:black"><div class="link" style="background-color: none; color:black; box-shadow: none !important;">{{result.year}}</a></div>
+
+                {% endfor %}
             </div>
             <div class="col">
                 <div class="table-responsive" style="min-height: 100vh;">
