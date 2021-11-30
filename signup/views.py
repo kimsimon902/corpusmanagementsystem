@@ -21,7 +21,6 @@ from django.core.paginator import Paginator
 import time
 import io
 from django.http import FileResponse
-import reportlab
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
