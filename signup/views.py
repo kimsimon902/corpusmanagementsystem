@@ -5,6 +5,10 @@ from django.http import response
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from django.http import FileResponse
+import io
+import reportlab
+from reportlab.
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
@@ -768,6 +772,11 @@ def viewAdmin(request):
 def downloadFolderTable(request):
     response = HttpResponse(content_type='text/plain')
     response['Content-Disposition'] = 'attachment; filename=literature.txt'
+
+    email = request.session['email']
+    rawbookmarks = bookmarks.objects.filter(user=email) #All bookmarks of the user
+    filterpub = bookmarks.objects.filter(user=email).values('publicationID') #Get the publicationIDs of bookmarks of the user
+    folders = bookmarks_folder.objects.filter(user=email) #Get folders made by the user
 
     lines = ["This is line 1\n",
     "This is line 2\n",
