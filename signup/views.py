@@ -5,10 +5,6 @@ from django.http import response
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from django.http import FileResponse
-import io
-import reportlab
-from reportlab.
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
@@ -23,6 +19,12 @@ from datetime import datetime
 from django.db.models import Q
 from django.core.paginator import Paginator
 import time
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
+
 
 # Create your views here.
 
@@ -770,20 +772,24 @@ def viewAdmin(request):
     return render(request, 'main/adminpage.html',{'publications':results})
 
 def downloadFolderTable(request):
-    response = HttpResponse(content_type='text/plain')
-    response['Content-Disposition'] = 'attachment; filename=literature.txt'
 
     email = request.session['email']
     rawbookmarks = bookmarks.objects.filter(user=email) #All bookmarks of the user
     filterpub = bookmarks.objects.filter(user=email).values('publicationID') #Get the publicationIDs of bookmarks of the user
     folders = bookmarks_folder.objects.filter(user=email) #Get folders made by the user
 
-    lines = ["This is line 1\n",
-    "This is line 2\n",
-    "This is line 3\n"]
+    buf = io.BytesIO()
+    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+    textob = c.beginText()
+    textob.setTextOrigin(inch, inch)
+    textob.setFont("Helvetica", 14)
 
-    response.writelines(lines)
-    return response
+    c.drawText(textob)
+    c.showPage()
+    c.save()
+    buf.seek(0)
+
+    return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
 
 
 # def annotateFromPub(request):
