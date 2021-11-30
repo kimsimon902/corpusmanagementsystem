@@ -20,6 +20,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 import time
 import io
+import reportlab
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
