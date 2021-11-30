@@ -779,7 +779,7 @@ def downloadFolderTable(request):
     folders = bookmarks_folder.objects.filter(user=email) #Get folders made by the user
     getpubs = publications.objects.filter(id=filterpub)
 
-    lines=[]
+    lines = []
 
     for pub in getpubs:
         lines.append(pub.title)
@@ -788,6 +788,7 @@ def downloadFolderTable(request):
         lines.append(pub.url)
         lines.append(pub.source)
         lines.append(pub.year)
+        lines.append("--------------------")
         
     buf = io.BytesIO()
     c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
