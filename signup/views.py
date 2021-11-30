@@ -710,7 +710,7 @@ def uploadLiterature(request):
             savepub = publications()
             savepub.title = request.POST.get('title')
             if publications.objects.filter(title=request.POST.get('title')).exists():
-                return redirect('upload')
+                return render(request, 'upload.html', {'some_flag': True})
             savepub.abstract = request.POST.get('abstract')
             savepub.author = request.POST.get('author')
             savepub.pdf = request.FILES.get('document')

@@ -15,6 +15,28 @@
     <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '\users\assets\css\index.css' %}">
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $(function() {
+              $( "#some_flag" ).dialog({
+                  modal: true,
+                  closeOnEscape: false,
+                  dialogClass: "no-close",
+                  resizable: false,
+                  draggable: false,
+                  width: 600,
+                  buttons: [
+                      {
+                          text: "OK",
+                          click: function() {
+                          $( this ).dialog( "close" );
+                          }
+                      }
+                  ]
+              });
+          });
+      });
+  </script>
 </head>
 
 <body>
@@ -28,6 +50,11 @@
             <div class="mb-3"><textarea class="form-control" name="abstract" placeholder="Abstract" rows="14" style="resize: none;"></textarea></div>
             <div class="mb-3"><textarea class="form-control" name="keywords" placeholder="Keywords (e.g., Augmented Reality, Computer Science, Artifical Intelligence)" rows="14" style="resize: none;"></textarea></div>
             <input type="file" name="document">
+            {% if some_flag %}
+              <div id="some_flag" title="Some Flag">
+              <p>Error Uploading</p>
+              </div>
+            {% endif %}
             <div class="mb-3"><button class="btn btn-primary" type="submit">Upload</button></div>
         </form>
     </section>
