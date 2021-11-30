@@ -61,10 +61,10 @@ def registerView(request):
             saverecord.is_superuser = 0
             saverecord.last_login = time.strftime('%Y-%m-%d %H:%M:%S')
             saverecord.save()
-            myupload = bookmarks_folder()
-            myupload.folder_name = 'My Uploads'
-            myupload.user = request.POST.get('email')
-            myupload.save()
+            bookmarks_folder.objects.bulk_create([
+                bookmarks_folder(folder_name='My Uploads',user=request.POST.get('email')),
+                bookmarks_folder(folder_name='My Bookmarks',user=request.POST.get('email'))
+            ])
             request.session['email']= request.POST.get('email')
             request.session['username']= request.POST.get('username')
             request.session['is_superuser'] = 0
