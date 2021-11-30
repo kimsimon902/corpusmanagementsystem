@@ -1,6 +1,7 @@
 from django.core import paginator
 from django.db import reset_queries
 from django.db.models.fields import EmailField, NullBooleanField
+from django.http import response
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
@@ -763,6 +764,17 @@ def viewAdmin(request):
             bkmrk.delete()
 
     return render(request, 'main/adminpage.html',{'publications':results})
+
+def downloadFolderTable(request):
+    response = HttpResponse(content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename=literature.txt'
+
+    lines = ["This is line 1\n",
+    "This is line 2\n",
+    "This is line 3\n"]
+
+    response.writelines(lines)
+    return response
 
 
 # def annotateFromPub(request):

@@ -27,7 +27,8 @@ urlpatterns =[
     path('publication/<id>/bookmark', views.PublicationBookmark, name = 'publicationbookmark'),
     path('upload/',views.uploadLiterature, name ='upload'),
     path('bookmarks/',views.viewBookmarks, name ='bookmarks'),
-    path('adminpage/',views.viewAdmin, name ='adminpage')
+    path('adminpage/',views.viewAdmin, name ='adminpage'),
+    path('folder_table/',views.downloadFolderTable, name ='folder_table')
 ]
 
 if settings.DEBUG:
