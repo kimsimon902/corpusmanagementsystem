@@ -787,6 +787,7 @@ def downloadFolderTable(request):
     textob.setFont("Helvetica", 14)
 
     lines = []
+    lines.append("Summary for ")
 
     for pub in getpubs:
         lines.append(pub.title)
@@ -802,6 +803,7 @@ def downloadFolderTable(request):
 
     c.drawText(textob)
     c.showPage()
+    c.setTitle("Corpus_Table")
     c.save()
     buf.seek(0)
 
