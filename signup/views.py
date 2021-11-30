@@ -777,7 +777,7 @@ def downloadFolderTable(request):
     rawbookmarks = bookmarks.objects.filter(user=email) #All bookmarks of the user
     filterpub = bookmarks.objects.filter(user=email).values('publicationID') #Get the publicationIDs of bookmarks of the user
     folders = bookmarks_folder.objects.filter(user=email) #Get folders made by the user
-    getpubs = publications.objects.filter(id__in=5)
+    getpubs = publications.objects.filter(id=5)
 
     lines = []
 
