@@ -777,7 +777,18 @@ def downloadFolderTable(request):
     rawbookmarks = bookmarks.objects.filter(user=email) #All bookmarks of the user
     filterpub = bookmarks.objects.filter(user=email).values('publicationID') #Get the publicationIDs of bookmarks of the user
     folders = bookmarks_folder.objects.filter(user=email) #Get folders made by the user
+    getpubs = publications.objects.filter(id=filterpub)
 
+    lines=[]
+
+    for pub in getpubs:
+        lines.append(pub.title)
+        lines.append(pub.author)
+        lines.append(pub.abstract)
+        lines.append(pub.url)
+        lines.append(pub.source)
+        lines.append(pub.year)
+        
     buf = io.BytesIO()
     c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
     textob = c.beginText()
