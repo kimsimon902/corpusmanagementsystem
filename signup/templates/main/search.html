@@ -68,7 +68,9 @@
 
                 {% endfor %}
 
+                {% if keyword_results.count > 5 %}
                 <p id="seemore-keyword" onclick="seemoreKeyword()" style="cursor: pointer;">See more</p>
+                {% endif %}
 
                 <h5 style="margin-top: 20px;">Year</h5>
 
@@ -78,22 +80,24 @@
                 
                 {% endfor %}
 
+                {% if results > 5 %}
                 <p id="seemore-year" onclick="seemoreYear()" style="cursor: pointer;">See more</p>
+                {% endif %}
 
                 
                 <script>
                     function seemoreYear() {
                       document.getElementById("seemore-year").style.display = "none";
-                      document.getElementById("year-1").style.display = "none";
-                      document.getElementById("year-2").style.display = "none";
-                      document.getElementById("year-3").style.display = "none";
-                      document.getElementById("year-4").style.display = "none";
-                      document.getElementById("year-5").style.display = "none";
                       document.getElementById("link-1-year").style.display = "none";
                       document.getElementById("link-2-year").style.display = "none";
                       document.getElementById("link-3-year").style.display = "none";
                       document.getElementById("link-4-year").style.display = "none";
                       document.getElementById("link-5-year").style.display = "none";
+                      document.getElementById("year-1").style.display = "none";
+                      document.getElementById("year-2").style.display = "none";
+                      document.getElementById("year-3").style.display = "none";
+                      document.getElementById("year-4").style.display = "none";
+                      document.getElementById("year-5").style.display = "none";
                       document.getElementById("more").style.display = "block";
                     }
                 </script>
@@ -101,16 +105,16 @@
                 <script>
                     function seemoreKeyword() {
                     document.getElementById("seemore-keyword").style.display = "none";
-                    document.getElementById("keyword-1").style.display = "none";
-                    document.getElementById("keyword-2").style.display = "none";
-                    document.getElementById("keyword-3").style.display = "none";
-                    document.getElementById("keyword-4").style.display = "none";
-                    document.getElementById("keyword-5").style.display = "none";
                     document.getElementById("link-1-keyword").style.display = "none";
                     document.getElementById("link-2-keyword").style.display = "none";
                     document.getElementById("link-3-keyword").style.display = "none";
                     document.getElementById("link-4-keyword").style.display = "none";
                     document.getElementById("link-5-keyword").style.display = "none";
+                    document.getElementById("keyword-1").style.display = "none";
+                    document.getElementById("keyword-2").style.display = "none";
+                    document.getElementById("keyword-3").style.display = "none";
+                    document.getElementById("keyword-4").style.display = "none";
+                    document.getElementById("keyword-5").style.display = "none";
                     document.getElementById("more").style.display = "block";
                     }
                 </script>
