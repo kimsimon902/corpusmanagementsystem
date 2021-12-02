@@ -70,9 +70,25 @@
                 <h5 style="margin-top: 20px;">Year</h5>
                 {% for result in results|slice:"5" %}
                 
-                <a href="{% url 'search' %}" style = "color:black"><div class="link" style="background-color: none; color:black; box-shadow: none !important;">{{result.year}}</a></div>
-
+                <a href="{% url 'search' %}" style = "color:black"><div class="link" style="background-color: none; color:black; box-shadow: none !important;" id="default">{{result.year}}</a></div>
+                
                 {% endfor %}
+
+                <p id="seemore" onclick="myFunction()">See more</p>
+
+                {% for result in results %}
+                
+                <a href="{% url 'search' %}" style = "color:black"><div class="link" style="background-color: none; color:black; box-shadow: none !important;">{{result.year}}</a></div>
+                
+                {% endfor %}
+
+                <script>
+                    function myFunction() {
+                      document.getElementById("seemore").style.display = "none";
+                      document.getElementById("default").style.display = "none";
+                    }
+                </script>
+
             </div>
             <!-- Results table-->
             <div class="col">
