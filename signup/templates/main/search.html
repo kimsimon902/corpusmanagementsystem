@@ -72,6 +72,7 @@
 
                 {% endfor %}
             </div>
+            <!-- Results table-->
             <div class="col">
                 <div class="table-responsive" style="min-height: 100vh;">
                     <table class="table">
@@ -96,14 +97,15 @@
                                 <td id="url"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
                                 {% else %}
                                 <td id="url"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
+                                <td><button>Add to bookmark</button><button>Add to Folder</button></td>
                                 {% endif %}
                             </tr>
                                 {% endfor %}
-                            
                         </tbody>
                     </table>
                 </div>
             </div>
+            <!-- end Results Table -->
         </div>
     </div>
     {% endif %}
