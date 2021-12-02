@@ -68,23 +68,23 @@
 
                 {% endfor %}
                 <h5 style="margin-top: 20px;">Year</h5>
+
                 {% for result in results|slice:"5" %}
                 
-                <a href="{% url 'search' %}" style = "color:black" id="link-{{ forloop.counter }}"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" id="{{forloop.counter}}">{{result.year}}</a></div>
+                <a href="{% url 'search' %}" style = "color:black" id="link-{{ forloop.counter }}"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" id="year-{{forloop.counter}}">{{result.year}}</a></div>
                 
                 {% endfor %}
 
                 <p id="seemore" onclick="myFunction()" style="cursor: pointer;">See more</p>
 
                 
-
                 <script>
                     function myFunction() {
                       document.getElementById("seemore").style.display = "none";
-                      document.getElementById("0").style.display = "none";
-                      document.getElementById("1").style.display = "none";
+                      document.getElementById("year-1").style.display = "none";
+                      document.getElementById("year-2").style.display = "none";
                       document.getElementById("link-1").style.display = "none";
-                      document.getElementById("link-0").style.display = "none";
+                      document.getElementById("link-2").style.display = "none";
                       document.getElementById("more").style.display = "block";
                     }
                 </script>
