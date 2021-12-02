@@ -286,6 +286,14 @@
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
    <script src="{% static '\users\js\my-folders.js' %}"></script>
    <script src="{% static '\users\js\home.js' %}"></script>
+   <script>
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function (toastEl) {
+        return new bootstrap.Toast(toastEl, option)
+        });
+
+        toast.show();
+   </script>
 </body>
 </html>
 {% endif %}
