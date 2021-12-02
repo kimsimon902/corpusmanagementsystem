@@ -560,7 +560,7 @@ def PublicationBookmark(request, id):
             addBookmark.publicationID = pubID
             addBookmark.folderID = request.POST.get('folder_id')
             addBookmark.save()
-            # messages.success(request, "Added to your bookmarks")
+            messages.success(request, "Added to your bookmarks")
 
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
             return HttpResponseRedirect(next)
@@ -568,7 +568,7 @@ def PublicationBookmark(request, id):
             folder_value = request.POST.get('folder_id')
             bookmarks.objects.filter(folderID=folder_value, publicationID=pubID, user=email).delete()
 
-            # messages.success(request, "Deleted from your bookmarks")
+            messages.success(request, "Deleted from your bookmarks")
             return HttpResponseRedirect(next)
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
 
