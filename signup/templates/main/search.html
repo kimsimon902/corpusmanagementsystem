@@ -78,7 +78,7 @@
 
                 {% for result in results %}
                 
-                <a href="{% url 'search' %}" style = "color:black"><div class="link" style="background-color: none; color:black; box-shadow: none !important;">{{result.year}}</a></div>
+                <a href="{% url 'search' %}" style = "color:black"><div class="link" style="background-color: none; color:black; box-shadow: none !important; display:none" id="more">{{result.year}}</a></div>
                 
                 {% endfor %}
 
@@ -86,6 +86,7 @@
                     function myFunction() {
                       document.getElementById("seemore").style.display = "none";
                       document.getElementById("default").style.display = "none";
+                      document.getElementById("more").style.display = "block";
                     }
                 </script>
 
