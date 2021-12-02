@@ -496,7 +496,7 @@ def PublicationPageAnnotate(request, username, folderid, id):
             saveAnnotation.marker = mark
             saveAnnotation.isEdited = 0
             saveAnnotation.save()
-            # messages.success(request, "Annotation saved")
+            messages.success(request, "Annotation saved")
             return HttpResponseRedirect(next)
     else:
         return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'collaborators':collaborator})

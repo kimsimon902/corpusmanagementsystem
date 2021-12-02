@@ -22,6 +22,7 @@
  
 
 {% include 'main/nav-bar.html' %}
+{% include 'main/messages.html' %}
 
 {% for getdata in publication %}
   <section class="article-dual-column">
@@ -279,91 +280,6 @@
     </div>
 <!-- End Annotation -->
 {% endfor %}
-
-  <!-- <form method="POST" action="/publication/{{getdata.id}}/bookmark" id="bookmark-pub" > 
-    {% csrf_token %}
-    <div class="">
-      <input type="hidden" name="next" value="{{ request.path }}"/>
-      <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#bookmark">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
-            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-          </svg>
-      </button>
-    </div>
-    
-    <div class="modal fade bd-example-modal-lg" id="bookmark" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Choose folder to add bookmark</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="col-2 mb-1">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#newFolder" aria-expanded="false" aria-controls="newFolder"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
-                      </svg> Folder </button>
-                      <br>
-                </div>
-
-                <div class="collapse mb-1" id="newFolder">
-                    <div class="card card-body">
-
-                            {% csrf_token %}
-                            <input type="hidden" name="next" value="{{ request.path }}"/>
-                            <div class="form-group">
-                                <label for="folder-name" class="col-form-label">Folder name:</label>
-                                <input type="text" class="form-control" name="folder-name">
-                            </div>                            
-                        <div class="modal-footer float-end">
-                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#newFolder">Close</button>
-                            <button type="submit" class="btn btn-primary btn-sm" name="create-folder">Create folder</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="container">
-                    {% for x in in_bookmark %}
-                    <input type="hidden" name="folder_id" value="{{x.id}}"/>
-                    <div class="row align-items-center mb-2">
-                        <div name="{{x.id}}" class="col-2 d-flex">{{x.folder_name}}</div>
-                        <div class="col-2 d-flex">
-                        <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <span class="border-bottom-0"></span>
-                    </div>
-                    {% endfor %}
-                    
-                    {% for y in not_bookmark %}
-                    <input type="hidden" name="folder_id" value="{{y.id}}"/>
-                    <div class="row align-items-center mb-2">
-                        <div name="{{y.id}}" class="col-2 d-flex">{{y.folder_name}}</div>
-                        <div class="col-2 d-flex">
-                        <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">+</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <span class="border-bottom-0"></span>
-                    </div>
-                    {% endfor %}
-                </div>
-                
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    
-  </form> -->
-
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
