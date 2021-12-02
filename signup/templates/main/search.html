@@ -69,8 +69,10 @@
                 {% endfor %}
 
                 {% if keyword_results.count > 5 %}
-                <p id="seemore-keyword" onclick="seemoreKeyword()" style="cursor: pointer;">See more</p>
+                <p id="seemore-keyword" onclick="seemoreKeyword()" style="cursor: pointer;">See mor e</p>
                 {% endif %}
+
+                
 
                 <h5 style="margin-top: 20px;">Year</h5>
 
@@ -84,6 +86,13 @@
                 <p id="seemore-year" onclick="seemoreYear()" style="cursor: pointer;">See more</p>
                 {% endif %}
 
+                <div id="moreyear" style="display:none;">
+                {% for result in results %}
+                
+                <a href="{% url 'search' %}" style = "color:black" ><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{result.year}}</a></div>
+                
+                {% endfor %}
+                </div>
                 
                 <script>
                     function seemoreYear() {
@@ -98,7 +107,7 @@
                       document.getElementById("year-3").style.display = "none";
                       document.getElementById("year-4").style.display = "none";
                       document.getElementById("year-5").style.display = "none";
-                      document.getElementById("more").style.display = "block";
+                      document.getElementById("moreyear").style.display = "block";
                     }
                 </script>
 
@@ -115,7 +124,7 @@
                     document.getElementById("keyword-3").style.display = "none";
                     document.getElementById("keyword-4").style.display = "none";
                     document.getElementById("keyword-5").style.display = "none";
-                    document.getElementById("more").style.display = "block";
+                    document.getElementById("morekeyword").style.display = "block";
                     }
                 </script>
 
