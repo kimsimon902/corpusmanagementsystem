@@ -530,11 +530,11 @@ def PublicationPageAnnotateEdit(request, username, folderid, id, annoID):
             saveAnnotation.marker = mark
             saveAnnotation.isEdited = 1
             saveAnnotation.save()
-            # messages.success(request, "Annotation edited")
+            messages.success(request, "Annotation edited")
             return HttpResponseRedirect(next)
         else:
             annotation.delete()
-            # messages.success(request, "Annotation deleted")
+            messages.success(request, "Annotation deleted")
             return HttpResponseRedirect(next)
     else:
         return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'collaborators':collaborator})
