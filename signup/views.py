@@ -807,7 +807,7 @@ def downloadFolderTable(request):
         from reportlab.lib import colors
 
         style = TableStyle([
-            ('BACKGROUND', (0,0), (3,0), colors.green),
+            ('BACKGROUND', (0,0), (5,0), colors.green),
             ('TEXTCOLOR',(0,0),(-1,0),colors.whitesmoke),
 
             ('ALIGN',(0,0),(-1,-1),'CENTER'),
