@@ -354,192 +354,9 @@ def searchPublication(request):
 def filterSearch(request, filter, search):
     
         searched = search
-        searchFilter = request.POST['filterData']
         
-        libFilter = request.POST.getlist('filterLib')
-
-
-        if  searchFilter == "default":
-
-            if 'ais' in libFilter and len(libFilter) == 1:
-                results = publications.objects.filter(
-                    Q(title__icontains=searched) |
-                    Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
-            )
-
-
-            elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
-                results = publications.objects.filter(
-                    Q(source__icontains='ais') |
-                    Q(source__icontains='ieee')
-                ).filter(
-                    Q(title__icontains=searched) |
-                    Q(author__icontains=searched), status__icontains="approved"
-                )        
-
-
-            elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-                results = publications.objects.filter(
-                    Q(source__icontains="ais") |
-                    Q(source__icontains="scopus")
-                ).filter(
-                    Q(title__icontains=searched) |
-                    Q(author__icontains=searched), status__icontains="approved"
-                )
-
-
-            elif 'ieee' in libFilter and len(libFilter) == 1:
-                results = publications.objects.filter(
-                    Q(title__icontains=searched) |
-                    Q(author__icontains=searched), source__icontains="ieee", status__icontains="approved"
-            )
-
-                
-            elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-               results = publications.objects.filter(
-                    Q(source__icontains="ieee") |
-                    Q(source__icontains="scopus")
-                ).filter(
-                    Q(title__icontains=searched) |
-                    Q(author__icontains=searched), status__icontains="approved"
-                )
-
-
-            elif 'scopus' in libFilter and len(libFilter) == 1:
-                results = publications.objects.filter(
-                    Q(title__icontains=searched) |
-                    Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
-            )
-            else:
-                results = publications.objects.filter(
-                    Q(title__icontains=searched) |
-                    Q(author__icontains=searched), status__icontains="approved"
-            )
-
-            xlist =     list(results)
-            for publication in xlist:
-                if publication.url == 'doi.org/' or len(publication.url) == 0:
-                    publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
-                    publication.save()
-
-            publication_keys = pubkeys.objects.all()
-            keywords_list = keywords.objects.all()
-            keyword_results = []
-            keyword_count = []
-            
-
-            for publication in xlist:
-                for pubkey in publication_keys:
-                    if publication.id == pubkey.publication_id:
-                        for pubid in keywords_list:
-                            if pubkey.keywords_id == pubid.id:
-                                if pubid.keywordname not in keyword_results:
-                                    keyword_results.append(pubid.keywordname)
-                                
-                                    
-            page_results = Paginator(results, 10)
-            page_number = 1
-            page_obj = page_results.get_page(page_number)        
-
-            return render(request, 'main/search-filter.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results })
-
-        elif searchFilter == "title":
-            
-            if 'ais' in libFilter and len(libFilter) == 1:
-                results = publications.objects.filter(title__icontains=searched,source__icontains="ais", status__icontains="approved")
-
-
-            elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
-                results = publications.objects.filter( 
-                    Q(source__icontains="ais") |
-                    Q(source__icontains="ieee"), title__icontains=searched, status__icontains="approved"
-                )
-
-
-            elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-                results = publications.objects.filter( 
-                    Q(source__icontains="ais") |
-                    Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                )
-
-                
-            elif 'ieee' in libFilter and len(libFilter) == 1:
-                results = publications.objects.filter(title__icontains=searched,source__icontains="ieee", status__icontains="approved")
-
-
-            elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-                results = publications.objects.filter( 
-                    Q(source__icontains="ieee") |
-                    Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                )
-                
-            elif 'scopus' in libFilter and len(libFilter) == 1:
-                results = publications.objects.filter(title__icontains=searched, source__icontains="scopus", status__icontains="approved")
-
-
-            else:
-                results = publications.objects.filter(title__icontains=searched, status__icontains="approved")
- 
-
-            xlist =     list(results)
-            for publication in xlist:
-                if publication.url == 'doi.org/' or len(publication.url) == 0:
-                    publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
-                    publication.save()   
-            
-            publication_keys = pubkeys.objects.all()
-            keywords_list = keywords.objects.all()
-            keyword_results = []
-            keyword_count = []
-
-            for publication in xlist:
-                for pubkey in publication_keys:
-                    if publication.id == pubkey.publication_id:
-                        for pubid in keywords_list:
-                            if pubkey.keywords_id == pubid.id:
-                                if pubid.keywordname not in keyword_results:
-                                    keyword_results.append(pubid.keywordname)
-
-            return render(request, 'main/search-filter.html',{'searched':searched, 'results':results , 'keyword_results':keyword_results})
-
-        elif searchFilter == "author":
-
-            if 'ais' in libFilter and len(libFilter) == 1:
-                results = publications.objects.filter(author__icontains=searched,source__icontains="ais", status__icontains="approved")
-
-
-            elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
-                results = publications.objects.filter(
-                    Q(source__icontains="ais")|
-                    Q(source__icontains="ieee"), author__icontains=searched, status__icontains="approved"
-                )
-
-
-            elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-                results = publications.objects.filter(
-                    Q(source__icontains="ais")|
-                    Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                )
-
-
-            elif 'ieee' in libFilter and len(libFilter) == 1:
-                results = publications.objects.filter(author__icontains=searched,source__icontains="ieee", status__icontains="approved")
-
-
-            elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-                results = publications.objects.filter(
-                    Q(source__icontains="ieee")|
-                    Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                )
-
-            elif 'scopus' in libFilter and len(libFilter) == 1:
-                results = publications.objects.filter(author__icontains=searched, source__icontains="scopus", status__icontains="approved")    
-
-
-            else:
-                results = publications.objects.filter(author__icontains=searched, status__icontains="approved")
-
-            
+        if filter.isnumeric():
+            results = publications.objects.filter(title__icontains=searched, status__icontains="approved", year__icontains=filter)
 
             xlist =     list(results)
             for publication in xlist:
@@ -558,11 +375,37 @@ def filterSearch(request, filter, search):
                         for pubid in keywords_list:
                             if pubkey.keywords_id == pubid.id:
                                 if pubid.keywordname not in keyword_results:
-                                    keyword_results.append(pubid.keywordname) 
+                                    keyword_results.append(pubid.keywordname)
 
-            return render(request, 'main/search-filter.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results})
+            return render(request, 'main/search-filter.html',{'searched':search, 'results':results, 'keyword_results':keyword_results})
+
+        else:
+            results = publications.objects.filter(title__icontains=searched, status__icontains="approved", year__icontains=filter)
+
+            xlist =     list(results)
+            for publication in xlist:
+                if publication.url == 'doi.org/' or len(publication.url) == 0:
+                    publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
+                    publication.save()   
+
+            publication_keys = pubkeys.objects.all()
+            keywords_list = keywords.objects.all()
+            keyword_results = []
+            keyword_count = []
+
+            for publication in xlist:
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id:
+                        for pubid in keywords_list:
+                            if pubkey.keywords_id == pubid.id:
+                                if pubid.keywordname not in keyword_results:
+                                    keyword_results.append(pubid.keywordname)
+
+            return render(request, 'main/search-filter.html',{'searched':search, 'results':results, 'keyword_results':keyword_results})
+
+
     
-    # return render(request, 'main/search-filter.html',{'searched':search, 'results':results})
+    
 
 def FoldersPage(request, username):
 
