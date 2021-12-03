@@ -353,7 +353,7 @@ def searchPublication(request):
 
 def filterSearch(request, filter, search):
     if request.method == "POST":
-        searched = search
+        searched = "test"
         searchFilter = request.POST['filterData']
         
         libFilter = request.POST.getlist('filterLib')
@@ -436,9 +436,6 @@ def filterSearch(request, filter, search):
                                     keyword_results.append(pubid.keywordname)
                                 
                                     
-
-
-
             page_results = Paginator(results, 10)
             page_number = 1
             page_obj = page_results.get_page(page_number)        
