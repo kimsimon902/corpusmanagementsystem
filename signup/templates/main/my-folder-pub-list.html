@@ -138,7 +138,8 @@
             <button class="btn btn-danger float-end" style="margin-left: 2px;" data-toggle="modal" data-target="#deletefolder-{{folder.id}}">Delete</button>
             <button class="btn btn-secondary float-end" style="margin-right: 2px;" data-toggle="modal" data-target="#collaborator-{{folder.id}}">Collaborators</button>
             <form action="{% url 'folder_table' %}" method="post">
-            <button class="btn btn-secondary float-end" style="margin-left: 2px;"><input type="submit" name="{{folder.id}}|{{folder.folder_name}}" value="Download Table"></input></button></form>
+                {% csrf_token %}
+                <button class="btn btn-secondary float-end" style="margin-left: 2px;"><input type="submit" name="{{folder.id}}|{{folder.folder_name}}" value="Download Table"></input></button></form>
             {% endif %}
         </div>
     </div>
