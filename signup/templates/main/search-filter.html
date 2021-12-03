@@ -64,7 +64,7 @@
                 <h5 style="margin-top: 20px;">Keywords</h5>
                 {% for keyword in keyword_results|slice:"5" %}
 
-                <a href="/search/{{searched}}/{{keyword}}" style = "color:black" id="link-{{ forloop.counter }}-keyword"><div class="default" style="background-color: none; color:black; box-shadow: none !important;"id="keyword-{{forloop.counter}}" >{{keyword}}</a></div>
+                <a href="/search/{{searched}}/{{keyword}}" style = "color:black" id="link-{{ forloop.counter }}-keyword"><div class="link" style="background-color: none; color:black; box-shadow: none !important;"id="keyword-{{forloop.counter}}" >{{keyword}}</a></div>
 
                 {% endfor %}
 
@@ -75,7 +75,7 @@
                 <div id="morekeyword" style="display:none;">
                 {% for keyword in keyword_results %}
 
-                <a href="/search/{{searched}}/{{keyword}}" style = "color:black"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{keyword}}</a></div>
+                <a href="/search/{{searched}}/{{keyword}}" style = "color:black"><div class="link" style="background-color: none; color:black; box-shadow: none !important;" >{{keyword}}</a></div>
 
                 {% endfor %}
                 </div>
@@ -84,7 +84,7 @@
 
                 {% for result in results|slice:"5" %}
                 
-                <a href="/search/{{searched}}/{{result.year}}" style = "color:black" id="link-{{ forloop.counter }}-year"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" id="year-{{forloop.counter}}">{{result.year}}</a></div>
+                <a href="/search/{{searched}}/{{result.year}}" style = "color:black" id="link-{{ forloop.counter }}-year"><div class="link" style="background-color: none; color:black; box-shadow: none !important;" id="year-{{forloop.counter}}">{{result.year}}</a></div>
                 
                 {% endfor %}
 
@@ -95,7 +95,7 @@
                 <div id="moreyear" style="display:none;">
                 {% for result in results %}
                 
-                <a href="/search/{{searched}}/{{result.year}}" style = "color:black" ><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{result.year}}</a></div>
+                <a href="/search/{{searched}}/{{result.year}}" style = "color:black" ><div class="link" style="background-color: none; color:black; box-shadow: none !important;" >{{result.year}}</a></div>
                 
                 {% endfor %}
                 </div>
