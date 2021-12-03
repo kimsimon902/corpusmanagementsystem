@@ -26,6 +26,11 @@ from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate
 from reportlab.platypus.tables import Table
+from reportlab.platypus import TableStyle
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER
+from reportlab.platypus import Paragraph, Table, TableStyle
 
 
 # Create your views here.
@@ -784,11 +789,14 @@ def downloadFolderTable(request):
 
         # List of Lists
         buf = io.BytesIO()
+        styles = getSampleStyleSheet()
+        styleN = styles["BodyText"]
+        styleN.alignment = TA_LEFT
         data = [
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
         for pub in getpubs:
-            data.append([pub.title,pub.author,pub.abstract,pub.url,pub.source,pub.year])
+            data.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.abstract, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
 
         pdf = SimpleDocTemplate(
             buf,
@@ -798,8 +806,6 @@ def downloadFolderTable(request):
         table = Table(data)
 
         # add style
-        from reportlab.platypus import TableStyle
-        from reportlab.lib import colors
 
         style = TableStyle([
             ('BACKGROUND', (0,0), (5,0), colors.green),
@@ -813,6 +819,7 @@ def downloadFolderTable(request):
             ('BOTTOMPADDING', (0,0), (-1,0), 12),
 
             ('BACKGROUND',(0,1),(-1,-1),colors.beige),
+            
         ])
         table.setStyle(style)
 
