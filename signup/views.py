@@ -783,10 +783,8 @@ def downloadFolderTable(request):
         ['2GB DDR2', '20GB Disc Space', 'Unlimited Email', 'Unlimited Email']
     ]
 
-    filename='Corpus_Table.pdf'
-
     pdf = SimpleDocTemplate(
-        filename,
+        buf,
         pagesize=letter
     )
 
