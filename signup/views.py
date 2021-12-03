@@ -23,14 +23,7 @@ import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
-from reportlab.lib.pagesizes import A4, LEGAL, landscape, letter
-from reportlab.platypus import SimpleDocTemplate
-from reportlab.platypus.tables import Table
-from reportlab.platypus import TableStyle
-from reportlab.lib import colors
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER
-from reportlab.platypus import Paragraph, Table, TableStyle
+from reportlab.lib.pagesizes import letter
 
 
 # Create your views here.
@@ -124,6 +117,243 @@ def showTest(request):
 def searchPublication(request):
     if request.method == "POST":
         searched = request.POST['searched']
+        searchFilter = request.POST['filterData']
+        
+        libFilter = request.POST.getlist('filterLib')
+
+        if  searchFilter == "default":
+
+            if 'ais' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
+            )
+
+
+            elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter(
+                    Q(source__icontains='ais') |
+                    Q(source__icontains='ieee')
+                ).filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), status__icontains="approved"
+                )        
+
+
+            elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter(
+                    Q(source__icontains="ais") |
+                    Q(source__icontains="scopus")
+                ).filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), status__icontains="approved"
+                )
+
+
+            elif 'ieee' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), source__icontains="ieee", status__icontains="approved"
+            )
+
+                
+            elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
+               results = publications.objects.filter(
+                    Q(source__icontains="ieee") |
+                    Q(source__icontains="scopus")
+                ).filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), status__icontains="approved"
+                )
+
+
+            elif 'scopus' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
+            )
+            else:
+                results = publications.objects.filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), status__icontains="approved"
+            )
+
+            xlist =     list(results)
+            for publication in xlist:
+                if publication.url == 'doi.org/' or len(publication.url) == 0:
+                    publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
+                    publication.save()
+
+            publication_keys = pubkeys.objects.all()
+            keywords_list = keywords.objects.all()
+            keyword_results = []
+            keyword_count = []
+            
+
+            for publication in xlist:
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id:
+                        for pubid in keywords_list:
+                            if pubkey.keywords_id == pubid.id:
+                                if pubid.keywordname not in keyword_results:
+                                    keyword_results.append(pubid.keywordname)
+                                
+                                    
+
+
+
+            page_results = Paginator(results, 10)
+            page_number = 1
+            page_obj = page_results.get_page(page_number)        
+
+            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results })
+
+        elif searchFilter == "title":
+            
+            if 'ais' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(title__icontains=searched,source__icontains="ais", status__icontains="approved")
+
+
+            elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter( 
+                    Q(source__icontains="ais") |
+                    Q(source__icontains="ieee"), title__icontains=searched, status__icontains="approved"
+                )
+
+
+            elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter( 
+                    Q(source__icontains="ais") |
+                    Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
+                )
+
+                
+            elif 'ieee' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(title__icontains=searched,source__icontains="ieee", status__icontains="approved")
+
+
+            elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter( 
+                    Q(source__icontains="ieee") |
+                    Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
+                )
+                
+            elif 'scopus' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(title__icontains=searched, source__icontains="scopus", status__icontains="approved")
+
+
+            else:
+                results = publications.objects.filter(title__icontains=searched, status__icontains="approved")
+ 
+
+            xlist =     list(results)
+            for publication in xlist:
+                if publication.url == 'doi.org/' or len(publication.url) == 0:
+                    publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
+                    publication.save()   
+            
+            publication_keys = pubkeys.objects.all()
+            keywords_list = keywords.objects.all()
+            keyword_results = []
+            keyword_count = []
+
+            for publication in xlist:
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id:
+                        for pubid in keywords_list:
+                            if pubkey.keywords_id == pubid.id:
+                                if pubid.keywordname not in keyword_results:
+                                    keyword_results.append(pubid.keywordname)
+
+            return render(request, 'main/search.html',{'searched':searched, 'results':results , 'keyword_results':keyword_results})
+
+        elif searchFilter == "author":
+
+            if 'ais' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(author__icontains=searched,source__icontains="ais", status__icontains="approved")
+
+
+            elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter(
+                    Q(source__icontains="ais")|
+                    Q(source__icontains="ieee"), author__icontains=searched, status__icontains="approved"
+                )
+
+
+            elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter(
+                    Q(source__icontains="ais")|
+                    Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
+                )
+
+
+            elif 'ieee' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(author__icontains=searched,source__icontains="ieee", status__icontains="approved")
+
+
+            elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
+                results = publications.objects.filter(
+                    Q(source__icontains="ieee")|
+                    Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
+                )
+
+            elif 'scopus' in libFilter and len(libFilter) == 1:
+                results = publications.objects.filter(author__icontains=searched, source__icontains="scopus", status__icontains="approved")    
+
+
+            else:
+                results = publications.objects.filter(author__icontains=searched, status__icontains="approved")
+
+            
+
+            xlist =     list(results)
+            for publication in xlist:
+                if publication.url == 'doi.org/' or len(publication.url) == 0:
+                    publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
+                    publication.save()   
+
+            publication_keys = pubkeys.objects.all()
+            keywords_list = keywords.objects.all()
+            keyword_results = []
+            keyword_count = []
+
+            for publication in xlist:
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id:
+                        for pubid in keywords_list:
+                            if pubkey.keywords_id == pubid.id:
+                                if pubid.keywordname not in keyword_results:
+                                    keyword_results.append(pubid.keywordname) 
+
+            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results})
+    else:
+        
+        pubs = publications.objects.all()
+        xlist =     list(pubs)
+
+        for publication in xlist:
+            if publication.url == 'doi.org/' or len(publication.url) == 0:
+                publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
+                publication.save()
+
+        publication_keys = pubkeys.objects.all()
+        keywords_list = keywords.objects.all()
+        keyword_results = []
+        keyword_count = []
+
+        for publication in xlist:
+            for pubkey in publication_keys:
+                if publication.id == pubkey.publication_id:
+                    for pubid in keywords_list:
+                        if pubkey.keywords_id == pubid.id:
+                            if pubid.keywordname not in keyword_results:
+                                keyword_results.append(pubid.keywordname)  
+
+        return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
+
+def filterSearch(request, filter, search):
+    if request.method == "POST":
+        searched = search
         searchFilter = request.POST['filterData']
         
         libFilter = request.POST.getlist('filterLib')
@@ -781,129 +1011,41 @@ def viewAdmin(request):
 def downloadFolderTable(request):
 
     email = request.session['email']
-
-    if request.method == 'POST':
-        pair = [key for key in request.POST.keys()][1].split("|")
-        filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID')
-        getpubs = publications.objects.filter(id__in=filterpub)
-
-        from reportlab.platypus.flowables import KeepTogether
-
-        # List of Lists
-        buf = io.BytesIO()
-        styles = getSampleStyleSheet()
-        styleN = styles['Normal']
-        styleN.alignment = TA_LEFT
-        data = [
-            ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
-        ]
-        for pub in getpubs:
-            data.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.abstract, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
-            #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
-            #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
-
-        pdf = SimpleDocTemplate(
-            buf,
-            pagesize=A4,
-            format=landscape
-        )
-        
-        from reportlab.lib.units import mm
-        table = Table(data, colWidths=(35*mm, 35*mm, 35*mm, 35*mm, 20*mm, 20*mm))
-
-        # add style
-
-        style = TableStyle([
-            ('BACKGROUND', (0,0), (5,0), colors.green),
-            ('TEXTCOLOR',(0,0),(-1,0),colors.whitesmoke),
-
-            ('ALIGN',(0,0),(-1,-1),'CENTER'),
-
-            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-
-            ('FONTNAME', (0,0), (-1,0), 'Courier-Bold'),
-            ('FONTSIZE', (0,0), (-1,0), 14),
-
-            ('BOTTOMPADDING', (0,0), (-1,0), 12),
-
-            ('BACKGROUND',(0,1),(-1,-1),colors.beige),
-            
-        ])
-        table.setStyle(style)
-
-        # 2) Alternate backgroud color
-        rowNumb = len(data)
-        for i in range(1, rowNumb):
-            if i % 2 == 0:
-                bc = colors.burlywood
-            else:
-                bc = colors.beige
-            
-            ts = TableStyle(
-                [('BACKGROUND', (0,i),(-1,i), bc)]
-            )
-            table.setStyle(ts)
-
-        # 3) Add borders
-        ts = TableStyle(
-            [
-            ('BOX',(0,0),(-1,-1),2,colors.black),
-
-            ('LINEBEFORE',(2,1),(2,-1),2,colors.red),
-            ('LINEABOVE',(0,2),(-1,2),2,colors.green),
-
-            ('GRID',(0,1),(-1,-1),2,colors.black),
-            ]
-        )
-        table.setStyle(ts)
-
-        elems = []
-        elems.append(table)
-
-        pdf.build(elems)
-        buf.seek(0)
-
-        return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
-
-    '''
-    email = request.session['email']
     rawbookmarks = bookmarks.objects.filter(user=email) #All bookmarks of the user
+    filterpub = bookmarks.objects.filter(user=email).values('publicationID') #Get the publicationIDs of bookmarks of the user
     folders = bookmarks_folder.objects.filter(user=email) #Get folders made by the user
+    getpubs = publications.objects.filter(id__in=filterpub)
 
-    if request.method == 'POST':
-        pair = [key for key in request.POST.keys()][1].split("|")
-        filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID')
-        getpubs = publications.objects.filter(id__in=filterpub)
+        
+    buf = io.BytesIO()
+    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+    textob = c.beginText()
+    textob.setTextOrigin(inch, inch)
+    textob.setFont("Helvetica", 14)
 
-        buf = io.BytesIO()
-        c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
-        textob = c.beginText()
-        textob.setTextOrigin(inch, inch)
-        textob.setFont("Helvetica", 14)
+    lines = []
+    lines.append("Summary for ")
 
-        lines = []
-        lines.append("Summary for " + pair[1])
+    for pub in getpubs:
+        lines.append(pub.title)
+        lines.append(pub.author)
+        lines.append(pub.abstract)
+        lines.append(pub.url)
+        lines.append(pub.source)
+        lines.append(pub.year)
+        lines.append("--------------------")
 
-        for pub in getpubs:
-            lines.append(pub.title)
-            lines.append(pub.author)
-            lines.append(pub.abstract)
-            lines.append(pub.url)
-            lines.append(pub.source)
-            lines.append(pub.year)
-            lines.append("--------------------")
+    for line in lines:
+        textob.textLine(line)
 
-        for line in lines:
-            textob.textLine(line)
+    c.drawText(textob)
+    c.showPage()
+    c.setTitle("Corpus_Table")
+    c.save()
+    buf.seek(0)
 
-        c.drawText(textob)
-        c.showPage()
-        c.setTitle("Corpus_Table")
-        c.save()
-        buf.seek(0)
+    return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
 
-        return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
-    '''
 
 # def annotateFromPub(request):
 #     results = publications.objects.filter(id=id)

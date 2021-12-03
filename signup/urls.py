@@ -14,6 +14,7 @@ urlpatterns =[
     path('login/',views.loginView, name='login'),
     path('logout/',views.logoutView, name='logout'),
     path('search/',views.searchPublication, name ='search'),
+    path('search/<search>/<filter>',views.filterSearch, name ='filtersearch'),
     path('folders/<username>/',views.FoldersPage, name ='folders'),
     path('profile/<username>/createfolder',views.createFolder, name ='createfolder'),
     path('folders/<username>/<folderid>/publication/<id>/',views.PublicationPageInFolder, name ='folders-publication-page'),
