@@ -808,7 +808,7 @@ def downloadFolderTable(request):
         )
         
         from reportlab.lib.units import mm
-        table = Table(data, colWidths=(None, None, None, None, 20*mm, None))
+        table = Table(data, colWidths=(None, None, None, 50*mm, None, None))
 
         # add style
 
