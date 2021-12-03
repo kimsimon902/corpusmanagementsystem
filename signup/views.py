@@ -787,6 +787,8 @@ def downloadFolderTable(request):
         filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID')
         getpubs = publications.objects.filter(id__in=filterpub)
 
+        from reportlab.platypus.flowables import KeepTogether
+        
         # List of Lists
         buf = io.BytesIO()
         styles = getSampleStyleSheet()
@@ -848,8 +850,6 @@ def downloadFolderTable(request):
             ]
         )
         table.setStyle(ts)
-
-        from reportlab.platypus.flowables import KeepTogether
 
         elems = []
         elems.append(table)
