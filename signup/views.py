@@ -798,7 +798,7 @@ def downloadFolderTable(request):
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
         for pub in getpubs:
-            data.append([(Paragraph(pub.title, styleN)),Paragraph(pub.author, styleN),Paragraph(pub.abstract, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
+            data.append([(Paragraph(pub.title, styleN)),Paragraph(pub.author, styleN),KeepTogether(Paragraph(pub.abstract, styleN)),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
             #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
             #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
 
@@ -809,7 +809,7 @@ def downloadFolderTable(request):
         )
         
         from reportlab.lib.units import mm
-        table = Table(data, colWidths=(35*mm, 35*mm, None, 35*mm, 20*mm, 10*mm))
+        table = Table(data, colWidths=(35*mm, 35*mm, 50*mm, 35*mm, 20*mm, 10*mm))
 
         # add style
 
