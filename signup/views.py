@@ -353,7 +353,7 @@ def searchPublication(request):
 
 def filterSearch(request, filter, search):
     
-    results = publications.objects.all()
+    results = publications.objects.filter(title__icontains=search, status__icontains="approved")
     return render(request, 'main/search-filter.html',{ 'results':results})
 
 def FoldersPage(request, username):
