@@ -793,6 +793,7 @@ def downloadFolderTable(request):
         buf = io.BytesIO()
         styles = getSampleStyleSheet()
         styleN = styles['Normal']
+        styleN.alignment = TA_LEFT
         data = [
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
@@ -808,7 +809,7 @@ def downloadFolderTable(request):
         )
         
         from reportlab.lib.units import mm
-        table = Table(data, colWidths=(35*mm, 35*mm, 35*mm, 35*mm, 20*mm, 10*mm))
+        table = Table(data, colWidths=(35*mm, 35*mm, 35*mm, 35*mm, 20*mm, 20*mm))
 
         # add style
 
