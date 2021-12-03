@@ -358,6 +358,9 @@ def filterSearch(request, filter, search):
         
         libFilter = request.POST.getlist('filterLib')
 
+        testlist = publications.objects.all()
+        return render(request, 'main/search.html',{'testlist': testlist })
+
         if  searchFilter == "default":
 
             if 'ais' in libFilter and len(libFilter) == 1:
