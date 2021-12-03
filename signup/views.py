@@ -353,13 +353,13 @@ def searchPublication(request):
 
 def filterSearch(request, filter, search):
     if request.method == "POST":
-        searched = "test"
+        searched = search
         searchFilter = request.POST['filterData']
         
         libFilter = request.POST.getlist('filterLib')
 
-        testlist = publications.objects.all()
-        return render(request, 'main/home.html',{'testlist': testlist })
+        # testlist = publications.objects.all()
+        # return render(request, 'main/home.html',{'testlist': testlist })
 
         if  searchFilter == "default":
 
