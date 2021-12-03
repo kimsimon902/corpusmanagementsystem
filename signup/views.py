@@ -806,8 +806,9 @@ def downloadFolderTable(request):
             pagesize=A4,
             format=landscape
         )
-
-        table = Table(data, colWidths=[285,285])
+        
+        from reportlab.lib.units import mm
+        table = Table(data, colWidths=(None, None, 100*mm, None, None, None))
 
         # add style
 
