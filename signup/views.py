@@ -774,11 +774,12 @@ def viewAdmin(request):
 def downloadFolderTable(request):
 
     email = request.session['email']
-    filterpub = bookmarks.objects.filter(user=email).values('publicationID') #Get the publicationIDs of bookmarks of the user
+    rawbookmarks = bookmarks.objects.filter(user=email) #All bookmarks of the user
+    folders = bookmarks_folder.objects.filter(user=email) #Get folders made by the user
 
     if request.method == 'POST':
         pair = [key for key in request.POST.keys()][1].split("|")
-        filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID') #All bookmarks of the user
+        filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID')
         getpubs = publications.objects.filter(id__in=filterpub)
 
         buf = io.BytesIO()
