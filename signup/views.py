@@ -774,40 +774,41 @@ def viewAdmin(request):
 def downloadFolderTable(request):
 
     email = request.session['email']
-    rawbookmarks = bookmarks.objects.filter(user=email) #All bookmarks of the user
     filterpub = bookmarks.objects.filter(user=email).values('publicationID') #Get the publicationIDs of bookmarks of the user
-    folders = bookmarks_folder.objects.filter(user=email) #Get folders made by the user
-    getpubs = publications.objects.filter(id__in=filterpub)
 
-        
-    buf = io.BytesIO()
-    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
-    textob = c.beginText()
-    textob.setTextOrigin(inch, inch)
-    textob.setFont("Helvetica", 14)
+    if request.method == 'POST':
+        pair = [key for key in request.POST.keys()][1].split("|")
+        filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID') #All bookmarks of the user
+        getpubs = publications.objects.filter(id__in=filterpub)
 
-    lines = []
-    lines.append("Summary for ")
+        buf = io.BytesIO()
+        c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+        textob = c.beginText()
+        textob.setTextOrigin(inch, inch)
+        textob.setFont("Helvetica", 14)
 
-    for pub in getpubs:
-        lines.append(pub.title)
-        lines.append(pub.author)
-        lines.append(pub.abstract)
-        lines.append(pub.url)
-        lines.append(pub.source)
-        lines.append(pub.year)
-        lines.append("--------------------")
+        lines = []
+        lines.append("Summary for " + pair[1])
 
-    for line in lines:
-        textob.textLine(line)
+        for pub in getpubs:
+            lines.append(pub.title)
+            lines.append(pub.author)
+            lines.append(pub.abstract)
+            lines.append(pub.url)
+            lines.append(pub.source)
+            lines.append(pub.year)
+            lines.append("--------------------")
 
-    c.drawText(textob)
-    c.showPage()
-    c.setTitle("Corpus_Table")
-    c.save()
-    buf.seek(0)
+        for line in lines:
+            textob.textLine(line)
 
-    return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
+        c.drawText(textob)
+        c.showPage()
+        c.setTitle("Corpus_Table")
+        c.save()
+        buf.seek(0)
+
+        return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
 
 
 # def annotateFromPub(request):
