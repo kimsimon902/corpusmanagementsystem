@@ -796,7 +796,7 @@ def downloadFolderTable(request):
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
         for pub in getpubs:
-            data.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.abstract, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
+            data.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),KeepTogether(Paragraph(pub.abstract, styleN)),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
 
         pdf = SimpleDocTemplate(
             buf,
@@ -852,7 +852,7 @@ def downloadFolderTable(request):
         from reportlab.platypus.flowables import KeepTogether
 
         elems = []
-        elems.append(KeepTogether(table))
+        elems.append(table)
 
         pdf.build(elems)
         buf.seek(0)
