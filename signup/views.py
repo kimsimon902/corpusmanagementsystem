@@ -775,6 +775,7 @@ def viewAdmin(request):
 
 def downloadFolderTable(request):
     # List of Lists
+    buf = io.BytesIO()
     data = [
         ['Dedicated Hosting', 'VPS Hosting', 'Sharing Hosting', 'Reseller Hosting' ],
         ['€200/Month', '€100/Month', '€20/Month', '€50/Month'],
@@ -840,9 +841,9 @@ def downloadFolderTable(request):
     elems.append(table)
 
     pdf.build(elems)
-    
-    return response
-    #return FileResponse(elems, as_attachment=True)
+    buf.seek(0)
+
+    return FileResponse(buf, as_attachment=True)
 
     '''
     email = request.session['email']
