@@ -844,7 +844,7 @@ def downloadFolderTable(request):
 
     pdf.build(elems)
 
-    return FileResponse(pdf, as_attachment=True, filename='Corpus_Table.pdf')
+    return FileResponse(elems, as_attachment=True, filename='Corpus_Table.pdf')
     '''
     email = request.session['email']
     rawbookmarks = bookmarks.objects.filter(user=email) #All bookmarks of the user
