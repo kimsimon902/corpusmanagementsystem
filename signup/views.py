@@ -849,8 +849,10 @@ def downloadFolderTable(request):
         )
         table.setStyle(ts)
 
+        from reportlab.platypus.flowables import KeepTogether
+
         elems = []
-        elems.append(table)
+        elems.append(KeepTogether(table))
 
         pdf.build(elems)
         buf.seek(0)
