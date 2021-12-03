@@ -792,8 +792,7 @@ def downloadFolderTable(request):
         # List of Lists
         buf = io.BytesIO()
         styles = getSampleStyleSheet()
-        styleN = styles["BodyText"]
-        styleN.alignment = TA_LEFT
+        styleN = styles['Normal']
         data = [
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
