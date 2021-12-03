@@ -23,7 +23,7 @@ import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
-from reportlab.lib.pagesizes import LEGAL, landscape, letter
+from reportlab.lib.pagesizes import A4, LEGAL, landscape, letter
 from reportlab.platypus import SimpleDocTemplate
 from reportlab.platypus.tables import Table
 from reportlab.platypus import TableStyle
@@ -803,7 +803,7 @@ def downloadFolderTable(request):
 
         pdf = SimpleDocTemplate(
             buf,
-            pagesize=LEGAL,
+            pagesize=A4,
             format=landscape
         )
 
