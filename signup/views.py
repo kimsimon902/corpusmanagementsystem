@@ -788,12 +788,7 @@ def downloadFolderTable(request):
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
         for pub in getpubs:
-            data.append(pub.title)
-            data.append(pub.author)
-            data.append(pub.abstract)
-            data.append(pub.url)
-            data.append(pub.source)
-            data.append(pub.year)
+            data.append(pub.title,pub.author,pub.abstract,pub.url,pub.source,pub.year)
 
         pdf = SimpleDocTemplate(
             buf,
