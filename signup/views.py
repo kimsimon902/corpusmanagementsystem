@@ -788,7 +788,7 @@ def downloadFolderTable(request):
         getpubs = publications.objects.filter(id__in=filterpub)
 
         from reportlab.platypus.flowables import KeepTogether
-        
+
         # List of Lists
         buf = io.BytesIO()
         styles = getSampleStyleSheet()
@@ -798,7 +798,7 @@ def downloadFolderTable(request):
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
         for pub in getpubs:
-            data.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),KeepTogether(Paragraph(pub.abstract, styleN)),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
+            data.append([KeepTogether(Paragraph(pub.title, styleN)),Paragraph(pub.author, styleN),KeepTogether(Paragraph(pub.abstract, styleN)),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
 
         pdf = SimpleDocTemplate(
             buf,
