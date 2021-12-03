@@ -793,11 +793,12 @@ def downloadFolderTable(request):
         buf = io.BytesIO()
         styles = getSampleStyleSheet()
         styleN = styles['Normal']
+        styleN.alignment = TA_LEFT
         data = [
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
         for pub in getpubs:
-            data.append([(Paragraph(pub.title, styleN)),Paragraph(pub.author, styleN),Paragraph(pub.author, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
+            data.append([(Paragraph(pub.title, styleN)),Paragraph(pub.abstract, styleN),Paragraph(pub.author, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
             #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
             #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
 
@@ -808,7 +809,7 @@ def downloadFolderTable(request):
         )
         
         from reportlab.lib.units import mm
-        table = Table(data, colWidths=(None, None, None, 50*mm, None, None))
+        table = Table(data, colWidths=(35*mm, 35*mm, 35*mm, 35*mm, 35*mm, 35*mm))
 
         # add style
 
