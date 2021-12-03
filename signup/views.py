@@ -807,7 +807,7 @@ def downloadFolderTable(request):
             format=landscape
         )
 
-        table = Table(data)
+        table = Table(data, colWidths=[1.9*inch] * 5)
 
         # add style
 
