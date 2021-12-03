@@ -359,7 +359,7 @@ def filterSearch(request, filter, search):
         libFilter = request.POST.getlist('filterLib')
 
         testlist = publications.objects.all()
-        return render(request, 'search.html',{'testlist': testlist })
+        return render(request, 'main/home.html',{'testlist': testlist })
 
         if  searchFilter == "default":
 
