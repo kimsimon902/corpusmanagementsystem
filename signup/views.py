@@ -841,7 +841,8 @@ def downloadFolderTable(request):
 
     pdf.build(elems)
     
-    return FileResponse(elems, as_attachment=True)
+    return response
+    #return FileResponse(elems, as_attachment=True)
 
     '''
     email = request.session['email']
