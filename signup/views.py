@@ -843,7 +843,7 @@ def downloadFolderTable(request):
     pdf.build(elems)
     buf.seek(0)
 
-    return FileResponse(buf, as_attachment=True)
+    return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
 
     '''
     email = request.session['email']
