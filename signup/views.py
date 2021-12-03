@@ -774,74 +774,86 @@ def viewAdmin(request):
     return render(request, 'main/adminpage.html',{'publications':results})
 
 def downloadFolderTable(request):
-    # List of Lists
-    buf = io.BytesIO()
-    data = [
-        ['Dedicated Hosting', 'VPS Hosting', 'Sharing Hosting', 'Reseller Hosting' ],
-        ['€200/Month', '€100/Month', '€20/Month', '€50/Month'],
-        ['Free Domain', 'Free Domain', 'Free Domain', 'Free Domain'],
-        ['2GB DDR2', '20GB Disc Space', 'Unlimited Email', 'Unlimited Email']
-    ]
 
-    pdf = SimpleDocTemplate(
-        buf,
-        pagesize=letter
-    )
+    email = request.session['email']
 
-    table = Table(data)
+    if request.method == 'POST':
+        pair = [key for key in request.POST.keys()][1].split("|")
+        filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID')
+        getpubs = publications.objects.filter(id__in=filterpub)
 
-    # add style
-    from reportlab.platypus import TableStyle
-    from reportlab.lib import colors
+        # List of Lists
+        buf = io.BytesIO()
+        data = [
+            ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
+        ]
+        for pub in getpubs:
+            data.append(pub.title)
+            data.append(pub.author)
+            data.append(pub.abstract)
+            data.append(pub.url)
+            data.append(pub.source)
+            data.append(pub.year)
 
-    style = TableStyle([
-        ('BACKGROUND', (0,0), (3,0), colors.green),
-        ('TEXTCOLOR',(0,0),(-1,0),colors.whitesmoke),
+        pdf = SimpleDocTemplate(
+            buf,
+            pagesize=letter
+        )
 
-        ('ALIGN',(0,0),(-1,-1),'CENTER'),
+        table = Table(data)
 
-        ('FONTNAME', (0,0), (-1,0), 'Courier-Bold'),
-        ('FONTSIZE', (0,0), (-1,0), 14),
+        # add style
+        from reportlab.platypus import TableStyle
+        from reportlab.lib import colors
 
-        ('BOTTOMPADDING', (0,0), (-1,0), 12),
+        style = TableStyle([
+            ('BACKGROUND', (0,0), (3,0), colors.green),
+            ('TEXTCOLOR',(0,0),(-1,0),colors.whitesmoke),
 
-        ('BACKGROUND',(0,1),(-1,-1),colors.beige),
-    ])
-    table.setStyle(style)
+            ('ALIGN',(0,0),(-1,-1),'CENTER'),
 
-    # 2) Alternate backgroud color
-    rowNumb = len(data)
-    for i in range(1, rowNumb):
-        if i % 2 == 0:
-            bc = colors.burlywood
-        else:
-            bc = colors.beige
-        
+            ('FONTNAME', (0,0), (-1,0), 'Courier-Bold'),
+            ('FONTSIZE', (0,0), (-1,0), 14),
+
+            ('BOTTOMPADDING', (0,0), (-1,0), 12),
+
+            ('BACKGROUND',(0,1),(-1,-1),colors.beige),
+        ])
+        table.setStyle(style)
+
+        # 2) Alternate backgroud color
+        rowNumb = len(data)
+        for i in range(1, rowNumb):
+            if i % 2 == 0:
+                bc = colors.burlywood
+            else:
+                bc = colors.beige
+            
+            ts = TableStyle(
+                [('BACKGROUND', (0,i),(-1,i), bc)]
+            )
+            table.setStyle(ts)
+
+        # 3) Add borders
         ts = TableStyle(
-            [('BACKGROUND', (0,i),(-1,i), bc)]
+            [
+            ('BOX',(0,0),(-1,-1),2,colors.black),
+
+            ('LINEBEFORE',(2,1),(2,-1),2,colors.red),
+            ('LINEABOVE',(0,2),(-1,2),2,colors.green),
+
+            ('GRID',(0,1),(-1,-1),2,colors.black),
+            ]
         )
         table.setStyle(ts)
 
-    # 3) Add borders
-    ts = TableStyle(
-        [
-        ('BOX',(0,0),(-1,-1),2,colors.black),
+        elems = []
+        elems.append(table)
 
-        ('LINEBEFORE',(2,1),(2,-1),2,colors.red),
-        ('LINEABOVE',(0,2),(-1,2),2,colors.green),
+        pdf.build(elems)
+        buf.seek(0)
 
-        ('GRID',(0,1),(-1,-1),2,colors.black),
-        ]
-    )
-    table.setStyle(ts)
-
-    elems = []
-    elems.append(table)
-
-    pdf.build(elems)
-    buf.seek(0)
-
-    return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
+        return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
 
     '''
     email = request.session['email']
