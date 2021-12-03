@@ -354,7 +354,7 @@ def searchPublication(request):
 def filterSearch(request, filter, search):
     
     results = publications.objects.all()
-    return render(request, 'main/home.html',{ 'results':results})
+    return render(request, 'main/search-filter.html',{ 'results':results})
 
 def FoldersPage(request, username):
 

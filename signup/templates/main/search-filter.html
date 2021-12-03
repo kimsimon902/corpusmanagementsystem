@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+{% if request.session.email %}
+<html>
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Search</title>
+    <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static '\users\assets\css\index.css' %}">
+    <link rel="stylesheet" href="{% static '\users\assets\css\Pretty-Search-Form.css' %}">
+</head>
+
+<body>
+    {% include 'main/nav-bar.html' %}
+    {% if searched %}
+    <div class="container-fluid" style="background: #efefef;">
+        <div class="container" style="padding-top: 20px">
+            <form class='col-12' method="POST" action="{% url 'search' %}" id="search-form">
+                {% csrf_token %}
+                <div class="col-12">
+                
+                    <div class="input-group mb-3">
+                        <input class="form-control" type="search" placeholder="I am looking for..." name="searched" aria-label="Search">
+                        <button class="btn btn-success btn-sm" type="submit">Search</button>
+                    </div>
+
+                    <span class="choose text-dark">Filter by: </span>
+                    <select id="inputState" class="custom-select" aria-label="Filter" name="filterData" style="    padding: 8px 12px; color: #333; background-color: white; border: 1px solid #ddd; cursor: pointer; border-radius: 5px; margin-bottom: 15px; margin-right: 20px;">
+                            <option selected value="default">All</option>
+                            <option value="title">Title</option>
+                            <option value="author">Author</option>
+                    </select>
+
+                    <span style="margin-right: 5px;">From:</span>
+                    <div class="form-check form-check-inline">
+                        <input id="formCheck-AIS" class="form-check-input" type="checkbox" name="filterLib" value="ais"/>
+                        <label class="form-check-label" for="formCheck-AIS">AIS</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input id="formCheck-IEEE" class="form-check-input" type="checkbox" name="filterLib" value="ieee"/>
+                        <label class="form-check-label" for="formCheck-IEEE">IEEE</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input id="formCheck-Scopus" class="form-check-input" type="checkbox" name="filterLib" value="scopus"/>
+                        <label class="form-check-label" for="formCheck-Scopus">Scopus</label>
+                    </div>
+                </div>
+            </form> 
+        </div>
+
+ 
+       
+        <div class="row">
+            <div class="col">
+                <h5 style="margin-top: 20px; margin-bottom: 20px;">Search results for {{searched}}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3" style="border-style: ridge;max-height: 50vh;margin-left: 10px;max-width: 200px; display:grid;">
+                <h5 style="margin-top: 20px;">Keywords</h5>
+                {% for keyword in keyword_results|slice:"5" %}
+
+                <a href="/search/{{searched}}/{{keyword}}" style = "color:black" id="link-{{ forloop.counter }}-keyword"><div class="default" style="background-color: none; color:black; box-shadow: none !important;"id="keyword-{{forloop.counter}}" >{{keyword}}</a></div>
+
+                {% endfor %}
+
+                {% if keyword_results.count > 5 %}
+                <p id="seemore-keyword" onclick="seemoreKeyword()" style="cursor: pointer;">See mor e</p>
+                {% endif %}
+
+                <div id="morekeyword" style="display:none;">
+                {% for keyword in keyword_results %}
+
+                <a href="/search/{{searched}}/{{keyword}}" style = "color:black"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{keyword}}</a></div>
+
+                {% endfor %}
+                </div>
+
+                <h5 style="margin-top: 20px;">Year</h5>
+
+                {% for result in results|slice:"5" %}
+                
+                <a href="/search/{{searched}}/{{result.year}}" style = "color:black" id="link-{{ forloop.counter }}-year"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" id="year-{{forloop.counter}}">{{result.year}}</a></div>
+                
+                {% endfor %}
+
+                {% if results.count > 5 %}
+                <p id="seemore-year" onclick="seemoreYear()" style="cursor: pointer;">See more</p>
+                {% endif %}
+
+                <div id="moreyear" style="display:none;">
+                {% for result in results %}
+                
+                <a href="/search/{{searched}}/{{result.year}}" style = "color:black" ><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{result.year}}</a></div>
+                
+                {% endfor %}
+                </div>
+                
+                <script>
+                    function seemoreYear() {
+                      document.getElementById("seemore-year").style.display = "none";
+                      document.getElementById("link-1-year").style.display = "none";
+                      document.getElementById("link-2-year").style.display = "none";
+                      document.getElementById("link-3-year").style.display = "none";
+                      document.getElementById("link-4-year").style.display = "none";
+                      document.getElementById("link-5-year").style.display = "none";
+                      document.getElementById("year-1").style.display = "none";
+                      document.getElementById("year-2").style.display = "none";
+                      document.getElementById("year-3").style.display = "none";
+                      document.getElementById("year-4").style.display = "none";
+                      document.getElementById("year-5").style.display = "none";
+                      document.getElementById("moreyear").style.display = "block";
+                    }
+                </script>
+
+                <script>
+                    function seemoreKeyword() {
+                    document.getElementById("seemore-keyword").style.display = "none";
+                    document.getElementById("link-1-keyword").style.display = "none";
+                    document.getElementById("link-2-keyword").style.display = "none";
+                    document.getElementById("link-3-keyword").style.display = "none";
+                    document.getElementById("link-4-keyword").style.display = "none";
+                    document.getElementById("link-5-keyword").style.display = "none";
+                    document.getElementById("keyword-1").style.display = "none";
+                    document.getElementById("keyword-2").style.display = "none";
+                    document.getElementById("keyword-3").style.display = "none";
+                    document.getElementById("keyword-4").style.display = "none";
+                    document.getElementById("keyword-5").style.display = "none";
+                    document.getElementById("morekeyword").style.display = "block";
+                    }
+                </script>
+
+            </div>
+            <!-- Results table-->
+            <div class="col">
+                <div class="table-responsive" style="min-height: 100vh;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author/s</th>
+                                <th>Abstract</th>
+                                <th>Source</th>
+                                <th>URL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for result in results %}
+                            <tr>
+                                <td><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
+                                <td>{{result.author}}</td>
+                                <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td>
+                                <td>{{result.source}}</td>
+
+                                {% if result.url != 'uploaded' %}
+                                <td id="url"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
+                                {% else %}
+                                <td id="url"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
+                                {% endif %}
+                            </tr>
+                                {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end Results Table -->
+        </div>
+    </div>
+    {% endif %}
+    <footer class="bg-light footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-start my-auto h-100">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item"><a href="#">About</a></li>
+                        <li class="list-inline-item"><span>⋅</span></li>
+                        <li class="list-inline-item"><a href="#">Contact</a></li>
+                        <li class="list-inline-item"><span>⋅</span></li>
+                        <li class="list-inline-item"><a href="#">Terms of &nbsp;Use</a></li>
+                        <li class="list-inline-item"><span>⋅</span></li>
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">© Brand 2021. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 text-center text-lg-end my-auto h-100">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook fa-2x fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-twitter fa-2x fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-instagram fa-2x fa-fw"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+{% endif %}
