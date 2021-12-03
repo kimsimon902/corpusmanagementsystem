@@ -819,6 +819,8 @@ def downloadFolderTable(request):
 
             ('ALIGN',(0,0),(-1,-1),'CENTER'),
 
+            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+
             ('FONTNAME', (0,0), (-1,0), 'Courier-Bold'),
             ('FONTSIZE', (0,0), (-1,0), 14),
 
