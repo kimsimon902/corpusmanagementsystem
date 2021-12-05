@@ -24,6 +24,11 @@ from django.http import FileResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
+import requests
+from bs4 import BeautifulSoup
+import operator
+from collections import Counter
+
 
 
 # Create your views here.
