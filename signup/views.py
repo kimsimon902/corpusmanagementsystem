@@ -274,13 +274,19 @@ def searchPublication(request):
                                 if pubid.keywordname not in keyword_results:
                                     keyword_results.append(pubid.keywordname)
                                 
-                                    
-
-
 
             page_results = Paginator(results, 10)
             page_number = 1
-            page_obj = page_results.get_page(page_number)        
+            page_obj = page_results.get_page(page_number)      
+
+            #flag = 1 if keyword is found        
+            for publication in xlist:
+                flag = 0
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id and flag == 0:
+                        flag=1
+                if flag == 0:
+                    scrap(publication.url)
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results })
 
@@ -340,6 +346,14 @@ def searchPublication(request):
                             if pubkey.keywords_id == pubid.id:
                                 if pubid.keywordname not in keyword_results:
                                     keyword_results.append(pubid.keywordname)
+
+            for publication in xlist:
+                flag = 0
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id and flag == 0:
+                        flag=1
+                if flag == 0:
+                    scrap(publication.url)
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results , 'keyword_results':keyword_results})
 
@@ -401,6 +415,15 @@ def searchPublication(request):
                                 if pubid.keywordname not in keyword_results:
                                     keyword_results.append(pubid.keywordname) 
 
+            for publication in xlist:
+                flag = 0
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id and flag == 0:
+                        flag=1
+                if flag == 0:
+                    scrap(publication.url)
+
+
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results})
     else:
         
@@ -424,6 +447,15 @@ def searchPublication(request):
                         if pubkey.keywords_id == pubid.id:
                             if pubid.keywordname not in keyword_results:
                                 keyword_results.append(pubid.keywordname)  
+
+        for publication in xlist:
+                flag = 0
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id and flag == 0:
+                        flag=1
+                if flag == 0:
+                    scrap(publication.url)
+
 
         return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
 
