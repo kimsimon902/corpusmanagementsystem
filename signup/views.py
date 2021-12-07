@@ -131,8 +131,15 @@ def scrap(url):
 
     #source_code = requests.get(url= url, headers= headers).text 
 
-    source_code = requests.get(url,verify=False).text
- 
+    
+    try:
+        source_code = requests.get(url).text
+    except requests.exceptions.HTTPError as errh:
+        print ("Http Error:",errh)
+    except requests.exceptions.ConnectionError as errc:
+        print ("Error Connecting:",errc)
+    except requests.exceptions.Timeout as errt:
+        print ("Timeout Error:",errt)
         
     # BeautifulSoup object which will 
     # ping the requested url for data 
