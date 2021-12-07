@@ -125,8 +125,10 @@ def scrap(url):
     # empty list to store the contents of  
     # the website fetched from our web-crawler 
     wordlist = [] 
-    source_code = requests.get(url).text 
-  
+    headers = {
+        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36'}
+    source_code = requests.get(url= url, headers= headers).text 
+    
     # BeautifulSoup object which will 
     # ping the requested url for data 
     soup = BeautifulSoup(source_code, 'html.parser') 
