@@ -130,18 +130,9 @@ def scrap(url):
 
 
     #source_code = requests.get(url= url, headers= headers).text 
-    source_code = ''
-    while source_code == '':
-        try:
-            source_code = requests.get(url).text
-            break
-        except:
-            print("Connection refused by the server..")
-            print("Let me sleep for 5 seconds")
-            print("ZZzzzz...")
-            time.sleep(5)
-            print("Was a nice sleep, now let me continue...")
-            continue
+
+    source_code = requests.get(url,verify=False).text
+ 
         
     # BeautifulSoup object which will 
     # ping the requested url for data 
