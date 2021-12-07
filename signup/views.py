@@ -286,7 +286,7 @@ def searchPublication(request):
                     if publication.id == pubkey.publication_id and flag == 0:
                         flag=1
                 if flag == 0:
-                    scrap("https://" + publication.url)
+                    scrap("http://" + publication.url)
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results })
 
@@ -353,7 +353,7 @@ def searchPublication(request):
                     if publication.id == pubkey.publication_id and flag == 0:
                         flag=1
                 if flag == 0:
-                    scrap("https://" + publication.url)
+                    scrap("http://" + publication.url)
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results , 'keyword_results':keyword_results})
 
@@ -421,7 +421,7 @@ def searchPublication(request):
                     if publication.id == pubkey.publication_id and flag == 0:
                         flag=1
                 if flag == 0:
-                    scrap("https://" + publication.url)
+                    scrap("http://" + publication.url)
 
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results})
@@ -454,7 +454,7 @@ def searchPublication(request):
                     if publication.id == pubkey.publication_id and flag == 0:
                         flag=1
                 if flag == 0:
-                    scrap("https://" + publication.url)
+                    scrap("http://" + publication.url)
 
 
         return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
