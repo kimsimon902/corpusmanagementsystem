@@ -28,7 +28,7 @@ import requests
 from bs4 import BeautifulSoup
 import operator
 from collections import Counter
-
+import time
 
 
 # Create your views here.
@@ -127,8 +127,22 @@ def scrap(url):
     wordlist = [] 
     headers = {
         'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36'}
-    source_code = requests.get(url= url, headers= headers).text 
-    
+
+
+    #source_code = requests.get(url= url, headers= headers).text 
+    source_code = ''
+    while source_code == '':
+        try:
+            source_code = requests.get(url)
+            break
+        except:
+            print("Connection refused by the server..")
+            print("Let me sleep for 5 seconds")
+            print("ZZzzzz...")
+            time.sleep(5)
+            print("Was a nice sleep, now let me continue...")
+            continue
+        
     # BeautifulSoup object which will 
     # ping the requested url for data 
     soup = BeautifulSoup(source_code, 'html.parser') 
