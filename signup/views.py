@@ -130,8 +130,7 @@ def scrap(url):
 
 
     #source_code = requests.get(url= url, headers= headers).text 
-
-    
+    source_code=''
     try:
         source_code = requests.get(url).text
     except requests.exceptions.HTTPError as errh:
