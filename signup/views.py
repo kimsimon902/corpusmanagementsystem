@@ -133,7 +133,7 @@ def scrap(url):
     source_code = ''
     while source_code == '':
         try:
-            source_code = requests.get(url)
+            source_code = requests.get(url).text
             break
         except:
             print("Connection refused by the server..")
