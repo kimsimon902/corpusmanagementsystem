@@ -57,6 +57,17 @@
 
                         {% if bool_in_bookmark %}
                             {% for e in my_bookmarks_id %}
+                            <span style="margin-right: 10px;">Delete from Bookmarks</span>
+                            <form method="POST" action="/publication/{{getdata.id}}/bookmark">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.path }}"/>
+                            <input type="hidden" name="folder_id" value="{{my_bookmarks_id.id}}"/>
+                            <input type="hidden" name="bookmark_action" value="delete">
+                            <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">Delete</button>
+                            </form>
+                            {% endfor %}
+                        {% else %}
+                            {% for e in my_bookmarks_id %}
                             <span style="margin-right: 10px;">Add to Bookmarks</span>
                             <span>{{ e.id }}</span>
                             <form method="POST" action="/publication/{{getdata.id}}/bookmark">
@@ -64,18 +75,9 @@
                                 <input type="hidden" name="next" value="{{ request.path }}"/>
                                 <input type="hidden" name="folder_id" value="{{e.id}}"/>
                                 <input type="hidden" name="bookmark_action" value="add">
-                                <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">x</button>
+                                <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">Add</button>
                             </form>
                             {% endfor %}
-                        {% else %}
-                            <span style="margin-right: 10px;">Delete from Bookmarks</span>
-                            <form method="POST" action="/publication/{{getdata.id}}/bookmark">
-                            {% csrf_token %}
-                            <input type="hidden" name="next" value="{{ request.path }}"/>
-                            <input type="hidden" name="folder_id" value="{{my_bookmarks_id.id}}"/>
-                            <input type="hidden" name="bookmark_action" value="delete">
-                            <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button>
-                            </form>
                         {% endif %}
                     </div>
                 </div>
