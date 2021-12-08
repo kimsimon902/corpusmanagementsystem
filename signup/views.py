@@ -582,7 +582,7 @@ def PublicationPage(request, id):
     not_bookmark = bookmarks_folder.objects.exclude(id__in=bookmark_value).filter(id__in=folders_value)
 
     my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('id') #get my bookmarks folderID
-    my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, id__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
+    my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
 
     in_my_bookmarks = id in my_bookmarks_folder_contents
 
