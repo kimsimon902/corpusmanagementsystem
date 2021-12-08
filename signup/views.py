@@ -207,9 +207,10 @@ def create_dictionary(clean_list, id):
     insert_list = []
     pub_id = []
 
-    for index, word in top:
-        if word[index].isalpha():
-            newkeywords.append(word)
+    for index in top:
+        for word in index:
+            if word.isalpha():
+                newkeywords.append(word)
 
     
     for i in range(0,len(newkeywords)):
