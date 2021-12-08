@@ -627,7 +627,7 @@ def PublicationPage(request, id):
                                                 'notinshared':not_shared_bookmark, 
                                                 'keyword_results':keyword_results, 
                                                 'bool_in_bookmark': in_my_bookmarks,
-                                                'my_bookmarks_id': my_bookmarks_folder.id,
+                                                'my_bookmarks_id': my_bookmarks_folder,
                                                 'my_bookmarks_content':my_bookmarks_folder_contents})
 
 def PublicationPageInFolder(request, folderid, username, id):
