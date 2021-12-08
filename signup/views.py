@@ -147,8 +147,9 @@ def scrap(url, id):
   
     # Text in given web-page is stored under 
     # the <div> tags with class <entry-content> 
-    for each_text in soup.findAll('div', {'class':'u-mb-1'}): 
-        content = each_text.text 
+    table = soup.findAll('div', {'id':'abstract'})
+    for x in table:
+        content = x.find('p').text
   
         # use split() to break the sentence into  
         # words and convert them into lowercase  
