@@ -128,8 +128,8 @@ def scrap(url):
     headers = {
         'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36'}
 
-
-    #source_code = requests.get(url= url, headers= headers).text 
+    
+    
     source_code=''
     try:
         source_code = requests.get(url).text
@@ -139,7 +139,8 @@ def scrap(url):
         print ("Error Connecting:",errc)
     except requests.exceptions.Timeout as errt:
         print ("Timeout Error:",errt)
-        
+    
+
     # BeautifulSoup object which will 
     # ping the requested url for data 
     soup = BeautifulSoup(source_code, 'html.parser') 
@@ -299,7 +300,10 @@ def searchPublication(request):
                     if publication.id == pubkey.publication_id and flag == 0:
                         flag=1
                 if flag == 0:
-                    scrap("http://" + publication.url)
+                    if "http" in publication.url: 
+                        scrap(publication.url)
+                    else:
+                        scrap("http://" + publication.url)
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results })
 
@@ -366,7 +370,10 @@ def searchPublication(request):
                     if publication.id == pubkey.publication_id and flag == 0:
                         flag=1
                 if flag == 0:
-                    scrap("http://" + publication.url)
+                    if "http" in publication.url: 
+                        scrap(publication.url)
+                    else:
+                        scrap("http://" + publication.url)
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results , 'keyword_results':keyword_results})
 
@@ -434,7 +441,10 @@ def searchPublication(request):
                     if publication.id == pubkey.publication_id and flag == 0:
                         flag=1
                 if flag == 0:
-                    scrap("http://" + publication.url)
+                    if "http" in publication.url: 
+                        scrap(publication.url)
+                    else:
+                        scrap("http://" + publication.url)
 
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results})
@@ -467,7 +477,10 @@ def searchPublication(request):
                     if publication.id == pubkey.publication_id and flag == 0:
                         flag=1
                 if flag == 0:
-                    scrap("http://" + publication.url)
+                    if "http" in publication.url: 
+                        scrap(publication.url)
+                    else:
+                        scrap("http://" + publication.url)
 
 
         return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
