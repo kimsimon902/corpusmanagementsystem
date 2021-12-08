@@ -220,13 +220,13 @@ def create_dictionary(clean_list, id):
             insert_list.append(keywords(keywordname=newkeywords[i].strip()))
             name_id.append(newkeywords[i].strip())
 
-        keywords.objects.bulk_create(insert_list)
+    keywords.objects.bulk_create(insert_list)
 
         
-        for j in range(0,len(name_id)):
-            store = keywords.objects.get(keywordname=name_id[j])
-            pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
-        pubkeys.objects.bulk_create(pub_id)
+    for j in range(0,len(name_id)):
+        store = keywords.objects.get(keywordname=name_id[j])
+        pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
+    pubkeys.objects.bulk_create(pub_id)
 
 
 
