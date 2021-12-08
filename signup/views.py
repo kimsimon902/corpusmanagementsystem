@@ -610,7 +610,23 @@ def PublicationPage(request, id):
                         if pubid.keywordname not in keyword_results:
                             keyword_results.append(pubid.keywordname) 
 
-    return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark, 'pubID': id, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs, 'inshared':in_shared_bookmark, 'notinshared':not_shared_bookmark, 'keyword_results':keyword_results, 'bool_in_bookmark': in_my_bookmarks})
+    return render(request, 'publication.html', {'publication':results,
+                                                'annotations':annotation,
+                                                'my_folders':my_folders, 
+                                                'in_bookmark':in_bookmark, 
+                                                'not_bookmark':not_bookmark, 
+                                                'pubID': id, 
+                                                'collaborators':collaborator, 
+                                                'collabs':collabs, 
+                                                'sharedfolders': shared_folders, 
+                                                'sharedbookmarks': shared_folders_bookmarks, 
+                                                'sharedpubs':shared_folders_pubs, 
+                                                'inshared':in_shared_bookmark, 
+                                                'notinshared':not_shared_bookmark, 
+                                                'keyword_results':keyword_results, 
+                                                'bool_in_bookmark': in_my_bookmarks,
+                                                'my_bookmarks_id': my_bookmarks_folder,
+                                                'my_bookmarks_content':my_bookmarks_folder_contents})
 
 def PublicationPageInFolder(request, folderid, username, id):
     results = publications.objects.filter(id=id)
