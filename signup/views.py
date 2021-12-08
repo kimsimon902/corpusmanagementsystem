@@ -839,11 +839,12 @@ def PublicationBookmarkInFolder(request, username, folderid, id):
 def createFolder(request, username):
 
     email = request.session['email']
+    name = request.POST.get('folder-name')
     next = request.POST.get('next', '/')
 
     if request.method == 'POST':
         newFolder = bookmarks_folder()
-        newFolder.folder_name = request.POST.get('folder-name')
+        newFolder.folder_name = name.capitalize()
         newFolder.user = email
         newFolder.save()
 
