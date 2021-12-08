@@ -586,6 +586,7 @@ def PublicationPage(request, id):
 
     if my_bookmarks_folder_contents.filter(publicationID=id):
         in_my_bookmarks = 'true'
+    else: in_my_bookmarks = 'false'
 
     collabs = collaborators.objects.filter(collab=email).values('folderID') #Get the folderIDs of the folders that have collaborators
     shared_folders = bookmarks_folder.objects.filter(id__in=collabs) #The folders that have collaborators
