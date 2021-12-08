@@ -57,6 +57,8 @@
 
                         {% if bool_in_bookmark %}
                             <span style="margin-right: 10px;">Add to Bookmarks</span>
+                            <span>{{ my_bookmarks_id.id }}</span>
+                            <span>{{ my_bookmarks_id }}</span>
                             <form method="POST" action="/publication/{{getdata.id}}/bookmark">
                                 {% csrf_token %}
                                 <input type="hidden" name="next" value="{{ request.path }}"/>
