@@ -120,7 +120,7 @@ def showTest(request):
     return render(request, 'test/test.html',{'publications':results, 'annotations': annotation})
 
 
-def scrap(url): 
+def scrap(url, id): 
   
     # empty list to store the contents of  
     # the website fetched from our web-crawler 
@@ -147,7 +147,7 @@ def scrap(url):
   
     # Text in given web-page is stored under 
     # the <div> tags with class <entry-content> 
-    for each_text in soup.findAll('div', {'class':'entry-content'}): 
+    for each_text in soup.findAll('div', {'class':'u-mb-1'}): 
         content = each_text.text 
   
         # use split() to break the sentence into  
@@ -156,10 +156,10 @@ def scrap(url):
           
         for each_word in words: 
             wordlist.append(each_word) 
-        clean_wordlist(wordlist) 
+        clean_wordlist(wordlist, id) 
 
 
-def clean_wordlist(wordlist): 
+def clean_wordlist(wordlist, id): 
       
     clean_list =[] 
     for word in wordlist: 
@@ -170,10 +170,10 @@ def clean_wordlist(wordlist):
               
         if len(word) > 0: 
             clean_list.append(word) 
-    create_dictionary(clean_list)
+    create_dictionary(clean_list,id)
 
 
-def create_dictionary(clean_list): 
+def create_dictionary(clean_list, id): 
     word_count = {} 
       
     for word in clean_list: 
@@ -200,6 +200,31 @@ def create_dictionary(clean_list):
       
     # returns the most occuring elements 
     top = c.most_common(10) 
+    
+    newkeywords = []
+    name_id= []
+    insert_list = []
+    pub_id = []
+
+    for word in top:
+        if word.isalpha():
+            newkeywords.append(word)
+
+    
+    for i in range(0,len(newkeywords)):
+        if keywords.objects.filter(keywordname=newkeywords[i].strip()):
+            name_id.append(newkeywords[i].strip())
+        else:
+            insert_list.append(keywords(keywordname=newkeywords[i].strip()))
+            name_id.append(newkeywords[i].strip())
+
+        keywords.objects.bulk_create(insert_list)
+
+        
+        for j in range(0,len(name_id)):
+            store = keywords.objects.get(keywordname=name_id[j])
+            pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
+        pubkeys.objects.bulk_create(pub_id)
 
 
 
@@ -303,7 +328,7 @@ def searchPublication(request):
                     if "http" in publication.url: 
                         scrap(publication.url)
                     else:
-                        scrap("http://" + publication.url)
+                        scrap("http://" + publication.url, publication.id)
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results })
 
@@ -373,7 +398,7 @@ def searchPublication(request):
                     if "http" in publication.url: 
                         scrap(publication.url)
                     else:
-                        scrap("http://" + publication.url)
+                        scrap("http://" + publication.url, publication.id)
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results , 'keyword_results':keyword_results})
 
@@ -444,7 +469,7 @@ def searchPublication(request):
                     if "http" in publication.url: 
                         scrap(publication.url)
                     else:
-                        scrap("http://" + publication.url)
+                        scrap("http://" + publication.url, publication.id)
 
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results})
@@ -480,7 +505,7 @@ def searchPublication(request):
                     if "http" in publication.url: 
                         scrap(publication.url)
                     else:
-                        scrap("http://" + publication.url)
+                        scrap("http://" + publication.url, publication.id)
 
 
         return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
