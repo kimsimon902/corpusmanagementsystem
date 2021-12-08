@@ -61,7 +61,7 @@
                             <input type="hidden" name="next" value="{{ request.path }}"/>
                             <input type="hidden" name="folder_id" value="{{e.id}}"/>
                             <input type="hidden" name="bookmark_action" value="delete">
-                            <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">Delete from Bookmarks <i class="fa fa-bookmark" aria-hidden="true"></i></button>
+                            <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">Delete from Bookmarks    <i class="fa fa-bookmark" aria-hidden="true"></i></button>
                             </form>
                             {% endfor %}
                         {% else %}
@@ -71,7 +71,7 @@
                                 <input type="hidden" name="next" value="{{ request.path }}"/>
                                 <input type="hidden" name="folder_id" value="{{e.id}}"/>
                                 <input type="hidden" name="bookmark_action" value="add">
-                                <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">Add to Bookmarks <i class="fa fa-bookmark-o" aria-hidden="true"></i></button>
+                                <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">Add to Bookmarks   <i class="fa fa-bookmark-o" aria-hidden="true"></i></button>
                             </form>
                             {% endfor %}
                         {% endif %}
