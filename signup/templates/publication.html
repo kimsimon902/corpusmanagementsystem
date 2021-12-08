@@ -54,28 +54,24 @@
                             </svg>
                         </button>
                         <br>
-                        <h1>{{ bool_in_bookmark }}</h1>
                         {% if bool_in_bookmark == "true" %}
                             {% for e in my_bookmarks_id %}
-                            <span style="margin-right: 10px;">Delete from Bookmarks</span>
                             <form method="POST" action="/publication/{{getdata.id}}/bookmark">
                             {% csrf_token %}
                             <input type="hidden" name="next" value="{{ request.path }}"/>
                             <input type="hidden" name="folder_id" value="{{e.id}}"/>
                             <input type="hidden" name="bookmark_action" value="delete">
-                            <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">Delete</button>
+                            <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">Delete from Bookmarks <i class="fa fa-bookmark" aria-hidden="true"></i></button>
                             </form>
                             {% endfor %}
                         {% else %}
                             {% for e in my_bookmarks_id %}
-                            <span style="margin-right: 10px;">Add to Bookmarks</span>
-                            <span>{{ e.id }}</span>
                             <form method="POST" action="/publication/{{getdata.id}}/bookmark">
                                 {% csrf_token %}
                                 <input type="hidden" name="next" value="{{ request.path }}"/>
                                 <input type="hidden" name="folder_id" value="{{e.id}}"/>
                                 <input type="hidden" name="bookmark_action" value="add">
-                                <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">Add</button>
+                                <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">Add to Bookmarks <i class="fa fa-bookmark-o" aria-hidden="true"></i></button>
                             </form>
                             {% endfor %}
                         {% endif %}
