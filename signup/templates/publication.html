@@ -61,7 +61,7 @@
                             <form method="POST" action="/publication/{{getdata.id}}/bookmark">
                             {% csrf_token %}
                             <input type="hidden" name="next" value="{{ request.path }}"/>
-                            <input type="hidden" name="folder_id" value="{{my_bookmarks_id.id}}"/>
+                            <input type="hidden" name="folder_id" value="{{e.id}}"/>
                             <input type="hidden" name="bookmark_action" value="delete">
                             <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">Delete</button>
                             </form>
