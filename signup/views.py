@@ -326,7 +326,7 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
-                        scrap(publication.url)
+                        scrap(publication.url, publication.id)
                     else:
                         scrap("http://" + publication.url, publication.id)
 
@@ -396,7 +396,7 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
-                        scrap(publication.url)
+                        scrap(publication.url, publication.id)
                     else:
                         scrap("http://" + publication.url, publication.id)
 
@@ -467,7 +467,7 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
-                        scrap(publication.url)
+                        scrap(publication.url, publication.id)
                     else:
                         scrap("http://" + publication.url, publication.id)
 
@@ -503,7 +503,7 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
-                        scrap(publication.url)
+                        scrap(publication.url, publication.id)
                     else:
                         scrap("http://" + publication.url, publication.id)
 
