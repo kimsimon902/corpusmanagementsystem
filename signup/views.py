@@ -537,10 +537,6 @@ def filterSearch(request, filter, search):
 
             return render(request, 'main/search-filter.html',{'searched':search, 'results':results, 'keyword_results':keyword_results})
 
-
-    
-    
-
 def FoldersPage(request, username):
 
     email = request.session['email']
@@ -579,12 +575,16 @@ def PublicationPage(request, id):
     my_folders = bookmarks_folder.objects.filter(user=email)
     folders_value = bookmarks_folder.objects.filter(user=email).values('id')
 
-
     bookmark_value = bookmarks.objects.filter(publicationID=id, folderID__in=folders_value).values('folderID')
 
 
     in_bookmark = bookmarks_folder.objects.filter(id__in=bookmark_value)
     not_bookmark = bookmarks_folder.objects.exclude(id__in=bookmark_value).filter(id__in=folders_value)
+
+    my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('folderID') #get my bookmarks folderID
+    my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, id__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
+
+    in_my_bookmarks = id in my_bookmarks_folder_contents
 
     collabs = collaborators.objects.filter(collab=email).values('folderID') #Get the folderIDs of the folders that have collaborators
     shared_folders = bookmarks_folder.objects.filter(id__in=collabs) #The folders that have collaborators
@@ -610,7 +610,7 @@ def PublicationPage(request, id):
                         if pubid.keywordname not in keyword_results:
                             keyword_results.append(pubid.keywordname) 
 
-    return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark, 'pubID': id, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs, 'inshared':in_shared_bookmark, 'notinshared':not_shared_bookmark, 'keyword_results':keyword_results})
+    return render(request, 'publication.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark, 'pubID': id, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs, 'inshared':in_shared_bookmark, 'notinshared':not_shared_bookmark, 'keyword_results':keyword_results, 'bool_in_bookmark': in_my_bookmarks})
 
 def PublicationPageInFolder(request, folderid, username, id):
     results = publications.objects.filter(id=id)
