@@ -1085,7 +1085,7 @@ def downloadFolderTable(request):
         table.setStyle(ts)
         elems = []
         elems.append(table)
-        pdf.build(canvas.drawCentredString(100, 100, 'Text drawn with onFirstPage'),elems)
+        pdf.build(elems,onFirstPage=onFirstPage)
         buf.seek(0)
 
         return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
