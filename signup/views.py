@@ -1051,7 +1051,9 @@ def downloadFolderTable(request):
             format=landscape
         )
         
-        table = Table(data, colWidths=(35*mm, 35*mm, 35*mm, 35*mm, 20*mm, 20*mm), rowHeights=(35*mm,35*mm))
+        rowheights = [.2*inch] * len(data)
+
+        table = Table(data, colWidths=(35*mm, 35*mm, 35*mm, 35*mm, 20*mm, 20*mm), rowHeights=(35*mm,35*mm,rowheights))
         # add style
         style = TableStyle([
             ('BACKGROUND', (0,1), (5,1), colors.green),
