@@ -1015,7 +1015,7 @@ def viewAdmin(request):
     return render(request, 'main/adminpage.html',{'publications':results})
 
 def onFirstPage(canvas, document):
-    canvas.drawCentredString(0, 0, 'Text drawn with onFirstPage')
+    canvas.drawCentredString(750, 750, 'Text drawn with onFirstPage')
 
 def downloadFolderTable(request):
     email = request.session['email']
