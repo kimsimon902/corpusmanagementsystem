@@ -1014,6 +1014,9 @@ def viewAdmin(request):
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
+def onFirstPage(canvas, document):
+    canvas.drawCentredString(0, 0, 'Text drawn with onFirstPage')
+
 def downloadFolderTable(request):
     email = request.session['email']
     if request.method == 'POST':
@@ -1085,7 +1088,7 @@ def downloadFolderTable(request):
         pdf.build(elems)
         buf.seek(0)
 
-        return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf',onFirstPage=canvas.drawCentredString(0,0,'Summary For'))
+        return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf',onFirstPage=onFirstPage)
 
 # def annotateFromPub(request):
 #     results = publications.objects.filter(id=id)
