@@ -328,7 +328,6 @@ def searchPublication(request):
             page_number = 1
             page_obj = page_results.get_page(page_number)      
 
-            flag = 1 if keyword is found        
             for publication in xlist:
                 flag = 0
                 for pubkey in publication_keys:
