@@ -1036,14 +1036,15 @@ def downloadFolderTable(request):
         can.save()
         
         data = [
+            ['Summary For ' + pair[1]]
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
-        '''
+        
         for pub in getpubs:
             data.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.abstract, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
             #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
             #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
-        '''
+        
         pdf = SimpleDocTemplate(
             buf,
             pagesize=A4,
@@ -1089,11 +1090,9 @@ def downloadFolderTable(request):
             ('GRID',(0,1),(-1,-1),2,colors.black),
             ]
         )
-        c = 'Summary for'
         table.setStyle(ts)
         elems = []
         elems.append(table)
-        elems.append(can)
         pdf.build(elems)
         buf.seek(0)
 
