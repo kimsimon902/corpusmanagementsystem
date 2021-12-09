@@ -169,6 +169,7 @@ def scrap(url, id):
                 wordlist.append(each_word) 
             clean_wordlist(wordlist, id)
     elif "ieeexplore" in url:
+        print("hello")
         table = soup.findAll('div', {'class':'document-main-left-trail-content'})
         for x in table:
             content = x.find('div').text
@@ -349,8 +350,10 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
+                        print("going to scrap")
                         scrap(publication.url, publication.id)
                     else:
+                        print("going to scrap")
                         scrap("http://" + publication.url, publication.id)
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results })
