@@ -1054,10 +1054,9 @@ def downloadFolderTable(request):
         table = Table(data, colWidths=(35*mm, 35*mm, 35*mm, 35*mm, 20*mm, 20*mm))
         # add style
         style = TableStyle([
-            ('BACKGROUND', (0,0), (0,5), colors.white),
-            ('BACKGROUND', (1,0), (1,5), colors.green),
-            ('TEXTCOLOR',(1,0),(-1,-4),colors.whitesmoke),
-            ('SPAN',(0,0),(0,5)),
+            #('BACKGROUND', (0,0), (0,5), colors.white),
+            #('BACKGROUND', (1,0), (1,5), colors.green),
+            #('TEXTCOLOR',(1,0),(-1,-4),colors.whitesmoke),
 
             ('ALIGN',(0,0),(-1,-1),'CENTER'),
 
