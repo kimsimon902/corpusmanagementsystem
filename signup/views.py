@@ -1022,6 +1022,7 @@ def downloadFolderTable(request):
         filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID')
         getpubs = publications.objects.filter(id__in=filterpub)
         from reportlab.platypus.flowables import KeepTogether
+        from reportlab.lib.units import mm
         # List of Lists
         buf = io.BytesIO()
         styles = getSampleStyleSheet()
@@ -1046,7 +1047,6 @@ def downloadFolderTable(request):
             format=landscape
         )
         
-        from reportlab.lib.units import mm
         table = Table(data, colWidths=(35*mm, 35*mm, 35*mm, 35*mm, 20*mm, 20*mm))
         # add style
         style = TableStyle([
