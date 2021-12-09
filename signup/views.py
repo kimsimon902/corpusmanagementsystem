@@ -170,10 +170,8 @@ def scrap(url, id):
                 wordlist.append(each_word) 
             clean_wordlist(wordlist, id)
     elif "ieeexplore" in url:
-        data = json.loads(re.search('global\.document\.metadata=(.*?)', requests.get(url).text).group(1))
-        
-        for x in list(data['abstract']):
-            content = x.find('div').text
+        for each_text in soup.findAll('div', {'class': 'u-mb-1'}):
+            content = each_text.text
     
             # use split() to break the sentence into  
             # words and convert them into lowercase  
