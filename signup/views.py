@@ -37,7 +37,8 @@ from bs4 import BeautifulSoup
 import operator
 from collections import Counter
 import time
-
+import re
+import json
 
 # Create your views here.
 
@@ -169,9 +170,9 @@ def scrap(url, id):
                 wordlist.append(each_word) 
             clean_wordlist(wordlist, id)
     elif "ieeexplore" in url:
-        print("hello")
-        table = soup.findAll('div', {'class':'document-main-left-trail-content'})
-        for x in table:
+        data = json.loads(re.search(r'global\.document\.metadata=(.*?);', requests.get(url).text).group(1))
+        
+        for x in list(data['abstract']):
             content = x.find('div').text
     
             # use split() to break the sentence into  
@@ -350,10 +351,8 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
-                        print("going to scrap")
                         scrap(publication.url, publication.id)
                     else:
-                        print("going to scrap")
                         scrap("http://" + publication.url, publication.id)
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results })
