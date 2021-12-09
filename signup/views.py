@@ -1061,9 +1061,9 @@ def downloadFolderTable(request):
 
             ('VALIGN', (0, 0), (-1, -1), 'TOP'),
 
-            ('FONTNAME', (0,0), (-1,0), 'Courier-Bold'),
-            ('FONTSIZE', (0,0), (-1,0), 14),
-
+            ('FONTNAME', (0,1), (5,1), 'Courier-Bold'),
+            ('FONTSIZE', (0,1), (5,1), 14),
+            ('FONTSIZE', (0,0), (5,0), 16),
             #('BOTTOMPADDING', (0,0), (-1,0), 12),
             #('BACKGROUND',(0,1),(-1,-1),colors.beige),
             
