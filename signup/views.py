@@ -169,7 +169,7 @@ def scrap(url, id):
                 wordlist.append(each_word) 
             clean_wordlist(wordlist, id)
     elif "ieeexplore" in url:
-        table = soup.findAll('div', {'class':'u-mb-1'})
+        table = soup.findAll('div', {'class':'document-main-left-trail-content'})
         for x in table:
             content = x.find('div').text
     
