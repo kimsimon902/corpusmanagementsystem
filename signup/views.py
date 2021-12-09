@@ -1071,8 +1071,8 @@ def downloadFolderTable(request):
         table.setStyle(style)
         # 2) Alternate backgroud color
         rowNumb = len(data)
-        for i in range(1, rowNumb):
-            if i % 2 == 0:
+        for i in range(2, rowNumb):
+            if i % 2 != 0:
                 bc = colors.burlywood
             else:
                 bc = colors.beige
