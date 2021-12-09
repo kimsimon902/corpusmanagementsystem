@@ -1050,8 +1050,10 @@ def downloadFolderTable(request):
             pagesize=A4,
             format=landscape
         )
-        
-        rowheights = [.2*inch] * len(data)
+
+        rowheights = []
+        for x in len(data):
+            rowheights = 35*mm
 
         table = Table(data, colWidths=(35*mm, 35*mm, 35*mm, 35*mm, 20*mm, 20*mm), rowHeights=(35*mm,35*mm,rowheights))
         # add style
