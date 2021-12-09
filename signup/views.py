@@ -1036,7 +1036,7 @@ def downloadFolderTable(request):
         can.save()
         
         data = [
-            ['Summary For ' + pair[1]]
+            ['Summary For ' + pair[1]],
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
         
@@ -1054,7 +1054,8 @@ def downloadFolderTable(request):
         table = Table(data, colWidths=(35*mm, 35*mm, 35*mm, 35*mm, 20*mm, 20*mm))
         # add style
         style = TableStyle([
-            ('BACKGROUND', (1,0), (-1,-2), colors.green),
+            ('BACKGROUND', (0,0), (0,5), colors.white),
+            ('BACKGROUND', (1,0), (-1,-4), colors.green),
             ('TEXTCOLOR',(1,0),(-1,0),colors.whitesmoke),
 
             ('ALIGN',(0,0),(-1,-1),'CENTER'),
