@@ -1017,7 +1017,7 @@ def viewAdmin(request):
 def onFirstPage(canvas, document):
     canvas.drawCentredString('Summary for')
 
-def downloadFolderTable(request):
+def downloadFolderTable(request,canvas):
     email = request.session['email']
     if request.method == 'POST':
         pair = [key for key in request.POST.keys()][1].split("|")
@@ -1085,7 +1085,7 @@ def downloadFolderTable(request):
         table.setStyle(ts)
         elems = []
         elems.append(table)
-        pdf.build(elems,onFirstPage=onFirstPage)
+        pdf.build(elems,onFirstPage=canvas.drawCentredString(2.75*inch,2.75*inch,'Summary for'))
         buf.seek(0)
 
         return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
