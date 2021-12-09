@@ -170,7 +170,7 @@ def scrap(url, id):
                 wordlist.append(each_word) 
             clean_wordlist(wordlist, id)
     elif "ieeexplore" in url:
-        data = json.loads(re.search(r'global\.document\.metadata=(.*?);', requests.get(url).text).group(1))
+        data = json.loads(re.search('global\.document\.metadata=(.*?)', requests.get(url).text).group(1))
         
         for x in list(data['abstract']):
             content = x.find('div').text
