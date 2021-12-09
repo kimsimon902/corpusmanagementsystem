@@ -1036,7 +1036,7 @@ def downloadFolderTable(request):
         can.save()
         
         data = [
-            ['','',Paragraph('Summary For ' + pair[1]),'','',''],
+            ['','','Summary For ' + pair[1],'','',''],
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
         
@@ -1087,7 +1087,7 @@ def downloadFolderTable(request):
             ('BOX',(1,0),(-1,-1),2,colors.black),
             ('LINEBEFORE',(2,1),(2,-1),2,colors.red),
             ('LINEABOVE',(0,2),(-1,2),2,colors.green),
-            ('GRID',(0,1),(-1,-1),2,colors.black),
+            ('GRID',(1,0),(-1,-1),2,colors.black),
             ]
         )
         table.setStyle(ts)
