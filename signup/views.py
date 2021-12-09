@@ -1031,16 +1031,19 @@ def downloadFolderTable(request):
         ptext = "This is an example."
         can = canvas.Canvas(buf, pagesize=A4)
         p = Paragraph(ptext, style=styles["Normal"])
-        p.wrapOn(can, 0, 0)  # size of 'textbox' for linebreaks etc.
-        p.drawOn(can, 0, 0)
+        p.wrapOn(can, 50*mm, 50*mm)  # size of 'textbox' for linebreaks etc.
+        p.drawOn(can, 0*mm, 0*mm)
         can.save()
+        
         data = [
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
+        '''
         for pub in getpubs:
             data.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.abstract, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
             #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
             #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
+        '''
         pdf = SimpleDocTemplate(
             buf,
             pagesize=A4,
