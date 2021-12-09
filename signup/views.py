@@ -1057,7 +1057,7 @@ def downloadFolderTable(request):
             ('BACKGROUND', (0,0), (0,5), colors.white),
             ('BACKGROUND', (1,0), (1,5), colors.green),
             ('TEXTCOLOR',(1,0),(-1,-4),colors.whitesmoke),
-            ('SPAN',(0,0),(0,5))
+            ('SPAN',(0,0),(0,5)),
 
             ('ALIGN',(0,0),(-1,-1),'CENTER'),
 
