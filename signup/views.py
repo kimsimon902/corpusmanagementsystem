@@ -1085,10 +1085,10 @@ def downloadFolderTable(request):
         table.setStyle(ts)
         elems = []
         elems.append(table)
-        pdf.build(elems)
+        pdf.build(canvas.drawCentredString(100, 100, 'Text drawn with onFirstPage'),elems)
         buf.seek(0)
 
-        return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf',onFirstPage=onFirstPage)
+        return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
 
 # def annotateFromPub(request):
 #     results = publications.objects.filter(id=id)
