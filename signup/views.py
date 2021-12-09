@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
+from reportlab.lib import pagesizes
 from .models import pubkeys, registerUser
 from .models import publications
 from .models import keywords
@@ -1014,9 +1015,6 @@ def viewAdmin(request):
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
-def onFirstPage(canvas, document):
-    canvas.drawCentredString(2.75*inch,2.75*inch,'Summary for')
-
 def downloadFolderTable(request):
     email = request.session['email']
     if request.method == 'POST':
@@ -1082,10 +1080,11 @@ def downloadFolderTable(request):
             ('GRID',(0,1),(-1,-1),2,colors.black),
             ]
         )
+        c = 'Summary for'
         table.setStyle(ts)
         elems = []
         elems.append(table)
-        pdf.build(elems,onFirstPage=onFirstPage)
+        pdf.build(c,elems)
         buf.seek(0)
 
         return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
