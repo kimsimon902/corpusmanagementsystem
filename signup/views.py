@@ -1027,6 +1027,7 @@ def downloadFolderTable(request):
         styles = getSampleStyleSheet()
         styleN = styles['Normal']
         styleN.alignment = TA_LEFT
+        can = canvas.Canvas(buf, pagesize=A4)
         data = [
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
