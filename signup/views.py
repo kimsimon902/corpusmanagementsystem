@@ -1093,6 +1093,7 @@ def downloadFolderTable(request):
         table.setStyle(ts)
         elems = []
         elems.append(table)
+        elems.append(can)
         pdf.build(elems)
         buf.seek(0)
 
