@@ -155,17 +155,31 @@ def scrap(url, id):
   
     # Text in given web-page is stored under 
     # the <div> tags with class <entry-content> 
-    table = soup.findAll('div', {'id':'abstract'})
-    for x in table:
-        content = x.find('p').text
-  
-        # use split() to break the sentence into  
-        # words and convert them into lowercase  
-        words = content.lower().split() 
-          
-        for each_word in words: 
-            wordlist.append(each_word) 
-        clean_wordlist(wordlist, id) 
+
+    if "aisel" in url:
+        table = soup.findAll('div', {'id':'abstract'})
+        for x in table:
+            content = x.find('p').text
+    
+            # use split() to break the sentence into  
+            # words and convert them into lowercase  
+            words = content.lower().split() 
+            
+            for each_word in words: 
+                wordlist.append(each_word) 
+            clean_wordlist(wordlist, id)
+    elif "ieeexplore" in url:
+        table = soup.findAll('div', {'class':'u-mb-1'})
+        for x in table:
+            content = x.find('div').text
+    
+            # use split() to break the sentence into  
+            # words and convert them into lowercase  
+            words = content.lower().split() 
+            
+            for each_word in words: 
+                wordlist.append(each_word) 
+            clean_wordlist(wordlist, id)
 
 
 def clean_wordlist(wordlist, id): 
