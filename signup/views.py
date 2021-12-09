@@ -1036,7 +1036,7 @@ def downloadFolderTable(request):
         can.save()
         
         data = [
-            ['Summary For ' + pair[1]]
+            ['Summary For ' + pair[1]],
             ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
         ]
         
