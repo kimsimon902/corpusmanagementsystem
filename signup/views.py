@@ -1017,7 +1017,7 @@ def viewAdmin(request):
 def onFirstPage(canvas, document):
     canvas.drawCentredString(2.75*inch,2.75*inch,'Summary for')
 
-def downloadFolderTable(request,canvas):
+def downloadFolderTable(request):
     email = request.session['email']
     if request.method == 'POST':
         pair = [key for key in request.POST.keys()][1].split("|")
