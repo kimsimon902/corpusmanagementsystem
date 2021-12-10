@@ -209,7 +209,7 @@ def scrap(url, id):
                 pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
             pubkeys.objects.bulk_create(pub_id)
         else:
-            web_page = url
+            web_page = 'https://ieeexplore.ieee.org/document/8479309'
             page = urllib.request.urlopen(web_page)
             soup = BeautifulSoup(page, 'lxml')        
             abstract = soup.find("meta", property="og:description")
