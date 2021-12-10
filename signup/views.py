@@ -213,16 +213,12 @@ def scrap(url, id):
             page = urllib.request.urlopen(web_page)
             soup = BeautifulSoup(page, 'lxml')        
             abstract = soup.find("meta", property="og:description")
-            for x in abstract:
-                content = x.text
-    
-                # use split() to break the sentence into  
-                # words and convert them into lowercase  
-                words = content.lower().split() 
+             
+            words = str(abstract).lower().split() 
                 
-                for each_word in words: 
-                    wordlist.append(each_word) 
-                clean_wordlist(wordlist, id)
+            for each_word in words: 
+                wordlist.append(each_word) 
+            clean_wordlist(wordlist, id)
 
                 
             
