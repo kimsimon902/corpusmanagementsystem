@@ -202,7 +202,7 @@ def clean_wordlist(wordlist, id):
       
     clean_list =[] 
     for word in wordlist: 
-        symbols = '!@#$%^&*()_-+={[}]|;:"<>?/., '
+        symbols = '!@#$%^&*()_-+={[}]|;:"<>?/.,\- '
           
         for i in range (0, len(symbols)): 
             word = word.replace(symbols[i], '') 
