@@ -170,16 +170,32 @@ def scrap(url, id):
                 wordlist.append(each_word) 
             clean_wordlist(wordlist, id)
     elif "ieeexplore" in url:
-        for each_text in soup.findAll('div', {'class': 'u-mb-1'}):
-            content = each_text.text
-    
-            # use split() to break the sentence into  
-            # words and convert them into lowercase  
-            words = content.lower().split() 
+
+        ieee_content = requests.get("https://ieeexplore.ieee.org/document/7845555", timeout=180)
+        soup = BeautifulSoup(ieee_content.content, "html.parser")
+        scripts = soup.find_all("script")
+
+        pattern = re.compile(r"(?<=\"keywords\":)\[{.*?}\]")
+        keywords_dict = {}
+        for i, script in enumerate(scripts):
+            keywords = re.findall(pattern, str(script.string))
+            if len(keywords) == 1:
+                raw_keywords_list = json.loads(keywords[0])
+                for keyword_type in raw_keywords_list:
+                    keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
+        
+        if len(list(keywords_dict['Author Keywords'])) > 0:
+            for each_text in list(keywords_dict['Author Keywords']):
+                content = each_text.text
+
+                # use split() to break the sentence into  
+                # words and convert them into lowercase  
+                words = content.lower().split() 
+                
+                for each_word in words: 
+                    wordlist.append(each_word) 
+                clean_wordlist(wordlist, id)
             
-            for each_word in words: 
-                wordlist.append(each_word) 
-            clean_wordlist(wordlist, id)
 
 
 def clean_wordlist(wordlist, id): 
