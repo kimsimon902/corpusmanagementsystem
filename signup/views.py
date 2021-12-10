@@ -172,43 +172,43 @@ def scrap(url, id):
             clean_wordlist(wordlist, id)
     elif "ieeexplore" in url:
 
-        ieee_content = requests.get("https://ieeexplore.ieee.org/document/7845555", timeout=180)
-        soup = BeautifulSoup(ieee_content.content, "html.parser")
-        scripts = soup.find_all("script")
+        # ieee_content = requests.get("https://ieeexplore.ieee.org/document/7845555", timeout=180)
+        # soup = BeautifulSoup(ieee_content.content, "html.parser")
+        # scripts = soup.find_all("script")
 
-        pattern = re.compile(r"(?<=\"keywords\":)\[{.*?}\]")
-        keywords_dict = {}
-        for i, script in enumerate(scripts):
-            keywordslist = re.findall(pattern, str(script.string))
-            if len(keywordslist) == 1:
-                raw_keywords_list = json.loads(keywordslist[0])
-                for keyword_type in raw_keywords_list:
-                    keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
+        # pattern = re.compile(r"(?<=\"keywords\":)\[{.*?}\]")
+        # keywords_dict = {}
+        # for i, script in enumerate(scripts):
+        #     keywordslist = re.findall(pattern, str(script.string))
+        #     if len(keywordslist) == 1:
+        #         raw_keywords_list = json.loads(keywordslist[0])
+        #         for keyword_type in raw_keywords_list:
+        #             keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
         
-        if len(list(keywords_dict['Author Keywords'])) > 0:
-            newkeywords = []
-            name_id= []
-            insert_list = []
-            pub_id = []
-            top = list(keywords_dict['Author Keywords'])
-            for word in top:
-                newkeywords.append(word)
+        # if len(list(keywords_dict['Author Keywords'])) > 0:
+        #     newkeywords = []
+        #     name_id= []
+        #     insert_list = []
+        #     pub_id = []
+        #     top = list(keywords_dict['Author Keywords'])
+        #     for word in top:
+        #         newkeywords.append(word)
 
-            for i in range(0,len(newkeywords)):
-                if keywords.objects.filter(keywordname=newkeywords[i].strip()):
-                    name_id.append(newkeywords[i].strip())
-                else:
-                    insert_list.append(keywords(keywordname=newkeywords[i].strip()))
-                    name_id.append(newkeywords[i].strip())
+        #     for i in range(0,len(newkeywords)):
+        #         if keywords.objects.filter(keywordname=newkeywords[i].strip()):
+        #             name_id.append(newkeywords[i].strip())
+        #         else:
+        #             insert_list.append(keywords(keywordname=newkeywords[i].strip()))
+        #             name_id.append(newkeywords[i].strip())
 
-            keywords.objects.bulk_create(insert_list)
+        #     keywords.objects.bulk_create(insert_list)
 
         
-            for j in range(0,len(name_id)):
-                store = keywords.objects.get(keywordname=name_id[j])
-                pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
-            pubkeys.objects.bulk_create(pub_id)
-        else:
+        #     for j in range(0,len(name_id)):
+        #         store = keywords.objects.get(keywordname=name_id[j])
+        #         pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
+        #     pubkeys.objects.bulk_create(pub_id)
+        # else:
             web_page = 'https://ieeexplore.ieee.org/document/8479309'
             page = urllib.request.urlopen(web_page)
             soup = BeautifulSoup(page, 'lxml')        
