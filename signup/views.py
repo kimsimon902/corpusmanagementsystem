@@ -178,8 +178,8 @@ def scrap(url, id):
         pattern = re.compile(r"(?<=\"keywords\":)\[{.*?}\]")
         keywords_dict = {}
         for i, script in enumerate(scripts):
-            keywords = re.findall(pattern, str(script.string))
-            if len(keywords) == 1:
+            keywordslist = re.findall(pattern, str(script.string))
+            if len(keywordslist) == 1:
                 raw_keywords_list = json.loads(keywords[0])
                 for keyword_type in raw_keywords_list:
                     keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
