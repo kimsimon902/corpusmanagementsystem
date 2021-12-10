@@ -191,7 +191,7 @@ def scrap(url, id):
             pub_id = []
             top = list(keywords_dict['Author Keywords'])
             for word in top:
-                newkeywords.append(word[0])
+                newkeywords.append(word)
 
             for i in range(0,len(newkeywords)):
                 if keywords.objects.filter(keywordname=newkeywords[i].strip()):
