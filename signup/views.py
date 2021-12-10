@@ -186,7 +186,7 @@ def scrap(url, id):
         
         if len(list(keywords_dict['Author Keywords'])) > 0:
             for each_text in list(keywords_dict['Author Keywords']):
-                content = each_text.text
+                content = each_text
 
                 # use split() to break the sentence into  
                 # words and convert them into lowercase  
