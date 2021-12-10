@@ -39,6 +39,7 @@ from collections import Counter
 import time
 import re
 import json
+import urllib
 
 # Create your views here.
 
@@ -207,6 +208,21 @@ def scrap(url, id):
                 store = keywords.objects.get(keywordname=name_id[j])
                 pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
             pubkeys.objects.bulk_create(pub_id)
+        else:
+            web_page = url
+            page = urllib.request.urlopen(web_page)
+            soup = BeautifulSoup(page, 'lxml')        
+            abstract = soup.find("meta", property="og:description")
+            for x in abstract:
+                content = x.text
+    
+                # use split() to break the sentence into  
+                # words and convert them into lowercase  
+                words = content.lower().split() 
+                
+                for each_word in words: 
+                    wordlist.append(each_word) 
+                clean_wordlist(wordlist, id)
 
                 
             
