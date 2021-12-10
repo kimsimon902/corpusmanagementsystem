@@ -185,16 +185,30 @@ def scrap(url, id):
                     keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
         
         if len(list(keywords_dict['Author Keywords'])) > 0:
-            for each_text in list(keywords_dict['Author Keywords']):
-                content = each_text
+            newkeywords = []
+            name_id= []
+            insert_list = []
+            pub_id = []
+            top = list(keywords_dict['Author Keywords'])
+            for word in top:
+                newkeywords.append(word[0])
 
-                # use split() to break the sentence into  
-                # words and convert them into lowercase  
-                words = content.lower().split() 
+            for i in range(0,len(newkeywords)):
+                if keywords.objects.filter(keywordname=newkeywords[i].strip()):
+                    name_id.append(newkeywords[i].strip())
+                else:
+                    insert_list.append(keywords(keywordname=newkeywords[i].strip()))
+                    name_id.append(newkeywords[i].strip())
+
+            keywords.objects.bulk_create(insert_list)
+
+        
+            for j in range(0,len(name_id)):
+                store = keywords.objects.get(keywordname=name_id[j])
+                pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
+            pubkeys.objects.bulk_create(pub_id)
+
                 
-                for each_word in words: 
-                    wordlist.append(each_word) 
-                clean_wordlist(wordlist, id)
             
 
 
@@ -220,19 +234,6 @@ def create_dictionary(clean_list, id):
             word_count[word] += 1
         else: 
             word_count[word] = 1
-              
-    ''' To get count of each word in 
-        the crawled page --> 
-          
-    # operator.itemgetter() takes one  
-    # parameter either 1(denotes keys) 
-    # or 0 (denotes corresponding values) 
-      
-    for key, value in sorted(word_count.items(), 
-                    key = operator.itemgetter(1)): 
-        print ("% s : % s " % (key, value)) 
-          
-    <-- '''
   
       
     c = Counter(word_count) 
@@ -248,7 +249,7 @@ def create_dictionary(clean_list, id):
     
 
     for word in top:
-            newkeywords.append(word[0])
+        newkeywords.append(word[0])
 
     
     for i in range(0,len(newkeywords)):
