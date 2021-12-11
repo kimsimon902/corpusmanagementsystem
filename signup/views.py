@@ -203,8 +203,10 @@ def scrap(url, id):
                 
                 if 'type' not in raw_keywords_list[0]:
                     flag=1
-                for keyword_type in raw_keywords_list:
-                    keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
+                
+                if flag == 0:
+                    for keyword_type in raw_keywords_list:
+                        keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
         
         if 'Author Keywords' in keywords_dict and flag == 0:
             if len(list(keywords_dict['Author Keywords'])) > 0:
