@@ -198,7 +198,7 @@ def scrap(url, id):
         keywords_dict = {}
         for i, script in enumerate(scripts):
             keywordslist = re.findall(pattern, str(script.string))
-            if len(keywordslist) == 1 and keyword_type['type']:
+            if len(keywordslist) == 1:
                 raw_keywords_list = json.loads(keywordslist[0])
                 
                 if 'type' not in raw_keywords_list[0]:
