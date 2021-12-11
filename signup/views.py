@@ -48,6 +48,7 @@ from nltk.tokenize import word_tokenize
 # Create your views here.
 
 def index(request):
+
     return render(request, 'main/index.html')
 
 def home(request):
@@ -189,7 +190,7 @@ def scrap(url, id):
                 for keyword_type in raw_keywords_list:
                     keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
         
-        if len(list(keywords_dict['Author Keywords'])) > 0:
+        if len(list(keywords_dict['Author Keywords'])) > 0 or keywords_dict['Author Keywords']:
 
             newkeywords = []
             name_id= []
