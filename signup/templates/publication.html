@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{% static '\users\assets\css\Pretty-Search-Form.css' %}">
   <link rel="stylesheet" href="{% static '\users\assets\css\publication.css' %}">
   <link rel="stylesheet" href="{% static '\users\assets\css\search.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
  
@@ -101,7 +102,7 @@
        </div>
   </section>
 
-  <form method="POST" action="/publication/{{getdata.id}}/bookmark" id="bookmark-pub"> 
+    <form method="POST" action="/publication/{{getdata.id}}/bookmark" id="bookmark-pub"> 
     {% csrf_token %}
     <div class="modal fade bd-example-modal-lg" id="bookmarkz" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
