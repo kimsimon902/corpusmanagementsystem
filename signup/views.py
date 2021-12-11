@@ -193,7 +193,7 @@ def scrap(url, id):
         ieee_content = requests.get(url, timeout=180)
         soup = BeautifulSoup(ieee_content.content, "html.parser")
         scripts = soup.find_all("script")
-        flag =0
+        
         pattern = re.compile(r"(?<=\"keywords\":)\[{.*?}\]")
         keywords_dict = {}
         for i, script in enumerate(scripts):
@@ -201,14 +201,11 @@ def scrap(url, id):
             if len(keywordslist) == 1:
                 raw_keywords_list = json.loads(keywordslist[0])
                 
-                if 'type' not in raw_keywords_list[0]:
-                    flag=1
-                
-                if flag == 0:
-                    for keyword_type in raw_keywords_list:
+                for index, keyword_type in enumerate(raw_keywords_list):
+                    if "type" in raw_keywords_list[index]:
                         keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
         
-        if 'Author Keywords' in keywords_dict and flag == 0:
+        if 'Author Keywords' in keywords_dict:
             if len(list(keywords_dict['Author Keywords'])) > 0:
 
                 newkeywords = []
