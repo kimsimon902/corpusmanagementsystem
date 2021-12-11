@@ -190,41 +190,42 @@ def scrap(url, id):
                 for keyword_type in raw_keywords_list:
                     keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
         
-        if keywords_dict['Author Keywords'] in keywords_dict or len(list(keywords_dict['Author Keywords'])) > 0:
+        if 'Author Keywords' in keywords_dict:
+            if len(list(keywords_dict['Author Keywords'])) > 0:
 
-            newkeywords = []
-            name_id= []
-            insert_list = []
-            pub_id = []
-            filtered =[]
-            top = list(keywords_dict['Author Keywords'])
+                newkeywords = []
+                name_id= []
+                insert_list = []
+                pub_id = []
+                filtered =[]
+                top = list(keywords_dict['Author Keywords'])
 
-            for word in top:
-                newkeywords.append(word)
+                for word in top:
+                    newkeywords.append(word)
 
-            filtered = [word for word in newkeywords if not word in stopwords.words()]
-            for i in range(0,len(filtered)):
-                if keywords.objects.filter(keywordname=filtered[i].strip()):
-                    name_id.append(filtered[i].strip())
-                else:
-                    insert_list.append(keywords(keywordname=filtered[i].strip()))
-                    name_id.append(filtered[i].strip())
+                filtered = [word for word in newkeywords if not word in stopwords.words()]
+                for i in range(0,len(filtered)):
+                    if keywords.objects.filter(keywordname=filtered[i].strip()):
+                        name_id.append(filtered[i].strip())
+                    else:
+                        insert_list.append(keywords(keywordname=filtered[i].strip()))
+                        name_id.append(filtered[i].strip())
 
-            keywords.objects.bulk_create(insert_list)
+                keywords.objects.bulk_create(insert_list)
 
-        
-            for j in range(0,len(name_id)):
-                store = keywords.objects.get(keywordname=name_id[j])
-                pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
-            pubkeys.objects.bulk_create(pub_id)
+            
+                for j in range(0,len(name_id)):
+                    store = keywords.objects.get(keywordname=name_id[j])
+                    pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
+                pubkeys.objects.bulk_create(pub_id)
         else:
             web_page = url
             page = urllib.request.urlopen(web_page)
             soup = BeautifulSoup(page, 'lxml')        
             abstract = soup.find("meta", property="og:description")
-             
-            words = str(abstract).lower().split() 
                 
+            words = str(abstract).lower().split() 
+                    
             for each_word in words: 
                 wordlist.append(each_word) 
             clean_wordlist(wordlist, id)
