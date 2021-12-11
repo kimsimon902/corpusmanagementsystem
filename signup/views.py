@@ -190,7 +190,7 @@ def scrap(url, id):
                 for keyword_type in raw_keywords_list:
                     keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
         
-        if len(list(keywords_dict['Author Keywords'])) > 0 or keywords_dict['Author Keywords'] in keywords_dict:
+        if keywords_dict['Author Keywords'] in keywords_dict or len(list(keywords_dict['Author Keywords'])) > 0:
 
             newkeywords = []
             name_id= []
