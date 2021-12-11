@@ -40,6 +40,10 @@ import time
 import re
 import json
 import urllib
+import nltk
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+from nltk.tokenize import word_tokenize
 
 # Create your views here.
 
@@ -172,7 +176,7 @@ def scrap(url, id):
             clean_wordlist(wordlist, id)
     elif "ieeexplore" in url:
 
-        ieee_content = requests.get("https://ieeexplore.ieee.org/document/7845555", timeout=180)
+        ieee_content = requests.get(url, timeout=180)
         soup = BeautifulSoup(ieee_content.content, "html.parser")
         scripts = soup.find_all("script")
 
@@ -186,20 +190,24 @@ def scrap(url, id):
                     keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
         
         if len(list(keywords_dict['Author Keywords'])) > 0:
+
             newkeywords = []
             name_id= []
             insert_list = []
             pub_id = []
+            filtered =[]
             top = list(keywords_dict['Author Keywords'])
+
             for word in top:
                 newkeywords.append(word)
 
-            for i in range(0,len(newkeywords)):
-                if keywords.objects.filter(keywordname=newkeywords[i].strip()):
-                    name_id.append(newkeywords[i].strip())
+            filtered = [word for word in newkeywords if not word in stopwords.words()]
+            for i in range(0,len(filtered)):
+                if keywords.objects.filter(keywordname=filtered[i].strip()):
+                    name_id.append(filtered[i].strip())
                 else:
-                    insert_list.append(keywords(keywordname=newkeywords[i].strip()))
-                    name_id.append(newkeywords[i].strip())
+                    insert_list.append(keywords(keywordname=filtered[i].strip()))
+                    name_id.append(filtered[i].strip())
 
             keywords.objects.bulk_create(insert_list)
 
@@ -209,7 +217,7 @@ def scrap(url, id):
                 pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
             pubkeys.objects.bulk_create(pub_id)
         else:
-            web_page = 'https://ieeexplore.ieee.org/document/8479309'
+            web_page = url
             page = urllib.request.urlopen(web_page)
             soup = BeautifulSoup(page, 'lxml')        
             abstract = soup.find("meta", property="og:description")
@@ -257,19 +265,22 @@ def create_dictionary(clean_list, id):
     name_id= []
     insert_list = []
     pub_id = []
+    filtered =[]
 
     
 
     for word in top:
         newkeywords.append(word[0])
 
+    filtered = [word for word in newkeywords if not word in stopwords.words()]
+
     
-    for i in range(0,len(newkeywords)):
-        if keywords.objects.filter(keywordname=newkeywords[i].strip()):
-            name_id.append(newkeywords[i].strip())
+    for i in range(0,len(filtered)):
+        if keywords.objects.filter(keywordname=filtered[i].strip()):
+            name_id.append(filtered[i].strip())
         else:
-            insert_list.append(keywords(keywordname=newkeywords[i].strip()))
-            name_id.append(newkeywords[i].strip())
+            insert_list.append(keywords(keywordname=filtered[i].strip()))
+            name_id.append(filtered[i].strip())
 
     keywords.objects.bulk_create(insert_list)
 
