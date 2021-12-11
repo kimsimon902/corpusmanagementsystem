@@ -46,12 +46,35 @@
                            <li><a href="#">Dolor sit amet</a> </li>
                        </ul>
                        <br>
-                       <span style="margin-right: 10px;">Bookmarks</span>
-                       <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#bookmark">
+                       <br>
+                       <span style="margin-right: 10px;">Folders</span>
+                       <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#mymodal">
                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
                                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
                            </svg>
                        </button>
+                       <br>
+                       {% if bool_in_bookmark == "true" %}
+                           {% for e in my_bookmarks_id %}
+                           <form method="POST" action="/publication/{{getdata.id}}/bookmark">
+                           {% csrf_token %}
+                           <input type="hidden" name="next" value="{{ request.path }}"/>
+                           <input type="hidden" name="folder_id" value="{{e.id}}"/>
+                           <input type="hidden" name="bookmark_action" value="delete">
+                           <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">Delete from Bookmarks    <i class="fa fa-bookmark" aria-hidden="true"></i></button>
+                           </form>
+                           {% endfor %}
+                       {% else %}
+                           {% for e in my_bookmarks_id %}
+                           <form method="POST" action="/publication/{{getdata.id}}/bookmark">
+                               {% csrf_token %}
+                               <input type="hidden" name="next" value="{{ request.path }}"/>
+                               <input type="hidden" name="folder_id" value="{{e.id}}"/>
+                               <input type="hidden" name="bookmark_action" value="add">
+                               <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">Add to Bookmarks   <i class="fa fa-bookmark-o" aria-hidden="true"></i></button>
+                           </form>
+                           {% endfor %}
+                       {% endif %}
                    </div>
                </div>
                <div class="col-md-10 col-lg-7 offset-md-1 offset-lg-0">

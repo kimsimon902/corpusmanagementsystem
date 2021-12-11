@@ -623,6 +623,12 @@ def FoldersPage(request, username):
     folders = bookmarks_folder.objects.filter(user=email) #Get folders made by the user
     collaborator = collaborators.objects.filter(owner=email) #Get the collaborators
     
+    my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('id') #get my bookmarks folderID
+    my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
+
+    if my_bookmarks_folder_contents.filter(publicationID=id):
+        in_my_bookmarks = 'true'
+    else: in_my_bookmarks = 'false'
 
     bookmark = publications.objects.filter(id__in=filterpub) #Get the publications that is bookmarked
 
@@ -633,7 +639,17 @@ def FoldersPage(request, username):
     shared_folders_bookmarks = bookmarks.objects.filter(folderID__in=shared_folders_ids) #Get all bookmarks that have collaborators
     shared_folders_pubs = publications.objects.filter(id__in=shared_folders_bookmarks.values('publicationID')) #Get the publications that are shared
     
-    return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs})
+    return render(request, 'main/my-folders.html',{'bookmarks':bookmark,
+                                                    'folders':folders,
+                                                    'rawbookmarks':rawbookmarks,
+                                                    'collaborators':collaborator,
+                                                    'collabs':collabs,
+                                                    'sharedfolders': shared_folders,
+                                                    'sharedbookmarks': shared_folders_bookmarks,
+                                                    'sharedpubs':shared_folders_pubs,
+                                                    'bool_in_bookmark': in_my_bookmarks,
+                                                    'my_bookmarks_id': my_bookmarks_folder,
+                                                    'my_bookmarks_content':my_bookmarks_folder_contents})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
