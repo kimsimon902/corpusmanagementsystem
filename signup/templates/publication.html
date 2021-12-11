@@ -186,11 +186,11 @@
                     {% endfor %}
 
                     {% for a in inshared%}
-                    <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/publicationbookmarkinfolder">
+                    <form method="POST" action="/publication/{{getdata.id}}/bookmark">
                         {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}"/>
                     <input type="hidden" name="folder_id" value="{{a.id}}"/>
-                    <input type="hidden" name="bookmark_action" value="delete">
+                    <input type="hidden" name="bookmark_action" value="sharedDelete">
                     <div class="row align-items-center mb-2">
                         <div name="{{a.id}}" class="col-2 d-flex">{{a.folder_name}}</div>
                         <div class="col-2 d-flex">
@@ -204,11 +204,11 @@
                     {% endfor %}
     
                     {% for b in notinshared%}
-                    <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/publicationbookmarkinfolder">
+                    <form method="POST" action="/publication/{{getdata.id}}/bookmark">
                         {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}"/>
                     <input type="hidden" name="folder_id" value="{{b.id}}"/>
-                    <input type="hidden" name="bookmark_action" value="add">
+                    <input type="hidden" name="bookmark_action" value="sharedAdd">
                     <div class="row align-items-center mb-2">
                         <div name="{{b.id}}" class="col-2 d-flex">{{b.folder_name}}</div>
                         <div class="col-2 d-flex">
