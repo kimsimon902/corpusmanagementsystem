@@ -259,7 +259,7 @@ def create_dictionary(clean_list, id):
     c = Counter(word_count) 
       
     # returns the most occuring elements 
-    top = c.most_common(10) 
+    top = c.most_common(20) 
     
     newkeywords = []
     name_id= []
