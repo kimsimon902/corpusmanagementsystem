@@ -622,13 +622,6 @@ def FoldersPage(request, username):
     filterpub = bookmarks.objects.filter(user=email).values('publicationID') #Get the publicationIDs of bookmarks of the user
     folders = bookmarks_folder.objects.filter(user=email) #Get folders made by the user
     collaborator = collaborators.objects.filter(owner=email) #Get the collaborators
-    
-    my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('id') #get my bookmarks folderID
-    my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
-
-    if my_bookmarks_folder_contents.filter(publicationID=id):
-        in_my_bookmarks = 'true'
-    else: in_my_bookmarks = 'false'
 
     bookmark = publications.objects.filter(id__in=filterpub) #Get the publications that is bookmarked
 
@@ -646,10 +639,7 @@ def FoldersPage(request, username):
                                                     'collabs':collabs,
                                                     'sharedfolders': shared_folders,
                                                     'sharedbookmarks': shared_folders_bookmarks,
-                                                    'sharedpubs':shared_folders_pubs,
-                                                    'bool_in_bookmark': in_my_bookmarks,
-                                                    'my_bookmarks_id': my_bookmarks_folder,
-                                                    'my_bookmarks_content':my_bookmarks_folder_contents})
+                                                    'sharedpubs':shared_folders_pubs})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
@@ -743,6 +733,13 @@ def PublicationPageInFolder(request, folderid, username, id):
     in_bookmark = bookmarks_folder.objects.filter(id__in=bookmark_value)
     not_bookmark = bookmarks_folder.objects.exclude(id__in=bookmark_value).filter(id__in=folders_value)
 
+    my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('id') #get my bookmarks folderID
+    my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
+
+    if my_bookmarks_folder_contents.filter(publicationID=id):
+        in_my_bookmarks = 'true'
+    else: in_my_bookmarks = 'false'
+
     collabs = collaborators.objects.filter(collab=email).values('folderID') #Get the folderIDs of the folders that have collaborators
     shared_folders = bookmarks_folder.objects.filter(id__in=collabs) #The folders that have collaborators
 
@@ -767,7 +764,24 @@ def PublicationPageInFolder(request, folderid, username, id):
                         if pubid.keywordname not in keyword_results:
                             keyword_results.append(pubid.keywordname)
 
-    return render(request, 'publication-folder.html', {'publication':results, 'annotations':annotation, 'my_folders':my_folders, 'in_bookmark':in_bookmark, 'not_bookmark':not_bookmark, 'folderID': folderid, 'pubID': id, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs, 'inshared':in_shared_bookmark, 'notinshared':not_shared_bookmark, 'keyword_results':keyword_results})
+    return render(request, 'publication-folder.html', {'publication':results,
+                                                       'annotations':annotation,
+                                                       'my_folders':my_folders,
+                                                       'in_bookmark':in_bookmark,
+                                                       'not_bookmark':not_bookmark,
+                                                       'folderID': folderid,
+                                                       'pubID': id,
+                                                       'collaborators':collaborator,
+                                                       'collabs':collabs,
+                                                       'sharedfolders': shared_folders,
+                                                       'sharedbookmarks': shared_folders_bookmarks,
+                                                       'sharedpubs':shared_folders_pubs,
+                                                       'inshared':in_shared_bookmark,
+                                                       'notinshared':not_shared_bookmark,
+                                                       'keyword_results':keyword_results,
+                                                        'bool_in_bookmark': in_my_bookmarks,
+                                                        'my_bookmarks_id': my_bookmarks_folder,
+                                                        'my_bookmarks_content':my_bookmarks_folder_contents})
 
 
 def PublicationPageAnnotate(request, username, folderid, id):
