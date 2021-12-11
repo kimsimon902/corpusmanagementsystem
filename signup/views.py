@@ -219,9 +219,9 @@ def scrap(url, id):
                     newkeywords.append(word)
 
                 filtered = [word for word in newkeywords if not word in stopwords.words()]
-                
+
                 for i in range(0,len(filtered)):
-                    if keywords.objects.filter(keywordname=filtered[i].strip()):
+                    if keywords.objects.filter(keywordname=filtered[i].strip().lower()):
                         name_id.append(filtered[i].strip())
                     else:
                         insert_list.append(keywords(keywordname=filtered[i].strip()))
