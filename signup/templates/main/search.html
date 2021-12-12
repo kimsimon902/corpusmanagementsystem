@@ -170,9 +170,11 @@
                                 <tr>
                                     <td colspan="5">
                                         <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" onclick="toggleAbstract('{{result.id}}')">View Abstract</Button>
-                                            </li>
+                                            {% if result.abstract != "" %}
+                                                <li class="list-inline-item">
+                                                    <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" onclick="toggleAbstract('{{result.id}}')">View Abstract</Button>
+                                                </li>
+                                            {% endif %}
                                             <li class="list-inline-item">
                                                 <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;">Add to bookmarks</Button>
                                             </li>
