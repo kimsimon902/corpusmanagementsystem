@@ -152,16 +152,16 @@
                             <tbody>
                                 {% for result in results %}
                                 <tr>
-                                    <td scope="row"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
-                                    <td>{{result.author}}</td>
+                                    <td scope="row"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important; border-bottom: none;">{{result.title}}</div></a></td>
+                                    <td style="border-bottom: none;">{{result.author}}</td>
                                     <!-- <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td> -->
-                                    <td>{{result.year}}</td>
-                                    <td>{{result.source}}</td>
+                                    <td style="border-bottom: none;">{{result.year}}</td>
+                                    <td style="border-bottom: none;">{{result.source}}</td>
     
                                     {% if result.url != 'uploaded' %}
-                                    <td id="url"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
+                                    <td id="url" style="border-bottom: none;"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
                                     {% else %}
-                                    <td id="url"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
+                                    <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
                                     {% endif %}
                                 </tr>
                                 <tr>
