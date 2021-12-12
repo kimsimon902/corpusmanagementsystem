@@ -56,16 +56,16 @@ def home(request):
     annotation = annotations.objects.all()
     publication_keys = pubkeys.objects.all()
     
-    # for publication in list(results):
-    #     flag = 0
-    #     for pubkey in publication_keys:
-    #         if publication.id == pubkey.publication_id and flag == 0:
-    #             flag=1
-    #     if flag == 0:
-    #         if "http" in publication.url: 
-    #             scrap(publication.url, publication.id)
-    #         else:
-    #             scrap("http://" + publication.url, publication.id)
+    for publication in list(results):
+        flag = 0
+        for pubkey in publication_keys:
+            if publication.id == pubkey.publication_id and flag == 0:
+                flag=1
+        if flag == 0:
+            if "http" in publication.url: 
+                scrap(publication.url, publication.id)
+            else:
+                scrap("http://" + publication.url, publication.id)
 
     return render(request, 'main/home.html',{'publications':results, 'annotations': annotation})
 
@@ -228,7 +228,12 @@ def scrap(url, id):
                         name_id.append(filtered[i].strip())
 
                 print(url, flush=True)
-                keywords.objects.bulk_create(insert_list)
+                filtered_insert_list =[]
+                for word in insert_list:
+                    if word not in filtered_insert_list:
+                        filtered_insert_list.append(word)
+
+                keywords.objects.bulk_create(filtered_insert_list)
 
             
                 for j in range(0,len(name_id)):
