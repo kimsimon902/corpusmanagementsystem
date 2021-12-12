@@ -165,9 +165,18 @@
                                     {% endif %}
                                 </tr>
                                 <tr>
-                                    <td><Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;">View Abstract</Button>
-                                        <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;">Add to bookmarks</Button>
-                                        <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;">Add to folder</Button>
+                                    <td colspan="5">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;">View Abstract</Button>
+                                            </li>
+                                            <li>
+                                                <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;">Add to bookmarks</Button>
+                                            </li>
+                                            <li>
+                                                <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;">Add to folder</Button>
+                                            </li>
+                                        </ul>
                                     </td>
 
                                     <td>{{result.abstract}}</td>
