@@ -232,7 +232,7 @@ def scrap(url, id):
                 for word in insert_list:
                     if word not in filtered_insert_list:
                         filtered_insert_list.append(word)
-
+                print(filtered_insert_list)
                 keywords.objects.bulk_create(filtered_insert_list)
 
             
