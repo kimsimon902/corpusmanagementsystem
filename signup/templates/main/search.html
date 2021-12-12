@@ -165,9 +165,12 @@
                                     {% endif %}
                                 </tr>
                                 <tr>
-                                    <td><Button>View Abstract</Button> <Button>Add to bookmarks</Button> <Button>Add to folder</Button></td>
+                                    <td><Button type="button" class="btn btn-primary btn-sm">View Abstract</Button>
+                                        <Button type="button" class="btn btn-primary btn-sm">Add to bookmarks</Button>
+                                        <Button type="button" class="btn btn-primary btn-sm">Add to folder</Button>
+                                    </td>
+
                                     <td>{{result.abstract}}</td>
-                                    
                                 </tr>
                                     {% endfor %}
                             </tbody>
