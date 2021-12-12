@@ -220,7 +220,9 @@ def scrap(url, id):
 
                 filtered = [word for word in newkeywords if not word in stopwords.words()]
                 filtered_dupes = []
-                filtered_dupes = [filtered_dupes.append(x) for x in filtered if x not in filtered_dupes]
+                for i in list(filtered):
+                    if i not in filtered_dupes:
+                        filtered_dupes.append(i);
 
                 for i in range(0,len(filtered)):
                     if keywords.objects.filter(keywordname=filtered[i].strip()):
@@ -231,6 +233,7 @@ def scrap(url, id):
 
                 print(url, flush=True)
                 print(filtered)
+                print(filtered_dupes)
                 keywords.objects.bulk_create(insert_list)
 
             
