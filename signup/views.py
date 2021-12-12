@@ -232,6 +232,8 @@ def scrap(url, id):
                         name_id.append(filtered_dupes[i].strip())
 
                 print(url, flush=True)
+                print(filtered)
+                print(filtered_dupes)
                 keywords.objects.bulk_create(insert_list)
 
             
