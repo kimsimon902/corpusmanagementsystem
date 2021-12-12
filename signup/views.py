@@ -227,6 +227,7 @@ def scrap(url, id):
                         insert_list.append(keywords(keywordname=filtered[i].strip()))
                         name_id.append(filtered[i].strip())
 
+                print(url, flush=True)
                 keywords.objects.bulk_create(insert_list)
 
             
