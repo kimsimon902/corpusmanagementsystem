@@ -47,17 +47,43 @@
                         {% endfor %}
                         </ul>
                         {% if request.session.email %}
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addKeywordModal">Add Keywords</button>
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#editKeywordModal">Edit Keywords</button>
                         {% endif %}
 
-                        <div id="myModal" class="modal fade" role="dialog">
+                        <div id="addKeywordModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                           
                               <!-- Modal content-->
                               <div class="modal-content">
                                 <div class="modal-header">
                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title">Modal Header</h4>
+                                  <h4 class="modal-title">Add Keyword</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <label for="fname">First name:</label><br>
+                                        <input type="text" id="fname" name="fname"><br>
+                                        <label for="lname">Last name:</label><br>
+                                        <input type="text" id="lname" name="lname">
+                                      </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                          
+                            </div>
+                          </div>
+
+                          <div id="editKeywordModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                          
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Edit Keywords</h4>
                                 </div>
                                 <div class="modal-body">
                                   <p>Some text in the modal.</p>
@@ -70,6 +96,8 @@
                             </div>
                           </div>
                         
+
+
                         <br>
                         <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#mymodal">Folders<i class="fa fa-folder-open-o" aria-hidden="true" style="margin-left: 5px;"></i></button>
                         
