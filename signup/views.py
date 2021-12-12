@@ -224,16 +224,14 @@ def scrap(url, id):
                     if i not in filtered_dupes:
                         filtered_dupes.append(i);
 
-                for i in range(0,len(filtered)):
-                    if keywords.objects.filter(keywordname=filtered[i].strip()):
-                        name_id.append(filtered[i].strip())
+                for i in range(0,len(filtered_dupes)):
+                    if keywords.objects.filter(keywordname=filtered_dupes[i].strip()):
+                        name_id.append(filtered_dupes[i].strip())
                     else:
-                        insert_list.append(keywords(keywordname=filtered[i].strip()))
-                        name_id.append(filtered[i].strip())
+                        insert_list.append(keywords(keywordname=filtered_dupes[i].strip()))
+                        name_id.append(filtered_dupes[i].strip())
 
                 print(url, flush=True)
-                print(filtered)
-                print(filtered_dupes)
                 keywords.objects.bulk_create(insert_list)
 
             
