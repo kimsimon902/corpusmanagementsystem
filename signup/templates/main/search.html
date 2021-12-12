@@ -141,17 +141,17 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Title</th>
-                                <th>Author/s</th>
-                                <th>Year</th>
-                                <th>Source</th>
-                                <th>URL</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Author/s</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Source</th>
+                                <th scope="col">URL</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for result in results %}
                             <tr>
-                                <td><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
+                                <th scope="row"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                 <td>{{result.author}}</td>
                                 <!-- <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td> -->
                                 <td>{{result.year}}</td>
