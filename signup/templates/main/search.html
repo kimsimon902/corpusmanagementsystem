@@ -152,7 +152,7 @@
                             <tbody>
                                 {% for result in results %}
                                 <tr>
-                                    <td scope="row"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important; border-bottom: none;">{{result.title}}</div></a></td>
+                                    <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                     <td style="border-bottom: none;">{{result.author}}</td>
                                     <!-- <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td> -->
                                     <td style="border-bottom: none;">{{result.year}}</td>
@@ -165,7 +165,7 @@
                                     {% endif %}
                                 </tr>
                                 <tr>
-                                    <td colspan="5">
+                                    <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px;">
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
                                                 <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" onclick="toggleAbstract('{{result.id}}')">View Abstract</Button>
