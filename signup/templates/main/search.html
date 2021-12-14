@@ -138,7 +138,6 @@
             <!-- Results table-->
             <div class="col-10">
                 <div class="container">
-                    <h1>{{ bookmarks }}</h1>
                     <div class="table-responsive" style="min-height: 100vh;">
                         <table class="table">
                             <thead>
@@ -180,7 +179,7 @@
                                                 {% for bookmark in bookmarks %}
                                                     {% if result.id == bookmark.publicationID %}
                                                         {% for bookmark_id in my_bookmarks_id %}
-                                                        <form method="POST" action="publication/{{result.id}}/bookmark">
+                                                        <form method="POST" action="/publication/{{result.id}}/bookmark">
                                                             {% csrf_token %}
                                                             <input type="hidden" name="next" value="{{ request.path }}"/>
                                                             <input type="hidden" name="folder_id" value="{{bookmark_id.id}}"/>
@@ -190,7 +189,7 @@
                                                         {% endfor %}
                                                     {% elif forloop.last %}
                                                         {% for bookmark_id in my_bookmarks_id %}
-                                                        <form method="POST" action="publication/{{result.id}}/bookmark"></form>
+                                                        <form method="POST" action="/publication/{{result.id}}/bookmark"></form>
                                                         {% csrf_token %}
                                                             <input type="hidden" name="next" value="{{ request.path }}"/>
                                                             <input type="hidden" name="folder_id" value="{{bookmark_id.id}}"/>
