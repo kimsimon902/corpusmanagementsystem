@@ -325,6 +325,16 @@ def searchPublication(request):
         
         libFilter = request.POST.getlist('filterLib')
 
+        if (request.user):
+            author = request.session['username']
+        else:
+            author="null"
+
+        email = request.session['email']
+
+        my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('id') #get my bookmarks folderID
+        my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
+
         if  searchFilter == "default":
 
             if 'ais' in libFilter and len(libFilter) == 1:
@@ -418,7 +428,7 @@ def searchPublication(request):
                     else:
                         scrap("http://" + publication.url, publication.id)
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results })
+            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents })
 
         elif searchFilter == "title":
             
@@ -488,7 +498,7 @@ def searchPublication(request):
                     else:
                         scrap("http://" + publication.url, publication.id)
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results , 'keyword_results':keyword_results})
+            return render(request, 'main/search.html',{'searched':searched, 'results':results , 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents})
 
         elif searchFilter == "author":
 
@@ -560,7 +570,7 @@ def searchPublication(request):
                         scrap("http://" + publication.url, publication.id)
 
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results})
+            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents})
     else:
         
         pubs = publications.objects.all()
@@ -594,7 +604,6 @@ def searchPublication(request):
                         scrap(publication.url, publication.id)
                     else:
                         scrap("http://" + publication.url, publication.id)
-
 
         return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
 
