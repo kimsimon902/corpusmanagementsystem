@@ -187,29 +187,27 @@
                                                             <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete" id="bookmark-delete-in-search-table-{{result.id}}" style="display: inline;">Delete from Bookmarks<i class="fa fa-bookmark" aria-hidden="true" style="margin-left: 5px;"></i></button>
                                                         </form>
                                                     {% elif forloop.last %}
-                                                                                                           
+                                                        <form method="POST" action="/publication/{{result.id}}/bookmark"></form>
+                                                        {% csrf_token %}
+                                                            <input type="hidden" name="next" value="{{ request.path }}"/>
+                                                            <input type="hidden" name="folder_id" value="{{result.id}}"/>
+                                                            <input type="hidden" name="bookmark_action" value="delete">
+                                                            <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add" id="bookmark-add-in-search-table-{{result.id}}" style="display: inline;" >Add to Bookmarks<i class="fa fa-bookmark-o" aria-hidden="true" style="margin-left: 5px;"></i></button>
+                                                        </form>
+                                                        
+                                                        <script>
+                                                            var found = document.getElementById("bookmark-delete-in-search-table-"+"{{getdata.id}}");
+                                                            var addDiv = document.getElementById("bookmark-add-in-search-table-"+"{{getdata.id}}");
+                            
+                                                            if (found == null){
+                                                                addDiv.style.display = "inline";
+                                                            }
+                                                            else {
+                                                                addDiv.style.display = "none";
+                                                            }
+                                                        </script>                                                    
                                                     {% endif %}
                                                 {% endfor %}
-
-                                                <form method="POST" action="/publication/{{result.id}}/bookmark"></form>
-                                                    {% csrf_token %}
-                                                    <input type="hidden" name="next" value="{{ request.path }}"/>
-                                                    <input type="hidden" name="folder_id" value="{{result.id}}"/>
-                                                    <input type="hidden" name="bookmark_action" value="delete">
-                                                    <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add" id="bookmark-add-in-search-table-{{result.id}}" style="display: inline;" >Add to Bookmarks<i class="fa fa-bookmark-o" aria-hidden="true" style="margin-left: 5px;"></i></button>
-                                                </form>
-                                                        
-                                                <script>
-                                                    var found = document.getElementById("bookmark-delete-in-search-table-"+"{{getdata.id}}");
-                                                    var addDiv = document.getElementById("bookmark-add-in-search-table-"+"{{getdata.id}}");
-                    
-                                                    if (found == null){
-                                                        addDiv.style.display = "inline";
-                                                    }
-                                                    else {
-                                                        addDiv.style.display = "none";
-                                                    }
-                                                </script> 
                                             </li>
                                             <li class="list-inline-item">
                                                 <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;">Add to folder</Button>
