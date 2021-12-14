@@ -177,8 +177,10 @@
                                                 </li>
                                             {% endif %}
                                             <li class="list-inline-item">
-                                                {% if result.id in bookmarks %}
-                                                    <h1>Found in bookmark</h1>
+                                                {% for bookmark in bookmarks %}
+                                                    {% if result.id == bookmark.publicationID %}
+                                                        <h1>Found in bookmark</h1>
+                                                    {% endif %}
                                                 {% endif %}
 
                                                 {% if bool_in_bookmark == "true" %}
