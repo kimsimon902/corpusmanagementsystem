@@ -180,6 +180,8 @@
                                                 {% for bookmark in bookmarks %}
                                                     {% if result.id == bookmark.publicationID %}
                                                         <h1>Found in bookmark</h1>
+                                                    {% elif forloop.last}
+                                                        <h1>Not found in bookmark</h1>
                                                     {% endif %}
                                                 {% endfor %}
 
