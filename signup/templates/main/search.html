@@ -179,7 +179,7 @@
                                             <li class="list-inline-item">
                                                 {% for bookmark in bookmarks %}
                                                     {% if result.id == bookmark.publicationID %}
-                                                        <form method="POST" action="/publication/{{result.id}}/bookmark">
+                                                        <form method="POST" action="/publication/{{result.id}}/bookmark" id="bookmark-delete-in-search-table-{{result.id}}" style="display: inline;">
                                                             {% csrf_token %}
                                                             <input type="hidden" name="next" value="{{ request.path }}"/>
                                                             <input type="hidden" name="folder_id" value="{{result.id}}"/>
@@ -187,7 +187,19 @@
                                                             <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">Delete from Bookmarks<i class="fa fa-bookmark" aria-hidden="true" style="margin-left: 5px;"></i></button>
                                                         </form>
                                                     {% elif forloop.last %}
-                                                        <form method="POST" action="/publication/{{result.id}}/bookmark">
+                                                        <form method="POST" action="/publication/{{result.id}}/bookmark" id="bookmark-add-in-search-table-{{result.id}}" style="display: inline;"></form>
+                                                            <script>
+                                                                var found = document.getElementById("bookmark-delete-in-search-table-"+"{{getdata.id}}");
+                                                                var addDiv = document.getElementById("bookmark-add-in-search-table-"+"{{getdata.id}}");
+                                
+                                                                if (found == null){
+                                                                    addDiv.style.display = "inline";
+                                                                }
+                                                                else {
+                                                                    addDiv.style.display = "none";
+                                                                }
+                                                            </script>
+                                                        
                                                             {% csrf_token %}
                                                             <input type="hidden" name="next" value="{{ request.path }}"/>
                                                             <input type="hidden" name="folder_id" value="{{result.id}}"/>
