@@ -179,7 +179,6 @@
                                             <li class="list-inline-item">
                                                 {% for bookmark in bookmarks %}
                                                     {% if result.id == bookmark.publicationID %}
-                                                        <h1>Found in bookmark</h1>
                                                         <form method="POST" action="/publication/{{result.id}}/bookmark">
                                                             {% csrf_token %}
                                                             <input type="hidden" name="next" value="{{ request.path }}"/>
@@ -188,7 +187,6 @@
                                                             <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">Delete from Bookmarks<i class="fa fa-bookmark" aria-hidden="true" style="margin-left: 5px;"></i></button>
                                                         </form>
                                                     {% elif forloop.last %}
-                                                        <h1>Not found in bookmark</h1>
                                                         <form method="POST" action="/publication/{{result.id}}/bookmark">
                                                             {% csrf_token %}
                                                             <input type="hidden" name="next" value="{{ request.path }}"/>
