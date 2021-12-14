@@ -428,7 +428,7 @@ def searchPublication(request):
                     else:
                         scrap("http://" + publication.url, publication.id)
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents })
+            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder })
 
         elif searchFilter == "title":
             
@@ -498,7 +498,7 @@ def searchPublication(request):
                     else:
                         scrap("http://" + publication.url, publication.id)
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results , 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents})
+            return render(request, 'main/search.html',{'searched':searched, 'results':results , 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder})
 
         elif searchFilter == "author":
 
@@ -570,7 +570,7 @@ def searchPublication(request):
                         scrap("http://" + publication.url, publication.id)
 
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents})
+            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder})
     else:
         
         pubs = publications.objects.all()
