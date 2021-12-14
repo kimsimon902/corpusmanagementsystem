@@ -190,7 +190,7 @@
                                                     {% elif forloop.last %}
                                                         {% for bookmark_id in my_bookmarks_id %}
                                                         <form method="POST" action="/publication/{{result.id}}/bookmark"></form>
-                                                        {% csrf_token %}
+                                                            {% csrf_token %}
                                                             <input type="hidden" name="next" value="{{ request.path }}"/>
                                                             <input type="hidden" name="folder_id" value="{{bookmark_id.id}}"/>
                                                             <input type="hidden" name="bookmark_action" value="delete">

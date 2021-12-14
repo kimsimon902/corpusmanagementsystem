@@ -901,6 +901,7 @@ def PublicationPageAnnotateEdit(request, username, folderid, id, annoID):
 
 def PublicationBookmark(request, id):
     results = publications.objects.filter(id=id)
+
     pubID = id
     if(request.user):
         user = request.session['username']
