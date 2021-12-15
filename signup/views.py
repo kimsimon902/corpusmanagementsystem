@@ -319,6 +319,7 @@ def create_dictionary(clean_list, id):
 
 
 def searchPublication(request):
+    
     if request.method == "POST":
         searched = request.POST['searched']
         searchFilter = request.POST['filterData']
@@ -334,6 +335,31 @@ def searchPublication(request):
 
         my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('id') #get my bookmarks folderID
         my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
+
+        my_folders = bookmarks_folder.objects.filter(user=email)
+        folders_value = bookmarks_folder.objects.filter(user=email).values('id')
+
+        bookmark_value = bookmarks.objects.filter(publicationID=id, folderID__in=folders_value).values('folderID')
+
+
+        in_bookmark = bookmarks_folder.objects.filter(id__in=bookmark_value)
+        not_bookmark = bookmarks_folder.objects.exclude(id__in=bookmark_value).filter(id__in=folders_value)
+
+        
+
+        if my_bookmarks_folder_contents.filter(publicationID=id):
+            in_my_bookmarks = 'true'
+        else: in_my_bookmarks = 'false'
+
+        collabs = collaborators.objects.filter(collab=email).values('folderID') #Get the folderIDs of the folders that have collaborators
+        shared_folders = bookmarks_folder.objects.filter(id__in=collabs) #The folders that have collaborators
+
+        shared_folders_ids = bookmarks_folder.objects.filter(id__in=collabs).values('id') #Get the ids of the folders that have collaborators
+        shared_folders_bookmarks = bookmarks.objects.filter(folderID__in=shared_folders_ids, publicationID=id) #Get all bookmarks that have collaborators
+        shared_folders_pubs = publications.objects.filter(id__in=shared_folders_bookmarks.values('publicationID')) #Get the publications that are shared
+
+        in_shared_bookmark = bookmarks_folder.objects.filter(id__in=shared_folders_bookmarks.values('folderID'))
+        not_shared_bookmark = bookmarks_folder.objects.exclude(id__in=shared_folders_bookmarks.values('folderID')).filter(id__in=collabs)
 
         if  searchFilter == "default":
 
@@ -605,7 +631,24 @@ def searchPublication(request):
                     else:
                         scrap("http://" + publication.url, publication.id)
 
-        return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
+        return render(request, 'main/search.html',{ 'keyword_results':keyword_results,
+                                                    'publication':results,
+                                                    'annotations':annotation,
+                                                    'my_folders':my_folders, 
+                                                    'in_bookmark':in_bookmark, 
+                                                    'not_bookmark':not_bookmark, 
+                                                    'pubID': id, 
+                                                    'collaborators':collaborator, 
+                                                    'collabs':collabs, 
+                                                    'sharedfolders': shared_folders, 
+                                                    'sharedbookmarks': shared_folders_bookmarks, 
+                                                    'sharedpubs':shared_folders_pubs, 
+                                                    'inshared':in_shared_bookmark, 
+                                                    'notinshared':not_shared_bookmark, 
+                                                    'keyword_results':keyword_results, 
+                                                    'bool_in_bookmark': in_my_bookmarks,
+                                                    'my_bookmarks_id': my_bookmarks_folder,
+                                                    'my_bookmarks_content':my_bookmarks_folder_contents})
 
 def filterSearch(request, filter, search):
     

@@ -206,7 +206,7 @@
                                                             {% csrf_token %}
                                                             <input type="hidden" name="next" value="{{ request.path }}"/>
                                                             <input type="hidden" name="folder_id" value="{{bookmark_id.id}}"/>
-                                                            <input type="hidden" name="bookmark_action" value="delete">
+                                                            <input type="hidden" name="bookmark_action" value="add">
                                                             <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add" id="bookmark-add-in-search-table-{{result.id}}" style="display: inline;" >Add to Bookmarks<i class="fa fa-bookmark-o" aria-hidden="true" style="margin-left: 5px;"></i></button>
                                                         </form>
                                                         {% endfor %}
@@ -226,11 +226,143 @@
                                                 {% endfor %}
                                             </li>
                                             <li class="list-inline-item">
-                                                <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;">Add to folder</Button>
+                                                <button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" data-toggle="modal" data-target="#mymodal">Add to folder</Button>
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
+
+                                <form method="POST" action="/publication/{{result.id}}/bookmark" id="bookmark-pub"> 
+                                    {% csrf_token %}
+                                    <div class="modal fade bd-example-modal-lg" id="mymodal" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Choose folder to add bookmark</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="col-2 mb-1">
+                                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#newFolder" aria-expanded="false" aria-controls="newFolder"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+                                                      </svg> Folder </button>
+                                                      <br>
+                                                </div>
+                                
+                                                <div class="collapse mb-1" id="newFolder">
+                                                    <div class="card card-body">
+                                
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="next" value="{{ request.path }}"/>
+                                                            <input type="hidden" name="newFolder" value="newFolder">
+                                                            <div class="form-group">
+                                                                <label for="folder-name" class="col-form-label">Folder name:</label>
+                                                                <input type="text" class="form-control" name="folder-name">
+                                                            </div>                            
+                                                        <div class="modal-footer float-end">
+                                                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#newFolder">Close</button>
+                                                            <button type="submit" class="btn btn-primary btn-sm" name="create-folder">Create folder</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    </form>
+                                
+                                
+                                                <!--
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-plus-lg" viewBox="0 2 14 14">
+                                                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"></path>
+                                                      </svg>
+                                                -->
+                                                
+                                                <div class="container">
+                                                    {% for x in in_bookmark %}
+                                                    <form method="POST" action="/publication/{{result.id}}/bookmark">
+                                                        {% csrf_token %}
+                                                    <input type="hidden" name="next" value="{{ request.path }}"/>
+                                                    <input type="hidden" name="folder_id" value="{{x.id}}"/>
+                                                    <input type="hidden" name="bookmark_action" value="delete">
+                                                    <div class="row align-items-center mb-2">
+                                                        <div name="{{x.id}}" class="col-2 d-flex">{{x.folder_name}}</div>
+                                                        <div class="col-2 d-flex">
+                                                        <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <span class="border-bottom-0"></span>
+                                                    </div>
+                                                    </form>
+                                                    {% endfor %}
+                                                    
+                                                    {% for y in not_bookmark %}
+                                                    {% if not forloop.first and forloop.counter != 2 %}
+                                                    <form method="POST" action="/publication/{{result.id}}/bookmark">
+                                                        {% csrf_token %}
+                                                    <input type="hidden" name="next" value="{{ request.path }}"/>
+                                                    <input type="hidden" name="folder_id" value="{{y.id}}"/>
+                                                    <input type="hidden" name="bookmark_action" value="add">
+                                                    <div class="row align-items-center mb-2">
+                                                        <div name="{{y.id}}" class="col-2 d-flex">{{y.folder_name}}</div>
+                                                        <div class="col-2 d-flex">
+                                                        <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">+</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <span class="border-bottom-0"></span>
+                                                    </div>
+                                                    </form>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                
+                                                    {% for a in inshared%}
+                                                    <form method="POST" action="/publication/{{result.id}}/bookmark">
+                                                        {% csrf_token %}
+                                                    <input type="hidden" name="next" value="{{ request.path }}"/>
+                                                    <input type="hidden" name="folder_id" value="{{a.id}}"/>
+                                                    <input type="hidden" name="bookmark_action" value="sharedDelete">
+                                                    <div class="row align-items-center mb-2">
+                                                        <div name="{{a.id}}" class="col-2 d-flex">{{a.folder_name}}</div>
+                                                        <div class="col-2 d-flex">
+                                                        <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <span class="border-bottom-0"></span>
+                                                    </div>
+                                                    </form>
+                                                    {% endfor %}
+                                    
+                                                    {% for b in notinshared%}
+                                                    <form method="POST" action="/publication/{{result.id}}/bookmark">
+                                                        {% csrf_token %}
+                                                    <input type="hidden" name="next" value="{{ request.path }}"/>
+                                                    <input type="hidden" name="folder_id" value="{{b.id}}"/>
+                                                    <input type="hidden" name="bookmark_action" value="sharedAdd">
+                                                    <div class="row align-items-center mb-2">
+                                                        <div name="{{b.id}}" class="col-2 d-flex">{{b.folder_name}}</div>
+                                                        <div class="col-2 d-flex">
+                                                        <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">+</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <span class="border-bottom-0"></span>
+                                                    </div>
+                                                    </form>
+                                                    {% endfor %}
+                                                </div>
+                                                
+                                            </div>
+                                
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                            </div>
+                                
+                                          </div>
+                                        </div>
+                                    </div>
+
+
                                     {% endfor %}
                             </tbody>
                         </table>
@@ -240,6 +372,10 @@
             <!-- end Results Table -->
         </div>
     </div>
+
+    
+
+
     {% endif %}
     <footer class="bg-light footer">
         <div class="container">
