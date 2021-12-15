@@ -1378,7 +1378,8 @@ def downloadFolderTable(request):
         elems.append(Spacer(1,.25*inch))
         elems.append(KeepTogether(table))
         drawing.hAlign = 'CENTER'
-        elems.append(drawing,d)
+        elems.append(drawing)
+        elems.append(d)
         pdf.build(elems)
         buf.seek(0)
 
