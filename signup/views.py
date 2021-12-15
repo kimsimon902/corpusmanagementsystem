@@ -1302,7 +1302,7 @@ def downloadFolderTable(request):
 
         title = String(
             50, 110, 
-            'Pie Chart', 
+            'Source Chart', 
             fontSize = 14
         )	
 
@@ -1364,6 +1364,7 @@ def downloadFolderTable(request):
         elems.append(Paragraph("<strong>Summary for </strong>" + pair[1],title_style))
         elems.append(Spacer(1,.25*inch))
         elems.append(KeepTogether(table))
+        elems.append(Spacer(1,.25*inch))
         drawing.hAlign = 'CENTER'
         elems.append(drawing)
         #elems.append(d)
