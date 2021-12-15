@@ -1011,6 +1011,29 @@ def PublicationBookmarkInFolder(request, username, folderid, id):
             return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs})
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
 
+        elif request.POST.get("bookmark_action") == 'sharedAdd':
+
+            folderOwner = bookmarks_folder.objects.get(id=request.POST.get('folder_id'))
+            pubID = id
+            addBookmark = bookmarks()
+            addBookmark.user = folderOwner.user
+            addBookmark.publicationID = pubID
+            addBookmark.folderID = request.POST.get('folder_id')
+            addBookmark.save()
+
+
+            messages.success(request, "Added to shared folder")
+            # return HttpResponseRedirect(next)
+            return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs})
+        elif request.POST.get("bookmark_action") == 'sharedDelete':
+            folder_value = request.POST.get('folder_id')
+            folderOwner = bookmarks_folder.objects.get(id=request.POST.get('folder_id'))
+            bookmarks.objects.filter(folderID=folder_value, publicationID=pubID, user=folderOwner.user).delete()
+
+            messages.success(request, "Deleted from shared folder")
+            # return HttpResponseRedirect(next)
+            return render(request, 'main/my-folders.html',{'bookmarks':bookmark, 'folders':folders, 'rawbookmarks':rawbookmarks, 'collaborators':collaborator, 'collabs':collabs, 'sharedfolders': shared_folders, 'sharedbookmarks': shared_folders_bookmarks, 'sharedpubs':shared_folders_pubs})
+
         elif request.POST.get("newFolder") == 'newFolder':
             newFolder = bookmarks_folder()
             newFolder.folder_name = request.POST.get('folder-name')
