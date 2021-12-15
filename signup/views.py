@@ -1203,42 +1203,14 @@ def dataToTable(name, data):
 #create the table for our document
 def myTable(tabledata):
 
-    email = request.session['email']
-    pair = [key for key in request.POST.keys()][1].split("|")
-    filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID')
-    getpubs = publications.objects.filter(id__in=filterpub)
     from reportlab.platypus.flowables import KeepTogether
     from reportlab.lib.units import mm
     # List of Lists
-    buf = io.BytesIO()
     styles = getSampleStyleSheet()
     styleN = styles['Normal']
     styleN.alignment = TA_LEFT
-    ptext = "This is an example."
-    can = canvas.Canvas(buf, pagesize=A4)
-    p = Paragraph(ptext, style=styles["Normal"])
-    p.wrapOn(can, 50*mm, 50*mm)  # size of 'textbox' for linebreaks etc.
-    p.drawOn(can, 0*mm, 0*mm)
-    can.save()
-        
-    data = [
-        ['','','Summary For ' + pair[1],'',''],
-        ['Title', 'Author', 'URL', 'Source', 'Year']
-    ]
-        
-    for pub in getpubs:
-        data.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
-        #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
-        #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
-        
-    pdf = SimpleDocTemplate(
-        buf,
-        pagesize=A4,
-        format=landscape
-    )
 
-
-    table = Table(data, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
+    table = Table(tabledata, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
     # add style
     style = TableStyle([
         ('BACKGROUND', (0,1), (4,1), colors.green),
@@ -1258,7 +1230,7 @@ def myTable(tabledata):
     ])
     table.setStyle(style)
     # 2) Alternate backgroud color
-    rowNumb = len(data)
+    rowNumb = len(tabledata)
     for i in range(2, rowNumb):
         if i % 2 != 0:
             bc = colors.burlywood
@@ -1371,10 +1343,19 @@ def downloadFolderTable(request):
     story.append(Spacer(1,.5*inch))
 
     #add our table - first prepare data and then pass this to myTable function
-    tabledata = (
-    ('', 'Trial 1', 'Trial 2', 'Trial 3','Trial 4','Trial 5'),
-    dataToTable(subject1, results1),
-    dataToTable(subject2, results2))
+    email = request.session['email']
+    pair = [key for key in request.POST.keys()][1].split("|")
+    filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID')
+    getpubs = publications.objects.filter(id__in=filterpub)
+    tabledata = [
+        ['','','Summary For ' + pair[1],'',''],
+        ['Title', 'Author', 'URL', 'Source', 'Year']
+    ]
+        
+    for pub in getpubs:
+        tabledata.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
+        #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
+        #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
 
     story.append(myTable(tabledata))
     story.append(Spacer(1,.5*inch))
