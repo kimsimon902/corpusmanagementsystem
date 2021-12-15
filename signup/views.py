@@ -1224,7 +1224,7 @@ from reportlab.lib.units import inch
 from reportlab.lib import colors
 from reportlab.platypus import Paragraph, Frame, Spacer, Image, Table, TableStyle, SimpleDocTemplate
 from reportlab.graphics.charts.barcharts import VerticalBarChart
-from reportlab.graphics.shapes import Drawing, string
+from reportlab.graphics.shapes import Drawing, String
 from reportlab.graphics.charts.textlabels import Label
 from reportlab.graphics.charts.legends import Legend
 
@@ -1251,7 +1251,7 @@ def myBarChart(data):
     bc.categoryAxis.labels.dx = 8
     bc.categoryAxis.labels.dy = -2
 
-    catNames = string.split('Trial1 Trial2 Trial3 Trial4 Trial5')
+    catNames = String.split('Trial1 Trial2 Trial3 Trial4 Trial5')
     bc.categoryAxis.categoryNames = catNames
 
     bc.bars[0].fillColor = colors.blue
@@ -1263,7 +1263,7 @@ def myBarChart(data):
     return drawing
 
 #add a legend for the bar chart
-def downloadFolderTable(drawing, name1, name2):
+def myBarLegend(drawing, name1, name2):
     "Add sample swatches to a diagram."
 
     d = drawing or Drawing(400, 200)
@@ -1285,45 +1285,46 @@ def downloadFolderTable(drawing, name1, name2):
 ########   Now lets put everything together.   ########
 
 # create a list and add the elements of our document (image, paragraphs, table, chart) to it
-story = []
+def downloadFolderTable(request):
+    story = []
 
-#define the style for our paragraph text
-styles = getSampleStyleSheet()
-styleN = styles['Normal']
+    #define the style for our paragraph text
+    styles = getSampleStyleSheet()
+    styleN = styles['Normal']
 
-#First add the Vizard Logo
-im = Image("worldviz-logo-white.jpg", width=3*inch, height=3*inch)
-im.hAlign = 'CENTER'
-story.append(im)
+    #First add the Vizard Logo
+    im = Image("worldviz-logo-white.jpg", width=3*inch, height=3*inch)
+    im.hAlign = 'CENTER'
+    story.append(im)
 
-#add the title
-story.append(Paragraph("<strong>Results for Vizard Experiment</strong>",styleN))
-story.append(Spacer(1,.25*inch))
+    #add the title
+    story.append(Paragraph("<strong>Results for Vizard Experiment</strong>",styleN))
+    story.append(Spacer(1,.25*inch))
 
-#convert data to paragraph form and then add paragraphs
-story.append(Paragraph(dataToParagraph(subject1, results1),styleN))
-story.append(Spacer(1,.25*inch))
-story.append(Paragraph(dataToParagraph(subject2, results2),styleN))
-story.append(Spacer(1,.5*inch))
+    #convert data to paragraph form and then add paragraphs
+    story.append(Paragraph(dataToParagraph(subject1, results1),styleN))
+    story.append(Spacer(1,.25*inch))
+    story.append(Paragraph(dataToParagraph(subject2, results2),styleN))
+    story.append(Spacer(1,.5*inch))
 
-#add our table - first prepare data and then pass this to myTable function
-tabledata = (
-('', 'Trial 1', 'Trial 2', 'Trial 3','Trial 4','Trial 5'),
-dataToTable(subject1, results1),
-dataToTable(subject2, results2))
+    #add our table - first prepare data and then pass this to myTable function
+    tabledata = (
+    ('', 'Trial 1', 'Trial 2', 'Trial 3','Trial 4','Trial 5'),
+    dataToTable(subject1, results1),
+    dataToTable(subject2, results2))
 
-story.append(myTable(tabledata))
-story.append(Spacer(1,.5*inch))
+    story.append(myTable(tabledata))
+    story.append(Spacer(1,.5*inch))
 
-#add our barchart and legend
-drawing = myBarChart([results1,results2])
-drawing = myBarLegend(drawing,subject1,subject2)
-drawing.hAlign = 'CENTER'
-story.append(drawing)
+    #add our barchart and legend
+    drawing = myBarChart([results1,results2])
+    drawing = myBarLegend(drawing,subject1,subject2)
+    drawing.hAlign = 'CENTER'
+    story.append(drawing)
 
-#build our document with the list of flowables we put together
-doc = SimpleDocTemplate('mydoc.pdf',pagesize = letter, topMargin=0)
-doc.build(story)
+    #build our document with the list of flowables we put together
+    doc = SimpleDocTemplate('mydoc.pdf',pagesize = letter, topMargin=0)
+    doc.build(story)
 '''
 def downloadFolderTable(request):
     email = request.session['email']
