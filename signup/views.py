@@ -1283,8 +1283,9 @@ def myBarLegend(drawing, data):
     swatches.deltax = 60
     swatches.dxTextSpace = 10
     swatches.columnMaximum = 4
+    items = []
     for x in data:
-        items = [(colors.blue, x)]
+        items.append = (colors.blue, x)
     swatches.colorNamePairs = items
 
     d.add(swatches, 'legend')
