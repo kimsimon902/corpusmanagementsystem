@@ -429,11 +429,11 @@ def searchPublication(request):
             #             scrap("http://" + publication.url, publication.id)
 
             filteredYear =[]
-            for year in results:
+            for year in xlist:
                 if year.year not in filteredYear:
                     filteredYear.append(year.year)
 
-
+            print(filteredYear)
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder, 'filteredYear': filteredYear})
 
         elif searchFilter == "title":
@@ -505,7 +505,7 @@ def searchPublication(request):
                         scrap("http://" + publication.url, publication.id)
 
             filteredYear =[]
-            for year in results:
+            for year in xlist:
                 if year.year not in filteredYear:
                     filteredYear.append(year.year)
 
@@ -582,7 +582,7 @@ def searchPublication(request):
                         scrap("http://" + publication.url, publication.id)
 
             filteredYear =[]
-            for year in results:
+            for year in xlist:
                 if year.year not in filteredYear:
                     filteredYear.append(year.year)
 
