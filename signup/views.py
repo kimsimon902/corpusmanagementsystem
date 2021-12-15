@@ -1325,7 +1325,7 @@ def downloadFolderTable(request):
         swatches.columnMaximum = 4
         items = []
         for pub in getpubs:
-            items.append(colors.blue, pub.source)
+            items.append([colors.blue, pub.source])
 
         swatches.colorNamePairs = items
 
