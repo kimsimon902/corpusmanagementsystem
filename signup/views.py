@@ -435,7 +435,7 @@ def searchPublication(request):
 
             filteredYear.sort()
 
-            print(keyword_results)
+            print(len(keyword_results))
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder, 'filteredYear': filteredYear})
 
         elif searchFilter == "title":
