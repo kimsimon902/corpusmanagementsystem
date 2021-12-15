@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
-from reportlab.lib import pagesizes
+from reportlab.lib import fonts, pagesizes
 from .models import pubkeys, registerUser
 from .models import publications
 from .models import keywords
@@ -1186,9 +1186,9 @@ def downloadFolderTable(request):
         buf = io.BytesIO()
         styles = getSampleStyleSheet()
         styleN = styles['Normal']
-        styleS = styles['Normal']
-        styleS.alignment = TA_CENTER
-        styleS.fontSize=24
+        title_style = styles['Heading1']
+        title_style.alignment = TA_CENTER
+        title_style.fontSize=24
         styleN.alignment = TA_LEFT
         ptext = "This is an example."
         can = canvas.Canvas(buf, pagesize=A4)
@@ -1257,7 +1257,7 @@ def downloadFolderTable(request):
         from reportlab.platypus import  Spacer
         table.setStyle(ts)
         elems = []
-        elems.append(Paragraph("<strong>Summary For </strong>" + pair[1],styleS))
+        elems.append(Paragraph("<strong>Summary For </strong>" + pair[1],title_style))
         elems.append(Spacer(1,.25*inch))
         elems.append(KeepTogether(table))
         pdf.build(elems)
