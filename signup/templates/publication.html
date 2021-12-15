@@ -110,7 +110,7 @@
                                                     {% for keyword in keyword_results %}
                                                         
                                                             <tr>
-                                                                <form method="post" action="/publications/{{getdata.id}}/{{keyword}}">
+                                                                <form method="post" action="/publication/{{getdata.id}}/{{keyword}}">
                                                                 {% csrf_token %}
                                                                 <input type="hidden" name="keyword" value="{{keyword}}"/>
                                                                 <input type="hidden" name="next" value="{{ request.path }}"/>
