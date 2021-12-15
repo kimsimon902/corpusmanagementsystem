@@ -49,11 +49,10 @@
                         
                         <ul style="list-style-type:none;">
                         {% for keyword in keyword_results %}
-                            <form method="POST" action="/publication/{{getdata.id}}/{{keyword}}" id="search-form">
+                            <form method="POST" action="{% url 'search' %}" id="search-form">
                                 {% csrf_token %}
                                 <li><button type="submit" value="Submit" class= "btn btn-link" style="color:black">{{keyword}}</button></li>
-                                <input type="hidden" name="keyword" value="{{keyword}}">
-                                <input type="hidden" name="next" value="{{ request.path }}"/>
+                                <input type="hidden" name="searched" value="{{keyword}}">
                             </form> 
                             
                         {% endfor %}
@@ -111,9 +110,9 @@
                                                     {% for keyword in keyword_results %}
                                                         
                                                             <tr>
-                                                                <form method="post" action="/folders/{{request.session.username}}/removecollab">
+                                                                <form method="post" action="/publications/{{getdata.id}}/{{keyword}}">
                                                                 {% csrf_token %}
-                                                                <input type="hidden" name="delete-collab" value="{{x.id}}"/>
+                                                                <input type="hidden" name="keyword" value="{{keyword}}"/>
                                                                 <input type="hidden" name="next" value="{{ request.path }}"/>
                                                                 <td>{{keyword}}</td>
                                                                 <td><button type="submit" class="btn btn-outline-danger btn-sm" name="collab-delete">x</button></td>
