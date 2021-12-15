@@ -1175,15 +1175,11 @@ def viewAdmin(request):
     return render(request, 'main/adminpage.html',{'publications':results})
 
 #This is your data collected from your Vizard experiment
-subject1 = 'Tom'
-subject2 = 'Ana'
-results1 = [15,23,42,56,76]
-results2 = [34,67,94,31,56]
 
 #take the data and make ready for paragraph
-def dataToParagraph(name, data):
+def dataToParagraph(data):
    
-    p = '<strong>Subject name: </strong>' + name + '<br/>' + '<strong>Data: </strong>  ('
+    p = '<strong>Subject name: </strong>' + data + '<br/>' + '<strong>Data: </strong>  ('
     for i in range(len(data)):
         p += str(data[i])
         if i != len(data) - 1:
@@ -1333,22 +1329,17 @@ def downloadFolderTable(request):
     #story.append(im)
 
     #add the title
-    story.append(Paragraph("<strong>Results for Vizard Experiment</strong>",styleN))
+    email = request.session['email']
+    pair = [key for key in request.POST.keys()][1].split("|")
+    story.append(Paragraph("<strong>Results for </strong>" + + pair[1],styleN))
     story.append(Spacer(1,.25*inch))
 
     #convert data to paragraph form and then add paragraphs
-    story.append(Paragraph(dataToParagraph(subject1, results1),styleN))
-    story.append(Spacer(1,.25*inch))
-    story.append(Paragraph(dataToParagraph(subject2, results2),styleN))
-    story.append(Spacer(1,.5*inch))
 
     #add our table - first prepare data and then pass this to myTable function
-    email = request.session['email']
-    pair = [key for key in request.POST.keys()][1].split("|")
     filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID')
     getpubs = publications.objects.filter(id__in=filterpub)
     tabledata = [
-        ['','','Summary For ' + pair[1],'',''],
         ['Title', 'Author', 'URL', 'Source', 'Year']
     ]
         
