@@ -1253,9 +1253,8 @@ def downloadFolderTable(request):
         )
         table.setStyle(ts)
         elems = []
-        elems.append(table)
+        elems.append(KeepTogether(table))
         pdf.build(elems)
-        elems.append(KeepTogether(Table(data, colWidths=(35*mm, 35*mm, 35*mm, 35*mm, 20*mm, 20*mm))))
         buf.seek(0)
 
         return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
