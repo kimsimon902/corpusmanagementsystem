@@ -9,7 +9,7 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
-                            <form method="POST" action="{% url 'search' %}">
+                            <form method="GET" action="{% url 'search' %}">
                                 {% csrf_token %}
                                 <div class="input-group">
                                     <label class="label">Search for:</label>
@@ -46,3 +46,52 @@
             </div>
         </div>
     </div>
+
+    <!-- <div>
+        <div class="wrapper wrapper--w680">
+            <div class="card card-2">
+                <div class="card-body">
+                    <ul class="tab-list">
+                        <li class="tab-list__item active">
+                            <a class="tab-list__link" href="#tab1" data-toggle="tab" style="color:#087830">Search</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <form method="POST" action="{% url 'search' %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <label class="label">Search for:</label>
+                                    <input class="input--style-1" type="search" name="searched" placeholder="Article, Title, Author, Abstract, Keywords" required="required">
+                                </div>
+                                <div class="container">
+                                    <span class="choose text-dark">Filter by: </span>
+                                        <select class="custom-select" name="filterData" style="    padding: 8px 12px; color: #333; background-color: #eee; border: 1px solid #ddd; cursor: pointer; border-radius: 5px; margin-bottom: 15px;">
+                                            <option selected value="default">All</option>
+                                            <option value="title">Title</option>
+                                            <option value="author">Author</option>
+                                        </select>
+                                  <span class="msg"></span>
+                                </div>
+                                <div class="p-t-5" >
+                                    <label class="checkbox-container m-r-45">AIS
+                                        <input type="checkbox" name="filterLib" value="ais">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox-container m-r-45">IEEE
+                                        <input type="checkbox" name="filterLib" value="ieee">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox-container">Scopus
+                                        <input type="checkbox" name="filterLib" value="scopus">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <button class="btn-submit" type="submit" style="background-color:#087830">search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->

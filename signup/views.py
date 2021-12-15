@@ -319,11 +319,15 @@ def create_dictionary(clean_list, id):
 
 
 def searchPublication(request):
-    if request.method == "POST":
-        searched = request.POST['searched']
-        searchFilter = request.POST['filterData']
+    if request.method == "GET":
+        # searched = request.POST['searched']
+        # searchFilter = request.POST['filterData']
         
-        libFilter = request.POST.getlist('filterLib')
+        # libFilter = request.POST.getlist('filterLib')
+
+        searched = request.GET.get('searched','')
+        searchFilter = request.GET.get('filterData','')
+        libFilter = request.GETgetList('filterLib','')
 
         if (request.user):
             author = request.session['username']
