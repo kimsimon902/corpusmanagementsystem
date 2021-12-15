@@ -1322,8 +1322,12 @@ def downloadFolderTable(request):
     story.append(drawing)
 
     #build our document with the list of flowables we put together
-    doc = SimpleDocTemplate('mydoc.pdf',pagesize = letter, topMargin=0)
+    buf = io.BytesIO()
+    doc = SimpleDocTemplate(buf ,pagesize = letter, topMargin=0)
     doc.build(story)
+    buf.seek(0)
+
+    return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
 '''
 def downloadFolderTable(request):
     email = request.session['email']
