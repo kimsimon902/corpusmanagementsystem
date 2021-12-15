@@ -1198,7 +1198,6 @@ def downloadFolderTable(request):
         can.save()
         
         data = [
-            ['','','Summary For ' + pair[1],'',''],
             ['Title', 'Author', 'URL', 'Source', 'Year']
         ]
         
@@ -1217,18 +1216,18 @@ def downloadFolderTable(request):
         table = Table(data, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
         # add style
         style = TableStyle([
-            ('BACKGROUND', (0,1), (4,1), colors.green),
-            ('TEXTCOLOR',(0,1),(4,1),colors.whitesmoke),
+            ('BACKGROUND', (0,0), (4,0), colors.green),
+            ('TEXTCOLOR',(0,0),(4,0),colors.whitesmoke),
 
             ('ALIGN',(0,0),(-1,-1),'CENTER'),
 
             ('VALIGN', (0, 0), (-1, -1), 'TOP'),
 
-            ('FONTNAME', (0,1), (4,1), 'Courier-Bold'),
-            ('FONTSIZE', (0,1), (4,1), 14),
+            ('FONTNAME', (0,0), (4,0), 'Courier-Bold'),
+            ('FONTSIZE', (0,0), (4,0), 14),
             ('FONTSIZE', (0,0), (4,0), 16),
             ('BOTTOMPADDING', (0,0), (4,0), 15),
-            ('BOTTOMPADDING', (0,1), (4,1), 12),
+            ('BOTTOMPADDING', (0,0), (4,1), 12),
             #('BACKGROUND',(0,1),(-1,-1),colors.beige),
             
         ])
