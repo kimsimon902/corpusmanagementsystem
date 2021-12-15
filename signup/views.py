@@ -1307,7 +1307,7 @@ def downloadFolderTable(request):
         bc.categoryAxis.categoryNames = cName
 
         bc.bars[0].fillColor = colors.blue
-        bc.bars[1].fillColor = colors.lightblue
+        #bc.bars[1].fillColor = colors.lightblue
 
     
         drawing.add(bc)
