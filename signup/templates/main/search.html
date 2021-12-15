@@ -32,8 +32,8 @@
     {% if searched %}
     <div class="container-fluid" style="background: #efefef;">
         <div class="container" style="padding-top: 20px">
-            <form class='col-12' method="POST" action="{% url 'search' %}" id="search-form">
-                {% csrf_token %}
+            <form class='col-12' method="GET" action="{% url 'search' %}" id="search-form">
+                <!-- {% csrf_token %} -->
                 <div class="col-12">
                 
                     <div class="input-group mb-3">
