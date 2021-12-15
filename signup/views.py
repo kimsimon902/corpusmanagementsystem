@@ -431,9 +431,11 @@ def searchPublication(request):
             filteredYear =[]
             for year in xlist:
                 if year.year not in filteredYear:
-                    filteredYear.append(year.year)
+                    filteredYear.append(int(year.year))
 
-            print(filteredYear)
+            filteredYear.sort()
+
+            
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder, 'filteredYear': filteredYear})
 
         elif searchFilter == "title":
@@ -507,7 +509,9 @@ def searchPublication(request):
             filteredYear =[]
             for year in xlist:
                 if year.year not in filteredYear:
-                    filteredYear.append(year.year)
+                    filteredYear.append(int(year.year))
+
+            filteredYear.sort()
 
 
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder, 'filteredYear': filteredYear})
@@ -584,9 +588,9 @@ def searchPublication(request):
             filteredYear =[]
             for year in xlist:
                 if year.year not in filteredYear:
-                    filteredYear.append(year.year)
+                    filteredYear.append(int(year.year))
 
-
+            filteredYear.sort()
             return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder, 'filteredYear': filteredYear})
     else:
         
