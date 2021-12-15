@@ -1195,12 +1195,12 @@ def downloadFolderTable(request):
         can.save()
         
         data = [
-            ['','','Summary For ' + pair[1],'','',''],
-            ['Title', 'Author', 'Abstract', 'URL', 'Source', 'Year']
+            ['','','Summary For ' + pair[1],'',''],
+            ['Title', 'Author', 'URL', 'Source', 'Year']
         ]
         
         for pub in getpubs:
-            data.append([KeepTogether(Paragraph(pub.title, styleN)),Paragraph(pub.author, styleN),Paragraph(pub.abstract, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
+            data.append([KeepTogether(Paragraph(pub.title, styleN)),Paragraph(pub.author, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
             #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
             #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
         
@@ -1211,21 +1211,21 @@ def downloadFolderTable(request):
         )
 
 
-        table = Table(data, colWidths=(35*mm, 35*mm, 35*mm, 35*mm, 20*mm, 20*mm))
+        table = Table(data, colWidths=(35*mm, 35*mm, 35*mm, 20*mm, 20*mm))
         # add style
         style = TableStyle([
-            ('BACKGROUND', (0,1), (5,1), colors.green),
-            ('TEXTCOLOR',(0,1),(5,1),colors.whitesmoke),
+            ('BACKGROUND', (0,1), (4,1), colors.green),
+            ('TEXTCOLOR',(0,1),(4,1),colors.whitesmoke),
 
             ('ALIGN',(0,0),(-1,-1),'CENTER'),
 
             ('VALIGN', (0, 0), (-1, -1), 'TOP'),
 
-            ('FONTNAME', (0,1), (5,1), 'Courier-Bold'),
-            ('FONTSIZE', (0,1), (5,1), 14),
-            ('FONTSIZE', (0,0), (5,0), 16),
-            ('BOTTOMPADDING', (0,0), (5,0), 15),
-            ('BOTTOMPADDING', (0,1), (5,1), 12),
+            ('FONTNAME', (0,1), (4,1), 'Courier-Bold'),
+            ('FONTSIZE', (0,1), (4,1), 14),
+            ('FONTSIZE', (0,0), (4,0), 16),
+            ('BOTTOMPADDING', (0,0), (4,0), 15),
+            ('BOTTOMPADDING', (0,1), (4,1), 12),
             #('BACKGROUND',(0,1),(-1,-1),colors.beige),
             
         ])
