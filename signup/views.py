@@ -1251,8 +1251,11 @@ def downloadFolderTable(request):
             ('GRID',(0,1),(-1,-1),2,colors.black),
             ]
         )
+        from reportlab.platypus import SimpleDocTemplate, Spacer
         table.setStyle(ts)
         elems = []
+        elems.append(Paragraph("<strong>Summary For </strong>" + pair[1],styleN))
+        elems.append(Spacer(1,.25*inch))
         elems.append(KeepTogether(table))
         pdf.build(elems)
         buf.seek(0)
