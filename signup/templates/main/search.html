@@ -37,29 +37,54 @@
                 <div class="col-12">
                 
                     <div class="input-group mb-3">
-                        <input class="form-control" type="search" placeholder="Article, Title, Author, Abstract, Keywords" name="searched" aria-label="Search">
+                        <input class="form-control" type="search" placeholder="Article, Title, Author, Abstract, Keywords" name="searched" aria-label="Search" value="{{searched}}">
                         <button class="btn btn-success btn-sm" type="submit" form="search-form">Search</button>
                     </div>
 
                     <span class="choose text-dark">Filter by: </span>
                     <select id="inputState" class="custom-select" aria-label="Filter" name="filterData" style="    padding: 8px 12px; color: #333; background-color: white; border: 1px solid #ddd; cursor: pointer; border-radius: 5px; margin-bottom: 15px; margin-right: 20px;">
-                            <option selected value="default">All</option>
-                            <option value="title">Title</option>
-                            <option value="author">Author</option>
+                            {% if searchFilter == "default" %}
+                                <option selected value="default">All</option>
+                                <option value="title">Title</option>
+                                <option value="author">Author</option>
+                            {% elif searchFilter == "title" %}
+                                <option value="default">All</option>
+                                <option selected value="title">Title</option>
+                                <option value="author">Author</option>
+                            {% else %}
+                                <option value="default">All</option>
+                                <option value="title">Title</option>
+                                <option selected value="author">Author</option>
+                            {% endif %}
                     </select>
 
                     <span style="margin-right: 5px;">From:</span>
                     <div class="form-check form-check-inline">
-                        <input id="formCheck-AIS" class="form-check-input" type="checkbox" name="filterLib" value="ais"/>
-                        <label class="form-check-label" for="formCheck-AIS">AIS</label>
+                        {% if "ais" in libFilter %}
+                            <input id="formCheck-AIS" class="form-check-input" type="checkbox" name="filterLib" value="ais" checked/>
+                            <label class="form-check-label" for="formCheck-AIS">AIS</label>
+                        {% else %}
+                            <input id="formCheck-AIS" class="form-check-input" type="checkbox" name="filterLib" value="ais"/>
+                            <label class="form-check-label" for="formCheck-AIS">AIS</label>
+                        {% endif %}
                     </div>
                     <div class="form-check form-check-inline">
-                        <input id="formCheck-IEEE" class="form-check-input" type="checkbox" name="filterLib" value="ieee"/>
-                        <label class="form-check-label" for="formCheck-IEEE">IEEE</label>
+                        {% if "ieee" in libFilter %}
+                            <input id="formCheck-IEEE" class="form-check-input" type="checkbox" name="filterLib" value="ieee" checked/>
+                            <label class="form-check-label" for="formCheck-IEEE">IEEE</label>
+                        {% else %}
+                            <input id="formCheck-IEEE" class="form-check-input" type="checkbox" name="filterLib" value="ieee"/>
+                            <label class="form-check-label" for="formCheck-IEEE">IEEE</label>
+                        {% endif %}
                     </div>
                     <div class="form-check form-check-inline">
-                        <input id="formCheck-Scopus" class="form-check-input" type="checkbox" name="filterLib" value="scopus"/>
-                        <label class="form-check-label" for="formCheck-Scopus">Scopus</label>
+                        {% if "scopus" in libFilter %}
+                            <input id="formCheck-Scopus" class="form-check-input" type="checkbox" name="filterLib" value="scopus" checked/>
+                            <label class="form-check-label" for="formCheck-Scopus">Scopus</label>
+                        {% else %}
+                            <input id="formCheck-Scopus" class="form-check-input" type="checkbox" name="filterLib" value="scopus"/>
+                            <label class="form-check-label" for="formCheck-Scopus">Scopus</label>
+                        {% endif %}
                     </div>
                 </div>
             </form> 
