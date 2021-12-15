@@ -95,9 +95,9 @@
 
                 <h5 style="margin-top: 20px;">Year</h5>
 
-                {% for result in results|slice:"5" %}
+                {% for year in filteredYear|slice:"5" %}
                 
-                <a href="/search/{{searched}}/{{result.year}}" style = "color:black" id="link-{{ forloop.counter }}-year"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" id="year-{{forloop.counter}}">{{result.year}}</a></div>
+                <a href="/search/{{searched}}/{{year}}" style = "color:black" id="link-{{ forloop.counter }}-year"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" id="year-{{forloop.counter}}">{{year}}</a></div>
                 
                 {% endfor %}
 
@@ -108,7 +108,7 @@
                 <div id="moreyear" style="display:none;">
                 {% for result in results %}
                 
-                <a href="/search/{{searched}}/{{result.year}}" style = "color:black" ><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{result.year}}</a></div>
+                <a href="/search/{{searched}}/{{year}}" style = "color:black" ><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{year}}</a></div>
                 
                 {% endfor %}
                 </div>

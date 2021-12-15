@@ -428,7 +428,13 @@ def searchPublication(request):
             #         else:
             #             scrap("http://" + publication.url, publication.id)
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder })
+            filteredYear =[]
+            for year in results:
+                if year.year not in filteredYear:
+                    filteredYear.append(year.year)
+
+
+            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder, 'filteredYear': filteredYear})
 
         elif searchFilter == "title":
             
@@ -498,7 +504,13 @@ def searchPublication(request):
                     else:
                         scrap("http://" + publication.url, publication.id)
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results , 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder})
+            filteredYear =[]
+            for year in results:
+                if year.year not in filteredYear:
+                    filteredYear.append(year.year)
+
+
+            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder, 'filteredYear': filteredYear})
 
         elif searchFilter == "author":
 
@@ -575,7 +587,7 @@ def searchPublication(request):
                     filteredYear.append(year.year)
 
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder})
+            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder, 'filteredYear': filteredYear})
     else:
         
         pubs = publications.objects.all()
