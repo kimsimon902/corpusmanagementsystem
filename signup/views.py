@@ -1352,10 +1352,10 @@ def downloadFolderTable(request):
     story.append(Spacer(1,.5*inch))
 
     #add our barchart and legend
-    drawing = myBarChart([results1,results2])
-    drawing = myBarLegend(drawing,subject1,subject2)
-    drawing.hAlign = 'CENTER'
-    story.append(drawing)
+    #drawing = myBarChart([results1,results2])
+    #drawing = myBarLegend(drawing,subject1,subject2)
+    #drawing.hAlign = 'CENTER'
+    #story.append(drawing)
 
     #build our document with the list of flowables we put together
     buf = io.BytesIO()
