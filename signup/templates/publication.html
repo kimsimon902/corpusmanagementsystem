@@ -51,7 +51,7 @@
                         {% for keyword in keyword_results %}
                             <form method="POST" action="{% url 'search' %}" id="search-form">
                                 {% csrf_token %}
-                                <li><button type="submit" value="Submit" class= "btn btn-link">{{keyword}}</button></li>
+                                <li><button type="submit" value="Submit" class= "btn btn-link" style="color:black">{{keyword}}</button></li>
                                 <input type="hidden" name="searched" value="{{keyword}}">
                             </form> 
                             
@@ -172,6 +172,7 @@
                         {% endif %}
 
                         {% if getdata.abstract %}
+                            <br>
                             <p style="margin-bottom: 5px;">Abstract:</p>
                             <p style="text-align: justify;">{{getdata.abstract}}</p>
                         {% endif %}
