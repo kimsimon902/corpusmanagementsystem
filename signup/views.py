@@ -1254,7 +1254,7 @@ def downloadFolderTable(request):
         table.setStyle(ts)
         elems = []
         elems.append(table)
-        pdf.build(KeepTogether(elems))
+        pdf.build(elems)
         buf.seek(0)
 
         return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
