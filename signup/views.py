@@ -1300,9 +1300,11 @@ def downloadFolderTable(request):
         bc.categoryAxis.labels.dx = 8
         bc.categoryAxis.labels.dy = -2
 
-        bc.categoryAxis.categoryNames = []
+        cName = []
         for pub in getpubs:
-            bc.categoryAxis.categoryNames.append = pub.source
+            cName.append = pub.source
+
+        bc.categoryAxis.categoryNames = cName
 
         bc.bars[0].fillColor = colors.blue
         bc.bars[1].fillColor = colors.lightblue
