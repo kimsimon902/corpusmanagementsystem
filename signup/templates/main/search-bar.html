@@ -10,7 +10,7 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
                             <form method="GET" action="{% url 'search' %}">
-                                {% csrf_token %}
+                                <!-- {% csrf_token %} -->
                                 <div class="input-group">
                                     <label class="label">Search for:</label>
                                     <input class="input--style-1" type="search" name="searched" placeholder="Article, Title, Author, Abstract, Keywords" required="required">
