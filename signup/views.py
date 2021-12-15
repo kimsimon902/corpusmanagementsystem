@@ -1302,7 +1302,7 @@ def downloadFolderTable(request):
 
         cName = []
         for pub in getpubs:
-            cName.append = pub.source
+            cName.append(pub.source)
 
         bc.categoryAxis.categoryNames = cName
 
@@ -1325,7 +1325,8 @@ def downloadFolderTable(request):
         swatches.columnMaximum = 4
         items = []
         for pub in getpubs:
-            items.append = (colors.blue, pub.name)
+            items.append(colors.blue, pub.name)
+
         swatches.colorNamePairs = items
 
         d.add(swatches, 'legend')
