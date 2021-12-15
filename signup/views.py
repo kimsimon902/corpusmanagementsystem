@@ -323,7 +323,8 @@ def searchPublication(request):
     if request.method == "POST":
         searched = request.POST['searched']
         searchFilter = request.POST['filterData']
-        
+        publicationid = request.POST['publicationid']
+
         libFilter = request.POST.getlist('filterLib')
 
         if (request.user):
@@ -339,7 +340,7 @@ def searchPublication(request):
         my_folders = bookmarks_folder.objects.filter(user=email)
         folders_value = bookmarks_folder.objects.filter(user=email).values('id')
 
-        bookmark_value = bookmarks.objects.filter(publicationID=id, folderID__in=folders_value).values('folderID')
+        bookmark_value = bookmarks.objects.filter(publicationID=publicationid, folderID__in=folders_value).values('folderID')
 
 
         in_bookmark = bookmarks_folder.objects.filter(id__in=bookmark_value)
@@ -347,7 +348,7 @@ def searchPublication(request):
 
         
 
-        if my_bookmarks_folder_contents.filter(publicationID=id):
+        if my_bookmarks_folder_contents.filter(publicationID=publicationid):
             in_my_bookmarks = 'true'
         else: in_my_bookmarks = 'false'
 
@@ -355,7 +356,7 @@ def searchPublication(request):
         shared_folders = bookmarks_folder.objects.filter(id__in=collabs) #The folders that have collaborators
 
         shared_folders_ids = bookmarks_folder.objects.filter(id__in=collabs).values('id') #Get the ids of the folders that have collaborators
-        shared_folders_bookmarks = bookmarks.objects.filter(folderID__in=shared_folders_ids, publicationID=id) #Get all bookmarks that have collaborators
+        shared_folders_bookmarks = bookmarks.objects.filter(folderID__in=shared_folders_ids, publicationID=publicationid) #Get all bookmarks that have collaborators
         shared_folders_pubs = publications.objects.filter(id__in=shared_folders_bookmarks.values('publicationID')) #Get the publications that are shared
 
         in_shared_bookmark = bookmarks_folder.objects.filter(id__in=shared_folders_bookmarks.values('folderID'))

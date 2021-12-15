@@ -194,6 +194,7 @@
                                                         {% for bookmark_id in my_bookmarks_id %}
                                                         <form method="POST" action="/publication/{{result.id}}/bookmark">
                                                             {% csrf_token %}
+                                                            <input type="hidden" name="publicationid" value="{{ result.id }}"/>
                                                             <input type="hidden" name="next" value="{{ request.path }}"/>
                                                             <input type="hidden" name="folder_id" value="{{bookmark_id.id}}"/>
                                                             <input type="hidden" name="bookmark_action" value="delete">
@@ -204,6 +205,7 @@
                                                         {% for bookmark_id in my_bookmarks_id %}
                                                         <form method="POST" action="/publication/{{result.id}}/bookmark"></form>
                                                             {% csrf_token %}
+                                                            <input type="hidden" name="publicationid" value="{{ result.id }}"/>
                                                             <input type="hidden" name="next" value="{{ request.path }}"/>
                                                             <input type="hidden" name="folder_id" value="{{bookmark_id.id}}"/>
                                                             <input type="hidden" name="bookmark_action" value="add">
@@ -234,6 +236,7 @@
 
                                 <form method="POST" action="/publication/{{result.id}}/bookmark" id="bookmark-pub"> 
                                     {% csrf_token %}
+                                    <input type="hidden" name="publicationid" value="{{ result.id }}"/>
                                     <div class="modal fade bd-example-modal-lg" id="mymodal" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                           <div class="modal-content">
@@ -280,6 +283,7 @@
                                                     {% for x in in_bookmark %}
                                                     <form method="POST" action="/publication/{{result.id}}/bookmark">
                                                         {% csrf_token %}
+                                                    <input type="hidden" name="publicationid" value="{{ result.id }}"/>
                                                     <input type="hidden" name="next" value="{{ request.path }}"/>
                                                     <input type="hidden" name="folder_id" value="{{x.id}}"/>
                                                     <input type="hidden" name="bookmark_action" value="delete">
@@ -299,6 +303,7 @@
                                                     {% if not forloop.first and forloop.counter != 2 %}
                                                     <form method="POST" action="/publication/{{result.id}}/bookmark">
                                                         {% csrf_token %}
+                                                    <input type="hidden" name="publicationid" value="{{ result.id }}"/>
                                                     <input type="hidden" name="next" value="{{ request.path }}"/>
                                                     <input type="hidden" name="folder_id" value="{{y.id}}"/>
                                                     <input type="hidden" name="bookmark_action" value="add">
@@ -318,6 +323,7 @@
                                                     {% for a in inshared%}
                                                     <form method="POST" action="/publication/{{result.id}}/bookmark">
                                                         {% csrf_token %}
+                                                    <input type="hidden" name="publicationid" value="{{ result.id }}"/>
                                                     <input type="hidden" name="next" value="{{ request.path }}"/>
                                                     <input type="hidden" name="folder_id" value="{{a.id}}"/>
                                                     <input type="hidden" name="bookmark_action" value="sharedDelete">
@@ -336,6 +342,7 @@
                                                     {% for b in notinshared%}
                                                     <form method="POST" action="/publication/{{result.id}}/bookmark">
                                                         {% csrf_token %}
+                                                    <input type="hidden" name="publicationid" value="{{ result.id }}"/>
                                                     <input type="hidden" name="next" value="{{ request.path }}"/>
                                                     <input type="hidden" name="folder_id" value="{{b.id}}"/>
                                                     <input type="hidden" name="bookmark_action" value="sharedAdd">
