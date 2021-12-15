@@ -440,7 +440,14 @@ def searchPublication(request):
             filteredYear.sort()
 
             print(len(keyword_results))
-            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder, 'filteredYear': filteredYear})
+            return render(request, 'main/search.html',{'searched':searched, 
+                                                        'results':results, 
+                                                        'keyword_results':keyword_results, 
+                                                        'bookmarks': my_bookmarks_folder_contents, 
+                                                        'my_bookmarks_id': my_bookmarks_folder, 
+                                                        'filteredYear': filteredYear,
+                                                        'searchFilter': searchFilter,
+                                                        'libFilter':libFilter})
 
         elif searchFilter == "title":
             
@@ -518,7 +525,14 @@ def searchPublication(request):
             filteredYear.sort()
 
 
-            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder, 'filteredYear': filteredYear})
+            return render(request, 'main/search.html',{'searched':searched, 
+                                                        'results':results, 
+                                                        'keyword_results':keyword_results, 
+                                                        'bookmarks': my_bookmarks_folder_contents, 
+                                                        'my_bookmarks_id': my_bookmarks_folder, 
+                                                        'filteredYear': filteredYear,
+                                                        'searchFilter': searchFilter,
+                                                        'libFilter':libFilter})
 
         elif searchFilter == "author":
 
@@ -595,7 +609,14 @@ def searchPublication(request):
                     filteredYear.append(int(year.year))
 
             filteredYear.sort()
-            return render(request, 'main/search.html',{'searched':searched, 'results':results, 'keyword_results':keyword_results, 'bookmarks': my_bookmarks_folder_contents, 'my_bookmarks_id': my_bookmarks_folder, 'filteredYear': filteredYear})
+            return render(request, 'main/search.html',{'searched':searched, 
+                                                       'results':results, 
+                                                       'keyword_results':keyword_results, 
+                                                       'bookmarks': my_bookmarks_folder_contents, 
+                                                       'my_bookmarks_id': my_bookmarks_folder, 
+                                                       'filteredYear': filteredYear,
+                                                       'searchFilter': searchFilter,
+                                                       'libFilter':libFilter})
     else:
         
         pubs = publications.objects.all()
