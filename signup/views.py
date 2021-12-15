@@ -442,6 +442,7 @@ def searchPublication(request):
             print(len(keyword_results))
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
+                                                        'count':results.count(),
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
@@ -527,6 +528,7 @@ def searchPublication(request):
 
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
+                                                        'count':results.count(),
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
@@ -611,6 +613,7 @@ def searchPublication(request):
             filteredYear.sort()
             return render(request, 'main/search.html',{'searched':searched, 
                                                        'results':results, 
+                                                       'count':results.count(),
                                                        'keyword_results':keyword_results, 
                                                        'bookmarks': my_bookmarks_folder_contents, 
                                                        'my_bookmarks_id': my_bookmarks_folder, 
