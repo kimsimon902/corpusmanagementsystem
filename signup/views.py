@@ -1292,7 +1292,7 @@ def downloadFolderTable(request):
     styleN = styles['Normal']
 
     #First add the Vizard Logo
-    im = Image('signup\static\users\img\dlsu_green.png', width=3*inch, height=3*inch)
+    im = Image("C:\Users\Maron\Documents\GitHub\corpusmanagementsystem\signup\static\users\img\dlsu_green.png", width=3*inch, height=3*inch)
     im.hAlign = 'CENTER'
     story.append(im)
 
