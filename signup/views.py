@@ -1312,25 +1312,6 @@ def downloadFolderTable(request):
     
         drawing.add(bc)
 
-        "Add sample swatches to a diagram."
-
-        d = drawing or Drawing(400, 200)
-
-        swatches = Legend()
-        swatches.alignment = 'right'
-        swatches.x = 80
-        swatches.y = 160
-        swatches.deltax = 60
-        swatches.dxTextSpace = 10
-        swatches.columnMaximum = 4
-        items = []
-        for pub in getpubs:
-            items.append([colors.blue, pub.source])
-
-        swatches.colorNamePairs = items
-
-        d.add(swatches, 'legend')
-
         table = Table(data, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
         # add style
         style = TableStyle([
