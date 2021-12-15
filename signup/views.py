@@ -1186,6 +1186,9 @@ def downloadFolderTable(request):
         buf = io.BytesIO()
         styles = getSampleStyleSheet()
         styleN = styles['Normal']
+        styleS = styles['Normal']
+        styleS.alignment = TA_CENTER
+        styleS.fontSize=24
         styleN.alignment = TA_LEFT
         ptext = "This is an example."
         can = canvas.Canvas(buf, pagesize=A4)
@@ -1254,7 +1257,7 @@ def downloadFolderTable(request):
         from reportlab.platypus import  Spacer
         table.setStyle(ts)
         elems = []
-        elems.append(Paragraph("<strong>Summary For </strong>" + pair[1],styleN))
+        elems.append(Paragraph("<strong>Summary For </strong>" + pair[1],styleS))
         elems.append(Spacer(1,.25*inch))
         elems.append(KeepTogether(table))
         pdf.build(elems)
