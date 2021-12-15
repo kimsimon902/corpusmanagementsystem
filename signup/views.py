@@ -1174,6 +1174,92 @@ def viewAdmin(request):
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
+def downloadFolderTable(request):
+    email = request.session['email']
+    if request.method == 'POST':
+        pair = [key for key in request.POST.keys()][1].split("|")
+        filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID')
+        getpubs = publications.objects.filter(id__in=filterpub)
+        from reportlab.platypus.flowables import KeepTogether
+        from reportlab.lib.units import mm
+        # List of Lists
+        buf = io.BytesIO()
+        styles = getSampleStyleSheet()
+        styleN = styles['Normal']
+        styleN.alignment = TA_LEFT
+        ptext = "This is an example."
+        can = canvas.Canvas(buf, pagesize=A4)
+        p = Paragraph(ptext, style=styles["Normal"])
+        p.wrapOn(can, 50*mm, 50*mm)  # size of 'textbox' for linebreaks etc.
+        p.drawOn(can, 0*mm, 0*mm)
+        can.save()
+        
+        data = [
+            ['','','Summary For ' + pair[1],'',''],
+            ['Title', 'Author', 'URL', 'Source', 'Year']
+        ]
+        
+        for pub in getpubs:
+            data.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
+            #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
+            #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
+        
+        pdf = SimpleDocTemplate(
+            buf,
+            pagesize=A4,
+            format=landscape
+        )
+
+
+        table = Table(data, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
+        # add style
+        style = TableStyle([
+            ('BACKGROUND', (0,1), (4,1), colors.green),
+            ('TEXTCOLOR',(0,1),(4,1),colors.whitesmoke),
+
+            ('ALIGN',(0,0),(-1,-1),'CENTER'),
+
+            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+
+            ('FONTNAME', (0,1), (4,1), 'Courier-Bold'),
+            ('FONTSIZE', (0,1), (4,1), 14),
+            ('FONTSIZE', (0,0), (4,0), 16),
+            ('BOTTOMPADDING', (0,0), (4,0), 15),
+            ('BOTTOMPADDING', (0,1), (4,1), 12),
+            #('BACKGROUND',(0,1),(-1,-1),colors.beige),
+            
+        ])
+        table.setStyle(style)
+        # 2) Alternate backgroud color
+        rowNumb = len(data)
+        for i in range(2, rowNumb):
+            if i % 2 != 0:
+                bc = colors.burlywood
+            else:
+                bc = colors.beige
+            
+            ts = TableStyle(
+                [('BACKGROUND', (0,i),(-1,i), bc)]
+            )
+            table.setStyle(ts)
+        # 3) Add borders
+        ts = TableStyle(
+            [
+            ('BOX',(0,1),(-1,-1),2,colors.black),
+            ('LINEBEFORE',(2,1),(2,-1),2,colors.red),
+            ('LINEABOVE',(0,2),(-1,2),2,colors.green),
+            ('GRID',(0,1),(-1,-1),2,colors.black),
+            ]
+        )
+        table.setStyle(ts)
+        elems = []
+        elems.append(KeepTogether(table))
+        pdf.build(elems)
+        buf.seek(0)
+
+        return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
+
+'''
 #This is your data collected from your Vizard experiment
 
 #take the data and make ready for paragraph
@@ -1364,91 +1450,6 @@ def downloadFolderTable(request):
     buf.seek(0)
 
     return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
-'''
-def downloadFolderTable(request):
-    email = request.session['email']
-    if request.method == 'POST':
-        pair = [key for key in request.POST.keys()][1].split("|")
-        filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID')
-        getpubs = publications.objects.filter(id__in=filterpub)
-        from reportlab.platypus.flowables import KeepTogether
-        from reportlab.lib.units import mm
-        # List of Lists
-        buf = io.BytesIO()
-        styles = getSampleStyleSheet()
-        styleN = styles['Normal']
-        styleN.alignment = TA_LEFT
-        ptext = "This is an example."
-        can = canvas.Canvas(buf, pagesize=A4)
-        p = Paragraph(ptext, style=styles["Normal"])
-        p.wrapOn(can, 50*mm, 50*mm)  # size of 'textbox' for linebreaks etc.
-        p.drawOn(can, 0*mm, 0*mm)
-        can.save()
-        
-        data = [
-            ['','','Summary For ' + pair[1],'',''],
-            ['Title', 'Author', 'URL', 'Source', 'Year']
-        ]
-        
-        for pub in getpubs:
-            data.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
-            #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
-            #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
-        
-        pdf = SimpleDocTemplate(
-            buf,
-            pagesize=A4,
-            format=landscape
-        )
-
-
-        table = Table(data, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
-        # add style
-        style = TableStyle([
-            ('BACKGROUND', (0,1), (4,1), colors.green),
-            ('TEXTCOLOR',(0,1),(4,1),colors.whitesmoke),
-
-            ('ALIGN',(0,0),(-1,-1),'CENTER'),
-
-            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-
-            ('FONTNAME', (0,1), (4,1), 'Courier-Bold'),
-            ('FONTSIZE', (0,1), (4,1), 14),
-            ('FONTSIZE', (0,0), (4,0), 16),
-            ('BOTTOMPADDING', (0,0), (4,0), 15),
-            ('BOTTOMPADDING', (0,1), (4,1), 12),
-            #('BACKGROUND',(0,1),(-1,-1),colors.beige),
-            
-        ])
-        table.setStyle(style)
-        # 2) Alternate backgroud color
-        rowNumb = len(data)
-        for i in range(2, rowNumb):
-            if i % 2 != 0:
-                bc = colors.burlywood
-            else:
-                bc = colors.beige
-            
-            ts = TableStyle(
-                [('BACKGROUND', (0,i),(-1,i), bc)]
-            )
-            table.setStyle(ts)
-        # 3) Add borders
-        ts = TableStyle(
-            [
-            ('BOX',(0,1),(-1,-1),2,colors.black),
-            ('LINEBEFORE',(2,1),(2,-1),2,colors.red),
-            ('LINEABOVE',(0,2),(-1,2),2,colors.green),
-            ('GRID',(0,1),(-1,-1),2,colors.black),
-            ]
-        )
-        table.setStyle(ts)
-        elems = []
-        elems.append(KeepTogether(table))
-        pdf.build(elems)
-        buf.seek(0)
-
-        return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
 '''
 # def annotateFromPub(request):
 #     results = publications.objects.filter(id=id)
