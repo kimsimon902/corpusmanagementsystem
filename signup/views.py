@@ -1279,38 +1279,44 @@ def downloadFolderTable(request):
             format=landscape
         )
 
-        drawing = Drawing(400, 200)
-        
-        bc = VerticalBarChart()
-        bc.x = 50
-        bc.y = 50
-        bc.height = 125
-        bc.width = 300
-        bc.data = [15],[22]
-        bc.barWidth = .3*inch
-        bc.groupSpacing = .2 * inch
+        idata = [3, 18]
 
-        bc.strokeColor = colors.black
+        from reportlab.lib.validators import Auto
+        from reportlab.graphics.charts.piecharts import Pie
 
-        bc.valueAxis.valueMin = 0
-        bc.valueAxis.valueMax = 100
-        bc.valueAxis.valueStep = 10
+        chart = Pie()
+        chart.data = idata
+        chart.x = 50
+        chart.y = 5
 
-        bc.categoryAxis.labels.boxAnchor = 'ne'
-        bc.categoryAxis.labels.dx = 8
-        bc.categoryAxis.labels.dy = -2
+        lab = []
 
-        cName = []
         for pub in getpubs:
-            cName.append(pub.source)
+            lab.append(pub.source)
 
-        bc.categoryAxis.categoryNames = cName
+        chart.labels = lab
+        chart.sideLabels = True
 
-        bc.bars[0].fillColor = colors.blue
-        #bc.bars[1].fillColor = colors.lightblue
+        chart.slices[0].fillColor = colors.red
+        chart.slices[0].popout = 8
 
-    
-        drawing.add(bc)
+        title = String(
+            50, 110, 
+            'Pie Chart', 
+            fontSize = 14
+        )	
+
+        legend = Legend()
+        legend.x = 180
+        legend.y = 80
+        legend.alignment = 'right' 	
+
+        legend.colorNamePairs = Auto(obj=chart)
+
+        drawing = Drawing(240, 120)
+        drawing.add(title)
+        drawing.add(chart)
+        drawing.add(legend)
 
         table = Table(data, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
         # add style
