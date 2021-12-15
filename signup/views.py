@@ -660,6 +660,7 @@ def removeKeyword(request, id, keyword):
 
     email = request.session['email']
     next = request.POST.get('next', '/')
+    
 
     if request.method == 'POST':
         collab_value = request.POST.get('keyword')
