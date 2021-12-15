@@ -1251,7 +1251,7 @@ def downloadFolderTable(request):
             ('GRID',(0,1),(-1,-1),2,colors.black),
             ]
         )
-        from reportlab.platypus import SimpleDocTemplate, Spacer
+        from reportlab.platypus import  Spacer
         table.setStyle(ts)
         elems = []
         elems.append(Paragraph("<strong>Summary For </strong>" + pair[1],styleN))
