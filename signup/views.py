@@ -1260,7 +1260,9 @@ def myBarChart(data):
     bc.categoryAxis.labels.dx = 8
     bc.categoryAxis.labels.dy = -2
 
-    bc.categoryAxis.categoryNames = ['Trial1', 'Trial2', 'Trial3', 'Trial4', 'Trial5']
+    bc.categoryAxis.categoryNames = []
+    for x in data:
+        bc.categoryAxis.categoryNames.append = x
 
     bc.bars[0].fillColor = colors.blue
     bc.bars[1].fillColor = colors.lightblue
