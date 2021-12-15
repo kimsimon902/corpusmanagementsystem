@@ -1286,7 +1286,7 @@ def downloadFolderTable(request):
         bc.y = 50
         bc.height = 125
         bc.width = 300
-        bc.data = data
+        bc.data = [15,12]
         bc.barWidth = .3*inch
         bc.groupSpacing = .2 * inch
 
