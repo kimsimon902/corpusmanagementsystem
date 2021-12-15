@@ -1331,7 +1331,7 @@ def downloadFolderTable(request):
     #add the title
     email = request.session['email']
     pair = [key for key in request.POST.keys()][1].split("|")
-    story.append(Paragraph("<strong>Results for </strong>" + + pair[1],styleN))
+    story.append(Paragraph("<strong>Results for </strong>" + pair[1],styleN))
     story.append(Spacer(1,.25*inch))
 
     #convert data to paragraph form and then add paragraphs
