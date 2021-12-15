@@ -1174,6 +1174,122 @@ def viewAdmin(request):
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
+def myTable(tabledata):
+
+    from reportlab.platypus.flowables import KeepTogether
+    from reportlab.lib.units import mm
+    # List of Lists
+    styles = getSampleStyleSheet()
+    styleN = styles['Normal']
+    styleN.alignment = TA_LEFT
+
+    table = Table(tabledata, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
+    # add style
+    style = TableStyle([
+        ('BACKGROUND', (0,1), (4,1), colors.green),
+        ('TEXTCOLOR',(0,1),(4,1),colors.whitesmoke),
+
+        ('ALIGN',(0,0),(-1,-1),'CENTER'),
+
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+
+        ('FONTNAME', (0,1), (4,1), 'Courier-Bold'),
+        ('FONTSIZE', (0,1), (4,1), 14),
+        ('FONTSIZE', (0,0), (4,0), 16),
+        ('BOTTOMPADDING', (0,0), (4,0), 15),
+        ('BOTTOMPADDING', (0,1), (4,1), 12),
+        #('BACKGROUND',(0,1),(-1,-1),colors.beige),
+            
+    ])
+    table.setStyle(style)
+    # 2) Alternate backgroud color
+    rowNumb = len(tabledata)
+    for i in range(2, rowNumb):
+        if i % 2 != 0:
+            bc = colors.burlywood
+        else:
+            bc = colors.beige
+            
+        ts = TableStyle(
+            [('BACKGROUND', (0,i),(-1,i), bc)]
+        )
+        table.setStyle(ts)
+        # 3) Add borders
+        ts = TableStyle(
+            [
+            ('BOX',(0,1),(-1,-1),2,colors.black),
+            ('LINEBEFORE',(2,1),(2,-1),2,colors.red),
+            ('LINEABOVE',(0,2),(-1,2),2,colors.green),
+            ('GRID',(0,1),(-1,-1),2,colors.black),
+            ]
+        )
+        table.setStyle(ts)
+    return table
+
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import inch
+from reportlab.lib import colors
+from reportlab.platypus import Paragraph, Frame, Spacer, Image, Table, TableStyle, SimpleDocTemplate
+from reportlab.graphics.charts.barcharts import VerticalBarChart
+from reportlab.graphics.shapes import Drawing, String
+from reportlab.graphics.charts.textlabels import Label
+from reportlab.graphics.charts.legends import Legend
+
+#create a bar chart and specify positions, sizes, and colors
+def myBarChart(data):
+    drawing = Drawing(400, 200)
+    
+    bc = VerticalBarChart()
+    bc.x = 50
+    bc.y = 50
+    bc.height = 125
+    bc.width = 300
+    bc.data = data
+    bc.barWidth = .3*inch
+    bc.groupSpacing = .2 * inch
+
+    bc.strokeColor = colors.black
+
+    bc.valueAxis.valueMin = 0
+    bc.valueAxis.valueMax = 100
+    bc.valueAxis.valueStep = 10
+
+    bc.categoryAxis.labels.boxAnchor = 'ne'
+    bc.categoryAxis.labels.dx = 8
+    bc.categoryAxis.labels.dy = -2
+
+    bc.categoryAxis.categoryNames = ['Trial1', 'Trial2', 'Trial3', 'Trial4', 'Trial5']
+
+    bc.bars[0].fillColor = colors.blue
+    bc.bars[1].fillColor = colors.lightblue
+
+ 
+    drawing.add(bc)
+
+    return drawing
+
+#add a legend for the bar chart
+def myBarLegend(drawing, data):
+    "Add sample swatches to a diagram."
+
+    d = drawing or Drawing(400, 200)
+
+    swatches = Legend()
+    swatches.alignment = 'right'
+    swatches.x = 80
+    swatches.y = 160
+    swatches.deltax = 60
+    swatches.dxTextSpace = 10
+    swatches.columnMaximum = 4
+    for x in data:
+        items = [(colors.blue, x)]
+    swatches.colorNamePairs = items
+
+    d.add(swatches, 'legend')
+    return d
+
 def downloadFolderTable(request):
     email = request.session['email']
     if request.method == 'POST':
@@ -1256,9 +1372,13 @@ def downloadFolderTable(request):
         from reportlab.platypus import  Spacer
         table.setStyle(ts)
         elems = []
-        elems.append(Paragraph("<strong>Summary For </strong>" + pair[1],title_style))
+        elems.append(Paragraph("<strong>Summary for </strong>" + pair[1],title_style))
         elems.append(Spacer(1,.25*inch))
         elems.append(KeepTogether(table))
+        drawing = myBarChart(data)
+        drawing = myBarLegend(drawing,data)
+        drawing.hAlign = 'CENTER'
+        elems.append(drawing)
         pdf.build(elems)
         buf.seek(0)
 
