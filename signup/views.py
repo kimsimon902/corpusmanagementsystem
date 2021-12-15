@@ -1262,7 +1262,7 @@ def myBarChart(data):
 
     bc.categoryAxis.categoryNames = []
     for x in data:
-        bc.categoryAxis.categoryNames.append = x
+        bc.categoryAxis.categoryNames.append = x.name
 
     bc.bars[0].fillColor = colors.blue
     bc.bars[1].fillColor = colors.lightblue
