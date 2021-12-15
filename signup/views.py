@@ -1238,60 +1238,8 @@ from reportlab.graphics.charts.textlabels import Label
 from reportlab.graphics.charts.legends import Legend
 
 #create a bar chart and specify positions, sizes, and colors
-def myBarChart(data):
-    drawing = Drawing(400, 200)
-    
-    bc = VerticalBarChart()
-    bc.x = 50
-    bc.y = 50
-    bc.height = 125
-    bc.width = 300
-    bc.data = data
-    bc.barWidth = .3*inch
-    bc.groupSpacing = .2 * inch
-
-    bc.strokeColor = colors.black
-
-    bc.valueAxis.valueMin = 0
-    bc.valueAxis.valueMax = 100
-    bc.valueAxis.valueStep = 10
-
-    bc.categoryAxis.labels.boxAnchor = 'ne'
-    bc.categoryAxis.labels.dx = 8
-    bc.categoryAxis.labels.dy = -2
-
-    bc.categoryAxis.categoryNames = []
-    for x in data:
-        bc.categoryAxis.categoryNames.append = x.name
-
-    bc.bars[0].fillColor = colors.blue
-    bc.bars[1].fillColor = colors.lightblue
-
- 
-    drawing.add(bc)
-
-    return drawing
 
 #add a legend for the bar chart
-def myBarLegend(drawing, data):
-    "Add sample swatches to a diagram."
-
-    d = drawing or Drawing(400, 200)
-
-    swatches = Legend()
-    swatches.alignment = 'right'
-    swatches.x = 80
-    swatches.y = 160
-    swatches.deltax = 60
-    swatches.dxTextSpace = 10
-    swatches.columnMaximum = 4
-    items = []
-    for x in data:
-        items.append = (colors.blue, x)
-    swatches.colorNamePairs = items
-
-    d.add(swatches, 'legend')
-    return d
 
 def downloadFolderTable(request):
     email = request.session['email']
@@ -1331,6 +1279,54 @@ def downloadFolderTable(request):
             format=landscape
         )
 
+        drawing = Drawing(400, 200)
+        
+        bc = VerticalBarChart()
+        bc.x = 50
+        bc.y = 50
+        bc.height = 125
+        bc.width = 300
+        bc.data = data
+        bc.barWidth = .3*inch
+        bc.groupSpacing = .2 * inch
+
+        bc.strokeColor = colors.black
+
+        bc.valueAxis.valueMin = 0
+        bc.valueAxis.valueMax = 100
+        bc.valueAxis.valueStep = 10
+
+        bc.categoryAxis.labels.boxAnchor = 'ne'
+        bc.categoryAxis.labels.dx = 8
+        bc.categoryAxis.labels.dy = -2
+
+        bc.categoryAxis.categoryNames = []
+        for pub in getpubs:
+            bc.categoryAxis.categoryNames.append = pub.source
+
+        bc.bars[0].fillColor = colors.blue
+        bc.bars[1].fillColor = colors.lightblue
+
+    
+        drawing.add(bc)
+
+        "Add sample swatches to a diagram."
+
+        d = drawing or Drawing(400, 200)
+
+        swatches = Legend()
+        swatches.alignment = 'right'
+        swatches.x = 80
+        swatches.y = 160
+        swatches.deltax = 60
+        swatches.dxTextSpace = 10
+        swatches.columnMaximum = 4
+        items = []
+        for pub in getpubs:
+            items.append = (colors.blue, pub.name)
+        swatches.colorNamePairs = items
+
+        d.add(swatches, 'legend')
 
         table = Table(data, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
         # add style
@@ -1378,10 +1374,8 @@ def downloadFolderTable(request):
         elems.append(Paragraph("<strong>Summary for </strong>" + pair[1],title_style))
         elems.append(Spacer(1,.25*inch))
         elems.append(KeepTogether(table))
-        drawing = myBarChart(data)
-        drawing = myBarLegend(drawing,data)
         drawing.hAlign = 'CENTER'
-        elems.append(drawing)
+        elems.append(drawing,d)
         pdf.build(elems)
         buf.seek(0)
 
