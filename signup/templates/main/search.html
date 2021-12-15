@@ -194,7 +194,7 @@
                                                         {% for bookmark_id in my_bookmarks_id %}
                                                         <form method="POST" action="/publication/{{result.id}}/bookmark" id="bookmark-form-{{result.id}}">
                                                             {% csrf_token %}
-                                                            <input type="hidden" name="next" value="{{ request.path }}"/>
+                                                            <input type="hidden" name="next" value="{{ request.get_full_path }}"/>
                                                             <input type="hidden" name="folder_id" value="{{bookmark_id.id}}"/>
                                                             <input type="hidden" name="bookmark_action" value="delete">
                                                             <button type="submit" class="btn btn-outline-danger btn-sm" value="submit" name="bookmark-delete" form="bookmark-form-{{result.id}}" id="bookmark-delete-in-search-table-{{result.id}}" style="display: inline;">Delete from Bookmarks<i class="fa fa-bookmark" aria-hidden="true" style="margin-left: 5px;"></i></button>
@@ -204,7 +204,7 @@
                                                         {% for bookmark_id in my_bookmarks_id %}
                                                         <form method="POST" action="/publication/{{result.id}}/bookmark" id="bookmark-form-{{result.id}}"></form>
                                                             {% csrf_token %}
-                                                            <input type="hidden" name="next" value="{{ request.path }}"/>
+                                                            <input type="hidden" name="next" value="{{ request.get_full_path }}"/>
                                                             <input type="hidden" name="folder_id" value="{{bookmark_id.id}}"/>
                                                             <input type="hidden" name="bookmark_action" value="add">
                                                             <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add" value="submit" form="bookmark-form-{{result.id}}" id="bookmark-add-in-search-table-{{result.id}}" style="display: inline;" >Add to Bookmarks<i class="fa fa-bookmark-o" aria-hidden="true" style="margin-left: 5px;"></i></button>
