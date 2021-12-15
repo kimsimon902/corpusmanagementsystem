@@ -327,7 +327,7 @@ def searchPublication(request):
 
         searched = request.GET.get('searched','')
         searchFilter = request.GET.get('filterData','')
-        libFilter = request.GET.getList('filterLib')
+        # libFilter = request.GET.getList('filterLib')
 
         if (request.user):
             author = request.session['username']
