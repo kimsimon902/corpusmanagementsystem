@@ -228,7 +228,7 @@
                                                 {% endfor %}
                                             </li>
                                             <li class="list-inline-item">
-                                                <button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" data-toggle="modal" data-target="#mymodal" aria-hidden="true">Add to folder</Button>
+                                                <button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" data-toggle="modal" data-target="#mymodalz" aria-hidden="true">Add to folder</button>
                                             </li>
                                         </ul>
                                     </td>
@@ -237,7 +237,7 @@
                                 <form method="POST" action="/publication/{{result.id}}/bookmark" id="bookmark-pub"> 
                                     {% csrf_token %}
                                     <input type="hidden" name="publicationid" value="{{ result.id }}"/>
-                                    <div class="modal fade bd-example-modal-lg" id="mymodal" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal fade bd-example-modal-lg" id="mymodalz" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                           <div class="modal-content">
                                             <div class="modal-header">
