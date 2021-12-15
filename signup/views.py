@@ -430,7 +430,7 @@ def searchPublication(request):
 
             filteredYear =[]
             for year in xlist:
-                if year.year not in filteredYear:
+                if int(year.year) not in filteredYear:
                     filteredYear.append(int(year.year))
 
             filteredYear.sort()
@@ -508,7 +508,7 @@ def searchPublication(request):
 
             filteredYear =[]
             for year in xlist:
-                if year.year not in filteredYear:
+                if int(year.year) not in filteredYear:
                     filteredYear.append(int(year.year))
 
             filteredYear.sort()
@@ -587,7 +587,7 @@ def searchPublication(request):
 
             filteredYear =[]
             for year in xlist:
-                if year.year not in filteredYear:
+                if int(year.year) not in filteredYear:
                     filteredYear.append(int(year.year))
 
             filteredYear.sort()
