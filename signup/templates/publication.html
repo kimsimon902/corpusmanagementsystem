@@ -49,10 +49,11 @@
                         
                         <ul style="list-style-type:none;">
                         {% for keyword in keyword_results %}
-                            <form method="POST" action="{% url 'search' %}" id="search-form">
+                            <form method="POST" action="/publication/{{getdata.id}}/{{keyword}}" id="search-form">
                                 {% csrf_token %}
                                 <li><button type="submit" value="Submit" class= "btn btn-link" style="color:black">{{keyword}}</button></li>
-                                <input type="hidden" name="searched" value="{{keyword}}">
+                                <input type="hidden" name="keyword" value="{{keyword}}">
+                                <input type="hidden" name="next" value="{{ request.path }}"/>
                             </form> 
                             
                         {% endfor %}

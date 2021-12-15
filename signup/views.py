@@ -656,6 +656,20 @@ def searchPublication(request):
 
         return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
 
+def removeKeyword(request, id, keyword):
+
+    email = request.session['email']
+    next = request.POST.get('next', '/')
+
+    if request.method == 'POST':
+        collab_value = request.POST.get('keyword')
+        
+
+        return HttpResponseRedirect(next)
+    else:
+        return HttpResponseRedirect(next)
+
+
 def filterSearch(request, filter, search):
     
         searched = search

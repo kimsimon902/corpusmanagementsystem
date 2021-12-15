@@ -26,6 +26,7 @@ urlpatterns =[
     path('folders/<username>/deletefolder',views.deleteFolder, name = 'deletefolder'),
     path('publication/<id>/',views.PublicationPage, name ='publicationpage'),
     path('publication/<id>/bookmark', views.PublicationBookmark, name = 'publicationbookmark'),
+    path('publication/<id>/<keyword>',views.removeKeyword, name = 'removekeyword'),
     path('upload/',views.uploadLiterature, name ='upload'),
     path('bookmarks/',views.viewBookmarks, name ='bookmarks'),
     path('adminpage/',views.viewAdmin, name ='adminpage'),
