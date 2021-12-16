@@ -700,17 +700,18 @@ def addKeywordRequest(request, id):
         for i in range(0,len(key_id)):
             if keywords.objects.filter(keywordname=key_id[i].strip()):
                 name_id.append(key_id[i].strip())
-                status.appened("for addition")
+                
             else:
                 insert_list.append(keywords(keywordname=key_id[i].strip()))
                 name_id.append(key_id[i].strip())
-                status.append("for addition")
+                
 
         keywords.objects.bulk_create(insert_list)
         
         for j in range(0,len(name_id)):
             store = keywords.objects.get(keywordname=name_id[j])
-            pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
+            pub_id.append(pubkeys(publication_id=id, keywords_id=store.id, status = "pending addition"))
+            
         pubkeys.objects.bulk_create(pub_id)
 
         return HttpResponseRedirect(next)  
