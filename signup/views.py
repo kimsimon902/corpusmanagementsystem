@@ -673,6 +673,7 @@ def removeKeyword(request, id, keyword):
                         edit_pubkey.status= "pending deletion"
                         edit_pubkey.save()
 
+        print(pubid.id)
         return HttpResponseRedirect(next)
     else:
         return HttpResponseRedirect(next)
