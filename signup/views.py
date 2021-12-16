@@ -668,7 +668,7 @@ def removeKeyword(request, id, keyword):
     if request.method == 'POST':
         print(id)
         for pubid in xlist:
-            if id == pubid.publication_id:
+            if int(id) == int(pubid.publication_id):
                 print(pubid.publication_id)
                 print(pubid.keywords_id)
                 keywordname = list(keywords.objects.filter(id = pubid.keywords_id))
