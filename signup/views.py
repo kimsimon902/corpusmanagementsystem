@@ -1392,11 +1392,14 @@ def downloadFolderTable(request):
 
         if othercounter > 0:
             lab.append('Others')
-        elif aiscounter > 0:
+
+        if aiscounter > 0:
             lab.append('AIS')
-        elif ieeecounter > 0:
+
+        if ieeecounter > 0:
             lab.append('IEEE')
-        elif scopuscounter > 0:
+
+        if scopuscounter > 0:
             lab.append('Scopus')
 
         idata = []
