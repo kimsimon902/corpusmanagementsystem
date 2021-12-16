@@ -672,7 +672,7 @@ def removeKeyword(request, id, keyword):
                 print(pubid.publication_id)
                 print(pubid.keywords_id)
                 keywordname = list(keywords.objects.filter(id = pubid.keywords_id))
-                print(keywordname.keywordname)
+                print(keywords.objects.filter(id = pubid.keywords_id))
                 if keyword == keywordname.keywordname:
                     print(pubid.id)
                     edit_pubkey = pubkeys.objects.get(id=pubid.id)
