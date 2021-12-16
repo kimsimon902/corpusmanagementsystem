@@ -684,6 +684,25 @@ def removeKeyword(request, id, keyword):
         return HttpResponseRedirect(next)
 
 
+def addKeyword(request, id, keyword):
+
+    email = request.session['email']
+    next = request.POST.get('next', '/')
+
+    keyword_ids = pubkeys.objects.all()
+    keywords_list = keywords.objects.all()
+
+    
+    xlist = list(keyword_ids)
+
+    if request.method == 'POST':
+        print("hello")
+
+        return HttpResponseRedirect(next)  
+    else:
+        return HttpResponseRedirect(next)
+
+
 def filterSearch(request, filter, search):
     
         searched = search
