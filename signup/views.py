@@ -419,16 +419,16 @@ def searchPublication(request):
             page_number = 1
             page_obj = page_results.get_page(page_number)      
 
-            for publication in xlist:
-                flag = 0
-                for pubkey in publication_keys:
-                    if publication.id == pubkey.publication_id and flag == 0:
-                        flag=1
-                if flag == 0:
-                    if "http" in publication.url: 
-                        scrap(publication.url, publication.id)
-                    else:
-                        scrap("http://" + publication.url, publication.id)
+            # for publication in xlist:
+            #     flag = 0
+            #     for pubkey in publication_keys:
+            #         if publication.id == pubkey.publication_id and flag == 0:
+            #             flag=1
+            #     if flag == 0:
+            #         if "http" in publication.url: 
+            #             scrap(publication.url, publication.id)
+            #         else:
+            #             scrap("http://" + publication.url, publication.id)
 
             filteredYear =[]
             for year in xlist:
