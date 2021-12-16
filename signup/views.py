@@ -1428,7 +1428,7 @@ def downloadFolderTable(request):
         chart.slices[0].fillColor = colors.red
 
         title = String(
-            35, 150, #50, 110,
+            35, 130, #50, 110,
             'Source', 
             fontSize = 20
         )	
