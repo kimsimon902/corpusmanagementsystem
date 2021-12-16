@@ -662,13 +662,11 @@ def removeKeyword(request, id, keyword):
     keyword_ids = pubkeys.objects.all()
     keywords_list = keywords.objects.all()
 
-    print(id)
-    print(keyword)
-    xlist = list(keyword_ids)
-    print(request.method)
     
+    xlist = list(keyword_ids)
 
     if request.method == 'POST':
+        print(id)
         for pubid in xlist:
             if id == pubid.publication_id:
                 print(pubid.publication_id)
