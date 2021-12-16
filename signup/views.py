@@ -1389,7 +1389,6 @@ def downloadFolderTable(request):
         chart.sideLabels = True
 
         chart.slices[0].fillColor = colors.red
-        chart.slices[0].popout = 8
 
         title = String(
             50, 110, 
@@ -1430,7 +1429,7 @@ def downloadFolderTable(request):
         table.setStyle(style)
         # 2) Alternate backgroud color
         rowNumb = len(data)
-        for i in range(2, rowNumb):
+        for i in range(1, rowNumb):
             if i % 2 != 0:
                 bc = colors.burlywood
             else:
