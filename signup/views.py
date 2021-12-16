@@ -1440,7 +1440,7 @@ def downloadFolderTable(request):
 
         legend.colorNamePairs = Auto(obj=chart)
 
-        drawing = Drawing(300, 200)
+        drawing = Drawing(500, 200)
         drawing.add(title)
         drawing.add(chart)
         drawing.add(legend)
