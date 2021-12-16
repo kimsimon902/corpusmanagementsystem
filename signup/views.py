@@ -661,16 +661,16 @@ def removeKeyword(request, id, keyword):
     email = request.session['email']
     next = request.POST.get('next', '/')
 
-    keyword_ids = list(pubkeys.objects.all())
-    keywords_list = list(keywords.objects.all())
+    keyword_ids = pubkeys.objects.all()
+    keywords_list = keywords.objects.all()
 
     if request.method == 'POST':
-        for pubid in keyword_ids:
+        for pubid in list(keyword_ids):
             if id == pubid.publication_id:
-                for word in keywords_list:
+                for word in (keywords_list):
                     if keyword == word.keywordname: 
                         edit_pubkey = pubkeys.objects.get(id=pubid.id)
-                        edit_pubkey = pubkeys.status = "pending deletion"
+                        edit_pubkey.status= "pending deletion"
                         edit_pubkey.save()
 
         return HttpResponseRedirect(next)
