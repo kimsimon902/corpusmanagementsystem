@@ -684,7 +684,7 @@ def removeKeyword(request, id, keyword):
         return HttpResponseRedirect(next)
 
 
-def addKeyword(request, id, keyword):
+def addKeyword(request, id):
 
     email = request.session['email']
     next = request.POST.get('next', '/')
