@@ -20,6 +20,7 @@ from datetime import datetime
 from django.db.models import Q
 from django.core.paginator import Paginator
 import time
+import datetime
 import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
@@ -1218,6 +1219,8 @@ def uploadLiterature(request):
             savepub.url = 'uploaded'
             savepub.status = 'Pending'
             savepub.source = 'Uploaded'
+            date = datetime.datetime.now().date()
+            savepub.year = date.strftime("%Y")
             savepub.save()
             insert_list = []
             name_id = []
