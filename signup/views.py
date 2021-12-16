@@ -1216,7 +1216,7 @@ def uploadLiterature(request):
             savepub.abstract = request.POST.get('abstract')
             savepub.author = request.POST.get('author')
             savepub.pdf = request.FILES.get('document')
-            savepub.url = 'uploaded'
+            savepub.url = 'Uploaded'
             savepub.status = 'Pending'
             savepub.source = 'Uploaded'
             date = datetime.datetime.now().date()
@@ -1383,17 +1383,21 @@ def downloadFolderTable(request):
         for pub in getpubs:
             if pub.source == 'AIS':
                 aiscounter = aiscounter + 1
-                lab.append(pub.source)
             elif pub.source == 'IEEE':
                 ieeecounter = ieeecounter + 1
-                lab.append(pub.source)
             elif pub.source == 'Scopus':
                 scopuscounter = scopuscounter + 1
-                lab.append(pub.source)
             else:
                 othercounter = othercounter + 1
+
         if othercounter > 0:
             lab.append('Others')
+        elif aiscounter > 0:
+            lab.append('AIS')
+        elif ieeecounter > 0:
+            lab.append('IEEE')
+        elif scopuscounter > 0:
+            lab.append('Scopus')
 
         idata = []
 
