@@ -1370,7 +1370,39 @@ def downloadFolderTable(request):
             format=landscape
         )
 
-        idata = [3, 18]
+        aiscounter = 0
+        ieeecounter = 0
+        scopuscounter = 0
+        othercounter = 0
+
+        lab = []
+
+        for pub in getpubs:
+            if pub.source == 'AIS':
+                aiscounter = aiscounter + 1
+                lab.append(pub.source)
+            elif pub.source == 'IEEE':
+                ieeecounter = ieeecounter + 1
+                lab.append(pub.source)
+            elif pub.source == 'Scopus':
+                scopuscounter = scopuscounter + 1
+                lab.append(pub.source)
+            else:
+                othercounter = othercounter + 1
+        if othercounter > 0:
+            lab.append('Others')
+
+        idata = []
+
+        for x in lab:
+            if x ==  'AIS':
+               idata.append(aiscounter)
+            elif x == 'IEEE':
+                idata.append(ieeecounter)
+            elif x == 'Scopus':
+                idata.append(scopuscounter)
+            else:
+                idata.append(othercounter)
 
         from reportlab.lib.validators import Auto
         from reportlab.graphics.charts.piecharts import Pie
@@ -1379,11 +1411,6 @@ def downloadFolderTable(request):
         chart.data = idata
         chart.x = 50
         chart.y = 5
-
-        lab = []
-
-        for pub in getpubs:
-            lab.append(pub.source)
 
         chart.labels = lab
         chart.sideLabels = True
@@ -1431,9 +1458,9 @@ def downloadFolderTable(request):
         rowNumb = len(data)
         for i in range(1, rowNumb):
             if i % 2 != 0:
-                bc = colors.burlywood
-            else:
                 bc = colors.beige
+            else:
+                bc = colors.burlywood
             
             ts = TableStyle(
                 [('BACKGROUND', (0,i),(-1,i), bc)]
