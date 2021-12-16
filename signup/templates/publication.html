@@ -75,7 +75,7 @@
                                   <h4 class="modal-title">Add Keyword</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" action="/publication/{{getdata.id}}/addkeyword">
+                                    <form method="POST" action="/publication/{{getdata.id}}/addkeywordRequest">
                                         {% csrf_token %}
                                         <label for="fname">Keywords</label><br>
                                         <input type="text" id="addedKeyword" name="addedKeyword" placeholder="enter keyword/s (e.g. cloud, telehealth, augmented)" size="45" required><br>
@@ -116,7 +116,7 @@
                                                     {% for keyword in keyword_results %}
                                                         
                                                             <tr>
-                                                                <form method="POST" action="/publication/{{getdata.id}}/removekeyword/{{keyword}}">
+                                                                <form method="POST" action="/publication/{{getdata.id}}/removekeywordRequest/{{keyword}}">
                                                                 {% csrf_token %}
                                                                 <input type="hidden" name="keyword" value="{{keyword}}"/>
                                                                 <input type="hidden" name="next" value="{{ request.path }}"/>
