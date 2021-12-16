@@ -664,9 +664,10 @@ def removeKeyword(request, id, keyword):
 
     print(id)
     print(keyword)
-
+    xlist = list(keyword_ids)
+    print(request.method)
     if request.method == 'POST':
-        for pubid in list(keyword_ids):
+        for pubid in xlist:
             if id == pubid.publication_id:
                 print(pubid.publication_id)
                 print(pubid.keywords_id)
@@ -677,7 +678,7 @@ def removeKeyword(request, id, keyword):
                     edit_pubkey = pubkeys.objects.get(id=pubid.id)
                     edit_pubkey.status= "pending deletion"
                     edit_pubkey.save()
-                    
+
         return HttpResponseRedirect(next)           
     else:
         return HttpResponseRedirect(next)
