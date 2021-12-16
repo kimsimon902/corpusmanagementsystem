@@ -76,6 +76,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <form method="POST" action="/publication/{{getdata.id}}/addkeyword">
+                                        {% csrf_token %}
                                         <label for="fname">Keywords</label><br>
                                         <input type="text" id="addedKeyword" name="addedKeyword" placeholder="enter keyword/s (e.g. cloud, telehealth, augmented)" size="45" required><br>
                                         <input type="hidden" name="next" value="{{ request.path }}"/>
