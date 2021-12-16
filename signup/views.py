@@ -1490,7 +1490,8 @@ def downloadFolderTable(request):
         elems = []
         elems.append(Paragraph("<strong>Summary for </strong>" + pair[1],title_style))
         elems.append(Spacer(1,.25*inch))
-        elems.append(KeepTogether(table))
+        elems.append(table)
+        #elems.append(KeepTogether(table))
         elems.append(Spacer(1,.25*inch))
         drawing.hAlign = 'CENTER'
         elems.append(drawing)
