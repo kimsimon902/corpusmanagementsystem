@@ -231,9 +231,7 @@ def scrap(url, id):
                         insert_list.append(keywords(keywordname=filtered_dupes[i].strip()))
                         name_id.append(filtered_dupes[i].strip())
 
-                print(url, flush=True)
-                print(filtered)
-                print(filtered_dupes)
+            
                 keywords.objects.bulk_create(insert_list)
 
             
@@ -439,7 +437,7 @@ def searchPublication(request):
 
             filteredYear.sort()
 
-            print(len(keyword_results))
+            
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
@@ -667,14 +665,14 @@ def removeKeyword(request, id, keyword):
     if request.method == 'POST':
         for pubid in list(keyword_ids):
             if id == pubid.publication_id:
-                if keyword == keywords.objects.filter(id = pubid.keywords_id):
+                if keyword == (keywords.objects.filter(id = pubid.keywords_id)).keywordname:
                     print(pubid.id)
                     edit_pubkey = pubkeys.objects.get(id=pubid.id)
                     edit_pubkey.status= "pending deletion"
                     edit_pubkey.save()
 
 
-        print(pubid.id)
+
         return HttpResponseRedirect(next)
     else:
         return HttpResponseRedirect(next)
