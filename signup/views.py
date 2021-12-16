@@ -1390,9 +1390,6 @@ def downloadFolderTable(request):
             else:
                 othercounter = othercounter + 1
 
-        if othercounter > 0:
-            lab.append('Others')
-
         if aiscounter > 0:
             lab.append('AIS')
 
@@ -1401,6 +1398,9 @@ def downloadFolderTable(request):
 
         if scopuscounter > 0:
             lab.append('Scopus')
+
+        if othercounter > 0:
+            lab.append('Others')
 
         idata = []
 
