@@ -671,7 +671,7 @@ def removeKeyword(request, id, keyword):
             if int(id) == int(pubid.publication_id):
                 print(pubid.publication_id)
                 print(pubid.keywords_id)
-                keywordname = keywords.objects.filter(id = pubid.keywords_id)
+                keywordname = keywords.objects.get(id = pubid.keywords_id)
                 print(keywordname.keywordname)
                 if keyword == keywordname.keywordname:
                     print(pubid.id)
