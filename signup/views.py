@@ -1430,7 +1430,7 @@ def downloadFolderTable(request):
         title = String(
             50, 110, 
             'Source', 
-            fontSize = 16
+            fontSize = 20
         )	
 
         legend = Legend()
