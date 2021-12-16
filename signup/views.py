@@ -654,7 +654,7 @@ def searchPublication(request):
 
         return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
 
-def removeKeyword(request, id, keyword):
+def removeKeywordRequest(request, id, keyword):
 
     email = request.session['email']
     next = request.POST.get('next', '/')
@@ -684,19 +684,34 @@ def removeKeyword(request, id, keyword):
         return HttpResponseRedirect(next)
 
 
-def addKeyword(request, id):
+def addKeywordRequest(request, id):
 
     email = request.session['email']
     next = request.POST.get('next', '/')
-
-    keyword_ids = pubkeys.objects.all()
-    keywords_list = keywords.objects.all()
-
     
-    xlist = list(keyword_ids)
+    
 
     if request.method == 'POST':
-        print("hello")
+        insert_list = []
+        name_id = []
+        pub_id = []
+        status = []
+        key_id = request.POST.get('addedKeyword').split(",")
+        for i in range(0,len(key_id)):
+            if keywords.objects.filter(keywordname=key_id[i].strip()):
+                name_id.append(key_id[i].strip())
+                status.appened("for addition")
+            else:
+                insert_list.append(keywords(keywordname=key_id[i].strip()))
+                name_id.append(key_id[i].strip())
+                status.append("for addition")
+
+        keywords.objects.bulk_create(insert_list)
+        
+        for j in range(0,len(name_id)):
+            store = keywords.objects.get(keywordname=name_id[j])
+            pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
+        pubkeys.objects.bulk_create(pub_id)
 
         return HttpResponseRedirect(next)  
     else:
