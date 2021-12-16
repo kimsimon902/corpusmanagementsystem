@@ -666,6 +666,7 @@ def removeKeyword(request, id, keyword):
         for pubid in list(keyword_ids):
             if id == pubid.publication_id:
                 keywordname = keywords.objects.filter(id = pubid.keywords_id)
+                print(keywordname.keywordname)
                 if keyword == keywordname.keywordname:
                     print(pubid.id)
                     edit_pubkey = pubkeys.objects.get(id=pubid.id)
