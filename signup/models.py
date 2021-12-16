@@ -74,6 +74,7 @@ class collaborators(models.Model):
 class pubkeys(models.Model):
     publication_id = models.CharField(max_length=100)
     keywords_id = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)
 
     class Meta:
         db_table = "publication_keywords"
