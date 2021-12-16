@@ -667,7 +667,7 @@ def removeKeyword(request, id, keyword):
     if request.method == 'POST':
         for pubid in list(keyword_ids):
             if id == pubid.publication_id:
-                for word in (keywords_list):
+                for word in list(keywords_list):
                     if keyword == word.keywordname: 
                         edit_pubkey = pubkeys.objects.get(id=pubid.id)
                         edit_pubkey.status= "pending deletion"
