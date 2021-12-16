@@ -1419,7 +1419,7 @@ def downloadFolderTable(request):
 
         chart = Pie()
         chart.data = idata
-        chart.x = 50
+        chart.x = 10
         chart.y = 5
 
         chart.labels = lab
@@ -1429,12 +1429,12 @@ def downloadFolderTable(request):
 
         title = String(
             50, 110, 
-            'Source Chart', 
-            fontSize = 14
+            'Source', 
+            fontSize = 16
         )	
 
         legend = Legend()
-        legend.x = 180
+        legend.x = 200
         legend.y = 80
         legend.alignment = 'right' 	
 
