@@ -419,16 +419,16 @@ def searchPublication(request):
             page_number = 1
             page_obj = page_results.get_page(page_number)      
 
-            # for publication in xlist:
-            #     flag = 0
-            #     for pubkey in publication_keys:
-            #         if publication.id == pubkey.publication_id and flag == 0:
-            #             flag=1
-            #     if flag == 0:
-            #         if "http" in publication.url: 
-            #             scrap(publication.url, publication.id)
-            #         else:
-            #             scrap("http://" + publication.url, publication.id)
+            for publication in xlist:
+                flag = 0
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id and flag == 0:
+                        flag=1
+                if flag == 0:
+                    if "http" in publication.url: 
+                        scrap(publication.url, publication.id)
+                    else:
+                        scrap("http://" + publication.url, publication.id)
 
             filteredYear =[]
             for year in xlist:
@@ -665,15 +665,13 @@ def removeKeyword(request, id, keyword):
     if request.method == 'POST':
         for pubid in list(keyword_ids):
             if id == pubid.publication_id:
-                if keyword == (keywords.objects.filter(id = pubid.keywords_id)).keywordname:
+                keywordname = keywords.objects.filter(id = pubid.keywords_id)
+                if keyword == keywordname.keywordname:
                     print(pubid.id)
                     edit_pubkey = pubkeys.objects.get(id=pubid.id)
                     edit_pubkey.status= "pending deletion"
                     edit_pubkey.save()
-
-
-
-        return HttpResponseRedirect(next)
+                    return HttpResponseRedirect(next)
     else:
         return HttpResponseRedirect(next)
 
