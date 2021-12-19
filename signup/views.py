@@ -1268,6 +1268,39 @@ def viewAdmin(request):
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
+
+def keywordRequests(request):
+
+    publications_all = publications.objects.all()
+    results = pubkeys.objects.filter(status__startswith="pending")
+    publications_title = []
+    publications_url = []
+
+    results_list = list(results)
+    publications_list = list(publications_all)
+
+    for pubid in results_list:
+        for pub in publications_list:
+            if pubid.publication_id == pub.id:
+                publications_title.append(pub.title)
+                publications_url.append(pub.url)
+
+    if request.method == 'POST':
+        if 'Accept' in request.POST.values():
+            pair = [key for key in request.POST.keys()][1].split("|")
+            stat = publications.objects.get(id=pair[0],title=pair[1])
+            stat.status = 'Approved'
+            stat.save()
+        elif 'Decline' in request.POST.values():
+            pair = [key for key in request.POST.keys()][1].split("|")
+            #pair will be a list containing x and y
+            dec = publications.objects.get(id=pair[0],title=pair[1])
+            dec.delete()
+            bkmrk = bookmarks.objects.get(publicationID=pair[0])
+            bkmrk.delete()
+
+    return render(request, 'main/adminpage.html',{'keywordrequests':results, 'publicationstitle': publications_title, 'publicationsurl': publications_url})
+
 def myTable(tabledata):
 
     from reportlab.platypus.flowables import KeepTogether

@@ -42,29 +42,26 @@
                 <thead>
                   <tr>
                     <th scope="col">Title</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">Abstract</th>
-                    <th scope="col">PDF</th>
+                    <th scope="col">URL</th>
+
                     <th scope="col"></th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
-                    {% for getdata in publications %}
+                    {% for keyword in keywordrequests %}
+                    {% for title in publicationstitle %}
+                    {% for url in publicationsurl %}
                     <tr>
-                        <td><a href="/publication/{{getdata.id}}">{{getdata.title}}</a></td>
-                        <td>{{getdata.author}}</td>
-                        <td style=
-                          "max-width:500px;
-                          white-space: nowrap;
-                          overflow: hidden;
-                          text-overflow: ellipsis">{{getdata.abstract}}</td>
-                        <td><a href="/media/{{getdata.pdf}}">{{getdata.pdf}}</a></td>
+                        <td><a href="/publication/{{keyword.id}}">{{title}}</a></td>
+                        <td>{{url}}</td>
                         <td><form action="{% url 'adminpage' %}" method="post">
                           {% csrf_token %}
                         <input type="submit" name="{{getdata.id}}|{{getdata.title}}" value="Accept"></input>
                         <input type="submit" name="{{getdata.id}}|{{getdata.title}}" value="Decline"></input></td>
                     </tr>
+                    {% endfor %}
+                    {% endfor %}
                     {% endfor %}
                 </tbody>
             </table>
