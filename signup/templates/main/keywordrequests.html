@@ -52,7 +52,7 @@
                     {% for keyword,title,url in zippedlist %}
                     
                     <tr>
-                        <td><a href="/publication/{{keyword.publication_id}}">{{title}}</a></td>
+                        <td><a href="/publication/{{keyword.publication_id}}"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{title}}</div></a></td>
                         <td><a href="{{url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{url}}</td></div></a>
                         <td><form action="{% url 'adminpage' %}" method="post">
                           {% csrf_token %}
