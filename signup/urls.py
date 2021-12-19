@@ -31,6 +31,7 @@ urlpatterns =[
     path('upload/',views.uploadLiterature, name ='upload'),
     path('bookmarks/',views.viewBookmarks, name ='bookmarks'),
     path('adminpage/',views.viewAdmin, name ='adminpage'),
+    path('adminpage/keywordrequests',views.viewAdmin, name ='adminpage'),
     path('folder_table/',views.downloadFolderTable, name ='folder_table')
 ]
 

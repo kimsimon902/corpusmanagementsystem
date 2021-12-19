@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+{% if request.session.is_superuser == 1 %}
+  <head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KRZGBQM');</script>
+  <!-- End Google Tag Manager -->
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static '\users\assets\css\index.css' %}">
+    <link rel="stylesheet" href="{% static '\users\assets\css\Pretty-Search-Form.css' %}">
+    <link rel="stylesheet" href="{% static '\users\css\home.css' %}">
+    <title>Admin CMS</title>
+
+
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRZGBQM"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+    {% include 'main/nav-bar.html' %}
+      <!-- End navbar -->
+          <!-- Search bar -->
+          {% block bookmark %}
+          <!-- End search bar -->
+          <!-- Table block-->
+            {% block table %}
+            <table id="tblit" class="table table-hover"> <!-- class="table-row" data-href="http://tutorialsplane.com" -->
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Abstract</th>
+                    <th scope="col">PDF</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for getdata in publications %}
+                    <tr>
+                        <td><a href="/publication/{{getdata.id}}">{{getdata.title}}</a></td>
+                        <td>{{getdata.author}}</td>
+                        <td style=
+                          "max-width:500px;
+                          white-space: nowrap;
+                          overflow: hidden;
+                          text-overflow: ellipsis">{{getdata.abstract}}</td>
+                        <td><a href="/media/{{getdata.pdf}}">{{getdata.pdf}}</a></td>
+                        <td><form action="{% url 'adminpage' %}" method="post">
+                          {% csrf_token %}
+                        <input type="submit" name="{{getdata.id}}|{{getdata.title}}" value="Accept"></input>
+                        <input type="submit" name="{{getdata.id}}|{{getdata.title}}" value="Decline"></input></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endblock %}
+            {% endblock bookmark %}
+          <!-- End table block onClick="$(this).closest('tr').remove()"-->
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static '\users\js\home.js' %}"></script>
+  </body>
+  {% endif %}
+</html>

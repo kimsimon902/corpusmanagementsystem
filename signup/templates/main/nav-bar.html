@@ -6,6 +6,7 @@
             <ul class="navbar-nav ms-auto">
                 {% if request.session.is_superuser == 1 %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'adminpage' %}" style="color:white">Upload Requests</a></li>
+                <li class="nav-item"><a class="nav-link" href="/adminpage/keywordrequests" style="color:white">Keyword Requests</a></li>
                 {% endif %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color:white">Home</a></li>
                 {% if request.session.is_superuser == 0 %}
