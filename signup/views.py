@@ -1272,7 +1272,7 @@ def viewAdmin(request):
 def keywordRequests(request):
 
     publications_all = publications.objects.all()
-    results = pubkeys.objects.filter(status__startswith="pending").get()
+    results = pubkeys.objects.filter(status__startswith="pending")
     publications_title = []
     publications_url = []
 
