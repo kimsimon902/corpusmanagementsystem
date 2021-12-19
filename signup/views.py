@@ -1289,7 +1289,7 @@ def keywordRequests(request):
     print(len(publications_url))
     print(len(results_list))
 
-    zippedList = zip(keywordRequests,publications_title, publications_url)
+    zippedList = zip(results_list,publications_title, publications_url)
 
     if request.method == 'POST':
         if 'Accept' in request.POST.values():
