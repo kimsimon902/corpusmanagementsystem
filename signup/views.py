@@ -1282,9 +1282,10 @@ def keywordRequests(request):
     for pubid in results_list:
         for pub in publications_list:
             if pubid.publication_id == pub.id:
-                publications_title.append(pub.title)
-                publications_url.append(pub.url)
+                    publications_title.append(pub.title)
+                    publications_url.append(pub.url)
 
+    print(publications_title)
     if request.method == 'POST':
         if 'Accept' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")

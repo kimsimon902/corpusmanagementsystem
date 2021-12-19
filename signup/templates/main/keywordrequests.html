@@ -53,7 +53,7 @@
                     {% for title in publicationstitle %}
                     {% for url in publicationsurl %}
                     <tr>
-                        <td><a href="/publication/{{keyword.id}}">{{title}}</a></td>
+                        <td><a href="/publication/{{keyword.publication_id}}">{{title}}</a></td>
                         <td>{{url}}</td>
                         <td><form action="{% url 'adminpage' %}" method="post">
                           {% csrf_token %}
