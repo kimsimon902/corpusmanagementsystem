@@ -49,9 +49,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {% for keyword in keywordrequests %}
-                    {% for title in publicationstitle %}
-                    {% for url in publicationsurl %}
+                    {% for keyword,title,url in zippedlist %}
+                    
                     <tr>
                         <td><a href="/publication/{{keyword.publication_id}}">{{title}}</a></td>
                         <td>{{url}}</td>
@@ -61,8 +60,7 @@
                         <input type="submit" name="{{getdata.id}}|{{getdata.title}}" value="Decline"></input></td>
                     </tr>
                     {% endfor %}
-                    {% endfor %}
-                    {% endfor %}
+                    
                 </tbody>
             </table>
             {% endblock %}

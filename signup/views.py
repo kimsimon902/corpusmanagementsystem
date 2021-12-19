@@ -1288,6 +1288,9 @@ def keywordRequests(request):
     print(len(publications_title))
     print(len(publications_url))
     print(len(results_list))
+
+    zippedList = zip(keywordRequests,publications_title, publications_url)
+
     if request.method == 'POST':
         if 'Accept' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")
@@ -1302,7 +1305,7 @@ def keywordRequests(request):
             bkmrk = bookmarks.objects.get(publicationID=pair[0])
             bkmrk.delete()
 
-    return render(request, 'main/keywordrequests.html',{'keywordrequests':results, 'publicationstitle': publications_title, 'publicationsurl': publications_url})
+    return render(request, 'main/keywordrequests.html',{'zippedlist': zippedList})
 
 def myTable(tabledata):
 
