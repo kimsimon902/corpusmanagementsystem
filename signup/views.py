@@ -1285,7 +1285,9 @@ def keywordRequests(request):
                     publications_title.append(pub.title)
                     publications_url.append(pub.url)
 
-    print(publications_title)
+    print(len(publications_title))
+    print(len(publications_url))
+    print(len(results_list))
     if request.method == 'POST':
         if 'Accept' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")
