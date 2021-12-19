@@ -1299,7 +1299,7 @@ def keywordRequests(request):
             bkmrk = bookmarks.objects.get(publicationID=pair[0])
             bkmrk.delete()
 
-    return render(request, 'main/adminpage.html',{'keywordrequests':results, 'publicationstitle': publications_title, 'publicationsurl': publications_url})
+    return render(request, 'main/keywordrequests.html',{'keywordrequests':results, 'publicationstitle': publications_title, 'publicationsurl': publications_url})
 
 def myTable(tabledata):
 
