@@ -54,14 +54,17 @@
                     {% for keyword,title,url,word,action in zippedlist %}
                     
                     <tr>
-                        <td><a href="/publication/{{keyword.publication_id}}"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{title}}</td></div></a>
+                        <td><a href="/publication/{{keyword.publication_id}}"  style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{title}}</td></div></a>
                         <td><a href="{{url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{url}}</td></div></a>
                         <td>{{word}}</td>
                         <td>{{action}}</td>
-                        <td><form action="{% url 'adminpage' %}" method="post">
+                        <td><form action="/adminpage/keywordrequests" method="post">
                           {% csrf_token %}
                         <input type="submit" name="{{getdata.id}}|{{getdata.title}}" value="Accept"></input>
                         <input type="submit" name="{{getdata.id}}|{{getdata.title}}" value="Decline"></input></td>
+                        <input type="hidden" name="action" value="{{action}}"></input>
+                        <input type="hidden" name="id" value="{{keyword.id}}"></input>
+                        <input type="hidden" name="keywordid" value="{{keyword.keywords_id}}"></input>
                     </tr>
                     {% endfor %}
                     

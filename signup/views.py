@@ -1295,7 +1295,10 @@ def keywordRequests(request):
             if pubid.keywords_id == word.id:
                 publications_keyword.append(word.keywordname)
                 action = (pubid.status).partition(' ')[2]
-                keyword_action.append(action.strip())
+                if action == 'deletion':
+                    keyword_action.append('delete')
+                else:
+                    keyword_action.append('add')
 
 
     zippedList = zip(results_list,publications_title, publications_url,publications_keyword, keyword_action)
@@ -1306,6 +1309,18 @@ def keywordRequests(request):
             stat = publications.objects.get(id=pair[0],title=pair[1])
             stat.status = 'Approved'
             stat.save()
+
+            if request.POST.get('action') == 'add':
+                id = request.POST.get('id')
+                pubkey_edit = pubkeys.objects.get(id = id)
+                pubkey_edit.status = ''
+                pubkey_edit.save()
+            else:
+                id = request.POST.get('id')
+                pubkeys.objects.filter(id=id).delete()
+                keyword_id = request.POST.get('keywordid')
+                keywords.objects.filter(id=keyword_id).delete()
+
         elif 'Decline' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")
             #pair will be a list containing x and y
