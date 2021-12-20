@@ -1294,7 +1294,7 @@ def keywordRequests(request):
         for word in words_list:
             if pubid.keywords_id == word.id:
                 publications_keyword.append(word.keywordname)
-                action = pubid.status('',1)[1]
+                action = (pubid.status).partition(' ')[2]
                 keyword_action.append(action.strip())
 
 
