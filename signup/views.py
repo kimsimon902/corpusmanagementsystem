@@ -1279,7 +1279,7 @@ def keywordRequests(request):
     publications_keyword = []
     keyword_action = []
 
-    
+    results_list = list(results)
     publications_list = list(publications_all)
     words_list = list(words)
 
