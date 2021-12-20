@@ -1305,10 +1305,6 @@ def keywordRequests(request):
 
     if request.method == 'POST':
         if 'Accept' in request.POST.values():
-            pair = [key for key in request.POST.keys()][1].split("|")
-            stat = publications.objects.get(id=pair[0],title=pair[1])
-            stat.status = 'Approved'
-            stat.save()
 
             print(request.POST.get('id'))
             if request.POST.get('action') == 'add':
