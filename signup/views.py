@@ -1306,9 +1306,9 @@ def keywordRequests(request):
     
 
     if request.method == 'POST':
-        pair = [key for key in request.POST.keys()][2].split("|")
+        
         if 'Accept' in request.POST.values():
-            
+            pair = [key for key in request.POST.keys()][2].split("|")
             if pair[2] == 'add':
 
                 pubkey_edit = pubkeys.objects.get(id = pair[1])
