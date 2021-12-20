@@ -850,7 +850,7 @@ def PublicationPage(request, id):
             if publication.id == pubkey.publication_id:
                 for pubid in keywords_list:
                     if pubkey.keywords_id == pubid.id:
-                        if pubid.keywordname not in keyword_results and (pubkey.status != "pending addition" and pubkey.status != "pending deletion"):
+                        if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname) 
 
     return render(request, 'publication.html', {'publication':results,
