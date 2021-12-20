@@ -1302,21 +1302,19 @@ def keywordRequests(request):
 
 
     zippedList = zip(results_list,publications_title, publications_url,publications_keyword, keyword_action)
-
+    pair = pair = [key for key in request.POST.keys()][1].split("|")
     if request.method == 'POST':
         if 'Accept' in request.POST.values():
+            
+            if pair[2] == 'add':
 
-            print(request.POST.get('id'))
-            if request.POST.get('action') == 'add':
-                id = request.POST.get('id')
-                pubkey_edit = pubkeys.objects.get(id = id)
+                pubkey_edit = pubkeys.objects.get(id = pair[1])
                 pubkey_edit.status = ''
                 pubkey_edit.save()
             else:
-                id = request.POST.get('id')
-                pubkeys.objects.filter(id=id).delete()
-                keyword_id = request.POST.get('keywordid')
-                keywords.objects.filter(id=keyword_id).delete()
+
+                pubkeys.objects.filter(id=pair[1]).delete()
+                keywords.objects.filter(id=pair[0]).delete()
 
         elif 'Decline' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")
