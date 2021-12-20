@@ -1273,23 +1273,32 @@ def keywordRequests(request):
 
     publications_all = publications.objects.all()
     results = pubkeys.objects.filter(status__startswith="pending")
+    words = keywords.objects.all()
     publications_title = []
     publications_url = []
+    publications_keyword = []
+    keyword_action = []
 
     results_list = list(results)
     publications_list = list(publications_all)
+    words_list = list(words)
 
     for pubid in results_list:
         for pub in publications_list:
             if pubid.publication_id == pub.id:
                     publications_title.append(pub.title)
                     publications_url.append(pub.url)
+    
 
-    print(len(publications_title))
-    print(len(publications_url))
-    print(len(results_list))
+    for pubid in results_list:
+        for word in words_list:
+            if pubid.keywords_id == word.id:
+                publications_keyword.append(word.keywordname)
+                action = pubid.status('',1)[1]
+                keyword_action.append(action.strip())
 
-    zippedList = zip(results_list,publications_title, publications_url)
+
+    zippedList = zip(results_list,publications_title, publications_url,publications_keyword, keyword_action)
 
     if request.method == 'POST':
         if 'Accept' in request.POST.values():

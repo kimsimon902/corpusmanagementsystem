@@ -43,17 +43,21 @@
                   <tr>
                     <th scope="col">Title</th>
                     <th scope="col">URL</th>
+                    <th scope="col">Keyword</th>
+                    <th scope="col">Action</th>
 
                     <th scope="col"></th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
-                    {% for keyword,title,url in zippedlist %}
+                    {% for keyword,title,url,word,action in zippedlist %}
                     
                     <tr>
-                        <td><a href="/publication/{{keyword.publication_id}}"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{title}}</div></a></td>
+                        <td><a href="/publication/{{keyword.publication_id}}"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{title}}</td></div></a>
                         <td><a href="{{url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{url}}</td></div></a>
+                        <td>{{word}}</td>
+                        <td>{{action}}</td>
                         <td><form action="{% url 'adminpage' %}" method="post">
                           {% csrf_token %}
                         <input type="submit" name="{{getdata.id}}|{{getdata.title}}" value="Accept"></input>
