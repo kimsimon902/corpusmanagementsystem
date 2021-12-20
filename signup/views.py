@@ -1310,6 +1310,7 @@ def keywordRequests(request):
             stat.status = 'Approved'
             stat.save()
 
+            print(request.POST.get('id'))
             if request.POST.get('action') == 'add':
                 id = request.POST.get('id')
                 pubkey_edit = pubkeys.objects.get(id = id)
