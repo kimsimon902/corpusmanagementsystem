@@ -1302,7 +1302,7 @@ def keywordRequests(request):
 
 
     zippedList = zip(results_list,publications_title, publications_url,publications_keyword, keyword_action)
-    pair = pair = [key for key in request.POST.keys()][1].split("|")
+    pair = pair = [key for key in request.POST.keys()][2].split("|")
     if request.method == 'POST':
         if 'Accept' in request.POST.values():
             
