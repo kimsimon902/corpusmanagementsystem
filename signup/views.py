@@ -1305,7 +1305,7 @@ def keywordRequests(request):
         
         if 'Accept' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")
-            print(pair)
+            
             if pair[2] == 'add':
 
                 pubkey_edit = pubkeys.objects.get(id = pair[1])
@@ -1318,11 +1318,18 @@ def keywordRequests(request):
 
         elif 'Decline' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")
-            #pair will be a list containing x and y
-            dec = publications.objects.get(id=pair[0],title=pair[1])
-            dec.delete()
-            bkmrk = bookmarks.objects.get(publicationID=pair[0])
-            bkmrk.delete()
+
+            if pair[2] == 'add':
+
+                pubkeys.objects.filter(id=pair[1]).delete()
+                keywords.objects.filter(id=pair[0]).delete()
+
+            else:
+
+                pubkey_edit = pubkeys.objects.get(id = pair[1])
+                pubkey_edit.status = ''
+                pubkey_edit.save()
+            
 
 
     results = pubkeys.objects.filter(status__startswith="pending")
