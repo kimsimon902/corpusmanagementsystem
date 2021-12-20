@@ -1279,7 +1279,7 @@ def keywordRequests(request):
     publications_keyword = []
     keyword_action = []
 
-    results_list = list(results)
+    
     publications_list = list(publications_all)
     words_list = list(words)
 
@@ -1300,10 +1300,6 @@ def keywordRequests(request):
                 else:
                     keyword_action.append('add')
 
-
-    zippedList = zip(results_list,publications_title, publications_url,publications_keyword, keyword_action)
-
-    
 
     if request.method == 'POST':
         
@@ -1327,6 +1323,11 @@ def keywordRequests(request):
             dec.delete()
             bkmrk = bookmarks.objects.get(publicationID=pair[0])
             bkmrk.delete()
+
+
+    results = pubkeys.objects.filter(status__startswith="pending")
+    results_list = list(results)
+    zippedList = zip(results_list,publications_title, publications_url,publications_keyword, keyword_action)
 
     return render(request, 'main/keywordrequests.html',{'zippedlist': zippedList})
 
