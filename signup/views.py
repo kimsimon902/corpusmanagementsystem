@@ -1271,6 +1271,38 @@ def viewAdmin(request):
 
 def keywordRequests(request):
 
+
+    if request.method == 'POST':
+        
+        if 'Accept' in request.POST.values():
+            pair = [key for key in request.POST.keys()][1].split("|")
+            
+            if pair[2] == 'add':
+
+                pubkey_edit = pubkeys.objects.get(id = pair[1])
+                pubkey_edit.status = ''
+                pubkey_edit.save()
+            else:
+
+                pubkeys.objects.filter(id=pair[1]).delete()
+                keywords.objects.filter(id=pair[0]).delete()
+
+        elif 'Decline' in request.POST.values():
+            pair = [key for key in request.POST.keys()][1].split("|")
+
+            if pair[2] == 'add':
+
+                pubkeys.objects.filter(id=pair[1]).delete()
+                keywords.objects.filter(id=pair[0]).delete()
+
+            else:
+
+                pubkey_edit = pubkeys.objects.get(id = pair[1])
+                pubkey_edit.status = ''
+                pubkey_edit.save()
+
+
+
     publications_all = publications.objects.all()
     results = pubkeys.objects.filter(status__startswith="pending")
     words = keywords.objects.all()
@@ -1301,39 +1333,6 @@ def keywordRequests(request):
                     keyword_action.append('add')
 
 
-    if request.method == 'POST':
-        
-        if 'Accept' in request.POST.values():
-            pair = [key for key in request.POST.keys()][1].split("|")
-            
-            if pair[2] == 'add':
-
-                pubkey_edit = pubkeys.objects.get(id = pair[1])
-                pubkey_edit.status = ''
-                pubkey_edit.save()
-            else:
-
-                pubkeys.objects.filter(id=pair[1]).delete()
-                keywords.objects.filter(id=pair[0]).delete()
-
-        elif 'Decline' in request.POST.values():
-            pair = [key for key in request.POST.keys()][1].split("|")
-
-            if pair[2] == 'add':
-
-                pubkeys.objects.filter(id=pair[1]).delete()
-                keywords.objects.filter(id=pair[0]).delete()
-
-            else:
-
-                pubkey_edit = pubkeys.objects.get(id = pair[1])
-                pubkey_edit.status = ''
-                pubkey_edit.save()
-            
-
-
-    results = pubkeys.objects.filter(status__startswith="pending")
-    results_list = list(results)
     zippedList = zip(results_list,publications_title, publications_url,publications_keyword, keyword_action)
 
     return render(request, 'main/keywordrequests.html',{'zippedlist': zippedList})
