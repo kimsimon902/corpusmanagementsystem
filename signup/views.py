@@ -323,6 +323,7 @@ def searchPublication(request):
         # searchFilter = request.POST['filterData']
         
         # libFilter = request.POST.getlist('filterLib')
+        counter = request.GET.get('counter')
         keyword_search = request.GET.get('keyword')
         if keyword_search != '':
             print("hi it is working")

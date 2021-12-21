@@ -103,8 +103,11 @@
                 <h5 style="margin-top: 20px;">Keywords</h5>
                 {% for keyword in keyword_results|slice:"5" %}
 
-                <input type="hidden" name ="keyword" value="{{keyword}}"><a href="javascript:;" onclick = "document.getElementById('keyword-form').submit();" style = "color:black" id="link-{{ forloop.counter }}-keyword"><div class="default" style="background-color: none; color:black; box-shadow: none !important;"id="keyword-{{forloop.counter}}" >{{keyword}}</a></div></input>
+                <input type="hidden" name ="keyword-{{ forloop.counter }}" value="{{keyword}}">
+                <a href="javascript:;" onclick = "document.getElementById('keyword-form').submit();" style = "color:black" id="link-{{ forloop.counter }}-keyword"><div class="default" style="background-color: none; color:black; box-shadow: none !important;"id="keyword-{{forloop.counter}}" >{{keyword}}</a></div>
+                </input>
 
+                <input type="hidden" name ="counter" value="{{ forloop.counter }}"></input>
                 {% endfor %}
 
                 {% if keyword_results.count > 5 %}
