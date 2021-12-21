@@ -110,7 +110,7 @@
                                 {% csrf_token %}
                                 <input type="hidden" name ="keyword" value="{{keyword}}"/>
                                 <td style = "display:none">{{keyword}}</td>
-                                <td><a href="javascript:;" onclick = "document.getElementById('keyword-form').submit();" style = "color:black" id="link-{{ forloop.counter }}-keyword">{{keyword}}</a></td>
+                                <td><button type="submit" class="btn btn-outline-danger btn-sm" name="collab-delete">{{keyword}}</button></td>
                                 
                                 </form>
                             </tr>
