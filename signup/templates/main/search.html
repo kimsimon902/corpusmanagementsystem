@@ -107,7 +107,7 @@
                             <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">
                             {% csrf_token %}
                             <input type="hidden" name ="keyword" value="{{keyword}}"/>
-                            <a href = "javascript:;" onclick="document.getElementById('keyword-form').submit();">{{keyword}}</a>
+                            <button type="submit" name="your_name" value="your_value" class="btn-link" form= "keyword-form">{{keyword}}</button>
                             </form>
                         </tr>
                     
