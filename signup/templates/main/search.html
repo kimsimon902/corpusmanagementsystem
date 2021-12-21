@@ -99,10 +99,11 @@
         </div>
         <div class="row row-cols-2 justify-content-center">
             <div class="col-2" style="margin-left: 10px;max-width: 200px;">
+                <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">
                 <h5 style="margin-top: 20px;">Keywords</h5>
                 {% for keyword in keyword_results|slice:"5" %}
 
-                <a href="/search/{{searched}}/{{keyword}}" style = "color:black" id="link-{{ forloop.counter }}-keyword"><div class="default" style="background-color: none; color:black; box-shadow: none !important;"id="keyword-{{forloop.counter}}" >{{keyword}}</a></div>
+                <input type="hidden" name ="keyword" value="{{keyword}}"><a href="javascript:;" onclick = "document.getElementById('keyword-form').submit();" style = "color:black" id="link-{{ forloop.counter }}-keyword"><div class="default" style="background-color: none; color:black; box-shadow: none !important;"id="keyword-{{forloop.counter}}" >{{keyword}}</a></div></input>
 
                 {% endfor %}
 
@@ -171,7 +172,7 @@
                     document.getElementById("morekeyword").style.display = "block";
                     }
                 </script>
-
+            </form>
             </div>
             <!-- Results table-->
             <div class="col-10">
