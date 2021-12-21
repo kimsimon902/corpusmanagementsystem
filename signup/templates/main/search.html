@@ -110,7 +110,7 @@
                                 {% csrf_token %}
                                 <input type="hidden" name ="keyword" value="{{keyword}}"/>
                                 <td style = "display:none">{{keyword}}</td>
-                                <td><button type="submit" class="btn btn-outline-danger btn-sm" name="collab-delete">{{keyword}}</button></td>
+                                <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" name="keywordButton">{{keyword}}</button></td>
                                 
                                 </form>
                             </tr>
