@@ -109,8 +109,7 @@
                                 <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">
                                 {% csrf_token %}
                                 <input type="hidden" name ="keyword" value="{{keyword}}"/>
-                                <td>{{keyword}}</td>
-                                <td><button type="submit" class="btn btn-outline-danger btn-sm" name="collab-delete">x</button></td>
+                                <td><a href="javascript:;" onclick = "document.getElementById('keyword-form').submit();" style = "color:black" id="link-{{ forloop.counter }}-keyword"><div class="default" style="background-color: none; color:black; box-shadow: none !important;"id="keyword-{{forloop.counter}}" ><td>{{keyword}}</td></a></div></td>
                                 </form>
                             </tr>
                         
