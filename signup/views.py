@@ -324,6 +324,7 @@ def searchPublication(request):
         
         # libFilter = request.POST.getlist('filterLib')
         keyword_search = request.GET.get('keyword')
+        print(keyword_search)
         if keyword_search != '':
             print("hi it is working")
 
