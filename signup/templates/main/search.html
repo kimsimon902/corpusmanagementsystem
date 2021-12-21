@@ -101,21 +101,21 @@
             <div class="col-2" style="margin-left: 10px;max-width: 200px;">
                 
                 <h5 style="margin-top: 20px;">Keywords</h5>
-                {% for keyword in keyword_results|slice:"5" %}
+                    {% for keyword in keyword_results|slice:"5" %}
 
-                <tr>
-                    <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">
-                    {% csrf_token %}
-                    <input type="hidden" name ="keyword" value="{{keyword}}">
-                    <td><a href="javascript:;" onclick = "document.getElementById('keyword-form').submit();" style = "color:black" id="link-{{ forloop.counter }}-keyword"><div class="default" style="background-color: none; color:black; box-shadow: none !important;"id="keyword-{{forloop.counter}}" >{{keyword}}</a></div></td>
-                    </form>
-                </tr>
-            
-                
-                {% endfor %}
+                        <tr>
+                            <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">
+                            {% csrf_token %}
+                            <input type="hidden" name ="keyword" value="{{keyword}}">
+                            <td><a href="javascript:;" onclick = "document.getElementById('keyword-form').submit();" style = "color:black" id="link-{{ forloop.counter }}-keyword"><div class="default" style="background-color: none; color:black; box-shadow: none !important;"id="keyword-{{forloop.counter}}" >{{keyword}}</a></div></td>
+                            </form>
+                        </tr>
+                    
+                        
+                    {% endfor %}
 
                 {% if keyword_results.count > 5 %}
-                <p id="seemore-keyword" onclick="seemoreKeyword()" style="cursor: pointer;">See more</p>
+                    <p id="seemore-keyword" onclick="seemoreKeyword()" style="cursor: pointer;">See more</p>
                 {% endif %}
 
                 <div id="morekeyword" style="display:none;">
