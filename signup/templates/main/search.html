@@ -106,8 +106,8 @@
                 <tr>
                     <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">
                     {% csrf_token %}
-                    <input type="hidden" name ="keyword-{{ forloop.counter }}" value="{{keyword}}"></input>
-                    <input type="hidden" name ="counter" value="{{ forloop.counter }}"></input>
+                    <input type="hidden" name ="keyword-{{ forloop.counter }}" value="{{keyword}}">
+                    <input type="hidden" name ="counter" value="{{ forloop.counter }}">
                     <td><a href="javascript:;" onclick = "document.getElementById('keyword-form').submit();" style = "color:black" id="link-{{ forloop.counter }}-keyword"><div class="default" style="background-color: none; color:black; box-shadow: none !important;"id="keyword-{{forloop.counter}}" >{{keyword}}</a></div></td>
                     </form>
                 </tr>
