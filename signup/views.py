@@ -327,6 +327,14 @@ def searchPublication(request):
         keyword_search = request.GET.get('keyword')
         print(keyword_search)
         if keyword_search != None:
+
+            if (request.user):
+                author = request.session['username']
+            else:
+                author="null"
+
+            email = request.session['email']
+
             results_list = []
             resultsId_list = []
             pubkeys_list = list(pubkeys.objects.all())
