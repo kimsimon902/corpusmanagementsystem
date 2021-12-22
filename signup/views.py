@@ -406,7 +406,7 @@ def searchPublication(request):
             my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
 
             results_list = publications.objects.filter(
-                    Q(title__icontains=searched), year =year_search |
+                    Q(title__icontains=searched, year =year_search)  |
                     Q(author__icontains=searched), status__icontains="approved"
                     
             )
