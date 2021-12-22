@@ -499,7 +499,7 @@ def searchPublication(request):
 
             filteredYear.sort()
 
-            
+            print(results)
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
