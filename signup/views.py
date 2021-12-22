@@ -407,7 +407,7 @@ def searchPublication(request):
 
             
             for keyword in keywords_list:
-                if keyword_search == keyword.keywordname:
+                if keyword_search == keyword.keywordname or searched == keyword.keywordname:
                     resultsId_list.append(keyword.id)
 
             for resultsid in resultsId_list:
