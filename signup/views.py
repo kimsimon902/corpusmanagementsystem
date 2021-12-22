@@ -333,7 +333,9 @@ def searchPublication(request):
             keywords_list = list(keywords.objects.all())
             publications_list = list(publications.objects.all())
 
-            
+            my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('id') #get my bookmarks folderID
+            my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
+
             for keyword in keywords_list:
                 if keyword_search == keyword.keywordname:
                     resultsId_list.append(keyword.id)
@@ -363,10 +365,16 @@ def searchPublication(request):
                     filteredYear.append(int(year.year))
 
             filteredYear.sort()
-
-            return render(request, 'main/search.html',{'results': results_list, 
+            
+            print(results_list)
+            return render(request, 'main/search.html',{ 
+                                                        'results':results_list, 
+                                                        'count':results_list.count(),
                                                         'keyword_results':keyword_results, 
-                                                        'filteredYear': filteredYear})
+                                                        'bookmarks': my_bookmarks_folder_contents, 
+                                                        'my_bookmarks_id': my_bookmarks_folder, 
+                                                        'filteredYear': filteredYear
+                                                        })
 
 
         searched = request.GET.get('searched','')
