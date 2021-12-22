@@ -377,7 +377,7 @@ def searchPublication(request):
             print(results_list)
             return render(request, 'main/search.html',{ 
                                                         'results':results_list, 
-                                                        'count':results_list.count(),
+                                                        'count':len(results_list),
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
