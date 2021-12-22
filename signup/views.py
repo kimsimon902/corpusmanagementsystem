@@ -335,6 +335,7 @@ def searchPublication(request):
 
             email = request.session['email']
 
+            searched = keyword_search
             results_list = []
             resultsId_list = []
             pubkeys_list = list(pubkeys.objects.all())
@@ -375,13 +376,13 @@ def searchPublication(request):
             filteredYear.sort()
             
             print(results_list)
-            return render(request, 'main/search.html',{ 
+            return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
-                                                        'filteredYear': filteredYear
+                                                        'filteredYear': filteredYear,
                                                         })
 
 
@@ -499,7 +500,7 @@ def searchPublication(request):
 
             filteredYear.sort()
 
-            print(results)
+           
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),

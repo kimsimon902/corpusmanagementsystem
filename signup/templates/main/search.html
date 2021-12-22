@@ -126,7 +126,7 @@
                 <div id="morekeyword" style="display:none;">
                 {% for keyword in keyword_results %}
 
-                <a href="/search/{{searched}}/{{keyword}}" style = "color:black"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{keyword}}</a></div>
+                <a href="{% url 'search' %}" style = "color:black"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{keyword}}</a></div>
 
                 {% endfor %}
                 </div>
@@ -135,7 +135,7 @@
 
                 {% for year in filteredYear|slice:"5" %}
                 
-                <a href="/search/{{searched}}/{{year}}" style = "color:black" id="link-{{ forloop.counter }}-year"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" id="year-{{forloop.counter}}">{{year}}</a></div>
+                <a href="{% url 'search' %}" style = "color:black" id="link-{{ forloop.counter }}-year"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" id="year-{{forloop.counter}}">{{year}}</a></div>
                 
                 {% endfor %}
 
@@ -146,7 +146,7 @@
                 <div id="moreyear" style="display:none;">
                 {% for year in filteredYear %}
                 
-                <a href="/search/{{searched}}/{{year}}" style = "color:black" ><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{year}}</a></div>
+                <a href="{% url 'search' %}" style = "color:black" ><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{year}}</a></div>
                 
                 {% endfor %}
                 </div>
