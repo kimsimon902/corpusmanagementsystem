@@ -420,7 +420,7 @@ def searchPublication(request):
                     for pubid in pubkeys_list:
                         if resultsid == pubid.keywords_id:
                             for pub in publications_list:
-                                if pubid.publication_id == pub.id and year == year_search:
+                                if pubid.publication_id == pub.id and pub.year == year_search:
                                     results_list.append(pub)
                         
 
