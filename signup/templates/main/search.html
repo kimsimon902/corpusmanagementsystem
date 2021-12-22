@@ -107,7 +107,7 @@
                         
                             <tr>
                                 <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">
-                                {% csrf_token %}
+                               
                                 <input type="hidden" name ="keyword" value="{{keyword}}"/>
                                 <td style = "display:none">{{keyword}}</td>
                                 <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword}}</button></td>
@@ -124,31 +124,54 @@
                 {% endif %}
 
                 <div id="morekeyword" style="display:none;">
-                {% for keyword in keyword_results %}
-
-                <a href="{% url 'search' %}" style = "color:black"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{keyword}}</a></div>
-
-                {% endfor %}
+                    <table>
+                        <tbody>
+                            {% for keyword in keyword_results %}
+                            <tr>
+                                <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form2">
+                                    <input type="hidden" name ="keyword" value="{{keyword}}"/>
+                                    <td style = "display:none">{{keyword}}</td>
+                                    <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword}}</button></td>
+                                </form>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
 
                 <h5 style="margin-top: 20px;">Year</h5>
-
-                {% for year in filteredYear|slice:"5" %}
-                
-                <a href="{% url 'search' %}" style = "color:black" id="link-{{ forloop.counter }}-year"><div class="default" style="background-color: none; color:black; box-shadow: none !important;" id="year-{{forloop.counter}}">{{year}}</a></div>
-                
-                {% endfor %}
-
+                <table>
+                    <tbody>
+                        {% for year in filteredYear|slice:"5" %}
+                        <tr>
+                            <form class='col-12' method="GET" action="{% url 'search' %}" id="year-form">
+                                <input type="hidden" name ="year" value="{{year}}"/>
+                                <input type="hidden" name ="searched" value="{{searched}}"/>
+                                <td style = "display:none">{{year}}</td>
+                                <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{year}}</button></td>
+                            </form>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
                 {% if results.count > 5 %}
                 <p id="seemore-year" onclick="seemoreYear()" style="cursor: pointer;">See more</p>
                 {% endif %}
 
                 <div id="moreyear" style="display:none;">
-                {% for year in filteredYear %}
-                
-                <a href="{% url 'search' %}" style = "color:black" ><div class="default" style="background-color: none; color:black; box-shadow: none !important;" >{{year}}</a></div>
-                
-                {% endfor %}
+                    <table>
+                        <tbody>
+                            {% for year in filteredYear %}
+                            <tr>
+                                <form class='col-12' method="GET" action="{% url 'search' %}" id="year-form2">
+                                    <input type="hidden" name ="year" value="{{year}}"/>
+                                    <td style = "display:none">{{year}}</td>
+                                    <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{year}}</button></td>
+                                </form>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
                 
                 <script>

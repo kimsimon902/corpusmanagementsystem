@@ -325,7 +325,7 @@ def searchPublication(request):
         # libFilter = request.POST.getlist('filterLib')
 
         keyword_search = request.GET.get('keyword')
-        print(keyword_search)
+        
         if keyword_search != None:
 
             if (request.user):
@@ -355,6 +355,61 @@ def searchPublication(request):
                         for pub in publications_list:
                             if pubid.publication_id == pub.id:
                                 results_list.append(pub)
+
+            keyword_results = []
+            keyword_count = []
+            
+
+            for publication in results_list:
+                for pubkey in pubkeys_list:
+                    if publication.id == pubkey.publication_id:
+                        for pubid in keywords_list:
+                            if pubkey.keywords_id == pubid.id:
+                                if pubid.keywordname not in keyword_results:
+                                    keyword_results.append(pubid.keywordname)
+            
+            filteredYear =[]
+            for year in results_list:
+                if int(year.year) not in filteredYear:
+                    filteredYear.append(int(year.year))
+
+            filteredYear.sort()
+            
+            print(results_list)
+            return render(request, 'main/search.html',{'searched':searched, 
+                                                        'results':results_list, 
+                                                        'count':len(results_list),
+                                                        'keyword_results':keyword_results, 
+                                                        'bookmarks': my_bookmarks_folder_contents, 
+                                                        'my_bookmarks_id': my_bookmarks_folder, 
+                                                        'filteredYear': filteredYear,
+                                                        })
+
+        year_search = request.GET.get('year')
+        if year_search != None:
+
+            if (request.user):
+                author = request.session['username']
+            else:
+                author="null"
+
+            email = request.session['email']
+
+            searched = request.GET.get('searched')
+            results_list = []
+            resultsId_list = []
+            pubkeys_list = list(pubkeys.objects.all())
+            keywords_list = list(keywords.objects.all())
+            publications_list = list(publications.objects.all())
+
+            my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('id') #get my bookmarks folderID
+            my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
+
+            results_list = publications.objects.filter(
+                    Q(title__icontains=searched), year =year_search |
+                    Q(author__icontains=searched), status__icontains="approved", year =year_search
+                    
+            )
 
             keyword_results = []
             keyword_count = []
