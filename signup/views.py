@@ -323,12 +323,50 @@ def searchPublication(request):
         # searchFilter = request.POST['filterData']
         
         # libFilter = request.POST.getlist('filterLib')
+        
         keyword_search = request.GET.get('keyword')
         print(keyword_search)
         if keyword_search != '':
-            print("hi it is working")
+            results_list = []
+            resultsId_list = []
+            pubkeys_list = list(pubkeys.objects.all())
+            keywords_list = list(keywords.objects.all())
+            publications_list = list(publications.objects.all())
 
+            
+            for keyword in keywords_list:
+                if keyword_search == keyword.keywordname:
+                    resultsId_list.append(keyword.id)
 
+            for resultsid in resultsId_list:
+                for pubid in pubkeys_list:
+                    if resultsid == pubid.keywords_id:
+                        for pub in publications_list:
+                            if pubid.publication_id == pub.id:
+                                results_list.append(pub)
+
+            keyword_results = []
+            keyword_count = []
+            
+
+            for publication in results_list:
+                for pubkey in pubkeys_list:
+                    if publication.id == pubkey.publication_id:
+                        for pubid in keywords_list:
+                            if pubkey.keywords_id == pubid.id:
+                                if pubid.keywordname not in keyword_results:
+                                    keyword_results.append(pubid.keywordname)
+            
+            filteredYear =[]
+            for year in results_list:
+                if int(year.year) not in filteredYear:
+                    filteredYear.append(int(year.year))
+
+            filteredYear.sort()
+
+            return render(request, 'main/search.html',{'results': results_list, 
+                                                        'keyword_results':keyword_results, 
+                                                        'filteredYear': filteredYear})
 
 
         searched = request.GET.get('searched','')
