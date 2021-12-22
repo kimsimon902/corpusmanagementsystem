@@ -405,23 +405,25 @@ def searchPublication(request):
             my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('id') #get my bookmarks folderID
             my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
 
-            results_list = publications.objects.filter(
-                    Q(title__icontains=searched, year =year_search)  |
-                    Q(author__icontains=searched, year =year_search), status__icontains="approved"
-                    
-            )
+            
+            for keyword in keywords_list:
+                if keyword_search == keyword.keywordname:
+                    resultsId_list.append(keyword.id)
+
+            for resultsid in resultsId_list:
+                for pubid in pubkeys_list:
+                    if resultsid == pubid.keywords_id:
+                        for pub in publications_list:
+                            if pubid.publication_id == pub.id and pub.year == year_search:
+                                results_list.append(pub)
+
 
             if len(results_list) == 0:
-                for keyword in keywords_list:
-                    if keyword_search == keyword.keywordname:
-                        resultsId_list.append(keyword.id)
-
-                for resultsid in resultsId_list:
-                    for pubid in pubkeys_list:
-                        if resultsid == pubid.keywords_id:
-                            for pub in publications_list:
-                                if pubid.publication_id == pub.id and pub.year == year_search:
-                                    results_list.append(pub)
+                results_list = publications.objects.filter(
+                        Q(title__icontains=searched, year =year_search)  |
+                        Q(author__icontains=searched, year =year_search), status__icontains="approved"
+                        
+                )
                         
 
             keyword_results = []
