@@ -407,7 +407,7 @@ def searchPublication(request):
 
             results_list = publications.objects.filter(
                     Q(title__icontains=searched, year =year_search)  |
-                    Q(author__icontains=searched), status__icontains="approved"
+                    Q(author__icontains=searched, year =year_search), status__icontains="approved"
                     
             )
 
