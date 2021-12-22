@@ -411,6 +411,19 @@ def searchPublication(request):
                     
             )
 
+            if len(results_list) == 0:
+                for keyword in keywords_list:
+                    if keyword_search == keyword.keywordname:
+                        resultsId_list.append(keyword.id)
+
+                for resultsid in resultsId_list:
+                    for pubid in pubkeys_list:
+                        if resultsid == pubid.keywords_id:
+                            for pub in publications_list:
+                                if pubid.publication_id == pub.id and year == year_search:
+                                    results_list.append(pub)
+                        
+
             keyword_results = []
             keyword_count = []
             
