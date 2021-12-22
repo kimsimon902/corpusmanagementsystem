@@ -323,10 +323,10 @@ def searchPublication(request):
         # searchFilter = request.POST['filterData']
         
         # libFilter = request.POST.getlist('filterLib')
-        
+
         keyword_search = request.GET.get('keyword')
         print(keyword_search)
-        if keyword_search != '':
+        if keyword_search != None:
             results_list = []
             resultsId_list = []
             pubkeys_list = list(pubkeys.objects.all())
