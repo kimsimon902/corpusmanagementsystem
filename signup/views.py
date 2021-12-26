@@ -1060,8 +1060,6 @@ def PublicationPage(request, id):
     #Log opening of publication
     logView = records_view_publication()
     logView.user = email
-    for pub in results:
-        logView.pub_title = pub.title
     logView.pub_id = id
     logView.date = datetime.datetime.now()
     logView.save()
