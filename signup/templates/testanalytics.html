@@ -26,7 +26,7 @@
         <br>
         <p>Top opened pubs</p>
         {% for pub in opened_pubs %}
-        <p>{{forloop.counter}}. {{ pub.pub_title }} is opened {{ opened_pubs.count }} times</p>
+        <p>{{forloop.counter}}. {{ pub.pub_title }} is opened {{ pub.count }} times</p>
         {% endfor %}
         <br>
         <p>Top viewed tags</p>
