@@ -35,8 +35,8 @@
         {% endfor %}
         <br>
         <p>Top bookmarked</p>
-        {% for tag in viewed_tags %}
-        <p>{{forloop.counter}}. {{ tag.tag }} is viewed {{ tag.count }} times</p>
+        {% for bookmark in bookmarked_pubs %}
+        <p>{{forloop.counter}}. {{ bookmark.pub_title }} is bookmarked {{ bookmark.count }} times</p>
         {% endfor %}
     </div>
 
