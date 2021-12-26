@@ -92,6 +92,7 @@ class records_search(models.Model):
 
 class records_view_publication(models.Model):
     user = models.CharField(max_length=100)
+    pub_title = models.CharField(max_length=500)
     pub_id = models.IntegerField()
     date = models.DateField()
 

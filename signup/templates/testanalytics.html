@@ -18,10 +18,13 @@
 </head>
 <body>
 {% include 'main/nav-bar.html' %}
-    <p>Top searched keywords</p>
-    {% for keyword in searched %}
-        <p>{{ keyword.keyword}} is searched {{ keyword.count }} times</p>
-    {% endfor %}
+    <div class="container-fluid">
+        <p>Top searched keywords</p>
+        {% for keyword in searched %}
+            <p>{{ keyword.keyword}} is searched {{ keyword.count }} times</p>
+        {% endfor %}
+    </div>
+
 
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
