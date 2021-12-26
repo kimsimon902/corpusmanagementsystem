@@ -149,7 +149,7 @@ def showTest(request):
     return render(request, 'test/test.html',{'publications':results, 'annotations': annotation})
 
 
-def scrap(url, id, abstract): 
+def scrap(url, id): 
   
     # empty list to store the contents of  
     # the website fetched from our web-crawler 
