@@ -78,3 +78,14 @@ class pubkeys(models.Model):
 
     class Meta:
         db_table = "publication_keywords"
+
+class records_search(models.Model):
+    user = models.CharField(max_length=100)
+    keyword = models.CharField(max_length=100)
+    filter = models.CharField(max_length=45)
+    source = models.CharField(max_length=45)
+    num_results = models.IntegerField()
+    date = models.DateField()
+
+    class Meta:
+        db_table = "records_search"

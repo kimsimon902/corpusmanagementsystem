@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from reportlab.lib import fonts, pagesizes
-from .models import pubkeys, registerUser
+from .models import pubkeys, records_search, registerUser
 from .models import publications
 from .models import keywords
 from .models import annotations
@@ -393,6 +393,7 @@ def searchPublication(request):
             filteredYear.sort()
             
             print(results_list)
+
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
@@ -589,7 +590,14 @@ def searchPublication(request):
 
             filteredYear.sort()
 
-           
+            logSearch = records_search()
+            logSearch.user = email
+            logSearch.keyword = searched
+            logSearch.filter = searchFilter
+            logSearch.source = libFilter
+            logSearch.num_results = results.count()
+            logSearch.date = datetime.now()
+
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
