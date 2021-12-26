@@ -156,13 +156,6 @@ def scrap(url, id, abstract):
     wordlist = [] 
     headers = {
         'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36'}
-
-    if 'doi' in url:
-        words = abstract.lower().split() 
-            
-        for each_word in words: 
-            wordlist.append(each_word) 
-        clean_wordlist(wordlist, id)
     
 
     source_code=''
@@ -257,6 +250,24 @@ def scrap(url, id, abstract):
             for each_word in words: 
                 wordlist.append(each_word) 
             clean_wordlist(wordlist, id)
+    
+    if 'doi' in url:
+        wordlist = []
+        source_code = requests.get(url).text
+
+        # BeautifulSoup object which will
+        # ping the requested url for data
+        soup = BeautifulSoup(source_code, 'html.parser')
+        for each_text in soup.findAll('div'):  
+            content = each_text.text
+    
+        # Text in given web-page is stored under
+        # the <div> tags with class <entry-content>
+        words = str(source_code).lower().split() 
+                        
+        for each_word in words: 
+            wordlist.append(each_word) 
+        clean_wordlist(wordlist)
 
                 
             
@@ -565,9 +576,9 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
-                        scrap(publication.url, publication.id, publication.abstract)
+                        scrap(publication.url, publication.id)
                     else:
-                        scrap("http://" + publication.url, publication.id, publication.abstract)
+                        scrap("http://" + publication.url, publication.id)
 
             filteredYear =[]
             for year in xlist:
@@ -651,9 +662,9 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
-                        scrap(publication.url, publication.id, publication.abstract)
+                        scrap(publication.url, publication.id)
                     else:
-                        scrap("http://" + publication.url, publication.id, publication.abstract)
+                        scrap("http://" + publication.url, publication.id)
 
             filteredYear =[]
             for year in xlist:
@@ -738,9 +749,9 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
-                        scrap(publication.url, publication.id, publication.abstract)
+                        scrap(publication.url, publication.id)
                     else:
-                        scrap("http://" + publication.url, publication.id, publication.abstract)
+                        scrap("http://" + publication.url, publication.id)
 
             filteredYear =[]
             for year in xlist:
@@ -787,9 +798,9 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
-                        scrap(publication.url, publication.id, publication.abstract)
+                        scrap(publication.url, publication.id)
                     else:
-                        scrap("http://" + publication.url, publication.id, publication.abstract)
+                        scrap("http://" + publication.url, publication.id)
 
         return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
 
