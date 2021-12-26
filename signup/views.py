@@ -395,11 +395,17 @@ def searchPublication(request):
             print(results_list)
 
             #Log view tag
-            logTag = records_view_tag()
-            logTag.user = email
-            logTag.tag = keyword_search
-            logTag.date = datetime.datetime.now()
-            logTag.save()
+            datenow = datetime.datetime.now()
+
+            #check if visited within the day
+            check_visit = records_view_tag.objects.filter(user=email, tag=keyword_search, date=datenow)
+
+            if not check_visit:
+                logTag = records_view_tag()
+                logTag.user = email
+                logTag.tag = keyword_search
+                logTag.date = datenow
+                logTag.save()
             
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
@@ -1059,6 +1065,8 @@ def PublicationPage(request, id):
 
     #Log opening of publication
     datenow = datetime.datetime.now()
+
+    #check if visited within the day
     check_visit = records_view_publication.objects.filter(user=email, pub_id=id, date=datenow)
 
     if not check_visit:
