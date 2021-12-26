@@ -596,7 +596,7 @@ def searchPublication(request):
             logSearch.filter = searchFilter
             logSearch.source = libFilter
             logSearch.num_results = results.count()
-            logSearch.date = datetime.now()
+            logSearch.date = datetime.datetime.now()
 
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
@@ -1114,7 +1114,7 @@ def PublicationPageAnnotate(request, username, folderid, id):
     annotation = annotations.objects.filter(publicationID=id, author=author)
     collaborator = collaborators.objects.filter(owner=email)
     next = request.POST.get('next', '/')
-    current_datetime = datetime.now()
+    current_datetime = datetime.datetime.now()
     mark = request.POST['selectMark']
     
     if request.method=='POST':
@@ -1146,7 +1146,7 @@ def PublicationPageAnnotateEdit(request, username, folderid, id, annoID):
     annotation = annotations.objects.filter(publicationID=id, author=author, id=annoID)
     collaborator = collaborators.objects.filter(owner=email)
     next = request.POST.get('next', '/')
-    current_datetime = datetime.now()
+    current_datetime = datetime.datetime.now()
     
     
     if request.method=='POST':
