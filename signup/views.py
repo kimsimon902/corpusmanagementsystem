@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from reportlab.lib import fonts, pagesizes
-from .models import pubkeys, records_search, registerUser
+from .models import pubkeys, records_search, records_view_publication, registerUser
 from .models import publications
 from .models import keywords
 from .models import annotations
@@ -1048,7 +1048,15 @@ def PublicationPage(request, id):
                 for pubid in keywords_list:
                     if pubkey.keywords_id == pubid.id:
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
-                            keyword_results.append(pubid.keywordname) 
+                            keyword_results.append(pubid.keywordname)
+
+    #Log opening of publication
+    logView = records_view_publication()
+    logView.user = email
+    logView.pub_title = getattr(results,'title')
+    logView.pub_id = id
+    logView.date = datetime.datetime.now()
+    logView.save()
 
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
