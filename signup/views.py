@@ -651,9 +651,9 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
-                        scrap(publication.url, publication.id)
+                        scrap(publication.url, publication.id, publication.abstract)
                     else:
-                        scrap("http://" + publication.url, publication.id)
+                        scrap("http://" + publication.url, publication.id, publication.abstract)
 
             filteredYear =[]
             for year in xlist:
@@ -738,9 +738,9 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
-                        scrap(publication.url, publication.id)
+                        scrap(publication.url, publication.id, publication.abstract)
                     else:
-                        scrap("http://" + publication.url, publication.id)
+                        scrap("http://" + publication.url, publication.id, publication.abstract)
 
             filteredYear =[]
             for year in xlist:
@@ -787,9 +787,9 @@ def searchPublication(request):
                         flag=1
                 if flag == 0:
                     if "http" in publication.url: 
-                        scrap(publication.url, publication.id)
+                        scrap(publication.url, publication.id, publication.abstract)
                     else:
-                        scrap("http://" + publication.url, publication.id)
+                        scrap("http://" + publication.url, publication.id, publication.abstract)
 
         return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
 
