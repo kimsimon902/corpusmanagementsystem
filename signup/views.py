@@ -1029,7 +1029,22 @@ def FoldersPageAnalytics(request, folderID):
     folder = bookmarks_folder.objects.filter(id=folderID)
     folderpubs = bookmarks.objects.filter(user=email,folderID=folderID).values('publicationID')
     pubs = publications.objects.filter(id__in=folderpubs)
-    return render(request, 'testfolderanalytics.html',{'folder':folder,'pubs':pubs})
+
+    publication_keys = pubkeys.objects.all()
+    keywords_list = keywords.objects.all()
+    keyword_results = []
+    keyword_count = []
+    xlist = list(pubs)
+
+    for publication in xlist:
+        for pubkey in publication_keys:
+            if publication.id == pubkey.publication_id:
+                for pubid in keywords_list:
+                    if pubkey.keywords_id == pubid.id:
+                        if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
+                            keyword_results.append(pubid.keywordname)
+                            
+    return render(request, 'testfolderanalytics.html',{'folder':folder,'pubs':pubs, 'keywords': keyword_results})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
