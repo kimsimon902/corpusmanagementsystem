@@ -22,34 +22,34 @@
         {% for f in folder %}
             <h1>statistics for {{f.folder_name}}</h1>
             <h3>Folder created by {{f.user}}</h3>
-            {% for pub in pubs %}
-                <div class="row">
-                    <div class="col">
-                        <div class="table-responsive" style="min-height: 80vh;">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Title</th>
-                                        <th>Author/s</th>
-                                        <th>Abstract</th>
-                                        <th>Source</th>
-                                        <th>URL</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href="/folders/{{request.session.username}}/{{f.id}}/publication/{{pub.id}}">{{pub.title}}</a></td>
-                                        <td>{{pub.author}}</td>
-                                        <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{pub.abstract}}</td>
-                                        <td>{{pub.source}}</td>
-                                        <td id="url">{{pub.url}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+            <div class="row">
+                <div class="col">
+                    <div class="table-responsive" style="min-height: 80vh;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author/s</th>
+                                    <th>Abstract</th>
+                                    <th>Source</th>
+                                    <th>URL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for pub in pubs %}
+                                <tr>
+                                    <td><a href="/folders/{{request.session.username}}/{{f.id}}/publication/{{pub.id}}">{{pub.title}}</a></td>
+                                    <td>{{pub.author}}</td>
+                                    <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{pub.abstract}}</td>
+                                    <td>{{pub.source}}</td>
+                                    <td id="url">{{pub.url}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            {% endfor %}
+            </div>
         {% endfor %}
     </div>
 
