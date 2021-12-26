@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from reportlab.lib import fonts, pagesizes
-from .models import pubkeys, records_search, records_view_publication, registerUser
+from .models import pubkeys, records_search, records_view_publication, records_view_tag, registerUser
 from .models import publications
 from .models import keywords
 from .models import annotations
@@ -394,6 +394,13 @@ def searchPublication(request):
             
             print(results_list)
 
+            #Log view tag
+            logTag = records_view_tag()
+            logTag.user = email
+            logTag.tag = keyword_search
+            logTag.date = datetime.datetime.now()
+            logTag.save()
+            
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),

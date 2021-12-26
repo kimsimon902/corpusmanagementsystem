@@ -98,3 +98,11 @@ class records_view_publication(models.Model):
 
     class Meta:
         db_table = "records_view_publication"
+
+class records_view_tag(models.Model):
+    user = models.CharField(max_length=100)
+    tag = models.CharField(max_length=100)
+    date = models.DateField()
+
+    class Meta:
+        db_table = "records_view_tag"
