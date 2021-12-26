@@ -1059,7 +1059,7 @@ def PublicationPage(request, id):
 
     #Log opening of publication
     datenow = datetime.datetime.now()
-    check_visit = records_view_publication.objects.filter(email='user',pub_id='pub_id',datenow="date")
+    check_visit = records_view_publication.objects.filter(user=email, pub_id=id, date=datenow)
 
     if not check_visit:
         logView = records_view_publication()
