@@ -33,6 +33,11 @@
         {% for tag in viewed_tags %}
         <p>{{forloop.counter}}. {{ tag.tag }} is viewed {{ tag.count }} times</p>
         {% endfor %}
+        <br>
+        <p>Top bookmarked</p>
+        {% for tag in viewed_tags %}
+        <p>{{forloop.counter}}. {{ tag.tag }} is viewed {{ tag.count }} times</p>
+        {% endfor %}
     </div>
 
 

@@ -342,7 +342,10 @@ def testAnalytics(request):
     #most viewed tags
     viewed_tags = records_view_tag.objects.raw('SELECT id, tag, count(*) as count FROM records_view_tag GROUP BY tag ORDER BY count DESC LIMIT 10')
 
-    return render(request, 'testanalytics.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags})
+    #most bookmarked
+    bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 10')
+
+    return render(request, 'testanalytics.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
 
 
 
