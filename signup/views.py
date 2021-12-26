@@ -267,7 +267,7 @@ def scrap(url, id):
                         
         for each_word in words: 
             wordlist.append(each_word) 
-        clean_wordlist(wordlist)
+        clean_wordlist(wordlist, id)
 
                 
             
