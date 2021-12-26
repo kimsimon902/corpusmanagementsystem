@@ -594,7 +594,10 @@ def searchPublication(request):
             logSearch.user = email
             logSearch.keyword = searched
             logSearch.filter = searchFilter
-            sources = ','.join([str(i) for i in libFilter])
+            
+            if not libFilter:
+                libFilter = "['ais', 'ieee', 'scopus']"
+
             logSearch.source = libFilter
             logSearch.num_results = results.count()
             logSearch.date = datetime.datetime.now()
