@@ -597,6 +597,7 @@ def searchPublication(request):
             logSearch.source = libFilter
             logSearch.num_results = results.count()
             logSearch.date = datetime.datetime.now()
+            logSearch.save()
 
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
