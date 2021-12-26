@@ -595,8 +595,8 @@ def searchPublication(request):
             logSearch.keyword = searched
             logSearch.filter = searchFilter
             sources = ','.join([str(i) for i in libFilter])
-            logSearch.source = sources
-            logSearch.num_results = results.counts()
+            logSearch.source = libFilter
+            logSearch.num_results = results.count()
             logSearch.date = datetime.datetime.now()
             logSearch.save()
 
