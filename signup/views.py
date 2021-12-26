@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from reportlab.lib import fonts, pagesizes
-from .models import pubkeys, records_search, records_view_publication, records_view_tag, registerUser
+from .models import pubkeys, records_bookmark, records_search, records_view_publication, records_view_tag, registerUser
 from .models import publications
 from .models import keywords
 from .models import annotations
@@ -1245,6 +1245,15 @@ def PublicationBookmark(request, id):
             addBookmark.publicationID = pubID
             addBookmark.folderID = request.POST.get('folder_id')
             addBookmark.save()
+
+            #log bookmarking
+            logBookmark = records_bookmark()
+            logBookmark.user = email
+            logBookmark.pub_id = pubID
+            logBookmark.folder_id = request.POST.get('folder_id')
+            logBookmark.date = datetime.datetime.now()
+            logBookmark.save()
+
             messages.success(request, "Added to your folder")
 
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
@@ -1265,6 +1274,14 @@ def PublicationBookmark(request, id):
             addBookmark.publicationID = pubID
             addBookmark.folderID = request.POST.get('folder_id')
             addBookmark.save()
+
+            #log bookmarking
+            logBookmark = records_bookmark()
+            logBookmark.user = email
+            logBookmark.pub_id = pubID
+            logBookmark.folder_id = request.POST.get('folder_id')
+            logBookmark.date = datetime.datetime.now()
+            logBookmark.save()
 
 
             messages.success(request, "Added to shared folder")

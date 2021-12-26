@@ -105,3 +105,12 @@ class records_view_tag(models.Model):
 
     class Meta:
         db_table = "records_view_tag"
+
+class records_bookmark(models.Model):
+    user = models.CharField(max_length=100)
+    pub_id = models.IntegerField()
+    folder_id = models.IntegerField()
+    date = models.DateField()
+
+    class Meta:
+        db_table = "records_bookmark"
