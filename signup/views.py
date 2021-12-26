@@ -149,7 +149,7 @@ def showTest(request):
     return render(request, 'test/test.html',{'publications':results, 'annotations': annotation})
 
 
-def scrap(url, id): 
+def scrap(url, id, abstract): 
   
     # empty list to store the contents of  
     # the website fetched from our web-crawler 
@@ -157,8 +157,14 @@ def scrap(url, id):
     headers = {
         'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36'}
 
+    if 'doi' in url:
+        words = abstract.lower().split() 
+            
+        for each_word in words: 
+            wordlist.append(each_word) 
+        clean_wordlist(wordlist, id)
     
-    
+
     source_code=''
     try:
         source_code = requests.get(url).text
@@ -552,16 +558,16 @@ def searchPublication(request):
             page_number = 1
             page_obj = page_results.get_page(page_number)      
 
-            # for publication in xlist:
-            #     flag = 0
-            #     for pubkey in publication_keys:
-            #         if publication.id == pubkey.publication_id and flag == 0:
-            #             flag=1
-            #     if flag == 0:
-            #         if "http" in publication.url: 
-            #             scrap(publication.url, publication.id)
-            #         else:
-            #             scrap("http://" + publication.url, publication.id)
+            for publication in xlist:
+                flag = 0
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id and flag == 0:
+                        flag=1
+                if flag == 0:
+                    if "http" in publication.url: 
+                        scrap(publication.url, publication.id, publication.abstract)
+                    else:
+                        scrap("http://" + publication.url, publication.id, publication.abstract)
 
             filteredYear =[]
             for year in xlist:
