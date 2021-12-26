@@ -332,6 +332,12 @@ def create_dictionary(clean_list, id):
     pubkeys.objects.bulk_create(pub_id)
 
 
+def testAnalytics(request):
+    #most searched keywords
+    searched_keywords = records_search.objects.raw('SELECT keyword, count(*) as count FROM simonkim902$Corpus_Management_System.records_search GROUP BY keyword ORDER BY count DESC LIMIT 10')
+
+    return render(request, 'testanalytics.html',{'searched':searched_keywords})
+
 
 
 def searchPublication(request):
