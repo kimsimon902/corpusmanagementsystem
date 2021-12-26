@@ -32,7 +32,7 @@ urlpatterns =[
     path('bookmarks/',views.viewBookmarks, name ='bookmarks'),
     path('adminpage/',views.viewAdmin, name ='adminpage'),
     path('adminpage/keywordrequests',views.keywordRequests, name ='keywordrequests'),
-    path('folder_table/',views.downloadFolderTable, name ='folder_table')
+    path('folder_table/',views.downloadFolderTable, name ='folder_table'),
     path('testAnalytics/', views.testAnalytics, name="testAnalytics")
 ]
 
