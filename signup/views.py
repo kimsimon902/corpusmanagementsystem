@@ -650,14 +650,6 @@ def searchPublication(request):
             keyword_count = []
 
             for publication in xlist:
-                for pubkey in publication_keys:
-                    if publication.id == pubkey.publication_id:
-                        for pubid in keywords_list:
-                            if pubkey.keywords_id == pubid.id:
-                                if pubid.keywordname not in keyword_results:
-                                    keyword_results.append(pubid.keywordname)
-
-            for publication in xlist:
                 flag = 0
                 for pubkey in publication_keys:
                     if publication.id == pubkey.publication_id and flag == 0:
@@ -667,6 +659,15 @@ def searchPublication(request):
                         scrap(publication.url, publication.id)
                     else:
                         scrap("http://" + publication.url, publication.id)
+
+            for publication in xlist:
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id:
+                        for pubid in keywords_list:
+                            if pubkey.keywords_id == pubid.id:
+                                if pubid.keywordname not in keyword_results:
+                                    keyword_results.append(pubid.keywordname)
+
 
             filteredYear =[]
             for year in xlist:
@@ -737,14 +738,6 @@ def searchPublication(request):
             keyword_count = []
 
             for publication in xlist:
-                for pubkey in publication_keys:
-                    if publication.id == pubkey.publication_id:
-                        for pubid in keywords_list:
-                            if pubkey.keywords_id == pubid.id:
-                                if pubid.keywordname not in keyword_results:
-                                    keyword_results.append(pubid.keywordname) 
-
-            for publication in xlist:
                 flag = 0
                 for pubkey in publication_keys:
                     if publication.id == pubkey.publication_id and flag == 0:
@@ -754,6 +747,15 @@ def searchPublication(request):
                         scrap(publication.url, publication.id)
                     else:
                         scrap("http://" + publication.url, publication.id)
+
+            for publication in xlist:
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id:
+                        for pubid in keywords_list:
+                            if pubkey.keywords_id == pubid.id:
+                                if pubid.keywordname not in keyword_results:
+                                    keyword_results.append(pubid.keywordname) 
+
 
             filteredYear =[]
             for year in xlist:
