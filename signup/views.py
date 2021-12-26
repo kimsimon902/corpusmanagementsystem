@@ -334,7 +334,7 @@ def create_dictionary(clean_list, id):
 
 def testAnalytics(request):
     #most searched keywords
-    searched_keywords = records_search.objects.raw('SELECT keyword, count(*) as count FROM myapp_records_search GROUP BY keyword ORDER BY count DESC LIMIT 10')
+    searched_keywords = records_search.objects.raw('SELECT keyword, count(*) as count FROM records_search GROUP BY keyword ORDER BY count DESC LIMIT 10')
 
     return render(request, 'testanalytics.html',{'searched':searched_keywords})
 
