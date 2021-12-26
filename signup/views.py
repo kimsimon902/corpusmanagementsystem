@@ -1024,6 +1024,13 @@ def FoldersPage(request, username):
                                                     'sharedbookmarks': shared_folders_bookmarks,
                                                     'sharedpubs':shared_folders_pubs})
 
+def FoldersPageAnalytics(request, folderID):
+    email = request.session['email']
+    folder = bookmarks_folder.objects.filter(id=folderID)
+    folderpubs = bookmarks.objects.filter(user=email,folderID=folderID).values('publicationID')
+    pubs = publications.objects.filter(id__in=folderpubs)
+    return render(request, 'testfolderanalytics.html',{'folder':folder,'pubs':pubs})
+
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
     results = publications.objects.filter(id=id)

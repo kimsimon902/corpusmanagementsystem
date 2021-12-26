@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% if request.session.email %}
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Folders</title>
+
+    <link rel="stylesheet" href="{% static '\users\css\my-folders.css' %}">
+    <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <!-- Fix white space on right side of page -->
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            overflow-x: hidden; 
+        }
+    </style>
+
+     
+    
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRZGBQM"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {% include 'main/nav-bar.html' %}
+    <div class="tabs-body">
+        <div class="row g-0">
+            <div class="col-md-auto tabs-sidebar">
+                <h6 style="margin-left: 5px;">My folders</h6>
+                {% if folders %}
+                {% for folder in folders%}
+                    {% if forloop.first %}
+                        <button class="tabs-button tabs-button-active" data-for-tab="my-{{forloop.counter}}">{{folder.folder_name}}</button>
+                    {% else %}
+                        <button class="tabs-button" data-for-tab="my-{{forloop.counter}}">{{folder.folder_name}}</button>
+                    {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                <h6 style="margin-left: 5px; margin-top: 10px;">Shared with me</h6>
+                {% if sharedfolders %}
+                {% for folder in sharedfolders %}
+                    <button class="tabs-button" data-for-tab="collab-{{forloop.counter}}">{{folder.folder_name}}</button>
+                {% endfor %}
+                {% endif %}
+                <div>
+                    <br>
+                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#newFolder" style="margin-left: 15px; color: white;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+                      </svg> Folder </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id="newFolder" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">New folder</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" action="/profile/{{request.session.username}}/createfolder">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}"/>
+                <div class="form-group">
+                <label for="folder-name" class="col-form-label">Folder name:</label>
+                <input type="text" class="form-control" name="folder-name">
+                </div>
+            
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Create folder</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="{% static '\users\js\my-folders.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+{% endif %}
