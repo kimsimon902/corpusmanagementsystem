@@ -1058,11 +1058,15 @@ def PublicationPage(request, id):
                             keyword_results.append(pubid.keywordname)
 
     #Log opening of publication
-    logView = records_view_publication()
-    logView.user = email
-    logView.pub_id = id
-    logView.date = datetime.datetime.now()
-    logView.save()
+    datenow = datetime.datetime.now()
+    check_visit = records_view_publication.objects.filter(email='user',pub_id='pub_id',datenow="date")
+
+    if not check_visit:
+        logView = records_view_publication()
+        logView.user = email
+        logView.pub_id = id
+        logView.date = datenow
+        logView.save()
 
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
@@ -1340,6 +1344,15 @@ def PublicationBookmarkInFolder(request, username, folderid, id):
             addBookmark.publicationID = pubID
             addBookmark.folderID = request.POST.get('folder_id')
             addBookmark.save()
+
+            #log bookmarking
+            logBookmark = records_bookmark()
+            logBookmark.user = email
+            logBookmark.pub_id = pubID
+            logBookmark.folder_id = request.POST.get('folder_id')
+            logBookmark.date = datetime.datetime.now()
+            logBookmark.save()
+
             # messages.success(request, "Added to your bookmarks")
 
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
