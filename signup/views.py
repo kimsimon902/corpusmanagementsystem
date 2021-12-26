@@ -590,11 +590,13 @@ def searchPublication(request):
 
             filteredYear.sort()
 
+
+            #Log Search
             logSearch = records_search()
             logSearch.user = email
             logSearch.keyword = searched
             logSearch.filter = searchFilter
-            
+
             if not libFilter:
                 libFilter = "['ais', 'ieee', 'scopus']"
 
@@ -689,6 +691,20 @@ def searchPublication(request):
 
             filteredYear.sort()
 
+            #Log Search
+            logSearch = records_search()
+            logSearch.user = email
+            logSearch.keyword = searched
+            logSearch.filter = searchFilter
+
+            if not libFilter:
+                libFilter = "['ais', 'ieee', 'scopus']"
+
+            logSearch.source = libFilter
+            logSearch.num_results = results.count()
+            logSearch.date = datetime.datetime.now()
+            logSearch.save()
+
 
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
@@ -776,6 +792,21 @@ def searchPublication(request):
                     filteredYear.append(int(year.year))
 
             filteredYear.sort()
+
+            #Log Search
+            logSearch = records_search()
+            logSearch.user = email
+            logSearch.keyword = searched
+            logSearch.filter = searchFilter
+
+            if not libFilter:
+                libFilter = "['ais', 'ieee', 'scopus']"
+
+            logSearch.source = libFilter
+            logSearch.num_results = results.count()
+            logSearch.date = datetime.datetime.now()
+            logSearch.save()
+
             return render(request, 'main/search.html',{'searched':searched, 
                                                        'results':results, 
                                                        'count':results.count(),
