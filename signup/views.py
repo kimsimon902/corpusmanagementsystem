@@ -336,7 +336,13 @@ def testAnalytics(request):
     #most searched keywords
     searched_keywords = records_search.objects.raw('SELECT id, keyword, count(*) as count FROM records_search GROUP BY keyword ORDER BY count DESC LIMIT 10')
 
-    return render(request, 'testanalytics.html',{'searched':searched_keywords})
+    #most opened pubs
+    opened_pubs = records_view_publication.objects.raw('SELECT id, pub_title, count(*) as count FROM records_view_publication GROUP BY pub_title ORDER BY count DESC LIMIT 10')
+
+    #most viewed tags
+    viewed_tags = records_view_tag.objects.raw('SELECT id, tag, count(*) as count FROM records_view_tag GROUP BY tag ORDER BY count DESC LIMIT 10')
+
+    return render(request, 'testanalytics.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags})
 
 
 
@@ -1270,6 +1276,8 @@ def PublicationBookmark(request, id):
             logBookmark = records_bookmark()
             logBookmark.user = email
             logBookmark.pub_id = pubID
+            for pub in results:
+                logBookmark.pub_title = pub.title
             logBookmark.folder_id = request.POST.get('folder_id')
             logBookmark.date = datetime.datetime.now()
             logBookmark.save()
@@ -1299,6 +1307,8 @@ def PublicationBookmark(request, id):
             logBookmark = records_bookmark()
             logBookmark.user = email
             logBookmark.pub_id = pubID
+            for pub in results:
+                logBookmark.pub_title = pub.title
             logBookmark.folder_id = request.POST.get('folder_id')
             logBookmark.date = datetime.datetime.now()
             logBookmark.save()
@@ -1365,6 +1375,8 @@ def PublicationBookmarkInFolder(request, username, folderid, id):
             logBookmark = records_bookmark()
             logBookmark.user = email
             logBookmark.pub_id = pubID
+            for pub in results:
+                logBookmark.pub_title = pub.title
             logBookmark.folder_id = request.POST.get('folder_id')
             logBookmark.date = datetime.datetime.now()
             logBookmark.save()

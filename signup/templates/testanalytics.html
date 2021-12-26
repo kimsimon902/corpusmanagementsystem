@@ -21,7 +21,17 @@
     <div class="container-fluid">
         <p>Top searched keywords</p>
         {% for keyword in searched %}
-            <p>{{ keyword.keyword}} is searched {{ keyword.count }} times</p>
+            <p>{{forloop.counter}}. {{ keyword.keyword }} is searched {{ keyword.count }} times</p>
+        {% endfor %}
+        <br>
+        <p>Top opened pubs</p>
+        {% for pub in opened_pubs %}
+        <p>{{forloop.counter}}. {{ pub.pub_title }} is opened {{ opened_pubs.count }} times</p>
+        {% endfor %}
+        <br>
+        <p>Top viewed tags</p>
+        {% for tag in viewed_tags %}
+        <p>{{forloop.counter}}. {{ tag.tag }} is viewed {{ tag.count }} times</p>
         {% endfor %}
     </div>
 

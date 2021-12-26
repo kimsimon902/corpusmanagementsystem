@@ -110,6 +110,7 @@ class records_view_tag(models.Model):
 class records_bookmark(models.Model):
     user = models.CharField(max_length=100)
     pub_id = models.IntegerField()
+    pub_title = models.CharField(max_length=500)
     folder_id = models.IntegerField()
     date = models.DateField()
 
