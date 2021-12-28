@@ -221,7 +221,7 @@ def scrap(url, id):
                 filtered = [word for word in newkeywords if not word in stopwords.words()]
                 filtered_dupes = []
                 for i in filtered:
-                    if i.lower() not in filtered_dupes and i.upper() not in filtered_dupes:
+                    if i.lower() not in filtered_dupes or i.upper() not in filtered_dupes:
                         filtered_dupes.append(i)
 
                 for i in range(0,len(filtered_dupes)):
