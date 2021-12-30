@@ -372,6 +372,7 @@ def searchPublication(request):
             email = request.session['email']
 
             searched = keyword_search
+            searchFilter = "default"
             results_list = []
             resultsId_list = []
             pubkeys_list = list(pubkeys.objects.all())
@@ -433,6 +434,7 @@ def searchPublication(request):
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
                                                         'filteredYear': filteredYear,
+                                                        'searchFilter': searchFilter
                                                         })
 
         year_search = request.GET.get('year')
@@ -446,6 +448,7 @@ def searchPublication(request):
             email = request.session['email']
 
             searched = request.GET.get('searched')
+            searchFilter = "default"
             results_list = []
             resultsId_list = []
             pubkeys_list = list(pubkeys.objects.all())
@@ -503,6 +506,7 @@ def searchPublication(request):
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
                                                         'filteredYear': filteredYear,
+                                                        'searchFilter': searchFilter
                                                         })
 
 
