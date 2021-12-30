@@ -62,39 +62,39 @@
     <div class="container">
         <div class="card-group">
             <div class="card">
-              <img src="..." class="card-img-top" alt="...">
+               <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
-                            <h5 class="card-title">Most searched keywords</h5>
-                            {% for keyword in searched %}
-                              <p>{{forloop.counter}}. {{ keyword.keyword }} is searched {{ keyword.count }} times</p>
-                            {% endfor %}
+                <h5 class="card-title">Most searched keywords</h5>
+                {% for keyword in searched %}
+                    <p>{{forloop.counter}}. {{ keyword.keyword }} is searched {{ keyword.count }} times</p>
+                {% endfor %}
               </div>
             </div>
             <div class="card">
-              <img src="..." class="card-img-top" alt="...">
+              <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
-                            <h5 class="card-title">Most opened publications</h5>
-                            {% for pub in opened_pubs %}
-                              <p>{{forloop.counter}}. {{ pub.pub_title }} is opened {{ pub.count }} times</p>
-                            {% endfor %}
+                <h5 class="card-title">Most opened publications</h5>
+                {% for pub in opened_pubs %}
+                    <p>{{forloop.counter}}. {{ pub.pub_title }} is opened {{ pub.count }} times</p>
+                {% endfor %}
               </div>
             </div>
             <div class="card">
-              <img src="..." class="card-img-top" alt="...">
+               <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
-                            <h5 class="card-title">Most viewed tags</h5>
-                            {% for tag in viewed_tags %}
-                              <p>{{forloop.counter}}. {{ tag.tag }} is viewed {{ tag.count }} times</p>
-                            {% endfor %}
+                <h5 class="card-title">Most viewed tags</h5>
+                {% for tag in viewed_tags %}
+                    <p>{{forloop.counter}}. {{ tag.tag }} is viewed {{ tag.count }} times</p>
+                {% endfor %}
               </div>
             </div>
               <div class="card">
-              <img src="..." class="card-img-top" alt="...">
+               <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
-                            <h5 class="card-title">Most bookmarked publications</h5>
-                            {% for bookmark in bookmarked_pubs %}
-                            <p>{{forloop.counter}}. {{ bookmark.pub_title }} is bookmarked {{ bookmark.count }} times</p>
-                            {% endfor %}
+                <h5 class="card-title">Most bookmarked publications</h5>
+                {% for bookmark in bookmarked_pubs %}
+                <p>{{forloop.counter}}. {{ bookmark.pub_title }} is bookmarked {{ bookmark.count }} times</p>
+                {% endfor %}
               </div>
             </div>
           </div>
