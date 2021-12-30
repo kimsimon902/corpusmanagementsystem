@@ -60,12 +60,12 @@
         </div>
     </header>
     <div class="container" style="margin-top: 50px">
-        <h3>Corpus statistics</h3>
-        <div class="card-group">
+        <h2>Corpus statistics</h2>
+        <div class="card-group" style="margin-top: 20px">
             <div class="card">
                <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
-                <h5 class="card-title">Most searched keywords</h5>
+                <h3 class="card-title">Most searched keywords</h3>
                 {% for keyword in searched %}
                     <p>{{forloop.counter}}. {{ keyword.keyword }} is searched {{ keyword.count }} times</p>
                 {% endfor %}
@@ -74,7 +74,7 @@
             <div class="card">
               <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
-                <h5 class="card-title">Most opened publications</h5>
+                <h3 class="card-title">Most opened publications</h3>
                 {% for pub in opened_pubs %}
                     <p>{{forloop.counter}}. {{ pub.pub_title }} is opened {{ pub.count }} times</p>
                 {% endfor %}
@@ -83,7 +83,7 @@
             <div class="card">
                <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
-                <h5 class="card-title">Most viewed tags</h5>
+                <h3 class="card-title">Most viewed tags</h3>
                 {% for tag in viewed_tags %}
                     <p>{{forloop.counter}}. {{ tag.tag }} is viewed {{ tag.count }} times</p>
                 {% endfor %}
@@ -92,7 +92,7 @@
               <div class="card">
                <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
-                <h5 class="card-title">Most bookmarked publications</h5>
+                <h3 class="card-title">Most bookmarked publications</h3>
                 {% for bookmark in bookmarked_pubs %}
                 <p>{{forloop.counter}}. {{ bookmark.pub_title }} is bookmarked {{ bookmark.count }} times</p>
                 {% endfor %}
