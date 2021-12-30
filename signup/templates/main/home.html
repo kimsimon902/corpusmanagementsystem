@@ -67,7 +67,7 @@
               <div class="card-body">
                 <h3 class="card-title">Most searched keywords</h3>
                 {% for keyword in searched %}
-                    <p>{{forloop.counter}}. <a href="/search/?keyword={{ keyword.keyword }}"></a>{{ keyword.keyword }}</p>
+                    <p>{{forloop.counter}}. <a href="/search/?keyword={{ keyword.keyword }}">{{ keyword.keyword }}</a></p>
                 {% endfor %}
               </div>
             </div>
