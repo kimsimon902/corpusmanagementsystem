@@ -67,7 +67,7 @@
               <div class="card-body">
                 <h3 class="card-title">Most searched keywords</h3>
                 {% for keyword in searched %}
-                    <p>{{forloop.counter}}. {{ keyword.keyword }} is searched {{ keyword.count }} times</p>
+                    <p>{{forloop.counter}}. {{ keyword.keyword }}</p>
                 {% endfor %}
               </div>
             </div>
@@ -76,7 +76,7 @@
               <div class="card-body">
                 <h3 class="card-title">Most opened publications</h3>
                 {% for pub in opened_pubs %}
-                    <p>{{forloop.counter}}. {{ pub.pub_title }} is opened {{ pub.count }} times</p>
+                    <p>{{forloop.counter}}. {{ pub.pub_title }}</p>
                 {% endfor %}
               </div>
             </div>
@@ -85,7 +85,7 @@
               <div class="card-body">
                 <h3 class="card-title">Most viewed tags</h3>
                 {% for tag in viewed_tags %}
-                    <p>{{forloop.counter}}. {{ tag.tag }} is viewed {{ tag.count }} times</p>
+                    <p>{{forloop.counter}}. {{ tag.tag }}</p>
                 {% endfor %}
               </div>
             </div>
@@ -94,7 +94,7 @@
               <div class="card-body">
                 <h3 class="card-title">Most bookmarked publications</h3>
                 {% for bookmark in bookmarked_pubs %}
-                <p>{{forloop.counter}}. {{ bookmark.pub_title }} is bookmarked {{ bookmark.count }} times</p>
+                <p>{{forloop.counter}}. {{ bookmark.pub_title }}</p>
                 {% endfor %}
               </div>
             </div>
