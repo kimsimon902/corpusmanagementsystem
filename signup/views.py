@@ -49,26 +49,26 @@ from nltk.tokenize import word_tokenize
 # Create your views here.
 
 def index(request):
-
     return render(request, 'main/index.html')
 
 def home(request):
     results = publications.objects.all()
     annotation = annotations.objects.all()
     publication_keys = pubkeys.objects.all()
-    
-    # for publication in list(results):
-    #     flag = 0
-    #     for pubkey in publication_keys:
-    #         if publication.id == pubkey.publication_id and flag == 0:
-    #             flag=1
-    #     if flag == 0:
-    #         if "http" in publication.url: 
-    #             scrap(publication.url, publication.id)
-    #         else:
-    #             scrap("http://" + publication.url, publication.id)
 
-    return render(request, 'main/home.html',{'publications':results, 'annotations': annotation})
+    #most searched keywords
+    searched_keywords = records_search.objects.raw('SELECT id, keyword, count(*) as count FROM records_search GROUP BY keyword ORDER BY count DESC LIMIT 5')
+
+    #most opened pubs
+    opened_pubs = records_view_publication.objects.raw('SELECT id, pub_title, count(*) as count FROM records_view_publication GROUP BY pub_title ORDER BY count DESC LIMIT 5')
+
+    #most viewed tags
+    viewed_tags = records_view_tag.objects.raw('SELECT id, tag, count(*) as count FROM records_view_tag GROUP BY tag ORDER BY count DESC LIMIT 5')
+
+    #most bookmarked
+    bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 5')
+
+    return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
 
 def viewBookmarks(request):
     email = request.session['email']
@@ -1047,6 +1047,18 @@ def FoldersPageAnalytics(request, folderID):
                     if pubkey.keywords_id == pubid.id:
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
+
+    #most searched keywords
+    searched_keywords = records_search.objects.raw('SELECT id, keyword, count(*) as count FROM records_search GROUP BY keyword ORDER BY count DESC LIMIT 10')
+
+    #most opened pubs
+    opened_pubs = records_view_publication.objects.raw('SELECT id, pub_title, count(*) as count FROM records_view_publication GROUP BY pub_title ORDER BY count DESC LIMIT 10')
+
+    #most viewed tags
+    viewed_tags = records_view_tag.objects.raw('SELECT id, tag, count(*) as count FROM records_view_tag GROUP BY tag ORDER BY count DESC LIMIT 10')
+
+    #most bookmarked
+    bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 10')
                             
     return render(request, 'testfolderanalytics.html',{'folder':folder,'pubs':pubs, 'keywords': keyword_results})
 
