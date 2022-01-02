@@ -320,7 +320,7 @@ def scrap(url, id):
         pass
      
 
-    if flag:
+    if flag == True:
         # BeautifulSoup object which will 
         # ping the requested url for data 
         soup = BeautifulSoup(source_code, 'html.parser') 
