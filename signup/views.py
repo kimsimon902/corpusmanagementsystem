@@ -175,10 +175,12 @@ all_stopwords.append('classpanecontent')
 all_stopwords.append('navbarlight')
 all_stopwords.append('navbarnav')
 all_stopwords.append('layerbylayer')
+all_stopwords.append('typehidden')
+all_stopwords.append('pagename')
 all_stopwords.append('classpanelpane')
 all_stopwords.append('classpanelpane')
-all_stopwords.append('classpanelpane')
-all_stopwords.append('classpanelpane')
+all_stopwords.append('colspan2')
+
 
 
 
@@ -297,7 +299,7 @@ def scrap(url, id):
 
     source_code=''
     try:
-        source_code = requests.get(url).text
+        source_code = requests.get(url, headers=headers).text
     except requests.exceptions.HTTPError as errh:
         print ("Http Error:",errh)
     except requests.exceptions.ConnectionError as errc:
