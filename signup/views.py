@@ -1285,13 +1285,7 @@ def PublicationPage(request, id):
             else:
                 scrap("http://" + publication.url, publication.id)
 
-    for publication in xlist:
-        for pubkey in publication_keys:
-            if publication.id == pubkey.publication_id:
-                for pubid in keywords_list:
-                    if pubkey.keywords_id == pubid.id:
-                        if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
-                            keyword_results.append(pubid.keywordname)
+    
 
     #Log opening of publication
     datenow = datetime.datetime.now()
@@ -1307,6 +1301,14 @@ def PublicationPage(request, id):
         logView.pub_id = id
         logView.date = datenow
         logView.save()
+
+    for publication in xlist:
+        for pubkey in publication_keys:
+            if publication.id == pubkey.publication_id:
+                for pubid in keywords_list:
+                    if pubkey.keywords_id == pubid.id:
+                        if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
+                            keyword_results.append(pubid.keywordname)
 
 
     return render(request, 'publication.html', {'publication':results,
