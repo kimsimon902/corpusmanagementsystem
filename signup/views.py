@@ -356,7 +356,7 @@ def scrap(url, id):
                 for word in top:
                     newkeywords.append(word)
 
-                filtered = [word for word in newkeywords if not word in stopwords.words()]
+                filtered = [word for word in newkeywords if not word in all_stopwords]
                 filtered_dupes = []
                 marker = set()
 
@@ -455,7 +455,7 @@ def create_dictionary(clean_list, id):
     for word in top:
         newkeywords.append(word[0])
 
-    filtered = [word for word in newkeywords if not word in stopwords.words()]
+    filtered = [word for word in newkeywords if not word in all_stopwords]
 
     
     for i in range(0,len(filtered)):
