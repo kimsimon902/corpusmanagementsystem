@@ -301,7 +301,7 @@ def scrap(url, id):
     )
     
     
-
+    print(url)
     source_code=''
     try:
         source_code = requests.get(url, headers=headers).text
