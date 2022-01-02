@@ -305,14 +305,14 @@ def scrap(url, id):
         print ("Error Connecting:",errc)
     except requests.exceptions.Timeout as errt:
         print ("Timeout Error:",errt)
-        
-    session = requests.Session()
-    retry = Retry(connect=3, backoff_factor=0.5)
-    adapter = HTTPAdapter(max_retries=retry)
-    session.mount('http://', adapter)
-    session.mount('https://', adapter)
 
-    session.get(url)
+    # session = requests.Session()
+    # retry = Retry(connect=3, backoff_factor=0.5)
+    # adapter = HTTPAdapter(max_retries=retry)
+    # session.mount('http://', adapter)
+    # session.mount('https://', adapter)
+
+    # session.get(url)
 
     # BeautifulSoup object which will 
     # ping the requested url for data 
