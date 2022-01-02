@@ -292,8 +292,13 @@ def scrap(url, id):
     # empty list to store the contents of  
     # the website fetched from our web-crawler 
     wordlist = [] 
-    headers = {
-        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36'}
+    headers = requests.utils.default_headers()
+
+    headers.update(
+        {
+            'User-Agent': 'My User Agent 1.0',
+        }
+    )
     
     
 
