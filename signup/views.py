@@ -300,126 +300,130 @@ def scrap(url, id):
         }
     )
    
-    
+    flag=False
     print(url)
     source_code=''
     try:
         source_code = requests.get(url,headers=headers).text
+        flag= True
     except requests.exceptions.HTTPError as errh:
         print ("Http Error:",errh)
+        flag = False
         pass
     except requests.exceptions.ConnectionError as errc:
         print ("Error Connecting:",errc)
+        flag = False
         pass
     except requests.exceptions.Timeout as errt:
         print ("Timeout Error:",errt)
+        flag = False
         pass
-       
+     
 
-
-    # BeautifulSoup object which will 
-    # ping the requested url for data 
-    soup = BeautifulSoup(source_code, 'html.parser') 
-  
-    # Text in given web-page is stored under 
-    # the <div> tags with class <entry-content> 
-
-    if "aisel" in url:
-        table = soup.findAll('div', {'id':'abstract'})
-        for x in table:
-            content = x.find('p').text
+    if flag:
+        # BeautifulSoup object which will 
+        # ping the requested url for data 
+        soup = BeautifulSoup(source_code, 'html.parser') 
     
-            # use split() to break the sentence into  
-            # words and convert them into lowercase  
-            words = content.lower().split() 
-            
-            for each_word in words: 
-                wordlist.append(each_word) 
-            clean_wordlist(wordlist, id)
-    elif "ieeexplore" in url:
+        # Text in given web-page is stored under 
+        # the <div> tags with class <entry-content> 
 
-        ieee_content = requests.get(url, timeout=180)
-        soup = BeautifulSoup(ieee_content.content, "html.parser")
-        scripts = soup.find_all("script")
+        if "aisel" in url:
+            table = soup.findAll('div', {'id':'abstract'})
+            for x in table:
+                content = x.find('p').text
         
-        pattern = re.compile(r"(?<=\"keywords\":)\[{.*?}\]")
-        keywords_dict = {}
-        for i, script in enumerate(scripts):
-            keywordslist = re.findall(pattern, str(script.string))
-            if len(keywordslist) == 1:
-                raw_keywords_list = json.loads(keywordslist[0])
+                # use split() to break the sentence into  
+                # words and convert them into lowercase  
+                words = content.lower().split() 
                 
-                for index, keyword_type in enumerate(raw_keywords_list):
-                    if "type" in raw_keywords_list[index]:
-                        keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
-        
-        if 'Author Keywords' in keywords_dict:
-            if len(list(keywords_dict['Author Keywords'])) > 0:
+                for each_word in words: 
+                    wordlist.append(each_word) 
+                clean_wordlist(wordlist, id)
+        elif "ieeexplore" in url:
 
-                newkeywords = []
-                name_id= []
-                insert_list = []
-                pub_id = []
-                filtered =[]
-                top = list(keywords_dict['Author Keywords'])
-
-                for word in top:
-                    newkeywords.append(word)
-
-                filtered = [word for word in newkeywords if not word in all_stopwords]
-                filtered_dupes = []
-                marker = set()
-
-                for i in filtered:
-                    ll = i.lower()
-                    if ll not in marker:
-                        marker.add(ll)
-                        filtered_dupes.append(i)
-
-                for i in range(0,len(filtered_dupes)):
-                    if keywords.objects.filter(keywordname=filtered_dupes[i].strip()):
-                        name_id.append(filtered_dupes[i].strip())
-                    else:
-                        insert_list.append(keywords(keywordname=filtered_dupes[i].strip()))
-                        name_id.append(filtered_dupes[i].strip())
-
-                print(filtered_dupes)
-                keywords.objects.bulk_create(insert_list)
-
+            ieee_content = requests.get(url, timeout=180)
+            soup = BeautifulSoup(ieee_content.content, "html.parser")
+            scripts = soup.find_all("script")
             
-                for j in range(0,len(name_id)):
-                    store = keywords.objects.get(keywordname=name_id[j])
-                    pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
-                pubkeys.objects.bulk_create(pub_id)
-        else:
-            web_page = url
-            page = urllib.request.urlopen(web_page)
-            soup = BeautifulSoup(page, 'lxml')        
-            abstract = soup.find("meta", property="og:description")
-                
-            words = str(abstract).lower().split() 
+            pattern = re.compile(r"(?<=\"keywords\":)\[{.*?}\]")
+            keywords_dict = {}
+            for i, script in enumerate(scripts):
+                keywordslist = re.findall(pattern, str(script.string))
+                if len(keywordslist) == 1:
+                    raw_keywords_list = json.loads(keywordslist[0])
                     
+                    for index, keyword_type in enumerate(raw_keywords_list):
+                        if "type" in raw_keywords_list[index]:
+                            keywords_dict[keyword_type["type"].strip()] = [kwd.strip() for kwd in keyword_type["kwd"]]
+            
+            if 'Author Keywords' in keywords_dict:
+                if len(list(keywords_dict['Author Keywords'])) > 0:
+
+                    newkeywords = []
+                    name_id= []
+                    insert_list = []
+                    pub_id = []
+                    filtered =[]
+                    top = list(keywords_dict['Author Keywords'])
+
+                    for word in top:
+                        newkeywords.append(word)
+
+                    filtered = [word for word in newkeywords if not word in all_stopwords]
+                    filtered_dupes = []
+                    marker = set()
+
+                    for i in filtered:
+                        ll = i.lower()
+                        if ll not in marker:
+                            marker.add(ll)
+                            filtered_dupes.append(i)
+
+                    for i in range(0,len(filtered_dupes)):
+                        if keywords.objects.filter(keywordname=filtered_dupes[i].strip()):
+                            name_id.append(filtered_dupes[i].strip())
+                        else:
+                            insert_list.append(keywords(keywordname=filtered_dupes[i].strip()))
+                            name_id.append(filtered_dupes[i].strip())
+
+                    print(filtered_dupes)
+                    keywords.objects.bulk_create(insert_list)
+
+                
+                    for j in range(0,len(name_id)):
+                        store = keywords.objects.get(keywordname=name_id[j])
+                        pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
+                    pubkeys.objects.bulk_create(pub_id)
+            else:
+                web_page = url
+                page = urllib.request.urlopen(web_page)
+                soup = BeautifulSoup(page, 'lxml')        
+                abstract = soup.find("meta", property="og:description")
+                    
+                words = str(abstract).lower().split() 
+                        
+                for each_word in words: 
+                    wordlist.append(each_word) 
+                clean_wordlist(wordlist, id)
+        
+        if 'doi' in url:
+            wordlist = []
+            source_code = requests.get(url).text
+
+            # BeautifulSoup object which will
+            # ping the requested url for data
+            soup = BeautifulSoup(source_code, 'html.parser')
+            for each_text in soup.findAll('div'):  
+                content = each_text.text
+        
+            # Text in given web-page is stored under
+            # the <div> tags with class <entry-content>
+            words = str(source_code).lower().split() 
+                            
             for each_word in words: 
                 wordlist.append(each_word) 
             clean_wordlist(wordlist, id)
-    
-    if 'doi' in url:
-        wordlist = []
-        source_code = requests.get(url).text
-
-        # BeautifulSoup object which will
-        # ping the requested url for data
-        soup = BeautifulSoup(source_code, 'html.parser')
-        for each_text in soup.findAll('div'):  
-            content = each_text.text
-    
-        # Text in given web-page is stored under
-        # the <div> tags with class <entry-content>
-        words = str(source_code).lower().split() 
-                        
-        for each_word in words: 
-            wordlist.append(each_word) 
-        clean_wordlist(wordlist, id)
 
                 
             
