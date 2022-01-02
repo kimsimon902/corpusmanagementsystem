@@ -52,6 +52,10 @@ from requests.exceptions import ConnectionError
 #stopwords to be removed from scaping
 all_stopwords = stopwords.words('english')
 all_stopwords.append('div')
+all_stopwords.append('divdiv')
+all_stopwords.append('scholaradivdivdivdivdivdiv')
+all_stopwords.append('classrowdiv')
+all_stopwords.append('scholarapdiv')
 all_stopwords.append('use')
 all_stopwords.append('div')
 all_stopwords.append('td')
