@@ -55,6 +55,15 @@ all_stopwords.append('div')
 all_stopwords.append('use')
 all_stopwords.append('div')
 all_stopwords.append('td')
+all_stopwords.append('li')
+all_stopwords.append('ul')
+all_stopwords.append('meta')
+all_stopwords.append('function')
+all_stopwords.append('var')
+all_stopwords.append('start')
+all_stopwords.append('inner')
+all_stopwords.append('end')
+all_stopwords.append('lia')
 all_stopwords.append('span')
 all_stopwords.append('script')
 all_stopwords.append('true')
@@ -754,16 +763,16 @@ def searchPublication(request):
             keyword_results = []
             keyword_count = []
             
-            # for publication in xlist:
-            #     flag = 0
-            #     for pubkey in publication_keys:
-            #         if publication.id == pubkey.publication_id and flag == 0:
-            #             flag=1
-            #     if flag == 0:
-            #         if "http" in publication.url: 
-            #             scrap(publication.url, publication.id)
-            #         else:
-            #             scrap("http://" + publication.url, publication.id)
+            for publication in xlist:
+                flag = 0
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id and flag == 0:
+                        flag=1
+                if flag == 0:
+                    if "http" in publication.url: 
+                        scrap(publication.url, publication.id)
+                    else:
+                        scrap("http://" + publication.url, publication.id)
             
             for publication in xlist:
                 for pubkey in publication_keys:
@@ -1274,16 +1283,16 @@ def PublicationPage(request, id):
     not_shared_bookmark = bookmarks_folder.objects.exclude(id__in=shared_folders_bookmarks.values('folderID')).filter(id__in=collabs)
 
 
-    for publication in xlist:
-        flag = 0
-        for pubkey in publication_keys:
-            if publication.id == pubkey.publication_id and flag == 0:
-                flag=1
-        if flag == 0:
-            if "http" in publication.url: 
-                scrap(publication.url, publication.id)
-            else:
-                scrap("http://" + publication.url, publication.id)
+    # for publication in xlist:
+    #     flag = 0
+    #     for pubkey in publication_keys:
+    #         if publication.id == pubkey.publication_id and flag == 0:
+    #             flag=1
+    #     if flag == 0:
+    #         if "http" in publication.url: 
+    #             scrap(publication.url, publication.id)
+    #         else:
+    #             scrap("http://" + publication.url, publication.id)
 
     
 
@@ -1302,7 +1311,7 @@ def PublicationPage(request, id):
         logView.date = datenow
         logView.save()
 
-    time.sleep(5)
+ 
     for publication in xlist:
         for pubkey in publication_keys:
             if publication.id == pubkey.publication_id:
@@ -1311,7 +1320,7 @@ def PublicationPage(request, id):
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
 
-    print(keyword_results)
+
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
                                                 'keyword_results':keyword_results,
