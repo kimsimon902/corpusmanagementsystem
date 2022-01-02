@@ -305,6 +305,7 @@ def scrap(url, id):
     source_code=''
     try:
         source_code = requests.get(url,headers=headers).text
+        print('hello i am here')
         flag= True
     except requests.exceptions.HTTPError as errh:
         print ("Http Error:",errh)
