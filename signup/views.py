@@ -1266,21 +1266,22 @@ def PublicationPage(request, id):
     in_shared_bookmark = bookmarks_folder.objects.filter(id__in=shared_folders_bookmarks.values('folderID'))
     not_shared_bookmark = bookmarks_folder.objects.exclude(id__in=shared_folders_bookmarks.values('folderID')).filter(id__in=collabs)
 
-    flag =0
-    for pubkey in publication_keys:
-        if id == pubkey.publication_id and flag == 0:
-            flag=1
-        if flag == 0:
-            if "http" in publication.url: 
-                scrap(publication.url, publication.id)
-            else:
-                scrap("http://" + publication.url, publication.id)
+    
     publication_keys = pubkeys.objects.all()
     keywords_list = keywords.objects.all()
     keyword_results = []
     keyword_count = []
     xlist = list(results)
 
+    flag =0
+    for pubkey in publication_keys:
+        if id == pubkey.publication_id and flag == 0:
+            flag=1
+        if flag == 0:
+            if "http" in results.url: 
+                scrap(results.url, results.id)
+            else:
+                scrap("http://" + results.url, results.id)
     for publication in xlist:
         for pubkey in publication_keys:
             if publication.id == pubkey.publication_id:
