@@ -18,7 +18,7 @@ class registerUser(models.Model):
 
 
 class publications(models.Model):
-    title = models.TextField()
+    title = models.TextField(max_length=300)
     author = models.CharField(max_length=200)
     abstract = models.CharField(max_length=100)
     url = models.CharField(max_length=100)
@@ -31,7 +31,7 @@ class publications(models.Model):
         db_table = "publications"
 
 class keywords(models.Model):
-    keywordname = models.CharField(max_length=100)
+    keywordname = models.CharField(max_length=200)
 
     class Meta:
         db_table = "keywords"
