@@ -323,7 +323,9 @@ def scrap(url, id):
         print ("Timeout Error:",errt)
         flag = False
         pass
-     
+    except Exception as e:
+        flag = False
+        pass
 
     if flag == True:
         # BeautifulSoup object which will 
