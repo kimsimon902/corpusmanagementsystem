@@ -446,7 +446,7 @@ def clean_wordlist(wordlist, id):
         for i in range (0, len(symbols)): 
             word = word.replace(symbols[i], '') 
               
-        if len(word) > 0: 
+        if len(word) > 0 and len(word) < 60: 
             clean_list.append(word) 
     create_dictionary(clean_list,id)
 
