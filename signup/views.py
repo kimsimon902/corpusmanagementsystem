@@ -298,7 +298,7 @@ def scrap(url, id):
 
     source_code=''
     try:
-        source_code = requests.get(url).text
+        source_code = requests.get(url, verify=False).text
     except requests.exceptions.HTTPError as errh:
         print ("Http Error:",errh)
     except requests.exceptions.ConnectionError as errc:
