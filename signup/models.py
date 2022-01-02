@@ -81,8 +81,8 @@ class pubkeys(models.Model):
 
 class records_search(models.Model):
     user = models.CharField(max_length=100)
-    keyword = models.CharField(max_length=100)
-    filter = models.CharField(max_length=45)
+    keyword = models.CharField(max_length=200)
+    filter = models.CharField(max_length=200)
     source = models.CharField(max_length=200)
     num_results = models.IntegerField()
     date = models.DateField()
