@@ -521,7 +521,7 @@ def testAnalytics(request):
 
 
 def searchPublication(request):
-    messages.success(request,"generating keywords...")
+    
     if request.method == "GET":
         # searched = request.POST['searched']
         # searchFilter = request.POST['filterData']
