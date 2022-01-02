@@ -34,6 +34,8 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER
 from reportlab.platypus import Paragraph, Table, TableStyle
 import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
 import operator
 from collections import Counter
@@ -45,6 +47,7 @@ import nltk
 from nltk.corpus import stopwords
 nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
+
 
 #stopwords to be removed from scaping
 all_stopwords = stopwords.words('english')
@@ -291,6 +294,7 @@ def scrap(url, id):
     headers = {
         'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36'}
     
+    
 
     source_code=''
     try:
@@ -301,7 +305,14 @@ def scrap(url, id):
         print ("Error Connecting:",errc)
     except requests.exceptions.Timeout as errt:
         print ("Timeout Error:",errt)
-    
+        
+    session = requests.Session()
+    retry = Retry(connect=3, backoff_factor=0.5)
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+
+    session.get(url)
 
     # BeautifulSoup object which will 
     # ping the requested url for data 
