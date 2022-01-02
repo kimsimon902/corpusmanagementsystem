@@ -811,7 +811,7 @@ def searchPublication(request):
             logSearch.save()
             
             
-            
+            messages.success(request,"generating keywords...")
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
