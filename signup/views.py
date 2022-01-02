@@ -299,18 +299,18 @@ def scrap(url, id):
             "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
         }
     )
-    
+    source_code = requests.get(url,headers=headers).text
     
     print(url)
-    source_code=''
-    try:
-        source_code = requests.get(url, headers=headers).text
-    except requests.exceptions.HTTPError as errh:
-        print ("Http Error:",errh)
-    except requests.exceptions.ConnectionError as errc:
-        print ("Error Connecting:",errc)
-    except requests.exceptions.Timeout as errt:
-        print ("Timeout Error:",errt)
+    # source_code=''
+    # try:
+    #     source_code = requests.get(url,headers=headers).text
+    # except requests.exceptions.HTTPError as errh:
+    #     print ("Http Error:",errh)
+    # except requests.exceptions.ConnectionError as errc:
+    #     print ("Error Connecting:",errc)
+    # except requests.exceptions.Timeout as errt:
+    #     print ("Timeout Error:",errt)
        
 
 
