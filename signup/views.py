@@ -299,18 +299,21 @@ def scrap(url, id):
             'User-Agent': 'user_agent'
         }
     )
-    source_code = requests.get(url,headers=headers).text
+   
     
     print(url)
-    # source_code=''
-    # try:
-    #     source_code = requests.get(url,headers=headers).text
-    # except requests.exceptions.HTTPError as errh:
-    #     print ("Http Error:",errh)
-    # except requests.exceptions.ConnectionError as errc:
-    #     print ("Error Connecting:",errc)
-    # except requests.exceptions.Timeout as errt:
-    #     print ("Timeout Error:",errt)
+    source_code=''
+    try:
+        source_code = requests.get(url,headers=headers).text
+    except requests.exceptions.HTTPError as errh:
+        print ("Http Error:",errh)
+        pass
+    except requests.exceptions.ConnectionError as errc:
+        print ("Error Connecting:",errc)
+        pass
+    except requests.exceptions.Timeout as errt:
+        print ("Timeout Error:",errt)
+        pass
        
 
 
