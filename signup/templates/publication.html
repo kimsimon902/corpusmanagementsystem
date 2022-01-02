@@ -41,8 +41,9 @@
                         
                         <ul style="list-style-type:none;">
                         {% for keyword in keyword_results %}
-                            <div>{{keyword}}</div>
-                            
+                            <ul>
+                                <li>{{keyword}}</li>
+                            </ul>
                         {% endfor %}
                         </ul>
                         {% if request.session.email %}
