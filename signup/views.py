@@ -1278,10 +1278,11 @@ def PublicationPage(request, id):
         if id == pubkey.publication_id and flag == 0:
             flag=1
         if flag == 0:
-            if "http" in results.url: 
-                scrap(results.url, results.id)
+            if "http" in xlist.url: 
+                scrap(xlist.url, xlist.id)
             else:
-                scrap("http://" + results.url, results.id)
+                scrap("http://" + xlist.url, xlist.id)
+                
     for publication in xlist:
         for pubkey in publication_keys:
             if publication.id == pubkey.publication_id:
