@@ -792,17 +792,17 @@ def searchPublication(request):
             logSearch.user = email
             logSearch.keyword = searched
             logSearch.filter = searchFilter
-            print("after statistics 1")
+            
             if not libFilter:
                 libFilter = "['ais', 'ieee', 'scopus']"
-            print("after statistics 2")
+            
             logSearch.source = libFilter
             logSearch.num_results = results.count()
             logSearch.date = datetime.datetime.now()
             logSearch.save()
-            print("after statistics 3")
             
-            print('about to render')
+            
+            
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
