@@ -1313,6 +1313,7 @@ def PublicationPage(request, id):
     print(keyword_results)
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
+                                                'keyword_results':keyword_results,
                                                 'my_folders':my_folders, 
                                                 'in_bookmark':in_bookmark, 
                                                 'not_bookmark':not_bookmark, 
@@ -1323,8 +1324,7 @@ def PublicationPage(request, id):
                                                 'sharedbookmarks': shared_folders_bookmarks, 
                                                 'sharedpubs':shared_folders_pubs, 
                                                 'inshared':in_shared_bookmark, 
-                                                'notinshared':not_shared_bookmark, 
-                                                'keyword_results':keyword_results, 
+                                                'notinshared':not_shared_bookmark,   
                                                 'bool_in_bookmark': in_my_bookmarks,
                                                 'my_bookmarks_id': my_bookmarks_folder,
                                                 'my_bookmarks_content':my_bookmarks_folder_contents})
