@@ -417,7 +417,7 @@ def scrap(url, id):
         
         if 'doi' in url:
             wordlist = []
-            source_code = requests.get(url).text
+            source_code = requests.get(url,headers=headers).text
 
             # BeautifulSoup object which will
             # ping the requested url for data
