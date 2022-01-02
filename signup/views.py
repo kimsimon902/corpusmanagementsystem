@@ -443,9 +443,7 @@ def scrap(url, id):
             clean_wordlist(wordlist, id)
 
                 
-            
-
-
+        
 def clean_wordlist(wordlist, id): 
       
     clean_list =[] 
@@ -523,6 +521,7 @@ def testAnalytics(request):
 
 
 def searchPublication(request):
+    messages.success(request,"generating keywords...")
     if request.method == "GET":
         # searched = request.POST['searched']
         # searchFilter = request.POST['filterData']
@@ -787,7 +786,7 @@ def searchPublication(request):
             page_number = 1
             page_obj = page_results.get_page(page_number)      
 
-            print("loop for xlist 2")
+            
             filteredYear =[]
             for year in xlist:
                 if int(year.year) not in filteredYear:
@@ -811,7 +810,7 @@ def searchPublication(request):
             logSearch.save()
             
             
-            messages.success(request,"generating keywords...")
+            
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
