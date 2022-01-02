@@ -47,6 +47,7 @@ import nltk
 from nltk.corpus import stopwords
 nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
+from requests.exceptions import ConnectionError
 
 #stopwords to be removed from scaping
 all_stopwords = stopwords.words('english')
@@ -303,25 +304,27 @@ def scrap(url, id):
     flag=False
     print(url)
     source_code=''
-    # try:
-    #     source_code = requests.get(url,headers=headers).text
-    #     print('hello i am here')
-    #     flag= True
-    # except requests.exceptions.HTTPError as errh:
-    #     print ("Http Error:",errh)
-    #     flag = False
-    #     pass
-    # except requests.exceptions.ConnectionError as errc:
-    #     print ("Error Connecting:",errc)
-    #     flag = False
-    #     pass
-    # except requests.exceptions.Timeout as errt:
-    #     print ("Timeout Error:",errt)
-    #     flag = False
-    #     pass
+    try:
+        source_code = requests.get(url,headers=headers).text
+        flag= True
+    except requests.exceptions.HTTPError as errh:
+        print ("Http Error:",errh)
+        flag = False
+        pass
+    except requests.exceptions.HTTPError as errh:
+        print ("Http Error:",errh)
+        flag = False
+        pass
+    except requests.exceptions.ConnectionError as errc:
+        print ("Error Connecting:",errc)
+        flag = False
+        pass
+    except requests.exceptions.Timeout as errt:
+        print ("Timeout Error:",errt)
+        flag = False
+        pass
      
-    source_code = requests.get(url,headers=headers).text
-    flag=True
+
     if flag == True:
         # BeautifulSoup object which will 
         # ping the requested url for data 
