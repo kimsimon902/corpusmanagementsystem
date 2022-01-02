@@ -673,7 +673,7 @@ def searchPublication(request):
         searched = request.GET.get('searched','')
         searchFilter = request.GET.get('filterData','')
         libFilter = request.GET.getlist('filterLib')
-        print(searched)
+        
         if (request.user):
             author = request.session['username']
         else:
@@ -764,7 +764,7 @@ def searchPublication(request):
             #             scrap(publication.url, publication.id)
             #         else:
             #             scrap("http://" + publication.url, publication.id)
-            
+            print("loop for xlist")
             for publication in xlist:
                 for pubkey in publication_keys:
                     if publication.id == pubkey.publication_id:
@@ -778,7 +778,7 @@ def searchPublication(request):
             page_number = 1
             page_obj = page_results.get_page(page_number)      
 
-
+            print("loop for xlist 2")
             filteredYear =[]
             for year in xlist:
                 if int(year.year) not in filteredYear:
@@ -792,7 +792,7 @@ def searchPublication(request):
             logSearch.user = email
             logSearch.keyword = searched
             logSearch.filter = searchFilter
-
+            print("after statistics 1")
             if not libFilter:
                 libFilter = "['ais', 'ieee', 'scopus']"
 
@@ -800,6 +800,7 @@ def searchPublication(request):
             logSearch.num_results = results.count()
             logSearch.date = datetime.datetime.now()
             logSearch.save()
+            
             
             print('about to render')
             return render(request, 'main/search.html',{'searched':searched, 
