@@ -1274,15 +1274,16 @@ def PublicationPage(request, id):
     xlist = list(results)
 
     flag =0
-    for pubkey in publication_keys:
-        if id == pubkey.publication_id and flag == 0:
-            flag=1
-        if flag == 0:
-            if "http" in xlist.url: 
-                scrap(xlist.url, xlist.id)
-            else:
-                scrap("http://" + xlist.url, xlist.id)
-                
+    for publication in xlist:
+        for pubkey in publication_keys:
+            if id == pubkey.publication_id and flag == 0:
+                flag=1
+            if flag == 0:
+                if "http" in publication.url: 
+                    scrap(publication.url, publication.id)
+                else:
+                    scrap("http://" + publication.url, publication.id)
+
     for publication in xlist:
         for pubkey in publication_keys:
             if publication.id == pubkey.publication_id:
