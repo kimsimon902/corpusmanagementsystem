@@ -41,11 +41,7 @@
                         
                         <ul style="list-style-type:none;">
                         {% for keyword in keyword_results %}
-                            <form method="POST" action="{% url 'search' %}" id="search-form">
-                                {% csrf_token %}
-                                <li><button type="submit" value="Submit" class= "btn btn-link" style="color:black">{{keyword}}</button></li>
-                                <input type="hidden" name="searched" value="{{keyword}}">
-                            </form> 
+                            <p>{{keyword}}</p>
                             
                         {% endfor %}
                         </ul>
@@ -107,7 +103,15 @@
                                             {% if keyword_results %}
                                                     {% for keyword in keyword_results %}
                                                         
-                                                            <p>{{keyword}}</p>
+                                                            <tr>
+                                                                <form method="POST" action="/publication/{{getdata.id}}/removekeywordRequest/{{keyword}}">
+                                                                {% csrf_token %}
+                                                                <input type="hidden" name="keyword" value="{{keyword}}"/>
+                                                                <input type="hidden" name="next" value="{{ request.path }}"/>
+                                                                <td>{{keyword}}</td>
+                                                                <td><button type="submit" class="btn btn-outline-danger btn-sm" name="collab-delete">x</button></td>
+                                                                </form>    
+                                                            </tr>
                                                        
                                                     {% endfor %}
                                             {% endif %}
