@@ -764,7 +764,7 @@ def searchPublication(request):
             #             scrap(publication.url, publication.id)
             #         else:
             #             scrap("http://" + publication.url, publication.id)
-            print("loop for xlist")
+            
             for publication in xlist:
                 for pubkey in publication_keys:
                     if publication.id == pubkey.publication_id:
@@ -1231,6 +1231,11 @@ def FoldersPageAnalytics(request, folderID):
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
     results = publications.objects.filter(id=id)
+    publication_keys = pubkeys.objects.all()
+    keywords_list = keywords.objects.all()
+    keyword_results = []
+    keyword_count = []
+    xlist = list(results)
     if (request.user):
         author = request.session['username']
     else:
@@ -1268,12 +1273,6 @@ def PublicationPage(request, id):
     in_shared_bookmark = bookmarks_folder.objects.filter(id__in=shared_folders_bookmarks.values('folderID'))
     not_shared_bookmark = bookmarks_folder.objects.exclude(id__in=shared_folders_bookmarks.values('folderID')).filter(id__in=collabs)
 
-    
-    publication_keys = pubkeys.objects.all()
-    keywords_list = keywords.objects.all()
-    keyword_results = []
-    keyword_count = []
-    xlist = list(results)
 
     for publication in xlist:
         flag = 0
@@ -1309,8 +1308,6 @@ def PublicationPage(request, id):
         logView.date = datenow
         logView.save()
 
-
-    
 
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
