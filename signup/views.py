@@ -764,7 +764,7 @@ def searchPublication(request):
             #             scrap(publication.url, publication.id)
             #         else:
             #             scrap("http://" + publication.url, publication.id)
-
+            print('not yet past : (')
             for publication in xlist:
                 for pubkey in publication_keys:
                     if publication.id == pubkey.publication_id:
@@ -773,7 +773,7 @@ def searchPublication(request):
                                 if pubid.keywordname not in keyword_results:
                                     keyword_results.append(pubid.keywordname)
                                 
-
+            print('hello i made it past')
             page_results = Paginator(results, 10)
             page_number = 1
             page_obj = page_results.get_page(page_number)      
