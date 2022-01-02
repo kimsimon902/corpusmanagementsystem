@@ -324,10 +324,11 @@ def scrap(url, id):
         flag = False
         pass
     except Exception as e:
+        print('there is an error,',e)
         flag = False
         pass
 
-    if flag == True:
+    if flag:
         # BeautifulSoup object which will 
         # ping the requested url for data 
         soup = BeautifulSoup(source_code, 'html.parser') 
