@@ -305,10 +305,10 @@ def scrap(url, id):
     # except requests.exceptions.Timeout as errt:
     #     print ("Timeout Error:",errt)
 
-    page = ''
-    while page == '':
+    source_code = ''
+    while source_code == '':
         try:
-            page = requests.get(url)
+            source_code = requests.get(url)
             break
         except:
             print("Connection refused by the server..")
