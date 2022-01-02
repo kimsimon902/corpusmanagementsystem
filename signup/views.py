@@ -295,36 +295,17 @@ def scrap(url, id):
     
     
 
-    # source_code=''
-    # try:
-    #     source_code = requests.get(url, verify=False).text
-    # except requests.exceptions.HTTPError as errh:
-    #     print ("Http Error:",errh)
-    # except requests.exceptions.ConnectionError as errc:
-    #     print ("Error Connecting:",errc)
-    # except requests.exceptions.Timeout as errt:
-    #     print ("Timeout Error:",errt)
+    source_code=''
+    try:
+        source_code = requests.get(url).text
+    except requests.exceptions.HTTPError as errh:
+        print ("Http Error:",errh)
+    except requests.exceptions.ConnectionError as errc:
+        print ("Error Connecting:",errc)
+    except requests.exceptions.Timeout as errt:
+        print ("Timeout Error:",errt)
+       
 
-    source_code = ''
-    while source_code == '':
-        try:
-            source_code = requests.get(url)
-            break
-        except:
-            print("Connection refused by the server..")
-            print("Let me sleep for 5 seconds")
-            print("ZZzzzz...")
-            time.sleep(5)
-            print("Was a nice sleep, now let me continue...")
-            continue
-
-    # session = requests.Session()
-    # retry = Retry(connect=3, backoff_factor=0.5)
-    # adapter = HTTPAdapter(max_retries=retry)
-    # session.mount('http://', adapter)
-    # session.mount('https://', adapter)
-
-    # session.get(url)
 
     # BeautifulSoup object which will 
     # ping the requested url for data 
