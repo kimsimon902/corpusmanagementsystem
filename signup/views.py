@@ -1302,6 +1302,7 @@ def PublicationPage(request, id):
         logView.date = datenow
         logView.save()
 
+    time.sleep(5)
     for publication in xlist:
         for pubkey in publication_keys:
             if publication.id == pubkey.publication_id:
