@@ -47,6 +47,15 @@
             {% endfor %}
         </div>
 
+        <div class="container-fluid">
+            <h1>Sources</h1>
+            {% for source in source_arr %}  
+                {% for count in source %}
+                <p>{{count}}</p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+
         <div class="row">
             <div class="col">
                 <div class="table-responsive">

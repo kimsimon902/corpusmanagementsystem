@@ -584,6 +584,22 @@ def testAnalytics(request, keyword):
                 year_arr.insert(count, [year,years_tally.count(year)])
                 count+=1
 
+            sources_present = []
+            sources_tally = []
+            source_arr = []
+
+            for pub in results_list:
+                if pub.source not in sources_present:
+                    sources_present.append(pub.source)
+
+            for pub in results_list:
+                sources_tally.append(pub.source)
+
+            count = 0
+            for source in sources_present:
+                source_arr.insert(count, [source,sources_tally.count(source)])
+                count+=1
+
             for publication in results_list:
                 for pubkey in pubkeys_list:
                     if publication.id == pubkey.publication_id:
@@ -609,9 +625,8 @@ def testAnalytics(request, keyword):
                                                         'opened_pubs':opened_pubs, 
                                                         'viewed_tags':viewed_tags,
                                                         'bookmarked_pubs':bookmarked_pubs,
-                                                        'years_present':years_present,
-                                                        'years_tally':years_tally,
                                                         'year_arr':year_arr,
+                                                        'source_arr':source_arr
                                                         })
 
     return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
