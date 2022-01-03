@@ -2055,7 +2055,7 @@ def downloadFolderTable(request):
         bc.categoryAxis.labels.dy = -2
 
         yearcat = []
-        sorted(yearData)
+        yearData.sort(key=int)
         for x in set(yearData):
             yearcat.append(str(x))
 
