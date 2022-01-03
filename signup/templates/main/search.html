@@ -136,7 +136,7 @@
                         {% for count,year in zippedList %}
                         <tr>
                             <form class='col-12' method="GET" action="{% url 'search' %}" id="year-form">
-                                <input type="hidden" name ="year" value="{{count}}"/>
+                                <input type="hidden" name ="year" value="{{year}}"/>
                                 <input type="hidden" name ="searched" value="{{searched}}"/>
                                 <td style = "display:none">{{count}}</td>
                                 <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{year}}</button></td>
@@ -152,11 +152,11 @@
                 <div id="moreyear" style="display:none;">
                     <table>
                         <tbody>
-                            {% for year in filteredYear %}
+                            {% for count,year in zippedList %}
                             <tr>
                                 <form class='col-12' method="GET" action="{% url 'search' %}" id="year-form2">
                                     <input type="hidden" name ="year" value="{{year}}"/>
-                                    <td style = "display:none">{{year}}</td>
+                                    <td style = "display:none">{{count}}</td>
                                     <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{year}}</button></td>
                                 </form>
                             </tr>
