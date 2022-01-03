@@ -919,7 +919,7 @@ def searchPublication(request):
             for year in filteredYear:
                 year_count.append(countResults(year))
 
-            zippedList = zip(filteredYear, year_count)
+            zippedList = zip(year_count)
             #Log Search
             logSearch = records_search()
             logSearch.user = email
