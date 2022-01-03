@@ -2055,12 +2055,13 @@ def downloadFolderTable(request):
         bc.categoryAxis.labels.dy = -2
 
         yearcat = []
+        set(yearData)
         yearData.sort(key=int)
         for x in yearData:
             yearcat.append(str(x))
 
         
-        bc.categoryAxis.categoryNames = set(yearcat)
+        bc.categoryAxis.categoryNames = yearcat
 
         bc.bars[0].fillColor = colors.blue
         bc.bars[1].fillColor = colors.lightblue
