@@ -2043,7 +2043,7 @@ def downloadFolderTable(request):
         bc.categoryAxis.labels.dx = 8
         bc.categoryAxis.labels.dy = -2
 
-        catNames = String.split('Trial1 Trial2 Trial3 Trial4 Trial5')
+        catNames = ['Trial1', 'Trial2', 'Trial3', 'Trial4', 'Trial5']
         bc.categoryAxis.categoryNames = catNames
 
         bc.bars[0].fillColor = colors.blue
