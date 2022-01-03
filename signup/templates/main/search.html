@@ -153,7 +153,7 @@
                 <div id="moreyear" style="display:none;">
                     <table>
                         <tbody>
-                            {% for count,year in zippedList %}
+                            {% for year in filteredYear %}
                             <tr>
                                 <form class='col-12' method="GET" action="{% url 'search' %}" id="year-form2">
                                     <input type="hidden" name ="year" value="{{year}}"/>

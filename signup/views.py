@@ -942,7 +942,7 @@ def searchPublication(request):
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
-                                                        'zippedList': zippedList,
+                                                        'filteredYear': filteredYear,
                                                         'searchFilter': searchFilter,
                                                         'libFilter':libFilter
                                                         })
