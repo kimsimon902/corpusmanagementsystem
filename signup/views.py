@@ -575,13 +575,13 @@ def testAnalytics(request, keyword):
             years_present.sort()
 
             for pub in results_list:
-                years_tally.append(pub.year)
+                years_tally.append(int(pub.year))
 
             years_tally.sort()
 
             count = 0
             for year in years_present:
-                year_arr.insert(count, [int(year),years_tally.count(int(year))])
+                year_arr.insert(count, [year,years_tally.count(year)])
                 count+=1
 
             for publication in results_list:
