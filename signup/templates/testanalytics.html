@@ -40,8 +40,11 @@
         {% endfor %} -->
         <div class="container-fluid">
             <h1>Years</h1>
-            {% for year in year_arr %}
-            <p>Year:{{year[{{forloop.counter}}][0]}} Count:{{year[{{forloop.counter}}][1]}}</p>
+            {% for year in year_arr %}  
+            <!-- <p>Year:{{year[forloop.counter][0]}} Count:{{year[forloop.counter][1]}}</p> -->
+                {% for count in year %}
+                <p>{{count}}</p>
+                {% endfor %}
             {% endfor %}
         </div>
         <div class="row">
