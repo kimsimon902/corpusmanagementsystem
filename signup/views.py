@@ -1982,11 +1982,11 @@ def downloadFolderTable(request):
         idata = []
 
         for x in lab:
-            if x ==  'AIS - ' + str(aiscounter):
+            if x == ('AIS - ' + str(aiscounter)):
                idata.append(aiscounter)
-            elif x == 'IEEE - ' + str(ieeecounter):
+            elif x == ('IEEE - ' + str(ieeecounter)):
                 idata.append(ieeecounter)
-            elif x == 'Scopus - ' + str(scopuscounter):
+            elif x == ('Scopus - ' + str(scopuscounter)):
                 idata.append(scopuscounter)
             else:
                 idata.append(othercounter)
