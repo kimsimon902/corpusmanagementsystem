@@ -570,7 +570,7 @@ def testAnalytics(request, keyword):
 
             for pub in results_list:
                 if int(pub.year) not in years_present:
-                    years_present.append(pub.year)
+                    years_present.append(int(pub.year))
 
             years_present.sort()
 
