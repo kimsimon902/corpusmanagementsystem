@@ -2022,6 +2022,7 @@ def downloadFolderTable(request):
         drawing.add(chart)
         drawing.add(legend)
 
+        '''
         drawingbar = Drawing(400, 200)
 
         bc = VerticalBarChart()
@@ -2051,6 +2052,7 @@ def downloadFolderTable(request):
 
     
         drawingbar.add(bc)
+'''
 
         table = Table(data, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
         # add style
@@ -2107,7 +2109,7 @@ def downloadFolderTable(request):
         pdf.build(elems)
         buf.seek(0)
 
-        return FileResponse(buf, as_attachment=True, filename='Summary.pdf')
+        return FileResponse(buf, as_attachment=True, filename= pair[1] + ' Summary.pdf')
 
 '''
 #This is your data collected from your Vizard experiment
