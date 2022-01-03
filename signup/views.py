@@ -1968,20 +1968,16 @@ def downloadFolderTable(request):
                 othercounter = othercounter + 1
 
         if aiscounter > 0:
-            #lab.append('AIS - ' + str(aiscounter))
-            lab.append('AIS')
+            lab.append('AIS - ' + str(aiscounter))
 
         if ieeecounter > 0:
-            #lab.append('IEEE - ' + str(ieeecounter))
-            lab.append('IEEE')
+            lab.append('IEEE - ' + str(ieeecounter))
 
         if scopuscounter > 0:
-            #lab.append('Scopus - ' + str(scopuscounter))
-            lab.append('Scopus')
+            lab.append('Scopus - ' + str(scopuscounter))
 
         if othercounter > 0:
-            #lab.append('Others - ' + str(othercounter))
-            lab.append('Others')
+            lab.append('Others - ' + str(othercounter))
 
         idata = []
 
@@ -2111,7 +2107,7 @@ def downloadFolderTable(request):
         pdf.build(elems)
         buf.seek(0)
 
-        return FileResponse(buf, as_attachment=True, filename= pair[1] + ' Summary.pdf')
+        return FileResponse(buf, as_attachment=True, filename='Summary.pdf')
 
 '''
 #This is your data collected from your Vizard experiment
