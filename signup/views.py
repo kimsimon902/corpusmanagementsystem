@@ -2027,7 +2027,6 @@ def downloadFolderTable(request):
         drawing.add(chart)
         drawing.add(legend)
 
-        '''
         drawingbar = Drawing(400, 200)
 
         bc = VerticalBarChart()
@@ -2055,9 +2054,7 @@ def downloadFolderTable(request):
         bc.bars[0].fillColor = colors.blue
         bc.bars[1].fillColor = colors.lightblue
 
-    
         drawingbar.add(bc)
-'''
 
         table = Table(data, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
         # add style
