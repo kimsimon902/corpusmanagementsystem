@@ -2032,7 +2032,7 @@ def downloadFolderTable(request):
 
         drawingbar = Drawing(400, 200)
         ydata = [
-            Counter(yearData)
+            [4] #Counter(yearData)
         ]
 
         bc = VerticalBarChart()
