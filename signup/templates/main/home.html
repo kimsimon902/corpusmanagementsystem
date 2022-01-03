@@ -54,7 +54,7 @@
       <form method="POST" action="/testAnalytics/{{tag.tag}}">
         {% csrf_token %}
         <input type="hidden" name="keyword" value="{{tag.tag}}">
-        <button type="submit">Open</button>
+        <button type="submit">{{tag.tag}}</button>
       </form>
       {% endfor %}
 
