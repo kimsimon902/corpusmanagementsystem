@@ -1,6 +1,7 @@
 from django.core import paginator
 from django.db import reset_queries
 from django.db.models.fields import EmailField, NullBooleanField
+from django.db.models.query_utils import FilteredRelation
 from django.http import response
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -919,7 +920,7 @@ def searchPublication(request):
             for year in filteredYear:
                 year_count.append(countResults(year))
 
-            zippedList = zip(year_count)
+            zippedList = zip(year_count,filteredYear)
             #Log Search
             logSearch = records_search()
             logSearch.user = email
