@@ -91,7 +91,7 @@
         <div class="row row-cols-2 justify-content-center">
             <div class="col-2" style="margin-left: 10px;max-width: 200px;">
                 
-                <h5 style="margin-top: 20px;">hello</h5>
+                <h5 style="margin-top: 20px;">Keywords</h5>
                 <table class="table">
                     <tbody>
                         {% for keyword in keyword_results|slice:"5" %}
@@ -133,7 +133,7 @@
                 <h5 style="margin-top: 20px;">Year</h5>
                 <table class ="table">
                     <tbody>
-                        {% for year,count in zippedList|slice:"5" %}
+                        {% for year,count in zippedList %}
                         <tr>
                             <form class='col-12' method="GET" action="{% url 'search' %}" id="year-form">
                                 <input type="hidden" name ="year" value="{{year}}"/>
