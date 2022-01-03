@@ -946,18 +946,18 @@ def searchPublication(request):
             logSearch.date = datetime.datetime.now()
             logSearch.save()
             
-            
+            zippedList = zip(keyword_count, keyword_results)
             
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
-                                                        'keyword_results':keyword_results, 
+                                                        'zippedList':zippedList, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
                                                         'filteredYear': filteredYear,
                                                         'searchFilter': searchFilter,
-                                                        'libFilter':libFilter,
-                                                        'keywordCount': keyword_count})
+                                                        'libFilter':libFilter
+                                                        })
             
         elif searchFilter == "title":
             

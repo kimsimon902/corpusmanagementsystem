@@ -94,8 +94,8 @@
                 <h5 style="margin-top: 20px;">Keywords</h5>
                 <table class="table">
                     <tbody>
-                        {% for keyword in keyword_results|slice:"5" %}
-                        {% for count in keywordCount %}
+                        {% for count,keyword in zippedList|slice:"5" %}
+                        
                             <tr>
                                 <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">
                                
@@ -106,7 +106,7 @@
                                 </form>
                             </tr>
                         
-                        {% endfor %} 
+                        
                         {% endfor %}
                     </tbody>
                 </table>  
