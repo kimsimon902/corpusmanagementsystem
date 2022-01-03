@@ -652,6 +652,7 @@ def countResults(word):
                         results_list.append(pub)
     
     count = len(results_list)
+    print('hi im ', count)
     return(count)
 
 def searchPublication(request):
