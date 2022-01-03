@@ -2032,7 +2032,7 @@ def downloadFolderTable(request):
 
         drawingbar = Drawing(400, 200)
         ydata = [
-            [Counter(yearData)]
+            [Counter(yearData).values()]
         ]
 
         bc = VerticalBarChart()
@@ -2051,7 +2051,7 @@ def downloadFolderTable(request):
         bc.categoryAxis.labels.dy = -2
 
         yearcat = []
-        for x in set(yearData):
+        for x in Counter(yearData).keys():
             yearcat.append(x)
 
         bc.categoryAxis.categoryNames = yearcat
