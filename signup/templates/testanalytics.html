@@ -19,7 +19,7 @@
 <body>
 {% include 'main/nav-bar.html' %}
     <div class="container-fluid">
-        <p>Top searched keywords</p>
+        <!-- <p>Top searched keywords</p>
         {% for keyword in searchedkeys %}
             <p>{{forloop.counter}}. {{ keyword.keyword }} is searched {{ keyword.count }} times</p>
         {% endfor %}
@@ -37,8 +37,7 @@
         <p>Top bookmarked</p>
         {% for bookmark in bookmarked_pubs %}
         <p>{{forloop.counter}}. {{ bookmark.pub_title }} is bookmarked {{ bookmark.count }} times</p>
-        {% endfor %}
-
+        {% endfor %} -->
         <div class="row">
             <div class="col">
                 <div class="table-responsive">
