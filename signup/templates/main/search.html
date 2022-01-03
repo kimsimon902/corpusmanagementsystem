@@ -143,13 +143,13 @@
                             </form>
                         </tr>
                         {% endfor %}
-                    {% if filteredYear.count > 5 %}
-                    <div id="seemore-year" onclick="seemoreYear()" style="cursor: pointer;">See more</div>
-                    {% endif %}
+                    
                     </tbody>
                     
                 </table>
-                   
+                {% if filteredYear.count > 5 %}
+                <div id="seemore-year" onclick="seemoreYear()" style="cursor: pointer;">See more</div>
+                {% endif %}
 
                 <div id="moreyear" style="display:none;">
                     <table>
