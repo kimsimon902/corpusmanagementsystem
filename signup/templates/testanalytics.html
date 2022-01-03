@@ -38,6 +38,12 @@
         {% for bookmark in bookmarked_pubs %}
         <p>{{forloop.counter}}. {{ bookmark.pub_title }} is bookmarked {{ bookmark.count }} times</p>
         {% endfor %} -->
+        <div class="container-fluid">
+            <h1>Years</h1>
+            {% for year in year_arr %}
+            <p>Year:{{year[forloop.counter][0]}} Count:{{year[forloop.counter][1]}}</p>
+            {% endfor %}
+        </div>
         <div class="row">
             <div class="col">
                 <div class="table-responsive">
