@@ -634,6 +634,7 @@ def testAnalytics(request, keyword):
 
 def countResults(word):
 
+    print(word)
     results_list = []
     resultsId_list = []
     pubkeys_list = list(pubkeys.objects.all())
