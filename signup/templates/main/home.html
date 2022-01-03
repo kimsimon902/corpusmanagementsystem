@@ -50,6 +50,13 @@
         </div>
     </header>
     <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+      <form method="POST" action="testAnalytics/language">
+        {% csrf_token %}
+        <input type="hidden" name="keyword" value="language">
+        <button type="submit">Open</button>
+      </form>
+    </div>
+    <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
         <h2>Trends</h2>
         <div class="card-group" style="margin-top: 20px">
             <div class="card">

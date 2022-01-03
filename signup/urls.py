@@ -33,7 +33,7 @@ urlpatterns =[
     path('adminpage/',views.viewAdmin, name ='adminpage'),
     path('adminpage/keywordrequests',views.keywordRequests, name ='keywordrequests'),
     path('folder_table/',views.downloadFolderTable, name ='folder_table'),
-    path('testAnalytics/', views.testAnalytics, name="testAnalytics"),
+    path('testAnalytics/<keyword>', views.testAnalytics, name="testAnalytics"),
     path('testFolderAnalytics/<folderID>', views.FoldersPageAnalytics, name="FoldersPageAnalytics"),
 ]
 

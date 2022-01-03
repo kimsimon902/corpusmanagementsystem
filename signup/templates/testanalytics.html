@@ -38,6 +38,35 @@
         {% for bookmark in bookmarked_pubs %}
         <p>{{forloop.counter}}. {{ bookmark.pub_title }} is bookmarked {{ bookmark.count }} times</p>
         {% endfor %}
+
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author/s</th>
+                                <th>Abstract</th>
+                                <th>Source</th>
+                                <th>URL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pub in results %}
+                            <tr>
+                                <td><a href="">{{pub.title}}</a></td>
+                                <td>{{pub.author}}</td>
+                                <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{pub.abstract}}</td>
+                                <td>{{pub.source}}</td>
+                                <td id="url">{{pub.url}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
 

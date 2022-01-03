@@ -513,7 +513,7 @@ def create_dictionary(clean_list, id):
     pubkeys.objects.bulk_create(pub_id)
 
 
-def testAnalytics(request):
+def testAnalytics(request, keyword):
     #most searched keywords
     searched_keywords = records_search.objects.raw('SELECT id, keyword, count(*) as count FROM records_search GROUP BY keyword ORDER BY count DESC LIMIT 10')
 
@@ -525,6 +525,67 @@ def testAnalytics(request):
 
     #most bookmarked
     bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 10')
+
+    if request.method == "POST":
+        keyword_search = request.POST['keyword']
+
+        if keyword_search != None:
+
+            if (request.user):
+                author = request.session['username']
+            else:
+                author="null"
+
+            email = request.session['email']
+
+            searched = keyword_search
+            searchFilter = "default"
+            results_list = []
+            resultsId_list = []
+            pubkeys_list = list(pubkeys.objects.all())
+            keywords_list = list(keywords.objects.all())
+            publications_list = list(publications.objects.all())
+
+            my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('id') #get my bookmarks folderID
+            my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
+
+            for keyword in keywords_list:
+                if keyword_search == keyword.keywordname:
+                    resultsId_list.append(keyword.id)
+
+            for resultsid in resultsId_list:
+                for pubid in pubkeys_list:
+                    if resultsid == pubid.keywords_id:
+                        for pub in publications_list:
+                            if pubid.publication_id == pub.id:
+                                results_list.append(pub)
+
+            keyword_results = []
+            keyword_count = []
+            
+
+            for publication in results_list:
+                for pubkey in pubkeys_list:
+                    if publication.id == pubkey.publication_id:
+                        for pubid in keywords_list:
+                            if pubkey.keywords_id == pubid.id:
+                                if pubid.keywordname not in keyword_results:
+                                    keyword_results.append(pubid.keywordname)
+            
+            filteredYear =[]
+            for year in results_list:
+                if int(year.year) not in filteredYear:
+                    filteredYear.append(int(year.year))
+
+            filteredYear.sort()
+            
+            print(results_list)
+            
+            return render(request, 'main/search.html',{'searched':searched, 
+                                                        'results':results_list, 
+                                                        'count':len(results_list),
+                                                        'keyword_results':keyword_results, 
+                                                        })
 
     return render(request, 'testanalytics.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
 
