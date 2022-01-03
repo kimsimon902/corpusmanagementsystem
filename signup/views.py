@@ -632,28 +632,10 @@ def testAnalytics(request, keyword):
     return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
 
 
-def countResults(word):
+def countResults(year):
 
-    print(word)
-    results_list = []
-    resultsId_list = []
-    pubkeys_list = list(pubkeys.objects.all())
-    keywords_list = list(keywords.objects.all())
-    publications_list = list(publications.objects.all())
+    count = publications.objects.filter(year=year).count()
 
-    for keyword in keywords_list:
-        if word == keyword.keywordname:
-            resultsId_list.append(keyword.id)
-
-    for resultsid in resultsId_list:
-        for pubid in pubkeys_list:
-            if resultsid == pubid.keywords_id:
-                for pub in publications_list:
-                    if pubid.publication_id == pub.id:
-                        results_list.append(pub)
-    
-    count = len(results_list)
-    print('hi im ', count)
     return(count)
 
 def searchPublication(request):
@@ -708,7 +690,6 @@ def searchPublication(request):
                             if pubkey.keywords_id == pubid.id:
                                 if pubid.keywordname not in keyword_results:
                                     keyword_results.append(pubid.keywordname)
-                                    keyword_count.append(countResults(searched))
                                     
             
             filteredYear =[]
@@ -741,7 +722,6 @@ def searchPublication(request):
                                                         'my_bookmarks_id': my_bookmarks_folder, 
                                                         'filteredYear': filteredYear,
                                                         'searchFilter': searchFilter,
-                                                        'keywordCount': keyword_count
                                                         })
 
         year_search = request.GET.get('year')
@@ -787,7 +767,7 @@ def searchPublication(request):
                         
 
             keyword_results = []
-            keyword_count = []
+            year_count = []
             
 
             for publication in results_list:
@@ -802,17 +782,18 @@ def searchPublication(request):
             for year in results_list:
                 if int(year.year) not in filteredYear:
                     filteredYear.append(int(year.year))
+                    year_count.append(countResults(year.year))
 
             filteredYear.sort()
             
-            print(results_list)
+            zippedList = zip(filteredYear, year_count)
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
-                                                        'filteredYear': filteredYear,
+                                                        'zippedList': zippedList,
                                                         'searchFilter': searchFilter
                                                         })
 
@@ -899,7 +880,7 @@ def searchPublication(request):
             publication_keys = pubkeys.objects.all()
             keywords_list = keywords.objects.all()
             keyword_results = []
-            keyword_count = []
+            year_count = []
             
             for publication in xlist:
                 flag = 0
@@ -919,7 +900,7 @@ def searchPublication(request):
                             if pubkey.keywords_id == pubid.id:
                                 if pubid.keywordname not in keyword_results:
                                     keyword_results.append(pubid.keywordname)
-                                    keyword_count.append(countResults(pubid.keywordname))
+                                    
                                     
                                 
             
@@ -932,10 +913,11 @@ def searchPublication(request):
             for year in xlist:
                 if int(year.year) not in filteredYear:
                     filteredYear.append(int(year.year))
+                    year_count.append(countResults(year.year))
 
             filteredYear.sort()
 
-
+            zippedList = zip(filteredYear, year_count)
             #Log Search
             logSearch = records_search()
             logSearch.user = email
@@ -949,16 +931,15 @@ def searchPublication(request):
             logSearch.num_results = results.count()
             logSearch.date = datetime.datetime.now()
             logSearch.save()
-            print(keyword_count)
-            zippedList = zip(keyword_count, keyword_results)
+            
             
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
-                                                        'zippedList':zippedList, 
+                                                        'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
-                                                        'filteredYear': filteredYear,
+                                                        'zippedList': zippedList,
                                                         'searchFilter': searchFilter,
                                                         'libFilter':libFilter
                                                         })

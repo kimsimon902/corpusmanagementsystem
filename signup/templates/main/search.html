@@ -94,13 +94,13 @@
                 <h5 style="margin-top: 20px;">Keywords</h5>
                 <table class="table">
                     <tbody>
-                        {% for count,keyword in zippedList|slice:"5" %}
+                        {% for keyword in keyword_results|slice:"5" %}
                         
                             <tr>
                                 <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">
                                
                                 <input type="hidden" name ="keyword" value="{{keyword}}"/>
-                                <td style = "display:none"> hi</td>
+                                <td style = "display:none"> {{keyword}}</td>
                                 <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword}}</button></td>
                                 
                                 </form>
@@ -133,12 +133,12 @@
                 <h5 style="margin-top: 20px;">Year</h5>
                 <table>
                     <tbody>
-                        {% for year in filteredYear|slice:"5" %}
+                        {% for year,count in zippedlist|slice:"5" %}
                         <tr>
                             <form class='col-12' method="GET" action="{% url 'search' %}" id="year-form">
                                 <input type="hidden" name ="year" value="{{year}}"/>
                                 <input type="hidden" name ="searched" value="{{searched}}"/>
-                                <td style = "display:none">{{year}}</td>
+                                <td style = "display:none">{{year}} {{count}}</td>
                                 <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{year}}</button></td>
                             </form>
                         </tr>
