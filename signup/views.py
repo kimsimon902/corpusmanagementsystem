@@ -633,11 +633,11 @@ def testAnalytics(request, keyword):
     return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
 
 
-def countResults(year):
+# def countYearResults(year, word):
 
-    count = publications.objects.filter(year=year).count()
-    print(count)
-    return(count)
+#     count = publications.objects.filter(year=year, title__icontains=word).count()
+#     print(count)
+#     return(count)
 
 def searchPublication(request):
     
@@ -783,7 +783,7 @@ def searchPublication(request):
             for year in results_list:
                 if int(year.year) not in filteredYear:
                     filteredYear.append(int(year.year))
-                    year_count.append(countResults(year.year))
+                    # year_count.append(countResults(year.year))
 
             filteredYear.sort()
             
@@ -794,7 +794,7 @@ def searchPublication(request):
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
-                                                        'zippedList': zippedList,
+                                                        'filteredYear': filteredYear,
                                                         'searchFilter': searchFilter
                                                         })
 
@@ -917,8 +917,8 @@ def searchPublication(request):
                     
 
             filteredYear.sort()
-            for year in filteredYear:
-                year_count.append(countResults(year))
+            # for year in filteredYear:
+            #     year_count.append(countResults(year,searched))
 
             zippedList = zip(year_count,filteredYear)
             #Log Search
