@@ -117,7 +117,7 @@
                 <div id="morekeyword" style="display:none;">
                     <table class="table" id="keywordstable2">
                         <tbody>
-                            {% for keyword in keyword_results %}
+                            {% for keyword in keyword_results|slice:"10" %}
                             <tr>
                                 <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form2">
                                     <input type="hidden" name ="keyword" value="{{keyword}}"/>
@@ -155,7 +155,7 @@
                 <div id="moreyear" style="display:none;">
                     <table class="table" id="yeartable2">
                         <tbody>
-                            {% for year in filteredYear %}
+                            {% for year in filteredYear|slice:"10" %}
                             <tr>
                                 <form class='col-12' method="GET" action="{% url 'search' %}" id="year-form2">
                                     <input type="hidden" name ="year" value="{{year}}"/>
