@@ -651,7 +651,8 @@ def countResults(keyword):
                     if pubid.publication_id == pub.id:
                         results_list.append(pub)
     
-    return(len(results_list))
+    count = len(results_list)
+    return(count)
 
 def searchPublication(request):
     
