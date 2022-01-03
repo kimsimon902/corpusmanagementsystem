@@ -41,7 +41,7 @@
         <div class="container-fluid">
             <h1>Years</h1>
             {% for year in year_arr %}
-            <p>Year:{{year[forloop.counter][0]}} Count:{{year[forloop.counter][1]}}</p>
+            <p>Year:{{year[{{forloop.counter}}][0]}} Count:{{year[{{forloop.counter}}][1]}}</p>
             {% endfor %}
         </div>
         <div class="row">
