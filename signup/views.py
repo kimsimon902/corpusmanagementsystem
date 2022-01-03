@@ -1968,28 +1968,33 @@ def downloadFolderTable(request):
                 othercounter = othercounter + 1
 
         if aiscounter > 0:
-            lab.append('AIS - ' + str(aiscounter))
+            lab.append('AIS')
 
         if ieeecounter > 0:
-            lab.append('IEEE - ' + str(ieeecounter))
+            lab.append('IEEE')
 
         if scopuscounter > 0:
-            lab.append('Scopus - ' + str(scopuscounter))
+            lab.append('Scopus')
 
         if othercounter > 0:
-            lab.append('Others - ' + str(othercounter))
+            lab.append('Others')
 
         idata = []
+        ledata = []
 
         for x in lab:
-            if x == ('AIS - ' + str(aiscounter)):
+            if x == ('AIS'):
                idata.append(aiscounter)
-            elif x == ('IEEE - ' + str(ieeecounter)):
+               ledata.append('AIS - ' + str(aiscounter))
+            elif x == ('IEEE'):
                 idata.append(ieeecounter)
-            elif x == ('Scopus - ' + str(scopuscounter)):
+                ledata.append('IEEE - ' + str(ieeecounter))
+            elif x == ('Scopus'):
                 idata.append(scopuscounter)
+                ledata.append('Scopus - ' + str(scopuscounter))
             else:
                 idata.append(othercounter)
+                ledata.append(othercounter)
 
         from reportlab.lib.validators import Auto
         from reportlab.graphics.charts.piecharts import Pie
@@ -1999,7 +2004,7 @@ def downloadFolderTable(request):
         chart.x = 10
         chart.y = 5
 
-        chart.labels = lab
+        chart.labels = ledata
         chart.sideLabels = True
 
         chart.slices[0].fillColor = colors.red
