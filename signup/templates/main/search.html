@@ -147,9 +147,7 @@
                     </tbody>
                     
                 </table>
-                {% if filteredYear.count > 1 %}
-                <div id="seemore-year" onclick="seemoreYear()" style="cursor: pointer;">See more</div>
-                {% endif %}
+                
 
                 <div id="moreyear" style="display:none;">
                     <table>
@@ -166,6 +164,9 @@
                         </tbody>
                     </table>
                 </div>
+                {% if filteredYear.count > 1 %}
+                    <div id="seemore-year" onclick="seemoreYear()" style="cursor: pointer;">See more</div>
+                {% endif %}
                 
                 <script>
                     function seemoreYear() {
