@@ -632,7 +632,7 @@ def testAnalytics(request, keyword):
     return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
 
 
-def countResults(keyword):
+def countResults(word):
 
     results_list = []
     resultsId_list = []
@@ -641,7 +641,7 @@ def countResults(keyword):
     publications_list = list(publications.objects.all())
 
     for keyword in keywords_list:
-        if keyword == keyword.keywordname:
+        if word == keyword.keywordname:
             resultsId_list.append(keyword.id)
 
     for resultsid in resultsId_list:
