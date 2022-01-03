@@ -917,6 +917,7 @@ def searchPublication(request):
                                 if pubid.keywordname not in keyword_results:
                                     keyword_results.append(pubid.keywordname)
                                     keyword_count.append(countResults(searched))
+                                    
                                 
             
             page_results = Paginator(results, 10)
@@ -945,7 +946,7 @@ def searchPublication(request):
             logSearch.num_results = results.count()
             logSearch.date = datetime.datetime.now()
             logSearch.save()
-            
+            print(keyword_count)
             zippedList = zip(keyword_count, keyword_results)
             
             return render(request, 'main/search.html',{'searched':searched, 
