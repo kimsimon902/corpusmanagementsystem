@@ -2031,9 +2031,11 @@ def downloadFolderTable(request):
         drawing.add(legend)
 
         drawingbar = Drawing(400, 200)
+        yearData.sort(key=int)
         numist = []
         for x in Counter(yearData).values():
             numist.append(x)
+
 
         ydata = [
             numist
