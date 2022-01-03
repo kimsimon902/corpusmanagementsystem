@@ -919,7 +919,7 @@ def searchPublication(request):
                             if pubkey.keywords_id == pubid.id:
                                 if pubid.keywordname not in keyword_results:
                                     keyword_results.append(pubid.keywordname)
-                                    keyword_count.append(countResults(searched))
+                                    keyword_count.append(countResults(pubid.keywordname))
                                     
                                 
             
