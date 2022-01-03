@@ -2029,8 +2029,7 @@ def downloadFolderTable(request):
 
         drawingbar = Drawing(400, 200)
         ydata = [
-            [1998,1974,1993],
-            [2009,2099,2011]
+            [1,2,3]
         ]
 
         bc = VerticalBarChart()
@@ -2044,16 +2043,12 @@ def downloadFolderTable(request):
 
         bc.strokeColor = colors.black
 
-        bc.valueAxis.valueMin = 0
-        bc.valueAxis.valueMax = 100
-        bc.valueAxis.valueStep = 10
-
         bc.categoryAxis.labels.boxAnchor = 'ne'
         bc.categoryAxis.labels.dx = 8
         bc.categoryAxis.labels.dy = -2
 
-        catNames = ['Trial1', 'Trial2', 'Trial3', 'Trial4', 'Trial5']
-        bc.categoryAxis.categoryNames = catNames
+        yearNames = ['1997', '1998', '1999', '2000', '2001']
+        bc.categoryAxis.categoryNames = yearNames
 
         bc.bars[0].fillColor = colors.blue
         bc.bars[1].fillColor = colors.lightblue
