@@ -584,10 +584,14 @@ def testAnalytics(request, keyword):
             return render(request, 'testanalytics.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
-                                                        'keyword_results':keyword_results, 
+                                                        'keyword_results':keyword_results,
+                                                        'searchedkeys':searched_keywords,
+                                                        'opened_pubs':opened_pubs, 
+                                                        'viewed_tags':viewed_tags,
+                                                        'bookmarked_pubs':bookmarked_pubs
                                                         })
 
-    return render(request, 'testanalytics.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
+    return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
 
 
 

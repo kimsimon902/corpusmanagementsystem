@@ -20,7 +20,7 @@
 {% include 'main/nav-bar.html' %}
     <div class="container-fluid">
         <p>Top searched keywords</p>
-        {% for keyword in searched %}
+        {% for keyword in searchedkeys %}
             <p>{{forloop.counter}}. {{ keyword.keyword }} is searched {{ keyword.count }} times</p>
         {% endfor %}
         <br>
