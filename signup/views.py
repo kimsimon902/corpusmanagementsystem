@@ -1938,9 +1938,11 @@ def downloadFolderTable(request):
         data = [
             ['Title', 'Author', 'URL', 'Source', 'Year']
         ]
-        
+        yearData = []
+
         for pub in getpubs:
             data.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
+            yearData.append(pub.year)
             #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
             #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
         
@@ -2047,8 +2049,7 @@ def downloadFolderTable(request):
         bc.categoryAxis.labels.dx = 8
         bc.categoryAxis.labels.dy = -2
 
-        yearNames = ['1997', '1998', '1999', '2000', '2001']
-        bc.categoryAxis.categoryNames = yearNames
+        bc.categoryAxis.categoryNames = yearData
 
         bc.bars[0].fillColor = colors.blue
         bc.bars[1].fillColor = colors.lightblue
