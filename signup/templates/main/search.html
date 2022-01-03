@@ -110,7 +110,7 @@
                         {% endfor %}
                     </tbody>
                 </table>  
-                {% if keyword_results.count > 5 %}
+                {% if keyword_results|length > 5 %}
                     <p id="seemore-keyword" onclick="seemoreKeyword()" style="cursor: pointer;">See more</p>
                 {% endif %}
 
@@ -148,6 +148,9 @@
                     
                 </table>
                 
+                {% if filteredYear|length > 5 %}
+                    <div id="seemore-year" onclick="seemoreYear()" style="cursor: pointer;">See more</div>
+                {% endif %}
 
                 <div id="moreyear" style="display:none;">
                     <table>
@@ -164,9 +167,7 @@
                         </tbody>
                     </table>
                 </div>
-                {% if filteredYear|length > 1 %}
-                    <div id="seemore-year" onclick="seemoreYear()" style="cursor: pointer;">See more</div>
-                {% endif %}
+               
                 
                 <script>
                     function seemoreYear() {
