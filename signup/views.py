@@ -1335,6 +1335,43 @@ def FoldersPageAnalytics(request, folderID):
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
 
+    years_present = []  
+    years_tally = []
+    year_arr = []
+            
+
+    for pub in xlist:
+        if int(pub.year) not in years_present:
+            years_present.append(int(pub.year))
+
+    years_present.sort()
+
+    for pub in xlist:
+        years_tally.append(int(pub.year))
+
+    years_tally.sort()
+
+    count = 0
+    for year in years_present:
+        year_arr.insert(count, [year,years_tally.count(year)])
+        count+=1
+
+    sources_present = []
+    sources_tally = []
+    source_arr = []
+
+    for pub in xlist:
+        if pub.source not in sources_present:
+            sources_present.append(pub.source)
+
+    for pub in xlist:
+        sources_tally.append(pub.source)
+
+    count = 0
+    for source in sources_present:
+        source_arr.insert(count, [source,sources_tally.count(source)])
+        count+=1
+
     #most searched keywords
     searched_keywords = records_search.objects.raw('SELECT id, keyword, count(*) as count FROM records_search GROUP BY keyword ORDER BY count DESC LIMIT 10')
 
@@ -1347,7 +1384,11 @@ def FoldersPageAnalytics(request, folderID):
     #most bookmarked
     bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 10')
                             
-    return render(request, 'testfolderanalytics.html',{'folder':folder,'pubs':pubs, 'keywords': keyword_results})
+    return render(request, 'testfolderanalytics.html',{'folder':folder,
+                                                       'pubs':pubs, 
+                                                       'keywords': keyword_results,
+                                                       'year_arr':year_arr,
+                                                       'source_arr':source_arr})
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):
