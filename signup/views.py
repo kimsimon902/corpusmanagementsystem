@@ -635,7 +635,7 @@ def testAnalytics(request, keyword):
 def countResults(year):
 
     count = publications.objects.filter(year=year).count()
-
+    print(count)
     return(count)
 
 def searchPublication(request):
@@ -934,7 +934,7 @@ def searchPublication(request):
             logSearch.date = datetime.datetime.now()
             logSearch.save()
             
-            
+            print(year_count)
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
