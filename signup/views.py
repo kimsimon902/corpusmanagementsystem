@@ -2028,13 +2028,17 @@ def downloadFolderTable(request):
         drawing.add(legend)
 
         drawingbar = Drawing(400, 200)
+        ydata = [
+            [1998,1974,1993],
+            [2009,2099,2011]
+        ]
 
         bc = VerticalBarChart()
         bc.x = 50
         bc.y = 50
         bc.height = 125
         bc.width = 300
-        bc.data = data
+        bc.data = ydata
         bc.barWidth = .3*inch
         bc.groupSpacing = .2 * inch
 
