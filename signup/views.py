@@ -581,7 +581,7 @@ def testAnalytics(request, keyword):
 
             count = 0
             for year in years_present:
-                year_arr.insert(count, [year,years_tally.count(int(year))])
+                year_arr.insert(count, [int(year),years_tally.count(int(year))])
                 count+=1
 
             for publication in results_list:
