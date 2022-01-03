@@ -632,6 +632,26 @@ def testAnalytics(request, keyword):
     return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
 
 
+def countResults(keyword):
+
+    results_list = []
+    resultsId_list = []
+    pubkeys_list = list(pubkeys.objects.all())
+    keywords_list = list(keywords.objects.all())
+    publications_list = list(publications.objects.all())
+
+    for keyword in keywords_list:
+        if keyword == keyword.keywordname:
+            resultsId_list.append(keyword.id)
+
+    for resultsid in resultsId_list:
+        for pubid in pubkeys_list:
+            if resultsid == pubid.keywords_id:
+                for pub in publications_list:
+                    if pubid.publication_id == pub.id:
+                        results_list.append(pub)
+    
+    return(len(results_list))
 
 def searchPublication(request):
     
@@ -677,7 +697,7 @@ def searchPublication(request):
             keyword_results = []
             keyword_count = []
             
-
+            
             for publication in results_list:
                 for pubkey in pubkeys_list:
                     if publication.id == pubkey.publication_id:
@@ -685,6 +705,8 @@ def searchPublication(request):
                             if pubkey.keywords_id == pubid.id:
                                 if pubid.keywordname not in keyword_results:
                                     keyword_results.append(pubid.keywordname)
+                                    keyword_count.append(countResults(searched))
+                                    
             
             filteredYear =[]
             for year in results_list:
@@ -715,7 +737,8 @@ def searchPublication(request):
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
                                                         'filteredYear': filteredYear,
-                                                        'searchFilter': searchFilter
+                                                        'searchFilter': searchFilter,
+                                                        'keywordCount': keyword_count
                                                         })
 
         year_search = request.GET.get('year')

@@ -95,18 +95,18 @@
                 <table class="table">
                     <tbody>
                         {% for keyword in keyword_results|slice:"5" %}
-                        
+                        {% for count in keywordCount %}
                             <tr>
                                 <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">
                                
                                 <input type="hidden" name ="keyword" value="{{keyword}}"/>
-                                <td style = "display:none">{{keyword}}</td>
+                                <td style = "display:none">{{keyword}} ({{count}})</td>
                                 <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword}}</button></td>
                                 
                                 </form>
                             </tr>
                         
-                            
+                        {% endfor %} 
                         {% endfor %}
                     </tbody>
                 </table>  
