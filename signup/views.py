@@ -2031,8 +2031,12 @@ def downloadFolderTable(request):
         drawing.add(legend)
 
         drawingbar = Drawing(400, 200)
+        numist = []
+        for x in Counter(yearData).values():
+            numist.append(x)
+
         ydata = [
-            [Counter(yearData).values()]
+            numist
         ]
 
         bc = VerticalBarChart()
