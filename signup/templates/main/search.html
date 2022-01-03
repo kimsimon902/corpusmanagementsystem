@@ -92,7 +92,7 @@
             <div class="col-2" style="margin-left: 10px;max-width: 200px;">
                 
                 <h5 style="margin-top: 20px;">Keywords</h5>
-                <table class="table">
+                <table class="table" id="keywordstable">
                     <tbody>
                         {% for keyword in keyword_results|slice:"5" %}
                         
@@ -115,7 +115,7 @@
                 {% endif %}
 
                 <div id="morekeyword" style="display:none;">
-                    <table>
+                    <table class="table" id="keywordstable2">
                         <tbody>
                             {% for keyword in keyword_results %}
                             <tr>
@@ -131,7 +131,7 @@
                 </div>
 
                 <h5 style="margin-top: 20px;">Year</h5>
-                <table class ="table">
+                <table class="table" id="yeartable">
                     <tbody>
                         {% for year in filteredYear|slice:"5" %}
                         <tr>
@@ -147,13 +147,13 @@
                     </tbody>
                     
                 </table>
-                
+
                 {% if filteredYear|length > 5 %}
                     <div id="seemore-year" onclick="seemoreYear()" style="cursor: pointer;">See more</div>
                 {% endif %}
 
                 <div id="moreyear" style="display:none;">
-                    <table>
+                    <table class="table" id="yeartable2">
                         <tbody>
                             {% for year in filteredYear %}
                             <tr>
@@ -189,7 +189,7 @@
                 <script>
                     function seemoreKeyword() {
                     document.getElementById("seemore-keyword").style.display = "none";
-                    document.getElementById("link-1-keyword").style.display = "none";
+                    document.getElementById("keywordstable").style.display = "none";
                     document.getElementById("link-2-keyword").style.display = "none";
                     document.getElementById("link-3-keyword").style.display = "none";
                     document.getElementById("link-4-keyword").style.display = "none";
