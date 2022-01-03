@@ -48,6 +48,7 @@ from nltk.corpus import stopwords
 nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
 from requests.exceptions import ConnectionError
+from collections import Counter
 
 #stopwords to be removed from scaping
 all_stopwords = stopwords.words('english')
@@ -2031,7 +2032,7 @@ def downloadFolderTable(request):
 
         drawingbar = Drawing(400, 200)
         ydata = [
-            [1,2,3]
+            Counter(yearData)
         ]
 
         bc = VerticalBarChart()
@@ -2049,7 +2050,7 @@ def downloadFolderTable(request):
         bc.categoryAxis.labels.dx = 8
         bc.categoryAxis.labels.dy = -2
 
-        bc.categoryAxis.categoryNames = yearData
+        bc.categoryAxis.categoryNames = set(yearData)
 
         bc.bars[0].fillColor = colors.blue
         bc.bars[1].fillColor = colors.lightblue
