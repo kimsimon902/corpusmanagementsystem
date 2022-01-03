@@ -913,9 +913,11 @@ def searchPublication(request):
             for year in xlist:
                 if int(year.year) not in filteredYear:
                     filteredYear.append(int(year.year))
-                    year_count.append(countResults(year.year))
+                    
 
             filteredYear.sort()
+            for year in filteredYear:
+                year_count.append(countResults(year))
 
             zippedList = zip(filteredYear, year_count)
             #Log Search
