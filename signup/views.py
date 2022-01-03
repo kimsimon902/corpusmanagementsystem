@@ -916,6 +916,7 @@ def searchPublication(request):
                             if pubkey.keywords_id == pubid.id:
                                 if pubid.keywordname not in keyword_results:
                                     keyword_results.append(pubid.keywordname)
+                                    keyword_count.append(countResults(searched))
                                 
             
             page_results = Paginator(results, 10)
@@ -955,7 +956,8 @@ def searchPublication(request):
                                                         'my_bookmarks_id': my_bookmarks_folder, 
                                                         'filteredYear': filteredYear,
                                                         'searchFilter': searchFilter,
-                                                        'libFilter':libFilter})
+                                                        'libFilter':libFilter,
+                                                        'keywordCount': keyword_count})
             
         elif searchFilter == "title":
             
