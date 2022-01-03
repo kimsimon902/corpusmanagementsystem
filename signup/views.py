@@ -1968,16 +1968,16 @@ def downloadFolderTable(request):
                 othercounter = othercounter + 1
 
         if aiscounter > 0:
-            lab.append('AIS')
+            lab.append('AIS ' + aiscounter)
 
         if ieeecounter > 0:
-            lab.append('IEEE')
+            lab.append('IEEE ' + ieeecounter)
 
         if scopuscounter > 0:
-            lab.append('Scopus')
+            lab.append('Scopus ' + scopuscounter)
 
         if othercounter > 0:
-            lab.append('Others')
+            lab.append('Others ' + othercounter)
 
         idata = []
 
@@ -2021,6 +2021,36 @@ def downloadFolderTable(request):
         drawing.add(title)
         drawing.add(chart)
         drawing.add(legend)
+
+        drawingbar = Drawing(400, 200)
+
+        bc = VerticalBarChart()
+        bc.x = 50
+        bc.y = 50
+        bc.height = 125
+        bc.width = 300
+        bc.data = data
+        bc.barWidth = .3*inch
+        bc.groupSpacing = .2 * inch
+
+        bc.strokeColor = colors.black
+
+        bc.valueAxis.valueMin = 0
+        bc.valueAxis.valueMax = 100
+        bc.valueAxis.valueStep = 10
+
+        bc.categoryAxis.labels.boxAnchor = 'ne'
+        bc.categoryAxis.labels.dx = 8
+        bc.categoryAxis.labels.dy = -2
+
+        catNames = String.split('Trial1 Trial2 Trial3 Trial4 Trial5')
+        bc.categoryAxis.categoryNames = catNames
+
+        bc.bars[0].fillColor = colors.blue
+        bc.bars[1].fillColor = colors.lightblue
+
+    
+        drawingbar.add(bc)
 
         table = Table(data, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
         # add style
@@ -2072,11 +2102,12 @@ def downloadFolderTable(request):
         elems.append(Spacer(1,.25*inch))
         drawing.hAlign = 'CENTER'
         elems.append(drawing)
+        elems.append(drawingbar)
         #elems.append(d)
         pdf.build(elems)
         buf.seek(0)
 
-        return FileResponse(buf, as_attachment=True, filename='Corpus_Table.pdf')
+        return FileResponse(buf, as_attachment=True, filename= pair[1] + ' Summary.pdf')
 
 '''
 #This is your data collected from your Vizard experiment
