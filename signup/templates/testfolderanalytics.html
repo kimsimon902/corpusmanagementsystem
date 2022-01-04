@@ -27,7 +27,7 @@
             const myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: [{% for year in year_arr %}'{{year}}',{% endfor %}],
+                    labels: [{% for year in year_arr %}'{{year[0]}}',{% endfor %}],
                     datasets: [{
                         label: '# of Votes',
                         data: [12, 19, 3, 5, 2, 3],
