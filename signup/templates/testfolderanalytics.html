@@ -155,23 +155,6 @@
 <body>
 {% include 'main/nav-bar.html' %}
     <div class="container-fluid">
-        <h1>Years {{ year_arr }}</h1>
-        {% for year in year_arr %}
-            {% for count in year %}
-            <p>{{count}}</p>
-            {% endfor %}
-        {% endfor %}
-    </div>
-
-    <div class="container-fluid">
-        <h1>Sources</h1>
-        {% for source in source_arr %}  
-            {% for count in source %}
-            <p>{{count}}</p>
-            {% endfor %}
-        {% endfor %}
-    </div>
-    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12" style="">   
                 <div class="d-flex justify-content-center" style="">    

@@ -1,61 +1,175 @@
 <!DOCTYPE html>
 {% if request.session.email %}
 <html>
-<head>
-  {% load static %}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>Publication</title>
-  <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{% static '\users\assets\css\index.css' %}">
-  <link rel="stylesheet" href="{% static '\users\assets\css\Pretty-Search-Form.css' %}">
-  <link rel="stylesheet" href="{% static '\users\assets\css\publication.css' %}">
-  <link rel="stylesheet" href="{% static '\users\assets\css\search.css' %}">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    
-</head>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Publication</title>
+        <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static '\users\assets\css\index.css' %}">
+        <link rel="stylesheet" href="{% static '\users\assets\css\Pretty-Search-Form.css' %}">
+        <link rel="stylesheet" href="{% static '\users\assets\css\publication.css' %}">
+        <link rel="stylesheet" href="{% static '\users\assets\css\search.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+          <!-- semantic UI -->
+          <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+          <!--Chart js-->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+          <!-- jQuery -->
+          <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+      
+          <script src='https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js'></script>
+      
+          <script>
+              $(document).ready(function(){
+                  const ctx = document.getElementById('myChart').getContext('2d');
+                  const myChart = new Chart(ctx, {
+                      type: 'bar',
+                      data: {
+                          labels: [{% for year in year_arr %}'{{year.0}}',{% endfor %}],
+                          datasets: [{
+                              label: 'Year',
+                              data: [{% for year in year_arr %}{{year.1}},{% endfor %}],
+                              backgroundColor: [
+                                  'rgba(255, 99, 132, 0.2)',
+                                  'rgba(54, 162, 235, 0.2)',
+                                  'rgba(255, 206, 86, 0.2)',
+                                  'rgba(75, 192, 192, 0.2)',
+                                  'rgba(153, 102, 255, 0.2)',
+                                  'rgba(255, 159, 64, 0.2)',
+                                  'rgba(255, 99, 132, 0.2)',
+                                  'rgba(54, 162, 235, 0.2)',
+                                  'rgba(255, 206, 86, 0.2)',
+                                  'rgba(75, 192, 192, 0.2)',
+                                  'rgba(153, 102, 255, 0.2)',
+                                  'rgba(255, 159, 64, 0.2)',
+                              ],
+                              borderColor: [
+                                  'rgba(255, 99, 132, 1)',
+                                  'rgba(54, 162, 235, 1)',
+                                  'rgba(255, 206, 86, 1)',
+                                  'rgba(75, 192, 192, 1)',
+                                  'rgba(153, 102, 255, 1)',
+                                  'rgba(255, 159, 64, 1)',
+                                  'rgba(255, 99, 132, 1)',
+                                  'rgba(54, 162, 235, 1)',
+                                  'rgba(255, 206, 86, 1)',
+                                  'rgba(75, 192, 192, 1)',
+                                  'rgba(153, 102, 255, 1)',
+                                  'rgba(255, 159, 64, 1)',
+                              ],
+                              borderWidth: 1
+                          }]
+                      },
+                      options: {
+                          responsive:false,
+                          plugins: {
+                              labels:{
+                                  render:'value',
+                              },
+                          },
+                          scales: {
+                              y: {
+                                  beginAtZero: true,
+                              },
+                              yAxes: [{
+                                      ticks: {
+                                          min: 0,
+                                          stepSize: 1,
+                                      }
+                                  }]
+                          }
+                      }
+                  });
+      
+                  const ctxPie = document.getElementById('myChartPie').getContext('2d');
+                  const myChartPie = new Chart(ctxPie, {
+                      type: 'pie',
+                      data: {
+                          labels: [{% for source in source_arr %}'{{source.0}}',{% endfor %}],
+                          datasets: [{
+                              label: 'Year',
+                              data: [{% for source in source_arr %}{{source.1}},{% endfor %}],
+                              backgroundColor: [
+                                  'rgba(255, 99, 132, 0.2)',
+                                  'rgba(54, 162, 235, 0.2)',
+                                  'rgba(255, 206, 86, 0.2)',
+                                  'rgba(75, 192, 192, 0.2)',
+                                  'rgba(153, 102, 255, 0.2)',
+                                  'rgba(255, 159, 64, 0.2)',
+                                  'rgba(255, 99, 132, 0.2)',
+                                  'rgba(54, 162, 235, 0.2)',
+                                  'rgba(255, 206, 86, 0.2)',
+                                  'rgba(75, 192, 192, 0.2)',
+                                  'rgba(153, 102, 255, 0.2)',
+                                  'rgba(255, 159, 64, 0.2)',
+                              ],
+                              borderColor: [
+                                  'rgba(255, 99, 132, 1)',
+                                  'rgba(54, 162, 235, 1)',
+                                  'rgba(255, 206, 86, 1)',
+                                  'rgba(75, 192, 192, 1)',
+                                  'rgba(153, 102, 255, 1)',
+                                  'rgba(255, 159, 64, 1)',
+                                  'rgba(255, 99, 132, 1)',
+                                  'rgba(54, 162, 235, 1)',
+                                  'rgba(255, 206, 86, 1)',
+                                  'rgba(75, 192, 192, 1)',
+                                  'rgba(153, 102, 255, 1)',
+                                  'rgba(255, 159, 64, 1)',
+                              ],
+                              borderWidth: 1
+                          }]
+                      },
+                      options: {
+                          responsive:false,
+                          plugins: {
+                              labels: {
+                                  render: 'value',
+                                  precision: 0,
+                                  showZero: true,
+                                  fontSize: 12,
+                                  fontColor: '#000',
+                                  fontStyle: 'normal',
+                                  fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                                  textShadow: false,
+                                  arc: false,
+                                  position: 'default',
+                                  overlap: true,
+                                  showActualPercentages: true,
+                                  outsidePadding: 4,
+                                  textMargin: 4
+                              }
+                              }
+                      }
+                  });
+              });
+          </script>
+      </head>
+
+
 <body>
 {% include 'main/nav-bar.html' %}
     <div class="container-fluid">
-        <!-- <p>Top searched keywords</p>
-        {% for keyword in searchedkeys %}
-            <p>{{forloop.counter}}. {{ keyword.keyword }} is searched {{ keyword.count }} times</p>
-        {% endfor %}
-        <br>
-        <p>Top opened pubs</p>
-        {% for pub in opened_pubs %}
-        <p>{{forloop.counter}}. {{ pub.pub_title }} is opened {{ pub.count }} times</p>
-        {% endfor %}
-        <br>
-        <p>Top viewed tags</p>
-        {% for tag in viewed_tags %}
-        <p>{{forloop.counter}}. {{ tag.tag }} is viewed {{ tag.count }} times</p>
-        {% endfor %}
-        <br>
-        <p>Top bookmarked</p>
-        {% for bookmark in bookmarked_pubs %}
-        <p>{{forloop.counter}}. {{ bookmark.pub_title }} is bookmarked {{ bookmark.count }} times</p>
-        {% endfor %} -->
-        <div class="container-fluid">
-            <h1>Years</h1>
-            {% for year in year_arr %}  
-                {% for count in year %}
-                <p>{{count}}</p>
-                {% endfor %}
-            {% endfor %}
+        <div class="row">
+            <div class="col-sm-12" style="">   
+                <div class="d-flex justify-content-center" style="">    
+                    <canvas id="myChart" width="1000" height="800"></canvas>
+                </div>
+                <div class="d-flex justify-content-center" style="">
+                    <canvas id="myChartPie" width="600" height="600"></canvas>
+                </div>
+            </div>
         </div>
-
-        <div class="container-fluid">
-            <h1>Sources</h1>
-            {% for source in source_arr %}  
-                {% for count in source %}
-                <p>{{count}}</p>
-                {% endfor %}
-            {% endfor %}
-        </div>
-
+    </div>
+    
+    <div class="container-fluid">
         <div class="row">
             <div class="col">
                 <div class="table-responsive">
