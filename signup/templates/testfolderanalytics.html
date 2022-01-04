@@ -27,7 +27,7 @@
             const myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    labels: [{% for year in year_arr %}'{{year}}',{% endfor %}],
                     datasets: [{
                         label: '# of Votes',
                         data: [12, 19, 3, 5, 2, 3],
@@ -65,7 +65,7 @@
 {% include 'main/nav-bar.html' %}
     <div class="container-fluid">
         <h1>Years {{ year_arr }}</h1>
-        {% for year in year_arr %}  
+        {% for year in year_arr %}
             {% for count in year %}
             <p>{{count}}</p>
             {% endfor %}
