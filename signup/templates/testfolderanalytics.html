@@ -63,7 +63,6 @@
                     }]
                 },
                 options: {
-                    responsive:false,
                     scales: {
                         y: {
                             beginAtZero: true,
@@ -117,7 +116,6 @@
                     }]
                 },
                 options: {
-                    responsive:false,
                 }
             });
         });
@@ -151,7 +149,7 @@
             <canvas id="myChartPie" width="200px" height="400px"></canvas>
         </div>
     </div>
-    
+
     <div class="container-fluid">
         {% for f in folder %}
             <h1>statistics for {{f.folder_name}}</h1>
