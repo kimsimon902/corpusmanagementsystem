@@ -29,6 +29,10 @@
                 data: {
                     labels: [{% for year in year_arr %}'{{year.0}}',{% endfor %}],
                     datasets: [{
+                        barPercentage: 0.5,
+                        barThickness: 6,
+                        maxBarThickness: 8,
+                        minBarLength: 1,
                         label: 'Year',
                         data: [{% for year in year_arr %}{{year.1}},{% endfor %}],
                         backgroundColor: [
