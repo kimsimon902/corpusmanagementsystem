@@ -29,7 +29,7 @@
                 data: {
                     labels: [{% for year in year_arr %}'{{year.0}}',{% endfor %}],
                     datasets: [{
-                        label: '# of Votes',
+                        label: 'Year',
                         data: [{% for year in year_arr %}{{year.1}},{% endfor %}],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
