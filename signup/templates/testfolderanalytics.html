@@ -152,9 +152,7 @@
                 <div class="d-flex justify-content-center" style="">
                     <canvas id="myChartPie" width="600" height="600"></canvas>
                     <h1>Sources</h1>
-                    {% for source in source_arr %}  
-                        <span>{{source.0}}: {{source.1}}</span>
-                    {% endfor %}
+                        <p>{% for source in source_arr %}  {{source.0}}: {{source.1}}, {% endfor %}</p>
                 </div>
             </div>
         </div>
