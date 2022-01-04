@@ -29,10 +29,6 @@
                 data: {
                     labels: [{% for year in year_arr %}'{{year.0}}',{% endfor %}],
                     datasets: [{
-                        barPercentage: 0.5,
-                        barThickness: 6,
-                        maxBarThickness: 8,
-                        minBarLength: 100,
                         label: 'Year',
                         data: [{% for year in year_arr %}{{year.1}},{% endfor %}],
                         backgroundColor: [
@@ -69,7 +65,11 @@
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            max: 5,
+                            min: 0,
+                            ticks: {
+                            stepSize: 0.5
                         }
                     }
                 }
