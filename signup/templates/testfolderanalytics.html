@@ -64,7 +64,7 @@
 <body>
 {% include 'main/nav-bar.html' %}
     <div class="container-fluid">
-        <h1>Years</h1>
+        <h1>Years {{ year_arr }}</h1>
         {% for year in year_arr %}  
             {% for count in year %}
             <p>{{count}}</p>
