@@ -49,16 +49,24 @@
             </div>
         </div>
     </header>
-    <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
-      {% for tag in viewed_tags %}
-      <form method="POST" action="/testAnalytics/{{tag.tag}}">
-        {% csrf_token %}
-        <input type="hidden" name="keyword" value="{{tag.tag}}">
-        <button type="submit">{{tag.tag}}</button>
-      </form>
-      {% endfor %}
 
+    <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">
+              Trending topics by folder
+          </h3>
+          {% for tag in viewed_tags %}
+          <form method="POST" action="/testAnalytics/{{tag.tag}}">
+            {% csrf_token %}
+            <input type="hidden" name="keyword" value="{{tag.tag}}">
+            <button type="submit">{{tag.tag}}</button>
+          </form>
+          {% endfor %}
+        </div>
+      </div>
     </div>
+
     <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
         <h2>Trends</h2>
         <div class="card-group" style="margin-top: 20px">
