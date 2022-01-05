@@ -60,7 +60,7 @@
           <form method="POST" action="/testAnalytics/{{tag.tag}}">
             {% csrf_token %}
             <input type="hidden" name="keyword" value="{{tag.tag}}">
-            <button type="submit">{{tag.tag}}</button>
+            <button type="submit" style="text-transform: capitalize;">{{tag.tag}}</button>
           </form>
           {% endfor %}
         </div>
