@@ -42,11 +42,14 @@
                    <div class="toc">
                        <p>Keywords</p>
                        <ul style="list-style-type:none;">
-                           <li><a href="#">Aliquam In Arcu </a> </li>
-                           <li><a href="#">Ut vehicula rhoncus</a></li>
-                           <li><a href="#">Lorem Ipsum </a> </li>
-                           <li><a href="#">Dolor sit amet</a> </li>
-                       </ul>
+                        {% if keyword_results %}
+                            {% for keyword in keyword_results %}
+                                <ul style="list-style: none;">
+                                    <li>{{keyword}}</li>
+                                </ul>
+                            {% endfor %}
+                        {% endif %}
+                        </ul>
                        <br>
                        <br>
                        <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#mymodal">Folders<i class="fa fa-folder-open-o" aria-hidden="true" style="margin-left: 5px;"></i></button>
