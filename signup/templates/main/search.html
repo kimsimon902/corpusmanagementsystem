@@ -90,6 +90,36 @@
         </div>
         <div class="row row-cols-2 justify-content-center">
             <div class="col-2" style="margin-left: 10px;max-width: 200px;">
+
+                <h5 style="margin-top: 20px;">Keywords</h5>
+                <table class="table" id="filtertable">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <form class='col-12' method="GET" action="{% url 'search' %}" id="sort-relevance">
+                                    <input type="hidden" name ="sortBy" value="relevance"/>
+                                    <button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >Relevance</button>   
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form class='col-12' method="GET" action="{% url 'search' %}" id="sort-earlyYear">
+                                    <input type="hidden" name ="sortBy" value="earlyYear"/>
+                                    <button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >Earliest Year</button>   
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form class='col-12' method="GET" action="{% url 'search' %}" id="sort-lateYear">
+                                    <input type="hidden" name ="sortBy" value="lateYear"/>
+                                    <button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >Latest Year</button>   
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>  
                 
                 <h5 style="margin-top: 20px;">Keywords</h5>
                 <table class="table" id="keywordstable">
