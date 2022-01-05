@@ -2161,7 +2161,7 @@ def downloadFolderTable(request):
     email = request.session['email']
     if request.method == 'POST':
         pair = [key for key in request.POST.keys()][1].split("|")
-        filterpub = bookmarks.objects.filter(user=email,folderID=pair[0]).values('publicationID')
+        filterpub = bookmarks.objects.filter(folderID=pair[0]).values('publicationID')
         getpubs = publications.objects.filter(id__in=filterpub)
         from reportlab.platypus.flowables import KeepTogether
         from reportlab.lib.units import mm
