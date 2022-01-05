@@ -133,6 +133,17 @@
                 <h5 style="margin-top: 20px;">Year</h5>
                 <table class="table" id="yeartable">
                     <tbody>
+                        <tr>
+                            <form class='col-12' action="{% url 'search' %}" id=yearRange-form></form>
+                            <div class="input-group mb-3">
+                                <td>
+                                    <input type="text" class="form-control" placeholder="From" aria-label="fromYear">
+                                    <span class="input-group-text">-</span>
+                                    <input type="text" class="form-control" placeholder="To" aria-label="toYear">
+                                    <button type="submit"></button>
+                                </td>
+                            </div>
+                        </tr>
                         {% for year in filteredYear|slice:"5" %}
                         <tr>
                             <form class='col-12' method="GET" action="{% url 'search' %}" id="year-form">
@@ -168,7 +179,6 @@
                     </table>
                 </div>
                
-                
                 <script>
                     function seemoreYear() {
                       document.getElementById("seemore-year").style.display = "none";
