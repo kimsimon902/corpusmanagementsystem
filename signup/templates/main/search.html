@@ -259,14 +259,14 @@
                                     {% endif %}
                                 </tr>
                                 <tr id="abstract-{{result.id}}" style="display: none;">
-                                    <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px;">{{result.abstract}}</td>
+                                    <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px; text-align:justify;">{{result.abstract}}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="5">
                                         <ul class="list-inline">
                                             {% if result.abstract != "" %}
                                                 <li class="list-inline-item">
-                                                    <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px; text-align:justify;" onclick="toggleAbstract('{{result.id}}')">Toggle Abstract</Button>
+                                                    <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" onclick="toggleAbstract('{{result.id}}')">Toggle Abstract</Button>
                                                 </li>
                                             {% endif %}
                                             <li class="list-inline-item">
