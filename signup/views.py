@@ -1464,11 +1464,14 @@ def PublicationPage(request, id):
         logView.date = datenow
         logView.save()
 
-    flag = 1
+    flag = 0
+
     for publication in xlist:
+        if publication.source != 'Uploaded':
             for pubkey in publication_keys:
                 if publication.id == pubkey.publication_id:
-                    flag = 0
+                    flag = 1
+
     if flag == 0:
         for publication in xlist:
             flag = 0
