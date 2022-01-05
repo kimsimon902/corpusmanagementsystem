@@ -255,15 +255,19 @@
                                                 ( min <= year   && isNaN( max )) ||
                                                 ( min <= year   && year <= max )) {
                                                 $(this).show()
-                                            } else {
+                        
+                                            } 
+                                            else {
                                                 $(this).hide()
-                                            }   
+                                        
+                                            }  
+                                            
                                         })
                                     });
                                 </script>
 
                                 {% for result in results %}
-                                <tr>
+                                <tr class="tr_1">
                                     
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                     <td style="border-bottom: none;">{{result.author}}</td>
@@ -275,12 +279,12 @@
                                     <td id="url" style="border-bottom: none;"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
                                     {% else %}
                                     <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
-                                    {% endif %}
+                                    {% endif %}                               
                                 </tr>
-                                <tr id="abstract-{{result.id}}" style="display: none;">
+                                <tr class="tr_2" id="abstract-{{result.id}}" style="display: none;">
                                     <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px; text-align:justify;">{{result.abstract}}</td>
                                 </tr>
-                                <tr>
+                                <tr class="tr_3">
                                     <td colspan="5">
                                         <ul class="list-inline">
                                             {% if result.abstract != "" %}
@@ -310,7 +314,19 @@
                                                             <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add" value="submit" form="bookmark-form-{{result.id}}" id="bookmark-add-in-search-table-{{result.id}}" style="display: inline;" >Add to Bookmarks<i class="fa fa-bookmark-o" aria-hidden="true" style="margin-left: 5px;"></i></button>
                                                         </form>
                                                         {% endfor %}
-                                                        
+                                                                                                  
+                                                    {% endif %}
+                                                    {% empty %}
+                                                        {% for bookmark_id in my_bookmarks_id %}
+                                                        <form method="POST" action="/publication/{{result.id}}/bookmark" id="bookmark-form-{{result.id}}">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="next" value="{{ request.get_full_path }}"/>
+                                                            <input type="hidden" name="folder_id" value="{{bookmark_id.id}}"/>
+                                                            <input type="hidden" name="bookmark_action" value="add">
+                                                            <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add" value="submit" form="bookmark-form-{{result.id}}" id="bookmark-add-in-search-table-{{result.id}}" style="display: inline;" >Add to Bookmarks<i class="fa fa-bookmark-o" aria-hidden="true" style="margin-left: 5px;"></i></button>
+                                                        </form>
+                                                        {% endfor %}
+
                                                         <script>
                                                             var found = document.getElementById("bookmark-delete-in-search-table-"+"{{result.id}}");
                                                             var addDiv = document.getElementById("bookmark-add-in-search-table-"+"{{result.id}}");
@@ -321,8 +337,7 @@
                                                             else {
                                                                 addDiv.style.display = "none";
                                                             }
-                                                        </script>                                                    
-                                                    {% endif %}
+                                                        </script> 
                                                 {% endfor %}
                                             </li>
                                         </ul>
