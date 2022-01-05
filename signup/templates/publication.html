@@ -174,7 +174,7 @@
                             <td id="url" style="border-bottom: none;"><a href="https://{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td> 
                         {% endif %}
                                     
-                        {% if result.url %}
+                        {% if result.url == 'uploaded' %}
                             <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
                         {% endif %}
                         <br>
