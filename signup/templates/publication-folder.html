@@ -52,7 +52,83 @@
                         </ul>
                        <br>
                        <br>
+
+                        <div id="addKeywordModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                          
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Add Keyword</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="/publication/{{getdata.id}}/addkeywordRequest">
+                                        {% csrf_token %}
+                                        <label for="fname">Keywords</label><br>
+                                        <input type="text" id="addedKeyword" name="addedKeyword" placeholder="enter keyword/s (e.g. cloud, telehealth, augmented)" size="45" required><br>
+                                        <input type="hidden" name="next" value="{{ request.path }}"/>
+                                        <button type="submit" class="btn btn-primary btn-sm" ><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+                                        </svg> Add </button>
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                          
+                            </div>
+                          </div>
+
+                          <div class="modal fade bd-example-modal-lg" id="editKeywordModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete Keywords</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Keywords</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if keyword_results %}
+                                                    {% for keyword in keyword_results %}
+                                                        
+                                                            <tr>
+                                                                <form method="POST" action="/publication/{{getdata.id}}/removekeywordRequest/{{keyword}}">
+                                                                {% csrf_token %}
+                                                                <input type="hidden" name="keyword" value="{{keyword}}"/>
+                                                                <input type="hidden" name="next" value="{{ request.path }}"/>
+                                                                <td>{{keyword}}</td>
+                                                                <td><button type="submit" class="btn btn-outline-danger btn-sm" name="collab-delete">x</button></td>
+                                                                </form>    
+                                                            </tr>
+                                                       
+                                                    {% endfor %}
+                                            {% endif %}
+                                        </tbody>
+                                    </table>   
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                        <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#mymodal">Folders<i class="fa fa-folder-open-o" aria-hidden="true" style="margin-left: 5px;"></i></button>
+
 
                        <br>
                        {% if bool_in_bookmark == "true" %}
