@@ -35,7 +35,7 @@ urlpatterns =[
     path('folder_table/',views.downloadFolderTable, name ='folder_table'),
     path('testAnalytics/<keyword>', views.testAnalytics, name="testAnalytics"),
     path('testFolderAnalytics/<folderID>', views.FoldersPageAnalytics, name="FoldersPageAnalytics"),
-    path('testFolderAnalytics/<folderID>/<owner>', views.FoldersPageAnalytics, name="SharedFoldersPageAnalytics"),
+    path('sharedFolderAnalytics/<folderID>/<owner>', views.FoldersPageAnalytics, name="SharedFoldersPageAnalytics"),
 ]
 
 if settings.DEBUG:
