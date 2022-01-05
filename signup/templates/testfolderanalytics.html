@@ -155,6 +155,7 @@
 <body>
 {% include 'main/nav-bar.html' %}
     <div class="container-fluid">
+        <div class="col-12" style="margin-top: 20px;">
         {% for f in folder %}
             <h1>statistics for {{f.folder_name}}</h1>
             <h3>Folder created by {{f.user}}</h3>
@@ -223,6 +224,7 @@
             <span>{{keyword}}, </span>
             {% endfor %}
         {% endfor %}
+        </div>
     </div>
 
 
