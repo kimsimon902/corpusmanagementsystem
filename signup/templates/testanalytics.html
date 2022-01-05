@@ -157,47 +157,70 @@
 <body>
 {% include 'main/nav-bar.html' %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12" style="">   
-                <div class="d-flex justify-content-center" style="">    
-                    <canvas id="myChart" width="1000" height="800"></canvas>
-                </div>
-                <div class="d-flex justify-content-center" style="">
-                    <canvas id="myChartPie" width="600" height="600"></canvas>
+            <!-- Results table-->
+            <div class="col-10">
+                <div class="container">
+                    <div class="table-responsive" style="min-height: 100vh;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Author/s</th>
+                                    <th scope="col">Year</th>
+                                    <th scope="col">Source</th>
+                                    <th scope="col">URL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for result in results %}
+                                <tr>
+                                    
+                                    <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
+                                    <td style="border-bottom: none;">{{result.author}}</td>
+                                    <!-- <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td> -->
+                                    <td style="border-bottom: none;">{{result.year}}</td>
+                                    <td style="border-bottom: none;">{{result.source}}</td>
+    
+                                    {% if result.url != 'uploaded' %}
+                                    <td id="url" style="border-bottom: none;"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
+                                    {% else %}
+                                    <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
+                                    {% endif %}
+                                </tr>
+                                <tr id="abstract-{{result.id}}" style="display: none;">
+                                    <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px;">{{result.abstract}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="list-inline">
+                                            {% if result.abstract != "" %}
+                                                <li class="list-inline-item">
+                                                    <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" onclick="toggleAbstract('{{result.id}}')">View Abstract</Button>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <!-- end Results Table -->
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Author/s</th>
-                                <th>Abstract</th>
-                                <th>Source</th>
-                                <th>URL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for pub in results %}
-                            <tr>
-                                <td><a href="">{{pub.title}}</a></td>
-                                <td>{{pub.author}}</td>
-                                <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{pub.abstract}}</td>
-                                <td>{{pub.source}}</td>
-                                <td id="url">{{pub.url}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12" style="">   
+                        <div class="d-flex justify-content-center" style="">    
+                            <canvas id="myChart" width="1000" height="800"></canvas>
+                        </div>
+                        <div class="d-flex justify-content-center" style="">
+                            <canvas id="myChartPie" width="600" height="600"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 
 
