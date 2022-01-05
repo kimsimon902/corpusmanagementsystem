@@ -248,16 +248,20 @@
                                     $('#min, #max').keyup(function() {
                                         var min = parseInt( $('#min').val(), 10 );
                                         var max = parseInt( $('#max').val(), 10 );
-                                         $('#resultsTable tbody tr').each(function() {
+                                         $('#resultsTable tbody .tr_1').each(function() {
                                             var year = parseFloat( $('td:eq(2)', this).text() ) || 0; 
                                             if (( isNaN( min ) && isNaN( max )) ||
                                                 ( isNaN( min ) && year <= max ) ||
                                                 ( min <= year   && isNaN( max )) ||
                                                 ( min <= year   && year <= max )) {
                                                 $(this).show()
+                                                $('.tr_2').show()
+                                                $('.tr_3').show()
                                             } 
                                             else {
                                                 $(this).hide()
+                                                $('.tr_2').hide()
+                                                $('.tr_3').hide()
                                             }  
                                             
                                         })
@@ -265,7 +269,7 @@
                                 </script>
 
                                 {% for result in results %}
-                                <tr>
+                                <tr class="tr_1">
                                     
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                     <td style="border-bottom: none;">{{result.author}}</td>
@@ -279,10 +283,10 @@
                                     <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
                                     {% endif %}
                                 </tr>
-                                <tr id="abstract-{{result.id}}" style="display: none;">
+                                <tr class="tr_2" id="abstract-{{result.id}}" style="display: none;">
                                     <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px; text-align:justify;">{{result.abstract}}</td>
                                 </tr>
-                                <tr>
+                                <tr class="tr_3">
                                     <td colspan="5">
                                         <ul class="list-inline">
                                             {% if result.abstract != "" %}
