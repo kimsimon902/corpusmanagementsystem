@@ -1449,19 +1449,6 @@ def PublicationPage(request, id):
     not_shared_bookmark = bookmarks_folder.objects.exclude(id__in=shared_folders_bookmarks.values('folderID')).filter(id__in=collabs)
 
 
-    for publication in xlist:
-        flag = 0
-        for pubkey in publication_keys:
-            if publication.id == pubkey.publication_id and flag == 0:
-                flag=1
-        if flag == 0:
-            if "http" in publication.url: 
-                scrap(publication.url, publication.id)
-            else:
-                scrap("http://" + publication.url, publication.id)
-
-    
-
     #Log opening of publication
     datenow = datetime.datetime.now()
 
@@ -1477,9 +1464,28 @@ def PublicationPage(request, id):
         logView.date = datenow
         logView.save()
 
+    flag = 1
+    for publication in xlist:
+            for pubkey in publication_keys:
+                if publication.id == pubkey.publication_id:
+                    flag = 0
+    if flag == 0:
+        for publication in xlist:
+            flag = 0
+            for pubkey in publication_keys:
+                if publication.id == pubkey.publication_id and flag == 0:
+                    flag=1
+            if flag == 0:
+                if "http" in publication.url: 
+                    scrap(publication.url, publication.id)
+                else:
+                    scrap("http://" + publication.url, publication.id)
+
+    
     results = publications.objects.filter(id=id)
     publication_keys = pubkeys.objects.all()
     keywords_list = keywords.objects.all()
+
     for publication in xlist:
         for pubkey in publication_keys:
             if publication.id == pubkey.publication_id:
@@ -1487,6 +1493,8 @@ def PublicationPage(request, id):
                     if pubkey.keywords_id == pubid.id:
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
+
+    
 
     print(keyword_results)
     return render(request, 'publication.html', {'publication':results,
