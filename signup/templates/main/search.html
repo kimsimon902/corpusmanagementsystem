@@ -282,6 +282,10 @@
                                     {% else %}
                                     <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
                                     {% endif %}
+                                    
+                                    <li class="list-inline-item">
+                                        <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" onclick="toggleAbstract('{{result.id}}')">Toggle Abstract</Button>
+                                    </li>
                                 </tr>
                                 <tr class="tr_2" id="abstract-{{result.id}}" style="display: none;">
                                     <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px; text-align:justify;">{{result.abstract}}</td>
