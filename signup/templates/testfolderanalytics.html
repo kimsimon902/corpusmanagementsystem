@@ -173,29 +173,61 @@
             <h3>Folder created by {{f.user}}</h3>
             <div class="row">
                 <div class="col">
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="margin-top: 10px;">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Title</th>
-                                    <th>Author/s</th>
-                                    <th>Abstract</th>
-                                    <th>Source</th>
-                                    <th>URL</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Author/s</th>
+                                    <th scope="col">Year</th>
+                                    <th scope="col">Source</th>
+                                    <th scope="col">URL</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for pub in pubs %}
+                                {% for result in results %}
+                                <tr>  
+                                    <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
+                                    <td style="border-bottom: none;">{{result.author}}</td>
+                                    <!-- <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td> -->
+                                    <td style="border-bottom: none;">{{result.year}}</td>
+                                    <td style="border-bottom: none;">{{result.source}}</td>
+    
+                                    {% if result.url != 'uploaded' %}
+                                    <td id="url" style="border-bottom: none;"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
+                                    {% else %}
+                                    <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
+                                    {% endif %}
+                                </tr>
+                                <tr id="abstract-{{result.id}}" style="display: none;">
+                                    <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px;">{{result.abstract}}</td>
+                                </tr>
                                 <tr>
-                                    <td><a href="/folders/{{request.session.username}}/{{f.id}}/publication/{{pub.id}}">{{pub.title}}</a></td>
-                                    <td>{{pub.author}}</td>
-                                    <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{pub.abstract}}</td>
-                                    <td>{{pub.source}}</td>
-                                    <td id="url">{{pub.url}}</td>
+                                    <td colspan="5">
+                                        <ul class="list-inline">
+                                            {% if result.abstract != "" %}
+                                                <li class="list-inline-item">
+                                                    <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" onclick="toggleAbstract('{{result.id}}')">View Abstract</Button>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" style="">
+                            <h4>Number of publications published per year</h4>
+                            <div class="d-flex justify-content-center" style="padding-bottom: 50px;">    
+                                <canvas id="myChart" width="1000" height="800"></canvas>
+                            </div>
+                            <h4>Number of publications present in the following sources</h4>
+                            <div class="d-flex justify-content-center" style="padding-bottom: 50px;">
+                                <canvas id="myChartPie" width="600" height="600"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -212,6 +244,7 @@
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   <script src="{% static '\users\js\search.js' %}"></script>
 </body>
 </html>
 {% endif %}
