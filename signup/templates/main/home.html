@@ -91,7 +91,7 @@
             <div class="card">
                <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
-                <h3 class="card-title">Most viewed tags</h3>
+                <h3 class="card-title">Most viewed keywords</h3>
                 {% for tag in viewed_tags %}
                     <p><a href="/search/?keyword={{ tag.tag }}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></p>
                 {% endfor %}
