@@ -160,7 +160,7 @@
             <!-- Results table-->
             <div class="col-12" style="margin-top: 20px;">
                 <div class="container">
-                    <h3>Analytics for topic: {{searched}}</h3>
+                    <h3>Analytics for {{searched}}</h3>
                     <div class="table-responsive" style="margin-top: 10px;">
                         <table class="table">
                             <thead>
@@ -174,8 +174,7 @@
                             </thead>
                             <tbody>
                                 {% for result in results %}
-                                <tr>
-                                    
+                                <tr>  
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                     <td style="border-bottom: none;">{{result.author}}</td>
                                     <!-- <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td> -->
@@ -212,10 +211,12 @@
 
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-12" style="">   
+                    <div class="col-sm-12" style="">
+                        <h4>Number of publications published per year</h4>
                         <div class="d-flex justify-content-center" style="">    
                             <canvas id="myChart" width="1000" height="800"></canvas>
                         </div>
+                        <h4>Number of publications present in the following sources</h4>
                         <div class="d-flex justify-content-center" style="">
                             <canvas id="myChartPie" width="600" height="600"></canvas>
                         </div>

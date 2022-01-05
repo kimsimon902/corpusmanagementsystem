@@ -618,7 +618,7 @@ def testAnalytics(request, keyword):
             
             print(results_list)
             
-            return render(request, 'testanalytics.html',{'searched':searched, 
+            return render(request, 'testanalytics.html',{'searched':searched.capitalize(), 
                                                         'results':results_list, 
                                                         'count':len(results_list),
                                                         'keyword_results':keyword_results,
