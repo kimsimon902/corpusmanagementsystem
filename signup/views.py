@@ -1486,7 +1486,7 @@ def PublicationPage(request, id):
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
 
-
+    print(keyword_results)
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
                                                 'keyword_results':keyword_results,
