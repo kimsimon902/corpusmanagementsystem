@@ -75,7 +75,7 @@
               <div class="card-body">
                 <h3 class="card-title">Most searched terms</h3>
                 {% for keyword in searched %}
-                    <p><a href="/search/?searched={{keyword.keyword}}&filterData=default" style="margin-top: 15px;">{{ keyword.keyword }}</a></p>
+                    <p><a href="/search/?searched={{keyword.keyword}}&filterData=default" style="margin-top: 15px; text-transform: capitalize;">{{ keyword.keyword }}</a></p>
                 {% endfor %}
               </div>
             </div>
@@ -93,7 +93,7 @@
               <div class="card-body">
                 <h3 class="card-title">Most viewed tags</h3>
                 {% for tag in viewed_tags %}
-                    <p><a href="/search/?keyword={{ tag.tag }}" style="margin-top: 15px;">{{ tag.tag }}</a></p>
+                    <p><a href="/search/?keyword={{ tag.tag }}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></p>
                 {% endfor %}
               </div>
             </div>
