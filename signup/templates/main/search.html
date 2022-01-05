@@ -248,20 +248,18 @@
                                     $('#min, #max').keyup(function() {
                                         var min = parseInt( $('#min').val(), 10 );
                                         var max = parseInt( $('#max').val(), 10 );
-                                         $('#resultsTable tbody .tr_1').each(function() {
+                                         $('#resultsTable tbody tr').each(function() {
                                             var year = parseFloat( $('td:eq(2)', this).text() ) || 0; 
                                             if (( isNaN( min ) && isNaN( max )) ||
                                                 ( isNaN( min ) && year <= max ) ||
                                                 ( min <= year   && isNaN( max )) ||
                                                 ( min <= year   && year <= max )) {
                                                 $(this).show()
-                                                $('.tr_2').show()
-                                                $('.tr_3').show()
+                        
                                             } 
                                             else {
                                                 $(this).hide()
-                                                $('.tr_2').hide()
-                                                $('.tr_3').hide()
+                                        
                                             }  
                                             
                                         })
@@ -281,11 +279,7 @@
                                     <td id="url" style="border-bottom: none;"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
                                     {% else %}
                                     <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
-                                    {% endif %}
-                                    
-                                    <li class="list-inline-item">
-                                        <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" onclick="toggleAbstract('{{result.id}}')">Toggle Abstract</Button>
-                                    </li>
+                                    {% endif %}                               
                                 </tr>
                                 <tr class="tr_2" id="abstract-{{result.id}}" style="display: none;">
                                     <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px; text-align:justify;">{{result.abstract}}</td>
