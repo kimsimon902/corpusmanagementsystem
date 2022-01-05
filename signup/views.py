@@ -1477,7 +1477,9 @@ def PublicationPage(request, id):
         logView.date = datenow
         logView.save()
 
- 
+    results = publications.objects.filter(id=id)
+    publication_keys = pubkeys.objects.all()
+    keywords_list = keywords.objects.all()
     for publication in xlist:
         for pubkey in publication_keys:
             if publication.id == pubkey.publication_id:
