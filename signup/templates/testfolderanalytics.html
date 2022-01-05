@@ -155,19 +155,6 @@
 <body>
 {% include 'main/nav-bar.html' %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12" style="">   
-                <div class="d-flex justify-content-center" style="">    
-                    <canvas id="myChart" width="1000" height="800"></canvas>
-                </div>
-                <div class="d-flex justify-content-center" style="">
-                    <canvas id="myChartPie" width="600" height="600"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid">
         {% for f in folder %}
             <h1>statistics for {{f.folder_name}}</h1>
             <h3>Folder created by {{f.user}}</h3>
