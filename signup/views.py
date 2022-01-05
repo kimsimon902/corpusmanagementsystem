@@ -2217,6 +2217,11 @@ def downloadFolderTable(request):
         bc.barWidth = .3*inch
         bc.groupSpacing = .2 * inch
 
+        bc.valueAxis.valueMin = 0
+        bc.valueAxis.valueMax = 50
+        bc.valueAxis.valueStep = 5
+
+
         bc.strokeColor = colors.black
 
         bc.categoryAxis.labels.boxAnchor = 'ne'
