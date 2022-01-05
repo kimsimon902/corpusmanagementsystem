@@ -167,9 +167,9 @@
                             <form class='col-12' action="{% url 'search' %}" id=yearRange-form></form>
                                 <td>
                                     <div class="input-group input-group-sm mb-3">
-                                    <input type="text" class="form-control" placeholder="From" aria-label="fromYear">
+                                    <input type="text" id="min" name="min" class="form-control" placeholder="From" aria-label="fromYear">
                                     <span class="input-group-text">-</span>
-                                    <input type="text" class="form-control" placeholder="To" aria-label="toYear">
+                                    <input type="text" id="max" name="max"class="form-control" placeholder="To" aria-label="toYear">
                                     <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-search"></i></button>
                                     </div>
                                 </td>
@@ -232,7 +232,7 @@
             <div class="col-10">
                 <div class="container">
                     <div class="table-responsive" style="min-height: 100vh;">
-                        <table class="table">
+                        <table id="resultsTable" class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">Title</th>
@@ -243,6 +243,25 @@
                                 </tr>
                             </thead>
                             <tbody>
+
+                                <script>
+                                    $('#min, #max').keyup(function() {
+                                        var min = parseInt( $('#min').val(), 10 );
+                                        var max = parseInt( $('#max').val(), 10 );
+                                         $('#resultsTable tbody tr').each(function() {
+                                            var year = parseFloat( $('td:eq(2)', this).text() ) || 0; 
+                                            if (( isNaN( min ) && isNaN( max )) ||
+                                                ( isNaN( min ) && year <= max ) ||
+                                                ( min <= year   && isNaN( max )) ||
+                                                ( min <= year   && year <= max )) {
+                                                $(this).show()
+                                            } else {
+                                                $(this).hide()
+                                            }   
+                                        })
+                                    });
+                                </script>
+
                                 {% for result in results %}
                                 <tr>
                                     
