@@ -249,7 +249,7 @@
                     {% endfor %}
                     
                     {% for y in not_bookmark %}
-                    {% if not forloop.first and forloop.counter != 2 %}
+                    {% if not forloop.first and forloop.counter != 1 %}
                     <form method="POST" action="/publication/{{getdata.id}}/bookmark">
                         {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}"/>
