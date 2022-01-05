@@ -135,14 +135,14 @@
                     <tbody>
                         <tr>
                             <form class='col-12' action="{% url 'search' %}" id=yearRange-form></form>
-                            <div class="input-group mb-3">
                                 <td>
+                                    <div class="input-group input-group-sm mb-3">
                                     <input type="text" class="form-control" placeholder="From" aria-label="fromYear">
                                     <span class="input-group-text">-</span>
                                     <input type="text" class="form-control" placeholder="To" aria-label="toYear">
                                     <button type="submit"></button>
+                                    </div>
                                 </td>
-                            </div>
                         </tr>
                         {% for year in filteredYear|slice:"5" %}
                         <tr>
