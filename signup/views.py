@@ -1398,7 +1398,7 @@ def FoldersPageAnalytics(request, folderID):
     bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 10')
                             
     return render(request, 'testfolderanalytics.html',{'folder':folder,
-                                                       'pubs':pubs, 
+                                                       'results':pubs, 
                                                        'keywords': keyword_results,
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
