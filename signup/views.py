@@ -1612,7 +1612,7 @@ def PublicationPage(request, id):
 
     
 
-    print(keyword_results)
+    
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
                                                 'keyword_results':keyword_results,
@@ -1629,7 +1629,8 @@ def PublicationPage(request, id):
                                                 'notinshared':not_shared_bookmark,   
                                                 'bool_in_bookmark': in_my_bookmarks,
                                                 'my_bookmarks_id': my_bookmarks_folder,
-                                                'my_bookmarks_content':my_bookmarks_folder_contents})
+                                                'my_bookmarks_content':my_bookmarks_folder_contents,
+                                                'path': request.path_info})
 
 def PublicationPageInFolder(request, folderid, username, id):
     results = publications.objects.filter(id=id)
@@ -1785,7 +1786,7 @@ def PublicationBookmark(request, id):
     bookmark = bookmarks.objects.filter(publicationID=id, user=email)
     annotation = annotations.objects.filter(publicationID=id, author=user)
     next = request.POST.get('next', '/')
-    search_url = request.META.get('HTTP_REFERER')
+    search_url = request.POST.get('previous', '/')
 
     if request.method=='POST':
         if request.POST.get("bookmark_action") == 'add':
