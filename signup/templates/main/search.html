@@ -249,7 +249,7 @@
                                         var min = parseInt( $('#min').val(), 10 );
                                         var max = parseInt( $('#max').val(), 10 );
                                          $('#resultsTable tbody .tr_1').each(function() {
-                                            var year = parseFloat( $('td:eq(2)', this).text() ) || 0; 
+                                            var year = parseFloat( $('.td_year', this).text() ) || 0; //'td:eq(2)'
                                             if (( isNaN( min ) && isNaN( max )) ||
                                                 ( isNaN( min ) && year <= max ) ||
                                                 ( min <= year   && isNaN( max )) ||
@@ -274,7 +274,7 @@
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                     <td style="border-bottom: none;">{{result.author}}</td>
                                     <!-- <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td> -->
-                                    <td style="border-bottom: none;">{{result.year}}</td>
+                                    <td class="td_year" style="border-bottom: none;">{{result.year}}</td>
                                     <td style="border-bottom: none;">{{result.source}}</td>
     
                                     {% if result.url != 'uploaded' %}
