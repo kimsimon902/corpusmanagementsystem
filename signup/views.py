@@ -202,6 +202,8 @@ all_stopwords.append('pagename')
 all_stopwords.append('classpanelpane')
 all_stopwords.append('classpanelpane')
 all_stopwords.append('colspan2')
+all_stopwords.append('var')
+all_stopwords.append('meta')
 
 
 
