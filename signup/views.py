@@ -772,12 +772,12 @@ def searchPublication(request):
                                 results_list.append(pub)
 
 
-            # if len(results_list) == 0:
-            #     results_list = publications.objects.filter(
-            #             Q(title__icontains=searched, year =year_search)  |
-            #             Q(author__icontains=searched, year =year_search), status__icontains="approved"
+            if len(results_list) == 0:
+                results_list = publications.objects.filter(
+                        Q(title__icontains=searched, year =year_search)  |
+                        Q(author__icontains=searched, year =year_search), status__icontains="approved"
                         
-            #     )
+                )
                         
 
             keyword_results = []
