@@ -212,62 +212,6 @@
                         </table>
                     </div>
 
-                    <h4>Related publications</h4>
-                    <div class="row">
-                        <div class="col">
-                            <div class="table-responsive" style="margin-top: 10px;">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Author/s</th>
-                                            <th scope="col">Year</th>
-                                            <th scope="col">Source</th>
-                                            <th scope="col">URL</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for result in related|slice:"10"%}
-                                        <tr>  
-                                            <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
-                                            <td style="border-bottom: none;">{{result.author}}</td>
-                                            <!-- <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td> -->
-                                            <td style="border-bottom: none;">{{result.year}}</td>
-                                            <td style="border-bottom: none;">{{result.source}}</td>
-            
-                                            {% if result.url != 'uploaded' and 'doi.org' not in result.url %}
-                                                <td id="url" style="border-bottom: none;"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
-                                            {% endif %}
-        
-                                            {% if result.url != 'uploaded' and 'doi.org' in result.url %}
-                                                <td id="url" style="border-bottom: none;"><a href="https://{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td> 
-                                            {% endif %}
-                                            
-                                            {% if result.url == 'uploaded' %}
-                                                <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
-                                            {% endif %}
-                                        </tr>
-                                        <tr id="abstract-{{result.id}}" style="display: none;">
-                                            <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px; text-align:justify;">{{result.abstract}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="5">
-                                                <ul class="list-inline">
-                                                    {% if result.abstract != "" %}
-                                                        <li class="list-inline-item">
-                                                            <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" onclick="toggleAbstract('{{result.id}}')">Toggle Abstract</Button>
-                                                        </li>
-                                                    {% endif %}
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="row">
                         <div class="col-sm-12" style="">
                             <h4>Keywords</h4>
@@ -277,6 +221,61 @@
                                     <button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword}}</button>
                                     </form>
                             {% endfor %}
+                            <h4>Related publications</h4>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="table-responsive" style="margin-top: 10px;">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Title</th>
+                                                    <th scope="col">Author/s</th>
+                                                    <th scope="col">Year</th>
+                                                    <th scope="col">Source</th>
+                                                    <th scope="col">URL</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for result in related|slice:"10"%}
+                                                <tr>  
+                                                    <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
+                                                    <td style="border-bottom: none;">{{result.author}}</td>
+                                                    <!-- <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td> -->
+                                                    <td style="border-bottom: none;">{{result.year}}</td>
+                                                    <td style="border-bottom: none;">{{result.source}}</td>
+                    
+                                                    {% if result.url != 'uploaded' and 'doi.org' not in result.url %}
+                                                        <td id="url" style="border-bottom: none;"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
+                                                    {% endif %}
+                
+                                                    {% if result.url != 'uploaded' and 'doi.org' in result.url %}
+                                                        <td id="url" style="border-bottom: none;"><a href="https://{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td> 
+                                                    {% endif %}
+                                                    
+                                                    {% if result.url == 'uploaded' %}
+                                                        <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
+                                                    {% endif %}
+                                                </tr>
+                                                <tr id="abstract-{{result.id}}" style="display: none;">
+                                                    <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px; text-align:justify;">{{result.abstract}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5">
+                                                        <ul class="list-inline">
+                                                            {% if result.abstract != "" %}
+                                                                <li class="list-inline-item">
+                                                                    <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" onclick="toggleAbstract('{{result.id}}')">Toggle Abstract</Button>
+                                                                </li>
+                                                            {% endif %}
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                             <h4>Number of publications published per year</h4>
                             <div class="d-flex justify-content-center" style="padding-bottom: 50px;">    
                                 <canvas id="myChart" width="1000" height="800"></canvas>
