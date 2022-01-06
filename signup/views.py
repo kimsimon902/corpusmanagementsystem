@@ -1347,12 +1347,7 @@ def FoldersPageAnalytics(request, folderID):
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
 
-    counter = 0
     resultsId_list = []
-
-    for keyword in keywords_list:
-        if keyword_results[counter] == keyword.keywordname:
-            resultsId_list.append(keyword.id)
 
     for keyword in keyword_results:
         for allkeys in keywords_list:
@@ -1445,6 +1440,25 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
                     if pubkey.keywords_id == pubid.id:
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
+
+    resultsId_list = []
+
+    for keyword in keyword_results:
+        for allkeys in keywords_list:
+            if keyword == allkeys.keywordname:
+                resultsId_list.append(allkeys.id)
+
+
+    pubkeys_list = list(pubkeys.objects.all())
+    publications_list = list(publications.objects.all())
+    relatedPubs = []
+
+    for resultsid in resultsId_list:
+        for pubid in pubkeys_list:
+            if resultsid == pubid.keywords_id:
+                for pub in publications_list:
+                    if pubid.publication_id == pub.id:
+                        relatedPubs.append(pub)
 
     years_present = []  
     years_tally = []

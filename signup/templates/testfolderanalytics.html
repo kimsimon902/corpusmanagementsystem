@@ -212,6 +212,7 @@
                         </table>
                     </div>
 
+                    <h4>Related publications</h4>
                     <div class="row">
                         <div class="col">
                             <div class="table-responsive" style="margin-top: 10px;">
@@ -226,7 +227,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for result in related %}
+                                        {% for result in related|slice:"10"%}
                                         <tr>  
                                             <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                             <td style="border-bottom: none;">{{result.author}}</td>
@@ -263,25 +264,6 @@
                                         {% endfor %}
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12" style="">
-                                    <h4>Keywords</h4>
-                                    {% for keyword in keyword_results %}
-                                            <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form" style="display:inline; margin-right:10px;">
-                                            <input type="hidden" name ="keyword" value="{{keyword}}"/>
-                                            <button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword}}</button>
-                                            </form>
-                                    {% endfor %}
-                                    <h4>Number of publications published per year</h4>
-                                    <div class="d-flex justify-content-center" style="padding-bottom: 50px;">    
-                                        <canvas id="myChart" width="1000" height="800"></canvas>
-                                    </div>
-                                    <h4>Number of publications present in the following sources</h4>
-                                    <div class="d-flex justify-content-center" style="padding-bottom: 50px;">
-                                        <canvas id="myChartPie" width="600" height="600"></canvas>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
