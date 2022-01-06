@@ -57,11 +57,7 @@
               Trending topics by folder
           </h3>
           {% for tag in viewed_tags %}
-          <form method="POST" action="/testAnalytics/{{tag.tag}}">
-            {% csrf_token %}
-            <input type="hidden" name="keyword" value="{{tag.tag}}">
-            <button type="submit" style="margin-top: 15px; text-transform: capitalize;">{{tag.tag}}</button>
-          </form>
+          <p><a href="/testAnalytics/{{tag.tag}}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></p>
           {% endfor %}
         </div>
       </div>
