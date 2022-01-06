@@ -956,7 +956,7 @@ def searchPublication(request):
             if request.GET.get('min') != None and request.GET.get('max') != None:
                 min_value = request.GET.get('min')
                 max_value = request.GET.get('max')
-                results = results.filter(int(year)__gte=min_value,int(year)__lte=max_value)
+                results = results.filter(year__gte=min_value,year__lte=max_value)
                 
 
 
