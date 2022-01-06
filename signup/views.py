@@ -952,6 +952,11 @@ def searchPublication(request):
                     results = results.order_by('year')
                 elif request.GET.get('sortBy') == 'lateYear':
                     results = results.order_by('-year')
+            
+            if request.GET.get('min') != None and request.GET.get('max') != None:
+                min_value = request.GET.get('min')
+                max_value = request.GET.get('max')
+                results = results.filter(int(year)__gte=min_value,int(year)__lte=max_value)
                 
 
 
@@ -1073,6 +1078,12 @@ def searchPublication(request):
             logSearch.save()
 
 
+            if request.GET.get('sortBy') != None:
+                if request.GET.get('sortBy') == 'earlyYear':
+                    results = results.order_by('year')
+                elif request.GET.get('sortBy') == 'lateYear':
+                    results = results.order_by('-year')
+
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
@@ -1184,6 +1195,12 @@ def searchPublication(request):
             logSearch.date = datetime.datetime.now()
             logSearch.save()
 
+            if request.GET.get('sortBy') != None:
+                if request.GET.get('sortBy') == 'earlyYear':
+                    results = results.order_by('year')
+                elif request.GET.get('sortBy') == 'lateYear':
+                    results = results.order_by('-year')
+
             return render(request, 'main/search.html',{'searched':searched, 
                                                        'results':results, 
                                                        'count':results.count(),
@@ -1226,6 +1243,13 @@ def searchPublication(request):
                             scrap(publication.url, publication.id)
                         else:
                             scrap("http://" + publication.url, publication.id)
+
+            
+            if request.GET.get('sortBy') != None:
+                if request.GET.get('sortBy') == 'earlyYear':
+                    results = results.order_by('year')
+                elif request.GET.get('sortBy') == 'lateYear':
+                    results = results.order_by('-year')
 
             return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
 
