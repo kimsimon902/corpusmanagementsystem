@@ -1511,6 +1511,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
                             
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs, 
+                                                       'related':relatedPubs,
                                                        'keyword_results': sorted(keyword_results),
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
