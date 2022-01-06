@@ -55,6 +55,13 @@
             <div class="mb-3"><textarea class="form-control" name="abstract" placeholder="Abstract" rows="14" style="resize: none;"></textarea></div>
             <div class="mb-3"><textarea class="form-control" name="keywords" placeholder="Keywords (e.g., Augmented Reality, Computer Science, Artifical Intelligence)" rows="14" style="resize: none;"></textarea></div>
             <input type="file" name="document">
+            {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        <div  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </div>
+                        {% endfor %}
+                    </div>
+            {% endif %}
             {% if some_flag %}
               <div id="some_flag" title="Some Flag">
               <p style="color:red">Error Uploading!</p>

@@ -2036,6 +2036,7 @@ def uploadLiterature(request):
             bkfolderid = bookmarks_folder.objects.get(user=userid,folder_name='My Uploads')
             addBookmark.folderID = bkfolderid.id
             addBookmark.save()
+            messages.success(request, "Succesfully Uploaded. Pending Acceptance")
             return render(request, 'upload.html')#render(request, 'registration/login.html')
         else:
             return render(request, 'upload.html') 
