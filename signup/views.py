@@ -1363,7 +1363,7 @@ def FoldersPageAnalytics(request, folderID):
         for pubid in pubkeys_list:
             if resultsid == pubid.keywords_id:
                 for pub in publications_list:
-                    if pubid.publication_id == pub.id:
+                    if pubid.publication_id == pub.id and pub not in pubs:
                         relatedPubs.append(pub)
 
     years_present = []  
@@ -1457,7 +1457,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
         for pubid in pubkeys_list:
             if resultsid == pubid.keywords_id:
                 for pub in publications_list:
-                    if pubid.publication_id == pub.id:
+                    if pubid.publication_id == pub.id and pub not in pubs:
                         relatedPubs.append(pub)
 
     years_present = []  
