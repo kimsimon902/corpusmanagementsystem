@@ -1808,8 +1808,8 @@ def PublicationBookmark(request, id):
             messages.success(request, "Added to your folder")
 
 
-            # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
-            return redirect(next)
+            return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
+            # return redirect(next)
 
         elif request.POST.get("bookmark_action") == 'delete':
             folder_value = request.POST.get('folder_id')
