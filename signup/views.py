@@ -620,7 +620,7 @@ def testAnalytics(request, keyword):
         return render(request, 'testanalytics.html',{'searched':searched.capitalize(), 
                                                     'results':results_list, 
                                                     'count':len(results_list),
-                                                    'keyword_results':keyword_results,
+                                                    'keyword_results':sorted(keyword_results),
                                                     'searchedkeys':searched_keywords,
                                                     'opened_pubs':opened_pubs, 
                                                     'viewed_tags':viewed_tags,
@@ -1398,7 +1398,7 @@ def FoldersPageAnalytics(request, folderID):
                             
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs, 
-                                                       'keywords': keyword_results,
+                                                       'keyword_results': sorted(keyword_results),
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
 
@@ -1472,7 +1472,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
                             
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs, 
-                                                       'keywords': keyword_results,
+                                                       'keyword_results': sorted(keyword_results),
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
 
