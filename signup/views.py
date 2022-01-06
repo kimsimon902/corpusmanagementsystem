@@ -820,8 +820,8 @@ def searchPublication(request):
 
 
                 results = publications.objects.filter(
-                   Q(title__icontains=searched) |
-                  Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
                 )
              
 
@@ -946,6 +946,11 @@ def searchPublication(request):
             logSearch.save()
             
             print(year_count)
+
+            # if request.GET.get('sortBy') != None:
+            #     if request.GET.get('sortBy') == "earlyYear":
+            #         results = results.order_by('year')
+
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
@@ -1219,6 +1224,10 @@ def searchPublication(request):
                             scrap("http://" + publication.url, publication.id)
 
             return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
+
+
+
+
 
 def removeKeywordRequest(request, id, keyword):
 

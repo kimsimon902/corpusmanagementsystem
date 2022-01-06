@@ -1,4 +1,4 @@
-from django import urls
+cd from django import urls
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
@@ -33,9 +33,8 @@ urlpatterns =[
     path('adminpage/',views.viewAdmin, name ='adminpage'),
     path('adminpage/keywordrequests',views.keywordRequests, name ='keywordrequests'),
     path('folder_table/',views.downloadFolderTable, name ='folder_table'),
-    path('testAnalytics/<keyword>', views.testAnalytics, name="testAnalytics"),
+    path('testAnalytics/', views.testAnalytics, name="testAnalytics"),
     path('testFolderAnalytics/<folderID>', views.FoldersPageAnalytics, name="FoldersPageAnalytics"),
-    path('sharedFolderAnalytics/<folderID>/<owner>', views.SharedFoldersPageAnalytics, name="SharedFoldersPageAnalytics"),
 ]
 
 if settings.DEBUG:
