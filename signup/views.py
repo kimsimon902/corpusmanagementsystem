@@ -1785,7 +1785,7 @@ def PublicationBookmark(request, id):
     bookmark = bookmarks.objects.filter(publicationID=id, user=email)
     annotation = annotations.objects.filter(publicationID=id, author=user)
     next = request.POST.get('next', '/')
-    search_url = request.META.get('HTTP_REFERER')
+    search_url = request.POST.get('previous', '/')
 
     if request.method=='POST':
         if request.POST.get("bookmark_action") == 'add':
@@ -1810,7 +1810,7 @@ def PublicationBookmark(request, id):
 
             print(search_url + 'hello')
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            return HttpResponseRedirect(search_url)
 
         elif request.POST.get("bookmark_action") == 'delete':
             folder_value = request.POST.get('folder_id')
