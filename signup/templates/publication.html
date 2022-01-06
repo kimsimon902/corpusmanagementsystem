@@ -151,7 +151,7 @@
                             <form method="POST" action="/publication/{{getdata.id}}/bookmark">
                                 {% csrf_token %}
                                 <input type="hidden" name="next" value="{{ request.path }}"/>
-                                <input type="hidden" name="previous" value="{{ request.meta['HTTP_REFERER'] }}"/>
+                               
                                 <input type="hidden" name="folder_id" value="{{e.id}}"/>
                                 <input type="hidden" name="bookmark_action" value="add">
                                 <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add">Add to Bookmarks<i class="fa fa-bookmark-o" aria-hidden="true" style="margin-left: 5px;"></i></button>
