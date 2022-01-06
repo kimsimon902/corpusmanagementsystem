@@ -1613,7 +1613,7 @@ def PublicationPage(request, id):
 
     
 
-    current_url = resolve(request.path_info).url_name
+    current_url = request.META.get('HTTP_REFERER')
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
                                                 'keyword_results':keyword_results,
