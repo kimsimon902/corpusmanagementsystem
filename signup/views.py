@@ -803,6 +803,7 @@ def searchPublication(request):
         searchFilter = request.GET.get('filterData','')
         libFilter = request.GET.getlist('filterLib')
         yearSort = request.GET.get('sortBy', '')
+     
         
         if (request.user):
             author = request.session['username']
@@ -968,7 +969,8 @@ def searchPublication(request):
                                                         'my_bookmarks_id': my_bookmarks_folder, 
                                                         'filteredYear': filteredYear,
                                                         'searchFilter': searchFilter,
-                                                        'libFilter':libFilter
+                                                        'libFilter':libFilter,
+                    
                                                         })
             
         elif searchFilter == "title":
