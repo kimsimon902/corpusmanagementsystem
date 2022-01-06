@@ -952,8 +952,8 @@ def searchPublication(request):
                     results = results.order_by('year')
                 elif request.GET.get('sortBy') == 'lateYear':
                     results = results.order_by('-year')
-                else:
-                    
+                
+
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
