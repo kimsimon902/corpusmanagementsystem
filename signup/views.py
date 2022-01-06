@@ -1353,7 +1353,12 @@ def FoldersPageAnalytics(request, folderID):
     for keyword in keywords_list:
         if keyword_results[counter] == keyword.keywordname:
             resultsId_list.append(keyword.id)
-        counter+=1
+
+    for keyword in keyword_results:
+        for allkeys in keywords_list:
+            if keyword == allkeys.keywordname:
+                resultsId_list.append(allkeys.id)
+
 
     pubkeys_list = list(pubkeys.objects.all())
     publications_list = list(publications.objects.all())
