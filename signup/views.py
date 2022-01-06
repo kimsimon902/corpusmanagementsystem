@@ -1808,7 +1808,7 @@ def PublicationBookmark(request, id):
 
             messages.success(request, "Added to your folder")
 
-            print(search_url)
+            print(search_url + 'hello')
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
