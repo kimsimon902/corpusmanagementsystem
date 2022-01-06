@@ -947,9 +947,13 @@ def searchPublication(request):
             
             print(year_count)
 
-            # if request.GET.get('sortBy') != None:
-            #     if request.GET.get('sortBy') == "earlyYear":
-            #         results = results.order_by('year')
+            if request.GET.get('sortBy') != None:
+                if request.GET.get('sortBy') == 'earlyYear':
+                    results = results.order_by('year')
+                elif request.GET.get('sortBy') == 'lateYear':
+                    results = results.order_by('-year')
+                else:
+                    
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
