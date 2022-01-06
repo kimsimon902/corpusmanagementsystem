@@ -1819,7 +1819,7 @@ def PublicationBookmark(request, id):
             bookmarks.objects.filter(folderID=folder_value, publicationID=pubID, user=email).delete()
 
             messages.success(request, "Deleted from your folder")
-            return HttpResponseRedirect(search_url)
+            return HttpResponseRedirect(next)
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
         elif request.POST.get("bookmark_action") == 'sharedAdd':
 
@@ -1843,23 +1843,23 @@ def PublicationBookmark(request, id):
 
 
             messages.success(request, "Added to shared folder")
-            return HttpResponseRedirect(search_url)
+            return HttpResponseRedirect(next)
         elif request.POST.get("bookmark_action") == 'sharedDelete':
             folder_value = request.POST.get('folder_id')
             folderOwner = bookmarks_folder.objects.get(id=request.POST.get('folder_id'))
             bookmarks.objects.filter(folderID=folder_value, publicationID=pubID, user=folderOwner.user).delete()
 
             messages.success(request, "Deleted from shared folder")
-            return HttpResponseRedirect(search_url)
+            return HttpResponseRedirect(next)
         
         elif request.POST.get("newFolder") == 'newFolder':
             newFolder = bookmarks_folder()
             newFolder.folder_name = request.POST.get('folder-name')
             newFolder.user = email
             newFolder.save()
-            return HttpResponseRedirect(search_url)
+            return HttpResponseRedirect(next)
         else:
-            return HttpResponseRedirect(search_url)
+            return HttpResponseRedirect(next)
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
 
 def PublicationBookmarkInFolder(request, username, folderid, id):
