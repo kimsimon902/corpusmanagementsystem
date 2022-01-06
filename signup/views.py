@@ -819,333 +819,68 @@ def searchPublication(request):
             if 'ais' in libFilter and len(libFilter) == 1:
 
 
-                #results = publications.objects.filter(
-                #    Q(title__icontains=searched) |
-                #   Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
-                #)
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
-                        ).order_by('year')
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
-                        ).order_by('-year')
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
-                        )
-                    else:
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
-                        )
-                else:
-                    results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
-                        )
-            
+                results = publications.objects.filter(
+                   Q(title__icontains=searched) |
+                  Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
+                )
+             
 
 
             elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
-                # results = publications.objects.filter(
-                #     Q(source__icontains='ais') |
-                #     Q(source__icontains='ieee')
-                # ).filter(
-                #     Q(title__icontains=searched) |
-                #     Q(author__icontains=searched), status__icontains="approved"
-                # )
+                results = publications.objects.filter(
+                    Q(source__icontains='ais') |
+                    Q(source__icontains='ieee')
+                ).filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), status__icontains="approved"
+                )
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(
-                            Q(source__icontains='ais') |
-                            Q(source__icontains='ieee')
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        ).order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(
-                            Q(source__icontains='ais') |
-                            Q(source__icontains='ieee')
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        ).order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                         results = publications.objects.filter(
-                            Q(source__icontains='ais') |
-                            Q(source__icontains='ieee')
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        )
-                    
-                    else:
-                        results = publications.objects.filter(
-                            Q(source__icontains='ais') |
-                            Q(source__icontains='ieee')
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        )
-
-                else:
-                    results = publications.objects.filter(
-                            Q(source__icontains='ais') |
-                            Q(source__icontains='ieee')
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        )
 
             elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-                # results = publications.objects.filter(
-                #     Q(source__icontains="ais") |
-                #     Q(source__icontains="scopus")
-                # ).filter(
-                #     Q(title__icontains=searched) |
-                #     Q(author__icontains=searched), status__icontains="approved"
-                # )
+                results = publications.objects.filter(
+                    Q(source__icontains="ais") |
+                    Q(source__icontains="scopus")
+                ).filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), status__icontains="approved"
+                )
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="scopus")
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        ).order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                         results = publications.objects.filter(
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="scopus")
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        ).order_by('-year')
-            
-                    elif yearSort == "relevance":
-                         results = publications.objects.filter(
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="scopus")
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        )
-                    
-                    else:
-                         results = publications.objects.filter(
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="scopus")
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        )
-                        
-                else:
-                     results = publications.objects.filter(
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="scopus")
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        )
+             
 
             elif 'ieee' in libFilter and len(libFilter) == 1:
-                # results = publications.objects.filter(
-                #     Q(title__icontains=searched) |
-                #     Q(author__icontains=searched), source__icontains="ieee", status__icontains="approved"
-                # )
+                results = publications.objects.filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), source__icontains="ieee", status__icontains="approved"
+                )
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains="ieee", status__icontains="approved"
-                        ).order_by('year')
-
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains="ieee", status__icontains="approved"
-                        ).order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains="ieee", status__icontains="approved"
-                        )
-                    
-                    else:
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains="ieee", status__icontains="approved"
-                        )
-                        
-                else:
-                    results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains="ieee", status__icontains="approved"
-                        )
-
+               
 
                 
             elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-            #    results = publications.objects.filter(
-            #         Q(source__icontains="ieee") |
-            #         Q(source__icontains="scopus")
-            #     ).filter(
-            #         Q(title__icontains=searched) |
-            #         Q(author__icontains=searched), status__icontains="approved"
-            #     )
+               results = publications.objects.filter(
+                    Q(source__icontains="ieee") |
+                    Q(source__icontains="scopus")
+                ).filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), status__icontains="approved"
+                )
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(
-                            Q(source__icontains="ieee") |
-                            Q(source__icontains="scopus")
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        ).order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                         results = publications.objects.filter(
-                            Q(source__icontains="ieee") |
-                            Q(source__icontains="scopus")
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        ).order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                         results = publications.objects.filter(
-                            Q(source__icontains="ieee") |
-                            Q(source__icontains="scopus")
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        )
-                    
-                    else:
-                         results = publications.objects.filter(
-                            Q(source__icontains="ieee") |
-                            Q(source__icontains="scopus")
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        )
-                        
-                else:
-                     results = publications.objects.filter(
-                            Q(source__icontains="ieee") |
-                            Q(source__icontains="scopus")
-                        ).filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        )
-
-
-
+               
             elif 'scopus' in libFilter and len(libFilter) == 1:
-                # results = publications.objects.filter(
-                #     Q(title__icontains=searched) |
-                #     Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
-                # )
+                results = publications.objects.filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
+                )
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
-                        ).order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
-                        ).order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
-                        )
-                    
-                    else:
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
-                        )
-                        
-                else:
-                    results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
-                        )
-
-
+              
 
             else:
-                # results = publications.objects.filter(
-                #     Q(title__icontains=searched) |
-                #     Q(author__icontains=searched), status__icontains="approved"
-                # )
+                results = publications.objects.filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), status__icontains="approved"
+                )
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        ).order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        ).order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        )
-                    
-                    else:
-                        results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        )
-                    
-                        
-                else:
-                    results = publications.objects.filter(
-                            Q(title__icontains=searched) |
-                            Q(author__icontains=searched), status__icontains="approved"
-                        )
-                    
-
-
-           
+                   
                                     
             xlist =     list(results)
             for publication in xlist:
@@ -1225,202 +960,55 @@ def searchPublication(request):
         elif searchFilter == "title":
             
             if 'ais' in libFilter and len(libFilter) == 1:
-                # results = publications.objects.filter(title__icontains=searched,source__icontains="ais", status__icontains="approved")
+                results = publications.objects.filter(title__icontains=searched,source__icontains="ais", status__icontains="approved")
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(title__icontains=searched,source__icontains="ais", status__icontains="approved").order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(title__icontains=searched,source__icontains="ais", status__icontains="approved").order_by('-year')
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(title__icontains=searched,source__icontains="ais", status__icontains="approved")
-                    else:
-                        results = publications.objects.filter(title__icontains=searched,source__icontains="ais", status__icontains="approved")
-                else:
-                    results = publications.objects.filter(title__icontains=searched,source__icontains="ais", status__icontains="approved")
-
+               
 
 
             elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
-                # results = publications.objects.filter( 
-                #     Q(source__icontains="ais") |
-                #     Q(source__icontains="ieee"), title__icontains=searched, status__icontains="approved"
-                # )
+                results = publications.objects.filter( 
+                    Q(source__icontains="ais") |
+                    Q(source__icontains="ieee"), title__icontains=searched, status__icontains="approved"
+                )
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter( 
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="ieee"), title__icontains=searched, status__icontains="approved"
-                        ).order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter( 
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="ieee"), title__icontains=searched, status__icontains="approved"
-                        ).order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter( 
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="ieee"), title__icontains=searched, status__icontains="approved"
-                        )
-                    
-                    else:
-                        results = publications.objects.filter( 
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="ieee"), title__icontains=searched, status__icontains="approved"
-                        )
-                        
-                else:
-                    results = publications.objects.filter( 
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="ieee"), title__icontains=searched, status__icontains="approved"
-                        )
+                
 
 
 
             elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-                # results = publications.objects.filter( 
-                #     Q(source__icontains="ais") |
-                #     Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                # )
+                results = publications.objects.filter( 
+                    Q(source__icontains="ais") |
+                    Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
+                )
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter( 
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                        ).order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter( 
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                        ).order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter( 
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                        )
-                    
-                    else:
-                        results = publications.objects.filter( 
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                        )
-                        
-                else:
-                    results = publications.objects.filter( 
-                            Q(source__icontains="ais") |
-                            Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                        )
-
+              
 
                 
             elif 'ieee' in libFilter and len(libFilter) == 1:
-                # results = publications.objects.filter(title__icontains=searched,source__icontains="ieee", status__icontains="approved")
+                results = publications.objects.filter(title__icontains=searched,source__icontains="ieee", status__icontains="approved")
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(title__icontains=searched,source__icontains="ieee", status__icontains="approved").order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(title__icontains=searched,source__icontains="ieee", status__icontains="approved").order_by('-year')
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(title__icontains=searched,source__icontains="ieee", status__icontains="approved")
-                    else:
-                        results = publications.objects.filter(title__icontains=searched,source__icontains="ieee", status__icontains="approved")
-                else:
-                    results = publications.objects.filter(title__icontains=searched,source__icontains="ieee", status__icontains="approved")
+               
 
 
 
             elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-                # results = publications.objects.filter( 
-                #     Q(source__icontains="ieee") |
-                #     Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                # )
+                results = publications.objects.filter( 
+                    Q(source__icontains="ieee") |
+                    Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
+                )
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter( 
-                            Q(source__icontains="ieee") |
-                            Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                        ).order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                         results = publications.objects.filter( 
-                            Q(source__icontains="ieee") |
-                            Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                        ).order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                         results = publications.objects.filter( 
-                            Q(source__icontains="ieee") |
-                            Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                        )
-                    
-                    else:
-                         results = publications.objects.filter( 
-                            Q(source__icontains="ieee") |
-                            Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                        )
-                        
-                else:
-                     results = publications.objects.filter( 
-                            Q(source__icontains="ieee") |
-                            Q(source__icontains="scopus"), title__icontains=searched, status__icontains="approved"
-                        )
+              
 
                 
             elif 'scopus' in libFilter and len(libFilter) == 1:
-                # results = publications.objects.filter(title__icontains=searched, source__icontains="scopus", status__icontains="approved")
+                results = publications.objects.filter(title__icontains=searched, source__icontains="scopus", status__icontains="approved")
                 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(title__icontains=searched, source__icontains="scopus", status__icontains="approved").order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(title__icontains=searched, source__icontains="scopus", status__icontains="approved").order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(title__icontains=searched, source__icontains="scopus", status__icontains="approved")
-                    
-                    else:
-                        results = publications.objects.filter(title__icontains=searched, source__icontains="scopus", status__icontains="approved")
-                        
-                else:
-                    results = publications.objects.filter(title__icontains=searched, source__icontains="scopus", status__icontains="approved")
-
+              
 
             else:
-                # results = publications.objects.filter(title__icontains=searched, status__icontains="approved")
+                results = publications.objects.filter(title__icontains=searched, status__icontains="approved")
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(title__icontains=searched, status__icontains="approved").order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(title__icontains=searched, status__icontains="approved").order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(title__icontains=searched, status__icontains="approved")
-                    
-                    else:
-                        results = publications.objects.filter(title__icontains=searched, status__icontains="approved")
-                        
-                else:
-                    results = publications.objects.filter(title__icontains=searched, status__icontains="approved")
+               
 
 
             xlist =     list(results)
@@ -1489,208 +1077,50 @@ def searchPublication(request):
         elif searchFilter == "author":
 
             if 'ais' in libFilter and len(libFilter) == 1:
-                # results = publications.objects.filter(author__icontains=searched,source__icontains="ais", status__icontains="approved")
+                results = publications.objects.filter(author__icontains=searched,source__icontains="ais", status__icontains="approved")
                 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(author__icontains=searched,source__icontains="ais", status__icontains="approved").order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(author__icontains=searched,source__icontains="ais", status__icontains="approved").order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(author__icontains=searched,source__icontains="ais", status__icontains="approved")
-                    
-                    else:
-                        results = publications.objects.filter(author__icontains=searched,source__icontains="ais", status__icontains="approved")
-                        
-                else:
-                    results = publications.objects.filter(author__icontains=searched,source__icontains="ais", status__icontains="approved")
-
 
 
             elif 'ais' in libFilter and 'ieee' in libFilter and len(libFilter) == 2:
-                # results = publications.objects.filter(
-                #     Q(source__icontains="ais")|
-                #     Q(source__icontains="ieee"), author__icontains=searched, status__icontains="approved"
-                # )
+                results = publications.objects.filter(
+                    Q(source__icontains="ais")|
+                    Q(source__icontains="ieee"), author__icontains=searched, status__icontains="approved"
+                )
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(
-                            Q(source__icontains="ais")|
-                            Q(source__icontains="ieee"), author__icontains=searched, status__icontains="approved"
-                        ).order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(
-                            Q(source__icontains="ais")|
-                            Q(source__icontains="ieee"), author__icontains=searched, status__icontains="approved"
-                        ).order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(
-                            Q(source__icontains="ais")|
-                            Q(source__icontains="ieee"), author__icontains=searched, status__icontains="approved"
-                        )
-                    
-                    else:
-                        results = publications.objects.filter(
-                            Q(source__icontains="ais")|
-                            Q(source__icontains="ieee"), author__icontains=searched, status__icontains="approved"
-                        )
-                        
-                else:
-                    results = publications.objects.filter(
-                            Q(source__icontains="ais")|
-                            Q(source__icontains="ieee"), author__icontains=searched, status__icontains="approved"
-                        )
 
 
 
             elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-                # results = publications.objects.filter(
-                #     Q(source__icontains="ais")|
-                #     Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                # )
-
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(
-                            Q(source__icontains="ais")|
-                            Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                        ).order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(
-                            Q(source__icontains="ais")|
-                            Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                        ).order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(
-                            Q(source__icontains="ais")|
-                            Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                        )
-                    
-                    else:
-                        results = publications.objects.filter(
-                            Q(source__icontains="ais")|
-                            Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                        )
-                        
-                else:
-                    results = publications.objects.filter(
-                            Q(source__icontains="ais")|
-                            Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                        )
-
+                results = publications.objects.filter(
+                    Q(source__icontains="ais")|
+                    Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
+                )
 
 
             elif 'ieee' in libFilter and len(libFilter) == 1:
-                # results = publications.objects.filter(author__icontains=searched,source__icontains="ieee", status__icontains="approved")
+                results = publications.objects.filter(author__icontains=searched,source__icontains="ieee", status__icontains="approved")
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(author__icontains=searched,source__icontains="ieee", status__icontains="approved").order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(author__icontains=searched,source__icontains="ieee", status__icontains="approved").order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(author__icontains=searched,source__icontains="ieee", status__icontains="approved")
-                    
-                    else:
-                        results = publications.objects.filter(author__icontains=searched,source__icontains="ieee", status__icontains="approved")
-                        
-                else:
-                    results = publications.objects.filter(author__icontains=searched,source__icontains="ieee", status__icontains="approved")
-
+               
 
             elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-                # results = publications.objects.filter(
-                #     Q(source__icontains="ieee")|
-                #     Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                # )
+                results = publications.objects.filter(
+                    Q(source__icontains="ieee")|
+                    Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
+                )
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(
-                            Q(source__icontains="ieee")|
-                            Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                        ).order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(
-                            Q(source__icontains="ieee")|
-                            Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                        ).order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(
-                            Q(source__icontains="ieee")|
-                            Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                        )
-                    
-                    else:
-                        results = publications.objects.filter(
-                            Q(source__icontains="ieee")|
-                            Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                        )
-                        
-                else:
-                    results = publications.objects.filter(
-                            Q(source__icontains="ieee")|
-                            Q(source__icontains="scopus"), author__icontains=searched, status__icontains="approved"
-                        )
+                
 
 
             elif 'scopus' in libFilter and len(libFilter) == 1:
-                # results = publications.objects.filter(author__icontains=searched, source__icontains="scopus", status__icontains="approved")
+                results = publications.objects.filter(author__icontains=searched, source__icontains="scopus", status__icontains="approved")
 
-                if yearSort != None:
-
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(author__icontains=searched, source__icontains="scopus", status__icontains="approved").order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(author__icontains=searched, source__icontains="scopus", status__icontains="approved").order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(author__icontains=searched, source__icontains="scopus", status__icontains="approved")
-                    
-                    else:
-                        results = publications.objects.filter(author__icontains=searched, source__icontains="scopus", status__icontains="approved")
-                        
-                else:
-                    results = publications.objects.filter(author__icontains=searched, source__icontains="scopus", status__icontains="approved")
 
 
 
             else:
-                # results = publications.objects.filter(author__icontains=searched, status__icontains="approved")
+                results = publications.objects.filter(author__icontains=searched, status__icontains="approved")
 
-                if yearSort != None:
 
-                    if yearSort == "earlyYear":
-                        results = publications.objects.filter(author__icontains=searched, status__icontains="approved").order_by('year')
-                    
-                    elif yearSort == "lateYear":
-                        results = publications.objects.filter(author__icontains=searched, status__icontains="approved").order_by('-year')
-                    
-                    elif yearSort == "relevance":
-                        results = publications.objects.filter(author__icontains=searched, status__icontains="approved")
-                    
-                    else:
-                        results = publications.objects.filter(author__icontains=searched, status__icontains="approved")
-                        
-                else:
-                    results = publications.objects.filter(author__icontains=searched, status__icontains="approved")
 
 
             xlist =     list(results)
