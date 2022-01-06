@@ -206,7 +206,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12" style="">
-                            <h4>List of keywords present in folder</h4>
+                            <h4>Keywords</h4>
                             {% for keyword in keyword_results %}
                                     <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form" style="display:inline; margin-right:10px;">
                                     <input type="hidden" name ="keyword" value="{{keyword}}"/>

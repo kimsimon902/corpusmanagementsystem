@@ -1347,6 +1347,25 @@ def FoldersPageAnalytics(request, folderID):
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
 
+    counter = 0
+    resultsId_list = []
+
+    for keyword in keywords_list:
+        if keyword_results[counter] == keyword.keywordname:
+            resultsId_list.append(keyword.id)
+        counter+=1
+
+    pubkeys_list = list(pubkeys.objects.all())
+    publications_list = list(publications.objects.all())
+    relatedPubs = []
+
+    for resultsid in resultsId_list:
+        for pubid in pubkeys_list:
+            if resultsid == pubid.keywords_id:
+                for pub in publications_list:
+                    if pubid.publication_id == pub.id:
+                        relatedPubs.append(pub)
+
     years_present = []  
     years_tally = []
     year_arr = []
@@ -1397,7 +1416,8 @@ def FoldersPageAnalytics(request, folderID):
     bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 10')
                             
     return render(request, 'testfolderanalytics.html',{'folder':folder,
-                                                       'results':pubs, 
+                                                       'results':pubs,
+                                                       'related':relatedPubs, 
                                                        'keyword_results': sorted(keyword_results),
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
