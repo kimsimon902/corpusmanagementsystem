@@ -1084,7 +1084,7 @@ def searchPublication(request):
             logSearch.keyword = searched
             logSearch.filter = searchFilter
 
-            if not libFilter:
+            if bool(libFilter):
                 libFilter = "['ais', 'ieee', 'scopus']"
 
             logSearch.source = libFilter
