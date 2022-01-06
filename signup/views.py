@@ -818,6 +818,7 @@ def searchPublication(request):
 
             if 'ais' in libFilter and len(libFilter) == 1:
 
+
                 #results = publications.objects.filter(
                 #    Q(title__icontains=searched) |
                 #   Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
@@ -908,7 +909,6 @@ def searchPublication(request):
                             Q(author__icontains=searched), status__icontains="approved"
                         )
 
-
             elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
                 # results = publications.objects.filter(
                 #     Q(source__icontains="ais") |
@@ -964,8 +964,6 @@ def searchPublication(request):
                             Q(title__icontains=searched) |
                             Q(author__icontains=searched), status__icontains="approved"
                         )
-
-
 
             elif 'ieee' in libFilter and len(libFilter) == 1:
                 # results = publications.objects.filter(
@@ -1213,7 +1211,7 @@ def searchPublication(request):
             logSearch.save()
             
             print(year_count)
-            return render(request, 'main/search.html',{'searched':searched, 
+            return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
                                                         'keyword_results':keyword_results, 
@@ -1756,41 +1754,41 @@ def searchPublication(request):
                                                        'filteredYear': filteredYear,
                                                        'searchFilter': searchFilter,
                                                        'libFilter':libFilter})
-    else:
-        
-        pubs = publications.objects.all()
-        xlist =     list(pubs)
+        else:
+            
+            pubs = publications.objects.all()
+            xlist =     list(pubs)
 
-        for publication in xlist:
-            if publication.url == 'doi.org/' or len(publication.url) == 0:
-                publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
-                publication.save()
+            for publication in xlist:
+                if publication.url == 'doi.org/' or len(publication.url) == 0:
+                    publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
+                    publication.save()
 
-        publication_keys = pubkeys.objects.all()
-        keywords_list = keywords.objects.all()
-        keyword_results = []
-        keyword_count = []
+            publication_keys = pubkeys.objects.all()
+            keywords_list = keywords.objects.all()
+            keyword_results = []
+            keyword_count = []
 
-        for publication in xlist:
-            for pubkey in publication_keys:
-                if publication.id == pubkey.publication_id:
-                    for pubid in keywords_list:
-                        if pubkey.keywords_id == pubid.id:
-                            if pubid.keywordname not in keyword_results:
-                                keyword_results.append(pubid.keywordname)  
-
-        for publication in xlist:
-                flag = 0
+            for publication in xlist:
                 for pubkey in publication_keys:
-                    if publication.id == pubkey.publication_id and flag == 0:
-                        flag=1
-                if flag == 0:
-                    if "http" in publication.url: 
-                        scrap(publication.url, publication.id)
-                    else:
-                        scrap("http://" + publication.url, publication.id)
+                    if publication.id == pubkey.publication_id:
+                        for pubid in keywords_list:
+                            if pubkey.keywords_id == pubid.id:
+                                if pubid.keywordname not in keyword_results:
+                                    keyword_results.append(pubid.keywordname)  
 
-        return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
+            for publication in xlist:
+                    flag = 0
+                    for pubkey in publication_keys:
+                        if publication.id == pubkey.publication_id and flag == 0:
+                            flag=1
+                    if flag == 0:
+                        if "http" in publication.url: 
+                            scrap(publication.url, publication.id)
+                        else:
+                            scrap("http://" + publication.url, publication.id)
+
+            return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
 
 def removeKeywordRequest(request, id, keyword):
 
