@@ -4,7 +4,7 @@ from django.db.models.fields import EmailField, NullBooleanField
 from django.db.models.query_utils import FilteredRelation
 from django.http import response
 from django.http.response import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, resolve_url
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -50,6 +50,7 @@ nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
 from requests.exceptions import ConnectionError
 from collections import Counter
+from django.urls import resolve
 
 #stopwords to be removed from scaping
 all_stopwords = stopwords.words('english')
@@ -1612,7 +1613,7 @@ def PublicationPage(request, id):
 
     
 
-    
+    current_url = resolve(request.path_info).url_name
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
                                                 'keyword_results':keyword_results,
@@ -1630,7 +1631,7 @@ def PublicationPage(request, id):
                                                 'bool_in_bookmark': in_my_bookmarks,
                                                 'my_bookmarks_id': my_bookmarks_folder,
                                                 'my_bookmarks_content':my_bookmarks_folder_contents,
-                                                'path': request.path_info})
+                                                'path': current_url})
 
 def PublicationPageInFolder(request, folderid, username, id):
     results = publications.objects.filter(id=id)
