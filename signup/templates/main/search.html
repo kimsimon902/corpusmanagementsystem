@@ -248,21 +248,20 @@
                                     $('#min, #max').keyup(function() {
                                         var min = parseInt( $('#min').val(), 10 );
                                         var max = parseInt( $('#max').val(), 10 );
-                                         $('#resultsTable tbody .tr_1').each(function() {
+                                         $('#resultsTable tbody tr').each(function() {
                                             var year = parseFloat( $('td:eq(2)', this).text() ) || 0; 
                                             if (( isNaN( min ) && isNaN( max )) ||
                                                 ( isNaN( min ) && year <= max ) ||
                                                 ( min <= year   && isNaN( max )) ||
                                                 ( min <= year   && year <= max )) {
-                                                $('.tr_1').show();
-                                                $('.tr_3').show();
+                                                $(this).show();
+                                            
                         
                                             } 
                                             else {
-                                                $('.tr_1').hide();
-                                                $('.tr_3').hide();
+                                                $(this).hide();
+                                       
                                          
-                                        
                                             }  
                                             
                                         })
