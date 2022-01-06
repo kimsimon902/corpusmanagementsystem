@@ -1810,7 +1810,7 @@ def PublicationBookmark(request, id):
 
             print(search_url + 'hello')
             # return render(request, 'publication.html', {'publication':results, 'bookmarks':bookmark, 'annotations':annotation})
-            return HttpResponseRedirect(search_url)
+            return HttpResponseRedirect(next)
 
         elif request.POST.get("bookmark_action") == 'delete':
             folder_value = request.POST.get('folder_id')

@@ -112,7 +112,6 @@
                                                                 {% csrf_token %}
                                                                 <input type="hidden" name="keyword" value="{{keyword}}"/>
                                                                 <input type="hidden" name="next" value="{{ request.path }}"/>
-                                                                <input type="hidden" name="previous" value="{{ request.meta.get('HTTP_REFERER') }}"/>
                                                                 <td>{{keyword}}</td>
                                                                 <td><button type="submit" class="btn btn-outline-danger btn-sm" name="collab-delete">x</button></td>
                                                                 </form>    
