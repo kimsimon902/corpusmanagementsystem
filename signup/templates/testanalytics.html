@@ -206,6 +206,13 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12" style="">
+                            <h4>List of keywords present in folder</h4>
+                            {% for keyword in keyword_results %}
+                                    <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form" style="display:inline; margin-right:10px;">
+                                    <input type="hidden" name ="keyword" value="{{keyword}}"/>
+                                    <button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword}}</button>
+                                    </form>
+                            {% endfor %}
                             <h4>Number of publications published per year</h4>
                             <div class="d-flex justify-content-center" style="padding-bottom: 50px;">    
                                 <canvas id="myChart" width="1000" height="800"></canvas>
@@ -218,14 +225,6 @@
                     </div>
                 </div>
             </div>
-            <h3>List of keywords present in folder</h3>
-                    {% for keyword in keyword_results %}
-                            <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form" style="display:inline; margin-right:10px;">
-                            <input type="hidden" name ="keyword" value="{{keyword}}"/>
-                            <button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword}}</button>
-                            </form>
-                    {% endfor %}
-            </table> 
     </div>
 
 
