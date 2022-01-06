@@ -248,8 +248,8 @@
                                     $('#min, #max').keyup(function() {
                                         var min = parseInt( $('#min').val(), 10 );
                                         var max = parseInt( $('#max').val(), 10 );
-                                         $('#resultsTable tbody .tr_1').each(function() {
-                                            var year = parseFloat( $('.td_year').text() ) || 0; //'td:eq(2)'
+                                         $('#resultsTable tbody tr').each(function() {
+                                            var year = parseFloat( $('.tr_1 td:eq(2)', this).text() ) || 0; 
                                             if (( isNaN( min ) && isNaN( max )) ||
                                                 ( isNaN( min ) && year <= max ) ||
                                                 ( min <= year   && isNaN( max )) ||
