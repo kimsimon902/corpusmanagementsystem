@@ -1009,13 +1009,13 @@ def searchPublication(request):
 
                 
             elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-               results = publications.objects.filter(
-                    Q(source__icontains="ieee") |
-                    Q(source__icontains="scopus")
-                ).filter(
-                    Q(title__icontains=searched) |
-                    Q(author__icontains=searched), status__icontains="approved"
-                )
+            #    results = publications.objects.filter(
+            #         Q(source__icontains="ieee") |
+            #         Q(source__icontains="scopus")
+            #     ).filter(
+            #         Q(title__icontains=searched) |
+            #         Q(author__icontains=searched), status__icontains="approved"
+            #     )
 
                 if yearSort != None:
 
@@ -1067,10 +1067,10 @@ def searchPublication(request):
 
 
             elif 'scopus' in libFilter and len(libFilter) == 1:
-                results = publications.objects.filter(
-                    Q(title__icontains=searched) |
-                    Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
-                )
+                # results = publications.objects.filter(
+                #     Q(title__icontains=searched) |
+                #     Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
+                # )
 
                 if yearSort != None:
 
