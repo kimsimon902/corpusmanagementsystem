@@ -180,16 +180,10 @@
                                     <td style="border-bottom: none;">{{result.year}}</td>
                                     <td style="border-bottom: none;">{{result.source}}</td>
     
-                                    {% if result.url != 'uploaded' and 'doi.org' not in result.url %}
-                                        <td id="url" style="border-bottom: none;"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
-                                    {% endif %}
-
-                                    {% if result.url != 'uploaded' and 'doi.org' in result.url %}
-                                        <td id="url" style="border-bottom: none;"><a href="https://{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td> 
-                                    {% endif %}
-                                    
-                                    {% if result.url == 'uploaded' %}
-                                        <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
+                                    {% if result.url != 'uploaded' %}
+                                    <td id="url" style="border-bottom: none;"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
+                                    {% else %}
+                                    <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
                                     {% endif %}
                                 </tr>
                                 <tr id="abstract-{{result.id}}" style="display: none;">
@@ -225,9 +219,24 @@
                 </div>
             </div>
             <h3>List of keywords present in folder</h3>
-            {% for keyword in keyword_results %}
-            <span>{{keyword}}, </span>
-            {% endfor %}
+            <table class="table" id="keywordstable">
+                <tbody>
+                    {% for keyword in keyword_results %}
+                    
+                        <tr>
+                            <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">
+                           
+                            <input type="hidden" name ="keyword" value="{{keyword}}"/>
+                            <td style = "display:none"> {{keyword}}</td>
+                            <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword}}</button></td>
+                            
+                            </form>
+                        </tr>
+                    
+                    
+                    {% endfor %}
+                </tbody>
+            </table> 
     </div>
 
 
