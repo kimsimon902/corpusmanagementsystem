@@ -154,11 +154,11 @@
 </head>
 <body>
 {% include 'main/nav-bar.html' %}
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding-left: 25px; padding-right: 25px;">
         <div class="col-12" style="margin-top: 20px;">
         {% for f in folder %}
-            <h1>statistics for {{f.folder_name}}</h1>
-            <h3>Folder created by {{f.user}}</h3>
+            <h2>Analytics for {{f.folder_name}}</h2>
+            <h4>Folder created by {{f.user}}</h4>
             <div class="row">
                 <div class="col">
                     <div class="table-responsive" style="margin-top: 10px;">
