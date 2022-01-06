@@ -228,7 +228,7 @@
             <h3>List of keywords present in folder</h3>
             <table class="table" id="keywordstable">
                 <tbody>
-                    {% for keyword in keyword_results %}
+                    {% for keyword in keywords %}
                     
                         <tr>
                             <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">

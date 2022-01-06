@@ -219,23 +219,12 @@
                 </div>
             </div>
             <h3>List of keywords present in folder</h3>
-            <table class="table" id="keywordstable">
-                <tbody>
                     {% for keyword in keyword_results %}
-                    
-                        <tr>
                             <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form">
-                           
                             <input type="hidden" name ="keyword" value="{{keyword}}"/>
-                            <td style = "display:none"> {{keyword}}</td>
-                            <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword}}</button></td>
-                            
+                            <button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword}}</button>
                             </form>
-                        </tr>
-                    
-                    
                     {% endfor %}
-                </tbody>
             </table> 
     </div>
 
