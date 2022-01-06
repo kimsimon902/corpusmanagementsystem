@@ -715,6 +715,19 @@ def searchPublication(request):
                 logTag.date = datenow
                 logTag.save()
             
+            if request.GET.get('sortBy') != None:
+                if request.GET.get('sortBy') == 'earlyYear':
+                    results_list = sorted(results_list, key=lambda publications: publications.year)
+                    results_list = results_list.order_by('year')
+                elif request.GET.get('sortBy') == 'lateYear':
+                    results_list = sorted(results_list, key=lambda publications: publications.year)
+                    results_list = results_list.order_by('-year')
+            
+            if request.GET.get('min') != None and request.GET.get('max') != None:
+                min_value = request.GET.get('min')
+                max_value = request.GET.get('max')
+                results_list = results_list.filter(year__gte=min_value,year__lte=max_value)
+
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
