@@ -207,6 +207,8 @@ all_stopwords.append('meta')
 all_stopwords.append('reference')
 all_stopwords.append('display')
 all_stopwords.append('arialabelreference')
+all_stopwords.append('pagename')
+all_stopwords.append('styledisplaynone')
 
 
 
