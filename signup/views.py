@@ -202,9 +202,14 @@ all_stopwords.append('pagename')
 all_stopwords.append('classpanelpane')
 all_stopwords.append('classpanelpane')
 all_stopwords.append('colspan2')
-
-
-
+all_stopwords.append('rfunction')
+all_stopwords.append('rtevar')
+all_stopwords.append('instanceof')
+all_stopwords.append('head')
+all_stopwords.append('charsetutf8')
+all_stopwords.append('httpequivcontenttype')
+all_stopwords.append('var')
+all_stopwords.append('vc3')
 
 # Create your views here.
 
