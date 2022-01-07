@@ -1532,6 +1532,9 @@ def FoldersPageAnalytics(request, folderID):
 
     #most bookmarked
     bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 10')
+
+    if not pubs:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
                             
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs,
@@ -1626,6 +1629,9 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
 
     #most bookmarked
     bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 10')
+    
+    if not pubs:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
                             
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs, 
