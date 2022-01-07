@@ -2294,7 +2294,7 @@ from reportlab.graphics.charts.legends import Legend
 
 def downloadFolderTable(request):
     email = request.session['email']
-    if request.method == 'POST'
+    if request.method == 'POST':
         pair = [key for key in request.POST.keys()][1].split("|")
         filterpub = bookmarks.objects.filter(folderID=pair[0]).values('publicationID')
         getpubs = publications.objects.filter(id__in=filterpub)
