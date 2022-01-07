@@ -2324,9 +2324,12 @@ def downloadFolderTable(request):
     if request.method == 'POST':
         pair = [key for key in request.POST.keys()][1].split("|")
         filterpub = bookmarks.objects.filter(folderID=pair[0]).values('publicationID')
+        if not filterpub:
+            return HttpResponseRedirect(request.path_info)
         getpubs = publications.objects.filter(id__in=filterpub)
         from reportlab.platypus.flowables import KeepTogether
         from reportlab.lib.units import mm
+
         # List of Lists
         buf = io.BytesIO()
         styles = getSampleStyleSheet()
