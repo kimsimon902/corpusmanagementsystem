@@ -145,8 +145,10 @@
             {% else %}
                 <button class="btn btn-info float-end" style="margin-right: 2px;"><a href="/testFolderAnalytics/{{folder.id}}" style="text-decoration: none; color:black;">View Analytics</a></button>
                 <form action="{% url 'folder_table' %}" method="post">
+                {% if folder.id == y.folderID and y.publicationID == x.id %}
                     {% csrf_token %}
                     <input class="btn btn-secondary float-end" style="margin-right: 4px;" type="submit" name="{{folder.id}}|{{folder.folder_name}}" value="Download Summary"></input></form>
+                {% endif %}
             {% endif %}
             {% endif %}
         </div>
