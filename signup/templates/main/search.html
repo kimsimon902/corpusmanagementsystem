@@ -285,11 +285,17 @@
                                     <td class="td_year" style="border-bottom: none;">{{result.year}}</td>
                                     <td style="border-bottom: none;">{{result.source}}</td>
     
-                                    {% if result.url != 'uploaded' %}
+                                    {% if result.url != 'uploaded' and 'doi.org' not in result.url %}
                                     <td id="url" style="border-bottom: none;"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
-                                    {% else %}
-                                    <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
-                                    {% endif %}                               
+                                    {% endif %}
+            
+                                    {% if result.url != 'uploaded' and "doi.org" in result.url %}
+                                        <td id="url" style="border-bottom: none;"><a href="https://{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td> 
+                                    {% endif %}
+                                                
+                                    {% if result.url == 'uploaded' %}
+                                        <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
+                                    {% endif %}                          
                                 </tr>
                                 <tr class="tr_2" id="abstract-{{result.id}}" style="display: none;">
                                     <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px; text-align:justify;">{{result.abstract}}</td>
