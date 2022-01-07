@@ -204,6 +204,9 @@ all_stopwords.append('classpanelpane')
 all_stopwords.append('colspan2')
 all_stopwords.append('var')
 all_stopwords.append('meta')
+all_stopwords.append('reference')
+all_stopwords.append('display')
+all_stopwords.append('arialabelreference')
 
 
 
