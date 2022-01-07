@@ -29,7 +29,9 @@
         {% include 'main/messages.html' %}
         <div class="row">
             <div class="col-md-10 offset-md-1">
+                {% if path %}
                 <a href="{{path}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;"><i class="fas fa-arrow-left"></i>Back</div></a>
+                {% endif %}
             </div>
         </div>
           <div class="row">
