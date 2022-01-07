@@ -210,6 +210,22 @@
                 <div id="moreyear" style="display:none;">
                     <table class="table" id="yeartable2">
                         <tbody>
+                            <tr>
+                                <form class='col-12' method="GET" action="{% url 'search' %}" id=yearRange-form>
+                                    <td>
+                                        <input type="hidden" name ="searched" value="{{searched}}"/>
+                                        <input type="hidden" name ="filterData" value="{{searchFilter}}"/>
+                                        <input type="hidden" name ="filterLib" value="{{libFilter}}"/>
+                                        <input type="hidden" name="sortRange" value="sortRange"/>
+                                        <div class="input-group input-group-sm mb-3">
+                                        <input type="text" id="min" name="min" class="form-control" placeholder="From" aria-label="fromYear" required="required">
+                                        <span class="input-group-text">-</span>
+                                        <input type="text" id="max" name="max"class="form-control" placeholder="To" aria-label="toYear" required="required">
+                                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                        </div>
+                                    </td>
+                                </form>
+                            </tr>
                             {% for year in filteredYear|slice:"10" %}
                             <tr>
                                 <form class='col-12' method="GET" action="{% url 'search' %}" id="year-form2">
