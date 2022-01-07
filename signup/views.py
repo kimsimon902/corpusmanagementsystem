@@ -210,6 +210,7 @@ all_stopwords.append('charsetutf8')
 all_stopwords.append('httpequivcontenttype')
 all_stopwords.append('var')
 all_stopwords.append('vc3')
+all_stopwords.append('styledisplaynone')
 
 # Create your views here.
 
