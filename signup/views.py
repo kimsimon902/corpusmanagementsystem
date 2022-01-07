@@ -2294,8 +2294,8 @@ from reportlab.graphics.charts.legends import Legend
 
 def downloadFolderTable(request):
     email = request.session['email']
-    if request.method == 'POST':
-        pair = [key for key in request.POST.keys()][1].split("|")
+    pair = [key for key in request.POST.keys()][1].split("|")
+    if request.method == 'POST' and pair[0] is not None:
         filterpub = bookmarks.objects.filter(folderID=pair[0]).values('publicationID')
         getpubs = publications.objects.filter(id__in=filterpub)
         from reportlab.platypus.flowables import KeepTogether
@@ -2510,7 +2510,8 @@ def downloadFolderTable(request):
         buf.seek(0)
 
         return FileResponse(buf, as_attachment=True, filename= pair[1] + ' Summary.pdf')
-
+    else:
+        return HttpResponseRedirect(request.path_info)
 '''
 #This is your data collected from your Vizard experiment
 
