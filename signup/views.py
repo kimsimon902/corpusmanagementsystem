@@ -2295,7 +2295,7 @@ from reportlab.graphics.charts.legends import Legend
 def downloadFolderTable(request):
     email = request.session['email']
     pair = [key for key in request.POST.keys()][1].split("|")
-    if 1 == 2:#request.method == 'POST' and pair[0] is not None or 0:
+    if False:#request.method == 'POST' and pair[0] is not None or 0:
         filterpub = bookmarks.objects.filter(folderID=pair[0]).values('publicationID')
         getpubs = publications.objects.filter(id__in=filterpub)
         from reportlab.platypus.flowables import KeepTogether
