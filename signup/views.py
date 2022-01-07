@@ -202,13 +202,6 @@ all_stopwords.append('pagename')
 all_stopwords.append('classpanelpane')
 all_stopwords.append('classpanelpane')
 all_stopwords.append('colspan2')
-all_stopwords.append('var')
-all_stopwords.append('meta')
-all_stopwords.append('reference')
-all_stopwords.append('display')
-all_stopwords.append('arialabelreference')
-all_stopwords.append('pagename')
-all_stopwords.append('styledisplaynone')
 
 
 
@@ -779,12 +772,12 @@ def searchPublication(request):
                                 results_list.append(pub)
 
 
-            if len(results_list) == 0:
-                results_list = publications.objects.filter(
-                        Q(title__icontains=searched, year =year_search)  |
-                        Q(author__icontains=searched, year =year_search), status__icontains="approved"
+            # if len(results_list) == 0:
+            #     results_list = publications.objects.filter(
+            #             Q(title__icontains=searched, year =year_search)  |
+            #             Q(author__icontains=searched, year =year_search), status__icontains="approved"
                         
-                )
+            #     )
                         
 
             keyword_results = []
@@ -978,6 +971,7 @@ def searchPublication(request):
                 min_value = request.GET.get('min')
                 max_value = request.GET.get('max')
                 results = results.filter(year__gte=min_value,year__lte=max_value)
+                results = results.order_by('year')
                 
 
 
@@ -1106,6 +1100,12 @@ def searchPublication(request):
                 elif request.GET.get('sortBy') == 'lateYear':
                     results = results.order_by('-year')
 
+            if request.GET.get('min') != None and request.GET.get('max') != None:
+                min_value = request.GET.get('min')
+                max_value = request.GET.get('max')
+                results = results.filter(year__gte=min_value,year__lte=max_value)
+                results = results.order_by('year')
+
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
@@ -1222,6 +1222,15 @@ def searchPublication(request):
                     results = results.order_by('year')
                 elif request.GET.get('sortBy') == 'lateYear':
                     results = results.order_by('-year')
+            
+            
+            if request.GET.get('min') != None and request.GET.get('max') != None:
+                min_value = request.GET.get('min')
+                max_value = request.GET.get('max')
+                results = results.filter(year__gte=min_value,year__lte=max_value)
+                results = results.order_by('year')
+
+
 
             return render(request, 'main/search.html',{'searched':searched, 
                                                        'results':results, 
@@ -1272,6 +1281,13 @@ def searchPublication(request):
                     results = results.order_by('year')
                 elif request.GET.get('sortBy') == 'lateYear':
                     results = results.order_by('-year')
+            
+            if request.GET.get('min') != None and request.GET.get('max') != None:
+                min_value = request.GET.get('min')
+                max_value = request.GET.get('max')
+                results = results.filter(year__gte=min_value,year__lte=max_value)
+                results = results.order_by('year')
+
 
             return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
 
@@ -2515,8 +2531,7 @@ def downloadFolderTable(request):
         buf.seek(0)
 
         return FileResponse(buf, as_attachment=True, filename= pair[1] + ' Summary.pdf')
-    else:
-        return HttpResponseRedirect(request.path_info)
+
 '''
 #This is your data collected from your Vizard experiment
 
