@@ -1473,7 +1473,7 @@ def FoldersPageAnalytics(request, folderID):
             if keyword == allkeys.keywordname:
                 resultsId_list.append(allkeys.id)
 
-    keyword_count = Counter(keyword_results)
+    keyword_count = Counter(keyword_results).most_common(len(keyword_results))
 
     pubkeys_list = list(pubkeys.objects.all())
     publications_list = list(publications.objects.all())
@@ -1541,7 +1541,7 @@ def FoldersPageAnalytics(request, folderID):
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs,
                                                        'related':relatedPubs, 
-                                                       'keyword_results': sorted(keyword_count.items()),
+                                                       'keyword_results': keyword_count.items(),
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
 
@@ -1570,7 +1570,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
             if keyword == allkeys.keywordname:
                 resultsId_list.append(allkeys.id)
 
-    keyword_count = Counter(keyword_results)
+    keyword_count = Counter(keyword_results).most_common(len(keyword_results))
 
 
     pubkeys_list = list(pubkeys.objects.all())
@@ -1639,7 +1639,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs, 
                                                        'related':relatedPubs,
-                                                       'keyword_results': sorted(keyword_count.items()),
+                                                       'keyword_results': keyword_count.items(),
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
 
