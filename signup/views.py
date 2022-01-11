@@ -1541,7 +1541,7 @@ def FoldersPageAnalytics(request, folderID):
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs,
                                                        'related':relatedPubs, 
-                                                       'keyword_results': keyword_count.items(),
+                                                       'keyword_results': sorted(keyword_count.items()),
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
 
@@ -1553,7 +1553,6 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
     publication_keys = pubkeys.objects.all()
     keywords_list = keywords.objects.all()
     keyword_results = []
-    keyword_count = []
     xlist = list(pubs)
 
     for publication in xlist:
@@ -1570,6 +1569,8 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
         for allkeys in keywords_list:
             if keyword == allkeys.keywordname:
                 resultsId_list.append(allkeys.id)
+
+    keyword_count = Counter(keyword_results)
 
 
     pubkeys_list = list(pubkeys.objects.all())
@@ -1638,7 +1639,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs, 
                                                        'related':relatedPubs,
-                                                       'keyword_results': sorted(keyword_results),
+                                                       'keyword_results': sorted(keyword_count.items()),
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
 
