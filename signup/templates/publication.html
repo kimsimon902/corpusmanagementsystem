@@ -255,10 +255,8 @@
                     <input type="hidden" name="next" value="{{ request.path }}"/>
                     <input type="hidden" name="folder_id" value="{{x.id}}"/>
                     <input type="hidden" name="bookmark_action" value="delete">
-                    <div class="row align-items-center mb-2">
-                        <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button>
-                        <div name="{{x.id}}" class="col-2 d-flex">{{x.folder_name}}</div>
-                    </div>
+                    <button type="submit" class="btn btn-outline-danger btn-sm" name="bookmark-delete">x</button>
+                    <div name="{{x.id}}" class="col-2 d-flex">{{x.folder_name}}</div>
                     <div class="row">
                         <span class="border-bottom-0"></span>
                     </div>
