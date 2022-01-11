@@ -215,6 +215,7 @@
                     <div class="row">
                         <div class="col-sm-12" style="">
                             <h4>Keywords</h4>
+                            <p>{{keyword_results}}</p>
                             {% for keyword in keyword_results %}
                                     <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form" style="display:inline; margin-right:10px;">
                                     <input type="hidden" name ="keyword" value="{{keyword}}"/>
