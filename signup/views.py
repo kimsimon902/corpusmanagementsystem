@@ -568,7 +568,7 @@ def testAnalytics(request, keyword):
                             results_list.append(pub)
 
         keyword_results = []
-        keyword_count = []
+        
 
         years_present = []
         years_tally = []
@@ -623,11 +623,13 @@ def testAnalytics(request, keyword):
         filteredYear.sort()
         
         print(results_list)
+
+        keyword_count = Counter(keyword_results).most_common(len(keyword_results))
         
         return render(request, 'testanalytics.html',{'searched':searched.capitalize(), 
                                                     'results':results_list, 
                                                     'count':len(results_list),
-                                                    'keyword_results':sorted(keyword_results),
+                                                    'keyword_results':keyword_count,
                                                     'searchedkeys':searched_keywords,
                                                     'opened_pubs':opened_pubs, 
                                                     'viewed_tags':viewed_tags,
