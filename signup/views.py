@@ -1454,7 +1454,7 @@ def FoldersPageAnalytics(request, folderID):
     publication_keys = pubkeys.objects.all()
     keywords_list = keywords.objects.all()
     keyword_results = []
-    keyword_count = []
+    
     xlist = list(pubs)
 
     for publication in xlist:
@@ -1473,6 +1473,7 @@ def FoldersPageAnalytics(request, folderID):
             if keyword == allkeys.keywordname:
                 resultsId_list.append(allkeys.id)
 
+    keyword_count = Counter(keyword_results)
 
     pubkeys_list = list(pubkeys.objects.all())
     publications_list = list(publications.objects.all())
@@ -1540,7 +1541,7 @@ def FoldersPageAnalytics(request, folderID):
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs,
                                                        'related':relatedPubs, 
-                                                       'keyword_results': Counter(keyword_results),
+                                                       'keyword_results': set(keyword_count),
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
 
