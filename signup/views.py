@@ -1541,7 +1541,7 @@ def FoldersPageAnalytics(request, folderID):
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs,
                                                        'related':relatedPubs, 
-                                                       'keyword_results': keyword_count.items(),
+                                                       'keyword_results': keyword_count,
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
 
@@ -1639,7 +1639,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs, 
                                                        'related':relatedPubs,
-                                                       'keyword_results': keyword_count.items(),
+                                                       'keyword_results': keyword_count,
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
 
