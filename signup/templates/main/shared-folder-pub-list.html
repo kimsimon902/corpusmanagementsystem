@@ -45,7 +45,7 @@
             <button class="btn btn-info float-end" style="margin-right: 2px;"><a href="/sharedFolderAnalytics/{{folder.id}}/{{folder.user}}" style="text-decoration: none; color:black;">View Analytics</a></button>
             <form action="{% url 'folder_table' %}" method="post">
                 {% csrf_token %}
-                <input class="btn btn-secondary float-end" style="margin-right: 4px;" type="submit" name="{{folder.id}}|{{folder.folder_name}}" value="Download Summary"></input>
+                <input class="btn btn-secondary float-end" style="margin-right: 4px;" type="submit" name="{{folder.id}}|{{folder.folder_name}}" value="Save as PDF"></input>
             </form>
         </div>
     </div>
