@@ -1541,7 +1541,7 @@ def FoldersPageAnalytics(request, folderID):
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs,
                                                        'related':relatedPubs, 
-                                                       'keyword_results': set(keyword_count),
+                                                       'keyword_results': keyword_count.items(),
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
 
