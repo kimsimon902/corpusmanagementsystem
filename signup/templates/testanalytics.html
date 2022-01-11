@@ -207,10 +207,11 @@
                     <div class="row">
                         <div class="col-sm-12" style="">
                             <h4>Keywords</h4>
+                            <!-- [{% for year in year_arr %}{{year.1}},{% endfor %}], -->
                             {% for keyword in keyword_results %}
                                     <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form" style="display:inline; margin-right:10px;">
                                     <input type="hidden" name ="keyword" value="{{keyword}}"/>
-                                    <button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword}}</button>
+                                    <button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword.0}}({{keyword.1}})</button>
                                     </form>
                             {% endfor %}
                             <h4>Number of publications published per year</h4>

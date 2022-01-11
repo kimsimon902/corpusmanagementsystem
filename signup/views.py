@@ -1462,8 +1462,9 @@ def FoldersPageAnalytics(request, folderID):
             if publication.id == pubkey.publication_id:
                 for pubid in keywords_list:
                     if pubkey.keywords_id == pubid.id:
-                        if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
+                        if pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
+
 
     resultsId_list = []
 
@@ -1539,7 +1540,7 @@ def FoldersPageAnalytics(request, folderID):
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs,
                                                        'related':relatedPubs, 
-                                                       'keyword_results': sorted(keyword_results),
+                                                       'keyword_results': Counter(keyword_results),
                                                        'year_arr':year_arr,
                                                        'source_arr':source_arr})
 
