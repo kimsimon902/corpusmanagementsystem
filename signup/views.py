@@ -2409,17 +2409,21 @@ def downloadFolderTable(request):
 
         for x in lab:
             if x == ('AIS'):
-               idata.append(aiscounter)
-               ledata.append(('AIS - ' + str(aiscounter)))
+                idata.append(aiscounter)
+                aisstore = 'AIS - ' + str(aiscounter)
+                ledata.append(aisstore)
             elif x == ('IEEE'):
                 idata.append(ieeecounter)
-                ledata.append(('IEEE - ' + str(ieeecounter)))
+                ieeestore = 'IEEE - ' + str(ieeecounter)
+                ledata.append(ieeestore)
             elif x == ('Scopus'):
                 idata.append(scopuscounter)
-                ledata.append(('Scopus - ' + str(scopuscounter)))
+                scopusstore = 'Scopus - ' + str(scopuscounter)
+                ledata.append(scopusstore)
             else:
                 idata.append(othercounter)
-                ledata.append(('Others - ' + str(othercounter)))
+                otherstore = 'Others - ' + str(othercounter)
+                ledata.append(otherstore)
 
         from reportlab.lib.validators import Auto
         from reportlab.graphics.charts.piecharts import Pie
