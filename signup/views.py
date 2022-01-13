@@ -2471,7 +2471,7 @@ def downloadFolderTable(request):
         bc.x = 50
         bc.y = 50
         bc.height = 125
-        bc.width = 300
+        bc.width = 500
         bc.data = ydata
         bc.barWidth = .3*inch
         bc.groupSpacing = .2 * inch
@@ -2497,8 +2497,8 @@ def downloadFolderTable(request):
         bc.categoryAxis.categoryNames = yearcat
 
 
-        bc.bars[0].fillColor = colors.blue
-        bc.bars[1].fillColor = colors.lightblue
+        bc.bars[0].fillColor = colors.green
+        bc.bars[1].fillColor = colors.lightgreen
 
         drawingbar.add(bc)
 
