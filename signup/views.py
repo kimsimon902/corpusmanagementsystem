@@ -2272,7 +2272,7 @@ def myTable(tabledata):
     styleN = styles['Normal']
     styleN.alignment = TA_LEFT
 
-    table = Table(tabledata, colWidths=(25*mm, 40*mm, 40*mm, 45*mm, 30*mm))
+    table = Table(tabledata, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
     # add style
     style = TableStyle([
         ('BACKGROUND', (0,1), (4,1), colors.green),
@@ -2492,13 +2492,14 @@ def downloadFolderTable(request):
         
         bc.categoryAxis.categoryNames = yearcat
 
+
         bc.bars[0].fillColor = colors.blue
         bc.bars[1].fillColor = colors.lightblue
 
         drawingbar.add(bc)
 
 
-        table = Table(data, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
+        table = Table(data, colWidths=(25*mm, 40*mm, 40*mm, 45*mm, 30*mm))
         # add style
         style = TableStyle([
             ('BACKGROUND', (0,0), (4,0), colors.green),
