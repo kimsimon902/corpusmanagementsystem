@@ -2349,7 +2349,7 @@ def downloadFolderTable(request):
         styleN = styles['Normal']
         title_style = styles['Heading1']
         title_style.alignment = TA_CENTER
-        title_style.fontSize=20
+        title_style.fontSize=18
         styleN.alignment = TA_LEFT
         ptext = "This is an example."
         can = canvas.Canvas(buf, pagesize=A4)
@@ -2440,7 +2440,7 @@ def downloadFolderTable(request):
 
         title = String(
             35, 130, #50, 110,
-            'Source', 
+            'Database Source of Articles', 
             fontSize = 20
         )	
 
@@ -2456,7 +2456,7 @@ def downloadFolderTable(request):
         drawing.add(chart)
         drawing.add(legend)
 
-        drawingbar = Drawing(400, 200)
+        drawingbar = Drawing(600, 200)
         yearData.sort(key=int)
         numist = []
         for x in Counter(yearData).values():
