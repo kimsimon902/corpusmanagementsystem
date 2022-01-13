@@ -2429,7 +2429,7 @@ def downloadFolderTable(request):
         chart.x = 10
         chart.y = 5
 
-        chart.labels = ledata
+        chart.labels = ledata #lab
         chart.sideLabels = True
 
         chart.slices[0].fillColor = colors.red
