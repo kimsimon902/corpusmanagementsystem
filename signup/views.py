@@ -2346,7 +2346,7 @@ def downloadFolderTable(request):
         # List of Lists
         buf = io.BytesIO()
         styles = getSampleStyleSheet()
-        styleN = styles['Small']
+        styleN = styles['Normal']
         title_style = styles['Heading2']
         title_style.alignment = TA_CENTER
         title_style.fontSize=18
