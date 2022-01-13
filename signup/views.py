@@ -2473,7 +2473,7 @@ def downloadFolderTable(request):
         bc.groupSpacing = .2 * inch
 
         bc.valueAxis.valueMin = 0
-        bc.valueAxis.valueMax = 50
+        bc.valueAxis.valueMax = 25
         bc.valueAxis.valueStep = 5
 
 
@@ -2499,7 +2499,7 @@ def downloadFolderTable(request):
         drawingbar.add(bc)
 
 
-        table = Table(data, colWidths=(25*mm, 40*mm, 40*mm, 45*mm, 30*mm))
+        table = Table(data, colWidths=(20*mm, 40*mm, 40*mm, 45*mm, 35*mm))
         # add style
         style = TableStyle([
             ('BACKGROUND', (0,0), (4,0), colors.green),
@@ -2542,13 +2542,13 @@ def downloadFolderTable(request):
         from reportlab.platypus import  Spacer
         table.setStyle(ts)
         elems = []
-        elems.append(Paragraph("<strong>Summary of articles for </strong>" + pair[1],title_style))
+        elems.append(Paragraph("<strong>Summary of Articles For </strong>" + pair[1],title_style))
         elems.append(Spacer(1,.25*inch))
         elems.append(table)
         #elems.append(KeepTogether(table))
         elems.append(Spacer(1,.25*inch))
         drawing.hAlign = 'CENTER'
-        elems.append(drawingbar)
+        elems.append(KeepTogether([drawingbar, "Year"]))#drawingbar)
         elems.append(drawing)
         #elems.append(d)
         pdf.build(elems)
