@@ -2548,7 +2548,8 @@ def downloadFolderTable(request):
         #elems.append(KeepTogether(table))
         elems.append(Spacer(1,.25*inch))
         drawing.hAlign = 'CENTER'
-        elems.append(KeepTogether([drawingbar, "Year"]))#drawingbar)
+        elems.append(Paragraph("<strong>Date Extracted</strong>"))
+        elems.append(drawingbar)
         elems.append(drawing)
         #elems.append(d)
         pdf.build(elems)
