@@ -2282,9 +2282,9 @@ def myTable(tabledata):
 
         ('VALIGN', (0, 0), (-1, -1), 'TOP'),
 
-        ('FONTNAME', (0,1), (4,1), 'Courier-Bold'),
-        ('FONTSIZE', (0,1), (4,1), 14),
-        ('FONTSIZE', (0,0), (4,0), 16),
+        ('FONTNAME', (0,1), (4,1), 'Helvetica'),
+        ('FONTSIZE', (0,1), (4,1), 12),
+        ('FONTSIZE', (0,0), (4,0), 14),
         ('BOTTOMPADDING', (0,0), (4,0), 15),
         ('BOTTOMPADDING', (0,1), (4,1), 12),
         #('BACKGROUND',(0,1),(-1,-1),colors.beige),
@@ -2349,7 +2349,7 @@ def downloadFolderTable(request):
         styleN = styles['Normal']
         title_style = styles['Heading1']
         title_style.alignment = TA_CENTER
-        title_style.fontSize=24
+        title_style.fontSize=20
         styleN.alignment = TA_LEFT
         ptext = "This is an example."
         can = canvas.Canvas(buf, pagesize=A4)
@@ -2359,12 +2359,12 @@ def downloadFolderTable(request):
         can.save()
         
         data = [
-            ['Title', 'Author', 'URL', 'Source', 'Year']
+            ['Year','Title', 'Author', 'Link to Article', 'Base Source']
         ]
         yearData = []
 
         for pub in getpubs:
-            data.append([Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN),Paragraph(pub.year, styleN)])
+            data.append([Paragraph(pub.year, styleN),Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN)])
             yearData.append(int(pub.year))
             #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
             #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
@@ -2492,10 +2492,18 @@ def downloadFolderTable(request):
         
         bc.categoryAxis.categoryNames = yearcat
 
+        titlebar = String(
+            35, 130, #50, 110,
+            'Year', 
+            fontSize = 20
+        )
+
         bc.bars[0].fillColor = colors.blue
         bc.bars[1].fillColor = colors.lightblue
 
+        drawingbar.add(titlebar)
         drawingbar.add(bc)
+
 
         table = Table(data, colWidths=(45*mm, 45*mm, 45*mm, 25*mm, 20*mm))
         # add style
@@ -2507,9 +2515,9 @@ def downloadFolderTable(request):
 
             ('VALIGN', (0, 0), (-1, -1), 'TOP'),
 
-            ('FONTNAME', (0,0), (4,0), 'Courier-Bold'),
+            ('FONTNAME', (0,0), (4,0), 'Helvetica'),
+            ('FONTSIZE', (0,0), (4,0), 12),
             ('FONTSIZE', (0,0), (4,0), 14),
-            ('FONTSIZE', (0,0), (4,0), 16),
             ('BOTTOMPADDING', (0,0), (4,0), 15),
             ('BOTTOMPADDING', (0,0), (4,1), 12),
             #('BACKGROUND',(0,1),(-1,-1),colors.beige),
@@ -2540,14 +2548,14 @@ def downloadFolderTable(request):
         from reportlab.platypus import  Spacer
         table.setStyle(ts)
         elems = []
-        elems.append(Paragraph("<strong>Summary for </strong>" + pair[1],title_style))
+        elems.append(Paragraph("<strong>Summary of articles for </strong>" + pair[1],title_style))
         elems.append(Spacer(1,.25*inch))
         elems.append(table)
         #elems.append(KeepTogether(table))
         elems.append(Spacer(1,.25*inch))
         drawing.hAlign = 'CENTER'
-        elems.append(drawing)
         elems.append(drawingbar)
+        elems.append(drawing)
         #elems.append(d)
         pdf.build(elems)
         buf.seek(0)
