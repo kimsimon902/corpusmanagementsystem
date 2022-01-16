@@ -1658,6 +1658,8 @@ def PublicationPage(request, id):
     else:
         author="null"
 
+    
+
     email = request.session['email']
 
     annotation = annotations.objects.filter(publicationID=id, author=author)
@@ -1714,34 +1716,37 @@ def PublicationPage(request, id):
                 if publication.id == pubkey.publication_id:
                     flag = 1
 
-    # if flag == 0:
-    #     for publication in xlist:
-    #         flag = 0
-    #         for pubkey in publication_keys:
-    #             if publication.id == pubkey.publication_id and flag == 0:
-    #                 flag=1
-    #         if flag == 0:
-    #             if "http" in publication.url: 
-    #                 scrap(publication.url, publication.id)
-    #             else:
-    #                 scrap("http://" + publication.url, publication.id)
+    if flag == 0:
+        for publication in xlist:
+            flag = 0
+            for pubkey in publication_keys:
+                if publication.id == pubkey.publication_id and flag == 0:
+                    flag=1
+            if flag == 0:
+                if "http" in publication.url: 
+                    scrap(publication.url, publication.id)
+                else:
+                    scrap("http://" + publication.url, publication.id)
 
     
     results = publications.objects.filter(id=id)
     publication_keys = pubkeys.objects.all()
     keywords_list = keywords.objects.all()
 
-    # for publication in xlist:
-    #     for pubkey in publication_keys:
-    #         if publication.id == pubkey.publication_id:
-    #             for pubid in keywords_list:
-    #                 if pubkey.keywords_id == pubid.id:
-    #                     if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
-    #                         keyword_results.append(pubid.keywordname)
+    for publication in xlist:
+        for pubkey in publication_keys:
+            if publication.id == pubkey.publication_id:
+                for pubid in keywords_list:
+                    if pubkey.keywords_id == pubid.id:
+                        if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
+                            keyword_results.append(pubid.keywordname)
 
     
-
-    current_url = request.META.get('HTTP_REFERER')
+    if request.previous.len() < 0:
+        current_url = request.META.get('HTTP_REFERER')
+    else:
+        current_url = request.previous
+        
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
                                                 'keyword_results':keyword_results,
