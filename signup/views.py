@@ -1741,13 +1741,14 @@ def PublicationPage(request, id):
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
 
-    if request.previous:
-        if request.previous.len() < 0:
+    if request.POST.get('previous'):
+        if request.POST.get('previous') < 0:
             current_url = request.META.get('HTTP_REFERER')
         else:
             current_url = request.previous
     else:
         current_url = request.META.get('HTTP_REFERER')
+
 
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
