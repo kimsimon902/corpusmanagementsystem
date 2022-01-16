@@ -1365,9 +1365,9 @@ def addKeywordRequest(request, id):
             
         pubkeys.objects.bulk_create(pub_id)
         # messages.success(request, "Request for keyword addition sent")
-        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+        return HttpResponseRedirect(next)
     else:
-        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+        return HttpResponseRedirect(next)
 
 
 def filterSearch(request, filter, search):
