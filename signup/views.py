@@ -1763,6 +1763,7 @@ def PublicationPage(request, id):
         current_url = request.session['search_url']
     else:
         request.session['search_url'] = request.path_info
+        current_url = request.path_info
 
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
