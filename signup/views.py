@@ -1364,10 +1364,10 @@ def addKeywordRequest(request, id):
             pub_id.append(pubkeys(publication_id=id, keywords_id=store.id, status = "pending addition"))
             
         pubkeys.objects.bulk_create(pub_id)
-        # messages.success(request, "Request for keyword addition sent")
-        return HttpResponseRedirect(next)
+        messages.success(request, "Request for keyword addition sent")
+        return redirect(request.META['HTTP_REFERER'])
     else:
-        return HttpResponseRedirect(next)
+        return redirect(request.META['HTTP_REFERER'])
 
 
 def filterSearch(request, filter, search):
@@ -1751,7 +1751,7 @@ def PublicationPage(request, id):
     # else:
     #     current_url = request.META.get('HTTP_REFERER')
 
-    current_url = request.META.get('HTTP_REFERER')
+    # current_url = request.META.get('HTTP_REFERER')
 
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
@@ -1770,7 +1770,7 @@ def PublicationPage(request, id):
                                                 'bool_in_bookmark': in_my_bookmarks,
                                                 'my_bookmarks_id': my_bookmarks_folder,
                                                 'my_bookmarks_content':my_bookmarks_folder_contents,
-                                                'path': current_url})
+                                                })
 
 def PublicationPageInFolder(request, folderid, username, id):
     results = publications.objects.filter(id=id)
