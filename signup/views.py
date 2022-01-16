@@ -736,7 +736,7 @@ def searchPublication(request):
                 max_value = request.GET.get('max')
                 results_list = results_list.filter(year__gte=min_value,year__lte=max_value)
 
-            request.session['search_url'] = request.path_info
+            
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
@@ -810,7 +810,7 @@ def searchPublication(request):
             filteredYear.sort()
             
             zippedList = zip(filteredYear, year_count)
-            request.session['search_url'] = request.path_info
+           
 
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
@@ -984,7 +984,7 @@ def searchPublication(request):
                 results = results.filter(year__gte=min_value,year__lte=max_value)
                 results = results.order_by('year')
                 
-            request.session['search_url'] = request.path_info
+            
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
@@ -1117,7 +1117,7 @@ def searchPublication(request):
                 results = results.filter(year__gte=min_value,year__lte=max_value)
                 results = results.order_by('year')
 
-            request.session['search_url'] = request.path_info
+           
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
@@ -1243,7 +1243,7 @@ def searchPublication(request):
                 results = results.order_by('year')
 
 
-            request.session['search_url'] = request.path_info
+            
 
             return render(request, 'main/search.html',{'searched':searched, 
                                                        'results':results, 
@@ -1301,7 +1301,7 @@ def searchPublication(request):
                 results = results.filter(year__gte=min_value,year__lte=max_value)
                 results = results.order_by('year')
 
-            request.session['search_url'] = request.path_info
+            
 
             return render(request, 'main/search.html',{ 'keyword_results':keyword_results})
 
@@ -1757,9 +1757,9 @@ def PublicationPage(request, id):
     # else:
     #     current_url = request.META.get('HTTP_REFERER')
 
-    
+    previous = request.META.get('HTTP_REFERER')
 
-    if 'search_url' in request.session:
+    if 'search_url' in request.session and 'search' not in previous:
         current_url = request.session['search_url']
     else:
         request.session['search_url'] = request.path_info
