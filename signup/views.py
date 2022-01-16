@@ -1714,17 +1714,17 @@ def PublicationPage(request, id):
                 if publication.id == pubkey.publication_id:
                     flag = 1
 
-    if flag == 0:
-        for publication in xlist:
-            flag = 0
-            for pubkey in publication_keys:
-                if publication.id == pubkey.publication_id and flag == 0:
-                    flag=1
-            if flag == 0:
-                if "http" in publication.url: 
-                    scrap(publication.url, publication.id)
-                else:
-                    scrap("http://" + publication.url, publication.id)
+    # if flag == 0:
+    #     for publication in xlist:
+    #         flag = 0
+    #         for pubkey in publication_keys:
+    #             if publication.id == pubkey.publication_id and flag == 0:
+    #                 flag=1
+    #         if flag == 0:
+    #             if "http" in publication.url: 
+    #                 scrap(publication.url, publication.id)
+    #             else:
+    #                 scrap("http://" + publication.url, publication.id)
 
     
     results = publications.objects.filter(id=id)
