@@ -1759,11 +1759,14 @@ def PublicationPage(request, id):
 
     previous = request.META.get('HTTP_REFERER')
 
-    if 'search_url' in request.session and 'search' not in previous:
+   
+
+    if 'search' in previous:
+        request.session['search_url'] = previous
         current_url = request.session['search_url']
     else:
-        request.session['search_url'] = request.path_info
-        current_url = request.path_info
+        current_url = request.session['search_url']
+
 
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
