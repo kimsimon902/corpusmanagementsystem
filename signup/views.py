@@ -1751,7 +1751,7 @@ def PublicationPage(request, id):
     # else:
     #     current_url = request.META.get('HTTP_REFERER')
 
-    # current_url = request.META.get('HTTP_REFERER')
+    current_url = request.META.get('HTTP_REFERER')
 
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
@@ -1770,6 +1770,7 @@ def PublicationPage(request, id):
                                                 'bool_in_bookmark': in_my_bookmarks,
                                                 'my_bookmarks_id': my_bookmarks_folder,
                                                 'my_bookmarks_content':my_bookmarks_folder_contents,
+                                                'path': current_url
                                                 })
 
 def PublicationPageInFolder(request, folderid, username, id):
