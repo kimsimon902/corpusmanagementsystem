@@ -1365,7 +1365,8 @@ def addKeywordRequest(request, id):
             
         pubkeys.objects.bulk_create(pub_id)
         messages.success(request, "Request for keyword addition sent")
-        return redirect('PublicationPage')
+        return render(request, 'publication.html', {'path': previous
+                                                })
     else:
         return redirect(request.META['HTTP_REFERER'])
 
