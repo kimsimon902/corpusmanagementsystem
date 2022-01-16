@@ -1342,6 +1342,7 @@ def addKeywordRequest(request, id):
     
 
     if request.method == 'POST':
+        
         insert_list = []
         name_id = []
         pub_id = []
