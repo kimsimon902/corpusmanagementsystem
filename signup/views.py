@@ -1337,6 +1337,7 @@ def addKeywordRequest(request, id):
 
     email = request.session['email']
     next = request.POST.get('next', '/')
+    previous = request.POST.get('previous')
     
     
 
@@ -1363,9 +1364,9 @@ def addKeywordRequest(request, id):
             
         pubkeys.objects.bulk_create(pub_id)
         messages.success(request, "Request for keyword addition sent")
-        return HttpResponseRedirect(next)  
+        return HttpResponseRedirect(request.path_info) 
     else:
-        return HttpResponseRedirect(next)
+        return HttpResponseRedirect(request.path_info)
 
 
 def filterSearch(request, filter, search):
@@ -1741,14 +1742,15 @@ def PublicationPage(request, id):
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
 
-    if request.POST.get('previous'):
-        if request.POST.get('previous') < 0:
-            current_url = request.POST.get('previous')
-        else:
-            current_url = request.META.get('HTTP_REFERER')
-    else:
-        current_url = request.META.get('HTTP_REFERER')
+    # if request.POST.get('previous'):
+    #     if request.POST.get('previous') < 0:
+    #         current_url = request.POST.get('previous')
+    #     else:
+    #         current_url = request.META.get('HTTP_REFERER')
+    # else:
+    #     current_url = request.META.get('HTTP_REFERER')
 
+    current_url = request.META.get('HTTP_REFERER')
 
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
