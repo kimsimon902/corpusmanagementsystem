@@ -1757,9 +1757,12 @@ def PublicationPage(request, id):
     # else:
     #     current_url = request.META.get('HTTP_REFERER')
 
+    
 
     if 'search_url' in request.session:
         current_url = request.session['search_url']
+    else:
+        request.session['search_url'] = request.path_info
 
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
