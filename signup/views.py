@@ -1364,7 +1364,7 @@ def addKeywordRequest(request, id):
             pub_id.append(pubkeys(publication_id=id, keywords_id=store.id, status = "pending addition"))
             
         pubkeys.objects.bulk_create(pub_id)
-        messages.success(request, "Request for keyword addition sent")
+        # messages.success(request, "Request for keyword addition sent")
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
     else:
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
