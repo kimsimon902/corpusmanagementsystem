@@ -1744,6 +1744,8 @@ def PublicationPage(request, id):
     if request.POST.get('previous'):
         if request.POST.get('previous') < 0:
             current_url = request.POST.get('previous')
+        else:
+            current_url = request.META.get('HTTP_REFERER')
     else:
         current_url = request.META.get('HTTP_REFERER')
 
