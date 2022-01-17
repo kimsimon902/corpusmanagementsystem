@@ -232,8 +232,9 @@
                                                 // code to create a word cloud chart will be here
                                                 var data = [
                                                     {% for keyword in keyword_results %}
-                                                    {"x": {{keyword.0}},"value":{{keyword.1}}},
+                                                    {"x": {{keyword.0}},"value":{{keyword.1}}, category: "Indo-European"},
                                                     {% endfor %}
+                                                    {"x": "Persian", "value": 121000000, category: "Indo-European"}
                                                 ];
                                     
                                                 // create a tag (word) cloud chart
