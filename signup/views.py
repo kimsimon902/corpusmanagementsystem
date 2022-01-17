@@ -1467,17 +1467,17 @@ def FoldersPageAnalytics(request, folderID):
 
     all_authors = []
 
-    for author in ais_authors:
-        print(author)
-        for item in author.split(';'):
-            all_authors.append(item)
+    # for author in ais_authors:
+    #     print(author)
+    #     for item in author.split(';'):
+    #         all_authors.append(item)
 
-    for author in iee_authors:
-        for item in author.split(';'):
-            all_authors.append(item)
+    # for author in iee_authors:
+    #     for item in author.split(';'):
+    #         all_authors.append(item)
 
-    for author in scopus_authors:
-        all_authors.append(author)
+    # for author in scopus_authors:
+    #     all_authors.append(author)
 
     publication_keys = pubkeys.objects.all()
     keywords_list = keywords.objects.all()
