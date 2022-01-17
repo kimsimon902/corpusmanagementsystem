@@ -58,12 +58,11 @@
                         yAxes: [{
                                 ticks: {
                                     min: 0,
-                                    stepSize: 1,
-                                    callback : function(value,index,values){
-                                        yAxesticks = values;
-                                        return value;
-                                    },
-                                    max:yAxesticks[0]+1;
+                                    stepSize: 1,  
+                                },
+                                afterDataLimits(scale) {
+                                    scale.max += 1;
+                                    scale.min -= 1;
                                 }
                             }]
                     }
