@@ -230,7 +230,7 @@
                                         <script>
                                             anychart.onDocumentReady(function() {
                                                 // code to create a word cloud chart will be here
-                                                var data = [{% for keyword in keyword_results %}{"x": '{{keyword.0}}',"value":{{keyword.1}}},{% endfor %}
+                                                var data = [{% for keyword in keyword_results %}{"x": '{{keyword.0}}',"value":{{keyword.1}}, category: ""},{% endfor %}
                                                 ];
                                     
                                                 // create a tag (word) cloud chart
