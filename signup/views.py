@@ -1465,6 +1465,19 @@ def FoldersPageAnalytics(request, folderID):
     iee_authors = pubs.filter(source='IEEE').values('author')
     scopus_authors = pubs.filter(source='Scopus').values('author')
 
+    all_authors = []
+
+    for author in ais_authors:
+        for item in author.author.split(';'):
+            all_authors.append(item)
+
+    for author in iee_authors:
+        for item in author.author.split(';'):
+            all_authors.append(item)
+
+    for author in scopus_authors:
+        all_authors.append(author)
+
     publication_keys = pubkeys.objects.all()
     keywords_list = keywords.objects.all()
     keyword_results = []
@@ -1561,6 +1574,7 @@ def FoldersPageAnalytics(request, folderID):
                                                        'ais':ais_authors,
                                                        'ieee':iee_authors,
                                                        'scopus':scopus_authors,
+                                                       'all':all_authors
                                                        })
 
 def SharedFoldersPageAnalytics(request, folderID, owner):
