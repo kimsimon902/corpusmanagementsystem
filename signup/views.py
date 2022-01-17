@@ -1468,6 +1468,7 @@ def FoldersPageAnalytics(request, folderID):
     all_authors = []
 
     for author in ais_authors:
+        print(author)
         for item in author.split(';'):
             all_authors.append(item)
 
