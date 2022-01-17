@@ -154,38 +154,6 @@
     <!-- CloudChart -->
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
-
-    <script>
-        anychart.onDocumentReady(function() {
-            // code to create a word cloud chart will be here
-            var data = [
-                {% for keyword in keyword_results %}
-                {"x": {{keyword.0}},"value":{{keyword.1}}},
-                {% endfor %}
-            ];
-
-            // create a tag (word) cloud chart
-            var chart = anychart.tagCloud(data);
-
-            // set a chart title
-            chart.title('Keywords')
-            // set an array of angles at which the words will be laid out
-            chart.angles([0])
-            // enable a color range
-            chart.colorRange(true);
-            // set the color range length
-            chart.colorRange().length('80%');
-
-            // display the word cloud chart
-            chart.container("container-cloud");
-            chart.draw();
-        });
-
-        chart.listen("pointClick", function(e){
-            var url = "http://simonkim902.pythonanywhere.com/search/?keyword=" + e.point.get("x");
-            window.open(url, "_blank");
-        });
-    </script>
 </head>
 <body>
 {% include 'main/nav-bar.html' %}
@@ -259,7 +227,37 @@
                             <div class="row">
                                 <div class="col">
                                     <div id="container-cloud">
-
+                                        <script>
+                                            anychart.onDocumentReady(function() {
+                                                // code to create a word cloud chart will be here
+                                                var data = [
+                                                    {% for keyword in keyword_results %}
+                                                    {"x": {{keyword.0}},"value":{{keyword.1}}},
+                                                    {% endfor %}
+                                                ];
+                                    
+                                                // create a tag (word) cloud chart
+                                                var chart = anychart.tagCloud(data);
+                                    
+                                                // set a chart title
+                                                chart.title('Keywords')
+                                                // set an array of angles at which the words will be laid out
+                                                chart.angles([0])
+                                                // enable a color range
+                                                chart.colorRange(true);
+                                                // set the color range length
+                                                chart.colorRange().length('80%');
+                                    
+                                                // display the word cloud chart
+                                                chart.container("container-cloud");
+                                                chart.draw();
+                                            });
+                                    
+                                            chart.listen("pointClick", function(e){
+                                                var url = "http://simonkim902.pythonanywhere.com/search/?keyword=" + e.point.get("x");
+                                                window.open(url, "_blank");
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
