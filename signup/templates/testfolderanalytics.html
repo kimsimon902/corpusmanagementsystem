@@ -242,11 +242,12 @@
                                                 // display the word cloud chart
                                                 chart.container("container-cloud");
                                                 chart.draw();
-                                            });
-                                    
-                                            chart.listen("pointClick", function(e){
-                                                var url = "http://simonkim902.pythonanywhere.com/search/?keyword=" + e.point.get("x");
-                                                window.open(url, "_blank");
+
+                                                                                    
+                                                chart.listen("pointClick", function(e){
+                                                    var url = "http://simonkim902.pythonanywhere.com/search/?keyword=" + e.point.get("x");
+                                                    window.open(url, "_blank");
+                                                });
                                             });
                                         </script>
                                     </div>
