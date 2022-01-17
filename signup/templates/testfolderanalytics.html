@@ -59,7 +59,11 @@
                                 ticks: {
                                     min: 0,
                                     stepSize: 1,
-                                    max:{{year_arr|length}}+1,
+                                    callback : function(value,index,values){
+                                        yAxesticks = values;
+                                        return value;
+                                    }
+                                    max:yAxesticks[0]+1;
                                 }
                             }]
                     }
