@@ -1461,6 +1461,10 @@ def FoldersPageAnalytics(request, folderID):
     folderpubs = bookmarks.objects.filter(user=email,folderID=folderID).values('publicationID')
     pubs = publications.objects.filter(id__in=folderpubs)
 
+    ais_authors = pubs.filter(source='AIS').values('author')
+    iee_authors = pubs.filter(source='IEEE').values('author')
+    scopus_authors = pubs.filter(source='Scopus').values('author')
+
     publication_keys = pubkeys.objects.all()
     keywords_list = keywords.objects.all()
     keyword_results = []
@@ -1553,7 +1557,11 @@ def FoldersPageAnalytics(request, folderID):
                                                        'related':relatedPubs, 
                                                        'keyword_results': keyword_count,
                                                        'year_arr':year_arr,
-                                                       'source_arr':source_arr})
+                                                       'source_arr':source_arr,
+                                                       'ais':ais_authors,
+                                                       'ieee':iee_authors,
+                                                       'scopus':scopus_authors,
+                                                       })
 
 def SharedFoldersPageAnalytics(request, folderID, owner):
     folder = bookmarks_folder.objects.filter(id=folderID)
@@ -1651,7 +1659,8 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
                                                        'related':relatedPubs,
                                                        'keyword_results': keyword_count,
                                                        'year_arr':year_arr,
-                                                       'source_arr':source_arr})
+                                                       'source_arr':source_arr,
+                                                       })
 
 #this function displays the details of a publication that has been selected from the home page
 def PublicationPage(request, id):

@@ -217,6 +217,20 @@
 
                     <div class="row">
                         <div class="col-sm-12" style="">
+                            <h4>Authors present</h4>
+                            <p>AIS</p>
+                            {% for author in ais %}
+                            <span>{{author}}, </span>
+                            {% endfor%}
+                            <p>IEEE</p>
+                            {% for author in ieee %}
+                            <span>{{author}}, </span>
+                            {% endfor%}
+                            <p>Scopus</p>
+                            {% for author in scopus %}
+                            <span>{{author}}, </span>
+                            {% endfor%}
+
                             <h4>Keyword Cloud Chart</h4>
                             <!-- {% for keyword in keyword_results %}
                                     <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form" style="display:inline; margin-right:10px;">
