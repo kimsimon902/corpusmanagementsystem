@@ -57,11 +57,15 @@
                                   beginAtZero: true,
                               },
                               yAxes: [{
-                                      ticks: {
-                                          min: 0,
-                                          stepSize: 1,
-                                      }
-                                  }]
+                                ticks: {
+                                    min: 0,
+                                    stepSize: 1,  
+                                },
+                                afterDataLimits(scale) {
+                                scale.max += 1;
+                                scale.min -= 1;
+                                }
+                            }]
                           }
                       }
                   });
