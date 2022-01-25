@@ -2392,9 +2392,10 @@ def downloadFolderTable(request):
         buf = io.BytesIO()
         styles = getSampleStyleSheet()
         styleN = styles['Normal']
-        title_style = styles['Heading2']
+        title_style = styles['Normal']
         title_style.alignment = TA_CENTER
-        title_style.fontSize=18
+        title_style.fontSize=16
+        title_style.fontName="Helvetica"
         styleN.alignment = TA_LEFT
         ptext = "This is an example."
         can = canvas.Canvas(buf, pagesize=A4)
@@ -2486,7 +2487,7 @@ def downloadFolderTable(request):
         title = String(
             35, 130, #50, 110,
             'Database Source of Articles', 
-            fontSize = 20,
+            fontSize = 16,
             fontName = "Helvetica"
         )	
 
