@@ -2558,9 +2558,9 @@ def downloadFolderTable(request):
 
             ('VALIGN', (0, 0), (-1, -1), 'TOP'),
 
-            ('FONTNAME', (0,0), (4,0), 'Helvetica'),
-            ('FONTSIZE', (0,0), (4,0), 12),
-            ('FONTSIZE', (0,0), (4,0), 14),
+            ('FONTNAME', (0,0), (-1,-1), 'Helvetica'),
+            ('FONTSIZE', (1,0), (-1,-1), 12),
+            ('FONTSIZE', (0,0), (-1,4), 14),
             ('BOTTOMPADDING', (0,0), (4,0), 15),
             ('BOTTOMPADDING', (0,0), (4,1), 12),
             #('BACKGROUND',(0,1),(-1,-1),colors.beige),
