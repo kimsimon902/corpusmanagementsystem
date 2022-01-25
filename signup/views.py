@@ -2546,6 +2546,14 @@ def downloadFolderTable(request):
         bc.bars[0].fillColor = colors.green
         bc.bars[1].fillColor = colors.lightgreen
 
+        titleBar = String(
+            35, 130, #50, 110,
+            'Date Extracted', 
+            fontSize = 20,
+            fontName = "Helvetica"
+        )	
+
+        drawingbar.add(titleBar)
         drawingbar.add(bc)
 
 
@@ -2600,7 +2608,6 @@ def downloadFolderTable(request):
         #elems.append(KeepTogether(table))
         elems.append(Spacer(1,.25*inch))
         drawing.hAlign = 'CENTER'
-        elems.append(Paragraph("Date Extracted",title_style))
         elems.append(drawingbar)
         elems.append(drawing)
         #elems.append(d)
