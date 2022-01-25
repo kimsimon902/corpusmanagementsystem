@@ -2397,6 +2397,8 @@ def downloadFolderTable(request):
         title_style.fontSize=16
         title_style.fontName="Helvetica"
         styleN.alignment = TA_LEFT
+        styleN.fontSize=12
+        styleN.fontName="Helvetica"
         ptext = "This is an example."
         can = canvas.Canvas(buf, pagesize=A4)
         p = Paragraph(ptext, style=styles["Normal"])
@@ -2587,9 +2589,9 @@ def downloadFolderTable(request):
         ts = TableStyle(
             [
             #('BOX',(0,0),(-1,-1),1,colors.black),
-            #('LINEBEFORE',(2,1),(2,-1),1,colors.red),
-            ('LINEABOVE',(0,0),(-1,4),1,colors.black),
-            ('LINEBELOW',(0,0),(-1,4),1,colors.black),
+            #('LINEBEFORE',(2,1),(2,-1),1,colors.black),
+            ('LINEABOVE',(0,0),(-1,-4),1,colors.black),
+            ('LINEBELOW',(0,0),(-1,-4),1,colors.black),
             #('GRID',(0,0),(-1,-1),1,colors.black),
             ]
         )
