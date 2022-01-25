@@ -2392,7 +2392,7 @@ def downloadFolderTable(request):
         buf = io.BytesIO()
         styles = getSampleStyleSheet()
         styleN = styles['Normal']
-        title_style = styles['Normal']
+        title_style = styles['Heading1']
         title_style.alignment = TA_CENTER
         title_style.fontSize=16
         title_style.fontName="Helvetica"
