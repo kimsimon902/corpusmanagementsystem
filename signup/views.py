@@ -2586,9 +2586,10 @@ def downloadFolderTable(request):
         # 3) Add borders
         ts = TableStyle(
             [
-            ('BOX',(0,0),(-1,-1),1,colors.black),
-            ('LINEBEFORE',(2,1),(2,-1),1,colors.red),
-            #('LINEABOVE',(0,2),(-1,2),1,colors.green),
+            #('BOX',(0,0),(-1,-1),1,colors.black),
+            #('LINEBEFORE',(2,1),(2,-1),1,colors.red),
+            ('LINEABOVE',(0,0),(-1,4),1,colors.black),
+            ('LINEBELOW',(0,0),(-1,4),1,colors.black),
             #('GRID',(0,0),(-1,-1),1,colors.black),
             ]
         )
