@@ -2587,19 +2587,19 @@ def downloadFolderTable(request):
         ts = TableStyle(
             [
             ('BOX',(0,0),(-1,-1),1,colors.black),
-            #('LINEBEFORE',(2,1),(2,-1),1,colors.red),
-            ('LINEABOVE',(0,2),(-1,2),1,colors.green),
-            ('GRID',(0,0),(-1,-1),1,colors.black),
+            ('LINEBEFORE',(2,1),(2,-1),1,colors.red),
+            #('LINEABOVE',(0,2),(-1,2),1,colors.green),
+            #('GRID',(0,0),(-1,-1),1,colors.black),
             ]
         )
         from reportlab.platypus import  Spacer
         table.setStyle(ts)
         elems = []
         elems.append(Paragraph("Summary of Articles For " + pair[1],style=title_style))
-        elems.append(Spacer(1,.5*inch))
+        elems.append(Spacer(1,.25*inch))
         elems.append(table)
         #elems.append(KeepTogether(table))
-        elems.append(Spacer(1,.25*inch))
+        elems.append(Spacer(1,.5*inch))
         drawing.hAlign = 'CENTER'
         elems.append(Paragraph("Date Extracted",style=title_style))
         elems.append(drawingbar)
