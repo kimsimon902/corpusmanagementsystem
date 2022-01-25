@@ -2410,7 +2410,7 @@ def downloadFolderTable(request):
         yearData = []
 
         for pub in getpubs:
-            data.append([Paragraph(pub.year, styleN),Paragraph(pub.title, styleN),Paragraph(pub.author, styleN),Paragraph(pub.url, styleN),Paragraph(pub.source, styleN)])
+            data.append([Paragraph(pub.year, style=styleN),Paragraph(pub.title, style=styleN),Paragraph(pub.author, style=styleN),Paragraph(pub.url, style=styleN),Paragraph(pub.source, style=styleN)])
             yearData.append(int(pub.year))
             #data.append([KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN)),KeepTogether(Paragraph(pub.title, styleN))])
             #data.append([Paragraph(pub.title,styles['Normal']),pub.author,'Title','Title','Title','Title'])
@@ -2595,13 +2595,13 @@ def downloadFolderTable(request):
         from reportlab.platypus import  Spacer
         table.setStyle(ts)
         elems = []
-        elems.append(Paragraph("Summary of Articles For " + pair[1],title_style))
+        elems.append(Paragraph("Summary of Articles For " + pair[1],style=title_style))
         elems.append(Spacer(1,.25*inch))
         elems.append(table)
         #elems.append(KeepTogether(table))
         elems.append(Spacer(1,.25*inch))
         drawing.hAlign = 'CENTER'
-        elems.append(Paragraph("Date Extracted",title_style))
+        elems.append(Paragraph("Date Extracted",style=title_style))
         elems.append(drawingbar)
         elems.append(drawing)
         #elems.append(d)
