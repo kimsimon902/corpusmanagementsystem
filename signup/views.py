@@ -2397,7 +2397,7 @@ def downloadFolderTable(request):
         title_style.fontSize=16
         title_style.fontName="Helvetica"
         styleN.alignment = TA_LEFT
-        styleN.fontSize=12
+        styleN.fontSize=11
         styleN.fontName="Helvetica"
         ptext = "This is an example."
         can = canvas.Canvas(buf, pagesize=A4)
