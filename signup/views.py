@@ -2486,7 +2486,8 @@ def downloadFolderTable(request):
         title = String(
             35, 130, #50, 110,
             'Database Source of Articles', 
-            fontSize = 20
+            fontSize = 20,
+            fontName = "Helvetica"
         )	
 
         legend = Legend()
@@ -2593,13 +2594,13 @@ def downloadFolderTable(request):
         from reportlab.platypus import  Spacer
         table.setStyle(ts)
         elems = []
-        elems.append(Paragraph("<strong>Summary of Articles For </strong>" + pair[1],title_style))
+        elems.append(Paragraph("Summary of Articles For " + pair[1],title_style))
         elems.append(Spacer(1,.25*inch))
         elems.append(table)
         #elems.append(KeepTogether(table))
         elems.append(Spacer(1,.25*inch))
         drawing.hAlign = 'CENTER'
-        elems.append(Paragraph("<strong>Date Extracted</strong>",title_style))
+        elems.append(Paragraph("Date Extracted",title_style))
         elems.append(drawingbar)
         elems.append(drawing)
         #elems.append(d)
