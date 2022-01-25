@@ -2547,7 +2547,7 @@ def downloadFolderTable(request):
         bc.bars[1].fillColor = colors.lightgreen
 
         titleBar = String(
-            35, 130, #50, 110,
+            50, 110,
             'Date Extracted', 
             fontSize = 20,
             fontName = "Helvetica"
