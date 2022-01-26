@@ -37,10 +37,10 @@
                             label: 'Year',
                             data: [{% for year in year_arr %}{{year.1}},{% endfor %}],
                             backgroundColor: [
-                                {% for source in source_arr %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                                {% for source in year_arr %}'rgba(	8, 120, 48, 1)',{% endfor %}
                             ],
                             borderColor: [
-                            {% for source in source_arr %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            {% for source in year_arr %}'rgba(	8, 120, 48, 1)',{% endfor %}
                             ],
                             borderWidth: 1
                           }]
