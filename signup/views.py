@@ -71,7 +71,8 @@ newStopWords = ['div', 'divdiv', 'scholaradivdivdivdivdivdiv', 'classrowdiv', 's
 '10px', 'teaseritemtitlexa', 'classteaseritema', 'fillcurrentcolor', 'classcitationlink', 'classpanelpane', 'classpanecontent', 'navbarlight', 'navbarnav', 'layerbylayer', 'typehidden', 'pagename', 'classpanelpane',
 'colspan2',  'rfunction', 'rtevar', 'instanceof', 'head', 'charsetutf8', 'httpequivcontenttype', 'var', 'vc3', 'styledisplaynone', 'reference', 'ie', 'classnojs', 'langenus', 'endif', 'oldie', 'lgwfull', 'classinlineblock', 'mdblock', 
 'classcffooteritem', 'smblock', 'wwwscienceorg', 'ebookscambridgeorg', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'reference', 'jscreadingcompanionreferencesitemp', 'amp', 'dlacmorg', 'hrefjavascript', 'linkref', 'linkreveal', 'classxreflink'
-'classcitationlinkscompatibilityspan', 'classname', 'classopeninanotherwindow', 'classlink' ]
+'classcitationlinkscompatibilityspan', 'classname', 'classopeninanotherwindow', 'classlink', 'citationauthorj', 'citationauthord', 'citationjournaltitlechem', 'citationauthors', 'citationauthorm', 'r', , 'j', 'classsitemenuitem', 
+ '23case', 'efunction', '11case', '15case', '100n', 'keyup', 'keydown', '0case', 'nullfunction', 'display', 'xploremetanav', 'n']
 
 all_stopwords.extend(newStopWords)
 
