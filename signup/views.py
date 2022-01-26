@@ -70,7 +70,8 @@ newStopWords = ['div', 'divdiv', 'scholaradivdivdivdivdivdiv', 'classrowdiv', 's
 '���', '�', 'filterflatedecodelength', 'filterflatedecodefirst', '792mediabox0', '792parent','�', 'stylebackgroundcolorf5f5f5boxshadownonepa', 'databackgroundf5f5f5', 'classreferencescopy2a', 
 '10px', 'teaseritemtitlexa', 'classteaseritema', 'fillcurrentcolor', 'classcitationlink', 'classpanelpane', 'classpanecontent', 'navbarlight', 'navbarnav', 'layerbylayer', 'typehidden', 'pagename', 'classpanelpane',
 'colspan2',  'rfunction', 'rtevar', 'instanceof', 'head', 'charsetutf8', 'httpequivcontenttype', 'var', 'vc3', 'styledisplaynone', 'reference', 'ie', 'classnojs', 'langenus', 'endif', 'oldie', 'lgwfull', 'classinlineblock', 'mdblock', 
-'classcffooteritem', 'smblock', 'wwwscienceorg', 'ebookscambridgeorg', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'reference', 'jscreadingcompanionreferencesitemp', 'amp', 'dlacmorg'  ]
+'classcffooteritem', 'smblock', 'wwwscienceorg', 'ebookscambridgeorg', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'reference', 'jscreadingcompanionreferencesitemp', 'amp', 'dlacmorg', 'hrefjavascript', 'linkref', 'linkreveal', 'classxreflink'
+'classcitationlinkscompatibilityspan', 'classname', 'classopeninanotherwindow', 'classlink' ]
 
 all_stopwords.extend(newStopWords)
 
