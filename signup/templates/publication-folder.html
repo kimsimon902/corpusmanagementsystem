@@ -80,6 +80,7 @@
                                     <form method="POST" action="/publication/{{getdata.id}}/addkeywordRequest">
                                         {% csrf_token %}
                                         <label for="fname">Keywords</label><br>
+                                        <div style="font-style:italic">Note: keywords added/deleted are sent for validation by the admins.</div>
                                         <input type="text" id="addedKeyword" name="addedKeyword" placeholder="enter keyword/s (e.g. cloud, telehealth, augmented)" size="45" required><br>
                                         <input type="hidden" name="next" value="{{ request.path }}"/>
                                         <button type="submit" class="btn btn-primary btn-sm" ><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
@@ -110,6 +111,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Keywords</th>
+                                                <div style="font-style:italic">Note: keywords added/deleted are sent for validation by the admins.</div>
                                                 <th></th>
                                             </tr>
                                         </thead>
