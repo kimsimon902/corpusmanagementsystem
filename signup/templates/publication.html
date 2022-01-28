@@ -80,7 +80,7 @@
                                     <form method="POST" action="/publication/{{getdata.id}}/addkeywordRequest">
                                         {% csrf_token %}
                                         <label for="fname">Keywords</label><br>
-                                        <div style="font-style:italic">Note: keywords added/deleted are sent for validation by the admins.</div>
+                                        <div style="font-style:italic; font-size: 10px;">Note: keywords added/deleted are sent for validation by the admins.</div>
                                         <input type="text" id="addedKeyword" name="addedKeyword" placeholder="enter keyword/s (e.g. cloud, telehealth, augmented)" size="45" required><br>
                                         <input type="hidden" name="next" value="{{ request.path }}"/>
                                         
@@ -105,7 +105,7 @@
                               <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">Delete Keywords</h4>
-                                    <div style="font-style:italic">Note: keywords added/deleted are sent for validation by the admins.</div>
+                                    <div style="font-style:italic; font-size: 10px;">Note: keywords added/deleted are sent for validation by the admins.</div>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
