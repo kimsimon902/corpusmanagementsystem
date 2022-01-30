@@ -2469,14 +2469,13 @@ def downloadFolderTable(request):
         table.setStyle(ts)
         elems = []
         elems.append(Paragraph("Summary of Articles For " + pair[1],style=title_style))
-        elems.append(Spacer(1,.25*inch))
-        elems.append(table)
-        #elems.append(KeepTogether(table))
-        elems.append(Spacer(1,.5*inch))
-        drawing.hAlign = 'CENTER'
-        elems.append(Paragraph("Date Extracted",style=title_style))
-        elems.append(drawingbar)
-        elems.append(drawing)
+        #elems.append(Spacer(1,.25*inch))
+        #elems.append(table)
+        #elems.append(Spacer(1,.5*inch))
+        #drawing.hAlign = 'CENTER'
+        #elems.append(Paragraph("Date Extracted",style=title_style))
+        #elems.append(drawingbar)
+        #elems.append(drawing)
         #elems.append(d)
         pdf.build(elems)
         buf.seek(0)
