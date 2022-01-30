@@ -2008,7 +2008,7 @@ def addCollab(request, username):
         newCollab.owner = email
         newCollab.folderID = request.POST.get('new-folder-id')
         newCollab.save()
-
+        messages.success(request, "Succesfully added collaborator")  
         return HttpResponseRedirect(next)
     else:
         return HttpResponseRedirect(next)
