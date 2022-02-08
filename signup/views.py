@@ -495,6 +495,7 @@ def testAnalytics(request, keyword):
         print(results_list)
 
         keyword_count = Counter(keyword_results).most_common(len(keyword_results))
+        print(keyword_count)
         
         return render(request, 'testanalytics.html',{'searched':searched.capitalize(), 
                                                     'results':results_list, 
