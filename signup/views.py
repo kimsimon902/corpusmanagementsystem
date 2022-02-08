@@ -1540,6 +1540,8 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
     
     if not pubs:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    print(keyword_count)
                             
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs, 
