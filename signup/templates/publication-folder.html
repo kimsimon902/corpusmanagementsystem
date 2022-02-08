@@ -184,7 +184,19 @@
                        <p style="margin-bottom: 5px;">Source:</p>
                        <p>{{getdata.source}}</p>
                        <p style="margin-bottom: 5px;">URL:</p>
-                       <a href="{{getdata.url}}">{{getdata.url}}</a>
+
+                        {% if getdata.url != 'Uploaded' and 'doi.org' not in getdata.url %}
+                            <td id="url" style="border-bottom: none;"><a href="{{getdata.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{getdata.url}}</div></a></td>
+                        {% endif %}
+
+                        {% if getdata.url != 'Uploaded' and "doi.org" in getdata.url %}
+                            <td id="url" style="border-bottom: none;"><a href="https://{{getdata.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{getdata.url}}</div></a></td> 
+                        {% endif %}
+                                    
+                        {% if getdata.url == 'Uploaded' %}
+                            <td id="url" style="border-bottom: none;"><a href="/media/{{getdata.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
+                        {% endif %}
+
                        {% if getdata.abstract %}
                        <p style="margin-bottom: 5px;">Abstract:</p>
                        <p style="text-align: justify; font-style: italic;">{{getdata.abstract}}</p>
