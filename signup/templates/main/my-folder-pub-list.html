@@ -121,7 +121,17 @@
                                         <td>{{x.author}}</td>
                                         <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; font-style: italic;">{{x.abstract}}</td>
                                         <td>{{x.source}}</td>
-                                        <td id="url">{{x.url}}</td>
+                                        {% if x.url != 'Uploaded' and 'doi.org' not in x.url %}
+                                            <td id="url" style="border-bottom: none;"><a href="{{x.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{x.url}}</div></a></td>
+                                        {% endif %}
+                                    
+                                        {% if x.url != 'Uploaded' and "doi.org" in publication.url %}
+                                            <td id="url" style="border-bottom: none;"><a href="https://{{x.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{x.url}}</div></a></td> 
+                                        {% endif %}
+                                                                        
+                                        {% if x.url == 'Uploaded' %}
+                                            <td id="url" style="border-bottom: none;"><a href="/media/{{x.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
+                                        {% endif %} 
                                     </tr>
                                     {% endif %}
                                 {% endfor %}
