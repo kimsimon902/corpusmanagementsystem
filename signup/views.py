@@ -1465,7 +1465,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
             if publication.id == pubkey.publication_id:
                 for pubid in keywords_list:
                     if pubkey.keywords_id == pubid.id:
-                        if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
+                        if pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
 
     resultsId_list = []
@@ -1475,6 +1475,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
             if keyword == allkeys.keywordname:
                 resultsId_list.append(allkeys.id)
 
+    
     keyword_count = Counter(keyword_results).most_common(len(keyword_results))
 
 
