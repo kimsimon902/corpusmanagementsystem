@@ -477,12 +477,20 @@ def testAnalytics(request, keyword):
             source_arr.insert(count, [source,sources_tally.count(source)])
             count+=1
 
+        # for publication in results_list:
+        #     for pubkey in pubkeys_list:
+        #         if publication.id == pubkey.publication_id:
+        #             for pubid in keywords_list:
+        #                 if pubkey.keywords_id == pubid.id:
+        #                     if pubid.keywordname not in keyword_results:
+        #                         keyword_results.append(pubid.keywordname)
+
         for publication in results_list:
             for pubkey in pubkeys_list:
                 if publication.id == pubkey.publication_id:
                     for pubid in keywords_list:
                         if pubkey.keywords_id == pubid.id:
-                            if pubid.keywordname not in keyword_results:
+                            if pubkey.status != "pending addition":
                                 keyword_results.append(pubid.keywordname)
         
         filteredYear =[]
