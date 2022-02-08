@@ -190,15 +190,15 @@
                         <p>{{getdata.source}}</p>
                         <p style="margin-bottom: 5px;">URL:</p>
 
-                        {% if getdata.url != 'uploaded' and 'doi.org' not in getdata.url %}
+                        {% if getdata.url != 'Uploaded' and 'doi.org' not in getdata.url %}
                             <td id="url" style="border-bottom: none;"><a href="{{getdata.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{getdata.url}}</div></a></td>
                         {% endif %}
 
-                        {% if getdata.url != 'uploaded' and "doi.org" in getdata.url %}
+                        {% if getdata.url != 'Uploaded' and "doi.org" in getdata.url %}
                             <td id="url" style="border-bottom: none;"><a href="https://{{getdata.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{getdata.url}}</div></a></td> 
                         {% endif %}
                                     
-                        {% if getdata.url == 'uploaded' %}
+                        {% if getdata.url == 'Uploaded' %}
                             <td id="url" style="border-bottom: none;"><a href="/media/{{getdata.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
                         {% endif %}
                         <br>
