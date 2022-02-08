@@ -30,7 +30,17 @@
                 overflow: hidden;
                 text-overflow: ellipsis; font-style: italic;">{{publication.abstract}}</td>
                 <td>{{publication.source}}</td>
-                <td>{{publication.url}}</td>
+                {% if publication.url != 'Uploaded' and 'doi.org' not in publication.url %}
+                    <td id="url" style="border-bottom: none;"><a href="{{publication.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{publication.url}}</div></a></td>
+                {% endif %}
+            
+                {% if publication.url != 'Uploaded' and "doi.org" in publication.url %}
+                    <td id="url" style="border-bottom: none;"><a href="https://{{publication.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{publication.url}}</div></a></td> 
+                {% endif %}
+                                                
+                {% if publication.url == 'Uploaded' %}
+                    <td id="url" style="border-bottom: none;"><a href="/media/{{publication.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
+                {% endif %} 
             </tr>
             {% endfor %}
         </tbody>
