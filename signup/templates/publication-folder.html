@@ -360,6 +360,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub-mark">
+                                                        {% csrf_token %}
                                                         <input type="hidden" name="next" value="{{ request.path }}"/>
                                                         <input type="hidden" name="selectMark" value="Task (Finished)"/>
                                                         <input type="hidden" name="annotation-exist" value="{{annotation.body}}"/>
