@@ -335,6 +335,8 @@
                     <div class="col">
                         <div class="row justify-content-end">
                             <div class="col-4">
+                                <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
+                                    {% csrf_token %}
                                 {% if annotation.author == request.session.username %}
                                 {% if annotation.marker == "Task (To-do)" %}
                                     <div class="form-check">
@@ -357,8 +359,7 @@
                             </div>
                         </div>
                     </div>
-                    <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
-                        {% csrf_token %}
+
                         <select class="custom-select invisible" id="pubsMarkerSelect_{{annotation.id}}" name="selectMark" disabled>
                             <option selected value="Task (To-do)">Task (To-do)</option>
                             <option value="Task (Finished)">Task (Finished)</option>
