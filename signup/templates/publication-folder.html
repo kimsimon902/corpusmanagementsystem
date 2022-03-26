@@ -335,6 +335,7 @@
                     <div class="col">
                         {% if annotation.marker == "Task (To-do)" %}
                             <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#039be5; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
+                            <h6>Mark as finished</h6>
                         {% elif annotation.marker == "Task (Finished)" %}
                             <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:green; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
                         {% elif annotation.marker == "Comment" %}

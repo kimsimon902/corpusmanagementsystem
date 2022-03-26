@@ -1786,6 +1786,7 @@ def PublicationPageAnnotate(request, username, folderid, id):
             saveAnnotation.dateTime = current_datetime
             saveAnnotation.marker = mark
             saveAnnotation.isEdited = 0
+            saveAnnotation.isDone = 0
             saveAnnotation.save()
             messages.success(request, "Annotation saved")
             return HttpResponseRedirect(next)
