@@ -335,7 +335,6 @@
                     <div class="col">
                         {% if annotation.marker == "Task (To-do)" %}
                             <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#039be5; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
-                            <h6>Mark as finished</h6>
                         {% elif annotation.marker == "Task (Finished)" %}
                             <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:green; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
                         {% elif annotation.marker == "Comment" %}
@@ -354,6 +353,12 @@
                         <input type="hidden" name="next" value="{{ request.path }}"/>
                         <br>
                         {% if annotation.author == request.session.username %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Default checkbox
+                            </label>
+                        </div>
                         <button type="submit" class="btn btn-danger btn-sm float-end" id="pubsAnnotation_btnDelete_{{annotation.id}}" style="display:inline" name="annotate-delete">Delete</button>
                         <button type="button" class="btn btn-primary btn-sm float-end" id="pubsAnnotation_btnEdit_{{annotation.id}}" onclick="clickEditOnAnnotationClass('{{annotation.id}}')" style="display:inline; margin-right:20px;" name="annotate-edit">Edit</button>
                         <button type="button" class="btn btn-warning btn-sm float-end" id="pubsAnnotation_btnCancel_{{annotation.id}}" onclick="clickCancelAnnotationClass('{{annotation.id}}','{{annotation.body}}','{{annotation.marker}}')" style="display:none; margin-right:20px;" name="annotate-cancel">Cancel</button>
