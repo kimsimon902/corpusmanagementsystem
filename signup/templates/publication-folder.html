@@ -359,8 +359,13 @@
                                                 Do you want to mark this task as finished?
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                                <button type="button" class="btn btn-primary">Yes</button>
+                                                    <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub-mark">
+                                                        <input type="hidden" name="next" value="{{ request.path }}"/>
+                                                        <input type="hidden" name="selectMark" value="Task (Finished)"/>
+                                                        <input type="hidden" name="annotation-exist" value="{{annotation.body}}"/>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                        <button type="submit" class="btn btn-primary" name="mark-as-finished">Yes</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                             </div>
