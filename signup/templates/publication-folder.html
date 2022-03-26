@@ -338,13 +338,13 @@
                             </div>
                             <div class="col-4">
                                 {% if annotation.marker == "Task (To-do)" %}
-                                    <!-- <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#039be5; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6> -->
+                                    <h6 class="float-end">{{annotation.marker}}</h6>
 
                                     {% if annotation.author == request.session.username %}
                                     {% if annotation.marker == "Task (To-do)" %}
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskModal" style="background: none!important;border: none;padding: 0!important; color:black">
-                                            <h6 class="float-end">{{annotation.marker}}<i class="far fa-check-circle"></i></h6>
+                                            <i class="far fa-check-circle"></i>
                                         </button>
     
                                         <!-- Modal -->
