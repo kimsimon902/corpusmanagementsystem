@@ -44,7 +44,6 @@ class annotations(models.Model):
     dateTime = models.CharField(max_length=50)
     marker = models.CharField(max_length=45)
     isEdited = models.IntegerField()
-    isDone = models.IntegerField()
 
     class Meta:
         db_table = "annotations"
