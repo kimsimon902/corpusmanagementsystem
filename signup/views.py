@@ -375,7 +375,7 @@ def create_dictionary(clean_list, id):
 
     filtered = [word for word in newkeywords if not word in all_stopwords]
 
-    print(id)
+    print(filtered)
     for i in range(0,len(filtered)):
         if keywords.objects.filter(keywordname=filtered[i].strip()):
             name_id.append(filtered[i].strip())
