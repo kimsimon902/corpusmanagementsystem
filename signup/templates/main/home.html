@@ -53,7 +53,7 @@
       <div class="card">
         <div class="card-body">
           <h3 class="card-title">
-              Trending topics by folder
+              Suggested Publications by Keywords
           </h3>
           {% for tag in viewed_tags %}
           <p><a href="/testAnalytics/{{tag.tag}}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></p>
@@ -68,7 +68,7 @@
             <div class="card">
                <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
-                <h3 class="card-title">Most searched terms</h3>
+                <h3 class="card-title">Most Searched Terms within a Title</h3>
                 {% for keyword in searched %}
                     <p><a href="/search/?searched={{keyword.keyword}}&filterData=default" style="margin-top: 15px; text-transform: capitalize;">{{ keyword.keyword }}</a></p>
                 {% endfor %}
@@ -77,21 +77,21 @@
             <div class="card">
               <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
-                <h3 class="card-title">Most opened publications</h3>
+                <h3 class="card-title">Most Viewed Publications</h3>
                 {% for pub in opened_pubs %}
                     <p><a href="/publication/{{ pub.pub_id }}/" style="margin-top: 15px;">{{ pub.pub_title }}</a></p>
                 {% endfor %}
               </div>
             </div>
-            <div class="card">
-               <!-- <img src="..." class="card-img-top" alt="..."> -->
+            <!-- <div class="card">
+               
               <div class="card-body">
                 <h3 class="card-title">Most viewed keywords</h3>
                 {% for tag in viewed_tags %}
                     <p><a href="/search/?keyword={{ tag.tag }}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></p>
                 {% endfor %}
               </div>
-            </div>
+            </div> -->
               <div class="card">
                <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
