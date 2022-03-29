@@ -234,6 +234,7 @@ def scrap(url, id):
         # the <div> tags with class <entry-content> 
 
         if "aisel" in url:
+            print(id)
             table = soup.findAll('div', {'id':'abstract'})
             for x in table:
                 content = x.find('p').text
