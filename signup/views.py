@@ -798,16 +798,16 @@ def searchPublication(request):
             keyword_results = []
             year_count = []
             
-            # for publication in xlist:
-            #     flag = 0
-            #     for pubkey in publication_keys:
-            #         if publication.id == pubkey.publication_id and flag == 0:
-            #             flag=1
-            #     if flag == 0:
-            #         if "http" in publication.url: 
-            #             scrap(publication.url, publication.id)
-            #         else:
-            #             scrap("http://" + publication.url, publication.id)
+            for publication in xlist:
+                flag = 0
+                for pubkey in publication_keys:
+                    if publication.id == pubkey.publication_id and flag == 0:
+                        flag=1
+                if flag == 0:
+                    if "http" in publication.url: 
+                        scrap(publication.url, publication.id)
+                    else:
+                        scrap("http://" + publication.url, publication.id)
 
             for publication in xlist:
                 if publication.source != 'Uploaded':
