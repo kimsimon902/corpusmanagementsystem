@@ -69,6 +69,50 @@
                           }
                       }
                   });
+
+            //   var data = [{% for keyword in keyword_results %}{"x": '{{keyword.0}}',"value":{{keyword.1}}},{% endfor %}];
+
+                  const ctxBarKeyDisc = document.getElementById('myChartBarKeyDisc').getContext('2d');
+                  const myChartBarKeyDisc = new Chart(ctxBarKeyDisc, {
+                      type: 'bar',
+                      data: {
+                          labels: [{% for keyword in keyword_results %}'{{keyword.0}}',{% endfor %}],
+                          datasets: [{
+                            label: 'Year',
+                            data: [{% for keyword in keyword_results %}{{keyword.1}},{% endfor %}],
+                            backgroundColor: [
+                                {% for keyword in keyword_results %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            ],
+                            borderColor: [
+                            {% for keyword in keyword_results %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            ],
+                            borderWidth: 1
+                          }]
+                      },
+                      options: {
+                          responsive:true,
+                          plugins: {
+                              labels:{
+                                  render:'value',
+                              },
+                          },
+                          scales: {
+                              y: {
+                                  beginAtZero: true,
+                              },
+                              yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    stepSize: 1,  
+                                },
+                                afterDataLimits(scale) {
+                                scale.max += 1;
+                                scale.min -= 1;
+                                }
+                            }]
+                          }
+                      }
+                  });
       
                   const ctxPie = document.getElementById('myChartPie').getContext('2d');
                   const myChartPie = new Chart(ctxPie, {
@@ -201,6 +245,14 @@
                                     <h4>Number of publications present in the following sources</h4>
                                     <div class="chart-container" style="padding-bottom: 50px; height: 500px;">
                                         <canvas id="myChartPie"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h4>Number of publications about "{{searched}}" published per discipline</h4>
+                                    <div class="chart-container" style="padding-bottom: 50px; height: 500px;">    
+                                        <canvas id="myChartBarKeyDisc"></canvas>
                                     </div>
                                 </div>
                             </div>
