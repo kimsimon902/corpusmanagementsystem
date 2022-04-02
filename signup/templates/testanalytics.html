@@ -76,15 +76,15 @@
                   const myChartBarKeyDisc = new Chart(ctxBarKeyDisc, {
                       type: 'bar',
                       data: {
-                          labels: [{% for keyword in keyword_results %}'{{keyword.0}}',{% endfor %}],
+                          labels: [{% for keyword in keyword_results[1:] %}'{{keyword.0}}',{% endfor %}],
                           datasets: [{
                             label: 'Year',
-                            data: [{% for keyword in keyword_results %}{{keyword.1}},{% endfor %}],
+                            data: [{% for keyword in keyword_results[1:] %}{{keyword.1}},{% endfor %}],
                             backgroundColor: [
-                                {% for keyword in keyword_results %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                                {% for keyword in keyword_results[1:] %}'rgba(	8, 120, 48, 1)',{% endfor %}
                             ],
                             borderColor: [
-                            {% for keyword in keyword_results %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            {% for keyword in keyword_results[1:] %}'rgba(	8, 120, 48, 1)',{% endfor %}
                             ],
                             borderWidth: 1
                           }]
