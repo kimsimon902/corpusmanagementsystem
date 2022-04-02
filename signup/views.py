@@ -514,7 +514,7 @@ def analytics(request, keyword):
                                                     'opened_pubs':opened_pubs, 
                                                     'viewed_tags':viewed_tags,
                                                     'bookmarked_pubs':bookmarked_pubs,
-                                                    'year_arr':year_arr,
+                                                    'year_arr':year_arr[:5],
                                                     'source_arr':source_arr
                                                     })
 
@@ -1457,7 +1457,7 @@ def FoldersPageAnalytics(request, folderID):
                                                        'results':pubs,
                                                        'related':relatedPubs, 
                                                        'keyword_results': keyword_count,
-                                                       'year_arr':year_arr,
+                                                       'year_arr':year_arr[:5],
                                                        'source_arr':source_arr,
                                                        'ais':ais_authors,
                                                        'ieee':iee_authors,
@@ -1563,7 +1563,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
                                                        'results':pubs, 
                                                        'related':relatedPubs,
                                                        'keyword_results': keyword_count,
-                                                       'year_arr':year_arr,
+                                                       'year_arr':year_arr[:5],
                                                        'source_arr':source_arr,
                                                        })
 
