@@ -114,8 +114,8 @@
                       }
                   });
 
-                  const ctxBarKeyDisc = document.getElementById('myChartBarKeyAuthor').getContext('2d');
-                  const myChartBarKeyAuthor = new Chart(ctxBarKeyDisc, {
+                  const ctxBarKeyAuthor = document.getElementById('myChartBarKeyAuthor').getContext('2d');
+                  const myChartBarKeyAuthor = new Chart(ctxBarKeyAuthor, {
                       type: 'bar',
                       data: {
                           labels: [{% for keyword in keyword_results|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
