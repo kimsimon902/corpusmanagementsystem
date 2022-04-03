@@ -446,10 +446,10 @@ def analytics(request, keyword):
         
         for pub in results_list:
             if pub.author not in authors_present:
-                authors_present.append(pub.author)
+                authors_present.append(pub.author.split(';'))
 
         for pub in results_list:
-            authors_tally.append(pub.author)
+            authors_tally.append(pub.author.split(';'))
 
         count = 0
         for author in authors_present:
