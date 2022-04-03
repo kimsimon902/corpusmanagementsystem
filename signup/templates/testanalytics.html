@@ -118,15 +118,15 @@
                   const myChartBarKeyAuthor = new Chart(ctxBarKeyAuthor, {
                       type: 'bar',
                       data: {
-                          labels: [{% for keyword in author_arr %}'{{author.0}}',{% endfor %}],
+                          labels: [{% for author in author_arr %}'{{author.0}}',{% endfor %}],
                           datasets: [{
                             label: 'Number of Publications',
-                            data: [{% for keyword in author_arr %}{{author.1}},{% endfor %}],
+                            data: [{% for author in author_arr %}{{author.1}},{% endfor %}],
                             backgroundColor: [
-                                {% for keyword in author_arr %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                                {% for author in author_arr %}'rgba(	8, 120, 48, 1)',{% endfor %}
                             ],
                             borderColor: [
-                            {% for keyword in author_arr %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            {% for author in author_arr %}'rgba(	8, 120, 48, 1)',{% endfor %}
                             ],
                             borderWidth: 1
                           }]
