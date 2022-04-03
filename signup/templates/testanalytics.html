@@ -113,6 +113,48 @@
                           }
                       }
                   });
+
+                  const ctxBarKeyDisc = document.getElementById('myChartBarKeyAuthor').getContext('2d');
+                  const myChartBarKeyAuthor = new Chart(ctxBarKeyDisc, {
+                      type: 'bar',
+                      data: {
+                          labels: [{% for keyword in keyword_results|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
+                          datasets: [{
+                            label: 'Number of Publications',
+                            data: [{% for keyword in keyword_results|slice:"1:" %}{{keyword.1}},{% endfor %}],
+                            backgroundColor: [
+                                {% for keyword in keyword_results|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            ],
+                            borderColor: [
+                            {% for keyword in keyword_results|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            ],
+                            borderWidth: 1
+                          }]
+                      },
+                      options: {
+                          responsive:true,
+                          plugins: {
+                              labels:{
+                                  render:'value',
+                              },
+                          },
+                          scales: {
+                              y: {
+                                  beginAtZero: true,
+                              },
+                              yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    stepSize: 1,  
+                                },
+                                afterDataLimits(scale) {
+                                scale.max += 1;
+                                scale.min -= 1;
+                                }
+                            }]
+                          }
+                      }
+                  });
       
                   const ctxPie = document.getElementById('myChartPie').getContext('2d');
                   const myChartPie = new Chart(ctxPie, {
@@ -260,7 +302,7 @@
                                 <div class="col">
                                     <h4>Most prominent authors in "{{searched}}"</h4>
                                     <div class="chart-container" style="padding-bottom: 50px; height: 500px;">    
-                                        <canvas id="myChartBarKeyDisc"></canvas>
+                                        <canvas id="myChartBarKeyAuthor"></canvas>
                                     </div>
                                 </div>
                             </div>
