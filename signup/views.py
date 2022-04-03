@@ -442,18 +442,28 @@ def analytics(request, keyword):
 
         authors_present = []
         authors_tally = []
+        authors_single = []
+        authors_single_tally = []
         author_arr = []
         
         for pub in results_list:
             if pub.author not in authors_present:
                 authors_present.append(pub.author)
 
+        for author in authors_present:
+            author.split(";")
+            authors_single.append(author)
+
         for pub in results_list:
             authors_tally.append(pub.author)
 
+        for author in authors_tally:
+            author.split(";")
+            authors_single_tally.append(author)
+
         count = 0
-        for author in authors_present:
-            author_arr.insert(count, [author,authors_tally.count(author)])
+        for author in authors_single:
+            author_arr.insert(count, [author,authors_single_tally.count(author)])
             count+=1
 
         years_present = []
