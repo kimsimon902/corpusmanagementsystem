@@ -439,12 +439,26 @@ def analytics(request, keyword):
                             results_list.append(pub)
 
         keyword_results = []
+
+        authors_present = []
+        authors_tally = []
+        author_arr = []
         
+        for pub in results_list:
+            if pub.author not in authors_present:
+                authors_present.append(pub.author)
+
+        for pub in results_list:
+            authors_tally.append(pub.author)
+
+        count = 0
+        for author in authors_present:
+            author_arr.insert(count, [author,authors_tally.count(author)])
+            count+=1
 
         years_present = []
         years_tally = []
-        year_arr = []
-        
+        year_arr = []   
 
         for pub in results_list:
             if int(pub.year) not in years_present:
@@ -515,7 +529,8 @@ def analytics(request, keyword):
                                                     'viewed_tags':viewed_tags,
                                                     'bookmarked_pubs':bookmarked_pubs,
                                                     'year_arr':year_arr[:5],
-                                                    'source_arr':source_arr
+                                                    'source_arr':source_arr,
+                                                    'author_arr':author_arr
                                                     })
 
     return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
