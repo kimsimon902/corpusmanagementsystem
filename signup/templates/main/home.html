@@ -100,13 +100,16 @@
     <script>
       function myFunction() {
         // Declare variables
-        var input, filter, ul, li, a, i, txtValue, topFiveTags;
+        var input, filter, ul, li, a, i, txtValue, topFiveTags, allKeys;
         input = document.getElementById('myInput');
         filter = input.value.toUpperCase();
         ul = document.getElementById("myUL");
         li = ul.getElementsByTagName('li');
         topFiveTags = document.getElementById('topFiveTags');
+        allKeys = document.getElementById('allKeywords');
       
+        allKey.style.display = "";
+
         // Loop through all list items, and hide those who don't match the search query
         for (i = 0; i < li.length; i++) {
           a = li[i].getElementsByTagName("a")[0];
@@ -122,7 +125,7 @@
           topFiveTags.style.display = "none";
         } else {
           for (i = 0; i < li.length; i++) {
-            li[i].style.display = "none";
+            allKey.style.display = "none";
           }
           topFiveTags.style.display = "";
         }
