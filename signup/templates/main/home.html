@@ -82,12 +82,12 @@
           <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
 
           <ul id="myUL">
-            <div id="topFiveTags">
+            <div id="topFiveTags" style="display:block">
               {% for tag in viewed_tags %}
               <li><a href="/analytics/{{tag.tag}}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></li>
               {% endfor %}
             </div>
-            <div id="allKeywords">
+            <div id="allKeywords" style="display:block">
               {% for keyword in all_keys %}
               <li style="display:none"><a href="/analytics/{{keyword.keywordname}}" style="margin-top: 15px; text-transform: capitalize;">{{ keyword.keywordname }}</a></li>
               {% endfor %}
@@ -125,7 +125,7 @@
           for (i = 0; i < li.length; i++) {
             li[i].style.display = "none";
           }
-          topFiveTags.style.display = "";
+          topFiveTags.style.display = "block";
         }
       }
     </script>
