@@ -536,7 +536,7 @@ def analytics(request, keyword):
                                                     'results':results_list, 
                                                     'count':len(results_list),
                                                     'keyword_results':keyword_count,
-                                                    'keyword_bar':keyword_count[-10:],
+                                                    'keyword_bar':keyword_count[:10],
                                                     'searchedkeys':searched_keywords,
                                                     'opened_pubs':opened_pubs, 
                                                     'viewed_tags':viewed_tags,
