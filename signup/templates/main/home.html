@@ -80,13 +80,14 @@
               Suggested publications by keywords
           </h3>
           <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-
-          <ul id="myUL">
+          <ul>
             <div id="topFiveTags" style="display:block">
               {% for tag in viewed_tags %}
               <li><a href="/analytics/{{tag.tag}}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></li>
               {% endfor %}
             </div>
+          </ul>
+          <ul id="myUL">
             <div id="allKeywords" style="display:block">
               {% for keyword in all_keys %}
               <li style="display:none"><a href="/analytics/{{keyword.keywordname}}" style="margin-top: 15px; text-transform: capitalize;">{{ keyword.keywordname }}</a></li>
