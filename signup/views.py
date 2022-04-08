@@ -1484,7 +1484,7 @@ def FoldersPageAnalytics(request, folderID):
                                                        'results':pubs,
                                                        'related':relatedPubs, 
                                                        'keyword_results': keyword_count,
-                                                       'year_arr':year_arr[:-5],
+                                                       'year_arr':year_arr[-5:],
                                                        'source_arr':source_arr,
                                                        'ais':ais_authors,
                                                        'ieee':iee_authors,
@@ -1590,7 +1590,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
                                                        'results':pubs, 
                                                        'related':relatedPubs,
                                                        'keyword_results': keyword_count,
-                                                       'year_arr':year_arr[:-5],
+                                                       'year_arr':year_arr[-5:],
                                                        'source_arr':source_arr,
                                                        })
 
