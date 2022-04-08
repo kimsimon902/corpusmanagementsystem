@@ -59,7 +59,7 @@
           <p><a href="/analytics/{{tag.tag}}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></p>
           {% endfor %}
           {% for keyword in all_keys %}
-          <p><a href="/analytics/{{keyword.keywordname}}" style="margin-top: 15px; text-transform: capitalize;">{{ keyword.keywordname }}</a></p>
+          <p style="display:none"><a href="/analytics/{{keyword.keywordname}}" style="margin-top: 15px; text-transform: capitalize;">{{ keyword.keywordname }}</a></p>
           {% endfor %}
         </div>
       </div>
