@@ -26,7 +26,51 @@
 
     <!-- Main CSS-->
     <link rel="stylesheet" href="{% static '\users\search-assets\css\search-bar-css.css' %}">
+    <style>
+      #keywordsUL {
+        /* Remove default list styling */
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
 
+      #keywordsUL li a {
+        border: 1px solid #ddd; /* Add a border to all links */
+        margin-top: -1px; /* Prevent double borders */
+        background-color: #f6f6f6; /* Grey background color */
+        padding: 12px; /* Add some padding */
+        text-decoration: none; /* Remove default text underline */
+        font-size: 18px; /* Increase the font-size */
+        color: black; /* Add a black text color */
+        display: block; /* Make it into a block element to fill the whole list */
+      }
+
+      #keywordsUL li a:hover:not(.header) {
+        background-color: #eee; /* Add a hover effect to all links, except for headers */
+      }
+
+      #topFiveUL {
+        /* Remove default list styling */
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      #topFiveUL li a {
+        border: 1px solid #ddd; /* Add a border to all links */
+        margin-top: -1px; /* Prevent double borders */
+        background-color: #f6f6f6; /* Grey background color */
+        padding: 12px; /* Add some padding */
+        text-decoration: none; /* Remove default text underline */
+        font-size: 18px; /* Increase the font-size */
+        color: black; /* Add a black text color */
+        display: block; /* Make it into a block element to fill the whole list */
+      }
+
+      #keywotopFiveULrdsUL li a:hover:not(.header) {
+        background-color: #eee; /* Add a hover effect to all links, except for headers */
+      }
+    </style>
 
 
 </head>
@@ -80,7 +124,7 @@
               Suggested publications by keywords
           </h3>
           <input type="text" class="form-control" aria-label="Search for keywords" aria-describedby="basic-addon2" id="keywordInput" onkeyup="myFunction()" placeholder="Search for keywords..">
-          <ul>
+          <ul id="topFiveUL">
             <div id="topFiveTags" style="display:block">
               {% for tag in viewed_tags %}
               <li><a href="/analytics/{{tag.tag}}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></li>
