@@ -57,6 +57,7 @@ class bookmarks(models.Model):
         db_table = "bookmarks"
 
 class bookmarks_folder(models.Model):
+    
     folder_name = models.CharField(max_length=100)
     user = models.CharField(max_length=100)
 

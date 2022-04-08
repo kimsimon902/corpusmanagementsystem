@@ -92,6 +92,8 @@ def home(request):
     annotation = annotations.objects.all()
     publication_keys = pubkeys.objects.all()
 
+    all_keys = keywords.objects.all()
+
     #most searched keywords
     searched_keywords = records_search.objects.raw('SELECT id, keyword, count(*) as count FROM records_search GROUP BY keyword ORDER BY count DESC LIMIT 5')
 
@@ -104,7 +106,7 @@ def home(request):
     #most bookmarked
     bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 5')
 
-    return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
+    return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs, 'all_keys':all_keys})
 
 def viewBookmarks(request):
     email = request.session['email']
