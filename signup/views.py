@@ -540,7 +540,7 @@ def analytics(request, keyword):
                                                     'opened_pubs':opened_pubs, 
                                                     'viewed_tags':viewed_tags,
                                                     'bookmarked_pubs':bookmarked_pubs,
-                                                    'year_arr':year_arr[:-5],
+                                                    'year_arr':year_arr,
                                                     'source_arr':source_arr,
                                                     'author_arr':author_arr
                                                     })
