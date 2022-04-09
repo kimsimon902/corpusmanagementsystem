@@ -751,21 +751,13 @@ def searchPublication(request):
 
         if  searchFilter == "default":
 
-            publication_keys = pubkeys.objects.all()
-            keywords_list = keywords.objects.all()
-            keyword_results = []
-            year_count = []
-            publications_all = publications.objects.all()
-            xlist = []
-            
             if 'ais' in libFilter and len(libFilter) == 1:
-                for publication in list(publications_all):
-                    if publication.source == 'AIS':    
-                            for pubid in list(publication_keys):
-                                if publication.id == pubid.publication_id:
-                                    for keyword in list(keywords_list):
-                                        if searched == keyword.keywordname:
-                                            xlist.append(publication)
+
+
+                results = publications.objects.filter(
+                    Q(title__icontains=searched) |
+                    Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
+                )
              
 
 
@@ -824,14 +816,30 @@ def searchPublication(request):
                 )
 
             print(libFilter[0])  
-                    
-            
+            # publication results in list data type                        
+            xlist =     list(results)
             for publication in xlist:
                 if publication.url == 'doi.org/' or len(publication.url) == 0:
                     publication.url = 'https://scholar.google.com/scholar?q=' + publication.title
                     publication.save()
 
-         
+            publication_keys = pubkeys.objects.all()
+            keywords_list = keywords.objects.all()
+            keyword_results = []
+            year_count = []
+            publications_all = publications.objects.all()
+
+            # for publication in list(publications_all):
+            #     for result in xlist:
+            #         if result.id != publication.id:     
+            #             for pubid in list(publication_keys):
+            #                 if publication.id == pubid.publication_id:
+            #                     for keyword in list(keywords_list):
+            #                         if searched == keyword.keywordname:
+            #                             xlist.append(publication)
+
+
+           
             
             # for publication in xlist:
             #     flag = 0
