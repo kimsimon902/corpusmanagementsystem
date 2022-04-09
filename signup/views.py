@@ -815,7 +815,7 @@ def searchPublication(request):
                     Q(author__icontains=searched), status__icontains="approved"
                 )
 
-                   
+            print(libFilter)  
             # publication results in list data type                        
             xlist =     list(results)
             for publication in xlist:
