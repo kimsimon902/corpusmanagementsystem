@@ -816,7 +816,7 @@ def searchPublication(request):
                 )
 
                    
-                                    
+            # publication results in list data type                        
             xlist =     list(results)
             for publication in xlist:
                 if publication.url == 'doi.org/' or len(publication.url) == 0:
@@ -827,6 +827,19 @@ def searchPublication(request):
             keywords_list = keywords.objects.all()
             keyword_results = []
             year_count = []
+            publications_all = publications.objects.all()
+
+            for publication in list(publications_all):
+                for result in xlist:
+                    if result.id != publication.id:     
+                        for pubid in list(publication_keys):
+                            if publication.id == pubid.publication_id:
+                                for keyword in list(keywords_list):
+                                    if searched == keyword.keywordname:
+                                        xlist.append(pub)
+
+
+           
             
             for publication in xlist:
                 flag = 0
@@ -882,7 +895,7 @@ def searchPublication(request):
                 libFilter = "['ais', 'ieee', 'scopus']"
             
             logSearch.source = libFilter
-            logSearch.num_results = results.count()
+            logSearch.num_results = xlist.count()
             logSearch.date = datetime.datetime.now()
             logSearch.save()
             
@@ -890,20 +903,20 @@ def searchPublication(request):
 
             if request.GET.get('sortBy') != None:
                 if request.GET.get('sortBy') == 'earlyYear':
-                    results = results.order_by('year')
+                    xlist = xlist.order_by('year')
                 elif request.GET.get('sortBy') == 'lateYear':
-                    results = results.order_by('-year')
+                    xlist = xlist.order_by('-year')
             
             if request.GET.get('min') != None and request.GET.get('max') != None:
                 min_value = request.GET.get('min')
                 max_value = request.GET.get('max')
-                results = results.filter(year__gte=min_value,year__lte=max_value)
-                results = results.order_by('year')
+                xlist = xlist.filter(year__gte=min_value,year__lte=max_value)
+                xlist = xlist.order_by('year')
                 
             
 
             return render(request,'main/search.html',{'searched':searched, 
-                                                        'results':results, 
+                                                        'results':xlist, 
                                                         'count':results.count(),
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
