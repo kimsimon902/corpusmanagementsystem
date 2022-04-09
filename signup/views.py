@@ -895,7 +895,7 @@ def searchPublication(request):
                 libFilter = "['ais', 'ieee', 'scopus']"
             
             logSearch.source = libFilter
-            logSearch.num_results = len(xlist)
+            logSearch.num_results = results.count()
             logSearch.date = datetime.datetime.now()
             logSearch.save()
             
@@ -903,21 +903,21 @@ def searchPublication(request):
 
             if request.GET.get('sortBy') != None:
                 if request.GET.get('sortBy') == 'earlyYear':
-                    xlist = xlist.order_by('year')
+                    results = results.order_by('year')
                 elif request.GET.get('sortBy') == 'lateYear':
-                    xlist = xlist.order_by('-year')
+                    results = results.order_by('-year')
             
             if request.GET.get('min') != None and request.GET.get('max') != None:
                 min_value = request.GET.get('min')
                 max_value = request.GET.get('max')
-                xlist = xlist.filter(year__gte=min_value,year__lte=max_value)
-                xlist = xlist.order_by('year')
+                results = results.filter(year__gte=min_value,year__lte=max_value)
+                results = results.order_by('year')
                 
             
 
             return render(request,'main/search.html',{'searched':searched, 
-                                                        'results':xlist, 
-                                                        'count':len(xlist),
+                                                        'results':results, 
+                                                        'count':results.count(),
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
