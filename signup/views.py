@@ -836,7 +836,7 @@ def searchPublication(request):
                             if publication.id == pubid.publication_id:
                                 for keyword in list(keywords_list):
                                     if searched == keyword.keywordname:
-                                        xlist.append(pub)
+                                        xlist.append(publication)
 
 
            
