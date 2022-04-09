@@ -829,14 +829,14 @@ def searchPublication(request):
             year_count = []
             publications_all = publications.objects.all()
 
-            for publication in list(publications_all):
-                for result in xlist:
-                    if result.id != publication.id:     
-                        for pubid in list(publication_keys):
-                            if publication.id == pubid.publication_id:
-                                for keyword in list(keywords_list):
-                                    if searched == keyword.keywordname:
-                                        xlist.append(publication)
+            # for publication in list(publications_all):
+            #     for result in xlist:
+            #         if result.id != publication.id:     
+            #             for pubid in list(publication_keys):
+            #                 if publication.id == pubid.publication_id:
+            #                     for keyword in list(keywords_list):
+            #                         if searched == keyword.keywordname:
+            #                             xlist.append(publication)
 
 
            
