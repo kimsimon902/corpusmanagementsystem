@@ -756,7 +756,7 @@ def searchPublication(request):
             keyword_results = []
             year_count = []
             publications_all = publications.objects.all()
-
+            xlist = []
             
             if 'ais' in libFilter and len(libFilter) == 1:
                 for publication in list(publications_all):
