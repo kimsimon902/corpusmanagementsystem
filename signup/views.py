@@ -895,7 +895,7 @@ def searchPublication(request):
                 libFilter = "['ais', 'ieee', 'scopus']"
             
             logSearch.source = libFilter
-            logSearch.num_results = xlist.count()
+            logSearch.num_results = len(xlist)
             logSearch.date = datetime.datetime.now()
             logSearch.save()
             
@@ -917,7 +917,7 @@ def searchPublication(request):
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':xlist, 
-                                                        'count':results.count(),
+                                                        'count':len(xlist),
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
