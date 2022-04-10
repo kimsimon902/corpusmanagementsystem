@@ -477,7 +477,7 @@ def analytics(request, keyword):
             if auth not in unique_author:
                 unique_author.append(auth)
 
-        unique_author.sort()
+        unique_author.sort(key=lambda s:s[1], reverse=True)
 
         years_present = []
         years_tally = []
@@ -826,7 +826,7 @@ def searchPublication(request):
                     Q(author__icontains=searched), status__icontains="approved"
                 )
 
-            print(libFilter[0])  
+            
             # publication results in list data type                        
             xlist =     list(results)
             for publication in xlist:
