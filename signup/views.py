@@ -505,6 +505,7 @@ def analytics(request, keyword):
         for source in sources_present:
             source_arr.insert(count, [source,sources_tally.count(source)])
             count+=1
+            source_arr.sort()
 
         # for publication in results_list:
         #     for pubkey in pubkeys_list:
