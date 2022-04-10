@@ -767,7 +767,7 @@ def searchPublication(request):
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
-                )
+                ).order_by('id')
              
 
 
@@ -778,7 +778,7 @@ def searchPublication(request):
                 ).filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), status__icontains="approved"
-                )
+                ).order_by('id')
 
 
             elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
@@ -788,7 +788,7 @@ def searchPublication(request):
                 ).filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), status__icontains="approved"
-                )
+                ).order_by('id')
 
              
 
@@ -796,7 +796,7 @@ def searchPublication(request):
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="ieee", status__icontains="approved"
-                )
+                ).order_by('id')
 
                
 
@@ -808,14 +808,14 @@ def searchPublication(request):
                 ).filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), status__icontains="approved"
-                )
+                ).order_by('id')
 
                
             elif 'scopus' in libFilter and len(libFilter) == 1:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
-                )
+                ).order_by('id')
 
               
 
@@ -823,7 +823,7 @@ def searchPublication(request):
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), status__icontains="approved"
-                )
+                ).order_by('id')
 
             
             # publication results in list data type                        

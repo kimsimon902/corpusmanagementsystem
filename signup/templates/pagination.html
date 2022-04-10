@@ -22,7 +22,7 @@
                     {% endif %}
                 {% endfor %} 
                 {% if results.has_next %}
-                        <li class="page-item"><a class="page-link" aria-label="Next" href="?page={{results.next_page_number}}">>></a></li>
+                        <li class="page-item"><a class="page-link" aria-label="Next" href="?page={{ results.next_page_number }}">>></a></li>
                 {% else %}
                         <li class="page-item disable"><a class="page-link"><span>>></a></li>
                 {% endif %}
