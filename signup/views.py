@@ -877,7 +877,7 @@ def searchPublication(request):
                                     keyword_results.append(pubid.keywordname)
                                     
                                     
-                                
+            result_count = results.count()                    
             paginator = Paginator(results, 10)
             page = request.GET.get('page')
 
@@ -916,7 +916,7 @@ def searchPublication(request):
                 libFilter = "['ais', 'ieee', 'scopus']"
             
             logSearch.source = libFilter
-            logSearch.num_results = results.count()
+            logSearch.num_results = result_count
             logSearch.date = datetime.datetime.now()
             logSearch.save()
             
@@ -939,7 +939,7 @@ def searchPublication(request):
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'page_range': page_range,
-                                                        'count':results.count(),
+                                                        'count':result_count,
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
