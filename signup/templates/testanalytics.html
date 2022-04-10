@@ -118,7 +118,7 @@
                   const myChartBarKeyAuthor = new Chart(ctxBarKeyAuthor, {
                       type: 'bar',
                       data: {
-                          labels: [{% for author in author_arr %}'{{author.0}}',{% endfor %}],
+                          labels: [{% for author in author_arr%}'{{author.0}}',{% endfor %}],
                           datasets: [{
                             label: 'Number of Publications',
                             data: [{% for author in author_arr %}{{author.1}},{% endfor %}],

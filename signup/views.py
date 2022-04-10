@@ -490,6 +490,8 @@ def analytics(request, keyword):
             year_arr.insert(count, [year,years_tally.count(year)])
             count+=1
 
+        author_count = Counter(source_arr).most_common(len(source_arr))
+
         sources_present = []
         sources_tally = []
         source_arr = []
@@ -505,7 +507,7 @@ def analytics(request, keyword):
         for source in sources_present:
             source_arr.insert(count, [source,sources_tally.count(source)])
             count+=1
-            source_arr.sort()
+        
 
         # for publication in results_list:
         #     for pubkey in pubkeys_list:
@@ -546,7 +548,7 @@ def analytics(request, keyword):
                                                     'bookmarked_pubs':bookmarked_pubs,
                                                     'year_arr':year_arr[-5:],
                                                     'source_arr':source_arr,
-                                                    'author_arr':author_arr[:10]
+                                                    'author_arr':author_count[:10]
                                                     })
 
     return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
