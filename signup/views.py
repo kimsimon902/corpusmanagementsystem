@@ -441,6 +441,7 @@ def analytics(request, keyword):
                             results_list.append(pub)
 
         keyword_results = []
+        author_results = []
 
         authors_present = []
         authors_tally = []
@@ -478,7 +479,11 @@ def analytics(request, keyword):
 
         unique_author.sort()
 
-        author_count = Counter(unique_author).most_common(len(unique_author))
+        for author in results_list:
+            for auth in publications_list:
+                author_results.append(auth.author)
+
+        author_count = Counter(author_results).most_common(len(author_results))
 
         years_present = []
         years_tally = []
