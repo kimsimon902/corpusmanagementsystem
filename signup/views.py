@@ -469,8 +469,12 @@ def analytics(request, keyword):
         for author in authors_single:
             author_arr.insert(count, [author,authors_single_tally.count(author)])
             count+=1
-            author_arr = list(set(author_arr))
-            author_arr.sort()
+        
+        unique_author = []
+
+        for auth in author_arr:
+            if auth not in unique_author:
+                unique_author.append(auth)
 
         years_present = []
         years_tally = []
@@ -549,7 +553,7 @@ def analytics(request, keyword):
                                                     'bookmarked_pubs':bookmarked_pubs,
                                                     'year_arr':year_arr[-5:],
                                                     'source_arr':source_arr,
-                                                    'author_arr':author_arr[:10]
+                                                    'author_arr':unique_author[:10]
                                                     })
 
     return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
