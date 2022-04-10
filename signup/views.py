@@ -19,7 +19,7 @@ from .models import bookmarks_folder
 from .models import collaborators
 from datetime import datetime
 from django.db.models import Q
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import time
 import datetime
 import io
@@ -52,10 +52,9 @@ from requests.exceptions import ConnectionError
 from collections import Counter
 from django.urls import resolve
 
+
+
 #stopwords to be removed from scaping
-
-
-
 all_stopwords = stopwords.words('english')
 newStopWords = ['div', 'divdiv', 'scholaradivdivdivdivdivdiv', 'classrowdiv', 'scholarapdiv', 'use', 'div', 'td', 'li', 'ul', 'meta', 'function','var', 'start', 'inner', 'end', 'lia', 'span'
 'script', 'true', 'tr', 'null', '0', 'input', 'p', 'tabindex1',  'islandsoption', 'section', 'sections', 'classreferencessuffixa', 'classsimpletooltipblockb', 'classxa', 'referencesitemxa', 
@@ -879,12 +878,23 @@ def searchPublication(request):
                                     
                                     
                                 
-            
-            page_results = Paginator(results, 10)
-            page_number = 1
-            page_obj = page_results.get_page(page_number)      
+            paginator = Paginator(results, 10)
+            page = request.GET.get('page')
 
-            
+            try:
+                results = paginator.page(page)
+            except PageNotAnInteger:
+                results = paginator.page(1)  
+            except EmptyPage:
+                results = paginator.page(paginator.num_pages)
+
+            index = results.number - 1
+            max_index = len(paginator.page_range)
+            start_index = index - 5 if index >= 5 else 0
+            end_index = index + 5 if index <= max_index - 5 else max_index
+            page_range = paginator.page_range[start_index:end_index]
+
+
             filteredYear =[]
             for year in xlist:
                 if int(year.year) not in filteredYear:
@@ -928,6 +938,7 @@ def searchPublication(request):
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
+                                                        'page_range': page_range,
                                                         'count':results.count(),
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
