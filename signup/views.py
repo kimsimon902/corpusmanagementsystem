@@ -476,6 +476,8 @@ def analytics(request, keyword):
             if auth not in unique_author:
                 unique_author.append(auth)
 
+        unique_author.sort()
+
         years_present = []
         years_tally = []
         year_arr = []   
