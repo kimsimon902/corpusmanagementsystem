@@ -825,7 +825,7 @@ def searchPublication(request):
                     Q(author__icontains=searched), status__icontains="approved"
                 ).order_by('id')
 
-            
+            results.order_by('id')
             # publication results in list data type                        
             xlist =     list(results)
             for publication in xlist:
@@ -946,7 +946,7 @@ def searchPublication(request):
                                                         'filteredYear': filteredYear,
                                                         'searchFilter': searchFilter,
                                                         'libFilter':libFilter,
-                    
+                                                        'searched': searched
                                                         })
             
         elif searchFilter == "title":
