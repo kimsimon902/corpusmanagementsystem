@@ -470,6 +470,7 @@ def analytics(request, keyword):
             author_arr.insert(count, [author,authors_single_tally.count(author)])
             count+=1
             author_arr.sort()
+            author_arr = list(set(author_arr))
 
         years_present = []
         years_tally = []
