@@ -469,6 +469,7 @@ def analytics(request, keyword):
         for author in authors_single:
             author_arr.insert(count, [author,authors_single_tally.count(author)])
             count+=1
+            author_arr.sort()
 
         years_present = []
         years_tally = []
@@ -490,7 +491,6 @@ def analytics(request, keyword):
             year_arr.insert(count, [year,years_tally.count(year)])
             count+=1
 
-        author_count = Counter(author_arr).most_common(len(author_arr))
 
         sources_present = []
         sources_tally = []
