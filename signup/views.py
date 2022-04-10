@@ -478,6 +478,8 @@ def analytics(request, keyword):
 
         unique_author.sort()
 
+        author_count = Counter(unique_author).most_common(len(unique_author))
+
         years_present = []
         years_tally = []
         year_arr = []   
@@ -555,7 +557,7 @@ def analytics(request, keyword):
                                                     'bookmarked_pubs':bookmarked_pubs,
                                                     'year_arr':year_arr[-5:],
                                                     'source_arr':source_arr,
-                                                    'author_arr':unique_author[:10]
+                                                    'author_arr':author_count[:10]
                                                     })
 
     return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
