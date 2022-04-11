@@ -564,17 +564,15 @@ def analytics(request, keyword):
 
 
 
+
+
 register = template.Library()
 
 @register.simple_tag(takes_context=True)
-def url_replace(context, next_page):
-    query = context['request'].GET.copy().urlencode()
-    
-    if '&page=' in query:
-        url = query.rpartition('&page=')[0]
-    else:
-        url = query
-    return f'{url}&page={next_page}'
+def url_replace(context, **kwargs):
+    query = context['request'].GET.copy()
+    query.update(kwargs)
+    return query.urlencode()
 
 # def countYearResults(year, word):
 
