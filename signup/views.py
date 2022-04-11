@@ -878,7 +878,7 @@ def searchPublication(request):
                                     
                                     
             result_count = results.count()                    
-            paginator = Paginator(results.qs, 10)
+            paginator = Paginator(results, 10)
             page = request.GET.get('page')
 
             try:
