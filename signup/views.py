@@ -51,7 +51,8 @@ from nltk.tokenize import word_tokenize
 from requests.exceptions import ConnectionError
 from collections import Counter
 from django.urls import resolve
-
+from urllib.parse import urlencode
+from django import template
 
 
 #stopwords to be removed from scaping
@@ -560,6 +561,16 @@ def analytics(request, keyword):
 
     return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
 
+
+
+
+register = template.Library()
+
+@register.simple_tag(takes_context=True)
+def url_replace(context, **kwargs):
+    query = context['request'].GET.copy()
+    query.update(kwargs)
+    return query.urlencode()
 
 # def countYearResults(year, word):
 
