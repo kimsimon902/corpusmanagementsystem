@@ -568,11 +568,17 @@ def analytics(request, keyword):
 
 register = template.Library()
 
-@register.simple_tag(takes_context=True)
-def url_replace(context, **kwargs):
-    query = context['request'].GET.copy()
-    query.update(kwargs)
-    return query.urlencode()
+@register.simple_tag
+def url_replace(request, field, value):
+    d = request.GET.copy()
+    d[field] = value
+    return d.urlencode()
+
+@register.simple_tag
+def url_delete(request, field):
+    d = request.GET.copy()
+    del d[field]
+    return d.urlencode()
 
 # def countYearResults(year, word):
 
