@@ -18,7 +18,7 @@
                             <a class="page-link" href="#">{{i}} <span class="sr-only">(current)</span></a>
                         </li>
                     {% else %}
-                        <li class="page-item"><a class="page-link" href="?{% url_replace page={{i}} %}">{{i}}</a></li>
+                        <li class="page-item"><a class="page-link" href="?{% url_replace page=i %}">{{i}}</a></li>
                     {% endif %}
                 {% endfor %} 
                 {% if results.has_next %}
