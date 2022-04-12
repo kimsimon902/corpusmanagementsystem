@@ -745,7 +745,7 @@ def searchPublication(request):
             
             zippedList = zip(filteredYear, year_count)
            
-            print("hello i am in if year")
+            
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
@@ -934,7 +934,8 @@ def searchPublication(request):
             logSearch.date = datetime.datetime.now()
             logSearch.save()
             
-            print(year_count)
+            print(libFilter)
+            print(searchFilter)
 
             if request.GET.get('sortBy') != None:
                 if request.GET.get('sortBy') == 'earlyYear':
@@ -960,7 +961,6 @@ def searchPublication(request):
                                                         'filteredYear': filteredYear,
                                                         'searchFilter': searchFilter,
                                                         'libFilter':libFilter,
-                                                        'searched': searched
                                                         })
             
         elif searchFilter == "title":
