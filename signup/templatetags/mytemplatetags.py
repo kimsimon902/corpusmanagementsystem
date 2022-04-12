@@ -6,4 +6,5 @@ register = template.Library()
 def url_replace(context, **kwargs):
     query = context['request'].GET.dict()
     query.update(kwargs)
+    print("hello i am templatetag")
     return urlencode(query)
