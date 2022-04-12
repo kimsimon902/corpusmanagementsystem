@@ -4,7 +4,7 @@
         <nav aria-label="">
             <ul class="pagination">
                 {% if results.has_previous %}
-                    <li class="page-item"><a class="page-link" href="/?searched={{ searched }}&filterData={{ searchFilter }}&page={{ results.previous_page_number}}"> << </a>
+                    <li class="page-item"><a class="page-link" href="?searched={{ searched }}&filterData={{ searchFilter }}&page={{ results.previous_page_number}}"> << </a>
                 </li>
                 {% else %}
                     <li class="page-item disabled">
@@ -21,7 +21,7 @@
                     {% endif %}
                 {% endfor %} 
                 {% if results.has_next %}
-                        <li class="page-item"><a class="page-link" aria-label="Next" href="/?searched={{ searched }}&filterData={{ searchFilter }}&page={{ results.next_page_number}}">>></a></li>
+                        <li class="page-item"><a class="page-link" aria-label="Next" href="?searched={{ searched }}&filterData={{ searchFilter }}&page={{ results.next_page_number}}">>></a></li>
                 {% else %}
                         <li class="page-item disable"><a class="page-link"><span>>></a></li>
                 {% endif %}
