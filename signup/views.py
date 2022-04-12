@@ -745,7 +745,8 @@ def searchPublication(request):
             
             zippedList = zip(filteredYear, year_count)
            
-
+            print(filteredYear)
+            print(searchFilter)
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
