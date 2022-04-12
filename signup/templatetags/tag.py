@@ -1,18 +1,11 @@
 from django import template
-from django.utils.html import mark_safe
+from django.utils.http import urlencode
 
 register = template.Library()
 
+
 @register.simple_tag(takes_context=True)
 def url_replace(context, **kwargs):
-    query = context['request'].GET.copy()
-
-    for kwarg in kwargs:
-        try:
-            query.pop(kwarg)
-        except KeyError:
-            pass
-
+    query = context['request'].GET.dict()
     query.update(kwargs)
-
-    return mark_safe(query.urlencode())
+    return urlencode(query)
