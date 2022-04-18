@@ -343,12 +343,12 @@
                                     {% if annotation.author == request.session.username %}
                                     {% if annotation.marker == "Task (To-do)" %}
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#taskModal" style="background: none!important;border: none;padding: 0!important; color:black">
+                                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#taskModal_{{annotation.id}}" style="background: none!important;border: none;padding: 0!important; color:black">
                                             Mark as finished <i class="far fa-check-circle"></i>
                                         </button>
     
                                         <!-- Modal -->
-                                        <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="taskModal_{{annotation.id}}" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
