@@ -585,8 +585,9 @@ def searchKeywordAnalytics(request):
     if request.method == "GET":
         keyword_search = request.GET.get("searchedKeyword")
         keyword_results = keywords.objects.filter(keywordname__icontains=keyword_search)
+        count = keyword_results.count()
 
-        return render(request, 'main/searchKeywordAnalytics.html',{ 'keyword_results':keyword_results, 'searched': keyword_search})
+        return render(request, 'main/searchKeywordAnalytics.html',{ 'keyword_results':keyword_results, 'searched': keyword_search, 'count':count})
 
 def searchPublication(request):
     

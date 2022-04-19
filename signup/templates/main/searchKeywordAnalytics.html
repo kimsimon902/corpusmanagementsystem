@@ -32,10 +32,9 @@
         </div>
 
         {% include 'main/messages.html' %}
-        <h5>{{keyword_results}}</h5>
         <div class="row">
             <div class="col">
-                <!-- <h5 style="margin-top: 20px; margin-bottom: 20px;">Showing {{count}} results for {{searched}}</h5> -->
+                <h5 style="margin-top: 20px; margin-bottom: 20px;">Showing {{count}} results for {{searched}}</h5>
             </div>
         </div>
         <div class="row row-cols-2 justify-content-center">
@@ -45,7 +44,7 @@
                     {% for keyword in keyword_results %}
                     <div class="card">
                         <div class="card-body">
-                          {{keyword}}
+                          {{keyword.name}}
                         </div>
                       </div>
                     {% endfor %}
