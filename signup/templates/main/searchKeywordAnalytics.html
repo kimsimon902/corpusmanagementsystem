@@ -43,8 +43,8 @@
                 <div class="container">
                     <h5 style="margin-top: 20px; margin-bottom: 20px;">Showing {{count}} results for {{searched}}</h5>
                     {% for keyword in keyword_results %}
-                    <div class="card">
-                        <div class="card-body" style="margin:10px;">
+                    <div class="card" style="margin:10px;">
+                        <div class="card-body">
                           <a href="/analytics/{{keyword.keywordname}}" style="margin-top: 15px; text-transform: capitalize; text-decoration: none;">{{keyword.keywordname|capfirst}}</a>
                         </div>
                       </div>
