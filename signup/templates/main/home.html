@@ -90,7 +90,12 @@
             <h3 class="card-title">
                 Search author analytics
             </h3>
-            <input type="text" class="form-control" aria-label="Search for keywords" aria-describedby="basic-addon2" id="keywordInput1" onkeyup="myFunction2()" placeholder="Search for keywords..">
+            <form class='col' method="GET" action="{% url 'searchAuthorAnalytics' %}" id="search-analytics-form1">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search for an author" aria-label="Search" aria-describedby="button-addon3" name="searchedAuthor">
+                <button class="btn btn-success" type="submit" id="button-addon3"  form="search-analytics-form1" style="color:white;">Search</button>
+              </div>
+            </form>
             <ul id="topFiveAuthor">
               <div id="topFiveAuthor" style="display:block">
                 {% for tag in viewed_tags %}

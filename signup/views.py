@@ -589,6 +589,52 @@ def searchKeywordAnalytics(request):
 
         return render(request, 'main/searchKeywordAnalytics.html',{ 'keyword_results':keyword_results, 'searched': keyword_search, 'count':count})
 
+def searchAuthorAnalytics(request):
+    if request.method == "GET":
+        
+        author_search = request.GET.get("searchedAuthor")
+        results = publications.objects.all()
+        authors_present = []
+        authors_tally = []
+        authors_single = []
+        authors_single_tally = []
+        
+        for pub in results:
+            authors_present.append(pub.author)
+
+        for author in authors_present:
+            splitauth = author.split(";") 
+            for x in splitauth:
+                authors_single.append(x)
+
+        for pub in results:
+            authors_tally.append(pub.author)
+
+        for author in authors_tally:
+            splitauth = author.split(";") 
+            for x in splitauth:
+                authors_single_tally.append(x)
+
+        unique_author = []
+
+        for auth in authors_single_tally:
+            if auth not in unique_author:
+                unique_author.append(auth)
+
+        unique_author.sort()
+
+        author_results = []
+
+        for author in unique_author:
+            if author in author_search:
+                author_results.append(author)
+
+        count = author_results.count()
+
+
+        return render(request, 'main/searchKeywordAnalytics.html',{ 'author_results':author_results, 'searched': author_search, 'count':count})
+
+
 def searchPublication(request):
     
     if request.method == "GET":
