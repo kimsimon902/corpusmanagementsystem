@@ -631,7 +631,7 @@ def searchAuthorAnalytics(request):
 
         author_results.sort()
 
-        count = author_results.len()
+        count = len(author_results)
 
         return render(request, 'main/searchAuthorAnalytics.html',{ 'author_results':author_results, 'searched': author_search, 'count':count})
 
