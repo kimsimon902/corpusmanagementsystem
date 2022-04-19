@@ -106,7 +106,36 @@ def home(request):
     #most bookmarked
     bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 5')
 
-    return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs, 'all_keys':all_keys})
+    authors_present = []
+    authors_tally = []
+    authors_single = []
+    authors_single_tally = []
+    
+    for pub in results:
+        authors_present.append(pub.author)
+
+    for author in authors_present:
+        splitauth = author.split(";") 
+        for x in splitauth:
+            authors_single.append(x)
+
+    for pub in results:
+        authors_tally.append(pub.author)
+
+    for author in authors_tally:
+        splitauth = author.split(";") 
+        for x in splitauth:
+            authors_single_tally.append(x)
+
+    unique_author = []
+
+    for auth in authors_single_tally:
+        if auth not in unique_author:
+            unique_author.append(auth)
+
+    unique_author.sort()
+
+    return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs, 'all_keys':all_keys, 'all_authors':unique_author})
 
 def viewBookmarks(request):
     email = request.session['email']
