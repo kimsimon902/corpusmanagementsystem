@@ -626,11 +626,11 @@ def searchAuthorAnalytics(request):
         author_results = []
 
         for author in unique_author:
-            if author_search in author:
+            if author_search in str(author):
                 author_results.append(author)
 
-        count = author_results.count()
-
+        # count = author_results.count()
+        count = 1
 
         return render(request, 'main/searchKeywordAnalytics.html',{ 'author_results':author_results, 'searched': author_search, 'count':count})
 
