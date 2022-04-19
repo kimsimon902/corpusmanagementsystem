@@ -93,10 +93,10 @@
             <h3 class="card-title">
                 Search keyword analytics
             </h3>
-            <form class='col-6' method="GET" action="{% url 'search' %}" id="search-analytics-form">
+            <form class='col' method="GET" action="{% url 'search' %}" id="search-analytics-form">
               <div class="input-group mb-3">
-                <input class="form-control" type="search" placeholder="Search for a keyword" name="searched-keyword" aria-label="Search" value="" >
-                <button class="btn btn-success btn-sm" type="submit" form="search-analytics-form">Search</button>
+                <input type="text" class="form-control" placeholder="Search for a keyword" aria-label="Search" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2"  form="search-analytics-form">Search</button>
               </div>
             </form>
             <ul id="topFiveUL">
