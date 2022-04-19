@@ -44,7 +44,7 @@
                     {% for keyword in keyword_results %}
                     <div class="card">
                         <div class="card-body">
-                          <a href="/analytics/{{keyword.keywordname}}" style="margin-top: 15px; text-transform: capitalize;">{{keyword.keywordname|capfirst}}</a>
+                          <a href="/analytics/{{keyword.keywordname}}" style="margin-top: 15px; text-transform: capitalize; text-decoration: none;">{{keyword.keywordname|capfirst}}</a>
                         </div>
                       </div>
                     {% endfor %}
