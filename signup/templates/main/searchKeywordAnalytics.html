@@ -32,18 +32,19 @@
         </div>
 
         {% include 'main/messages.html' %}
-        <div class="row">
+        <!-- <div class="row">
             <div class="col">
                 <h5 style="margin-top: 20px; margin-bottom: 20px;">Showing {{count}} results for {{searched}}</h5>
             </div>
-        </div>
+        </div> -->
         <div class="row row-cols-2 justify-content-center">
             <!-- Results table-->
             <div class="col-10">
                 <div class="container">
+                    <h5 style="margin-top: 20px; margin-bottom: 20px;">Showing {{count}} results for {{searched}}</h5>
                     {% for keyword in keyword_results %}
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" style="margin:10px;">
                           <a href="/analytics/{{keyword.keywordname}}" style="margin-top: 15px; text-transform: capitalize; text-decoration: none;">{{keyword.keywordname|capfirst}}</a>
                         </div>
                       </div>

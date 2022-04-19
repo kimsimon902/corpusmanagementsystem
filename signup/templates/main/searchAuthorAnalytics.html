@@ -32,17 +32,18 @@
         </div>
 
         {% include 'main/messages.html' %}
-        <div class="row">
+        <!-- <div class="row">
             <div class="col">
                 <h5 style="margin-top: 20px; margin-bottom: 20px;">Showing {{count}} results for {{searched}}</h5>
             </div>
-        </div>
+        </div> -->
         <div class="row row-cols-2 justify-content-center">
             <!-- Results table-->
             <div class="col-10">
                 <div class="container">
+                    <h5 style="margin-top: 20px; margin-bottom: 20px;">Showing {{count}} results for {{searched}}</h5>
                     {% for author in author_results %}
-                    <div class="card">
+                    <div class="card" style="margin:10px;">
                         <div class="card-body">
                           {{author|capfirst}}
                         </div>
