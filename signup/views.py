@@ -626,7 +626,7 @@ def searchAuthorAnalytics(request):
         author_results = []
 
         for author in unique_author:
-            if author in author_search:
+            if author_search in author:
                 author_results.append(author)
 
         count = author_results.count()
