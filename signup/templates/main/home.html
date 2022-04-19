@@ -151,8 +151,8 @@
               Author analytics
           </h3>
           <input type="text" class="form-control" aria-label="Search for keywords" aria-describedby="basic-addon2" id="keywordInput1" onkeyup="myFunction2()" placeholder="Search for keywords..">
-          <ul id="topFiveUL">
-            <div id="topFiveTags" style="display:block">
+          <ul id="topFiveAuthor">
+            <div id="topFiveAuthor" style="display:block">
               {% for tag in viewed_tags %}
               <li><a href="/analytics/{{tag.tag}}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></li>
               {% endfor %}
@@ -177,7 +177,7 @@
         filter = input.value.toUpperCase();
         ul = document.getElementById("authorUL");
         li = ul.getElementsByTagName('li');
-        topFiveTags = document.getElementById('topFiveTags');
+        topFiveTags = document.getElementById('topFiveAuthor');
         allKeys = document.getElementById('allAuthors');
       
         // Loop through all list items, and hide those who don't match the search query
