@@ -632,7 +632,7 @@ def searchAuthorAnalytics(request):
         # count = author_results.count()
         count = 1
 
-        return render(request, 'main/searchKeywordAnalytics.html',{ 'author_results':unique_author, 'searched': author_search, 'count':count})
+        return render(request, 'main/searchAuthorAnalytics.html',{ 'author_results':unique_author, 'searched': author_search, 'count':count})
 
 
 def searchPublication(request):
