@@ -629,8 +629,9 @@ def searchAuthorAnalytics(request):
             if author_search.lower() in str(author).lower():
                 author_results.append(author)
 
-        #count = author_results.count()
-        count = 0
+        author_results.sort()
+
+        count = author_results.len()
 
         return render(request, 'main/searchAuthorAnalytics.html',{ 'author_results':author_results, 'searched': author_search, 'count':count})
 
