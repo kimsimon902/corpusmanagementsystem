@@ -34,7 +34,7 @@
         margin: 0;
       }
 
-      #topFiveUL {
+      #topFiveAuthor {
         /* Remove default list styling */
         list-style-type: none;
         padding: 0;
@@ -69,9 +69,9 @@
             <h3 class="card-title">
                 Search keyword analytics
             </h3>
-            <form class='col' method="GET" action="{% url 'search' %}" id="search-analytics-form">
+            <form class='col' method="GET" action="{% url 'searchKeywordAnalytics' %}" id="search-analytics-form">
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search for a keyword" aria-label="Search" aria-describedby="button-addon2">
+                <input type="text" class="form-control" placeholder="Search for a keyword" aria-label="Search" aria-describedby="button-addon2" name="searchedKeyword">
                 <button class="btn btn-success" type="button" id="button-addon2"  form="search-analytics-form" style="color:white;">Search</button>
               </div>
             </form>
