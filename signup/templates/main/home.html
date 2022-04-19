@@ -86,121 +86,47 @@
       </div>
     </div> -->
 
-    <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title">
-              Suggested publications by keywords
-          </h3>
-          <input type="text" class="form-control" aria-label="Search for keywords" aria-describedby="basic-addon2" id="keywordInput" onkeyup="myFunction()" placeholder="Search for keywords..">
-          <ul id="topFiveUL">
-            <div id="topFiveTags" style="display:block">
-              {% for tag in viewed_tags %}
-              <li><a href="/analytics/{{tag.tag}}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></li>
-              {% endfor %}
-            </div>
-          </ul>
-          <ul id="keywordsUL">
-            <div id="allKeywords" style="display:block">
-              {% for keyword in all_keys %}
-              <li style="display:none"><a href="/analytics/{{keyword.keywordname}}" style="margin-top: 15px; text-transform: capitalize;">{{ keyword.keywordname }}</a></li>
-              {% endfor %}
-            </div>
-          </ul>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">
+                Search keyword analytics
+            </h3>
+            <form class='col-6' method="GET" action="{% url 'search' %}" id="search-analytics-form">
+              <div class="input-group mb-3">
+                <input class="form-control" type="search" placeholder="Search for a keyword" name="searched-keyword" aria-label="Search" value="" >
+                <button class="btn btn-success btn-sm" type="submit" form="search-analytics-form">Search</button>
+              </div>
+            </form>
+            <ul id="topFiveUL">
+              <div id="topFiveTags" style="display:block">
+                {% for tag in viewed_tags %}
+                <li><a href="/analytics/{{tag.tag}}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></li>
+                {% endfor %}
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">
+                Search author analytics
+            </h3>
+            <input type="text" class="form-control" aria-label="Search for keywords" aria-describedby="basic-addon2" id="keywordInput1" onkeyup="myFunction2()" placeholder="Search for keywords..">
+            <ul id="topFiveAuthor">
+              <div id="topFiveAuthor" style="display:block">
+                {% for tag in viewed_tags %}
+                <li><a href="/analytics/{{tag.tag}}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></li>
+                {% endfor %}
+              </div>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-
-    <script>
-      function myFunction() {
-        // Declare variables
-        var input, filter, ul, li, a, i, txtValue, topFiveTags, allKeys;
-        input = document.getElementById('keywordInput');
-        filter = input.value.toUpperCase();
-        ul = document.getElementById("keywordsUL");
-        li = ul.getElementsByTagName('li');
-        topFiveTags = document.getElementById('topFiveTags');
-        allKeys = document.getElementById('allKeywords');
-      
-        // Loop through all list items, and hide those who don't match the search query
-        for (i = 0; i < li.length; i++) {
-          a = li[i].getElementsByTagName("a")[0];
-          txtValue = a.textContent || a.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-          } else {
-            li[i].style.display = "none";
-          }
-        }
-
-        if (filter.length > 0){
-          topFiveTags.style.display = "none";
-        } else {
-          for (i = 0; i < li.length; i++) {
-            li[i].style.display = "none";
-          }
-          topFiveTags.style.display = "block";
-        }
-      }
-    </script>
-
-    <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title">
-              Author analytics
-          </h3>
-          <input type="text" class="form-control" aria-label="Search for keywords" aria-describedby="basic-addon2" id="keywordInput1" onkeyup="myFunction2()" placeholder="Search for keywords..">
-          <ul id="topFiveAuthor">
-            <div id="topFiveAuthor" style="display:block">
-              {% for tag in viewed_tags %}
-              <li><a href="/analytics/{{tag.tag}}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></li>
-              {% endfor %}
-            </div>
-          </ul>
-          <ul id="authorUL">
-            <div id="allAuthors" style="display:block">
-              {% for author in all_authors %}
-              <li style="display:none"><a href="/analytics/{{keyword.keywordname}}" style="margin-top: 15px; text-transform: capitalize;">{{ author }}</a></li>
-              {% endfor %}
-            </div>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      function myFunction2() {
-        // Declare variables
-        var input, filter, ul, li, a, i, txtValue, topFiveTags, allKeys;
-        input = document.getElementById('keywordInput1');
-        filter = input.value.toUpperCase();
-        ul = document.getElementById("authorUL");
-        li = ul.getElementsByTagName('li');
-        topFiveTags = document.getElementById('topFiveAuthor');
-        allKeys = document.getElementById('allAuthors');
-      
-        // Loop through all list items, and hide those who don't match the search query
-        for (i = 0; i < li.length; i++) {
-          a = li[i].getElementsByTagName("a")[0];
-          txtValue = a.textContent || a.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-          } else {
-            li[i].style.display = "none";
-          }
-        }
-
-        if (filter.length > 0){
-          topFiveTags.style.display = "none";
-        } else {
-          for (i = 0; i < li.length; i++) {
-            li[i].style.display = "none";
-          }
-          topFiveTags.style.display = "block";
-        }
-      }
-    </script>
 
     <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
         <h2>Trends</h2>
