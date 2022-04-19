@@ -584,7 +584,7 @@ def url_replace(request, field, value):
 def searchKeywordAnalytics(request):
     if request.method == "GET":
         keyword_search = request.GET.get("searchedKeyword")
-        keyword_results = keywords.objects.get(keywordname__icontains='keyword_search')
+        keyword_results = keywords.objects.get(keywordname__icontains=keyword_search)
 
         return render(request, 'main/searchKeywordAnalytics.html',{ 'keyword_results':keyword_results, 'searched': keyword_search})
 
