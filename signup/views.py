@@ -135,7 +135,7 @@ def home(request):
 
     unique_author.sort()
 
-    return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs, 'all_keys':all_keys, 'all_authors':unique_author[:10]})
+    return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs, 'all_keys':all_keys, 'all_authors':unique_author})
 
 def viewBookmarks(request):
     email = request.session['email']
