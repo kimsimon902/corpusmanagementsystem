@@ -391,6 +391,10 @@ def create_dictionary(clean_list, id):
         pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
     pubkeys.objects.bulk_create(pub_id)
 
+def authorAnalytics(request, author):
+    if author != None:
+        return render(request, 'authorAnalytics.html',{'author':author})
+
 
 def analytics(request, keyword):
     #most searched keywords

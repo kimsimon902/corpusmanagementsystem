@@ -36,6 +36,7 @@ urlpatterns =[
     path('adminpage/keywordrequests',views.keywordRequests, name ='keywordrequests'),
     path('folder_table/',views.downloadFolderTable, name ='folder_table'),
     path('analytics/<keyword>', views.analytics, name="analytics"),
+    path('analytics/<author>', views.authorAnalytics, name="authorAnalytics"),
     path('testFolderAnalytics/<folderID>', views.FoldersPageAnalytics, name="FoldersPageAnalytics"),
     path('sharedFolderAnalytics/<folderID>/<owner>', views.SharedFoldersPageAnalytics, name="SharedFoldersPageAnalytics"),
 ]
