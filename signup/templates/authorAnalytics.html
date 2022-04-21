@@ -204,42 +204,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <h4>Keyword Cloud Chart</h4>
-                            <!-- {% for keyword in keyword_results %}
-                                    <form class='col-12' method="GET" action="{% url 'search' %}" id="keyword-form" style="display:inline; margin-right:10px;">
-                                    <input type="hidden" name ="keyword" value="{{keyword}}"/>
-                                    <button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{keyword.0}}({{keyword.1}})</button>
-                                    </form>
-                            {% endfor %} -->
-                            <div class="row">
-                                <div class="col">
-                                    <div id="container-cloud">
-                                        <script>
-                                            anychart.onDocumentReady(function() {
-                                                // code to create a word cloud chart will be here
-                                                var data = [{% for keyword in keyword_results %}{"x": '{{keyword.0}}',"value":{{keyword.1}}},{% endfor %}
-                                                ];
-                                    
-                                                // create a tag (word) cloud chart
-                                                var chart = anychart.tagCloud(data);
-                                    
-                                                // set an array of angles at which the words will be laid out
-                                                chart.angles([0])
-                                    
-                                                // display the word cloud chart
-                                                chart.container("container-cloud");
-                                                chart.draw();
-
-                                                                                    
-                                                chart.listen("pointClick", function(e){
-                                                    var url = "http://simonkim902.pythonanywhere.com/search/?keyword=" + e.point.get("x");
-                                                    window.open(url, "_blank");
-                                                });
-                                            });
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
