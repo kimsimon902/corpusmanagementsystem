@@ -410,7 +410,7 @@ def authorAnalytics(request, author):
 
         for pub in pubs:
             for auth in pub.author:
-                if auth.equalsIgnoreCase(author):
+                if auth.lower() == author.lower():
                     filteredPubs.append(pub)
 
         return render(request, 'authorAnalytics.html',{'author':author, 'publications':filteredPubs})
