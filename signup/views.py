@@ -408,12 +408,44 @@ def authorAnalytics(request, author):
 
         filteredPubs = []
 
+        #Filtering pubs to find exact author
         for pub in pubs:
             for auth in pub.author:
                 if auth.lower() == author.lower():
                     filteredPubs.append(pub)
 
-        return render(request, 'authorAnalytics.html',{'author':author, 'publications':filteredPubs})
+        #Tallying keywords
+        sources_present = []
+        sources_tally = []
+        source_arr = []
+
+        for pub in filteredPubs:
+            if pub.source not in sources_present:
+                sources_present.append(pub.source)
+
+        for pub in filteredPubs:
+            sources_tally.append(pub.source)
+
+        count = 0
+        for source in sources_present:
+            source_arr.insert(count, [source,sources_tally.count(source)])
+            count+=1
+
+        pubkeys_list = list(pubkeys.objects.all())
+        keywords_list = list(keywords.objects.all())
+        keyword_results = []
+
+        for publication in filteredPubs:
+            for pubkey in pubkeys_list:
+                if publication.id == pubkey.publication_id:
+                    for pubid in keywords_list:
+                        if pubkey.keywords_id == pubid.id:
+                            if pubkey.status != "pending addition":
+                                keyword_results.append(pubid.keywordname)
+
+        keyword_count = Counter(keyword_results).most_common(len(keyword_results))
+
+        return render(request, 'authorAnalytics.html',{'author':author, 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],})
 
 
 def analytics(request, keyword):
@@ -537,15 +569,7 @@ def analytics(request, keyword):
         for source in sources_present:
             source_arr.insert(count, [source,sources_tally.count(source)])
             count+=1
-        
-
-        # for publication in results_list:
-        #     for pubkey in pubkeys_list:
-        #         if publication.id == pubkey.publication_id:
-        #             for pubid in keywords_list:
-        #                 if pubkey.keywords_id == pubid.id:
-        #                     if pubid.keywordname not in keyword_results:
-        #                         keyword_results.append(pubid.keywordname)
+    
 
         for publication in results_list:
             for pubkey in pubkeys_list:
