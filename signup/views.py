@@ -394,7 +394,13 @@ def create_dictionary(clean_list, id):
 def authorAnalytics(request, author):
     if author != None:
         publications_by_author = publications.objects.filter(author__icontains=author)
-        return render(request, 'authorAnalytics.html',{'author':author, 'publications':publications_by_author})
+
+        pubs = []
+
+        for pub in publications_by_author:
+            pubs.append(pub)
+
+        return render(request, 'authorAnalytics.html',{'author':author, 'publications':pubs})
 
 
 def analytics(request, keyword):
