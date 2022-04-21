@@ -400,6 +400,11 @@ def authorAnalytics(request, author):
         for pub in publications_by_author:
             pubs.append(pub)
 
+        for pub in pubs:
+            authors = pub.author
+            split = authors.split(';')
+            pub.author = split
+
         return render(request, 'authorAnalytics.html',{'author':author, 'publications':pubs})
 
 
