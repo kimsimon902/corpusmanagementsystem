@@ -400,12 +400,20 @@ def authorAnalytics(request, author):
         for pub in publications_by_author:
             pubs.append(pub)
 
+        #Make authors into array... from A. author; B. author to ['A. author','B. author']
         for pub in pubs:
             authors = pub.author
             split = authors.split(';')
             pub.author = split
 
-        return render(request, 'authorAnalytics.html',{'author':author, 'publications':pubs})
+        filteredPubs = []
+
+        for pub in pubs:
+            for auth in pub.author:
+                if auth.equalsIgnoreCase(author):
+                    filteredPubs.append(pub)
+
+        return render(request, 'authorAnalytics.html',{'author':author, 'publications':filteredPubs})
 
 
 def analytics(request, keyword):
