@@ -99,7 +99,7 @@
                                 {% for result in publications %}
                                 <tr>  
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
-                                    <td style="border-bottom: none;">{{result.author}}</td>
+                                    <td style="border-bottom: none;">{% for author in result.author %}{{author}};{% endfor %}</td>
                                     <!-- <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td> -->
                                     <td style="border-bottom: none;">{{result.year}}</td>
                                     <td style="border-bottom: none;">{{result.source}}</td>
