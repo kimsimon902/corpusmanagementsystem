@@ -854,7 +854,7 @@ def searchPublication(request):
         yearSort = request.GET.get('sortBy', '')
      
         searchFilters = resolve(request.path_info).url_name
-
+        print(searchFilters)
    
         if 'ais' in searchFilters and 'scopus' in searchFilters and 'ieee' in searchFilters:
             libFilter = "default"
@@ -871,8 +871,7 @@ def searchPublication(request):
 
         if  searchFilter == "default":
 
-            print("hello there")
-            print(libFilter)
+        
 
             if 'ais' in libFilter and len(libFilter) == 1:
 
