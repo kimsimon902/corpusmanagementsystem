@@ -610,17 +610,6 @@ def analytics(request, keyword):
 
 
 
-
-register = template.Library()
-@register.simple_tag
-def url_replace(request, field, value):
-
-    dict_ = request.GET.copy()
-
-    dict_[field] = value
-
-    return dict_.urlencode()
-
 # def countYearResults(year, word):
 
 #     count = publications.objects.filter(year=year, title__icontains=word).count()
@@ -875,6 +864,8 @@ def searchPublication(request):
         my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
 
         if  searchFilter == "default":
+
+            print("hello there")
 
             if 'ais' in libFilter and len(libFilter) == 1:
 
@@ -1343,16 +1334,16 @@ def searchPublication(request):
                                 if pubid.keywordname not in keyword_results:
                                     keyword_results.append(pubid.keywordname)  
 
-            for publication in xlist:
-                    flag = 0
-                    for pubkey in publication_keys:
-                        if publication.id == pubkey.publication_id and flag == 0:
-                            flag=1
-                    if flag == 0:
-                        if "http" in publication.url: 
-                            scrap(publication.url, publication.id)
-                        else:
-                            scrap("http://" + publication.url, publication.id)
+            # for publication in xlist:
+            #         flag = 0
+            #         for pubkey in publication_keys:
+            #             if publication.id == pubkey.publication_id and flag == 0:
+            #                 flag=1
+            #         if flag == 0:
+            #             if "http" in publication.url: 
+            #                 scrap(publication.url, publication.id)
+            #             else:
+            #                 scrap("http://" + publication.url, publication.id)
 
             
             if request.GET.get('sortBy') != None:
