@@ -1848,7 +1848,7 @@ def PublicationPage(request, id):
     previous = request.META.get('HTTP_REFERER')
 
    
-    if 'searchAuthorAnalytics' in previous:
+    if 'analyticsAuthor' in previous:
         request.session['search_url'] = previous
         current_url = request.session['search_url']
     elif 'search' in previous:
