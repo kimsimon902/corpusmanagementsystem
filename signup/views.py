@@ -856,6 +856,7 @@ def searchPublication(request):
         
         
         url = request.GET.get('searchFilter', '/')
+        url2 = request.get_full_path()
         print("next is the current url")
         print(url)
         
