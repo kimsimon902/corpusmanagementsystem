@@ -866,6 +866,7 @@ def searchPublication(request):
         if  searchFilter == "default":
 
             print("hello there")
+            print(libFilter)
 
             if 'ais' in libFilter and len(libFilter) == 1:
 
