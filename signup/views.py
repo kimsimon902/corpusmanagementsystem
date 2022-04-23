@@ -854,6 +854,7 @@ def searchPublication(request):
         yearSort = request.GET.get('sortBy', '')
      
         searchFilters = resolve(request.path_info).url_name
+        print("next is the current url")
         print(searchFilters)
    
         if 'ais' in searchFilters and 'scopus' in searchFilters and 'ieee' in searchFilters:
