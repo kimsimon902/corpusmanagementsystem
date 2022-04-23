@@ -853,7 +853,7 @@ def searchPublication(request):
         libFilter = request.GET.getlist('filterLib')
         yearSort = request.GET.get('sortBy', '')
      
-        searchFilters = request.META.get('HTTP_REFERER')
+        searchFilters = resolve(request.path_info).url_name
 
    
         if 'ais' in searchFilters and 'scopus' in searchFilters and 'ieee' in searchFilters:
