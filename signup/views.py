@@ -53,6 +53,7 @@ from collections import Counter
 from django.urls import resolve
 from urllib.parse import urlencode
 from django import template
+from django.template import *
 
 
 #stopwords to be removed from scaping
