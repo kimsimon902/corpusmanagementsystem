@@ -674,6 +674,7 @@ def searchAuthorAnalytics(request):
 def searchPublication(request):
     
     if request.method == "GET":
+        print("hello i am doing get")
         # searched = request.POST['searched']
         # searchFilter = request.POST['filterData']
         
