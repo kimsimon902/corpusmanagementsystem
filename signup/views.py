@@ -852,12 +852,14 @@ def searchPublication(request):
         searchFilter = request.GET.get('filterData','')
         libFilter = request.GET.getlist('filterLib')
         yearSort = request.GET.get('sortBy', '')
-     
-        searchFilters = request.path
+        
+        
+        url = request.POST.get('next', '/')
         print("next is the current url")
-        print(searchFilters)
-   
-        if 'ais' in searchFilters and 'scopus' in searchFilters and 'ieee' in searchFilters:
+        print(url)
+        
+
+        if 'ais' in url and 'scopus' in url and 'ieee' in url:
             libFilter = "default"
 
         if (request.user):
