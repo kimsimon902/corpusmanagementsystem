@@ -859,6 +859,7 @@ def searchPublication(request):
         url2 = request.get_full_path()
         print("next is the current url")
         print(url)
+        print(url2)
         
 
         if 'ais' in url and 'scopus' in url and 'ieee' in url:
