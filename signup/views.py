@@ -854,7 +854,7 @@ def searchPublication(request):
         yearSort = request.GET.get('sortBy', '')
         
         
-        url = request.POST.get('searchFilter', '/')
+        url = request.GET.get('searchFilter', '/')
         print("next is the current url")
         print(url)
         
