@@ -853,7 +853,7 @@ def searchPublication(request):
         libFilter = request.GET.getlist('filterLib')
         yearSort = request.GET.get('sortBy', '')
      
-        searchFilters = resolve(request.path_info).url_name
+        searchFilters = request.path
         print("next is the current url")
         print(searchFilters)
    
