@@ -674,7 +674,7 @@ def searchAuthorAnalytics(request):
 def searchPublication(request):
     
     if request.method == "GET":
-        print("hello i am doing get")
+        
         # searched = request.POST['searched']
         # searchFilter = request.POST['filterData']
         
@@ -853,7 +853,12 @@ def searchPublication(request):
         libFilter = request.GET.getlist('filterLib')
         yearSort = request.GET.get('sortBy', '')
      
-        
+        searchFilters = request.META.get('HTTP_REFERER')
+
+   
+        if 'ais' in searchFilters and 'scopus' in searchFilters and 'ieee' in searchFilters:
+            libFilter = "default"
+
         if (request.user):
             author = request.session['username']
         else:
