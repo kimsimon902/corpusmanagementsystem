@@ -413,7 +413,7 @@ def authorAnalytics(request, author):
         #Filtering pubs to find exact author
         for pub in pubs:
             for auth in pub.author:
-                if auth.lower() == author.lower():
+                if auth.lower().strip() == author.lower().strip():
                     test_counter+=1
                     filteredPubs.append(pub)
 
