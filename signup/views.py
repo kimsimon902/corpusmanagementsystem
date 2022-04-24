@@ -91,7 +91,7 @@ def index(request):
     return render(request, 'main/index.html')
 
 def home(request):
-    results = publications.objects.all()
+    results = publications.objects.all()[:100]
     annotation = annotations.objects.all()
     publication_keys = pubkeys.objects.all()
 
