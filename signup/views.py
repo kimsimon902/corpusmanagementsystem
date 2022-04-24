@@ -858,13 +858,20 @@ def searchPublication(request):
         url = str(request.get_full_path())
         print(url)
 
-        
+        if 'newSearch' not in request.session:
+            request.session['newSearch'] = 1
 
-        if 'ais' in url and 'scopus' in url and 'ieee' in url or request.session['libFilter']:
+        if 'ais' in url and 'scopus' in url and 'ieee' in url:
             print("hello i am in if statement   ")
             request.session['libFilter'] = "default"
             libFilter = request.session['libFilter']
-            
+            request.session['newSearch'] = 0
+
+        elif request.session['libFilter'] and request.session['newSearch'] == 0:
+            request.session['libFilter'] = "default"
+            libFilter = request.session['libFilter']
+            request.session['newSearch'] = 1
+
         else:
             libFilter = request.GET.getlist('filterLib')
 
