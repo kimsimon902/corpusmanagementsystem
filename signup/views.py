@@ -864,6 +864,8 @@ def searchPublication(request):
             print("hello i am in if statement   ")
             request.session['libFilter'] = "default"
             libFilter = request.session['libFilter']
+            del request.session['libFilter']
+            request.session.modified= True
         else:
             libFilter = request.GET.getlist('filterLib')
 
