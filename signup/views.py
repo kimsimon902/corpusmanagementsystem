@@ -862,11 +862,8 @@ def searchPublication(request):
         #     request.session['newSearch'] == 0
 
 
-        # if 'ais' in url and 'scopus' in url and 'ieee' in url:
-        #     print("hello i am in if statement   ")
-        #     request.session['libFilter'] = "default"
-        #     libFilter = request.session['libFilter']
-        #     request.session['newSearch'] = 0
+        if 'ais' in url and 'scopus' in url and 'ieee' in libFilter:
+            libFilter = 'default'
 
         # elif request.session['libFilter'] and request.session['newSearch']:
         #     request.session['libFilter'] = "default"
