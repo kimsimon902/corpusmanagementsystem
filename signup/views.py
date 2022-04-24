@@ -856,11 +856,12 @@ def searchPublication(request):
         
         
         url = str(request.get_full_path())
-        
+        print(url)
 
         
 
         if 'ais' in url and 'scopus' in url and 'ieee' in url:
+            print("hello i am in if statement   ")
             libFilter = "default"
 
         if (request.user):
