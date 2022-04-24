@@ -53,7 +53,7 @@
                         {% if keyword_results %}
                             {% for keyword in keyword_results %}
                                 <ul style="list-style: none;">
-                                    <li>{{keyword}}</li>
+                                    <li><a href="/analytics/{{keyword}}" style="margin-top: 15px; text-transform: capitalize; text-decoration: none;">{{keyword|capfirst}}</a></li>
                                 </ul>
                             {% endfor %}
                         {% endif %}
