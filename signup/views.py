@@ -1042,9 +1042,9 @@ def searchPublication(request):
             logSearch.filter = searchFilter
             
             if not libFilter:
-                source = "['ais', 'ieee', 'scopus']"
+                libFilter = "['ais', 'ieee', 'scopus']"
             
-            logSearch.source = source
+            logSearch.source = libFilter
             logSearch.num_results = result_count
             logSearch.date = datetime.datetime.now()
             logSearch.save()
