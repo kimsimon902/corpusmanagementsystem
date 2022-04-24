@@ -125,7 +125,7 @@ def home(request):
         authors_tally.append(pub.author)
 
     for author in authors_tally:
-        splitauth = author.split(";") 
+        splitauth = author.split("; ") 
         for x in splitauth:
             authors_single_tally.append(x)
 
@@ -135,9 +135,9 @@ def home(request):
         if auth not in unique_author:
             unique_author.append(auth)
 
-    random.choices(unique_author, k=5)
+    authors= random.choices(unique_author, k=5)
 
-    return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
+    return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs,'authors':authors})
 
 def viewBookmarks(request):
     email = request.session['email']

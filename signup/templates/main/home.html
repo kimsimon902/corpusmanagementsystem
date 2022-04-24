@@ -78,8 +78,8 @@
             </form>
             <ul id="topFiveUL">
               <div id="topFiveTags" style="display:block">
-                {% for tag in viewed_tags %}
-                <li><a href="/analytics/{{tag.tag}}" style="margin-top: 15px; text-transform: capitalize;">{{ tag.tag }}</a></li>
+                {% for author in authors %}
+                <li><a href="/analyticsAuthor/{{author}}" style="margin-top: 15px; text-decoration: none;">{{author|capfirst}}</a></li>
                 {% endfor %}
               </div>
             </ul>
