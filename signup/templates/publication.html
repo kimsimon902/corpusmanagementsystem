@@ -185,8 +185,7 @@
                 <div class="col-md-10 col-lg-7 offset-md-1 offset-lg-0">
                     <div class="text">
                         <p style="margin-bottom: 5px;">Authors:</p>
-                        <p>{{getdata.author}}</p>
-                        <p>Author splits: {% for author in getdata.author %}{{author}}; {% endfor %}<p>
+                        <p>{% for author in getdata.author %}<a href="/analyticsAuthor/{{author}}" style="margin-top: 15px; text-decoration: none;">{{author|capfirst}}</a>; {% endfor %}<p>
                         <p style="margin-bottom: 5px;">Source:</p>
                         <p>{{getdata.source}}</p>
                         <p style="margin-bottom: 5px;">URL:</p>
