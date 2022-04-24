@@ -148,6 +148,7 @@
                     <p>Test pubs: {%for pub in array%}{{pub.author}},|{%endfor%}</p>
                     <p>Test pubs: {%for pub in array%}{% for author in pub.author %}{{author}}|{% endfor %}{%endfor%}</p>
                     <p>Filtered pubs: {%for pub in publications%}{{pub.title}},{%endfor%}</p>
+                    <p>Test counter: {{testC}}</p>
                 </div>
                 <div class="container">
                     {% if author|make_list|first != ' '%}
