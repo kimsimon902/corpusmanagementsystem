@@ -851,7 +851,7 @@ def searchPublication(request):
 
         searched = request.GET.get('searched','')
         searchFilter = request.GET.get('filterData','')
-        
+        libFilter = request.GET.getlist('filterLib')
         yearSort = request.GET.get('sortBy', '')
         
         
@@ -860,12 +860,11 @@ def searchPublication(request):
 
         
 
-        if 'ais' in url and 'scopus' in url and 'ieee' in url or 'libFilter' in request.session:
+        if 'ais' in url and 'scopus' in url and 'ieee' in url or libFilter == 'default':
             print("hello i am in if statement   ")
             request.session['libFilter'] = "default"
             libFilter = request.session['libFilter']
-            del request.session['libFilter']
-            request.session.modified= True
+            
         else:
             libFilter = request.GET.getlist('filterLib')
 
