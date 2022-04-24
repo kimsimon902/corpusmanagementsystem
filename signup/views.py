@@ -1043,6 +1043,8 @@ def searchPublication(request):
             
             if not libFilter:
                 source = "['ais', 'ieee', 'scopus']"
+            else:
+                source = libFilter
             
             logSearch.source = source
             logSearch.num_results = result_count
