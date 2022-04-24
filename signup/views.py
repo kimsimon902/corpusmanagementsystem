@@ -851,29 +851,30 @@ def searchPublication(request):
 
         searched = request.GET.get('searched','')
         searchFilter = request.GET.get('filterData','')
-        libFilter = request.GET.getlist('filterLib')
+        
         yearSort = request.GET.get('sortBy', '')
         
         
         url = str(request.get_full_path())
         print(url)
 
-        if 'newSearch' not in request.session:
-            request.session['newSearch'] = 1
+        # if request.session['newSearch'] == 0:
+        #     request.session['newSearch'] == 0
 
-        if 'ais' in url and 'scopus' in url and 'ieee' in url:
-            print("hello i am in if statement   ")
-            request.session['libFilter'] = "default"
-            libFilter = request.session['libFilter']
-            request.session['newSearch'] = 0
 
-        elif request.session['libFilter'] and request.session['newSearch'] == 0:
-            request.session['libFilter'] = "default"
-            libFilter = request.session['libFilter']
-            request.session['newSearch'] = 1
+        # if 'ais' in url and 'scopus' in url and 'ieee' in url:
+        #     print("hello i am in if statement   ")
+        #     request.session['libFilter'] = "default"
+        #     libFilter = request.session['libFilter']
+        #     request.session['newSearch'] = 0
 
-        else:
-            libFilter = request.GET.getlist('filterLib')
+        # elif request.session['libFilter'] and request.session['newSearch']:
+        #     request.session['libFilter'] = "default"
+        #     libFilter = request.session['libFilter']
+            
+            
+        # else:
+        #     libFilter = request.GET.getlist('filterLib')
 
         if (request.user):
             author = request.session['username']
