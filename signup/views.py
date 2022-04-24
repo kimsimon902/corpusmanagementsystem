@@ -408,15 +408,14 @@ def authorAnalytics(request, author):
             pub.author = split
 
         filteredPubs = []
+        test_counter = 0
 
         #Filtering pubs to find exact author
         for pub in pubs:
-            #for auth in pub.author:
-            for auth in range(len(pub.author)+1):
+            for auth in pub.author:
+                test_counter+=1
                 if auth.lower() == author.lower():
                     filteredPubs.append(pub)
-                else:
-                    continue
 
         #Tallying keywords
         sources_present = []
@@ -449,7 +448,7 @@ def authorAnalytics(request, author):
 
         keyword_count = Counter(keyword_results).most_common(len(keyword_results))
 
-        return render(request, 'authorAnalytics.html',{'author':author, 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs})
+        return render(request, 'authorAnalytics.html',{'author':author, 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter})
 
 
 def analytics(request, keyword):
