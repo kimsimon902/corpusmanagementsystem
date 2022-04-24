@@ -143,6 +143,11 @@
     <div class="container-fluid" style="padding-left: 25px; padding-right: 25px;">
             <div class="col-12" style="margin-top: 20px;">
                 <div class="container">
+                    <h3>Testing</h3>
+                    <p>Pubs: {%for pub in pubs%}pub.title,{%endfor%}</p>
+                    <p>Filtered pubs: {%for pub in publications%}pub.title,{%endfor%}</p>
+                </div>
+                <div class="container">
                     {% if author|make_list|first != ' '%}
                     <h3>Analytics and Figures for {{author|capfirst}}</h3>
                     {% else %}
