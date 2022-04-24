@@ -860,7 +860,7 @@ def searchPublication(request):
 
         
 
-        if 'ais' in url and 'scopus' in url and 'ieee' in url or libFilter == 'default':
+        if 'ais' in url and 'scopus' in url and 'ieee' in url or request.session['libFilter']:
             print("hello i am in if statement   ")
             request.session['libFilter'] = "default"
             libFilter = request.session['libFilter']
