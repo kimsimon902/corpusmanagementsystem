@@ -143,16 +143,7 @@
     <div class="container-fluid" style="padding-left: 25px; padding-right: 25px;">
             <div class="col-12" style="margin-top: 20px;">
                 <div class="container">
-                    <h3>Testing</h3>
-                    <p>Query pubs: {%for pub in query%}{{pub.author}},{%endfor%}</p>
-                    <p>Test pubs: {%for pub in array%}{{pub.author}},|{%endfor%}</p>
-                    <p>Test pubs: {%for pub in array%}{% for author in pub.author %}{{author}}|{% endfor %}{%endfor%}</p>
-                    <p>Filtered pubs: {%for pub in publications%}{{pub.title}},{%endfor%}</p>
-                    <p>Test counter: {{testC}}</p>
-                </div>
-                <div class="container">
                     <h3>Analytics and Figures for {{author|capfirst}}</h3>
-                    
                     <div class="row">
                         <div class="col-sm-12" style="">
                             <div class="row">
@@ -187,7 +178,7 @@
                                 {% for result in publications %}
                                 <tr>  
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
-                                    <td style="border-bottom: none;">{% for author in result.author %}{{author}};{% endfor %}</td>
+                                    <td style="border-bottom: none;">{% for author in result.author %}{{author}}; {% endfor %}</td>
                                     <!-- <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td> -->
                                     <td style="border-bottom: none;">{{result.year}}</td>
                                     <td style="border-bottom: none;">{{result.source}}</td>
