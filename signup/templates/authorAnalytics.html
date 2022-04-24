@@ -151,31 +151,19 @@
                     <p>Test counter: {{testC}}</p>
                 </div>
                 <div class="container">
-                    {% if author|make_list|first != ' '%}
                     <h3>Analytics and Figures for {{author|capfirst}}</h3>
-                    {% else %}
-                    <h3>Analytics and Figures for{{author|capfirst}}</h3>
-                    {% endif %}
                     
                     <div class="row">
                         <div class="col-sm-12" style="">
                             <div class="row">
                                 <div class="col-6">
-                                    {% if author|make_list|first != ' '%}
                                     <h4>Number of publications {{author|capfirst}} published per discipline</h4>
-                                    {% else %}
-                                    <h4>Number of publications{{author|capfirst}} published per discipline</h4>
-                                    {% endif %}
                                     <div class="chart-container" style="padding-bottom: 50px;">    
                                         <canvas id="myChartBarKeyDisc"></canvas>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    {% if author|make_list|first != ' '%}
                                     <h4>Number of publications published by {{author|capfirst}} present in the following sources</h4>
-                                    {% else %}
-                                    <h4>Number of publications published by{{author|capfirst}} present in the following sources</h4>
-                                    {% endif %}
                                     <div class="chart-container" style="padding-bottom: 50px;">
                                         <canvas id="myChartPie"></canvas>
                                     </div>
@@ -183,11 +171,7 @@
                             </div>
                         </div>
                     </div>
-                    {% if author|make_list|first != ' '%}
                     <h3>Publications by {{author|capfirst}}</h3>
-                    {% else %}
-                    <h3>Publications by{{author|capfirst}}</h3>
-                    {% endif %}
                     <div class="table-responsive" style="margin-top: 10px;">
                         <table class="table">
                             <thead>
