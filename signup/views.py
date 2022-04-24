@@ -1958,6 +1958,12 @@ def PublicationPageInFolder(request, folderid, username, id):
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
 
+    #split authors
+    for pub in results:
+        authors = pub.author
+        split = authors.split('; ')
+        pub.author = split
+
     return render(request, 'publication-folder.html', {'publication':results,
                                                        'annotations':annotation,
                                                        'my_folders':my_folders,
