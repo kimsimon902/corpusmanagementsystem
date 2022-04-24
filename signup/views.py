@@ -446,7 +446,7 @@ def authorAnalytics(request, author):
 
         keyword_count = Counter(keyword_results).most_common(len(keyword_results))
 
-        return render(request, 'authorAnalytics.html',{'author':author, 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'test_pubs': publications_by_author})
+        return render(request, 'authorAnalytics.html',{'author':author, 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs})
 
 
 def analytics(request, keyword):
