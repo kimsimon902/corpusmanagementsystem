@@ -509,9 +509,10 @@ def analytics(request, keyword):
                 authors_present.append(pub.author)
 
         for author in authors_present:
-            splitauth = author.split(";") 
+            splitauth = [x.strip() for x in author.split(';')]
             for x in splitauth:
-                authors_single.append(x)
+                if not x:
+                    authors_single.append(x)
 
         for pub in results_list:
             authors_tally.append(pub.author)
