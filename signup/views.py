@@ -1879,6 +1879,13 @@ def PublicationPage(request, id):
     else:
         current_url = request.session['search_url']
 
+    #split authors
+    for pub in results:
+        authors = pub.author
+        split = authors.split('; ')
+        pub.author = split
+
+
 
     return render(request, 'publication.html', {'publication':results,
                                                 'annotations':annotation,
