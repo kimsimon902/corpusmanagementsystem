@@ -404,7 +404,7 @@ def authorAnalytics(request, author):
         #Make authors into array... from A. author; B. author to ['A. author','B. author']
         for pub in pubs:
             authors = pub.author
-            split = authors.split(';')
+            split = authors.split('; ')
             pub.author = split
 
         filteredPubs = []
@@ -666,8 +666,6 @@ def searchAuthorAnalytics(request):
         for author in unique_author:
             if author_search.lower() in str(author).lower():
                 author_results.append(author)
-
-        author_results.sort()
 
         count = len(author_results)
 
