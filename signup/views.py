@@ -518,9 +518,10 @@ def analytics(request, keyword):
             authors_tally.append(pub.author)
 
         for author in authors_tally:
-            splitauth = author.split(";") 
+            splitauth = [x.strip() for x in author.split(';')]
             for x in splitauth:
-                authors_single_tally.append(x)
+                if x:
+                    authors_single_tally.append(x)
 
         count = 0
         for author in authors_single:
