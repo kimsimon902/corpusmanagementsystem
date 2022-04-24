@@ -1,3 +1,4 @@
+from enum import unique
 from django.core import paginator
 from django.db import reset_queries
 from django.db.models.fields import EmailField, NullBooleanField
@@ -54,6 +55,7 @@ from django.urls import resolve
 from urllib.parse import urlencode
 from django import template
 from django.template import *
+import random
 
 
 #stopwords to be removed from scaping
@@ -104,6 +106,36 @@ def home(request):
 
     #most bookmarked
     bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 5')
+
+    #random for author list
+    authors_present = []
+    authors_tally = []
+    authors_single = []
+    authors_single_tally = []
+    
+    for pub in results:
+        authors_present.append(pub.author)
+
+    for author in authors_present:
+        splitauth = author.split(";") 
+        for x in splitauth:
+            authors_single.append(x)
+
+    for pub in results:
+        authors_tally.append(pub.author)
+
+    for author in authors_tally:
+        splitauth = author.split(";") 
+        for x in splitauth:
+            authors_single_tally.append(x)
+
+    unique_author = [] #All authors unique
+
+    for auth in authors_single_tally:
+        if auth not in unique_author:
+            unique_author.append(auth)
+
+    random.choices(unique_author, k=5)
 
     return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
 
