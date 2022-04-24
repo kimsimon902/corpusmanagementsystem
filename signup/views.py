@@ -855,9 +855,8 @@ def searchPublication(request):
         yearSort = request.GET.get('sortBy', '')
         
         
-        url = request.get_full_path()
-        print("next is the current url")
-        print(url)
+        url = str(request.get_full_path())
+        
 
         
 
