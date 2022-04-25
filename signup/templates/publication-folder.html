@@ -320,7 +320,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title">Annotate</h5>
+                                    <h5 class="card-title">Annotation</h5>
                                 </div>
                                 <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
                                     {% csrf_token %}
@@ -340,7 +340,6 @@
                 </div>
                 <div class="col"></div>
             </div>
-            <h5>Annotations</h5>
         </div>
     </div>
 <!-- start annotations -->
