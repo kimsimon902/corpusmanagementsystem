@@ -316,9 +316,66 @@
         <div class="col-10" style="padding-left: 50px; padding-right: 50px;"><h6>Annotations</h6></div>
         <div class="col"></div>
     </div>
+<!-- start annotations -->
   {% if annotations %}
+<!-- new annoations trello style   -->
+    <div class="row">
+        <div class="col">
+            <p>Comment</p>
+            {% for annotation in annotations %}
+                {% if annotation.marker == "Comment"%}
+                <div class="card" id="annotationCard" style="display:block; margin-top: 20px;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="card-title">{{ annotation.author }} </h4>
+                                {% if annotation.isEdited == 1%}
+                                    <h6 class="text-muted card-subtitle mb-2">Edited on {{annotation.dateTime}}</h6>
+                                {% else %}
+                                    <h6 class="text-muted card-subtitle mb-2">Posted on {{annotation.dateTime}}</h6>
+                                {% endif %}
+                            </div>
+                            <div class="col">
+                                <div class="row justify-content-end">
+                                    <div class="col-4">
+                                        <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#ffeb3b; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
+                                {% csrf_token %}
+                                <select class="custom-select invisible" id="pubsMarkerSelect_{{annotation.id}}" name="selectMark" disabled>
+                                    <option selected value="Task (To-do)">Task (To-do)</option>
+                                    <option value="Comment">Comment</option>
+                                </select>
+        
+                                <textarea class="form-control" id="pubsAnnotationTextArea_{{annotation.id}}" rows="3" name="annotation-exist" readonly style="resize:none">{{annotation.body}}</textarea>
+                                <input type="hidden" name="next" value="{{ request.path }}"/>
+                                <br>
+                                {% if annotation.author == request.session.username %}
+                                <button type="submit" class="btn btn-danger btn-sm float-end" id="pubsAnnotation_btnDelete_{{annotation.id}}" style="display:inline" name="annotate-delete">Delete</button>
+                                <button type="button" class="btn btn-primary btn-sm float-end" id="pubsAnnotation_btnEdit_{{annotation.id}}" onclick="clickEditOnAnnotationClass('{{annotation.id}}')" style="display:inline; margin-right:20px;" name="annotate-edit">Edit</button>
+                                <button type="button" class="btn btn-warning btn-sm float-end" id="pubsAnnotation_btnCancel_{{annotation.id}}" onclick="clickCancelAnnotationClass('{{annotation.id}}','{{annotation.body}}','{{annotation.marker}}')" style="display:none; margin-right:20px;" name="annotate-cancel">Cancel</button>
+                                <button type="submit" class="btn btn-success btn-sm float-end" id="pubsAnnotation_btnSave_{{annotation.id}}" onclick="clickSaveAnnotationClass('{{annotation.id}}')" style="display:none; margin-right:20px;" name="annotate-save">Save</button>
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col">
+        <p>Task to-do</p>
+        </div>
+        <div class="col">
+        <p>Task finished</p>
+        </div>
+    </div>
+
+
+
+  <!-- old annotations -->
   <div class="row">
-    <div class="col"></div>
     <div class="col-10" style="padding-left: 50px; padding-right: 50px;">
         {% for annotation in annotations %}
         <div class="card" id="annotationCard" style="display:block; margin-top: 20px;">
@@ -406,6 +463,7 @@
     <div class="col"></div>
   </div>
   {% endif %}
+  <!-- /end annotations -->
     <div class="row" style="margin-bottom: 20px;">
         <div class="col"></div>
         <div class="col-10" style="padding-left: 50px; padding-right: 50px;">
