@@ -313,7 +313,6 @@
 <!-- Annotation -->
     <div class="row" style="margin-top: 20px;">
         <div class="col" style="margin-left:30px">
-            <h5>Annotations</h5>
             <div class="row" style="margin-bottom: 20px;">
                 <div class="col"></div>
                 <div class="col-10" style="padding-left: 50px; padding-right: 50px;">
@@ -321,7 +320,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title">{{ request.session.username }}</h5>
+                                    <h5 class="card-title">Annotate</h5>
                                 </div>
                                 <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
                                     {% csrf_token %}
@@ -330,7 +329,7 @@
                                         <option selected value="Task (To-do)">Task (To-do)</option>
                                         <option value="Comment">Comment</option>
                                     </select>
-                                    <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation" style="resize:none"></textarea>
+                                    <textarea class="form-control" id="pubsAnnotationTextArea" rows="3" name="annotation" placeholder="Write here" style="resize:none"></textarea>
                                     <input type="hidden" name="next" value="{{ request.path }}"/>
                                     <br>
                                     <button type="submit" class="btn btn-primary btn-sm float-end" name="annotate-add" id="pubsAnnotation_btnAnnotate">Annotate</button>
@@ -341,6 +340,7 @@
                 </div>
                 <div class="col"></div>
             </div>
+            <h5>Annotations</h5>
         </div>
     </div>
 <!-- start annotations -->
