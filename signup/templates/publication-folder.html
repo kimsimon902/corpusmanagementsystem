@@ -312,9 +312,9 @@
 
 <!-- Annotation -->
     <div class="row" style="margin-top: 20px;">
-        <div class="col"></div>
-        <div class="col-10" style="padding-left: 50px; padding-right: 50px;"><h6>Annotations</h6></div>
-        <div class="col"></div>
+        <div class="col">
+            <h5>Annotations</h5>
+        </div>
     </div>
 <!-- start annotations -->
   {% if annotations %}
@@ -328,7 +328,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <h4 class="card-title">{{ annotation.author }} </h4>
+                                <h5 class="card-title">{{ annotation.author }} </h5>
                                 {% if annotation.isEdited == 1%}
                                     <h6 class="text-muted card-subtitle mb-2">Edited on {{annotation.dateTime}}</h6>
                                 {% else %}
@@ -373,7 +373,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h4 class="card-title">{{ annotation.author }} </h4>
+                            <h5 class="card-title">{{ annotation.author }} </h5>
                             {% if annotation.isEdited == 1%}
                                 <h6 class="text-muted card-subtitle mb-2">Edited on {{annotation.dateTime}}</h6>
                             {% else %}
@@ -449,7 +449,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h4 class="card-title">{{ annotation.author }} </h4>
+                            <h5 class="card-title">{{ annotation.author }} </h5>
                             {% if annotation.isEdited == 1%}
                                 <h6 class="text-muted card-subtitle mb-2">Edited on {{annotation.dateTime}}</h6>
                             {% else %}
@@ -495,7 +495,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h4 class="card-title">{{ request.session.username }}</h4>
+                            <h5 class="card-title">{{ request.session.username }}</h5>
                         </div>
                         <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate" id="annotate-from-pub"> 
                             {% csrf_token %}
