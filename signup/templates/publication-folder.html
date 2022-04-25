@@ -312,7 +312,7 @@
 
 <!-- Annotation -->
     <div class="row" style="margin-top: 20px;">
-        <div class="col">
+        <div class="col" style="margin-left:30px">
             <h5>Annotations</h5>
         </div>
     </div>
@@ -320,7 +320,7 @@
   {% if annotations %}
 <!-- new annoations trello style   -->
     <div class="row">
-        <div class="col" style="margin:30px;">
+        <div class="col" style="margin:30px">
             <h6>Comment <i class="fas fa-circle" style="color:#ffeb3b; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
             {% for annotation in annotations %}
                 {% if annotation.marker == "Comment"%}
