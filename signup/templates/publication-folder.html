@@ -321,7 +321,7 @@
 <!-- new annoations trello style   -->
     <div class="row">
         <div class="col" style="margin:30px;">
-            <p>Comment</p>
+            <h6>Comment <i class="fas fa-circle" style="color:#ffeb3b; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
             {% for annotation in annotations %}
                 {% if annotation.marker == "Comment"%}
                 <div class="card" id="annotationCard" style="display:block; margin-top: 20px;">
@@ -338,7 +338,7 @@
                             <div class="col">
                                 <div class="row justify-content-end">
                                     <div class="col-4">
-                                        <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#ffeb3b; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
+                                        <h6 class="float-end"><i class="fas fa-circle" style="color:#ffeb3b; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
                                     </div>
                                 </div>
                             </div>
@@ -366,7 +366,7 @@
             {% endfor %}
         </div>
         <div class="col" style="margin:30px;">
-            <p>Task to-do</p>
+            <h6>Task to-do <i class="fas fa-circle" style="color:#039be5; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
             {% for annotation in annotations %}
             {% if annotation.marker == "Task (To-do)" %}
             <div class="card" id="annotationCard" style="display:block; margin-top: 20px;">
@@ -383,7 +383,7 @@
                         <div class="col">
                             <div class="row justify-content-end">
                                 <div class="col-4">
-                                    <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#039be5; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
+                                    <h6 class="float-end"><i class="fas fa-circle" style="color:#039be5; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
                                 </div>
                             </div>
                         </div>
@@ -442,7 +442,7 @@
         {% endfor %}
         </div>
         <div class="col" style="margin:30px;">
-            <p>Task finished</p>
+            <h6>Task finished <i class="fas fa-circle" style="color:green; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
             {% for annotation in annotations %}
             {% if annotation.marker == "Task (Finished)" %}
             <div class="card" id="annotationCard" style="display:block; margin-top: 20px;">
@@ -459,7 +459,7 @@
                         <div class="col">
                             <div class="row justify-content-end">
                                 <div class="col-4">
-                                    <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:green; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
+                                    <h6 class="float-end"><i class="fas fa-circle" style="color:green; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
                                 </div>
                             </div>
                         </div>
