@@ -35,7 +35,7 @@
                       data: {
                           labels: [{% for keyword in keyword_bar|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
                           datasets: [{
-                            label: 'Number of Publications',
+                            label: 'Number of Publications in terms of Keyword',
                             data: [{% for keyword in keyword_bar|slice:"1:" %}{{keyword.1}},{% endfor %}],
                             backgroundColor: [
                                 {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
