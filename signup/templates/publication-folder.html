@@ -320,7 +320,7 @@
   {% if annotations %}
 <!-- new annoations trello style   -->
     <div class="row">
-        <div class="col">
+        <div class="col" style="margin:30px;">
             <p>Comment</p>
             {% for annotation in annotations %}
                 {% if annotation.marker == "Comment"%}
@@ -365,11 +365,129 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <div class="col">
-        <p>Task to-do</p>
+        <div class="col" style="margin:30px;">
+            <p>Task to-do</p>
+            {% for annotation in annotations %}
+            {% if annotation.marker == "Task (To-do)" %}
+            <div class="card" id="annotationCard" style="display:block; margin-top: 20px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="card-title">{{ annotation.author }} </h4>
+                            {% if annotation.isEdited == 1%}
+                                <h6 class="text-muted card-subtitle mb-2">Edited on {{annotation.dateTime}}</h6>
+                            {% else %}
+                                <h6 class="text-muted card-subtitle mb-2">Posted on {{annotation.dateTime}}</h6>
+                            {% endif %}
+                        </div>
+                        <div class="col">
+                            <div class="row justify-content-end">
+                                <div class="col-4">
+                                    <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:#039be5; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
+
+                                    {% if annotation.author == request.session.username %}
+                                    {% if annotation.marker == "Task (To-do)" %}
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#taskModal_{{annotation.id}}" style="background: none!important;border: none;padding: 0!important; color:black">
+                                            Mark as finished <i class="far fa-check-circle"></i>
+                                        </button>
+    
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="taskModal_{{annotation.id}}" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h6 class="modal-title" id="taskModalLabel">Mark task as finished</h6>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                Do you want to mark this task as finished?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub-mark">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="next" value="{{ request.path }}"/>
+                                                        <input type="hidden" name="selectMark" value="Task (Finished)"/>
+                                                        <input type="hidden" name="annotation-exist" value="{{annotation.body}}"/>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                        <button type="submit" class="btn btn-primary" name="annotate-save">Yes</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
+                            {% csrf_token %}
+                            <select class="custom-select invisible" id="pubsMarkerSelect_{{annotation.id}}" name="selectMark" disabled>
+                                <option selected value="Task (To-do)">Task (To-do)</option>
+                                <option value="Comment">Comment</option>
+                            </select>
+    
+                            <textarea class="form-control" id="pubsAnnotationTextArea_{{annotation.id}}" rows="3" name="annotation-exist" readonly style="resize:none">{{annotation.body}}</textarea>
+                            <input type="hidden" name="next" value="{{ request.path }}"/>
+                            <br>
+                            {% if annotation.author == request.session.username %}
+                            <button type="submit" class="btn btn-danger btn-sm float-end" id="pubsAnnotation_btnDelete_{{annotation.id}}" style="display:inline" name="annotate-delete">Delete</button>
+                            <button type="button" class="btn btn-primary btn-sm float-end" id="pubsAnnotation_btnEdit_{{annotation.id}}" onclick="clickEditOnAnnotationClass('{{annotation.id}}')" style="display:inline; margin-right:20px;" name="annotate-edit">Edit</button>
+                            <button type="button" class="btn btn-warning btn-sm float-end" id="pubsAnnotation_btnCancel_{{annotation.id}}" onclick="clickCancelAnnotationClass('{{annotation.id}}','{{annotation.body}}','{{annotation.marker}}')" style="display:none; margin-right:20px;" name="annotate-cancel">Cancel</button>
+                            <button type="submit" class="btn btn-success btn-sm float-end" id="pubsAnnotation_btnSave_{{annotation.id}}" onclick="clickSaveAnnotationClass('{{annotation.id}}')" style="display:none; margin-right:20px;" name="annotate-save">Save</button>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
         </div>
         <div class="col">
-        <p>Task finished</p>
+            <p>Task finished</p>
+            {% for annotation in annotations %}
+            {% if annotation.marker == "Task (Finished)" %}
+            <div class="card" id="annotationCard" style="display:block; margin-top: 20px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="card-title">{{ annotation.author }} </h4>
+                            {% if annotation.isEdited == 1%}
+                                <h6 class="text-muted card-subtitle mb-2">Edited on {{annotation.dateTime}}</h6>
+                            {% else %}
+                                <h6 class="text-muted card-subtitle mb-2">Posted on {{annotation.dateTime}}</h6>
+                            {% endif %}
+                        </div>
+                        <div class="col">
+                            <div class="row justify-content-end">
+                                <div class="col-4">
+                                    <h6 class="float-end">{{annotation.marker}} <i class="fas fa-circle" style="color:green; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
+                                </div>
+                            </div>
+                        </div>
+                        <form method="POST" action="/folders/{{request.session.username}}/{{folderID}}/publication/{{pubID}}/annotate/{{annotation.id}}" id="annotate-from-pub"> 
+                            {% csrf_token %}
+                            <select class="custom-select invisible" id="pubsMarkerSelect_{{annotation.id}}" name="selectMark" disabled>
+                                <option selected value="Task (To-do)">Task (To-do)</option>
+                                <option value="Comment">Comment</option>
+                            </select>
+    
+                            <textarea class="form-control" id="pubsAnnotationTextArea_{{annotation.id}}" rows="3" name="annotation-exist" readonly style="resize:none">{{annotation.body}}</textarea>
+                            <input type="hidden" name="next" value="{{ request.path }}"/>
+                            <br>
+                            {% if annotation.author == request.session.username %}
+                            <button type="submit" class="btn btn-danger btn-sm float-end" id="pubsAnnotation_btnDelete_{{annotation.id}}" style="display:inline" name="annotate-delete">Delete</button>
+                            <button type="button" class="btn btn-primary btn-sm float-end" id="pubsAnnotation_btnEdit_{{annotation.id}}" onclick="clickEditOnAnnotationClass('{{annotation.id}}')" style="display:inline; margin-right:20px;" name="annotate-edit">Edit</button>
+                            <button type="button" class="btn btn-warning btn-sm float-end" id="pubsAnnotation_btnCancel_{{annotation.id}}" onclick="clickCancelAnnotationClass('{{annotation.id}}','{{annotation.body}}','{{annotation.marker}}')" style="display:none; margin-right:20px;" name="annotate-cancel">Cancel</button>
+                            <button type="submit" class="btn btn-success btn-sm float-end" id="pubsAnnotation_btnSave_{{annotation.id}}" onclick="clickSaveAnnotationClass('{{annotation.id}}')" style="display:none; margin-right:20px;" name="annotate-save">Save</button>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
         </div>
     </div>
 
@@ -464,7 +582,6 @@
     <div class="col"></div>
   </div>
   {% endif %}
-  <!-- /end annotations -->
     <div class="row" style="margin-bottom: 20px;">
         <div class="col"></div>
         <div class="col-10" style="padding-left: 50px; padding-right: 50px;">
