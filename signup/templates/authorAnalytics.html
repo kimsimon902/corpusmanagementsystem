@@ -71,31 +71,39 @@
                                 scale.min -= 1;
                                 }
                             }]
-                          }
+                          },
+                          events:['click'],onClick: function(c,i) {
+                                e = i[0];
+                                console.log(e._index)
+                                var x_value = this.data.labels[e._index];
+                                var y_value = this.data.datasets[0].data[e._index];
+                                console.log(x_value);
+                                console.log(y_value);
+                            }
                       }
                   });
 
-                  const ctxBarClick = document.getElementById('myChartBarKeyDisc');
+                //   const ctxBarClick = document.getElementById('myChartBarKeyDisc');
 
-                  function clickKeywordHandler(c,i){
-                    //   const points = ctxBarClick.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true);
-                    //   if (points.length){
-                    //       const firstPoint = points[0];
-                    //       console.log(firstPoint);
-                    //       const value = myChartBarKeyDisc.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
-                    //       console.log(value);
+                //   function clickKeywordHandler(c,i){
+                //     //   const points = ctxBarClick.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true);
+                //     //   if (points.length){
+                //     //       const firstPoint = points[0];
+                //     //       console.log(firstPoint);
+                //     //       const value = myChartBarKeyDisc.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
+                //     //       console.log(value);
 
-                    //       window.open('https://www.google.com','_blank');
-                    //   }
-                    e = i[0];
-                    console.log(e._index)
-                    var x_value = this.data.labels[e._index];
-                    var y_value = this.data.datasets[0].data[e._index];
-                    console.log(x_value);
-                    console.log(y_value);
-                  }
+                //     //       window.open('https://www.google.com','_blank');
+                //     //   }
+                //     e = i[0];
+                //     console.log(e._index)
+                //     var x_value = this.data.labels[e._index];
+                //     var y_value = this.data.datasets[0].data[e._index];
+                //     console.log(x_value);
+                //     console.log(y_value);
+                //   }
 
-                  ctxBarClick.onclick = clickKeywordHandler
+                //   ctxBarClick.onclick = clickKeywordHandler
 
                   const ctxPie = document.getElementById('myChartPie').getContext('2d');
                   const myChartPie = new Chart(ctxPie, {
