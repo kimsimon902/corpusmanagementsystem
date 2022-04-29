@@ -33,7 +33,7 @@
                   const myChartBarKeyDisc = new Chart(ctxBarKeyDisc, {
                       type: 'bar',
                       data: {
-                        //   labels: [{% for keyword in keyword_bar|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
+                          labels: [{% for keyword in keyword_bar|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
                           datasets: [{
                             label: 'Number of Publications where Keyword is Present',
                             // data: [{% for keyword in keyword_bar|slice:"1:" %}{{keyword.1}},{% endfor %}],
