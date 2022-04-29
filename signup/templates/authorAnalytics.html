@@ -30,6 +30,11 @@
       
           <script>
               $(document).ready(function(){
+
+                import { Chart, LineController, LineElement, PointElement, LinearScale, Title } from `chart.js`
+
+                Chart.register(LineController, LineElement, PointElement, LinearScale, Title);
+                
                 const ctxBarKeyDisc = document.getElementById('myChartBarKeyDisc').getContext('2d');
                   const myChartBarKeyDisc = new Chart(ctxBarKeyDisc, {
                       type: 'bar',
