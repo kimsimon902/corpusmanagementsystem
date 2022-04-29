@@ -511,9 +511,9 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
         keywordFilteredPubs = []
         resultsId_list = []
 
-        for keyword in keywords_list:
-            if keyword == keyword.keywordname:
-                resultsId_list.append(keyword.id)
+        for keywordL in keywords_list:
+            if keyword == keywordL.keywordname:
+                resultsId_list.append(keywordL.id)
 
         for resultsid in resultsId_list:
             for pubid in pubkeys_list:
