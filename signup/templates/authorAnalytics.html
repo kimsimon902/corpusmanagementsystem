@@ -33,10 +33,13 @@
                   const myChartBarKeyDisc = new Chart(ctxBarKeyDisc, {
                       type: 'bar',
                       data: {
-                          labels: [{% for keyword in keyword_bar|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
+                        //   labels: [{% for keyword in keyword_bar|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
                           datasets: [{
                             label: 'Number of Publications where Keyword is Present',
-                            data: [{% for keyword in keyword_bar|slice:"1:" %}{{keyword.1}},{% endfor %}],
+                            // data: [{% for keyword in keyword_bar|slice:"1:" %}{{keyword.1}},{% endfor %}],
+                            data:   [{% for keyword in keyword_bar|slice:"1:" %}
+                                    {keyword: '{{keyword.0}}', keywordData: { count: {{keyword.1}}, link:'/analytics/{{keyword.0}}' }},
+                                    {%endfor%}]
                             backgroundColor: [
                                 {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
                             ],
@@ -70,6 +73,16 @@
                           }
                       }
                   });
+
+                  function clickKeywordHandler(click){
+                      const points = myChartBarKeyDisc.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true);
+                      if (points.length){
+                          const firstPoint = points[0];
+                          console.log(firstPoint)
+                      }
+                  }
+
+                  ctxBarKeyDisc.onclick = clickKeywordHandler
 
                   const ctxPie = document.getElementById('myChartPie').getContext('2d');
                   const myChartPie = new Chart(ctxPie, {
