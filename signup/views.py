@@ -552,7 +552,7 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
 
         keyword_count = Counter(keyword_results).most_common(len(keyword_results))
 
-        return render(request, 'authorAnalyticsFilteredKeyword.html',{'author':author.strip(), 'publications':keywordFilteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter})
+        return render(request, 'authorAnalyticsFilterKeyword.html',{'author':author.strip(), 'publications':keywordFilteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter})
 
 
 def analytics(request, keyword):
