@@ -39,7 +39,7 @@
                             // data: [{% for keyword in keyword_bar|slice:"1:" %}{{keyword.1}},{% endfor %}],
                             data:   [{% for keyword in keyword_bar|slice:"1:" %}
                                     {keyword: '{{keyword.0}}', keywordData: { count: {{keyword.1}}, link:'/analytics/{{keyword.0}}' }},
-                                    {%endfor%}]
+                                    {%endfor%}],
                             backgroundColor: [
                                 {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
                             ],
