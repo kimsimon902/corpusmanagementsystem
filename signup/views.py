@@ -482,6 +482,78 @@ def authorAnalytics(request, author):
 
         return render(request, 'authorAnalytics.html',{'author':author.strip(), 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter})
 
+def authorAnalyticsFilterKeyword(request, author, keyword):
+    if author != None:
+        publications_by_author = publications.objects.filter(author__icontains=author)
+
+        pubs = []
+
+        for pub in publications_by_author:
+            pubs.append(pub)
+
+        #Make authors into array... from A. author; B. author to ['A. author','B. author']
+        for pub in pubs:
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+
+        filteredPubs = []
+        test_counter = 0
+
+        #Filtering pubs to find exact author
+        for pub in pubs:
+            for auth in pub.author:
+                if (auth.lower()).strip() == (author.lower()).strip():
+                    test_counter+=1
+                    filteredPubs.append(pub)
+
+        keywordFilteredPubs = []
+        resultsId_list = []
+
+        for keyword in keywords_list:
+            if keyword == keyword.keywordname:
+                resultsId_list.append(keyword.id)
+
+        for resultsid in resultsId_list:
+            for pubid in pubkeys_list:
+                if resultsid == pubid.keywords_id:
+                    for pub in filteredPubs:
+                        if pubid.publication_id == pub.id:
+                            keywordFilteredPubs.append(pub)
+
+        #Tallying keywords
+        sources_present = []
+        sources_tally = []
+        source_arr = []
+
+        for pub in keywordFilteredPubs:
+            if pub.source not in sources_present:
+                sources_present.append(pub.source)
+
+        for pub in keywordFilteredPubs:
+            sources_tally.append(pub.source)
+
+        count = 0
+        for source in sources_present:
+            source_arr.insert(count, [source,sources_tally.count(source)])
+            count+=1
+
+        pubkeys_list = list(pubkeys.objects.all())
+        keywords_list = list(keywords.objects.all())
+        keyword_results = []
+
+        for publication in keywordFilteredPubs:
+            for pubkey in pubkeys_list:
+                if publication.id == pubkey.publication_id:
+                    for pubid in keywords_list:
+                        if pubkey.keywords_id == pubid.id:
+                            if pubkey.status != "pending addition":
+                                keyword_results.append(pubid.keywordname)
+
+        keyword_count = Counter(keyword_results).most_common(len(keyword_results))
+
+        return render(request, 'authorAnalyticsFilteredKeyword.html',{'author':author.strip(), 'publications':keywordFilteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter})
+
 
 def analytics(request, keyword):
     #most searched keywords
