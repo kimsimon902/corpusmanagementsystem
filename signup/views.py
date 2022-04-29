@@ -486,6 +486,7 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
     if author != None:
         publications_by_author = publications.objects.filter(author__icontains=author)
         keywords_list = list(keywords.objects.all())
+        pubkeys_list = list(pubkeys.objects.all())
 
         pubs = []
 
@@ -539,7 +540,6 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
             source_arr.insert(count, [source,sources_tally.count(source)])
             count+=1
 
-        pubkeys_list = list(pubkeys.objects.all())
         keyword_results = []
 
         for publication in keywordFilteredPubs:
