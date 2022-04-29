@@ -24,7 +24,7 @@
           <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
       
           <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
       
           <script src='https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js'></script>
       
@@ -34,13 +34,13 @@
                   const myChartBarKeyDisc = new Chart(ctxBarKeyDisc, {
                       type: 'bar',
                       data: {
-                        //   labels: [{% for keyword in keyword_bar|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
+                        labels: [{% for keyword in keyword_bar|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
                           datasets: [{
                             label: 'Number of Publications where Keyword is Present',
-                            // data: [{% for keyword in keyword_bar|slice:"1:" %}{{keyword.1}},{% endfor %}],
-                            data:   [{% for keyword in keyword_bar|slice:"1:" %}
-                                    {keywordLabel: '{{keyword.0}}', keywordData: { count: {{keyword.1}}, link:'/analytics/{{keyword.0}}' }},
-                                    {%endfor%}],
+                            data: [{% for keyword in keyword_bar|slice:"1:" %}{{keyword.1}},{% endfor %}],
+                            // data:   [{% for keyword in keyword_bar|slice:"1:" %}
+                            //         {keywordLabel: '{{keyword.0}}', keywordData: { count: {{keyword.1}}, link:'/analytics/{{keyword.0}}' }},
+                            //         {%endfor%}],
                             backgroundColor: [
                                 {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
                             ],
