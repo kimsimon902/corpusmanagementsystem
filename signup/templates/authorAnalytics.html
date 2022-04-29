@@ -51,6 +51,10 @@
                       },
                       options: {
                           responsive:true,
+                          parsing:  {
+                            xAxisKey: 'keyword',
+                            yAxisKey: 'keywordData.count',
+                          },
                           plugins: {
                               labels:{
                                   render:'value',
@@ -78,7 +82,11 @@
                       const points = myChartBarKeyDisc.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true);
                       if (points.length){
                           const firstPoint = points[0];
-                          console.log(firstPoint)
+                          console.log(firstPoint);
+                          const value = myChartBarKeyDisc.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
+                          console.log(value);
+
+                          window.open('https://www.google.com','_blank');
                       }
                   }
 
