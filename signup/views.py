@@ -443,6 +443,10 @@ def authorAnalytics(request, author):
                 authors = pub.author
                 split = authors.split(';')
                 pub.author = split
+            elif pub.source == 'Scopus':
+                authors = []
+                authors.append(pub.author)
+                pub.author = authors
 
         filteredPubs = []
         test_counter = 0
@@ -510,6 +514,10 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
                 authors = pub.author
                 split = authors.split(';')
                 pub.author = split
+            elif pub.source == 'Scopus':
+                authors = []
+                authors.append(pub.author)
+                pub.author = authors
 
         filteredPubs = []
         test_counter = 0
