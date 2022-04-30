@@ -727,7 +727,8 @@ def analytics(request, keyword):
 
         #clean authors array
         for pub in results_list:
-            pub.author.remove(" ")
+            if pub.source == 'AIS':
+                pub.author.remove(" ")
 
         results_list.sort(key=lambda x: x.year,reverse=True)
         
