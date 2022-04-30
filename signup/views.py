@@ -1395,9 +1395,7 @@ def searchPublication(request):
                                     keyword_results.append(pubid.keywordname)
                                     
                                     
-            result_count = results.count()                    
-            paginator = Paginator(results, 10)
-            page = request.GET.get('page')
+            
 
             
 
@@ -1444,6 +1442,10 @@ def searchPublication(request):
                 max_value = request.GET.get('max')
                 results = results.filter(year__gte=min_value,year__lte=max_value)
                 results = results.order_by('year')
+
+            result_count = results.count()                    
+            paginator = Paginator(results, 10)
+            page = request.GET.get('page')
             
             try:
                 results = paginator.page(page)
