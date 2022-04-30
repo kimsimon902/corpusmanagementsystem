@@ -704,11 +704,11 @@ def analytics(request, keyword):
         keyword_count = Counter(keyword_results).most_common(len(keyword_results))
         print(keyword_count)
 
-        # #Make authors into array... from A. author; B. author to ['A. author','B. author']
-        # for pub in results_list:
-        #     authors = pub.author
-        #     split = authors.split('; ')
-        #     pub.author = split
+        #Make authors into array... from A. author; B. author to ['A. author','B. author']
+        for pub in results_list:
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
 
         results_list.sort(key=lambda x: x.year,reverse=True)
         
