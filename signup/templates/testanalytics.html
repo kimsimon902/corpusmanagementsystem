@@ -72,6 +72,9 @@
                                 }
                             }]
                           },
+                          tooltips: {
+                            enabled: false;
+                          },
                       }
                   });
 
@@ -141,6 +144,9 @@
                                 console.log(y_value);
                                 window.open('http://simonkim902.pythonanywhere.com/analytics/{{searched}}/'+x_value,'_blank');
                           },
+                          tooltips: {
+                            enabled: false;
+                          },
                       }
                   });
 
@@ -192,6 +198,9 @@
                                 console.log(y_value);
                                 window.open('http://simonkim902.pythonanywhere.com/analyticsAuthor/'+x_value+'/'+'{{searched}}','_blank');
                             },
+                            tooltips: {
+                            enabled: false;
+                          },
                       }
                   });
       
@@ -251,7 +260,10 @@
                                   outsidePadding: 4,
                                   textMargin: 4
                               }
-                              }
+                              },
+                              tooltips: {
+                            enabled: false;
+                          },
                       }
                   });
               });

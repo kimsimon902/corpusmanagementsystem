@@ -80,7 +80,10 @@
                                 console.log(x_value);
                                 console.log(y_value);
                                 window.open('http://simonkim902.pythonanywhere.com/analyticsAuthor/{{author}}/'+x_value,'_blank');
-                            }
+                            },
+                            tooltips: {
+                            enabled: false;
+                          },
                       }
                   });
 
@@ -140,7 +143,10 @@
                                   outsidePadding: 4,
                                   textMargin: 4
                               }
-                              }
+                            },
+                        tooltips: {
+                            enabled: false;
+                          },
                       }
                   });
               });
