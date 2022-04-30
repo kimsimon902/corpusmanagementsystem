@@ -1160,7 +1160,7 @@ def searchPublication(request):
                 max_value = request.GET.get('max')
                 results_list = results_list.filter(year__gte=min_value,year__lte=max_value)
 
-            paginator = Paginator(results, 10)
+            paginator = Paginator(results_list, 10)
             page = request.GET.get('page')
 
             try:
