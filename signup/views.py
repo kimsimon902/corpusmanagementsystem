@@ -480,6 +480,8 @@ def authorAnalytics(request, author):
 
         keyword_count = Counter(keyword_results).most_common(len(keyword_results))
 
+        filteredPubs.sort(key=lambda x: x.year,reverse=True)
+
         return render(request, 'authorAnalytics.html',{'author':author.strip(), 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter})
 
 def authorAnalyticsFilterKeyword(request, author, keyword):
@@ -551,6 +553,8 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
                                 keyword_results.append(pubid.keywordname)
 
         keyword_count = Counter(keyword_results).most_common(len(keyword_results))
+
+        keywordFilteredPubs.sort(key=lambda x: x.year,reverse=True)
 
         return render(request, 'authorAnalyticsFilterKeyword.html',{'author':author.strip(), 'publications':keywordFilteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'keywordFilter':keyword,})
 
@@ -884,6 +888,8 @@ def analyticsFilterKeyword(request, keyword, keyword2):
 
         keyword_count = Counter(keyword_results).most_common(len(keyword_results))
         print(keyword_count)
+
+        results_list.sort(key=lambda x: x.year,reverse=True)
         
         return render(request, 'testanalytics.html',{'searched':searched.capitalize(), 'searched2':searched2.capitalize(),
                                                     'results':results_list, 
