@@ -361,6 +361,7 @@
                         </div>
                     </div>
                     <h3>Publications containing the keyword "{{searched}}" {% if searched2 %} and "{{searched2|capfirst}} {%endif%}</h3>
+                    <h6 id="filterHeader" style="display:none"></h6>
                     <div class="table-responsive" style="margin-top: 10px;">
                         <table class="table" id="pubTable">
                             <thead>
@@ -412,6 +413,18 @@
 
 
     <script>
+        function toggleFilterHeader(filter){
+            var header = document.getElementById("filterHeader")
+            if (filter != 'none'){
+                header.innerHTML = "The list has been filtered by "+filter+"<a Reset?>";
+                header.style.display = "block";
+            }
+            else{
+                header.style.display = "none";
+            }
+
+        }
+
         function yearBarClick(year){        
             var tbody = document.querySelectorAll('tbody[data-year]');
             index = 0;
@@ -419,7 +432,6 @@
             for ( ; index < length; index++) {
                 tbody[index].style.display = "table-row-group";
             }
-            console.log("set to content")
 
             var yearTbody = document.querySelectorAll('tbody[data-year]:not([data-year="'+year+'"])');
             index = 0;
@@ -428,7 +440,7 @@
                 yearTbody[index].style.display = "none";
             }
 
-            console.log("set to none")
+            toggleFilterHeader('year');
         };
 
         function authorBarClick(author){
@@ -448,7 +460,7 @@
                 $yearTbody[index].style.display = "table-row-group";
             }
 
-            console.log(length);    
+            toggleFilterHeader('author');
         };
 
         function sourcePieClick(source){
@@ -467,7 +479,7 @@
                 sourceTbody[index].style.display = "none";
             }
 
-            console.log("set to none")
+            toggleFilterHeader('source');
         };
     </script>
 
