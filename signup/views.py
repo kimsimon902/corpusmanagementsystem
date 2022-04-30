@@ -1478,9 +1478,9 @@ def searchPublication(request):
                 if request.GET.get('sortBy') == 'earlyYear':
                     results = results.order_by('year')
                     libFilter = str(libFilter).replace('[','').replace(']','').replace('\'','').replace('\"','')
-                    print(libFilter)
                 elif request.GET.get('sortBy') == 'lateYear':
                     results = results.order_by('-year')
+                    libFilter = str(libFilter).replace('[','').replace(']','').replace('\'','').replace('\"','')
             
             if request.GET.get('min') != None and request.GET.get('max') != None:
                 min_value = request.GET.get('min')
@@ -1489,21 +1489,21 @@ def searchPublication(request):
                 results = results.order_by('year')
 
                               
-            # paginator = Paginator(results, 20)
-            # page = request.GET.get('page')
+            paginator = Paginator(results, 20)
+            page = request.GET.get('page')
 
-            # try:
-            #     results = paginator.page(page)
-            # except PageNotAnInteger:
-            #     results = paginator.page(1)  
-            # except EmptyPage:
-            #     results = paginator.page(paginator.num_pages)
+            try:
+                results = paginator.page(page)
+            except PageNotAnInteger:
+                results = paginator.page(1)  
+            except EmptyPage:
+                results = paginator.page(paginator.num_pages)
 
-            # index = results.number - 1
-            # max_index = len(paginator.page_range)
-            # start_index = index - 5 if index >= 5 else 0
-            # end_index = index + 5 if index <= max_index - 5 else max_index
-            # page_range = paginator.page_range[start_index:end_index]
+            index = results.number - 1
+            max_index = len(paginator.page_range)
+            start_index = index - 5 if index >= 5 else 0
+            end_index = index + 5 if index <= max_index - 5 else max_index
+            page_range = paginator.page_range[start_index:end_index]
 
             
             
@@ -1511,7 +1511,7 @@ def searchPublication(request):
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
-                                                        # 'page_range': page_range,
+                                                        'page_range': page_range,
                                                         'count':result_count,
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
