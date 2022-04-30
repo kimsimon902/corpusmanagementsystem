@@ -361,10 +361,10 @@
                     </div>
                     <h3>Publications containing the keyword "{{searched}}" {% if searched2 %} and "{{searched2|capfirst}} {%endif%}</h3>
                     <div class="table-responsive" style="margin-top: 10px;">
-                        <table class="table" id="pubTable" onClick="resetTbodyDisplay()">
+                        <table class="table" id="pubTable">
                             <thead>
                                 <tr>
-                                    <th scope="col">Title</th>
+                                    <th scope="col"  onClick="resetTbodyDisplay()">Title</th>
                                     <th scope="col">Author/s</th>
                                     <th scope="col">Year</th>
                                     <th scope="col">Source</th>
