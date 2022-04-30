@@ -732,6 +732,10 @@ def analytics(request, keyword):
                 authors = pub.author
                 split = authors.split(';')
                 pub.author = split
+            elif pub.source == 'Scopus':
+                authors = []
+                authors.append(pub.author)
+                pub.author = authors
 
         #clean authors array
         for pub in results_list:
@@ -2203,16 +2207,20 @@ def PublicationPage(request, id):
     else:
         current_url = request.session['search_url']
 
-    #Make authors into array... from A. author; B. author to ['A. author','B. author']
-    for pub in results:
-        if pub.source == 'IEEE':
-            authors = pub.author
-            split = authors.split('; ')
-            pub.author = split
-        elif pub.source == 'AIS':
-            authors = pub.author
-            split = authors.split(';')
-            pub.author = split 
+        #Make authors into array... from A. author; B. author to ['A. author','B. author']
+        for pub in results:
+            if pub.source == 'IEEE':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
+            elif pub.source == 'AIS':
+                authors = pub.author
+                split = authors.split(';')
+                pub.author = split
+            elif pub.source == 'Scopus':
+                authors = []
+                authors.append(pub.author)
+                pub.author = authors
 
 
 
@@ -2287,16 +2295,20 @@ def PublicationPageInFolder(request, folderid, username, id):
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
 
-    #Make authors into array... from A. author; B. author to ['A. author','B. author']
-    for pub in results:
-        if pub.source == 'IEEE':
-            authors = pub.author
-            split = authors.split('; ')
-            pub.author = split
-        elif pub.source == 'AIS':
-            authors = pub.author
-            split = authors.split(';')
-            pub.author = split
+        #Make authors into array... from A. author; B. author to ['A. author','B. author']
+        for pub in results:
+            if pub.source == 'IEEE':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
+            elif pub.source == 'AIS':
+                authors = pub.author
+                split = authors.split(';')
+                pub.author = split
+            elif pub.source == 'Scopus':
+                authors = []
+                authors.append(pub.author)
+                pub.author = authors
 
     return render(request, 'publication-folder.html', {'publication':results,
                                                        'annotations':annotation,
