@@ -1502,8 +1502,9 @@ def searchPublication(request):
             # start_index = index - 5 if index >= 5 else 0
             # end_index = index + 5 if index <= max_index - 5 else max_index
             # page_range = paginator.page_range[start_index:end_index]
-                
-            print(libFilter[0])
+
+            if libFilter:    
+                print(libFilter[0])
             
 
 
