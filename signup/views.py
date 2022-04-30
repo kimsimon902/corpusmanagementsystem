@@ -1124,7 +1124,11 @@ def searchPublication(request):
                                 if pubid.keywordname not in keyword_results:
                                     keyword_results.append(pubid.keywordname)
                                     
-            
+            url = str(request.get_full_path())
+            if 'ais' in url and 'scopus' in url and 'ieee' in libFilter:
+                libFilter = 'default'
+                request.session['libFilter'] = "default"
+                
             filteredYear =[]
             for year in results_list:
                 if int(year.year) not in filteredYear:
@@ -1236,6 +1240,7 @@ def searchPublication(request):
             keyword_results = []
             year_count = []
 
+            url = str(request.get_full_path())
             if 'ais' in url and 'scopus' in url and 'ieee' in libFilter:
                 libFilter = 'default'
                 request.session['libFilter'] = "default"
