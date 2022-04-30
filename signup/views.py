@@ -706,11 +706,11 @@ def analytics(request, keyword):
 
         #Make authors into array... from A. author; B. author to ['A. author','B. author']
         for pub in results_list:
-            if results_list.source == 'IEE':
+            if pub.source == 'IEE':
                 authors = pub.author
                 split = authors.split(';')
                 pub.author = split
-            elif results_list.source == 'AIS':
+            elif pub.source == 'AIS':
                 authors = pub.author
                 split = authors.split('; ')
                 pub.author = split
