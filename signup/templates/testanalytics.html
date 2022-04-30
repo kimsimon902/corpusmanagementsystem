@@ -411,16 +411,10 @@
 
     <script>
         function yearBarClick(year){
-            // var allTbody = document.querySelectorAll("[data-year]");
-            // var index = 0, length = allTbody.length;
-            // for ( ; index < length; index++) {
-            //     allTbody[index].style.display = "content";
-            // }
-            var yearTbody = document.querySelectorAll('tbody[data-year]:not([data-year="'+year+'"])');
-            index = 0;
-            length = yearTbody.length;
+            var allTbody = document.querySelectorAll("[data-year]");
+            var index = 0, length = allTbody.length;
             for ( ; index < length; index++) {
-                yearTbody[index].style.display = "content";
+                allTbody[index].style.display = "content";
             }
             
             var yearTbody = document.querySelectorAll('tbody[data-year]:not([data-year="'+year+'"])');
