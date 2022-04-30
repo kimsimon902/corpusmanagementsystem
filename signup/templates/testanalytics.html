@@ -412,9 +412,16 @@
     <script>
         function yearBarClick(year){
             var allTbody = document.querySelectorAll("[data-year]");
-            allTbody.style.display = "none";
+            var index = 0, length = allTbody.length;
+            for ( ; index < length; index++) {
+                allTbody[index].style.display = "none";
+            }
             var yearTbody = document.querySelectorAll("[data-year='"+year+"']");
-            yearTbody.style.display = "block";
+            index = 0;
+            length = yearTbody.length;
+            for ( ; index < length; index++) {
+                yearTbody[index].style.display = "none";
+            }
 
             console.log("year: "+year);
         };
