@@ -203,7 +203,8 @@
                                 var y_value = this.data.datasets[0].data[e._index];
                                 console.log(x_value);
                                 console.log(y_value);
-                                window.open('http://simonkim902.pythonanywhere.com/analyticsAuthor/'+x_value+'/'+'{{searched}}','_blank');
+                                authorBarClick(x_value);
+                                //window.open('http://simonkim902.pythonanywhere.com/analyticsAuthor/'+x_value+'/'+'{{searched}}','_blank');
                             },
                       }
                   });
@@ -364,7 +365,7 @@
                         <table class="table" id="pubTable">
                             <thead>
                                 <tr>
-                                    <th scope="col"  onClick="resetTbodyDisplay()">Title</th>
+                                    <th scope="col">Title</th>
                                     <th scope="col">Author/s</th>
                                     <th scope="col">Year</th>
                                     <th scope="col">Source</th>
@@ -372,7 +373,7 @@
                                 </tr>
                             </thead>
                             {% for result in results %}
-                            <tbody data-year="{{result.year}}" style="">
+                            <tbody data-year="{{result.year}}" data-author='{{result.author}}' style="">
                                 <tr>  
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                     <td style="border-bottom: none;">{{result.author}}</td>
@@ -430,7 +431,22 @@
             console.log("set to none")
         };
 
-        function resetTbodyDisplay(){
+        function authorBarClick(author){
+            authorLower = author.toLowerCase()
+            var tbody = document.querySelectorAll('tbody[data-author]');
+            index = 0;
+            length = tbody.length;
+            for ( ; index < length; index++) {
+                tbody[index].style.display = "none";
+            }
+            console.log("set to content")
+
+            var yearTbody = $("tbody[data-author*='"+authorLower+"']");
+            index = 0;
+            length = yearTbody.length;
+            for ( ; index < length; index++) {
+                yearTbody[index].style.display = "table-row-group";
+            }
         };
     </script>
 
