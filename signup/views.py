@@ -729,7 +729,7 @@ def analytics(request, keyword):
         for pub in results_list:
             if pub.source == 'AIS':
                 for author in pub.author:
-                    if author == " ":
+                    if author == "":
                         pub.author.remove(author)
 
         results_list.sort(key=lambda x: x.year,reverse=True)
