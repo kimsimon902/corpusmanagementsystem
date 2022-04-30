@@ -123,7 +123,7 @@
                                 var y_value = this.data.datasets[0].data[e._index];
                                 console.log(x_value);
                                 console.log(y_value);
-                                window.open('http://simonkim902.pythonanywhere.com/analytics/'+x_value,'_blank');
+                                window.open('http://simonkim902.pythonanywhere.com/analytics/{{searched}}/'+x_value,'_blank');
                           },
                       }
                   });
@@ -332,8 +332,8 @@
                                     <th scope="col">URL</th>
                                 </tr>
                             </thead>
-                            {% for result in results %}
                             <tbody>
+                                {% for result in results %}
                                 <tr>  
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                     <td style="border-bottom: none;">{{result.author}}</td>
@@ -361,8 +361,8 @@
                                         </ul>
                                     </td>
                                 </tr>
+                                {% endfor %}
                             </tbody>
-                            {% endfor %}
                         </table>
                     </div>
                 </div>

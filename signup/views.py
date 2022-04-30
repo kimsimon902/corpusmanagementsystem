@@ -716,6 +716,182 @@ def analytics(request, keyword):
 
     return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
 
+def analyticsFilterKeyword(request, keyword, keyword2):
+    #most searched keywords
+    searched_keywords = records_search.objects.raw('SELECT id, keyword, count(*) as count FROM records_search GROUP BY keyword ORDER BY count DESC LIMIT 10')
+
+    #most opened pubs
+    opened_pubs = records_view_publication.objects.raw('SELECT id, pub_title, count(*) as count FROM records_view_publication GROUP BY pub_title ORDER BY count DESC LIMIT 10')
+
+    #most viewed tags
+    viewed_tags = records_view_tag.objects.raw('SELECT id, tag, count(*) as count FROM records_view_tag GROUP BY tag ORDER BY count DESC LIMIT 10')
+
+    #most bookmarked
+    bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 10')
+
+    keyword_search = keyword
+    keyword_search2 = keyword2
+
+    if keyword_search != None:
+
+        if (request.user):
+            author = request.session['username']
+        else:
+            author="null"
+
+        email = request.session['email']
+
+        searched = keyword_search
+        searched2 = keyword_search2
+        searchFilter = "default"
+        results_list_old = []
+        resultsId_list_old = []
+        pubkeys_list = list(pubkeys.objects.all())
+        keywords_list = list(keywords.objects.all())
+        publications_list = list(publications.objects.all())
+
+        my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('id') #get my bookmarks folderID
+        my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
+
+        for keyword in keywords_list:
+            if keyword_search.lower() == keyword.keywordname.lower():
+                resultsId_list_old.append(keyword.id)
+
+        for resultsid in resultsId_list_old:
+            for pubid in pubkeys_list:
+                if resultsid == pubid.keywords_id:
+                    for pub in publications_list:
+                        if pubid.publication_id == pub.id:
+                            results_list_old.append(pub)
+
+        results_list = []
+        resultsId_list = []
+
+        for keyword in keywords_list:
+            if keyword_search2.lower() == keyword.keywordname.lower():
+                resultsId_list.append(keyword.id)
+
+        for resultsid in resultsId_list:
+            for pubid in pubkeys_list:
+                if resultsid == pubid.keywords_id:
+                    for pub in results_list_old:
+                        if pubid.publication_id == pub.id:
+                            results_list.append(pub) 
+
+        keyword_results = []
+        author_results = []
+
+        authors_present = []
+        authors_tally = []
+        authors_single = []
+        authors_single_tally = []
+        author_arr = []
+        
+        for pub in results_list:
+            if pub.author not in authors_present:
+                authors_present.append(pub.author)
+
+        for author in authors_present:
+            splitauth = [x.strip() for x in author.split(';')]
+            for x in splitauth:
+                if x:
+                    authors_single.append(x)
+
+        for pub in results_list:
+            authors_tally.append(pub.author)
+
+        for author in authors_tally:
+            splitauth = [x.strip() for x in author.split(';')]
+            for x in splitauth:
+                if x:
+                    authors_single_tally.append(x)
+
+        count = 0
+        for author in authors_single:
+            author_arr.insert(count, [author,authors_single_tally.count(author)])
+            count+=1
+        
+        unique_author = []
+
+        for auth in author_arr:
+            if auth not in unique_author:
+                unique_author.append(auth)
+
+        unique_author.sort(key=lambda s:s[1], reverse=True)
+
+        years_present = []
+        years_tally = []
+        year_arr = []   
+
+        for pub in results_list:
+            if int(pub.year) not in years_present:
+                years_present.append(int(pub.year))
+
+        years_present.sort()
+
+        for pub in results_list:
+            years_tally.append(int(pub.year))
+
+        years_tally.sort()
+
+        count = 0
+        for year in years_present:
+            year_arr.insert(count, [year,years_tally.count(year)])
+            count+=1
+
+
+        sources_present = []
+        sources_tally = []
+        source_arr = []
+
+        for pub in results_list:
+            if pub.source not in sources_present:
+                sources_present.append(pub.source)
+
+        for pub in results_list:
+            sources_tally.append(pub.source)
+
+        count = 0
+        for source in sources_present:
+            source_arr.insert(count, [source,sources_tally.count(source)])
+            count+=1
+    
+
+        for publication in results_list:
+            for pubkey in pubkeys_list:
+                if publication.id == pubkey.publication_id:
+                    for pubid in keywords_list:
+                        if pubkey.keywords_id == pubid.id:
+                            if pubkey.status != "pending addition":
+                                keyword_results.append(pubid.keywordname)
+        
+        filteredYear =[]
+        for year in results_list:
+            if int(year.year) not in filteredYear:
+                filteredYear.append(int(year.year))
+
+        filteredYear.sort()
+        
+        print(results_list)
+
+        keyword_count = Counter(keyword_results).most_common(len(keyword_results))
+        print(keyword_count)
+        
+        return render(request, 'testanalytics.html',{'searched':searched.capitalize(), 
+                                                    'results':results_list, 
+                                                    'count':len(results_list),
+                                                    'keyword_results':keyword_count,
+                                                    'keyword_bar':keyword_count[:10],
+                                                    'searchedkeys':searched_keywords,
+                                                    'opened_pubs':opened_pubs, 
+                                                    'viewed_tags':viewed_tags,
+                                                    'bookmarked_pubs':bookmarked_pubs,
+                                                    'year_arr':year_arr[-5:],
+                                                    'source_arr':source_arr,
+                                                    'author_arr':unique_author[:10]
+                                                    })
+
+    return render(request, 'testanalytics.html',{'searchedkey':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs})
 
 
 
