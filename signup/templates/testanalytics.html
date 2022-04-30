@@ -332,8 +332,8 @@
                                     <th scope="col">URL</th>
                                 </tr>
                             </thead>
+                            {% for result in results %}
                             <tbody>
-                                {% for result in results %}
                                 <tr>  
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                     <td style="border-bottom: none;">{{result.author}}</td>
@@ -361,8 +361,8 @@
                                         </ul>
                                     </td>
                                 </tr>
-                                {% endfor %}
                             </tbody>
+                            {% endfor %}
                         </table>
                     </div>
                 </div>
