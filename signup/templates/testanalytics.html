@@ -372,7 +372,7 @@
                                 </tr>
                             </thead>
                             {% for result in results %}
-                            <tbody data-year="{{result.year}}" style="display:contents;">
+                            <tbody data-year="{{result.year}}" style="">
                                 <tr>  
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                     <td style="border-bottom: none;">{{result.author}}</td>
@@ -416,7 +416,7 @@
             index = 0;
             length = tbody.length;
             for ( ; index < length; index++) {
-                tbody[index].style.display = "content";
+                tbody[index].style.display = "table-row-group";
             }
             console.log("set to content")
 
