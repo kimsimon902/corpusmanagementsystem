@@ -435,9 +435,14 @@ def authorAnalytics(request, author):
 
         #Make authors into array... from A. author; B. author to ['A. author','B. author']
         for pub in pubs:
-            authors = pub.author
-            split = authors.split('; ')
-            pub.author = split
+            if pub.source == 'IEEE':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
+            elif pub.source == 'AIS':
+                authors = pub.author
+                split = authors.split(';')
+                pub.author = split
 
         filteredPubs = []
         test_counter = 0
@@ -497,9 +502,14 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
 
         #Make authors into array... from A. author; B. author to ['A. author','B. author']
         for pub in pubs:
-            authors = pub.author
-            split = authors.split('; ')
-            pub.author = split
+            if pub.source == 'IEEE':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
+            elif pub.source == 'AIS':
+                authors = pub.author
+                split = authors.split(';')
+                pub.author = split
 
         filteredPubs = []
         test_counter = 0
