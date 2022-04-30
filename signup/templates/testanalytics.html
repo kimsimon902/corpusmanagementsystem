@@ -361,7 +361,7 @@
                         </div>
                     </div>
                     <h3>Publications containing the keyword "{{searched}}" {% if searched2 %} and "{{searched2|capfirst}} {%endif%}</h3>
-                    <h6 id="filterHeader" style="display:none"></h6>
+                    <h6 id="filterHeader" style="display:none" onclick="resetFilter()"></h6>
                     <div class="table-responsive" style="margin-top: 10px;">
                         <table class="table" id="pubTable">
                             <thead>
@@ -421,12 +421,14 @@
             for ( ; index < length; index++) {
                 tbody[index].style.display = "table-row-group";
             }
+
+            toggleFilterHeader('none');
         }
 
         function toggleFilterHeader(filter){
             var header = document.getElementById("filterHeader")
             if (filter != 'none'){
-                header.innerHTML = "The list has been filtered by "+filter+"<h6 onclick=resetFilter()> Reset?</h6>";
+                header.innerHTML = "The list has been filtered by "+filter+"... Click here to remove filter.";
                 header.style.display = "block";
             }
             else{
