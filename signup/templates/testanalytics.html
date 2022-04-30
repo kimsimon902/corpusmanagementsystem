@@ -377,7 +377,7 @@
                             <tbody data-year="{{result.year}}" data-author='{{result.author}}' data-source="{{result.source}}" style="">
                                 <tr>  
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
-                                    <td style="border-bottom: none;">{{result.author}}</td>
+                                    <td style="border-bottom: none;">{% for author in result.author %}<a href="/analyticsAuthor/{{author}}" style="margin-top: 15px; text-decoration: none;">{{author|capfirst}}; </a> {% endfor %}</td>
                                     <!-- <td style="max-width:500px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{result.abstract}}</td> -->
                                     <td style="border-bottom: none;">{{result.year}}</td>
                                     <td style="border-bottom: none;">{{result.source}}</td>
