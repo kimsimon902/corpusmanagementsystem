@@ -513,7 +513,7 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
         resultsId_list = []
 
         for keywordL in keywords_list:
-            if keyword == keywordL.keywordname:
+            if keyword.lower() == keywordL.keywordname.lower():
                 resultsId_list.append(keywordL.id)
 
         for resultsid in resultsId_list:
@@ -591,7 +591,7 @@ def analytics(request, keyword):
         my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
 
         for keyword in keywords_list:
-            if keyword_search == keyword.keywordname:
+            if keyword_search.lower() == keyword.keywordname.lower():
                 resultsId_list.append(keyword.id)
 
         for resultsid in resultsId_list:
