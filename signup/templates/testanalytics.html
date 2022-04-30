@@ -76,7 +76,7 @@
                   });
 
             //   var data = [{% for keyword in keyword_results %}{"x": '{{keyword.0}}',"value":{{keyword.1}}},{% endfor %}];
-                {% if searched2 %} sliceV="2:" {%else%}"1:" {%endif%}
+                {% if searched2 %} sliceV="2:" {%else%}sliceV="1:" {%endif%}
                   const ctxBarKeyDisc = document.getElementById('myChartBarKeyDisc').getContext('2d');
                   const myChartBarKeyDisc = new Chart(ctxBarKeyDisc, {
                       type: 'bar',
