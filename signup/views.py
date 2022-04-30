@@ -708,11 +708,11 @@ def analytics(request, keyword):
         for pub in results_list:
             if pub.source == 'IEE':
                 authors = pub.author
-                split = authors.split(';')
+                split = authors.split('; ')
                 pub.author = split
             elif pub.source == 'AIS':
                 authors = pub.author
-                split = authors.split('; ')
+                split = authors.split(';')
                 pub.author = split
 
         results_list.sort(key=lambda x: x.year,reverse=True)
