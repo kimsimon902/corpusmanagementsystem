@@ -1396,7 +1396,7 @@ def searchPublication(request):
                                     
                                     
             
-
+            result_count = results.count() 
             
 
             
@@ -1443,10 +1443,10 @@ def searchPublication(request):
                 results = results.filter(year__gte=min_value,year__lte=max_value)
                 results = results.order_by('year')
 
-            result_count = results.count()                    
+                              
             paginator = Paginator(results, 10)
             page = request.GET.get('page')
-            
+
             try:
                 results = paginator.page(page)
             except PageNotAnInteger:
