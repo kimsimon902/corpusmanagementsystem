@@ -1507,7 +1507,7 @@ def searchPublication(request):
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
-                                                        'page_range': page_range,
+                                                        # 'page_range': page_range,
                                                         'count':result_count,
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
