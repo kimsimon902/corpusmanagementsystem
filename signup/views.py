@@ -1471,7 +1471,7 @@ def searchPublication(request):
             logSearch.date = datetime.datetime.now()
             logSearch.save()
             
-            
+            print("im filtering by year")
 
             if request.GET.get('sortBy') != None:
                 if request.GET.get('sortBy') == 'earlyYear':
