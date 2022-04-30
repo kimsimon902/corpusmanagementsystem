@@ -1477,6 +1477,8 @@ def searchPublication(request):
             if request.GET.get('sortBy') != None:
                 if request.GET.get('sortBy') == 'earlyYear':
                     results = results.order_by('year')
+                    libFilter = str(libFilter).replace('[','').replace(']','').replace('\'','').replace('\"','')
+                    print(libFilter)
                 elif request.GET.get('sortBy') == 'lateYear':
                     results = results.order_by('-year')
             
@@ -1503,8 +1505,7 @@ def searchPublication(request):
             # end_index = index + 5 if index <= max_index - 5 else max_index
             # page_range = paginator.page_range[start_index:end_index]
 
-            if libFilter:    
-                print(libFilter[0])
+            
             
 
 
