@@ -523,16 +523,16 @@ def authorAnalytics(request, author):
         for pub in results:
             authors_present.append(pub.author)
 
-        for author in authors_present:
-            splitauth = author.split(";") 
+        for txt in authors_present:
+            splitauth = txt.split(";") 
             for x in splitauth:
                 authors_single.append(x)
 
         for pub in results:
             authors_tally.append(pub.author)
 
-        for author in authors_tally:
-            splitauth = author.split(";") 
+        for txt in authors_tally:
+            splitauth = txt.split(";") 
             for x in splitauth:
                 authors_single_tally.append(x)
 
