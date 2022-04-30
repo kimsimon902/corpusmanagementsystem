@@ -411,7 +411,15 @@
 
 
     <script>
-        function yearBarClick(year){            
+        function yearBarClick(year){        
+            var tbody = document.getElementById("pubTable").tBodies;
+            index = 0;
+            length = tbody.length;
+            for ( ; index < length; index++) {
+                tbody[index].style.display = "content";
+            }
+            console.log("reset")
+                
             var yearTbody = document.querySelectorAll('tbody[data-year]:not([data-year="'+year+'"])');
             index = 0;
             length = yearTbody.length;
@@ -421,15 +429,6 @@
         };
 
         function resetTbodyDisplay(){
-            var tbody = document.getElementById("pubTable").tBodies;
-            index = 0;
-            length = tbody.length;
-            for ( ; index < length; index++) {
-                tbody[index].show();
-            }
-
-            tbody.show();
-            console.log("reset")
         };
     </script>
 
