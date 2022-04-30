@@ -705,6 +705,8 @@ def analytics(request, keyword):
         #     authors = pub.author
         #     split = authors.split('; ')
         #     pub.author = split
+
+        results_list.sort(key=lambda x: x.year,reverse=True)
         
         return render(request, 'testanalytics.html',{'searched':searched.capitalize(), 
                                                     'results':results_list, 
