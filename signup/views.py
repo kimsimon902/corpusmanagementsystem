@@ -2204,9 +2204,7 @@ def PublicationPage(request, id):
         elif pub.source == 'AIS':
             authors = pub.author
             split = authors.split(';')
-            pub.author = split  
-        elif pub.source == 'Scopus':
-            print(pub.source)
+            pub.author = split 
 
 
 

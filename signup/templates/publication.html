@@ -186,7 +186,7 @@
                 <div class="col-md-10 col-lg-7 offset-md-1 offset-lg-0">
                     <div class="text">
                         <p style="margin-bottom: 5px;">Authors:</p>
-                        {% if result.source != 'Scopus' %}
+                        {% if getdata.source != 'Scopus' %}
                         <p>{% for author in getdata.author %}<a href="/analyticsAuthor/{{author}}" style="margin-top: 15px; text-decoration: none;">{{author|capfirst}}</a>; {% endfor %}<p>
                         {% else %}
                         <p><a href="/analyticsAuthor/{{getdata.author}}" style="margin-top: 15px; text-decoration: none;">{{getdata.author|capfirst}}</a>; </p>
