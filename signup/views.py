@@ -1251,7 +1251,7 @@ def searchPublication(request):
             
             zippedList = zip(filteredYear, year_count)
 
-            paginator = Paginator(results, 10)
+            paginator = Paginator(results_list, 10)
             page = request.GET.get('page')
 
             try:
