@@ -5,14 +5,7 @@
         {% load static %}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Publication</title>
-        <!-- <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{% static '\users\assets\css\index.css' %}">
-        <link rel="stylesheet" href="{% static '\users\assets\css\Pretty-Search-Form.css' %}">
-        <link rel="stylesheet" href="{% static '\users\assets\css\publication.css' %}"> -->
-
+        <title>{{searched|capfirst}}</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
         <link rel="stylesheet" href="{% static '\users\assets\bootstrap\css\bootstrap.min.css' %}">
@@ -78,7 +71,7 @@
                                 scale.min -= 1;
                                 }
                             }]
-                          }
+                          },
                       }
                   });
 
@@ -122,7 +115,16 @@
                                 scale.min -= 1;
                                 }
                             }]
-                          }
+                          },
+                          events:['click'],onClick: function(c,i) {
+                                e = i[0];
+                                console.log(e._index)
+                                var x_value = this.data.labels[e._index];
+                                var y_value = this.data.datasets[0].data[e._index];
+                                console.log(x_value);
+                                console.log(y_value);
+                                window.open('http://simonkim902.pythonanywhere.com/analytics/'+x_value,'_blank');
+                          },
                       }
                   });
 
@@ -164,7 +166,16 @@
                                 scale.min -= 1;
                                 }
                             }]
-                          }
+                          },
+                          events:['click'],onClick: function(c,i) {
+                                e = i[0];
+                                console.log(e._index)
+                                var x_value = this.data.labels[e._index];
+                                var y_value = this.data.datasets[0].data[e._index];
+                                console.log(x_value);
+                                console.log(y_value);
+                                window.open('http://simonkim902.pythonanywhere.com/analyticsAuthor/'+x_value,'_blank');
+                            },
                       }
                   });
       
