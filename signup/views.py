@@ -1176,6 +1176,9 @@ def searchPublication(request):
             end_index = index + 5 if index <= max_index - 5 else max_index
             page_range = paginator.page_range[start_index:end_index]
 
+            libFilter = request.GET.getlist('filterLib')
+
+
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
@@ -1231,7 +1234,10 @@ def searchPublication(request):
 
             keyword_results = []
             year_count = []
-            
+
+            if 'ais' in url and 'scopus' in url and 'ieee' in libFilter:
+                libFilter = 'default'
+                request.session['libFilter'] = "default"
 
             for publication in results_list:
                 for pubkey in pubkeys_list:
