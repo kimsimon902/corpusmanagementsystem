@@ -877,7 +877,7 @@ def analyticsFilterKeyword(request, keyword, keyword2):
         keyword_count = Counter(keyword_results).most_common(len(keyword_results))
         print(keyword_count)
         
-        return render(request, 'testanalytics.html',{'searched':searched.capitalize(), 
+        return render(request, 'testanalytics.html',{'searched':searched.capitalize(), 'searched2':searched2.capitalize(),
                                                     'results':results_list, 
                                                     'count':len(results_list),
                                                     'keyword_results':keyword_count,
