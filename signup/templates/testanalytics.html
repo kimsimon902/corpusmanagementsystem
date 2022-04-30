@@ -361,7 +361,7 @@
                     </div>
                     <h3>Publications containing the keyword "{{searched}}" {% if searched2 %} and "{{searched2|capfirst}} {%endif%}</h3>
                     <div class="table-responsive" style="margin-top: 10px;">
-                        <table class="table" id="pubTable">
+                        <table class="table" id="pubTable" onClick="resetTbodyDisplay()">
                             <thead>
                                 <tr>
                                     <th scope="col">Title</th>
@@ -418,8 +418,6 @@
             for ( ; index < length; index++) {
                 yearTbody[index].style.display = "none";
             }
-
-            console.log(allTbody.length);
         };
 
         function resetTbodyDisplay(){
