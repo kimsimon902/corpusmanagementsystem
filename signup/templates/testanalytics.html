@@ -441,14 +441,14 @@
             }
             console.log("set to content")
 
-            var yearTbody = $("tbody[data-author*='"+authorLower+"']");
+            $yearTbody = $("tbody[data-author*='"+authorLower+"']");
             index = 0;
             length = yearTbody.length;
             for ( ; index < length; index++) {
                 yearTbody[index].style.display = "table-row-group";
             }
 
-            console.log(length);
+            console.log(length);    
         };
     </script>
 
