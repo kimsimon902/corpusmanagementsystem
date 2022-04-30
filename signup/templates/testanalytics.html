@@ -412,7 +412,7 @@
 
     <script>
         function yearBarClick(year){        
-            var tbody = document.getElementById("pubTable").tBodies;
+            var tbody = document.querySelectorAll('tbody[data-year]');
             index = 0;
             length = tbody.length;
             for ( ; index < length; index++) {
