@@ -188,7 +188,7 @@
                                 </td>
                             </form>
                         </tr>
-                        {% for year in filteredYear|slice:"5" %}
+                        <!-- {% for year in filteredYear|slice:"5" %}
                         <tr>
                             <form class='col-12' method="GET" action="{% url 'search' %}" id="year-form">
                                 <input type="hidden" name ="year" value="{{year}}"/>
@@ -197,17 +197,17 @@
                                 <td><button type="submit" style="background: none; border: none; padding: 0!important; color: black;text-decoration: underline; cursor: pointer;" >{{year}} </button></td>
                             </form>
                         </tr>
-                        {% endfor %}
+                        {% endfor %} -->
                     
                     </tbody>
                     
                 </table>
 
-                {% if filteredYear|length > 5 %}
+                <!-- {% if filteredYear|length > 5 %}
                     <div id="seemore-year" onclick="seemoreYear()" style="cursor: pointer;">See more</div>
-                {% endif %}
+                {% endif %} -->
 
-                <div id="moreyear" style="display:none;">
+                <!-- <div id="moreyear" style="display:none;">
                     <table class="table" id="yeartable2">
                         <tbody>
                             <tr>
@@ -237,16 +237,16 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                </div>
+                </div> -->
                
-                <script>
+                <!-- <script>
                     function seemoreYear() {
                       document.getElementById("seemore-year").style.display = "none";
                       document.getElementById("yeartable").style.display = "none";
                       document.getElementById("yeartable2").style.display = "block";
                       document.getElementById("moreyear").style.display = "block";
                     }
-                </script>
+                </script> -->
 
                 <script>
                     function seemoreKeyword() {
