@@ -418,14 +418,16 @@
             for ( ; index < length; index++) {
                 tbody[index].style.display = "content";
             }
-            console.log("reset")
-                
+            console.log("set to content")
+
             var yearTbody = document.querySelectorAll('tbody[data-year]:not([data-year="'+year+'"])');
             index = 0;
             length = yearTbody.length;
             for ( ; index < length; index++) {
                 yearTbody[index].style.display = "none";
             }
+
+            console.log("set to none")
         };
 
         function resetTbodyDisplay(){
