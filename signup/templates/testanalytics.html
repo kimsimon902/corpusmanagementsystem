@@ -372,7 +372,7 @@
                                 </tr>
                             </thead>
                             {% for result in results %}
-                            <tbody data-year="{{result.year}}" data-author='{{result.author}}' style="">
+                            <tbody data-year="{{result.year}}" data-author='{{result.author}}' data-source="{{result.source}}" style="">
                                 <tr>  
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                     <td style="border-bottom: none;">{{result.author}}</td>
@@ -448,6 +448,25 @@
             }
 
             console.log(length);    
+        };
+
+        function sourcePieClick(source){
+            var tbody = document.querySelectorAll('tbody[data-source]');
+            index = 0;
+            length = tbody.length;
+            for ( ; index < length; index++) {
+                tbody[index].style.display = "table-row-group";
+            }
+            console.log("set to content")
+
+            var sourceTbody = document.querySelectorAll('tbody[data-source]:not([data-source="'+source+'"])');
+            index = 0;
+            length = sourceTbody.length;
+            for ( ; index < length; index++) {
+                sourceTbody[index].style.display = "none";
+            }
+
+            console.log("set to none")
         };
     </script>
 
