@@ -499,9 +499,60 @@ def authorAnalytics(request, author):
 
         filteredPubs.sort(key=lambda x: x.year,reverse=True)
 
+        #Start author recos
         author_recos = []
 
-        return render(request, 'authorAnalytics.html',{'author':author.strip(), 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter,'recos':author_recos})
+        #getauthorlast name
+        txt = author
+
+        if "." in txt:
+            split = txt.split()
+            last_name = split[-1]
+        elif "," in txt:
+            split = txt.replace(',',"")
+            split2 = split.split()
+            last_name = split2[0]
+
+        author_search = last_name
+        results = publications.objects.all()
+        authors_present = []
+        authors_tally = []
+        authors_single = []
+        authors_single_tally = []
+        
+        for pub in results:
+            authors_present.append(pub.author)
+
+        for author in authors_present:
+            splitauth = author.split(";") 
+            for x in splitauth:
+                authors_single.append(x)
+
+        for pub in results:
+            authors_tally.append(pub.author)
+
+        for author in authors_tally:
+            splitauth = author.split(";") 
+            for x in splitauth:
+                authors_single_tally.append(x)
+
+        unique_author = []
+
+        for auth in authors_single_tally:
+            if auth not in unique_author:
+                unique_author.append(auth)
+
+        unique_author.sort()
+
+        author_results = []
+
+        for author in unique_author:
+            if author_search.lower() in str(author).lower():
+                author_results.append(author)
+
+        count = len(author_results)
+
+        return render(request, 'authorAnalytics.html',{'author':author.strip(), 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter,'recos':author_results})
 
 def authorAnalyticsFilterKeyword(request, author, keyword):
     if author != None:
