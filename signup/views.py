@@ -2196,15 +2196,14 @@ def PublicationPage(request, id):
         current_url = request.session['search_url']
 
     #Make authors into array... from A. author; B. author to ['A. author','B. author']
-    for pub in results:
-        if pub.source == 'IEEE':
-            authors = pub.author
-            split = authors.split('; ')
-            pub.author = split
-        elif pub.source == 'AIS':
-            authors = pub.author
-            split = authors.split(';')
-            pub.author = split
+    if results.source == 'IEEE':
+        authors = results.author
+        split = authors.split('; ')
+        results.author = split
+    elif results.source == 'AIS':
+        authors = results.author
+        split = authors.split(';')
+        results.author = split  
 
 
 
