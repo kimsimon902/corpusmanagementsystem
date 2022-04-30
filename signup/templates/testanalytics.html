@@ -414,16 +414,24 @@
 
 
     <script>
+        function resetFilter(){
+            var tbody = document.querySelectorAll('tbody[data-year]');
+            index = 0;
+            length = tbody.length;
+            for ( ; index < length; index++) {
+                tbody[index].style.display = "table-row-group";
+            }
+        }
+
         function toggleFilterHeader(filter){
             var header = document.getElementById("filterHeader")
             if (filter != 'none'){
-                header.innerHTML = "The list has been filtered by "+filter+"<a>Reset?</a>";
+                header.innerHTML = "The list has been filtered by "+filter+"<a href='' onclick=resetFilter()>Reset?</a>";
                 header.style.display = "block";
             }
             else{
                 header.style.display = "none";
             }
-
         }
 
         function yearBarClick(year){        
