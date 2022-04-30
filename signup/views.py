@@ -1188,6 +1188,7 @@ def searchPublication(request):
                                                         'my_bookmarks_id': my_bookmarks_folder, 
                                                         'filteredYear': filteredYear,
                                                         'searchFilter': searchFilter,
+                                                        'libFilter':libFilter
                                                         })
 
         year_search = request.GET.get('year')
@@ -1272,7 +1273,8 @@ def searchPublication(request):
             start_index = index - 5 if index >= 5 else 0
             end_index = index + 5 if index <= max_index - 5 else max_index
             page_range = paginator.page_range[start_index:end_index]
-           
+
+            libFilter = request.GET.getlist('filterLib')
             
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
@@ -1282,7 +1284,8 @@ def searchPublication(request):
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
                                                         'filteredYear': filteredYear,
-                                                        'searchFilter': searchFilter
+                                                        'searchFilter': searchFilter,
+                                                        'libFilter':libFilter
                                                         })
 
 
