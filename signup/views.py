@@ -1234,11 +1234,28 @@ def searchPublication(request):
             filteredYear.sort()
             
             zippedList = zip(filteredYear, year_count)
+
+            paginator = Paginator(results, 10)
+            page = request.GET.get('page')
+
+            try:
+                results_list = paginator.page(page)
+            except PageNotAnInteger:
+                results_list = paginator.page(1)  
+            except EmptyPage:
+                results_list = paginator.page(paginator.num_pages)
+
+            index = len(results_list)-1
+            max_index = len(paginator.page_range)
+            start_index = index - 5 if index >= 5 else 0
+            end_index = index + 5 if index <= max_index - 5 else max_index
+            page_range = paginator.page_range[start_index:end_index]
            
             
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
+                                                        'page_range': page_range,
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
