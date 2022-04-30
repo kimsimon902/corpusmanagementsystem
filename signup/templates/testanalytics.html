@@ -80,6 +80,7 @@
                                 var y_value = this.data.datasets[0].data[e._index];
                                 console.log('xvalue: '+x_value);
                                 console.log(y_value);
+                                resetTbodyDisplay();
                                 yearBarClick(x_value);
                           },
                       }
@@ -410,13 +411,7 @@
 
 
     <script>
-        function yearBarClick(year){
-            var allTbody = document.querySelectorAll("[data-year]");
-            var index = 0, length = allTbody.length;
-            for ( ; index < length; index++) {
-                allTbody[index].style.display = "content";
-            }
-            
+        function yearBarClick(year){            
             var yearTbody = document.querySelectorAll('tbody[data-year]:not([data-year="'+year+'"])');
             index = 0;
             length = yearTbody.length;
@@ -425,6 +420,15 @@
             }
 
             console.log(allTbody.length);
+        };
+
+        function resetTbodyDisplay(){
+            var tbody = document.getElementById("pubTable").tBodies;
+            index = 0;
+            length = tbody.length;
+            for ( ; index < length; index++) {
+                tbody[index].style.display = "content";
+            }
         };
     </script>
 
