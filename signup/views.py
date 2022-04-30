@@ -1401,11 +1401,7 @@ def searchPublication(request):
 
             
 
-            index = results.number - 1
-            max_index = len(paginator.page_range)
-            start_index = index - 5 if index >= 5 else 0
-            end_index = index + 5 if index <= max_index - 5 else max_index
-            page_range = paginator.page_range[start_index:end_index]
+            
 
 
             filteredYear =[]
@@ -1455,6 +1451,12 @@ def searchPublication(request):
                 results = paginator.page(1)  
             except EmptyPage:
                 results = paginator.page(paginator.num_pages)
+
+            index = results.number - 1
+            max_index = len(paginator.page_range)
+            start_index = index - 5 if index >= 5 else 0
+            end_index = index + 5 if index <= max_index - 5 else max_index
+            page_range = paginator.page_range[start_index:end_index]
                 
             
 
