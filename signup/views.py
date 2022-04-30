@@ -2188,11 +2188,16 @@ def PublicationPage(request, id):
     else:
         current_url = request.session['search_url']
 
-    #split authors
+    #Make authors into array... from A. author; B. author to ['A. author','B. author']
     for pub in results:
-        authors = pub.author
-        split = authors.split('; ')
-        pub.author = split
+        if pub.source == 'IEEE':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+        elif pub.source == 'AIS':
+            authors = pub.author
+            split = authors.split(';')
+            pub.author = split
 
 
 
@@ -2267,11 +2272,16 @@ def PublicationPageInFolder(request, folderid, username, id):
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
 
-    #split authors
+    #Make authors into array... from A. author; B. author to ['A. author','B. author']
     for pub in results:
-        authors = pub.author
-        split = authors.split('; ')
-        pub.author = split
+        if pub.source == 'IEEE':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+        elif pub.source == 'AIS':
+            authors = pub.author
+            split = authors.split(';')
+            pub.author = split
 
     return render(request, 'publication-folder.html', {'publication':results,
                                                        'annotations':annotation,
