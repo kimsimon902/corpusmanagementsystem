@@ -416,7 +416,8 @@
             // for ( ; index < length; index++) {
             //     allTbody[index].style.display = "none";
             // }
-            var yearTbody = document.querySelectorAll('[data-year!="'+year+'"]');
+            
+            var yearTbody = document.querySelectorAll('tbody[data-year]:not([data-year="'+year+'"])');
             index = 0;
             length = yearTbody.length;
             for ( ; index < length; index++) {
