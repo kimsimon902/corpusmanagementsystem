@@ -76,20 +76,20 @@
                   });
 
             //   var data = [{% for keyword in keyword_results %}{"x": '{{keyword.0}}',"value":{{keyword.1}}},{% endfor %}];
-
+            
                   const ctxBarKeyDisc = document.getElementById('myChartBarKeyDisc').getContext('2d');
                   const myChartBarKeyDisc = new Chart(ctxBarKeyDisc, {
                       type: 'bar',
                       data: {
-                          labels: [{% for keyword in keyword_bar|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
+                          labels: [{% for keyword in keyword_bar|slice:{% if searched2 %}"2:" {%else%}"1:" {%endif%} %}'{{keyword.0}}',{% endfor %}],
                           datasets: [{
                             label: 'Number of Publications',
-                            data: [{% for keyword in keyword_bar|slice:"1:" %}{{keyword.1}},{% endfor %}],
+                            data: [{% for keyword in keyword_bar|slice:{% if searched2 %}"2:" {%else%}"1:" {%endif%} %}{{keyword.1}},{% endfor %}],
                             backgroundColor: [
-                                {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                                {% for keyword in keyword_bar|slice:{% if searched2 %}"2:" {%else%}"1:" {%endif%} %}'rgba(	8, 120, 48, 1)',{% endfor %}
                             ],
                             borderColor: [
-                            {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            {% for keyword in keyword_bar|slice:{% if searched2 %}"2:" {%else%}"1:" {%endif%} %}'rgba(	8, 120, 48, 1)',{% endfor %}
                             ],
                             borderWidth: 1
                           }]
@@ -251,12 +251,12 @@
     <div class="container-fluid" style="padding-left: 25px; padding-right: 25px;">
             <div class="col-12" style="margin-top: 20px;">
                 <div class="container">
-                    <h3>Analytics and Figures for "{{searched}}"</h3>
+                    <h3>Analytics and Figures for "{{searched}}"{% if searched2 %} and "{{searched2|capfirst}} {%endif%}</h3>
                     <div class="row">
                         <div class="col-sm-12" style="">
                             <div class="row">
                                 <div class="col-6">
-                                    <h4>Number of publications about "{{searched}}" published per year</h4>
+                                    <h4>Number of publications about "{{searched}}" {% if searched2 %} and "{{searched2|capfirst}} {%endif%}published per year</h4>
                                     <div class="chart-container" style="padding-bottom: 50px;">    
                                         <canvas id="myChart"></canvas>
                                     </div>
@@ -270,13 +270,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <h4>Number of publications about "{{searched}}" published per discipline</h4>
+                                    <h4>Number of publications about "{{searched}}" {% if searched2 %} and "{{searched2|capfirst}} {%endif%} published per discipline</h4>
                                     <div class="chart-container" style="padding-bottom: 50px;">    
                                         <canvas id="myChartBarKeyDisc"></canvas>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <h4>Most prominent authors in "{{searched}}"</h4>
+                                    <h4>Most prominent authors in "{{searched}}" {% if searched2 %} and "{{searched2|capfirst}} {%endif%}</h4>
                                     <div class="chart-container" style="padding-bottom: 50px;">    
                                         <canvas id="myChartBarKeyAuthor"></canvas>
                                     </div>
@@ -320,7 +320,7 @@
                             </div>
                         </div>
                     </div>
-                    <h3>Publications containing the keyword "{{searched}}"</h3>
+                    <h3>Publications containing the keyword "{{searched}}" {% if searched2 %} and "{{searched2|capfirst}} {%endif%}</h3>
                     <div class="table-responsive" style="margin-top: 10px;">
                         <table class="table" id="pubTable">
                             <thead>
