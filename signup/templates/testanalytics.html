@@ -426,7 +426,7 @@
         function toggleFilterHeader(filter){
             var header = document.getElementById("filterHeader")
             if (filter != 'none'){
-                header.innerHTML = "The list has been filtered by "+filter+"<a href='' onclick=resetFilter()>Reset?</a>";
+                header.innerHTML = "The list has been filtered by "+filter+"<h6 onclick=resetFilter()> Reset?</h6>";
                 header.style.display = "block";
             }
             else{
