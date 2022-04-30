@@ -499,62 +499,7 @@ def authorAnalytics(request, author):
 
         filteredPubs.sort(key=lambda x: x.year,reverse=True)
 
-        #Start author recos
-        all_pub_objects = publications.objects.all()
-        all_authors = []
-        all_pubs = []
-
-        for pub in all_pub_objects:
-            all_pubs.append(pub)
-
-        #Make authors into array... from A. author; B. author to ['A. author','B. author']
-        for pub in all_pubs:
-            if pub.source == 'IEEE':
-                authors = pub.author
-                split = authors.split('; ')
-                pub.author = split
-            elif pub.source == 'AIS':
-                authors = pub.author
-                split = authors.split(';')
-                pub.author = split
-            elif pub.source == 'Scopus':
-                authors = []
-                authors.append(pub.author)
-                pub.author = authors
-
-        #clean authors array
-        for pub in all_pubs:
-            if pub.source == 'AIS':
-                for auth in pub.author:
-                    if auth == "":
-                        pub.author.remove(auth)
-
-        #format per author
-        for pub in all_pubs:
-            if pub.source == 'AIS':
-                for auth in pub.author:
-                    splitFandL = auth.split(", ")
-                    splitF = splitFandL[1].split(" ")
-
-                    result = ""
-
-                    for f in splitF:
-                        result+=(f[0]+". ")
-
-                    pub.author.remove(auth)
-                    pub.author.append(result)
-
         author_recos = []
-
-        #get similar author
-        for pub in all_pubs:
-            for auth in pub.author:
-                s_1 =(auth.lower()).strip()
-                s_2 =(author.lower()).strip()
-                if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.90):
-                    author_recos.append(auth)
-
-        #End author recos
 
         return render(request, 'authorAnalytics.html',{'author':author.strip(), 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter,'recos':author_recos})
 
