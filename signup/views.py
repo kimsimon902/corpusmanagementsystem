@@ -448,6 +448,13 @@ def authorAnalytics(request, author):
                 authors.append(pub.author)
                 pub.author = authors
 
+        #clean authors array
+        for pub in pubs:
+            if pub.source == 'AIS':
+                for author in pub.author:
+                    if author == "":
+                        pub.author.remove(author)
+
         filteredPubs = []
         test_counter = 0
 
@@ -518,6 +525,13 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
                 authors = []
                 authors.append(pub.author)
                 pub.author = authors
+
+        #clean authors array
+        for pub in pubs:
+            if pub.source == 'AIS':
+                for author in pub.author:
+                    if author == "":
+                        pub.author.remove(author)
 
         filteredPubs = []
         test_counter = 0
@@ -2221,6 +2235,13 @@ def PublicationPage(request, id):
                 authors = []
                 authors.append(pub.author)
                 pub.author = authors
+        
+        #clean authors array
+        for pub in results:
+            if pub.source == 'AIS':
+                for author in pub.author:
+                    if author == "":
+                        pub.author.remove(author)
 
 
 
@@ -2309,6 +2330,13 @@ def PublicationPageInFolder(request, folderid, username, id):
                 authors = []
                 authors.append(pub.author)
                 pub.author = authors
+        
+        #clean authors array
+        for pub in results:
+            if pub.source == 'AIS':
+                for author in pub.author:
+                    if author == "":
+                        pub.author.remove(author)
 
     return render(request, 'publication-folder.html', {'publication':results,
                                                        'annotations':annotation,
