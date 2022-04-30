@@ -1445,24 +1445,24 @@ def searchPublication(request):
                 results = results.filter(year__gte=min_value,year__lte=max_value)
                 results = results.order_by('year')
             
-            # try:
-            #     results = paginator.page(page)
-            # except PageNotAnInteger:
-            #     results = paginator.page(1)  
-            # except EmptyPage:
-            #     results = paginator.page(paginator.num_pages)
+            try:
+                results = paginator.page(page)
+            except PageNotAnInteger:
+                results = paginator.page(1)  
+            except EmptyPage:
+                results = paginator.page(paginator.num_pages)
 
-            # index = results.number - 1
-            # max_index = len(paginator.page_range)
-            # start_index = index - 5 if index >= 5 else 0
-            # end_index = index + 5 if index <= max_index - 5 else max_index
-            # page_range = paginator.page_range[start_index:end_index]
+            index = results.number - 1
+            max_index = len(paginator.page_range)
+            start_index = index - 5 if index >= 5 else 0
+            end_index = index + 5 if index <= max_index - 5 else max_index
+            page_range = paginator.page_range[start_index:end_index]
                 
             
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
-                                                        # 'page_range': page_range,
+                                                        'page_range': page_range,
                                                         'count':result_count,
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
