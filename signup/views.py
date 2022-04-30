@@ -1264,20 +1264,6 @@ def searchPublication(request):
             libFilter = 'default'
             request.session['libFilter'] = "default"
             
-        # elif request.session['libFilter'] == 'default':
-        #     libFilter = 'default'
-        #     request.session['libFilter'] = "none"
-        # elif request.session['libFilter'] == "none":
-        #     libFilter = 'default'
-
-
-        # elif request.session['libFilter'] and request.session['newSearch']:
-        #     request.session['libFilter'] = "default"
-        #     libFilter = request.session['libFilter']
-            
-            
-        # else:
-        #     libFilter = request.GET.getlist('filterLib')
 
         if (request.user):
             author = request.session['username']
@@ -1413,12 +1399,7 @@ def searchPublication(request):
             paginator = Paginator(results, 10)
             page = request.GET.get('page')
 
-            try:
-                results = paginator.page(page)
-            except PageNotAnInteger:
-                results = paginator.page(1)  
-            except EmptyPage:
-                results = paginator.page(paginator.num_pages)
+            
 
             index = results.number - 1
             max_index = len(paginator.page_range)
@@ -1467,6 +1448,13 @@ def searchPublication(request):
                 max_value = request.GET.get('max')
                 results = results.filter(year__gte=min_value,year__lte=max_value)
                 results = results.order_by('year')
+            
+            try:
+                results = paginator.page(page)
+            except PageNotAnInteger:
+                results = paginator.page(1)  
+            except EmptyPage:
+                results = paginator.page(paginator.num_pages)
                 
             
 
