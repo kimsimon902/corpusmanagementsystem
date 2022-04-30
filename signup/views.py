@@ -1503,7 +1503,9 @@ def searchPublication(request):
             # end_index = index + 5 if index <= max_index - 5 else max_index
             # page_range = paginator.page_range[start_index:end_index]
                 
-            
+            # strippedLibFilter = str(libFilter).replace('[','').replace(']','').replace('\'','').replace('\"','')
+            libFilter = 'ieee'
+
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
