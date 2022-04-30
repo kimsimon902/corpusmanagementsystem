@@ -1160,7 +1160,7 @@ def searchPublication(request):
                 max_value = request.GET.get('max')
                 results_list = results_list.filter(year__gte=min_value,year__lte=max_value)
 
-            paginator = Paginator(results_list, 10)
+            paginator = Paginator(results_list, 20)
             page = request.GET.get('page')
 
             try:
@@ -1251,7 +1251,7 @@ def searchPublication(request):
             
             zippedList = zip(filteredYear, year_count)
 
-            paginator = Paginator(results_list, 10)
+            paginator = Paginator(results_list, 20)
             page = request.GET.get('page')
 
             try:
@@ -1477,7 +1477,7 @@ def searchPublication(request):
                 results = results.order_by('year')
 
                               
-            paginator = Paginator(results, 10)
+            paginator = Paginator(results, 20)
             page = request.GET.get('page')
 
             try:
