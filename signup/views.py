@@ -2079,17 +2079,43 @@ def FoldersPageAnalytics(request, folderID):
         source_arr.insert(count, [source,sources_tally.count(source)])
         count+=1
 
-    #most searched keywords
-    searched_keywords = records_search.objects.raw('SELECT id, keyword, count(*) as count FROM records_search GROUP BY keyword ORDER BY count DESC LIMIT 10')
+    authors_present = []
+    authors_tally = []
+    authors_single = []
+    authors_single_tally = []
+    author_arr = []
+    
+    for pub in pubs:
+        if pub.author not in authors_present:
+            authors_present.append(pub.author)
 
-    #most opened pubs
-    opened_pubs = records_view_publication.objects.raw('SELECT id, pub_title, count(*) as count FROM records_view_publication GROUP BY pub_title ORDER BY count DESC LIMIT 10')
+    for author in authors_present:
+        splitauth = [x.strip() for x in author.split(';')]
+        for x in splitauth:
+            if x:
+                authors_single.append(x)
 
-    #most viewed tags
-    viewed_tags = records_view_tag.objects.raw('SELECT id, tag, count(*) as count FROM records_view_tag GROUP BY tag ORDER BY count DESC LIMIT 10')
+    for pub in pubs:
+        authors_tally.append(pub.author)
 
-    #most bookmarked
-    bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 10')
+    for author in authors_tally:
+        splitauth = [x.strip() for x in author.split(';')]
+        for x in splitauth:
+            if x:
+                authors_single_tally.append(x)
+
+    count = 0
+    for author in authors_single:
+        author_arr.insert(count, [author,authors_single_tally.count(author)])
+        count+=1
+    
+    unique_author = []
+
+    for auth in author_arr:
+        if auth not in unique_author:
+            unique_author.append(auth)
+
+    unique_author.sort(key=lambda s:s[1], reverse=True)
 
     if not pubs:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
@@ -2105,7 +2131,8 @@ def FoldersPageAnalytics(request, folderID):
                                                        'ais':ais_authors,
                                                        'ieee':iee_authors,
                                                        'scopus':scopus_authors,
-                                                       'all':all_authors
+                                                       'all':all_authors,
+                                                       'author_arr':unique_author[:10],
                                                        })
 
 def SharedFoldersPageAnalytics(request, folderID, owner):
@@ -2185,18 +2212,44 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
         source_arr.insert(count, [source,sources_tally.count(source)])
         count+=1
 
-    #most searched keywords
-    searched_keywords = records_search.objects.raw('SELECT id, keyword, count(*) as count FROM records_search GROUP BY keyword ORDER BY count DESC LIMIT 10')
-
-    #most opened pubs
-    opened_pubs = records_view_publication.objects.raw('SELECT id, pub_title, count(*) as count FROM records_view_publication GROUP BY pub_title ORDER BY count DESC LIMIT 10')
-
-    #most viewed tags
-    viewed_tags = records_view_tag.objects.raw('SELECT id, tag, count(*) as count FROM records_view_tag GROUP BY tag ORDER BY count DESC LIMIT 10')
-
-    #most bookmarked
-    bookmarked_pubs = records_bookmark.objects.raw('SELECT id, pub_title, count(*) as count FROM records_bookmark GROUP BY pub_title ORDER BY count DESC LIMIT 10')
+    authors_present = []
+    authors_tally = []
+    authors_single = []
+    authors_single_tally = []
+    author_arr = []
     
+    for pub in pubs:
+        if pub.author not in authors_present:
+            authors_present.append(pub.author)
+
+    for author in authors_present:
+        splitauth = [x.strip() for x in author.split(';')]
+        for x in splitauth:
+            if x:
+                authors_single.append(x)
+
+    for pub in pubs:
+        authors_tally.append(pub.author)
+
+    for author in authors_tally:
+        splitauth = [x.strip() for x in author.split(';')]
+        for x in splitauth:
+            if x:
+                authors_single_tally.append(x)
+
+    count = 0
+    for author in authors_single:
+        author_arr.insert(count, [author,authors_single_tally.count(author)])
+        count+=1
+    
+    unique_author = []
+
+    for auth in author_arr:
+        if auth not in unique_author:
+            unique_author.append(auth)
+
+    unique_author.sort(key=lambda s:s[1], reverse=True)
+
     if not pubs:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
@@ -2209,6 +2262,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
                                                        'keyword_bar':keyword_count[:10],
                                                        'year_arr':year_arr[-5:],
                                                        'source_arr':source_arr,
+                                                       'author_arr':unique_author[:10],
                                                        })
 
 #this function displays the details of a publication that has been selected from the home page

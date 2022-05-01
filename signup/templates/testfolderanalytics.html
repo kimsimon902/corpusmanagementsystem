@@ -138,6 +138,59 @@
                 }
             });
 
+            const ctxBarKeyAuthor = document.getElementById('myChartBarKeyAuthor').getContext('2d');
+                  const myChartBarKeyAuthor = new Chart(ctxBarKeyAuthor, {
+                      type: 'bar',
+                      data: {
+                          labels: [{% for author in author_arr%}'{{author.0}}',{% endfor %}],
+                          datasets: [{
+                            label: 'Number of Publications',
+                            data: [{% for author in author_arr%}{{author.1}},{% endfor %}],
+                            backgroundColor: [
+                                {% for author in author_arr %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            ],
+                            borderColor: [
+                            {% for author in author_arr %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            ],
+                            borderWidth: 1
+                          }]
+                      },
+                      options: {
+                        tooltips:{enabled: false,},
+                          responsive:true,
+                          plugins: {
+                              labels:{
+                                  render:'value',
+                              },
+                          },
+                          scales: {
+                              y: {
+                                  beginAtZero: true,
+                              },
+                              yAxes: [{
+                                ticks: {
+                                    min: 0,
+                                    stepSize: 1,  
+                                },
+                                afterDataLimits(scale) {
+                                scale.max += 1;
+                                scale.min -= 1;
+                                }
+                            }]
+                          },
+                          events:['click'],onClick: function(c,i) {
+                                e = i[0];
+                                console.log(e._index)
+                                var x_value = this.data.labels[e._index];
+                                var y_value = this.data.datasets[0].data[e._index];
+                                console.log(x_value);
+                                console.log(y_value);
+                                authorBarClick(x_value);
+                                //window.open('http://simonkim902.pythonanywhere.com/analyticsAuthor/'+x_value+'/'+'{{searched}}','_blank');
+                            },
+                      }
+                  });
+
             const ctxPie = document.getElementById('myChartPie').getContext('2d');
             const myChartPie = new Chart(ctxPie, {
                 type: 'pie',
