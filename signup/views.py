@@ -554,7 +554,7 @@ def authorAnalytics(request, author):
         #     if author_search.lower() in str(txt).lower():
         #         author_results.append(txt)
         for txt in unique_author:
-            if re.search(r'\b'+str(txt)+'\b',author_search):
+            if re.search(r'\b'+str(txt)+r'\b',author_search):
                 author_results.append(txt)
 
         count = len(author_results)
