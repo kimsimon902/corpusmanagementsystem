@@ -140,7 +140,17 @@
                                   outsidePadding: 4,
                                   textMargin: 4
                               }
-                              }
+                              },
+                              events:['click'],onClick: function(c,i) {
+                            e = i[0];
+                            console.log(e._index)
+                            var x_value = this.data.labels[e._index];
+                            var y_value = this.data.datasets[0].data[e._index];
+                            console.log(x_value);
+                            console.log(y_value);
+                            sourcePieClick(x_value)
+                            // window.open('http://simonkim902.pythonanywhere.com/analytics/{{searched}}/'+x_value,'_blank');
+                    },
                       }
                   });
               });
@@ -176,6 +186,7 @@
                         </div>
                     </div>
                     <h3>Publications by {{author|capfirst}} that contain the keyword "{{keywordFilter|capfirst}}"</h3>
+                    <h6 id="filterHeader" style="display:none" onclick="resetFilter()"></h6>
                     <div class="table-responsive" style="margin-top: 10px;">
                         <table class="table">
                             <thead>
@@ -187,8 +198,8 @@
                                     <th scope="col">URL</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {% for result in publications %}
+                            {% for result in publications %}
+                            <tbody data-year="{{result.year}}" data-author='{{result.author}}' data-source="{{result.source}}" style="">
                                 <tr>  
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
                                     <td style="border-bottom: none;">{% for author in result.author %}<a href="/analyticsAuthor/{{author}}" style="margin-top: 15px; text-decoration: none;">{{author|capfirst}}; </a> {% endfor %}</td>
@@ -216,15 +227,45 @@
                                         </ul>
                                     </td>
                                 </tr>
-                                {% endfor %}
                             </tbody>
+                            {% endfor %}
                         </table>
                     </div>
                 </div>
             </div>
     </div>
 
+    <script>
+        function resetFilter(){
+            var tbody = document.querySelectorAll('tbody[data-year]');
+            index = 0;
+            length = tbody.length;
+            for ( ; index < length; index++) {
+                tbody[index].style.display = "table-row-group";
+            }
 
+            toggleFilterHeader('none');
+        }
+        
+        function sourcePieClick(source){
+                var tbody = document.querySelectorAll('tbody[data-source]');
+                index = 0;
+                length = tbody.length;
+                for ( ; index < length; index++) {
+                    tbody[index].style.display = "table-row-group";
+                }
+                console.log("set to content")
+
+                var sourceTbody = document.querySelectorAll('tbody[data-source]:not([data-source="'+source+'"])');
+                index = 0;
+                length = sourceTbody.length;
+                for ( ; index < length; index++) {
+                    sourceTbody[index].style.display = "none";
+                }
+
+                toggleFilterHeader('source');
+            };
+    </script>
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
