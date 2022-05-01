@@ -551,12 +551,12 @@ def authorAnalytics(request, author):
 
         author_results = []
 
-        for txt in unique_author:
-            if author_search.lower() in str(txt).lower():
-                author_results.append(txt)
         # for txt in unique_author:
-        #     if fnmatch.fnmatch(txt, '* '+author_search):
+        #     if author_search.lower() in str(txt).lower():
         #         author_results.append(txt)
+        for txt in unique_author:
+            if fnmatch.fnmatch(txt, '* '+author_search) or fnmatch.fnmatch(txt, author_search+' *'):
+                author_results.append(txt)
 
         count = len(author_results)
 
