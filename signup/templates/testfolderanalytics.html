@@ -69,6 +69,75 @@
                 }
             });
 
+            const ctxBarKeyDisc = document.getElementById('myChartBarKeyDisc').getContext('2d');
+            const myChartBarKeyDisc = new Chart(ctxBarKeyDisc, {
+                type: 'bar',
+                {% if  searched2 %}
+                data: {
+                    labels: [{% for keyword in keyword_bar|slice:"2:" %}'{{keyword.0}}',{% endfor %}],
+                    datasets: [{
+                    label: 'Number of Publications',
+                    data: [{% for keyword in keyword_bar|slice:"2:" %}{{keyword.1}},{% endfor %}],
+                    backgroundColor: [
+                        {% for keyword in keyword_bar|slice:"2:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                    ],
+                    borderColor: [
+                    {% for keyword in keyword_bar|slice:"2:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                    ],
+                    borderWidth: 1
+                    }]
+                },
+                {% else %}
+                data: {
+                    labels: [{% for keyword in keyword_bar|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
+                    datasets: [{
+                    label: 'Number of Publications',
+                    data: [{% for keyword in keyword_bar|slice:"1:" %}{{keyword.1}},{% endfor %}],
+                    backgroundColor: [
+                        {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                    ],
+                    borderColor: [
+                    {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                    ],
+                    borderWidth: 1
+                    }]
+                },
+                {% endif %}
+                options: {
+                tooltips:{enabled: false,},
+                    responsive:true,
+                    plugins: {
+                        labels:{
+                            render:'value',
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                        yAxes: [{
+                        ticks: {
+                            min: 0,
+                            stepSize: 1,  
+                        },
+                        afterDataLimits(scale) {
+                        scale.max += 1;
+                        scale.min -= 1;
+                        }
+                    }]
+                    },
+                    events:['click'],onClick: function(c,i) {
+                        e = i[0];
+                        console.log(e._index)
+                        var x_value = this.data.labels[e._index];
+                        var y_value = this.data.datasets[0].data[e._index];
+                        console.log(x_value);
+                        console.log(y_value);
+                        window.open('http://simonkim902.pythonanywhere.com/analytics/'+x_value,'_blank');
+                    },
+                }
+            });
+
             const ctxPie = document.getElementById('myChartPie').getContext('2d');
             const myChartPie = new Chart(ctxPie, {
                 type: 'pie',
@@ -206,6 +275,20 @@
                                     <h4>Number of Publications Per Source</h4>
                                     <div class="chart-container" style="padding-bottom: 50px; height: 500px;">
                                         <canvas id="myChartPie"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h4>Number of publications about "{{searched}}" {% if searched2 %} and "{{searched2|capfirst}}" {%endif%} published per discipline</h4>
+                                    <div class="chart-container" style="padding-bottom: 50px;">    
+                                        <canvas id="myChartBarKeyDisc"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <h4>Most prominent authors in "{{searched}}" {% if searched2 %} and "{{searched2|capfirst}}" {%endif%}</h4>
+                                    <div class="chart-container" style="padding-bottom: 50px;">    
+                                        <canvas id="myChartBarKeyAuthor"></canvas>
                                     </div>
                                 </div>
                             </div>
