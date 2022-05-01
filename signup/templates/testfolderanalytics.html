@@ -65,7 +65,16 @@
                                 scale.min -= 1;
                                 }
                             }]
-                    }
+                    },
+                    events:['click'],onClick: function(c,i) {
+                                e = i[0];
+                                console.log(e._index)
+                                var x_value = this.data.labels[e._index];
+                                var y_value = this.data.datasets[0].data[e._index];
+                                console.log('xvalue: '+x_value);
+                                console.log(y_value);
+                                yearBarClick(x_value);
+                    },
                 }
             });
 
@@ -246,7 +255,17 @@
                             outsidePadding: 4,
                             textMargin: 4
                         }
-                        }
+                        },
+                    events:['click'],onClick: function(c,i) {
+                            e = i[0];
+                            console.log(e._index)
+                            var x_value = this.data.labels[e._index];
+                            var y_value = this.data.datasets[0].data[e._index];
+                            console.log(x_value);
+                            console.log(y_value);
+                            sourcePieClick(x_value)
+                            // window.open('http://simonkim902.pythonanywhere.com/analytics/{{searched}}/'+x_value,'_blank');
+                    },
                 }
             });
         });
