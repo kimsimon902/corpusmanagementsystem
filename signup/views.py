@@ -57,7 +57,7 @@ from urllib.parse import urlencode
 from django import template
 from django.template import *
 import random
-
+import re
 
 #stopwords to be removed from scaping
 all_stopwords = stopwords.words('english')
@@ -550,8 +550,11 @@ def authorAnalytics(request, author):
 
         author_results = []
 
+        # for txt in unique_author:
+        #     if author_search.lower() in str(txt).lower():
+        #         author_results.append(txt)
         for txt in unique_author:
-            if author_search.lower() in str(txt).lower():
+            if re.search(r'\b'+txt+'\b',author_search):
                 author_results.append(txt)
 
         count = len(author_results)
