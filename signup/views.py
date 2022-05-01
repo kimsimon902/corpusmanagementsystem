@@ -2120,7 +2120,27 @@ def FoldersPageAnalytics(request, folderID):
     if not pubs:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-    print(keyword_count)
+    #Make authors into array... from A. author; B. author to ['A. author','B. author']
+    for pub in pubs:
+        if pub.source == 'IEEE':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+        elif pub.source == 'AIS':
+            authors = pub.author
+            split = authors.split(';')
+            pub.author = split
+        elif pub.source == 'Scopus':
+            authors = []
+            authors.append(pub.author)
+            pub.author = authors
+
+    #clean authors array
+    for pub in pubs:
+        if pub.source == 'AIS':
+            for author in pub.author:
+                if author == "":
+                    pub.author.remove(author)
 
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs,
@@ -2254,7 +2274,27 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
     if not pubs:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-    print(keyword_count)
+    #Make authors into array... from A. author; B. author to ['A. author','B. author']
+    for pub in pubs:
+        if pub.source == 'IEEE':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+        elif pub.source == 'AIS':
+            authors = pub.author
+            split = authors.split(';')
+            pub.author = split
+        elif pub.source == 'Scopus':
+            authors = []
+            authors.append(pub.author)
+            pub.author = authors
+
+    #clean authors array
+    for pub in pubs:
+        if pub.source == 'AIS':
+            for author in pub.author:
+                if author == "":
+                    pub.author.remove(author)
                             
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs, 
