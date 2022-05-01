@@ -558,7 +558,7 @@ def authorAnalytics(request, author):
         for txt in unique_author:
             s_1 = author
             s_2 = txt
-            if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.50) and (SequenceMatcher(a=s_1,b=s_2).ratio() != 1):
+            if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.70) and (SequenceMatcher(a=s_1,b=s_2).ratio() != 1):
                 author_results.append(txt)
 
         count = len(author_results)
