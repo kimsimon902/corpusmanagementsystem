@@ -58,6 +58,7 @@ from django import template
 from django.template import *
 import random
 import re
+import fnmatch
 
 #stopwords to be removed from scaping
 all_stopwords = stopwords.words('english')
@@ -554,7 +555,7 @@ def authorAnalytics(request, author):
         #     if author_search.lower() in str(txt).lower():
         #         author_results.append(txt)
         for txt in unique_author:
-            if re.search(r'\b'+str(txt)+r'\b',str(author_search)):
+            if fnmatch.fnmatch(txt, author_search):
                 author_results.append(txt)
 
         count = len(author_results)
