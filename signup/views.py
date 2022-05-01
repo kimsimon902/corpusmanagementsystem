@@ -2121,6 +2121,9 @@ def FoldersPageAnalytics(request, folderID):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     print(keyword_count)           
+
+    pubs.sort(key=lambda x: x.year,reverse=True)
+    
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs,
                                                        'related':relatedPubs, 
@@ -2254,6 +2257,8 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     print(keyword_count)
+
+    pubs.sort(key=lambda x: x.year,reverse=True)
                             
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs, 
