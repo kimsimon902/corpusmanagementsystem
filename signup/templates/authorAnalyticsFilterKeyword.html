@@ -236,6 +236,17 @@
     </div>
 
     <script>
+        function toggleFilterHeader(filter){
+            var header = document.getElementById("filterHeader")
+            if (filter != 'none'){
+                header.innerHTML = "The list has been filtered by "+filter+"... Click here to remove filter.";
+                header.style.display = "block";
+            }
+            else{
+                header.style.display = "none";
+            }
+        }
+
         function resetFilter(){
             var tbody = document.querySelectorAll('tbody[data-year]');
             index = 0;
