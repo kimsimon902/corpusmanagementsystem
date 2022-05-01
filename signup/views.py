@@ -667,7 +667,76 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
 
         keywordFilteredPubs.sort(key=lambda x: x.year,reverse=True)
 
-        return render(request, 'authorAnalyticsFilterKeyword.html',{'author':author.strip(), 'publications':keywordFilteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'keywordFilter':keyword,})
+        #Start author recos
+        author_recos = []
+
+        #getauthorlast name
+        txt = author
+
+        if "." in txt:
+            split = txt.split()
+            last_name = split[-1]
+        elif "," in txt:
+            split = txt.replace(',',"")
+            split2 = split.split()
+            last_name = split2[0]
+
+        author_search = last_name
+        results = publications.objects.all()
+        authors_present = []
+        authors_tally = []
+        authors_single = []
+        authors_single_tally = []
+        
+        for pub in results:
+            authors_present.append(pub.author)
+
+        for txt in authors_present:
+            splitauth = txt.split(";") 
+            for x in splitauth:
+                authors_single.append(x)
+
+        for pub in results:
+            authors_tally.append(pub.author)
+
+        for txt in authors_tally:
+            splitauth = txt.split(";") 
+            for x in splitauth:
+                authors_single_tally.append(x)
+
+        unique_author = []
+
+        for auth in authors_single_tally:
+            if auth not in unique_author:
+                unique_author.append(auth)
+
+        unique_author.sort()
+
+        author_results = []
+
+        # for txt in unique_author:
+        #     if fnmatch.fnmatch(txt, '* '+author_search) or fnmatch.fnmatch(txt, author_search+',*'):
+        #         author_results.append(txt)
+
+        # from difflib import SequenceMatcher
+        # for txt in unique_author:
+        #     s_1 = author_search
+        #     s_2 = txt
+        #     if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.60) and (SequenceMatcher(a=s_1,b=s_2).ratio() != 1):
+        #         author_results.append(txt)
+
+        from difflib import SequenceMatcher
+
+        for txt in unique_author:
+            if fnmatch.fnmatch(txt, '* '+author_search) or fnmatch.fnmatch(txt, author_search+',*'):
+                s_1 = author_search
+                s_2 = txt
+                if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.60) and (SequenceMatcher(a=s_1,b=s_2).ratio() != 1):
+                    author_results.append(txt)
+
+        count = len(author_results)
+
+        return render(request, 'authorAnalyticsFilterKeyword.html',{'author':author.strip(), 'publications':keywordFilteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'keywordFilter':keyword,'recos':author_results[:10]})
 
 
 def analytics(request, keyword):
@@ -1090,9 +1159,18 @@ def searchAuthorAnalytics(request):
 
         author_results = []
 
-        for author in unique_author:
-            if author_search.lower() in str(author).lower():
-                author_results.append(author)
+        # for author in unique_author:
+        #     if author_search.lower() in str(author).lower():
+        #         author_results.append(author)
+
+        from difflib import SequenceMatcher
+
+        for txt in unique_author:
+            if fnmatch.fnmatch(txt, '* '+author_search) or fnmatch.fnmatch(txt, author_search+',*'):
+                s_1 = author_search
+                s_2 = txt
+                if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.60) and (SequenceMatcher(a=s_1,b=s_2).ratio() != 1):
+                    author_results.append(txt)
 
         count = len(author_results)
 
