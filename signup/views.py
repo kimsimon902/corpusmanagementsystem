@@ -2122,10 +2122,8 @@ def FoldersPageAnalytics(request, folderID):
 
     print(keyword_count)           
 
-    pubs.sort(key=lambda x: x.year,reverse=True)
-    
     return render(request, 'testfolderanalytics.html',{'folder':folder,
-                                                       'results':pubs,
+                                                       'results':list(pubs).sort(key=lambda x: x.year,reverse=True),
                                                        'related':relatedPubs, 
                                                        'keyword_results': keyword_count,
                                                        'keyword_bar': keyword_count[:10],
