@@ -2264,10 +2264,16 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
 
     print(keyword_count)
 
-    pubs.sort(key=lambda x: x.year,reverse=True)
+    #publications
+    results_list = []   
+
+    for pub in pubs:
+        results_list.append(pub)
+
+    results_list.sort(key=lambda x: x.year,reverse=True)
                             
     return render(request, 'testfolderanalytics.html',{'folder':folder,
-                                                       'results':pubs, 
+                                                       'results':results_list, 
                                                        'related':relatedPubs,
                                                        'keyword_results': keyword_count,
                                                        'keyword_bar':keyword_count[:10],
