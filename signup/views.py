@@ -2134,6 +2134,10 @@ def FoldersPageAnalytics(request, folderID):
             authors = []
             authors.append(pub.author)
             pub.author = authors
+        elif pub.source == 'Uploaded':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
 
     #clean authors array
     for pub in pubs:
@@ -2142,27 +2146,31 @@ def FoldersPageAnalytics(request, folderID):
                 if author == "":
                     pub.author.remove(author)
 
-    # #Make authors into array... from A. author; B. author to ['A. author','B. author']
-    # for pub in relatedPubs:
-    #     if pub.source == 'IEEE':
-    #         authors = pub.author
-    #         split = authors.split('; ')
-    #         pub.author = split
-    #     elif pub.source == 'AIS':
-    #         authors = pub.author
-    #         split = authors.split(';')
-    #         pub.author = split
-    #     elif pub.source == 'Scopus':
-    #         authors = []
-    #         authors.append(pub.author)
-    #         pub.author = authors
+    #Make authors into array... from A. author; B. author to ['A. author','B. author']
+    for pub in relatedPubs:
+        if pub.source == 'IEEE':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+        elif pub.source == 'AIS':
+            authors = pub.author
+            split = authors.split(';')
+            pub.author = split
+        elif pub.source == 'Scopus':
+            authors = []
+            authors.append(pub.author)
+            pub.author = authors
+        elif pub.source == 'Uploaded':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
 
-    # #clean authors array
-    # for pub in relatedPubs:
-    #     if pub.source == 'AIS':
-    #         for author in pub.author:
-    #             if author == "":
-    #                 pub.author.remove(author)
+    #clean authors array
+    for pub in relatedPubs:
+        if pub.source == 'AIS':
+            for author in pub.author:
+                if author == "":
+                    pub.author.remove(author)
 
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs,
