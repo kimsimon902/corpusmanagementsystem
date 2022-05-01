@@ -1169,7 +1169,7 @@ def searchAuthorAnalytics(request):
             if fnmatch.fnmatch(txt, '* '+author_search) or fnmatch.fnmatch(txt, author_search+',*'):
                 s_1 = author_search
                 s_2 = txt
-                if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.60) and (SequenceMatcher(a=s_1,b=s_2).ratio() != 1):
+                if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.60):
                     author_results.append(txt)
 
         count = len(author_results)
