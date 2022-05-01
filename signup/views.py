@@ -2142,6 +2142,28 @@ def FoldersPageAnalytics(request, folderID):
                 if author == "":
                     pub.author.remove(author)
 
+    #Make authors into array... from A. author; B. author to ['A. author','B. author']
+    for pub in relatedPubs:
+        if pub.source == 'IEEE':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+        elif pub.source == 'AIS':
+            authors = pub.author
+            split = authors.split(';')
+            pub.author = split
+        elif pub.source == 'Scopus':
+            authors = []
+            authors.append(pub.author)
+            pub.author = authors
+
+    #clean authors array
+    for pub in relatedPubs:
+        if pub.source == 'AIS':
+            for author in pub.author:
+                if author == "":
+                    pub.author.remove(author)
+
     return render(request, 'testfolderanalytics.html',{'folder':folder,
                                                        'results':pubs,
                                                        'related':relatedPubs, 
@@ -2291,6 +2313,28 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
 
     #clean authors array
     for pub in pubs:
+        if pub.source == 'AIS':
+            for author in pub.author:
+                if author == "":
+                    pub.author.remove(author)
+
+    #Make authors into array... from A. author; B. author to ['A. author','B. author']
+    for pub in relatedPubs:
+        if pub.source == 'IEEE':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+        elif pub.source == 'AIS':
+            authors = pub.author
+            split = authors.split(';')
+            pub.author = split
+        elif pub.source == 'Scopus':
+            authors = []
+            authors.append(pub.author)
+            pub.author = authors
+
+    #clean authors array
+    for pub in relatedPubs:
         if pub.source == 'AIS':
             for author in pub.author:
                 if author == "":
