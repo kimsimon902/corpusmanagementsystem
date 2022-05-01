@@ -561,14 +561,14 @@ def authorAnalytics(request, author):
         #     s_2 = txt
         #     if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.60) and (SequenceMatcher(a=s_1,b=s_2).ratio() != 1):
         #         author_results.append(txt)
-        
+
         from difflib import SequenceMatcher
 
         for txt in unique_author:
             if fnmatch.fnmatch(txt, '* '+author_search) or fnmatch.fnmatch(txt, author_search+',*'):
                 s_1 = author_search
                 s_2 = txt
-                if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.50) and (SequenceMatcher(a=s_1,b=s_2).ratio() != 1):
+                if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.60) and (SequenceMatcher(a=s_1,b=s_2).ratio() != 1):
                     author_results.append(txt)
 
         count = len(author_results)
