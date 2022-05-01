@@ -573,7 +573,7 @@ def authorAnalytics(request, author):
 
         count = len(author_results)
 
-        return render(request, 'authorAnalytics.html',{'author':author.strip(), 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter,'recos':author_results})
+        return render(request, 'authorAnalytics.html',{'author':author.strip(), 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter,'recos':author_results[:10]})
 
 def authorAnalyticsFilterKeyword(request, author, keyword):
     if author != None:
