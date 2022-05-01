@@ -448,6 +448,10 @@ def authorAnalytics(request, author):
                 authors = []
                 authors.append(pub.author)
                 pub.author = authors
+            elif pub.source == 'Uploaded':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
 
         #clean authors array
         for pub in pubs:
@@ -579,6 +583,10 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
                 authors = []
                 authors.append(pub.author)
                 pub.author = authors
+            elif pub.source == 'Uploaded':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
 
         #clean authors array
         for pub in pubs:
@@ -804,6 +812,10 @@ def analytics(request, keyword):
                 authors = []
                 authors.append(pub.author)
                 pub.author = authors
+            elif pub.source == 'Uploaded':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
 
         #clean authors array
         for pub in results_list:
@@ -2438,6 +2450,10 @@ def PublicationPage(request, id):
                 authors = []
                 authors.append(pub.author)
                 pub.author = authors
+            elif pub.source == 'Uploaded':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
         
         #clean authors array
         for pub in results:
@@ -2533,6 +2549,10 @@ def PublicationPageInFolder(request, folderid, username, id):
                 authors = []
                 authors.append(pub.author)
                 pub.author = authors
+            elif pub.source == 'Uploaded':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
         
         #clean authors array
         for pub in results:
