@@ -2206,6 +2206,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
                                                        'results':pubs, 
                                                        'related':relatedPubs,
                                                        'keyword_results': keyword_count,
+                                                       'keyword_bar':keyword_count[:10],
                                                        'year_arr':year_arr[-5:],
                                                        'source_arr':source_arr,
                                                        })
