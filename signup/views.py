@@ -2120,10 +2120,18 @@ def FoldersPageAnalytics(request, folderID):
     if not pubs:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-    print(keyword_count)           
+    print(keyword_count)
+
+    #publications
+    results_list = []   
+
+    for pub in pubs:
+        results_list.append(pub)
+
+    results_list.sort(key=lambda x: x.year,reverse=True)
 
     return render(request, 'testfolderanalytics.html',{'folder':folder,
-                                                       'results':list(pubs).sort(key=lambda x: x.year,reverse=True),
+                                                       'results':results_list,
                                                        'related':relatedPubs, 
                                                        'keyword_results': keyword_count,
                                                        'keyword_bar': keyword_count[:10],
