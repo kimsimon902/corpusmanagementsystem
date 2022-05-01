@@ -556,7 +556,7 @@ def authorAnalytics(request, author):
         #         author_results.append(txt)
         from difflib import SequenceMatcher
         for txt in unique_author:
-            s_1 = author
+            s_1 = author_search
             s_2 = txt
             if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.70) and (SequenceMatcher(a=s_1,b=s_2).ratio() != 1):
                 author_results.append(txt)
