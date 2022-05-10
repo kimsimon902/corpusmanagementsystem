@@ -165,7 +165,7 @@ def registerView(request):
             if registerUser.objects.filter(email=request.POST.get('email')).exists():
                 messages.error(request, 'Email already has an account', extra_tags='name')
                 return redirect('register')
-            saverecord.password = make_password(request.POST.get('password'))
+            saverecord.password = make_password(salt='mySalt',password=request.POST.get('password'))
             if request.POST.get('password') != request.POST.get('repwd'):
                 messages.error(request, 'Password does not match', extra_tags='name')
                 return redirect('register')
@@ -188,9 +188,9 @@ def registerView(request):
 #Checks database if account exists and authenticates the user
 def loginView(request):
     if request.method=='POST':
-        encryptedpassword=make_password(request.POST['password'])
+        passwordhash = make_password(salt='mySalt',password=request.POST.get('password'))
         try:
-            Userdetails=registerUser.objects.get(email=request.POST['email'],password=encryptedpassword)
+            Userdetails=registerUser.objects.get(email=request.POST['email'],password=passwordhash)
             if Userdetails.is_superuser == 1:
                 request.session['email']=Userdetails.email
                 request.session['username']=Userdetails.username
