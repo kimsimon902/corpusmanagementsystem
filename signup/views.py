@@ -166,7 +166,7 @@ def registerView(request):
                 messages.error(request, 'Email already has an account', extra_tags='name')
                 return redirect('register')
             saverecord.password = make_password(request.POST.get('password'))
-            if saverecord.password != request.POST.get('repwd'):
+            if saverecord.password != make_password(request.POST.get('repwd')):
                 messages.error(request, 'Password does not match', extra_tags='name')
                 return redirect('register')
             saverecord.first_name = request.POST.get('first_name')
