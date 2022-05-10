@@ -202,7 +202,7 @@ def loginView(request):
                 request.session['is_superuser']=Userdetails.is_superuser
                 return redirect('home')
         except registerUser.DoesNotExist as e:
-            messages.error(request,'Username or Password Invalid.', extra_tags='name')
+            messages.error(request,'Username or Password Invalid.' + str(make_password(salt='mySalt',password=request.POST.get('password'))), extra_tags='name')
             return redirect('login')
     return render(request,'registration/login.html')
 
