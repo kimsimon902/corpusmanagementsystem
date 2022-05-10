@@ -167,7 +167,7 @@ def registerView(request):
                 return redirect('register')
             saverecord.password = make_password(request.POST.get('password'))
             if saverecord.password != make_password(request.POST.get('repwd')):
-                messages.error(request, 'Password does not match', extra_tags='name')
+                messages.error(request,  String(make_password(request.POST.get('repwd'))) + String(make_password(request.POST.get('password'))) + 'Password does not match', extra_tags='name')
                 return redirect('register')
             saverecord.first_name = request.POST.get('first_name')
             saverecord.last_name = request.POST.get('last_name')
