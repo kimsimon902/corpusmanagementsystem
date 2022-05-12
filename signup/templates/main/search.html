@@ -314,7 +314,7 @@
                                                         {% for bookmark_id in my_bookmarks_id %}
                                                         <p>Delete from bookmarks</p>
                                                         {% endfor %}
-                                                    {% else %}
+                                                    {% elif forloop.last %}
                                                         <p>Add to bookmarks</p>
                                                     {% endif %}
                                                 {% endfor %}
