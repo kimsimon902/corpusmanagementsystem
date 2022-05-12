@@ -331,7 +331,7 @@
                                                         </form>
                                                         {% endfor %}
                                                     {% endif %}
-                                                    <!-- {% empty %}
+                                                    {% empty %}
                                                         {% for bookmark_id in my_bookmarks_id %}
                                                         <form method="POST" action="/publication/{{result.id}}/bookmark" id="bookmark-form-{{result.id}}">
                                                             {% csrf_token %}
@@ -340,7 +340,7 @@
                                                             <input type="hidden" name="bookmark_action" value="add">
                                                             <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add" value="submit" form="bookmark-form-{{result.id}}" id="bookmark-add-in-search-table-{{result.id}}" style="display: inline;" >Add to Bookmarks<i class="fa fa-bookmark-o" aria-hidden="true" style="margin-left: 5px;"></i></button>
                                                         </form>
-                                                        {% endfor %} -->
+                                                        {% endfor %}
 
                                                         <script>
                                                             var found = document.getElementById("bookmark-delete-in-search-table-"+"{{result.id}}");
