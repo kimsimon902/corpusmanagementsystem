@@ -312,14 +312,22 @@
                                                 {% for bookmark in bookmarks %}
                                                     {% if result.id == bookmark.publicationID %}
                                                         {% for bookmark_id in my_bookmarks_id %}
-                                                        <p>Delete from bookmarks</p>
+                                                        <p id="deleteBookmark">Delete from bookmarks</p>
                                                         {% endfor %}
-                                                    {% elif forloop.last %}
-                                                        {% if result.id != bookmark.publicationID %}
-                                                            <p>Add to bookmarks</p>
-                                                        {% endif %}
                                                     {% endif %}
                                                 {% endfor %}
+                                                <p id="addBookmark">Add to bookmarks</p>
+                                                <script>
+                                                    var found = document.getElementById("deleteBookmark");
+                                                    var addDiv = document.getElementById("addBookmark");
+                    
+                                                    if (found == null){
+                                                        addDiv.style.display = "inline";
+                                                    }
+                                                    else {
+                                                        addDiv.style.display = "none";
+                                                    }
+                                                </script>
                                             </li>
                                             <!-- <li class="list-inline-item">
                                                 {% for bookmark in bookmarks %}
