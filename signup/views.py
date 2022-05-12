@@ -2511,31 +2511,31 @@ def PublicationPage(request, id):
     else:
         current_url = request.session['search_url']
 
-        #Make authors into array... from A. author; B. author to ['A. author','B. author']
-        for pub in results:
-            if pub.source == 'IEEE':
-                authors = pub.author
-                split = authors.split('; ')
-                pub.author = split
-            elif pub.source == 'AIS':
-                authors = pub.author
-                split = authors.split(';')
-                pub.author = split
-            elif pub.source == 'Scopus':
-                authors = []
-                authors.append(pub.author)
-                pub.author = authors
-            elif pub.source == 'Uploaded':
-                authors = pub.author
-                split = authors.split('; ')
-                pub.author = split
-        
-        #clean authors array
-        for pub in results:
-            if pub.source == 'AIS':
-                for author in pub.author:
-                    if author == "":
-                        pub.author.remove(author)
+    #Make authors into array... from A. author; B. author to ['A. author','B. author']
+    for pub in results:
+        if pub.source == 'IEEE':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+        elif pub.source == 'AIS':
+            authors = pub.author
+            split = authors.split(';')
+            pub.author = split
+        elif pub.source == 'Scopus':
+            authors = []
+            authors.append(pub.author)
+            pub.author = authors
+        elif pub.source == 'Uploaded':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+    
+    #clean authors array
+    for pub in results:
+        if pub.source == 'AIS':
+            for author in pub.author:
+                if author == "":
+                    pub.author.remove(author)
 
 
 
@@ -2610,31 +2610,31 @@ def PublicationPageInFolder(request, folderid, username, id):
                         if pubid.keywordname not in keyword_results and pubkey.status != "pending addition":
                             keyword_results.append(pubid.keywordname)
 
-        #Make authors into array... from A. author; B. author to ['A. author','B. author']
-        for pub in results:
-            if pub.source == 'IEEE':
-                authors = pub.author
-                split = authors.split('; ')
-                pub.author = split
-            elif pub.source == 'AIS':
-                authors = pub.author
-                split = authors.split(';')
-                pub.author = split
-            elif pub.source == 'Scopus':
-                authors = []
-                authors.append(pub.author)
-                pub.author = authors
-            elif pub.source == 'Uploaded':
-                authors = pub.author
-                split = authors.split('; ')
-                pub.author = split
-        
-        #clean authors array
-        for pub in results:
-            if pub.source == 'AIS':
-                for author in pub.author:
-                    if author == "":
-                        pub.author.remove(author)
+    #Make authors into array... from A. author; B. author to ['A. author','B. author']
+    for pub in results:
+        if pub.source == 'IEEE':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+        elif pub.source == 'AIS':
+            authors = pub.author
+            split = authors.split(';')
+            pub.author = split
+        elif pub.source == 'Scopus':
+            authors = []
+            authors.append(pub.author)
+            pub.author = authors
+        elif pub.source == 'Uploaded':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+    
+    #clean authors array
+    for pub in results:
+        if pub.source == 'AIS':
+            for author in pub.author:
+                if author == "":
+                    pub.author.remove(author)
 
     return render(request, 'publication-folder.html', {'publication':results,
                                                        'annotations':annotation,
