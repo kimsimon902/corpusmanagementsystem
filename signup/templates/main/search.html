@@ -308,7 +308,7 @@
                                                     <Button type="button" class="btn btn-primary btn-sm" style="margin-top:5px;" onclick="toggleAbstract('{{result.id}}')">View Abstract</Button>
                                                 </li>
                                             {% endif %}
-                                            <li class="list-inline-item">
+                                            <!-- <li class="list-inline-item">
                                                 {% for bookmark in bookmarks %}
                                                     {% if result.id == bookmark.publicationID %}
                                                         {% for bookmark_id in my_bookmarks_id %}
@@ -331,7 +331,7 @@
                                                         </form>
                                                         {% endfor %}
                                                     {% endif %}
-                                                    <!-- {% empty %}
+                                                    {% empty %}
                                                         {% for bookmark_id in my_bookmarks_id %}
                                                         <form method="POST" action="/publication/{{result.id}}/bookmark" id="bookmark-form-{{result.id}}">
                                                             {% csrf_token %}
@@ -352,9 +352,9 @@
                                                         else {
                                                             addDiv.style.display = "none";
                                                         }
-                                                    </script>  -->
+                                                    </script> 
                                                 {% endfor %}
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </td>
                                 </tr>
