@@ -311,9 +311,11 @@
                                             <li class="list-inline-item">
                                                 {% for bookmark in bookmarks %}
                                                     {% if result.id == bookmark.publicationID %}
-                                                        <p>{{my_bookmarks_id.id[0]}}</p>
+                                                        {% for bookmark_id in my_bookmarks_id %}
+                                                        <p>Delete from bookmarks</p>
+                                                        {% endfor %}
                                                     {% else %}
-
+                                                        <p>Add to bookmarks</p>
                                                     {% endif %}
                                                 {% endfor %}
                                             </li>
