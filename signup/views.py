@@ -1842,7 +1842,7 @@ def searchPublication(request):
             else:
                 results = publications.objects.filter(author__icontains=searched, status__icontains="approved")
 
-
+            results_count = results.count()
 
 
             xlist =     list(results)
@@ -1931,7 +1931,7 @@ def searchPublication(request):
 
             return render(request, 'main/search.html',{'searched':searched, 
                                                        'results':results, 
-                                                       'count':results.count(),
+                                                       'count':results_count,
                                                        'keyword_results':keyword_results, 
                                                        'bookmarks': my_bookmarks_folder_contents, 
                                                        'my_bookmarks_id': my_bookmarks_folder, 
