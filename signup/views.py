@@ -1282,7 +1282,7 @@ def searchPublication(request):
 
             libFilter = request.GET.getlist('filterLib')
 
-
+            print("im at keywordsearch != none")
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
@@ -1381,6 +1381,7 @@ def searchPublication(request):
 
             libFilter = request.GET.getlist('filterLib')
             
+            print("im at yearsearch != none")
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
@@ -1786,6 +1787,8 @@ def searchPublication(request):
 
             libFilter = request.GET.getlist('filterLib')
            
+
+            print("im at title != none")
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
                                                         'count':results.count(),
@@ -1928,7 +1931,7 @@ def searchPublication(request):
 
             libFilter = request.GET.getlist('filterLib')
             
-
+            print("im at author != none")
             return render(request, 'main/search.html',{'searched':searched, 
                                                        'results':results, 
                                                        'count':results_count,
