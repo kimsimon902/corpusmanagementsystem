@@ -1572,9 +1572,6 @@ def searchPublication(request):
                                     
             
             result_count = len(final_list)
-            
-
-            
 
 
             filteredYear =[]
@@ -1604,8 +1601,7 @@ def searchPublication(request):
             logSearch.date = datetime.datetime.now()
             logSearch.save()
             
-            print("im filtering by year")
-            print(libFilter)
+            
 
             if request.GET.get('sortBy') != None:
                 if request.GET.get('sortBy') == 'earlyYear':
@@ -1638,9 +1634,7 @@ def searchPublication(request):
             end_index = index + 5 if index <= max_index - 5 else max_index
             page_range = paginator.page_range[start_index:end_index]
 
-            
-            
-
+            print("hi i made it to final list")
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':final_list, 
@@ -1773,6 +1767,24 @@ def searchPublication(request):
                 results = results.filter(year__gte=min_value,year__lte=max_value)
                 results = results.order_by('year')
 
+
+            paginator = Paginator(results, 20)
+            page = request.GET.get('page')
+
+            try:
+                results = paginator.page(page)
+            except PageNotAnInteger:
+                results = paginator.page(1)  
+            except EmptyPage:
+                results = paginator.page(paginator.num_pages)
+
+            index = results.number-1
+            max_index = len(paginator.page_range)
+            start_index = index - 5 if index >= 5 else 0
+            end_index = index + 5 if index <= max_index - 5 else max_index
+            page_range = paginator.page_range[start_index:end_index]
+
+            libFilter = request.GET.getlist('filterLib')
            
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
@@ -1898,7 +1910,23 @@ def searchPublication(request):
                 results = results.filter(year__gte=min_value,year__lte=max_value)
                 results = results.order_by('year')
 
+            paginator = Paginator(results, 20)
+            page = request.GET.get('page')
 
+            try:
+                results = paginator.page(page)
+            except PageNotAnInteger:
+                results = paginator.page(1)  
+            except EmptyPage:
+                results = paginator.page(paginator.num_pages)
+
+            index = results.number-1
+            max_index = len(paginator.page_range)
+            start_index = index - 5 if index >= 5 else 0
+            end_index = index + 5 if index <= max_index - 5 else max_index
+            page_range = paginator.page_range[start_index:end_index]
+
+            libFilter = request.GET.getlist('filterLib')
             
 
             return render(request, 'main/search.html',{'searched':searched, 
