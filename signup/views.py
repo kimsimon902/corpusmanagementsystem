@@ -1491,6 +1491,30 @@ def searchPublication(request):
                 ).order_by('id')
 
             results.order_by('id')
+
+            results_list = []
+            resultsId_list = []
+            pubkeys_list = list(pubkeys.objects.all())
+            keywords_list = list(keywords.objects.all())
+            publications_list = list(publications.objects.all())
+
+            for keyword in keywords_list:
+                if keyword_search == keyword.keywordname:
+                    resultsId_list.append(keyword.id)
+
+            for resultsid in resultsId_list:
+                for pubid in pubkeys_list:
+                    if resultsid == pubid.keywords_id:
+                        for pub in publications_list:
+                            if pubid.publication_id == pub.id:
+                                results_list.append(pub)
+
+            #final list of publications
+            final_list = []
+
+
+
+
             # publication results in list data type                        
             xlist =     list(results)
             for publication in xlist:
