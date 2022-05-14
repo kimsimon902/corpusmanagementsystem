@@ -1729,6 +1729,7 @@ def searchPublication(request):
                 max_value = request.GET.get('max')
                 results = results.filter(year__gte=min_value,year__lte=max_value)
                 results = results.order_by('year')
+                libFilter = str(libFilter).replace('[','').replace(']','').replace('\'','').replace('\"','')
 
                               
             paginator = Paginator(results, 20)
