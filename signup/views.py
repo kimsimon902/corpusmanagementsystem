@@ -1541,6 +1541,8 @@ def searchPublication(request):
 
                
             elif 'scopus' in libFilter and len(libFilter) == 1:
+
+                print("hi im searching by scopus only")
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
@@ -1714,6 +1716,7 @@ def searchPublication(request):
             page_range = paginator.page_range[start_index:end_index]
 
             print("hi i made it to final list")
+            libFilter = request.GET.getlist('filterLib')
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
