@@ -1402,7 +1402,7 @@ def searchPublication(request):
         
         
         url = str(request.get_full_path())
-        print(url)
+      
 
         # if request.session['newSearch'] == 0:
         #     request.session['newSearch'] == 0
@@ -1430,7 +1430,7 @@ def searchPublication(request):
         keywords_list = list(keywords.objects.all())
         publications_list = list(publications.objects.all())
 
-        
+        print("i am going to filter by" + libFilter)
         if  searchFilter == "default":
 
         
@@ -1576,7 +1576,7 @@ def searchPublication(request):
                                 if pubid.publication_id == pub.id:
                                     results_list.append(pub)
 
-            results.order_by('id')
+            
 
         
             #final list of publications
@@ -1595,6 +1595,7 @@ def searchPublication(request):
 
             results = publications.objects.filter(pk__in=final_list_ids)
 
+            results.order_by('id')
             
 
             # publication results in list data type                        
