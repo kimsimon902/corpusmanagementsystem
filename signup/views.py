@@ -1430,7 +1430,14 @@ def searchPublication(request):
         keywords_list = list(keywords.objects.all())
         publications_list = list(publications.objects.all())
 
+
+        if any(isinstance(x, list) for x in libFilter):
+            libFilter = libFilter.pop()
+        else:
+            print('No lists in my_list')
+
         print(libFilter)
+        
         if  searchFilter == "default":
 
         
@@ -1716,7 +1723,7 @@ def searchPublication(request):
             page_range = paginator.page_range[start_index:end_index]
 
             print("hi i made it to final list")
-            libFilter = request.GET.getlist('filterLib')
+            
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
@@ -1866,7 +1873,7 @@ def searchPublication(request):
             end_index = index + 5 if index <= max_index - 5 else max_index
             page_range = paginator.page_range[start_index:end_index]
 
-            libFilter = request.GET.getlist('filterLib')
+            
            
 
             print("im at title != none")
@@ -2010,7 +2017,7 @@ def searchPublication(request):
             end_index = index + 5 if index <= max_index - 5 else max_index
             page_range = paginator.page_range[start_index:end_index]
 
-            libFilter = request.GET.getlist('filterLib')
+            
             
             print("im at author != none")
             return render(request, 'main/search.html',{'searched':searched, 
