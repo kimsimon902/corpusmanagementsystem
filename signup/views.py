@@ -1738,6 +1738,12 @@ def searchPublication(request):
                 results = results.order_by('year')
                 libFilter = str(libFilter).replace('[','').replace(']','').replace('\'','').replace('\"','')
 
+            result_count = results.count()
+
+            logSearch.source = source
+            logSearch.num_results = result_count
+            logSearch.date = datetime.datetime.now()
+            logSearch.save()
                               
             paginator = Paginator(results, 20)
             page = request.GET.get('page')
@@ -1756,12 +1762,7 @@ def searchPublication(request):
             page_range = paginator.page_range[start_index:end_index]
 
             
-            result_count = results.count()
-
-            logSearch.source = source
-            logSearch.num_results = result_count
-            logSearch.date = datetime.datetime.now()
-            logSearch.save()
+            
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
@@ -2070,7 +2071,7 @@ def searchPublication(request):
             logSearch.date = datetime.datetime.now()
             logSearch.save()
 
-            
+
             paginator = Paginator(results, 20)
             page = request.GET.get('page')
 
