@@ -1450,13 +1450,20 @@ def searchPublication(request):
         keywords_list = list(keywords.objects.all())
         publications_list = list(publications.objects.all())
 
+        # if len(libFilter) > 0: 
+        #     if "[" in libFilter[0]:
+        #         print("i am in if statement")
+        #         temp = libFilter[0]
+        #         libFilter = []
+        #         print(temp)
+        #         libFilter.append(temp.strip("['']"))
+        
         if len(libFilter) > 0: 
             if "[" in libFilter[0]:
-                print("i am in if statement")
-                temp = libFilter[0]
-                libFilter = []
-                print(temp)
-                libFilter.append(temp.strip("['']"))
+                 libFilter = str(libFilter).replace('[','').replace(']','').replace('\'','').replace('\"','')
+
+
+               
 
 
 
