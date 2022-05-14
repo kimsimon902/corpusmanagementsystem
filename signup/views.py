@@ -1431,7 +1431,9 @@ def searchPublication(request):
         publications_list = list(publications.objects.all())
 
         if len(libFilter) > 0:
+            print(type(libFilter[0])) 
             if type(libFilter[0]) == list:
+                print("i am type list")
                 libFilter = libFilter[0]
 
             # if len(libFilter.pop(0)) == 8:
