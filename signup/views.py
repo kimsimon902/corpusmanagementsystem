@@ -1430,7 +1430,7 @@ def searchPublication(request):
         keywords_list = list(keywords.objects.all())
         publications_list = list(publications.objects.all())
 
-        print("i am going to filter by" + libFilter)
+        print(libFilter)
         if  searchFilter == "default":
 
         
