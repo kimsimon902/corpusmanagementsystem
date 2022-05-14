@@ -1430,11 +1430,11 @@ def searchPublication(request):
         keywords_list = list(keywords.objects.all())
         publications_list = list(publications.objects.all())
 
-        if libFilter:
-            if len(libFilter.pop(0)) > 8:
-                libFilter = libFilter.pop()
-            else:
-                print('No lists in my_list')
+        # if libFilter:
+        #     if len(libFilter.pop(0)) > 8:
+        #         libFilter = libFilter.pop()
+        #     else:
+        #         print('No lists in my_list')
 
         print(libFilter)
         
