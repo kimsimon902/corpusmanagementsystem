@@ -1432,6 +1432,7 @@ def searchPublication(request):
 
         if len(libFilter) > 0: 
             if "[" in libFilter[0]:
+                print("i am in if statement")
                 temp = libFilter[0]
                 libFilter = []
                 libFilter.append(temp)
