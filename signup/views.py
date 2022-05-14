@@ -1435,7 +1435,8 @@ def searchPublication(request):
                 print("i am in if statement")
                 temp = libFilter[0]
                 libFilter = []
-                libFilter.append(temp.strip("[""]"))
+                print(temp)
+                libFilter.append(temp.strip('[""]'))
 
             # if len(libFilter.pop(0)) == 8:
             #     print(len(libFilter.pop(0)))
