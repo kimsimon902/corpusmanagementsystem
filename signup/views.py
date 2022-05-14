@@ -1431,7 +1431,7 @@ def searchPublication(request):
         publications_list = list(publications.objects.all())
 
 
-        if "[" in libFilter:
+        if any(isinstance(x, list) for x in libFilter):
             libFilter = libFilter.pop()
         else:
             print('No lists in my_list')
