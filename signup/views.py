@@ -1463,7 +1463,7 @@ def searchPublication(request):
                  temp = str(libFilter).replace('[','').replace(']','').replace('\'','').replace('\"','')
                  temp2 = temp.split()
                  libFilter = []
-                 libFilter = temp.split(",")
+                 libFilter = temp2.split(",")
 
 
                
