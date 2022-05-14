@@ -1434,6 +1434,17 @@ def searchPublication(request):
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains='ais', status__icontains="approved"
                 ).order_by('id')
+
+                for keyword in keywords_list:
+                    if keyword_search == keyword.keywordname:
+                        resultsId_list.append(keyword.id)
+
+                for resultsid in resultsId_list:
+                    for pubid in pubkeys_list:
+                        if resultsid == pubid.keywords_id:
+                            for pub in publications_list:
+                                if pubid.publication_id == pub.id and pub.source == "ais":
+                                    results_list.append(pub)
              
 
 
@@ -1446,6 +1457,17 @@ def searchPublication(request):
                     Q(author__icontains=searched), status__icontains="approved"
                 ).order_by('id')
 
+                for keyword in keywords_list:
+                    if keyword_search == keyword.keywordname:
+                        resultsId_list.append(keyword.id)
+
+                for resultsid in resultsId_list:
+                    for pubid in pubkeys_list:
+                        if resultsid == pubid.keywords_id:
+                            for pub in publications_list:
+                                if pubid.publication_id == pub.id and (pub.source == "ais" or pub.source == "iee"):
+                                    results_list.append(pub)
+
 
             elif 'ais' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
                 results = publications.objects.filter(
@@ -1456,6 +1478,17 @@ def searchPublication(request):
                     Q(author__icontains=searched), status__icontains="approved"
                 ).order_by('id')
 
+                for keyword in keywords_list:
+                    if keyword_search == keyword.keywordname:
+                        resultsId_list.append(keyword.id)
+
+                for resultsid in resultsId_list:
+                    for pubid in pubkeys_list:
+                        if resultsid == pubid.keywords_id:
+                            for pub in publications_list:
+                                if pubid.publication_id == pub.id and (pub.source == "ais" or pub.source == "scopus"):
+                                    results_list.append(pub)
+
              
 
             elif 'ieee' in libFilter and len(libFilter) == 1:
@@ -1464,11 +1497,22 @@ def searchPublication(request):
                     Q(author__icontains=searched), source__icontains="ieee", status__icontains="approved"
                 ).order_by('id')
 
+                for keyword in keywords_list:
+                    if keyword_search == keyword.keywordname:
+                        resultsId_list.append(keyword.id)
+
+                for resultsid in resultsId_list:
+                    for pubid in pubkeys_list:
+                        if resultsid == pubid.keywords_id:
+                            for pub in publications_list:
+                                if pubid.publication_id == pub.id and (pub.source == "iee"):
+                                    results_list.append(pub)
+
                
 
                 
             elif 'ieee' in libFilter and 'scopus' in libFilter and len(libFilter) == 2:
-               results = publications.objects.filter(
+                results = publications.objects.filter(
                     Q(source__icontains="ieee") |
                     Q(source__icontains="scopus")
                 ).filter(
@@ -1476,12 +1520,34 @@ def searchPublication(request):
                     Q(author__icontains=searched), status__icontains="approved"
                 ).order_by('id')
 
+                for keyword in keywords_list:
+                    if keyword_search == keyword.keywordname:
+                        resultsId_list.append(keyword.id)
+
+                for resultsid in resultsId_list:
+                    for pubid in pubkeys_list:
+                        if resultsid == pubid.keywords_id:
+                            for pub in publications_list:
+                                if pubid.publication_id == pub.id and (pub.source == "iee" or pub.source == "scopus"):
+                                    results_list.append(pub)
+
                
             elif 'scopus' in libFilter and len(libFilter) == 1:
                 results = publications.objects.filter(
                     Q(title__icontains=searched) |
                     Q(author__icontains=searched), source__icontains="scopus", status__icontains="approved"
                 ).order_by('id')
+
+                for keyword in keywords_list:
+                    if keyword_search == keyword.keywordname:
+                        resultsId_list.append(keyword.id)
+
+                for resultsid in resultsId_list:
+                    for pubid in pubkeys_list:
+                        if resultsid == pubid.keywords_id:
+                            for pub in publications_list:
+                                if pubid.publication_id == pub.id and (pub.source == "scopus"):
+                                    results_list.append(pub)
 
               
 
@@ -1491,6 +1557,17 @@ def searchPublication(request):
                     Q(author__icontains=searched), status__icontains="approved"
                 ).order_by('id')
 
+                for keyword in keywords_list:
+                    if keyword_search == keyword.keywordname:
+                        resultsId_list.append(keyword.id)
+
+                for resultsid in resultsId_list:
+                    for pubid in pubkeys_list:
+                        if resultsid == pubid.keywords_id:
+                            for pub in publications_list:
+                                if pubid.publication_id == pub.id:
+                                    results_list.append(pub)
+
             results.order_by('id')
 
             results_list = []
@@ -1499,16 +1576,7 @@ def searchPublication(request):
             keywords_list = list(keywords.objects.all())
             publications_list = list(publications.objects.all())
 
-            for keyword in keywords_list:
-                if keyword_search == keyword.keywordname:
-                    resultsId_list.append(keyword.id)
-
-            for resultsid in resultsId_list:
-                for pubid in pubkeys_list:
-                    if resultsid == pubid.keywords_id:
-                        for pub in publications_list:
-                            if pubid.publication_id == pub.id:
-                                results_list.append(pub)
+           
 
             #final list of publications
             final_list = []
