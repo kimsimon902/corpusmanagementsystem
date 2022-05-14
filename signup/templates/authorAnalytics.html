@@ -234,10 +234,10 @@
                             {% endfor %}
                         </table>
                     </div>
-                    <div>
+                    <div style="padding-bottom: 50px;padding-top: 20px;">
                         <h3>Authors that might be related to {{author|capfirst}}:</h3>
                         {%for reco in recos%}
-                        <a href="/analyticsAuthor/{{reco}}" style="margin-top: 15px; text-decoration: none;">{{reco}}</a>; 
+                        <a href="/analyticsAuthor/{{reco}}" style="text-decoration: none; margin-right: 10px;">{{reco}}</a>
                         {%endfor%}
                     </div>
                 </div>
