@@ -1432,7 +1432,9 @@ def searchPublication(request):
 
         if len(libFilter) > 0: 
             if "[" in libFilter[0]:
-                libFilter = libFilter[0]
+                temp = libFilter[0]
+                libFilter = []
+                libFilter.append(temp)
 
             # if len(libFilter.pop(0)) == 8:
             #     print(len(libFilter.pop(0)))
