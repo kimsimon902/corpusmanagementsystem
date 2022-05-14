@@ -1462,7 +1462,7 @@ def searchPublication(request):
             if "[" in libFilter[0]:
                  temp = str(libFilter).replace('[','').replace(']','').replace('\'','').replace('\"','')
                  libFilter = []
-                 libFilter = temp.split(",")
+                 libFilter = temp.replace(',','').replace(' ','')
 
 
                
