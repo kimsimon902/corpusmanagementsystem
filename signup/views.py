@@ -1423,6 +1423,14 @@ def searchPublication(request):
         my_bookmarks_folder = bookmarks_folder.objects.filter(user=email, folder_name='My Bookmarks').values('id') #get my bookmarks folderID
         my_bookmarks_folder_contents = bookmarks.objects.filter(user=email, folderID__in=my_bookmarks_folder).values('publicationID') #get my bookmarks contents
 
+
+        results_list = []
+        resultsId_list = []
+        pubkeys_list = list(pubkeys.objects.all())
+        keywords_list = list(keywords.objects.all())
+        publications_list = list(publications.objects.all())
+
+        
         if  searchFilter == "default":
 
         
@@ -1570,14 +1578,7 @@ def searchPublication(request):
 
             results.order_by('id')
 
-            results_list = []
-            resultsId_list = []
-            pubkeys_list = list(pubkeys.objects.all())
-            keywords_list = list(keywords.objects.all())
-            publications_list = list(publications.objects.all())
-
-           
-
+        
             #final list of publications
             final_list = []
             
