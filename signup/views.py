@@ -1513,12 +1513,20 @@ def searchPublication(request):
             #final list of publications
             final_list = []
             
+
+
             in_results_list = set(results_list)
             in_results = set(results)
 
             in_results_but_not_in_first = in_results - in_results_list
 
             final_list = results_list + list(in_results_but_not_in_first)
+
+            final_list_ids = [pub.id for pub in final_list]
+
+            results = publications.filter(pk__in=final_list_ids)
+
+            
 
             # publication results in list data type                        
             xlist =     list(results)
@@ -1556,13 +1564,13 @@ def searchPublication(request):
             #         else:
             #             scrap("http://" + publication.url, publication.id)
 
-            for publication in final_list:
+            for publication in results:
                 if publication.source != 'Uploaded':
                     for pubkey in publication_keys:
                         if publication.id == pubkey.publication_id:
                             flag = 1
             
-            for publication in final_list:
+            for publication in results:
                 for pubkey in publication_keys:
                     if publication.id == pubkey.publication_id:
                         for pubid in keywords_list:
@@ -1572,11 +1580,11 @@ def searchPublication(request):
                                     
                                     
             
-            result_count = len(final_list)
+            result_count = len(results)
 
 
             filteredYear =[]
-            for year in final_list:
+            for year in results:
                 if int(year.year) not in filteredYear:
                     filteredYear.append(int(year.year))
                     
@@ -1619,17 +1627,17 @@ def searchPublication(request):
                 results = results.order_by('year')
 
                               
-            paginator = Paginator(final_list, 20)
+            paginator = Paginator(results, 20)
             page = request.GET.get('page')
 
             try:
-                final_list = paginator.page(page)
+                results = paginator.page(page)
             except PageNotAnInteger:
-                final_list = paginator.page(1)  
+                results = paginator.page(1)  
             except EmptyPage:
-                final_list = paginator.page(paginator.num_pages)
+                results = paginator.page(paginator.num_pages)
 
-            index = final_list.number - 1
+            index = results.number - 1
             max_index = len(paginator.page_range)
             start_index = index - 5 if index >= 5 else 0
             end_index = index + 5 if index <= max_index - 5 else max_index
@@ -1638,7 +1646,7 @@ def searchPublication(request):
             print("hi i made it to final list")
 
             return render(request,'main/search.html',{'searched':searched, 
-                                                        'results':final_list, 
+                                                        'results':results, 
                                                         'page_range': page_range,
                                                         'count':result_count,
                                                         'keyword_results':keyword_results, 
@@ -1859,16 +1867,16 @@ def searchPublication(request):
             keyword_results = []
             keyword_count = []
 
-            for publication in xlist:
-                flag = 0
-                for pubkey in publication_keys:
-                    if publication.id == pubkey.publication_id and flag == 0:
-                        flag=1
-                if flag == 0:
-                    if "http" in publication.url: 
-                        scrap(publication.url, publication.id)
-                    else:
-                        scrap("http://" + publication.url, publication.id)
+            # for publication in xlist:
+            #     flag = 0
+            #     for pubkey in publication_keys:
+            #         if publication.id == pubkey.publication_id and flag == 0:
+            #             flag=1
+            #     if flag == 0:
+            #         if "http" in publication.url: 
+            #             scrap(publication.url, publication.id)
+            #         else:
+            #             scrap("http://" + publication.url, publication.id)
 
             for publication in xlist:
                 for pubkey in publication_keys:
