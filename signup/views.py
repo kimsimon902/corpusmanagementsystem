@@ -1696,7 +1696,7 @@ def searchPublication(request):
                                     
                                     
             
-            result_count = len(results)
+            
 
 
             filteredYear =[]
@@ -1760,8 +1760,8 @@ def searchPublication(request):
             end_index = index + 5 if index <= max_index - 5 else max_index
             page_range = paginator.page_range[start_index:end_index]
 
-            print("hi i made it to final list")
             
+            result_count = results.count()
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
@@ -1989,7 +1989,7 @@ def searchPublication(request):
             else:
                 results = publications.objects.filter(author__icontains=searched, status__icontains="approved")
 
-            results_count = results.count()
+            
 
 
             xlist =     list(results)
@@ -2081,7 +2081,7 @@ def searchPublication(request):
             page_range = paginator.page_range[start_index:end_index]
 
             
-            
+            results_count = results.count()
             print("im at author != none")
             return render(request, 'main/search.html',{'searched':searched, 
                                                        'results':results, 
