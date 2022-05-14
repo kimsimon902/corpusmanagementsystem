@@ -519,6 +519,9 @@ def authorAnalytics(request, author):
             split = txt.replace(',',"")
             split2 = split.split()
             last_name = split2[0]
+        else:
+            split = txt.split()
+            last_name = split[-1]
 
         author_search = last_name
         results = publications.objects.all()
