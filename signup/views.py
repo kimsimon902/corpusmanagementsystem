@@ -1183,6 +1183,16 @@ def searchPublication(request):
         print(keyword_search)
         if keyword_search != None:
 
+            libFilter = request.GET.getlist('filterLib')
+            
+            if len(libFilter) > 0: 
+                if "[" in libFilter[0]:
+                    print("i am in if statement")
+                    temp = libFilter[0]
+                    libFilter = []
+                    print(temp)
+                    libFilter.append(temp.strip("['']"))
+
             if (request.user):
                 author = request.session['username']
             else:
@@ -1280,7 +1290,7 @@ def searchPublication(request):
             end_index = index + 5 if index <= max_index - 5 else max_index
             page_range = paginator.page_range[start_index:end_index]
 
-            libFilter = request.GET.getlist('filterLib')
+            
 
             print("im at keywordsearch != none")
             return render(request, 'main/search.html',{'searched':searched, 
@@ -1297,6 +1307,16 @@ def searchPublication(request):
 
         year_search = request.GET.get('year')
         if year_search != None:
+
+            libFilter = request.GET.getlist('filterLib')
+
+            if len(libFilter) > 0: 
+                if "[" in libFilter[0]:
+                    print("i am in if statement")
+                    temp = libFilter[0]
+                    libFilter = []
+                    print(temp)
+                    libFilter.append(temp.strip("['']"))
 
             if (request.user):
                 author = request.session['username']
@@ -1379,7 +1399,7 @@ def searchPublication(request):
             end_index = index + 5 if index <= max_index - 5 else max_index
             page_range = paginator.page_range[start_index:end_index]
 
-            libFilter = request.GET.getlist('filterLib')
+            
             
             print("im at yearsearch != none")
             return render(request, 'main/search.html',{'searched':searched, 
