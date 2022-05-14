@@ -2064,6 +2064,8 @@ def searchPublication(request):
                 results = results.filter(year__gte=min_value,year__lte=max_value)
                 results = results.order_by('year')
 
+            results_count = results.count()
+            
             paginator = Paginator(results, 20)
             page = request.GET.get('page')
 
@@ -2081,7 +2083,7 @@ def searchPublication(request):
             page_range = paginator.page_range[start_index:end_index]
 
             
-            results_count = results.count()
+            
             print("im at author != none")
             return render(request, 'main/search.html',{'searched':searched, 
                                                        'results':results, 
