@@ -1431,7 +1431,7 @@ def searchPublication(request):
         publications_list = list(publications.objects.all())
 
         if len(libFilter) > 0:
-            print(libFilter.pop(0))
+            print(libFilter[0])
 
 
             # if len(libFilter.pop(0)) == 8:
