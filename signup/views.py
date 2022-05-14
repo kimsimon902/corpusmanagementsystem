@@ -1524,7 +1524,7 @@ def searchPublication(request):
 
             final_list_ids = [pub.id for pub in final_list]
 
-            results = publications.filter(pk__in=final_list_ids)
+            results = publications.objects.filter(pk__in=final_list_ids)
 
             
 
