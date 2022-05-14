@@ -1721,11 +1721,6 @@ def searchPublication(request):
             else:
                 source = libFilter
             
-            logSearch.source = source
-            logSearch.num_results = result_count
-            logSearch.date = datetime.datetime.now()
-            logSearch.save()
-            
             
 
             if request.GET.get('sortBy') != None:
@@ -1762,6 +1757,11 @@ def searchPublication(request):
 
             
             result_count = results.count()
+
+            logSearch.source = source
+            logSearch.num_results = result_count
+            logSearch.date = datetime.datetime.now()
+            logSearch.save()
 
             return render(request,'main/search.html',{'searched':searched, 
                                                         'results':results, 
@@ -1886,10 +1886,7 @@ def searchPublication(request):
             else:
                 source = libFilter
 
-            logSearch.source = libFilter
-            logSearch.num_results = results.count()
-            logSearch.date = datetime.datetime.now()
-            logSearch.save()
+            
 
 
             if request.GET.get('sortBy') != None:
@@ -1904,6 +1901,11 @@ def searchPublication(request):
                 results = results.filter(year__gte=min_value,year__lte=max_value)
                 results = results.order_by('year')
 
+
+            logSearch.source = libFilter
+            logSearch.num_results = results.count()
+            logSearch.date = datetime.datetime.now()
+            logSearch.save()
 
             paginator = Paginator(results, 20)
             page = request.GET.get('page')
@@ -2046,10 +2048,7 @@ def searchPublication(request):
             else:
                 source = libFilter
 
-            logSearch.source = libFilter
-            logSearch.num_results = results.count()
-            logSearch.date = datetime.datetime.now()
-            logSearch.save()
+            
 
             if request.GET.get('sortBy') != None:
                 if request.GET.get('sortBy') == 'earlyYear':
@@ -2065,6 +2064,12 @@ def searchPublication(request):
                 results = results.order_by('year')
 
             results_count = results.count()
+
+            logSearch.source = libFilter
+            logSearch.num_results = results.count()
+            logSearch.date = datetime.datetime.now()
+            logSearch.save()
+
             
             paginator = Paginator(results, 20)
             page = request.GET.get('page')
