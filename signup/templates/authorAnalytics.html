@@ -169,10 +169,6 @@
             <div class="col-12" style="margin-top: 20px;">
                 <div class="container">
                     <h3>Analytics and Figures for {{author|capfirst}}</h3>
-                    <p>Authors that might be related to {{author|capfirst}}:</p>
-                    {%for reco in recos%}
-                    <a href="/analyticsAuthor/{{reco}}" style="margin-top: 15px; text-decoration: none;">{{reco}}</a>; 
-                    {%endfor%}
                     <div class="row">
                         <div class="col-sm-12" style="">
                             <div class="row">
@@ -237,6 +233,12 @@
                             </tbody>
                             {% endfor %}
                         </table>
+                    </div>
+                    <div>
+                        <h3>Authors that might be related to {{author|capfirst}}:</h3>
+                        {%for reco in recos%}
+                        <a href="/analyticsAuthor/{{reco}}" style="margin-top: 15px; text-decoration: none;">{{reco}}</a>; 
+                        {%endfor%}
                     </div>
                 </div>
             </div>
