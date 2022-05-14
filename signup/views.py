@@ -1461,7 +1461,7 @@ def searchPublication(request):
         if len(libFilter) > 0: 
             if "[" in libFilter[0]:
                  temp = str(libFilter).replace('[','').replace(']','').replace('\'','').replace('\"','')
-                 temp2 = ''.join(temp.split())
+                 temp2 = temp.split()
                  libFilter = []
                  libFilter = temp.split(",")
 
