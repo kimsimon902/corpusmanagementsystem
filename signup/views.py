@@ -1438,12 +1438,6 @@ def searchPublication(request):
                 print(temp)
                 libFilter.append(temp.strip("['']"))
 
-            # if len(libFilter.pop(0)) == 8:
-            #     print(len(libFilter.pop(0)))
-            #     libFilter = libFilter.pop()
-            # else:
-            #     print('No lists in my_list')
-
 
 
         print(libFilter)
@@ -1749,6 +1743,14 @@ def searchPublication(request):
                                                         })
             
         elif searchFilter == "title":
+
+            if len(libFilter) > 0: 
+                if "[" in libFilter[0]:
+                    print("i am in if statement")
+                    temp = libFilter[0]
+                    libFilter = []
+                    print(temp)
+                    libFilter.append(temp.strip("['']"))
             
             if 'ais' in libFilter and len(libFilter) == 1:
                 results = publications.objects.filter(title__icontains=searched,source__icontains="ais", status__icontains="approved")
@@ -1846,8 +1848,10 @@ def searchPublication(request):
             logSearch.keyword = searched
             logSearch.filter = searchFilter
 
-            if bool(libFilter):
-                libFilter = "['ais', 'ieee', 'scopus']"
+            if not libFilter:
+                source = "['ais', 'ieee', 'scopus']"
+            else:
+                source = libFilter
 
             logSearch.source = libFilter
             logSearch.num_results = results.count()
@@ -1899,6 +1903,14 @@ def searchPublication(request):
                                                         'libFilter':libFilter})
 
         elif searchFilter == "author":
+
+            if len(libFilter) > 0: 
+                if "[" in libFilter[0]:
+                    print("i am in if statement")
+                    temp = libFilter[0]
+                    libFilter = []
+                    print(temp)
+                    libFilter.append(temp.strip("['']"))
 
             if 'ais' in libFilter and len(libFilter) == 1:
                 results = publications.objects.filter(author__icontains=searched,source__icontains="ais", status__icontains="approved")
@@ -1985,6 +1997,11 @@ def searchPublication(request):
 
             filteredYear.sort()
 
+            if not libFilter:
+                source = "['ais', 'ieee', 'scopus']"
+            else:
+                source = libFilter
+
             #Log Search
             logSearch = records_search()
             logSearch.user = email
@@ -1992,7 +2009,9 @@ def searchPublication(request):
             logSearch.filter = searchFilter
 
             if not libFilter:
-                libFilter = "['ais', 'ieee', 'scopus']"
+                source = "['ais', 'ieee', 'scopus']"
+            else:
+                source = libFilter
 
             logSearch.source = libFilter
             logSearch.num_results = results.count()
