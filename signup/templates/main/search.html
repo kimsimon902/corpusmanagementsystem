@@ -319,7 +319,6 @@
                                                             <input type="hidden" name="bookmark_action" value="delete">
                                                             <button type="submit" class="btn btn-outline-danger btn-sm" value="submit" name="bookmark-delete" form="bookmark-form-{{result.id}}" id="bookmark-delete-in-search-table-{{result.id}}" style="display: inline;">Delete from Bookmarks<i class="fa fa-bookmark" aria-hidden="true" style="margin-left: 5px;"></i></button>
                                                         </form>
-                                    
                                                         {% endfor %}
                                                     {% elif forloop.last %}
                                                         {% for bookmark_id in my_bookmarks_id %}
@@ -344,17 +343,17 @@
                                                         </form>
                                                         {% endfor %}
 
-                                                    <!-- <script>
+                                                    <script>
                                                         var found = document.getElementById("bookmark-delete-in-search-table-"+"{{result.id}}");
                                                         var addDiv = document.getElementById("bookmark-add-in-search-table-"+"{{result.id}}");
                         
                                                         if (found == null){
-                                                            addDiv.style.display = "inline";
+                                                            addDiv.style.display = "block";
                                                         }
                                                         else {
                                                             addDiv.style.display = "none";
                                                         }
-                                                    </script>  -->
+                                                    </script>
                                                 {% endfor %}
                                             </li>
                                         </ul>
