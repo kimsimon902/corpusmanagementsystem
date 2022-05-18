@@ -332,7 +332,7 @@
                                                         
                                                         {% endfor %}
                                                     {% endif %}
-                                                    <p id="testFunctionCall"></p>
+                                                    <p id="testFunctionCall" onload="loadButtons()"></p>
                                                     <script>
                                                         function loadButtons(){
                                                             var found = document.getElementById("bookmark-delete-in-search-table-"+"{{result.id}}");
