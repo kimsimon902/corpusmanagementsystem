@@ -329,9 +329,10 @@
                                                             <input type="hidden" name="bookmark_action" value="add">
                                                             <button type="submit" class="btn btn-outline-success btn-sm" name="bookmark-add" value="submit" form="bookmark-form-{{result.id}}" id="bookmark-add-in-search-table-{{result.id}}" style="display: inline;" >Add to Bookmarks<i class="fa fa-bookmark-o" aria-hidden="true" style="margin-left: 5px;"></i></button>
                                                         </form>
+                                                        
                                                         {% endfor %}
                                                     {% endif %}
-
+                                                    <p id="testFunctionCall"></p>
                                                     <script>
                                                         function loadButtons(){
                                                             var found = document.getElementById("bookmark-delete-in-search-table-"+"{{result.id}}");
@@ -342,6 +343,13 @@
                                                             }
                                                             else {
                                                                 addDiv.style.display = "inline";
+                                                            }
+
+                                                            var test = document.getElementById("testFunctionCall");
+
+                                                            if (test){
+                                                                console.log("function called");
+                                                                test.innerText="Function called";
                                                             }
                                                         }
                                                     </script>
