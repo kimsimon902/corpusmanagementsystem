@@ -351,11 +351,11 @@
                                                             var found = document.getElementById("bookmark-delete-in-search-table-"+"{{result.id}}");
                                                             var addDiv = document.getElementById("bookmark-add-in-search-table-"+"{{result.id}}");
                             
-                                                            if (found == null){
-                                                                addDiv.style.display = "block";
+                                                            if (found){
+                                                                addDiv.style.display = "none";
                                                             }
                                                             else {
-                                                                addDiv.style.display = "none";
+                                                                addDiv.style.display = "inline";
                                                             }
                                                         };
                                                     </script>
