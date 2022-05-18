@@ -332,7 +332,7 @@
                                                         {% endfor %}
                                                         
                                                     {% endif %}
-                                                    <!-- {% empty %} -->
+                                                    {% empty %}
                                                         {% for bookmark_id in my_bookmarks_id %}
                                                         <form method="POST" action="/publication/{{result.id}}/bookmark" id="bookmark-form-{{result.id}}">
                                                             {% csrf_token %}
