@@ -320,7 +320,7 @@
                                                             <button type="submit" class="btn btn-outline-danger btn-sm" value="submit" name="bookmark-delete" form="bookmark-form-{{result.id}}" id="bookmark-delete-in-search-table-{{result.id}}" style="display: inline;">Delete from Bookmarks<i class="fa fa-bookmark" aria-hidden="true" style="margin-left: 5px;"></i></button>
                                                         </form>
                                                         {% endfor %}
-                                                    {% elif forloop.last and result.id == bookmark.publicationID %}
+                                                    {% elif forloop.last and result.id != bookmark.publicationID %}
                                                         {% for bookmark_id in my_bookmarks_id %}
                                                         <form method="POST" action="/publication/{{result.id}}/bookmark" id="bookmark-form-{{result.id}}">
                                                             {% csrf_token %}
