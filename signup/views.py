@@ -2730,7 +2730,7 @@ def PublicationPage(request, id):
         request.session['search_url'] = previous
         current_url = request.session['search_url']
     else:
-        current_url = request.session['search_url']
+        current_url = previous
 
     #Make authors into array... from A. author; B. author to ['A. author','B. author']
     for pub in results:
