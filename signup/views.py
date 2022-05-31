@@ -1094,6 +1094,32 @@ def analyticsFilterKeyword(request, keyword, keyword2):
         keyword_count = Counter(keyword_results).most_common(len(keyword_results))
         print(keyword_count)
 
+        #Make authors into array... from A. author; B. author to ['A. author','B. author']
+        for pub in results_list:
+            if pub.source == 'IEEE':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
+            elif pub.source == 'AIS':
+                authors = pub.author
+                split = authors.split(';')
+                pub.author = split
+            elif pub.source == 'Scopus':
+                authors = []
+                authors.append(pub.author)
+                pub.author = authors
+            elif pub.source == 'Uploaded':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
+
+        #clean authors array
+        for pub in results_list:
+            if pub.source == 'AIS':
+                for author in pub.author:
+                    if author == "":
+                        pub.author.remove(author)
+
         results_list.sort(key=lambda x: x.year,reverse=True)
         
         return render(request, 'testanalytics.html',{'searched':searched.capitalize(), 'searched2':searched2.capitalize(),
