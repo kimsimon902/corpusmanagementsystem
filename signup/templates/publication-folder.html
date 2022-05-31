@@ -345,7 +345,7 @@
   {% if annotations %}
 <!-- new annoations trello style   -->
     <div class="row">
-        <div class="col" style="margin:30px">
+        <div class="col" style="margin:30px; border-right: 1px solid gray;">
             <h6>Comment <i class="fa fa-circle" style="color:#ffeb3b; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
             {% for annotation in annotations %}
                 {% if annotation.marker == "Comment"%}
@@ -390,7 +390,7 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <div class="col" style="margin-top:30px; margin-bottom:30px;">
+        <div class="col" style="margin-top:30px; margin-bottom:30px; border-right: 1px solid gray;">
             <h6>Task to-do <i class="fa fa-circle" style="color:#039be5; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"></i></h6>
             {% for annotation in annotations %}
             {% if annotation.marker == "Task (To-do)" %}
