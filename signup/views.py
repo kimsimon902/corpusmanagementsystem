@@ -2757,6 +2757,8 @@ def PublicationPage(request, id):
     elif 'search' in previous:
         request.session['search_url'] = previous
         current_url = request.session['search_url']
+    elif previous == request.session['search_url']:
+        current_url = request.session['search_url']
     else:
         current_url = previous
 
