@@ -353,13 +353,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <h4>Number of publications in "{{searched}}" {% if searched2 %} and "{{searched2|capfirst}}" {%endif%} published per discipline</h4>
+                                    <h4>Number of publications in "{{f.folder_name}}" published per discipline</h4>
                                     <div class="chart-container" style="padding-bottom: 50px;">    
                                         <canvas id="myChartBarKeyDisc"></canvas>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <h4>Most prominent authors in "{{searched}}" {% if searched2 %} and "{{searched2|capfirst}}" {%endif%}</h4>
+                                    <h4>Most prominent authors in "{{f.folder_name}}" {%endif%}</h4>
                                     <div class="chart-container" style="padding-bottom: 50px;">    
                                         <canvas id="myChartBarKeyAuthor"></canvas>
                                     </div>
