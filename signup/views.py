@@ -2749,7 +2749,7 @@ def PublicationPage(request, id):
 
 
     previous = request.META.get('HTTP_REFERER')
-
+    
    
     if 'analyticsAuthor' in previous:
         request.session['search_url'] = previous
@@ -2757,10 +2757,9 @@ def PublicationPage(request, id):
     elif 'search' in previous:
         request.session['search_url'] = previous
         current_url = request.session['search_url']
-    elif previous == request.session['search_url']:
-        current_url = request.session['search_url']
+        search_url = previous
     else:
-        current_url = previous
+        current_url = request.session['search_url']
 
     #Make authors into array... from A. author; B. author to ['A. author','B. author']
     for pub in results:
