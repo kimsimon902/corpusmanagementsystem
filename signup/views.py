@@ -2479,6 +2479,7 @@ def FoldersPageAnalytics(request, folderID):
                                                        'scopus':scopus_authors,
                                                        'all':all_authors,
                                                        'author_arr':unique_author[:10],
+                                                       'searched':folder,
                                                        })
 
 def SharedFoldersPageAnalytics(request, folderID, owner):
@@ -2633,6 +2634,7 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
                                                        'year_arr':year_arr[-5:],
                                                        'source_arr':source_arr,
                                                        'author_arr':unique_author[:10],
+                                                       'searched':folder,
                                                        })
 
 #this function displays the details of a publication that has been selected from the home page
