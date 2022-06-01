@@ -1180,9 +1180,16 @@ def searchAuthorAnalytics(request):
             for x in splitauth:
                 authors_single_tally.append(x)
 
+        authors_stripped = []
+        
+        for author in authors_single_tally:
+            lstrip_auth = author.lstrip()
+            if lstrip_auth not in authors_stripped:
+                authors_stripped.append (lstrip_auth)
+
         unique_author = []
 
-        for auth in authors_single_tally:
+        for auth in authors_stripped:
             if auth not in unique_author:
                 unique_author.append(auth)
 
