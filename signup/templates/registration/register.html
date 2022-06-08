@@ -43,6 +43,14 @@
                     <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" required></div>
                     <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required></div>
                     <div class="form-group"><input class="form-control" type="password" name="repwd" placeholder="Password (repeat)" required></div>
+                    <label for="cars">Choose a car:</label>
+                        <select name="cars" id="cars">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="opel">Opel</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                        <br><br>
                     {% if messages %}
                     <div class="messages">
                         {% for message in messages %}
