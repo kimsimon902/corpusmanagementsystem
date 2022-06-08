@@ -12,6 +12,7 @@ class registerUser(models.Model):
     last_name = models.CharField(max_length=100)
     last_login = models.CharField(max_length=100)
     is_superuser = models.CharField(max_length=100)
+    role = models.CharField(max_length=100)
 
     class Meta:
         db_table = "auth_user"
