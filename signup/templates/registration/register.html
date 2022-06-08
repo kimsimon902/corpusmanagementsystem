@@ -44,16 +44,23 @@
                     <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required></div>
                     <div class="form-group"><input class="form-control" type="password" name="repwd" placeholder="Password (repeat)" required></div>
                         <label class="radio-inline">
-                            <input type="radio" name="optradio" value="notspecific" checked>&nbsp;Latest Available Semester
+                            <input type="radio" name="optradio" value="notspecific" checked>&nbsp;Student
                         </label>
                     
                         <label class="radio-inline">
-                            <input type="radio" name="optradio" value="specific">&nbsp;Specific Semester
+                            <input type="radio" name="optradio" value="specific">&nbsp;AdRIC Researcher
                         </label>
                         <select id="dropdown" >
-                            <option value="">--Please choose your role--</option>
-                            <option value="dog">CAR</option>
-                            <option value="cat">COMET</option>
+                            <option value="">--Please choose your laboratory--</option>
+                            <option value="dog">Center for Automation Research</option>
+                            <option value="cat">Center for Complexity and Emerging Technologies</option>
+                            <option value="cat">Center for ICT for Development</option>
+                            <option value="cat">Center for Language Technologies</option>
+                            <option value="cat">Center for Human-Computing Innovations</option>
+                            <option value="cat">Center for Networking and Information Security</option>
+                            <option value="cat">Game Development Laboratory</option>
+                            <option value="cat">Technology, Education, Entertainment, Empathy, Design House</option>
+                            <option value="cat">Bioinformatics Lab</option>
                         </select>
                     {% if messages %}
                     <div class="messages">
