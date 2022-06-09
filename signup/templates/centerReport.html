@@ -34,17 +34,17 @@
                 const myChart = new Chart(ctx, {
                       type: 'bar',
                       data: {
-                          labels: ["Center for Automation Research",
-                                    "Center for Complexity and Emerging Technologies",
-                                    "Center for ICT for Development",
-                                    "Center for Language Technologies",
-                                    "Center for Human-Computing Innovations",
-                                    "Center for Networking and Information Security",
-                                    "Game Development Laboratory",
-                                    "Technology, Education, Entertainment, Empathy, Design House",
-                                    "Bioinformatics Lab"],
+                          labels: ["CAR",
+                                    "COMET",
+                                    "CITE4D",
+                                    "CeLT",
+                                    "CeHCI",
+                                    "CNIS",
+                                    "GameLab",
+                                    "TE3D",
+                                    "Bioinformatics"],
                           datasets: [{
-                            label: 'Center',
+                            label: 'Number of Publications',
                             data: [{{car_count}},
                                     {{comet_count}},
                                     {{cite4d_count}},
@@ -131,7 +131,7 @@
                     <div class="row">
                         <div class="col-sm-12" style="">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                     <h4>Number of publications published per center</h4>
                                     <div class="chart-container" style="padding-bottom: 50px;">    
                                         <canvas id="myChart"></canvas>
