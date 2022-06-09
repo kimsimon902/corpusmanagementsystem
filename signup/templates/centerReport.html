@@ -126,7 +126,7 @@
                                     <th scope="col">URL</th>
                                 </tr>
                             </thead>
-                            {% for result in center_pubs %}
+                            {% for result in pubs %}
                             <tbody data-year="{{result.year}}" data-author='{{result.author}}' data-source="{{result.source}}" style="">
                                 <tr>  
                                     <td scope="row" style="border-bottom: none;"><a href="/publication/{{result.id}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.title}}</div></a></td>
