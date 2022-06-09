@@ -429,6 +429,30 @@ def create_dictionary(clean_list, id):
         pub_id.append(pubkeys(publication_id=id, keywords_id=store.id))
     pubkeys.objects.bulk_create(pub_id)
 
+def centerReports(request):
+    center_pubs = records_center_uploads.objects.all()
+
+    car_pubs = records_center_uploads.objects.filter(center__icontains="Center for Automation Research")
+    comet_pubs = records_center_uploads.objects.filter(center__icontains="Center for Complexity and Emerging Technologies")
+    cite4d_pubs = records_center_uploads.objects.filter(center__icontains="Center for ICT for Development")
+    celt_pubs = records_center_uploads.objects.filter(center__icontains="Center for Language Technologies")
+    cehci_pubs = records_center_uploads.objects.filter(center__icontains="Center for Human-Computing Innovations")
+    cnis_pubs = records_center_uploads.objects.filter(center__icontains="Center for Networking and Information Security")
+    gamelab_pubs = records_center_uploads.objects.filter(center__icontains="Game Development Laboratory")
+    te3d_pubs = records_center_uploads.objects.filter(center__icontains="Technology, Education, Entertainment, Empathy, Design House")
+    bio_pubs = records_center_uploads.objects.filter(center__icontains="Bioinformatics Lab")
+
+    return render(request, 'centerReport.html',{'pubs':center_pubs, 
+                                                'car':car_pubs, 
+                                                'comet':comet_pubs, 
+                                                'cite4d':cite4d_pubs,
+                                                'celt':celt_pubs,
+                                                'cehci':cehci_pubs,
+                                                'cnis':cnis_pubs,
+                                                'gamelab':gamelab_pubs,
+                                                'te3d':te3d_pubs,
+                                                'bio':bio_pubs})
+
 def authorAnalytics(request, author):
     if author != None:
         publications_by_author = publications.objects.filter(author__icontains=author)

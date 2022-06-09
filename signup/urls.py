@@ -41,6 +41,7 @@ urlpatterns =[
     path('analyticsAuthor/<author>/<keyword>', views.authorAnalyticsFilterKeyword, name="authorAnalyticsFilterKeyword"),
     path('testFolderAnalytics/<folderID>', views.FoldersPageAnalytics, name="FoldersPageAnalytics"),
     path('sharedFolderAnalytics/<folderID>/<owner>', views.SharedFoldersPageAnalytics, name="SharedFoldersPageAnalytics"),
+    path('centerReports/>', views.centerReports, name="centerReports"),
 ]
 
 if settings.DEBUG:

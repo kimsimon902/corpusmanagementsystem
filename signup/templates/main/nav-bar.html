@@ -15,6 +15,9 @@
                 {% if request.session.is_superuser == 0 %}
                 <li class="nav-item"><a class="nav-link" href="/folders/{{request.session.username}}" style="color:white">My Folders</a></li>
                 {% endif %}
+                {% if request.session.is_superuser == 0 %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'centerReports' %}" style="color:white">Center Report</a></li>
+                {% endif %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color:white">Logout</a></li>
             </ul>
         </div>
