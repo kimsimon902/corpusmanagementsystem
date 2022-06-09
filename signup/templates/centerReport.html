@@ -220,7 +220,45 @@
             toggleFilterHeader('none');
         }
 
-        function barClick(center){        
+        car_pubs = records_center_uploads.objects.filter(center__icontains="Center for Automation Research")
+    comet_pubs = records_center_uploads.objects.filter(center__icontains="Center for Complexity and Emerging Technologies")
+    cite4d_pubs = records_center_uploads.objects.filter(center__icontains="Center for ICT for Development")
+    celt_pubs = records_center_uploads.objects.filter(center__icontains="Center for Language Technologies")
+    cehci_pubs = records_center_uploads.objects.filter(center__icontains="Center for Human-Computing Innovations")
+    cnis_pubs = records_center_uploads.objects.filter(center__icontains="Center for Networking and Information Security")
+    gamelab_pubs = records_center_uploads.objects.filter(center__icontains="Game Development Laboratory")
+    te3d_pubs = records_center_uploads.objects.filter(center__icontains="Technology, Education, Entertainment, Empathy, Design House")
+    bio_pubs = records_center_uploads.objects.filter(center__icontains="Bioinformatics Lab")
+
+        function barClick(center){
+            if (center == 'CAR'){
+                center = "Center for Automation Research";
+            }
+            else if (center == 'COMET'){
+                center = "Center for Complexity and Emerging Technologies";
+            }
+            else if (center == 'CITE4D'){
+                center = "Center for ICT for Development";
+            }
+            else if (center == 'CeLT'){
+                center = "Center for Language Technologies";
+            }
+            else if (center == 'CeHCI'){
+                center = "Center for Human-Computing Innovations";
+            }
+            else if (center == 'CNIS'){
+                center = "Center for Networking and Information Security";
+            }
+            else if (center == 'GameLab'){
+                center = "Game Development Laboratory";
+            }
+            else if (center == 'TE3D'){
+                center = "Technology, Education, Entertainment, Empathy, Design House";
+            }
+            else if (center == 'Bioinformatics'){
+                center = "Bioinformatics Lab";
+            }
+            
             var tbody = document.querySelectorAll('tbody[data-center]');
             index = 0;
             length = tbody.length;
