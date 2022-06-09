@@ -34,15 +34,48 @@
                 const myChart = new Chart(ctx, {
                       type: 'bar',
                       data: {
-                          labels: [{% for year in year_arr %}'{{year.0}}',{% endfor %}],
+                          labels: ["Center for Automation Research",
+                                    "Center for Complexity and Emerging Technologies",
+                                    "Center for ICT for Development",
+                                    "Center for Language Technologies",
+                                    "Center for Human-Computing Innovations",
+                                    "Center for Networking and Information Security",
+                                    "Game Development Laboratory",
+                                    "Technology, Education, Entertainment, Empathy, Design House",
+                                    "Bioinformatics Lab"],
                           datasets: [{
-                            label: 'Year',
-                            data: [{% for year in year_arr %}{{year.1}},{% endfor %}],
+                            label: 'Center',
+                            data: [{{car_count}},
+                                    {{coment_count}},
+                                    {{cite4d_count}},
+                                    {{celt_count}},
+                                    {{cehci_count}},
+                                    {{cnis_count}},
+                                    {{gamelab_count}},
+                                    {{te3d_count}},
+                                    {{bio_count}},
+                                ],
                             backgroundColor: [
-                                {% for source in year_arr %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
                             ],
                             borderColor: [
-                            {% for source in year_arr %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
+                            'rgba(	8, 120, 48, 1)',
                             ],
                             borderWidth: 1
                           }]

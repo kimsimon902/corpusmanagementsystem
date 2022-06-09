@@ -443,15 +443,15 @@ def centerReports(request):
     bio_pubs = records_center_uploads.objects.filter(center__icontains="Bioinformatics Lab")
 
     return render(request, 'centerReport.html',{'pubs':center_pubs, 
-                                                'car':car_pubs, 
-                                                'comet':comet_pubs, 
-                                                'cite4d':cite4d_pubs,
-                                                'celt':celt_pubs,
-                                                'cehci':cehci_pubs,
-                                                'cnis':cnis_pubs,
-                                                'gamelab':gamelab_pubs,
-                                                'te3d':te3d_pubs,
-                                                'bio':bio_pubs})
+                                                'car':car_pubs, 'car_count':car_pubs.count(),
+                                                'comet':comet_pubs, 'comet_count':comet_pubs.count(),
+                                                'cite4d':cite4d_pubs, 'cite4d_count':cite4d_pubs.count(),
+                                                'celt':celt_pubs, 'celt_count':celt_pubs.count(),
+                                                'cehci':cehci_pubs, 'cehci_count':cehci_pubs.count(),
+                                                'cnis':cnis_pubs, 'cnis_count':cnis_pubs.count(),
+                                                'gamelab':gamelab_pubs, 'gamelab_count':gamelab_pubs.count(),
+                                                'te3d':te3d_pubs, 'te3d_count':te3d_pubs.count(),
+                                                'bio':bio_pubs, 'bio_count':bio_pubs.count()})
 
 def authorAnalytics(request, author):
     if author != None:
