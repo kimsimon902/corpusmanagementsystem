@@ -210,7 +210,7 @@
         }
         
         function resetFilter(){
-            var tbody = document.querySelectorAll('tbody[data-year]');
+            var tbody = document.querySelectorAll('tbody[data-center]');
             index = 0;
             length = tbody.length;
             for ( ; index < length; index++) {
@@ -219,16 +219,6 @@
 
             toggleFilterHeader('none');
         }
-
-        car_pubs = records_center_uploads.objects.filter(center__icontains="Center for Automation Research")
-    comet_pubs = records_center_uploads.objects.filter(center__icontains="Center for Complexity and Emerging Technologies")
-    cite4d_pubs = records_center_uploads.objects.filter(center__icontains="Center for ICT for Development")
-    celt_pubs = records_center_uploads.objects.filter(center__icontains="Center for Language Technologies")
-    cehci_pubs = records_center_uploads.objects.filter(center__icontains="Center for Human-Computing Innovations")
-    cnis_pubs = records_center_uploads.objects.filter(center__icontains="Center for Networking and Information Security")
-    gamelab_pubs = records_center_uploads.objects.filter(center__icontains="Game Development Laboratory")
-    te3d_pubs = records_center_uploads.objects.filter(center__icontains="Technology, Education, Entertainment, Empathy, Design House")
-    bio_pubs = records_center_uploads.objects.filter(center__icontains="Bioinformatics Lab")
 
         function barClick(center){
             if (center == 'CAR'){
