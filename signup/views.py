@@ -11,7 +11,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from reportlab.lib import fonts, pagesizes
-from .models import pubkeys, records_bookmark, records_search, records_view_publication, records_view_tag, registerUser
+from .models import pubkeys, records_bookmark, records_center_uploads, records_search, records_view_publication, records_view_tag, registerUser
 from .models import publications
 from .models import keywords
 from .models import annotations
@@ -3218,6 +3218,10 @@ def uploadLiterature(request):
         else:
             userid = "null"
         if request.POST.get('title') and request.POST.get('author'):
+            auth_user = registerUser.objects.get(email = request.session['email'])
+            user_center = auth_user.role
+
+
             savepub = publications()
             savepub.title = request.POST.get('title')
             if publications.objects.filter(title=request.POST.get('title')).exists():
@@ -3231,6 +3235,20 @@ def uploadLiterature(request):
             date = datetime.datetime.now().date()
             savepub.year = date.strftime("%Y")
             savepub.save()
+
+            record = records_center_uploads()
+            record.title = request.POST.get('title')
+            record.abstract = request.POST.get('abstract')
+            record.author = request.POST.get('author')
+            record.pdf = request.FILES.get('document')
+            record.url = 'Uploaded'
+            record.status = 'Pending'
+            record.source = 'Uploaded'
+            date = datetime.datetime.now().date()
+            record.year = date.strftime("%Y")
+            record.center = user_center
+            record.save()
+
             insert_list = []
             name_id = []
             pub_id = []

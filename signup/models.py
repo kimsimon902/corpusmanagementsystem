@@ -118,3 +118,17 @@ class records_bookmark(models.Model):
 
     class Meta:
         db_table = "records_bookmark"
+
+class records_center_uploads(models.Model):
+    title = models.TextField(max_length=300)
+    author = models.CharField(max_length=200)
+    abstract = models.CharField(max_length=100)
+    url = models.CharField(max_length=100)
+    pdf = models.FileField(upload_to='literature/pdfs/')
+    source = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)
+    year = models.IntegerField()
+    center = models.CharField(max_length=100)
+    
+    class Meta:
+        db_table = "records_center_uploads"
