@@ -110,6 +110,14 @@
                                         <td>{{annotate.dateTime}}</td>
                                     </tr>
                                     {% endfor %}
+                                    {% for annotate in sharedAnnotations %}
+                                    <tr>
+                                        <td>{{annotate.author}}</td>
+                                        <td>{{annotate.body}}</td>
+                                        <td>{{annotate.marker}}</td>
+                                        <td>{{annotate.dateTime}}</td>
+                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
