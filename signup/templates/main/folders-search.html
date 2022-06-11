@@ -58,13 +58,13 @@
                       </svg> Folder </button>
                 </div>
                 <h6 style="margin-left: 5px; margin-top: 10px;">Search</h6>
-                <form method="GET" action="/folders/{{request.session.username}}/">
+                <form method="GET" action="/folders/{{request.session.username}}/search/">
                     <div class="mb-3">
                         <input type="text" class="form-control" id="searchFolder" aria-describedby="searchFolder1" name="searched">
                         <button type="submit" class="btn btn-success btn-sm">Submit</button>
                     </div>
                 </form>
-                <button class="tabs-button tabs-button-active" data-for-tab="my-0">{{searched}}</button>
+                <button class="tabs-button tabs-button-active" data-for-tab="my-0">Search results</button>
             </div>
         
             {% if folders %}
@@ -90,8 +90,30 @@
             {% endif %}
             <div class="col tabs-content tabs-content-active" data-tab="my-0">
                 <div class="container-fluid" style="background: #efefef; padding: 10px;">
-                    <h5>{{searched}}</h5>
+                    <h5>You searched for "{{searched}}"</h5>
                     <p>{{annotations}}</p> 
+                    {{ for annotate in annotations }}
+                        <div class="table-responsive" style="min-height: 80vh;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Author</th>
+                                        <th>Body</th>
+                                        <th>Marker</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{annotate.author}}</td>
+                                        <td>{{annotate.body}}</td>
+                                        <td>{{annotate.marker}}</td>
+                                        <td>{{annotate.dateTime}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {{ endfor }}
                 </div>
             </div>
         </div>
