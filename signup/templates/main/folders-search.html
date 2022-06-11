@@ -139,7 +139,7 @@
             <div class="modal-body">
             <form method="POST" action="/profile/{{request.session.username}}/createfolder">
                 {% csrf_token %}
-                <input type="hidden" name="next" value="{{ request.path }}{% if searched %}+{{searched}}{% endif %}"/>
+                <input type="hidden" name="next" value="{{ request.path }}{% if searched %}+?searched={{searched}}{% endif %}"/>
                 <div class="form-group">
                 <label for="folder-name" class="col-form-label">Folder name:</label>
                 <input type="text" class="form-control" name="folder-name">

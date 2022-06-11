@@ -18,7 +18,7 @@
             <form method="post" action="/folders/{{request.session.username}}/deletefolder">
             {% csrf_token %}
             <input type="hidden" name="delete-folder-id" value="{{folder.id}}"/>
-            <input type="hidden" name="next" value="{{ request.path }}{% if searched %}+{{searched}}{% endif %}"/>
+            <input type="hidden" name="next" value="{{ request.path }}{% if searched %}+?searched={{searched}}{% endif %}"/>
             <div class="modal-footer float-end">
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-danger btn-sm" name="delete-folder">Delete</button>
@@ -51,7 +51,7 @@
                             <form method="post" action="/folders/{{request.session.username}}/addcollab">
                                 {% csrf_token %}
                                 <input type="hidden" name="new-folder-id" value="{{folder.id}}"/>
-                                <input type="hidden" name="next" value="{{ request.path }}{% if searched %}+{{searched}}{% endif %}"/>
+                                <input type="hidden" name="next" value="{{ request.path }}{% if searched %}+?searched={{searched}}{% endif %}"/>
                                 <input type="hidden" name="newCollab" value="newCollab">
                                 <div class="form-group">
                                     <label for="email-collab" class="col-form-label">Email:</label>
@@ -80,7 +80,7 @@
                                             <form method="post" action="/folders/{{request.session.username}}/removecollab">
                                             {% csrf_token %}
                                             <input type="hidden" name="delete-collab" value="{{x.id}}"/>
-                                            <input type="hidden" name="next" value="{{ request.path }}{% if searched %}+{{searched}}{% endif %}"/>
+                                            <input type="hidden" name="next" value="{{ request.path }}{% if searched %}+?searched={{searched}}{% endif %}"/>
                                             <td>{{x.collab}}</td>
                                             <td><button type="submit" class="btn btn-outline-danger btn-sm" name="collab-delete">x</button></td>
                                             </form>    
