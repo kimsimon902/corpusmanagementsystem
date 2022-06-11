@@ -58,10 +58,16 @@
                       </svg> Folder </button>
                 </div>
                 <h6 style="margin-left: 5px; margin-top: 10px;">Search</h6>
-                <div class="input-group mb-3" style="padding: 10px;">
-                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-                </div>
+                <!-- <div class="input-group mb-3" style="padding: 10px;">
+                    <input type="text" class="form-control" placeholder="Publication, Annotation" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Q</button>
+                </div> -->
+                <form>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="searchFolder" aria-describedby="searchFolder1" placeholder="Publication, Annotation">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         
             {% if folders %}
