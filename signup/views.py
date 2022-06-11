@@ -2387,7 +2387,8 @@ def SearchAnnotationFolder(request):
                                                     'collabs':collabs,
                                                     'sharedfolders': shared_folders,
                                                     'sharedbookmarks': shared_folders_bookmarks,
-                                                    'sharedpubs':shared_folders_pubs})
+                                                    'sharedpubs':shared_folders_pubs,
+                                                    'searched':searched,})
 
 def FoldersPageAnalytics(request, folderID):
     email = request.session['email']
