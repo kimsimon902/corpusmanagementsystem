@@ -105,7 +105,7 @@
                                     {% for annotate in annotations %}
                                     <tr>
                                         <td>{{annotate.author}}</td>
-                                        <td>{{annotate.body}}</td>
+                                        <td><a href="/folders/{{request.session.username}}/{{annotate.folderID}}/publication/{{annotate.publicationID}}">{{annotate.body}}</a></td>
                                         <td>{{annotate.marker}}</td>
                                         <td>{{annotate.dateTime}}</td>
                                     </tr>
@@ -113,7 +113,7 @@
                                     {% for annotate in sharedAnnotations %}
                                     <tr>
                                         <td>{{annotate.author}}</td>
-                                        <td>{{annotate.body}}</td>
+                                        <td><a href="/folders/{{request.session.username}}/{{annotate.folderID}}/publication/{{annotate.publicationID}}">{{annotate.body}}</a></td>
                                         <td>{{annotate.marker}}</td>
                                         <td>{{annotate.dateTime}}</td>
                                     </tr>
