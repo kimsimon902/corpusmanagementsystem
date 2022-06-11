@@ -62,7 +62,7 @@
                     <input type="text" class="form-control" placeholder="Publication, Annotation" aria-label="Recipient's username" aria-describedby="button-addon2">
                     <button class="btn btn-outline-secondary" type="button" id="button-addon2">Q</button>
                 </div> -->
-                <form method="GET" action="/folders/{{request.session.username}}/">
+                <form method="GET" action="/folders/{{request.session.username}}/search/">
                     <div class="mb-3">
                         <input type="text" class="form-control" id="searchFolder" aria-describedby="searchFolder1" name="searched">
                         <button type="submit" class="btn btn-success btn-sm">Submit</button>
