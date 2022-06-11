@@ -2364,6 +2364,7 @@ def FoldersPage(request, username):
 
 def SearchAnnotationFolder(request):
     email = request.session['email']
+    searched = request.GET.get('searched')
 
     rawbookmarks = bookmarks.objects.filter(user=email) #All bookmarks of the user
     filterpub = bookmarks.objects.filter(user=email).values('publicationID') #Get the publicationIDs of bookmarks of the user

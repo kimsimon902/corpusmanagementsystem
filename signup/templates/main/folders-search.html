@@ -38,7 +38,7 @@
                 {% if folders %}
                 {% for folder in folders%}
                     {% if forloop.first %}
-                        <button class="tabs-button tabs-button-active" data-for-tab="my-{{forloop.counter}}">{{folder.folder_name}}</button>
+                        <button class="tabs-button" data-for-tab="my-{{forloop.counter}}">{{folder.folder_name}}</button>
                     {% else %}
                         <button class="tabs-button" data-for-tab="my-{{forloop.counter}}">{{folder.folder_name}}</button>
                     {% endif %}
@@ -62,14 +62,13 @@
                     <input type="text" class="form-control" placeholder="Publication, Annotation" aria-label="Recipient's username" aria-describedby="button-addon2">
                     <button class="btn btn-outline-secondary" type="button" id="button-addon2">Q</button>
                 </div> -->
-                <form method="GET" action="{% url 'searchFolder' %}">
-                    {% csrf_token %}
+                <form method="GET" action="/folders/{{request.session.username}}/">
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="searchFolder" aria-describedby="searchFolder1" placeholder="Publication, Annotation">
+                        <input type="text" class="form-control" id="searchFolder" aria-describedby="searchFolder1" placeholder="Publication, Annotation" name="searched">
                         <button type="submit" class="btn btn-success btn-sm">Submit</button>
                     </div>
-                    
                 </form>
+                <button class="tabs-button tabs-button-active" data-for-tab="my-results">{{folder.folder_name}}</button>
             </div>
         
             {% if folders %}
@@ -92,6 +91,14 @@
                     {% include 'main/shared-folder-pub-list.html' %}
                 </div>
             {% endfor %}
+            {% if results %}
+            {% for result in results %}
+                <div class="col tabs-content-activet" data-tab="my-results">
+                    <h5>Results</h5>
+                </div>
+            {% endfor %}
+        {% endif %}
+
         {% endif %}
         </div>
     </div>
