@@ -2380,7 +2380,7 @@ def SearchAnnotationFolder(request):
     shared_folders_bookmarks = bookmarks.objects.filter(folderID__in=shared_folders_ids) #Get all bookmarks that have collaborators
     shared_folders_pubs = publications.objects.filter(id__in=shared_folders_bookmarks.values('publicationID')) #Get the publications that are shared
 
-    return render(request, 'main/my-folders.html',{'bookmarks':bookmark,
+    return render(request, 'main/folders-search.html',{'bookmarks':bookmark,
                                                     'folders':folders,
                                                     'rawbookmarks':rawbookmarks,
                                                     'collaborators':collaborator,
