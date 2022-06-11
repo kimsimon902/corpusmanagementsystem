@@ -38,7 +38,7 @@
                 {% if folders %}
                 {% for folder in folders%}
                     {% if forloop.first %}
-                        <button class="tabs-button" data-for-tab="my-{{forloop.counter}}">{{folder.folder_name}}</button>
+                        <button class="tabs-button  tabs-button-active" data-for-tab="my-{{forloop.counter}}">{{folder.folder_name}}</button>
                     {% else %}
                         <button class="tabs-button" data-for-tab="my-{{forloop.counter}}">{{folder.folder_name}}</button>
                     {% endif %}
@@ -68,13 +68,13 @@
                         <button type="submit" class="btn btn-success btn-sm">Submit</button>
                     </div>
                 </form>
-                <button class="tabs-button tabs-button-active" data-for-tab="my-0">{{searched}}</button>
+                <button class="tabs-button" data-for-tab="my-0">{{searched}}</button>
             </div>
         
             {% if folders %}
                 {% for folder in folders %}
                     {% if forloop.first %}
-                        <div class="col tabs-content" data-tab="my-{{forloop.counter}}">
+                        <div class="col tabs-content tabs-content-active" data-tab="my-{{forloop.counter}}">
                                 {% include 'main/my-folder-pub-list.html' %}
                         </div>
                     {% else %}
@@ -94,7 +94,7 @@
             {% endif %}
             <!-- {% if results %}
             {% for result in results %} -->
-            <div class="col tabs-content tabs-content-active" data-tab="my-0">
+            <div class="col tabs-content" data-tab="my-0">
                 <div class="container-fluid" style="background: #efefef; padding: 10px;">
                     <h5>{{searched}}</h5>       
                 </div>
