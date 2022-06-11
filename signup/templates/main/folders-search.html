@@ -92,7 +92,7 @@
                 <div class="container-fluid" style="background: #efefef; padding: 10px;">
                     <h5>You searched for "{{searched}}"</h5>
                     <p>{{annotations}}</p> 
-                    {{ for annotate in annotations }}
+                    {% for annotate in annotations %}
                         <div class="table-responsive" style="min-height: 80vh;">
                             <table class="table">
                                 <thead>
@@ -113,7 +113,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    {{ endfor }}
+                    {% endfor %}
                 </div>
             </div>
         </div>
