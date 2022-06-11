@@ -2381,8 +2381,8 @@ def SearchAnnotationFolder(request,username):
     shared_folders_pubs = publications.objects.filter(id__in=shared_folders_bookmarks.values('publicationID')) #Get the publications that are shared
 
     annotates = annotations.objects.filter(folderID__in=folders.values('id'),body__icontains=searched)
+    sharedAnnotates = annotations.objects.filter(folderID__in=shared_folders_ids,body__icontains=searched)
 
-    results_bookmark = bookmark.filter()
 
     return render(request, 'main/folders-search.html',{'bookmarks':bookmark,
                                                     'folders':folders,
@@ -2393,7 +2393,8 @@ def SearchAnnotationFolder(request,username):
                                                     'sharedbookmarks': shared_folders_bookmarks,
                                                     'sharedpubs':shared_folders_pubs,
                                                     'searched':searched,
-                                                    'annotations':annotates,})
+                                                    'annotations':annotates,
+                                                    'sharedAnnotations':sharedAnnotates,})
 
 def FoldersPageAnalytics(request, folderID):
     email = request.session['email']
