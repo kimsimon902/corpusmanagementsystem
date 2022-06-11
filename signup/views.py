@@ -2362,7 +2362,7 @@ def FoldersPage(request, username):
                                                     'sharedbookmarks': shared_folders_bookmarks,
                                                     'sharedpubs':shared_folders_pubs})
 
-def SearchAnnotationFolder(request):
+def SearchAnnotationFolder(request,username):
     email = request.session['email']
     searched = request.GET.get('searched')
 
