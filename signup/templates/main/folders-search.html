@@ -133,6 +133,34 @@
         </div>
     </div>
 
+    <script>
+        function setupTabs(){
+            document.querySelectorAll('.tabs-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const sideBar = button.parentElement;
+                    const tabsCon = sideBar.parentElement;
+                    const tabNum = button.dataset.forTab;
+                    const tabToActivate = tabsCon.querySelector(`.tabs-content[data-tab="${tabNum}"]`);
+
+                    sideBar.querySelectorAll(".tabs-button").forEach(button => {
+                        button.classList.remove("tabs-button-active");
+                    });
+
+                    tabsCon.querySelectorAll(".tabs-content").forEach(tab => {
+                        tab.classList.remove("tabs-content-active");
+                    });
+
+                    button.classList.add("tabs-button-active");
+                    tabToActivate.classList.add("tabs-content-active");
+                });
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setupTabs();
+        });
+    </script>
+
     <script src="{% static '\users\js\my-folders.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
