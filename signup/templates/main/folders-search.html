@@ -86,22 +86,20 @@
             {% endif %}
             <!-- Shared with me -->
             {% if sharedfolders %}
-            {% for folder in sharedfolders %}
-                <div class="col tabs-content" data-tab="collab-{{forloop.counter}}">
-                    {% include 'main/shared-folder-pub-list.html' %}
-                </div>
-            {% endfor %}
+                {% for folder in sharedfolders %}
+                    <div class="col tabs-content" data-tab="collab-{{forloop.counter}}">
+                        {% include 'main/shared-folder-pub-list.html' %}
+                    </div>
+                {% endfor %}
+            {% endif %}
             <!-- {% if results %}
             {% for result in results %} -->
-                <div class="col tabs-content-active" data-tab="my-results">
-                    <div class="container-fluid" style="background: #efefef; padding: 10px;">
-                        <h5>{{searched}}</h5>       
-                    </div>
+            <div class="col tabs-content-active" data-tab="my-results">
+                <div class="container-fluid" style="background: #efefef; padding: 10px;">
+                    <h5>{{searched}}</h5>       
                 </div>
+            </div>
             <!-- {% endfor %} -->
-        {% endif %}
-
-        {% endif %}
         </div>
     </div>
 
