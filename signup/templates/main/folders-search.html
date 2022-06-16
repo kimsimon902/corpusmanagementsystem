@@ -57,11 +57,11 @@
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
                       </svg> Folder </button>
                 </div>
-                <h6 style="margin-left: 5px; margin-top: 10px;">Search</h6>
+                <h6 style="margin-left: 5px; margin-top: 10px;">Search annotations</h6>
                 <form method="GET" action="/folders/{{request.session.username}}/search/">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" id="searchFolder" aria-describedby="searchFolder1" name="searched" value="{{searched}}">
-                        <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                        <button type="submit" class="btn btn-success btn-sm">Search</button>
                     </div>
                 </form>
                 <button class="tabs-button tabs-button-active" data-for-tab="my-0">Search results</button>
