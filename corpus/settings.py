@@ -87,16 +87,27 @@ WSGI_APPLICATION = 'corpus.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'simonkim902$Corpus_Management_System',  
+#         'USER': 'simonkim902',
+#         'PASSWORD': 'admin123',
+#         'HOST': 'simonkim902.mysql.pythonanywhere-services.com',
+#         'OPTIONS': {
+#             "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+#         }
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'simonkim902$Corpus_Management_System',  
-        'USER': 'simonkim902',
-        'PASSWORD': 'admin123',
-        'HOST': 'simonkim902.mysql.pythonanywhere-services.com',
-        'OPTIONS': {
-            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
-        }
+        'NAME': 'corpusmanagementsystem',  
+        'USER': 'root',
+        'PASSWORD': 'pB2TKVWUnd7P3rPswSUuNX7DH1SRoY',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
