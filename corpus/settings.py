@@ -106,7 +106,7 @@ DATABASES = {
         'NAME': 'corpusmanagementsystem',  
         'USER': 'root',
         'PASSWORD': 'pB2TKVWUnd7P3rPswSUuNX7DH1SRoY',
-        'HOST': 'ccscloud1.dlsu.edu.ph:11780',
+        'HOST': 'ccscloud1.dlsu.edu.ph',
         'PORT': '3306',
     }
 }
