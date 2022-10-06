@@ -105,13 +105,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'corpusmanagementsystem',  
         'USER': 'root',
-        'PASSWORD': 'pB2TKVWUnd7P3rPswSUuNX7DH1SRoY',
+        'PASSWORD': '',   
         'HOST': 'localhost',
         'OPTIONS': {
             "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
         },
     }
 }
+
+# pB2TKVWUnd7P3rPswSUuNX7DH1SRoY
 
 # DATABASES = {
 #     'default': {
