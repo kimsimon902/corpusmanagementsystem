@@ -104,9 +104,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'corpusmanagementsystem',  
-        'USER': 'root@localhost',
+        'USER': 'root',
         'PASSWORD': 'pB2TKVWUnd7P3rPswSUuNX7DH1SRoY',
-        'HOST': 'localhost',
+        'HOST': 'ccscloud1.dlsu.edu.ph:11780',
         'PORT': '3306',
     }
 }
