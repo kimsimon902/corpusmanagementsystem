@@ -106,7 +106,7 @@ DATABASES = {
         'NAME': 'corpusmanagementsystem',  
         'USER': 'root',
         'PASSWORD': 'pB2TKVWUnd7P3rPswSUuNX7DH1SRoY',
-        'HOST': 'ccscloud1.dlsu.edu.ph',
+        'HOST': 'localhost',
         'OPTIONS': {
             "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
         },
