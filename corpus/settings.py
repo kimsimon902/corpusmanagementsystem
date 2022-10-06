@@ -108,6 +108,9 @@ DATABASES = {
         'PASSWORD': 'pB2TKVWUnd7P3rPswSUuNX7DH1SRoY',
         'HOST': 'ccscloud1.dlsu.edu.ph',
         'PORT': '3306',
+        'OPTIONS': {
+            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
