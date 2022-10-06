@@ -104,7 +104,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'corpusmanagementsystem',  
-        'USER': 'root',
+        'USER': 'root@localhost',
         'PASSWORD': 'pB2TKVWUnd7P3rPswSUuNX7DH1SRoY',
         'HOST': 'localhost',
         'PORT': '3306',
