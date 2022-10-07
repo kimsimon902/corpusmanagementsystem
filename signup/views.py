@@ -169,7 +169,7 @@ def registerView(request):
             if request.POST.get('password') != request.POST.get('repwd'):
                 messages.error(request, 'Password does not match', extra_tags='name')
                 return redirect('register')
-            if  len(str(request.POST.get('password'))) < 8 or any(x.islower() for x in request.POST.get('password')):
+            if  len(str(request.POST.get('password'))) < 8 or request.POST.get('password').islower():
                 messages.error(request, 'Password must have at least 8 characters and 1 uppercase letter', extra_tags='name')
                 return redirect('register')
             saverecord.first_name = request.POST.get('first_name')
