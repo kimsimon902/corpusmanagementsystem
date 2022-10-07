@@ -167,7 +167,7 @@ def registerView(request):
                 return redirect('register')
             saverecord.password = make_password(salt='mySalt',password=request.POST.get('password'))
             if request.POST.get('password') != request.POST.get('repwd'):
-                messages.error(request, 'Password does not match', extra_tags='name')
+                messages.error(request, 'Password does not match test', extra_tags='name')
                 return redirect('register')
             if  len(str(request.POST.get('password'))) < 8:
                 messages.error(request, 'Password must have at least 8 characters and 1 uppercase letter', extra_tags='name')
