@@ -169,11 +169,8 @@
                                     <td style="border-bottom: none;">{{result.year}}</td>
                                     <td style="border-bottom: none;">{{result.center}}</td>
     
-                                    {% if result.url != 'uploaded' %}
-                                    <td id="url" style="border-bottom: none;"><a href="{{result.url}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">{{result.url}}</div></a></td>
-                                    {% else %}
                                     <td id="url" style="border-bottom: none;"><a href="/media/{{result.pdf}}" style="text-decoration: none;"><div class="link" style="text-decoration: none !important; background-color: none; color:black; box-shadow: none !important;">View PDF</div></a></td>
-                                    {% endif %}
+      
                                 </tr>
                                 <tr id="abstract-{{result.id}}" style="display: none;">
                                     <td colspan="5" id="action-buttons-{{result.id}}" style="border-bottom-width: 1px; text-align:justify; font-style: italic;">{{result.abstract}}</td>
