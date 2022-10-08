@@ -984,8 +984,6 @@ def analyticsFilterKeyword(request, keyword, keyword2):
         else:
             author="null"
 
-        email = request.session['email']
-
         searched = keyword_search
         searched2 = keyword_search2
         searchFilter = "default"
@@ -1975,7 +1973,7 @@ def searchPublication(request):
             paginator = Paginator(results, 20)
             page = request.GET.get('page')
             result_count = results.count()
-            
+
             try:
                 results = paginator.page(page)
             except PageNotAnInteger:
@@ -2829,7 +2827,7 @@ def PublicationPage(request, id):
     elif 'search' in previous:
         request.session['search_url'] = previous
         current_url = request.session['search_url']
-    elif 'http://simonkim902.pythonanywhere.com/home/' == previous:
+    elif 'http://ccscloud1.dlsu.edu.ph:11780/home/' == previous:
         request.session['search_url'] = previous
         current_url = request.session['search_url']
     else:

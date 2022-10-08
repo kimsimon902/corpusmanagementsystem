@@ -142,7 +142,7 @@
                         var y_value = this.data.datasets[0].data[e._index];
                         console.log(x_value);
                         console.log(y_value);
-                        window.open('http://simonkim902.pythonanywhere.com/analytics/'+x_value,'_blank');
+                        window.open('http://ccscloud1.dlsu.edu.ph:11780/analytics/'+x_value,'_blank');
                     },
                 }
             });
@@ -195,7 +195,7 @@
                                 console.log(x_value);
                                 console.log(y_value);
                                 authorBarClick(x_value);
-                                //window.open('http://simonkim902.pythonanywhere.com/analyticsAuthor/'+x_value+'/'+'{{searched}}','_blank');
+                                //window.open('http://ccscloud1.dlsu.edu.ph:11780/analyticsAuthor/'+x_value+'/'+'{{searched}}','_blank');
                             },
                       }
                   });
@@ -264,7 +264,7 @@
                             console.log(x_value);
                             console.log(y_value);
                             sourcePieClick(x_value)
-                            // window.open('http://simonkim902.pythonanywhere.com/analytics/{{searched}}/'+x_value,'_blank');
+                            // window.open('http://ccscloud1.dlsu.edu.ph:11780/analytics/{{searched}}/'+x_value,'_blank');
                     },
                 }
             });
@@ -393,7 +393,7 @@
 
                                                                                     
                                                 chart.listen("pointClick", function(e){
-                                                    var url = "http://simonkim902.pythonanywhere.com/search/?keyword=" + e.point.get("x");
+                                                    var url = "http://ccscloud1.dlsu.edu.ph:11780/search/?keyword=" + e.point.get("x");
                                                     window.open(url, "_blank");
                                                 });
                                             });
