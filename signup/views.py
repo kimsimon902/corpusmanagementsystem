@@ -3354,10 +3354,12 @@ def viewAdmin(request):
             stat.status = 'Approved'
             stat.save()
 
-            if (records_center_uploads.objects.get(title=stat.title).exists()):
+            try:
                 centerReport = records_center_uploads.objects.get(title=stat.title)
                 centerReport.status = 'Approved'
                 centerReport.save()
+            except records_center_uploads.DoesNotExist:
+                True
 
 
             
