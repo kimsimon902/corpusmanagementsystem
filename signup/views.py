@@ -3301,18 +3301,19 @@ def uploadLiterature(request):
             savepub.year = date.strftime("%Y")
             savepub.save()
 
-            record = records_center_uploads()
-            record.title = request.POST.get('title')
-            record.abstract = request.POST.get('abstract')
-            record.author = request.POST.get('author')
-            record.pdf = request.FILES.get('document')
-            record.url = 'Uploaded'
-            record.status = 'Pending'
-            record.source = 'Uploaded'
-            date = datetime.datetime.now().date()
-            record.year = date.strftime("%Y")
-            record.center = user_center
-            record.save()
+            if user_center != 'Student':
+                record = records_center_uploads()
+                record.title = request.POST.get('title')
+                record.abstract = request.POST.get('abstract')
+                record.author = request.POST.get('author')
+                record.pdf = request.FILES.get('document')
+                record.url = 'Uploaded'
+                record.status = 'Pending'
+                record.source = 'Uploaded'
+                date = datetime.datetime.now().date()
+                record.year = date.strftime("%Y")
+                record.center = user_center
+                record.save()
 
             insert_list = []
             name_id = []
