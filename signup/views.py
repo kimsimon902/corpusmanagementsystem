@@ -3359,7 +3359,7 @@ def viewAdmin(request):
                 centerReport.status = 'Approved'
                 centerReport.save()
             except records_center_uploads.DoesNotExist:
-                True
+                centerReport = None
 
 
             
