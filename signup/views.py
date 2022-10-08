@@ -1,3 +1,4 @@
+from email.quoprimime import decode
 from enum import unique
 from django.core import paginator
 from django.db import reset_queries
@@ -433,7 +434,7 @@ def create_dictionary(clean_list, id):
     pubkeys.objects.bulk_create(pub_id)
 
 def centerReports(request):
-    center_pubs = records_center_uploads.objects.all()
+    center_pubs = records_center_uploads.objects.filter(status='Approved')
 
     car_pubs = records_center_uploads.objects.filter(center__icontains="Center for Automation Research")
     comet_pubs = records_center_uploads.objects.filter(center__icontains="Center for Complexity and Emerging Technologies")
@@ -984,7 +985,7 @@ def analyticsFilterKeyword(request, keyword, keyword2):
             
         else:
             author="null"
-            
+
         email = request.session['email']
         searched = keyword_search
         searched2 = keyword_search2
@@ -3350,6 +3351,9 @@ def viewAdmin(request):
             stat = publications.objects.get(id=pair[0],title=pair[1])
             stat.status = 'Approved'
             stat.save()
+            centerReport = records_center_uploads.objects.get(title=stat.title)
+            centerReport.status = 'Approved'
+            centerReport.save()
         elif 'Decline' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")
             #pair will be a list containing x and y
@@ -3357,6 +3361,8 @@ def viewAdmin(request):
             dec.delete()
             bkmrk = bookmarks.objects.get(publicationID=pair[0])
             bkmrk.delete()
+            centerReport = records_center_uploads.objects.get(title=dec.title)
+            centerReport.delete()
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
