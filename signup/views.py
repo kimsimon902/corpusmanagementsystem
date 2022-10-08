@@ -1974,7 +1974,8 @@ def searchPublication(request):
 
             paginator = Paginator(results, 20)
             page = request.GET.get('page')
-
+            result_count = results.count()
+            
             try:
                 results = paginator.page(page)
             except PageNotAnInteger:
@@ -1982,7 +1983,7 @@ def searchPublication(request):
             except EmptyPage:
                 results = paginator.page(paginator.num_pages)
 
-            result_count = results.count()
+            
 
             index = results.number-1
             max_index = len(paginator.page_range)
