@@ -3354,12 +3354,11 @@ def viewAdmin(request):
             stat.status = 'Approved'
             stat.save()
 
-            try:
+            if records_center_uploads.objects.get(title=stat.title):
                 centerReport = records_center_uploads.objects.get(title=stat.title)
                 centerReport.status = 'Approved'
                 centerReport.save()
-            except records_center_uploads.objects.get(title=stat.title).DoesNotExist:
-                True
+
 
             
         elif 'Decline' in request.POST.values():
@@ -3369,12 +3368,12 @@ def viewAdmin(request):
             dec.delete()
             bkmrk = bookmarks.objects.get(publicationID=pair[0])
             bkmrk.delete()
-            try:
-                centerReport = records_center_uploads.objects.get(title=dec.title)
-                centerReport.status = 'Approved'
-                centerReport.save()
-            except records_center_uploads.objects.get(title=dec.title).DoesNotExist:
-                True
+            # try:
+            #     centerReport = records_center_uploads.objects.get(title=dec.title)
+            #     centerReport.status = 'Approved'
+            #     centerReport.save()
+            # except records_center_uploads.objects.get(title=dec.title).DoesNotExist:
+            #     True
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
