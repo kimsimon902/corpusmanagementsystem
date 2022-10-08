@@ -3354,7 +3354,7 @@ def viewAdmin(request):
             stat.status = 'Approved'
             stat.save()
             
-            if (records_center_uploads.objects.get(title=stat.title)).exists():
+            if records_center_uploads.objects.get(title=stat.title).exists():
                 centerReport = records_center_uploads.objects.get(title=stat.title)
                 centerReport.status = 'Approved'
                 centerReport.save()
@@ -3365,7 +3365,7 @@ def viewAdmin(request):
             dec.delete()
             bkmrk = bookmarks.objects.get(publicationID=pair[0])
             bkmrk.delete()
-            if (records_center_uploads.objects.get(title=dec.title)).exists():
+            if records_center_uploads.objects.get(title=dec.title).exists():
                 centerReport = records_center_uploads.objects.get(title=dec.title)
                 centerReport.delete()
 
