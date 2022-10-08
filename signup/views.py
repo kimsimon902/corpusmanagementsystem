@@ -443,7 +443,7 @@ def centerReports(request):
     cehci_pubs = records_center_uploads.objects.filter(center__icontains="Center for Human-Computing Innovations", status='Approved')
     cnis_pubs = records_center_uploads.objects.filter(center__icontains="Center for Networking and Information Security", status='Approved')
     gamelab_pubs = records_center_uploads.objects.filter(center__icontains="Game Development Laboratory", status='Approved')
-    te3d_pubs = records_center_uploads.objects.filter(center__icontains="Technology, Education, E   ntertainment, Empathy, Design House", status='Approved')
+    te3d_pubs = records_center_uploads.objects.filter(center__icontains="Technology, Education, Entertainment, Empathy, Design House", status='Approved')
     bio_pubs = records_center_uploads.objects.filter(center__icontains="Bioinformatics Lab", status='Approved')
 
     return render(request, 'centerReport.html',{'pubs':center_pubs, 
