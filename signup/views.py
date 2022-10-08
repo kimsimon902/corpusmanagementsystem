@@ -981,9 +981,11 @@ def analyticsFilterKeyword(request, keyword, keyword2):
 
         if (request.user):
             author = request.session['username']
+            
         else:
             author="null"
-
+            
+        email = request.session['email']
         searched = keyword_search
         searched2 = keyword_search2
         searchFilter = "default"
