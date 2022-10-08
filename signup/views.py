@@ -436,15 +436,15 @@ def create_dictionary(clean_list, id):
 def centerReports(request):
     center_pubs = records_center_uploads.objects.filter(status='Approved')
 
-    car_pubs = records_center_uploads.objects.filter(center__icontains="Center for Automation Research")
-    comet_pubs = records_center_uploads.objects.filter(center__icontains="Center for Complexity and Emerging Technologies")
-    cite4d_pubs = records_center_uploads.objects.filter(center__icontains="Center for ICT for Development")
-    celt_pubs = records_center_uploads.objects.filter(center__icontains="Center for Language Technologies")
-    cehci_pubs = records_center_uploads.objects.filter(center__icontains="Center for Human-Computing Innovations")
-    cnis_pubs = records_center_uploads.objects.filter(center__icontains="Center for Networking and Information Security")
-    gamelab_pubs = records_center_uploads.objects.filter(center__icontains="Game Development Laboratory")
-    te3d_pubs = records_center_uploads.objects.filter(center__icontains="Technology, Education, Entertainment, Empathy, Design House")
-    bio_pubs = records_center_uploads.objects.filter(center__icontains="Bioinformatics Lab")
+    car_pubs = records_center_uploads.objects.filter(center__icontains="Center for Automation Research", status='Approved')
+    comet_pubs = records_center_uploads.objects.filter(center__icontains="Center for Complexity and Emerging Technologies", status='Approved')
+    cite4d_pubs = records_center_uploads.objects.filter(center__icontains="Center for ICT for Development", status='Approved')
+    celt_pubs = records_center_uploads.objects.filter(center__icontains="Center for Language Technologies", status='Approved')
+    cehci_pubs = records_center_uploads.objects.filter(center__icontains="Center for Human-Computing Innovations", status='Approved')
+    cnis_pubs = records_center_uploads.objects.filter(center__icontains="Center for Networking and Information Security", status='Approved')
+    gamelab_pubs = records_center_uploads.objects.filter(center__icontains="Game Development Laboratory", status='Approved')
+    te3d_pubs = records_center_uploads.objects.filter(center__icontains="Technology, Education, E   ntertainment, Empathy, Design House", status='Approved')
+    bio_pubs = records_center_uploads.objects.filter(center__icontains="Bioinformatics Lab", status='Approved')
 
     return render(request, 'centerReport.html',{'pubs':center_pubs, 
                                                 'car':car_pubs, 'car_count':car_pubs.count(),
