@@ -1982,6 +1982,8 @@ def searchPublication(request):
             except EmptyPage:
                 results = paginator.page(paginator.num_pages)
 
+            result_count = results.count()
+
             index = results.number-1
             max_index = len(paginator.page_range)
             start_index = index - 5 if index >= 5 else 0
@@ -1994,7 +1996,7 @@ def searchPublication(request):
             print("im at title != none")
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results, 
-                                                        'count':results.count(),
+                                                        'count':result_count,
                                                         'keyword_results':keyword_results, 
                                                         'bookmarks': my_bookmarks_folder_contents, 
                                                         'my_bookmarks_id': my_bookmarks_folder, 
