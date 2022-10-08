@@ -3353,11 +3353,15 @@ def viewAdmin(request):
             stat = publications.objects.get(id=pair[0],title=pair[1])
             stat.status = 'Approved'
             stat.save()
-            
-            if records_center_uploads.objects.get(title=stat.title).exists():
+
+            try:
                 centerReport = records_center_uploads.objects.get(title=stat.title)
                 centerReport.status = 'Approved'
                 centerReport.save()
+            except records_center_uploads.objects.get(title=stat.title).DoesNotExist:
+                True
+
+            
         elif 'Decline' in request.POST.values():
             pair = [key for key in request.POST.keys()][1].split("|")
             #pair will be a list containing x and y
@@ -3365,9 +3369,12 @@ def viewAdmin(request):
             dec.delete()
             bkmrk = bookmarks.objects.get(publicationID=pair[0])
             bkmrk.delete()
-            if records_center_uploads.objects.get(title=dec.title).exists():
+            try:
                 centerReport = records_center_uploads.objects.get(title=dec.title)
-                centerReport.delete()
+                centerReport.status = 'Approved'
+                centerReport.save()
+            except records_center_uploads.objects.get(title=dec.title).DoesNotExist:
+                True
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
