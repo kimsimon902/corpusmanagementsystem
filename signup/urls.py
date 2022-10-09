@@ -10,6 +10,7 @@ import signup
 urlpatterns =[
     path('',views.index, name='index'),
     path('home/',views.home, name='home'),
+    path('about/',views.aboutPage, name='about')
     path('register/',views.registerView, name='register'),
     path('login/',views.loginView, name='login'),
     path('logout/',views.logoutView, name='logout'),

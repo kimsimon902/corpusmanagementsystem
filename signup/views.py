@@ -143,6 +143,9 @@ def home(request):
 
     return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs,'authors':authors})
 
+def aboutPage(request):
+    return render(request, 'main/about.html')
+
 def viewBookmarks(request):
     email = request.session['email']
   
