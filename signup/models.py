@@ -13,6 +13,7 @@ class registerUser(models.Model):
     last_login = models.CharField(max_length=100)
     is_superuser = models.CharField(max_length=100)
     role = models.CharField(max_length=100)
+    google_scholar_link = models.CharField(max_length=100)
 
     class Meta:
         db_table = "auth_user"
