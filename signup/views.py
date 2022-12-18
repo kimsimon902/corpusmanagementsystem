@@ -181,7 +181,7 @@ def registerView(request):
             saverecord.is_superuser = 0
             saverecord.last_login = time.strftime('%Y-%m-%d %H:%M:%S')
             saverecord.google_scholar_link = request.POST.get('gscholar')
-            saverecord.role = request.POST.get('adriclablist')
+            saverecord.role = ','.join(request.POST.get('adriclablist'))
             saverecord.save()
             bookmarks_folder.objects.bulk_create([
                 bookmarks_folder(folder_name='My Uploads',user=request.POST.get('email')),
