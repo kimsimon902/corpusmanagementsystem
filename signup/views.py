@@ -160,6 +160,7 @@ def viewBookmarks(request):
 def registerView(request):
     if request.method=='POST':
         if request.POST.get('username') and request.POST.get('email') and request.POST.get('password') and request.POST.get('first_name') and request.POST.get('last_name') and request.POST.get('adriclablist'):
+            finaladriclist = ','.join(request.POST.get('adriclablist'))
             saverecord = registerUser()
             saverecord.username = request.POST.get('username')
             if registerUser.objects.filter(username=request.POST.get('username')).exists():
@@ -181,7 +182,7 @@ def registerView(request):
             saverecord.is_superuser = 0
             saverecord.last_login = time.strftime('%Y-%m-%d %H:%M:%S')
             saverecord.google_scholar_link = request.POST.get('gscholar')
-            saverecord.role = ','.join(request.POST.get('adriclablist'))
+            saverecord.role = finaladriclist
             saverecord.save()
             bookmarks_folder.objects.bulk_create([
                 bookmarks_folder(folder_name='My Uploads',user=request.POST.get('email')),
