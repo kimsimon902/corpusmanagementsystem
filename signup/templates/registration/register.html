@@ -84,10 +84,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="{% static '\users\js\home.js' %}"></script>
     <script>
-        $("#testform").submit(function(e) {
+
+        $('#testform').on('submit', function(e) {
+
         const dp_value = $("#adriclablist").val();
         let finaladriclablist = dp_value.toString();
         document.getElementById("adriclablist").innerHTML = finaladriclablist;
+
         });
     </script>
 </body>
