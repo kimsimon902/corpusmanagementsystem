@@ -72,7 +72,7 @@
                     </div>
                     {% endif %}
                     <div class="form-group"><input class="btn btn-primary btn-block" type="submit" value="Sign Up"></input></div><a class="already" href="{% url 'login' %}">Already have an account? Login here.</a>
-                    <p id="storeradric"></p>
+                    <p name="storeradric" id="storeradric"></p>
                 </form>
             </div>
         </section>
@@ -87,7 +87,7 @@
         $("#testform").submit(function(e) {
         const dp_value = $("#adriclablist").val();
         let finaladriclablist = dp_value.toString();
-        document.getElementById("storeradric").innerHTML = text;
+        document.getElementById("storeradric").innerHTML = finaladriclablist;
         });
     </script>
 </body>
