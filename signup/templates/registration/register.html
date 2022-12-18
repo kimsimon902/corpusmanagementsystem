@@ -47,7 +47,7 @@
                     <div class="form-group"><input class="form-control" type="text" name="gscholar" placeholder="Google Scholar Link (Optional)"></div>
                     <i class="row-middle" style="font-size: 12px">Password must have at least 8 characters and 1 uppercase letter.</i>
                     <label for="adriclablist">Choose a role:</label>
-                    <select name="adriclablist" id="adriclablist">
+                    <select name="adriclablist" id="adriclablist" multiple>
                         <optgroup label="Student">
                             <option value="Student">Student</option>
                         </optgroup>
@@ -63,6 +63,7 @@
                             <option value="Bioinformatics Lab">Bioinformatics Lab</option>
                         </optgroup>
                     </select>
+                    <p style="font-size: 11px">Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</p>
                     {% if messages %}
                     <div class="messages">
                         {% for message in messages %}
