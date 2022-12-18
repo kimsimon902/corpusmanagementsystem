@@ -159,8 +159,8 @@ def viewBookmarks(request):
 #Creates a user account and stores it in the database
 def registerView(request):
     if request.method=='POST':
-        if request.POST.get('username') and request.POST.get('email') and request.POST.get('password') and request.POST.get('first_name') and request.POST.get('last_name') and request.POST.get('adriclablist[]'):
-            finaladriclist = ','.join(request.POST.get('adriclablist[]'))
+        if request.POST.get('username') and request.POST.get('email') and request.POST.get('password') and request.POST.get('first_name') and request.POST.get('last_name') and request.POST.getlist('adriclablist[]'):
+            finaladriclist = ','.join(request.POST.getlist('adriclablist[]'))
             saverecord = registerUser()
             saverecord.username = request.POST.get('username')
             if registerUser.objects.filter(username=request.POST.get('username')).exists():
