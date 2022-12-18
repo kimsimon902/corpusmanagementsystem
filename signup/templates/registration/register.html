@@ -37,12 +37,15 @@
                 <form method="post">
                     {% csrf_token %}
                     <h2 class="text-center"><strong>Create</strong> an account.</h2>
-                    <i class="text-center">Password must have at least 8 characters and 1 uppercase letter.</i>
+                    <!--<i class="text-center">Password must have at least 8 characters and 1 uppercase letter.</i>-->
                     <div class="form-group"><input class="form-control" type="text" name="username" placeholder="Username" required></div>
                     <div class="form-group"><input class="form-control" type="text" name="first_name" placeholder="First Name" required></div>
                     <div class="form-group"><input class="form-control" type="text" name="last_name" placeholder="Last Name" required></div>
                     <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" required></div>
-                    <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required></div>
+                    <div class="row-wrap">
+                        <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required></div>
+                        <div class="row-middle">Password must have at least 8 characters and 1 uppercase letter.</div>
+                    </div>
                     <div class="form-group"><input class="form-control" type="password" name="repwd" placeholder="Password (repeat)" required></div>
                     <div class="form-group"><input class="form-control" type="text" name="gscholar" placeholder="Google Scholar Link (Optional)"></div>
                     <label for="adriclablist">Choose a role:</label>
