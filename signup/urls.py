@@ -44,6 +44,7 @@ urlpatterns =[
     path('sharedFolderAnalytics/<folderID>/<owner>', views.SharedFoldersPageAnalytics, name="SharedFoldersPageAnalytics"),
     path('centerReports/', views.centerReports, name="centerReports"),
     path('folders/<username>/search/', views.SearchAnnotationFolder, name="searchFolder"),
+    path('profile/<user>', views.userProfile, name="userProfile"),
 ]
 
 if settings.DEBUG:

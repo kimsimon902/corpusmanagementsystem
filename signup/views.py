@@ -210,7 +210,10 @@ def loginView(request):
                 request.session['email']=Userdetails.email
                 request.session['username']=Userdetails.username
                 request.session['is_superuser']=Userdetails.is_superuser
-                return redirect('home')
+                if "Student" not in Userdetails.role:
+                    return redirect('profile/' + Userdetails.last_name + ',%20' + Userdetails.first_name)
+                else:
+                    return redirect('home')
         except registerUser.DoesNotExist as e:
             messages.error(request,'Username or Password Invalid.' , extra_tags='name')
             return redirect('login')
@@ -461,6 +464,154 @@ def centerReports(request):
                                                 'gamelab':gamelab_pubs, 'gamelab_count':gamelab_pubs.count(),
                                                 'te3d':te3d_pubs, 'te3d_count':te3d_pubs.count(),
                                                 'bio':bio_pubs, 'bio_count':bio_pubs.count()})
+
+def userProfile(request, author):
+    if author != None:
+        Userdetails=registerUser.objects.get(email=request.POST['email'])
+
+        scholarLink = Userdetails.google_scholar_link
+        roles = Userdetails.role
+
+
+        publications_by_author = publications.objects.filter(author__icontains=author)
+
+        pubs = []
+
+        for pub in publications_by_author:
+            pubs.append(pub)
+
+        #Make authors into array... from A. author; B. author to ['A. author','B. author']
+        for pub in pubs:
+            if pub.source == 'IEEE':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
+            elif pub.source == 'AIS':
+                authors = pub.author
+                split = authors.split(';')
+                pub.author = split
+            elif pub.source == 'Scopus':
+                authors = []
+                authors.append(pub.author)
+                pub.author = authors
+            elif pub.source == 'Uploaded':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
+
+        #clean authors array
+        for pub in pubs:
+            if pub.source == 'AIS':
+                for auth in pub.author:
+                    if auth == "":
+                        pub.author.remove(auth)
+
+        filteredPubs = []
+        test_counter = 0
+
+        #Filtering pubs to find exact author
+        for pub in pubs:
+            for auth in pub.author:
+                if (auth.lower()).strip() == (author.lower()).strip():
+                    test_counter+=1
+                    filteredPubs.append(pub)
+
+        #Tallying keywords
+        sources_present = []
+        sources_tally = []
+        source_arr = []
+
+        for pub in filteredPubs:
+            if pub.source not in sources_present:
+                sources_present.append(pub.source)
+
+        for pub in filteredPubs:
+            sources_tally.append(pub.source)
+
+        count = 0
+        for source in sources_present:
+            source_arr.insert(count, [source,sources_tally.count(source)])
+            count+=1
+
+        pubkeys_list = list(pubkeys.objects.all())
+        keywords_list = list(keywords.objects.all())
+        keyword_results = []
+
+        for publication in filteredPubs:
+            for pubkey in pubkeys_list:
+                if publication.id == pubkey.publication_id:
+                    for pubid in keywords_list:
+                        if pubkey.keywords_id == pubid.id:
+                            if pubkey.status != "pending addition":
+                                keyword_results.append(pubid.keywordname)
+
+        keyword_count = Counter(keyword_results).most_common(len(keyword_results))
+
+        filteredPubs.sort(key=lambda x: x.year,reverse=True)
+
+        #Start author recos
+        author_recos = []
+
+        #getauthorlast name
+        txt = author
+
+        if "." in txt:
+            split = txt.split()
+            last_name = split[-1]
+        elif "," in txt:
+            split = txt.replace(',',"")
+            split2 = split.split()
+            last_name = split2[0]
+        else:
+            split = txt.split()
+            last_name = split[-1]
+
+        author_search = last_name
+        results = publications.objects.all()
+        authors_present = []
+        authors_tally = []
+        authors_single = []
+        authors_single_tally = []
+        
+        for pub in results:
+            authors_present.append(pub.author)
+
+        for txt in authors_present:
+            splitauth = txt.split(";") 
+            for x in splitauth:
+                authors_single.append(x)
+
+        for pub in results:
+            authors_tally.append(pub.author)
+
+        for txt in authors_tally:
+            splitauth = txt.split(";") 
+            for x in splitauth:
+                authors_single_tally.append(x)
+
+        unique_author = []
+
+        for auth in authors_single_tally:
+            if auth not in unique_author:
+                unique_author.append(auth)
+
+        unique_author.sort()
+
+        author_results = []
+
+        from difflib import SequenceMatcher
+
+        for txt in unique_author:
+            if fnmatch.fnmatch(txt, '* '+author_search) or fnmatch.fnmatch(txt, author_search+',*'):
+                s_1 = author_search
+                s_2 = txt
+                if (SequenceMatcher(a=s_1,b=s_2).ratio() > 0.60) and (SequenceMatcher(a=s_1,b=s_2).ratio() != 1):
+                    author_results.append(txt)
+
+        count = len(author_results)
+
+        return render(request, 'authorProfile.html',{'author':author.strip(), 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter,'recos':author_results[:10],'scholarLink':scholarLink,'role':roles,})
+
 
 def authorAnalytics(request, author):
     if author != None:
