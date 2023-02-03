@@ -471,7 +471,7 @@ def userProfile(request, user):
         Userdetails=registerUser.objects.get(email=request.session['email'])
 
         scholarLink = Userdetails.google_scholar_link
-        roles = Userdetails.role
+        roles = (Userdetails.role).split(',')
 
 
         publications_by_author = publications.objects.filter(author__icontains=author)
