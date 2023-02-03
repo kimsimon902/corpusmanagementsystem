@@ -465,7 +465,7 @@ def centerReports(request):
                                                 'te3d':te3d_pubs, 'te3d_count':te3d_pubs.count(),
                                                 'bio':bio_pubs, 'bio_count':bio_pubs.count()})
 
-def userProfile(request, author):
+def userProfile(request, user):
     if author != None:
         Userdetails=registerUser.objects.get(email=request.POST['email'])
 
