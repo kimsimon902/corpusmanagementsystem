@@ -466,6 +466,7 @@ def centerReports(request):
                                                 'bio':bio_pubs, 'bio_count':bio_pubs.count()})
 
 def userProfile(request, user):
+    author = user
     if author != None:
         Userdetails=registerUser.objects.get(email=request.POST['email'])
 
