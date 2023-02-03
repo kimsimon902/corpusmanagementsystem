@@ -611,7 +611,7 @@ def userProfile(request, user):
 
         count = len(author_results)
 
-        return render(request, 'authorProfile.html',{'author':author.strip(), 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter,'recos':author_results[:10],'scholarLink':scholarLink,'role':roles,})
+        return render(request, 'authorProfile.html',{'author':author.strip(), 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter,'recos':author_results[:10],'scholarLink':scholarLink,'roles':roles,})
 
 
 def authorAnalytics(request, author):
