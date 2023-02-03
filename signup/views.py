@@ -468,7 +468,7 @@ def centerReports(request):
 def userProfile(request, user):
     author = user
     if author != None:
-        Userdetails=registerUser.objects.get(email=request.POST['email'])
+        Userdetails=registerUser.objects.get(email=request.session['email'])
 
         scholarLink = Userdetails.google_scholar_link
         roles = Userdetails.role
