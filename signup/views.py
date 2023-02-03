@@ -211,7 +211,7 @@ def loginView(request):
                 request.session['username']=Userdetails.username
                 request.session['is_superuser']=Userdetails.is_superuser
                 if "Student" not in Userdetails.role:
-                    return redirect('profile/' + Userdetails.last_name + ',%20' + Userdetails.first_name)
+                    return redirect('/profile/' + Userdetails.last_name + ',%20' + Userdetails.first_name)
                 else:
                     return redirect('home')
         except registerUser.DoesNotExist as e:
