@@ -22,7 +22,7 @@
   <body>
 
     {% include 'main/nav-bar.html' %}
-    <div>
+    <div class="container">
         <form action="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="file" name="my_file" id="">
