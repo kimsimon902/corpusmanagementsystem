@@ -65,7 +65,6 @@ from .forms import PostForm
 from tablib import Dataset
 from .resources import publicationResource
 
-
 #stopwords to be removed from scaping
 all_stopwords = stopwords.words('english')
 newStopWords = ['div', 'divdiv', 'scholaradivdivdivdivdivdiv', 'classrowdiv', 'scholarapdiv', 'use', 'div', 'td', 'li', 'ul', 'meta', 'function','var', 'start', 'inner', 'end', 'lia', 'span'
@@ -3540,24 +3539,7 @@ def viewAdmin(request):
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
-def importExcel(request):
-
-    if request.method == 'POST':
-        publication_resource = publicationResource()
-        dataset = Dataset()
-        new_publication = request.FILES['my_file']
-        imported_data = dataset.load(new_publication.read(), format = 'xlsx')
-        for data in imported_data: 
-            value = publications(
-                data[0],
-                data[1],
-                data[2],
-                data[3],
-                data[4],
-                data[5],
-            )
-            value.save()
-
+def uploadExtracts(request):
     return render(request, 'main/uploadextracts.html')
 
 def keywordRequests(request):
@@ -3931,6 +3913,25 @@ def downloadFolderTable(request):
         buf.seek(0)
 
         return FileResponse(buf, as_attachment=True, filename= pair[1] + ' Summary.pdf')
+
+def importExcel(request):
+    if request.method == 'POST':
+        publication_resource = publicationResource()
+        dataset = Dataset()
+        new_publications = request.FILES['my_file']
+        imported_data = dataset.load(new_publications.read(), format = 'xlsx')
+        for data in imported_data:
+            value = publications(
+                data[0],
+                data[1],
+                data[2],
+                data[4],
+                data[5]
+            )
+            value.save()
+
+
+    return render(request, 'main/uploadextracts.html')
 
 # def annotateFromPub(request):
 #     results = publications.objects.filter(id=id)
