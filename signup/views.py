@@ -3539,8 +3539,8 @@ def viewAdmin(request):
 
     return render(request, 'main/adminpage.html',{'publications':results})
 
-def uploadExtracts(request):
-    return render(request, 'main/uploadextracts.html')
+# def uploadExtracts(request):
+#     return render(request, 'main/uploadextracts.html')
 
 def keywordRequests(request):
 
@@ -3918,7 +3918,7 @@ def importExcel(request):
     if request.method == 'POST':
         publication_resource = publicationResource()
         dataset = Dataset()
-        new_publications = request.FILES['myfile']
+        new_publications = request.FILES['my_file']
         imported_data = dataset.load(new_publications.read(), format = 'xlsx')
         for data in imported_data:
             value = publications(
@@ -3929,7 +3929,7 @@ def importExcel(request):
                 data[5]
             )
             value.save()
-            
+
 
     return render(request, 'main/uploadextracts.html')
 
