@@ -61,6 +61,9 @@ import random
 import re
 import fnmatch
 from django.contrib.auth.hashers import make_password, check_password
+from .forms import PostForm
+from tablib import Dataset
+from .resources import publicationResource
 
 #stopwords to be removed from scaping
 all_stopwords = stopwords.words('english')
@@ -3910,6 +3913,25 @@ def downloadFolderTable(request):
         buf.seek(0)
 
         return FileResponse(buf, as_attachment=True, filename= pair[1] + ' Summary.pdf')
+
+def importExcel(request):
+    if request.method == 'POST':
+        publication_resource = publicationResource()
+        dataset = Dataset()
+        new_publications = request.FILES['myfile']
+        imported_data = dataset.load(new_publications.read(), format = 'xlsx')
+        for data in imported_data:
+            value = publications(
+                data[0],
+                data[1],
+                data[2],
+                data[4],
+                data[5]
+            )
+            value.save()
+            
+
+    return render(request, 'main/uploadextracts.html')
 
 # def annotateFromPub(request):
 #     results = publications.objects.filter(id=id)

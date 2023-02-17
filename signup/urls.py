@@ -36,6 +36,7 @@ urlpatterns =[
     path('adminpage/',views.viewAdmin, name ='adminpage'),
     path('adminpage/keywordrequests',views.keywordRequests, name ='keywordrequests'),
     path('adminpage/upload-extracts',views.uploadExtracts, name ='uploadExtracts'),
+    path('adminpage/upload-extracts',views.importExcel, name ='pushExcel'),
     path('folder_table/',views.downloadFolderTable, name ='folder_table'),
     path('analytics/<keyword>', views.analytics, name="analytics"),
     path('analytics/<keyword>/<keyword2>', views.analyticsFilterKeyword, name="analyticsFilterKeyword"),
