@@ -3540,21 +3540,21 @@ def viewAdmin(request):
     return render(request, 'main/adminpage.html',{'publications':results})
 
 def uploadExtracts(request):
-    if request.method == 'POST':
-        # publication_resource = PublicationResource()
-        dataset = Dataset()
-        new_publications = request.FILES['my_file']
-        imported_data = dataset.load(new_publications.read(), format='xlsx')
-        for data in imported_data:
-            value= publications(
-                data[0],
-                data[1],
-                data[2],
-                data[3],
-                data[4],
-                data[5],
-            )
-            value.save()
+    # if request.method == 'POST':
+    #     # publication_resource = PublicationResource()
+    #     dataset = Dataset()
+    #     new_publications = request.FILES['my_file']
+    #     imported_data = dataset.load(new_publications.read(), format='xlsx')
+    #     for data in imported_data:
+    #         value= publications(
+    #             data[0],
+    #             data[1],
+    #             data[2],
+    #             data[3],
+    #             data[4],
+    #             data[5],
+    #         )
+    #         value.save()
 
     return render(request, 'main/uploadextracts.html')
 
