@@ -3541,7 +3541,7 @@ def viewAdmin(request):
 
 def uploadExtracts(request):
     if request.method == 'POST':
-        publication_resource = PublicationResource()
+        # publication_resource = PublicationResource()
         dataset = Dataset()
         new_publications = request.FILES['my_file']
         imported_data = dataset.load(new_publications.read(), format='xlsx')
