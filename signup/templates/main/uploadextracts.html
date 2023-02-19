@@ -25,10 +25,10 @@
 <div class="container" style="align-content: center;">
     <div class="card" style="margin-top: 100px">
         <div class="card-body">
-            <form action="POST" enctype="multipart/form-data" action="adminpage/upload-extracts">
+            <form method="POST" enctype="multipart/form-data" action="{% url 'search' %}">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="fileUpload">Upload asdfsdafsda file</label>
+                    <label for="fileUpload">Upload file</label>
                     <input type="file" class="form-control-file" id="fileUpload" name="my_file"/>
                     <button type="submit" class="btn btn-primary" style="margin-top: 50px">Upload</button>
                 </div>
