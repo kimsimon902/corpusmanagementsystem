@@ -3553,6 +3553,10 @@ def uploadExtracts(request):
                 data[3],
                 data[4],
                 data[5],
+                data[6],
+                data[7],
+                data[8],
+                data[9],
             )
             value.save()
 
