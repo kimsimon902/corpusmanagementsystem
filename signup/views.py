@@ -61,9 +61,9 @@ import random
 import re
 import fnmatch
 from django.contrib.auth.hashers import make_password, check_password
-# from .forms import PostForm
-# from tablib import Dataset
-# from .resources import PublicationResource
+from .forms import PostForm
+from tablib import Dataset
+from .resources import PublicationResource
 
 #stopwords to be removed from scaping
 all_stopwords = stopwords.words('english')
@@ -3541,8 +3541,21 @@ def viewAdmin(request):
 
 def uploadExtracts(request):
     if request.method == 'POST':
-        pass
-    
+        publication_resource = PublicationResource()
+        dataset = Dataset()
+        new_publications = request.FILES['my_file']
+        imported_data = dataset.load(new_publications.read(), format='xlsx')
+        for data in imported_data:
+            value= publications(
+                data[0],
+                data[1],
+                data[2],
+                data[3],
+                data[4],
+                data[5],
+            )
+            value.save()
+
     return render(request, 'main/uploadextracts.html')
 
 def keywordRequests(request):
