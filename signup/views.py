@@ -61,6 +61,9 @@ import random
 import re
 import fnmatch
 from django.contrib.auth.hashers import make_password, check_password
+from .forms import PostForm
+from tablib import Dataset
+from .resources import PublicationResource
 
 #stopwords to be removed from scaping
 all_stopwords = stopwords.words('english')
@@ -3537,6 +3540,9 @@ def viewAdmin(request):
     return render(request, 'main/adminpage.html',{'publications':results})
 
 def uploadExtracts(request):
+    if request.method == 'POST':
+        pass
+
     return render(request, 'main/uploadextracts.html')
 
 def keywordRequests(request):
