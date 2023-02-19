@@ -3556,7 +3556,6 @@ def uploadExtracts(request):
                 data[6],
                 data[7],
                 data[8],
-                data[9],
             )
             value.save()
 
