@@ -7,4 +7,4 @@ class PublicationResource(resources.ModelResource):
         exclude = ('id')
         skipped_unchanged = True
         report_skipped = True
-        import_id_fields = ('title', 'author', 'abstract', 'url', 'pdf', 'source', 'status', 'year')
+        import_id_fields = ('title', 'author', 'abstract', 'url', 'source', 'status', 'year')
