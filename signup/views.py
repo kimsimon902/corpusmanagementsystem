@@ -49,7 +49,7 @@ import urllib
 from difflib import SequenceMatcher
 import nltk
 from nltk.corpus import stopwords
-nltk.download('stopwords')
+nltk.download('stopwords')resolve
 from nltk.tokenize import word_tokenize
 from requests.exceptions import ConnectionError
 from collections import Counter
