@@ -3,4 +3,5 @@ from .models import publications
 
 class PublicationResource(resources.ModelResource):
     class meta:
-        model = publications 
+        model = publications
+        exclude = ('id')
