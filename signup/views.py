@@ -3540,6 +3540,9 @@ def viewAdmin(request):
     return render(request, 'main/adminpage.html',{'publications':results})
 
 def uploadExtracts(request):
+    if request.method == 'POST':
+        pass
+    
     return render(request, 'main/uploadextracts.html')
 
 def keywordRequests(request):
