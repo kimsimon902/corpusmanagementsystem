@@ -25,7 +25,7 @@
 <div class="container" style="align-content: center;">
     <div class="card" style="margin-top: 100px">
         <div class="card-body">
-            <form action="POST" enctype="multipart/form-data" action="{% url 'pushExcel' %}">
+            <form action="POST" enctype="multipart/form-data" action="adminpage/upload-extracts">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="fileUpload">Upload file</label>
