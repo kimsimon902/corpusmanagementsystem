@@ -61,8 +61,8 @@ import random
 import re
 import fnmatch
 from django.contrib.auth.hashers import make_password, check_password
-from .forms import PostForm
-# from tablib import Dataset
+# from .forms import PostForm
+from tablib import Dataset
 from .resources import PublicationResource
 
 #stopwords to be removed from scaping
