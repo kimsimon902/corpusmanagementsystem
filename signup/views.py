@@ -142,6 +142,8 @@ def home(request):
         if auth not in unique_author:
             unique_author.append(auth)
 
+    authors = []
+
     if unique_author:
         authors= random.choices(unique_author, k=5)
 
