@@ -473,7 +473,7 @@ def userProfile(request, user):
     if author != None:
         Userdetails=registerUser.objects.get(email=request.session['email'])
 
-        if(Userdetails.google_scholar_link):
+        if(Userdetails.google_scholar_link != None):
             scholarLink = Userdetails.google_scholar_link
 
         roles = (Userdetails.role).split(',')
