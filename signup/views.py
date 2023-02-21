@@ -472,8 +472,8 @@ def userProfile(request, user):
     author = user
     if author != None:
         Userdetails=registerUser.objects.get(email=request.session['email'])
-        
-        scholarLink
+
+        scholarLink = ""
 
         try:
             scholarLink = Userdetails.google_scholar_link
