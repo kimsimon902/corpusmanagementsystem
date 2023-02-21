@@ -473,8 +473,10 @@ def userProfile(request, user):
     if author != None:
         Userdetails=registerUser.objects.get(email=request.session['email'])
 
-        if(Userdetails.google_scholar_link != None):
+        try:
             scholarLink = Userdetails.google_scholar_link
+        except:
+            print("Missing field")
 
         roles = (Userdetails.role).split(',')
 
@@ -3006,10 +3008,6 @@ def PublicationPage(request, id):
             authors.append(pub.author)
             pub.author = authors
         elif pub.source == 'Uploaded':
-            authors = pub.author
-            split = authors.split('; ')
-            pub.author = split
-        else:
             authors = pub.author
             split = authors.split('; ')
             pub.author = split
