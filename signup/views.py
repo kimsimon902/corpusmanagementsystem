@@ -3009,6 +3009,10 @@ def PublicationPage(request, id):
             authors = pub.author
             split = authors.split('; ')
             pub.author = split
+        else:
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
     
     #clean authors array
     for pub in results:
