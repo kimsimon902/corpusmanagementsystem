@@ -142,10 +142,7 @@ def home(request):
         if auth not in unique_author:
             unique_author.append(auth)
 
-    authors = []
-
-    if unique_author:
-        authors= random.choices(unique_author, k=5)
+    authors= random.choices(unique_author, k=5)
 
     return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs,'authors':authors})
 
@@ -476,7 +473,9 @@ def userProfile(request, user):
     if author != None:
         Userdetails=registerUser.objects.get(email=request.session['email'])
 
-        scholarLink = Userdetails.google_scholar_link
+        if(Userdetails.google_scholar_link):
+            scholarLink = Userdetails.google_scholar_link
+
         roles = (Userdetails.role).split(',')
 
 
@@ -1415,7 +1414,7 @@ def searchPublication(request):
             
             if len(libFilter) > 0: 
                 if "[" in libFilter[0]:
-                    print("i am in if statement")
+                    
                     temp = libFilter[0]
                     libFilter = []
                     print(temp)
@@ -1474,7 +1473,7 @@ def searchPublication(request):
 
             filteredYear.sort()
             
-            print(results_list)
+            
 
             #Log view tag
             datenow = datetime.datetime.now()
@@ -1520,7 +1519,7 @@ def searchPublication(request):
 
             
 
-            print("im at keywordsearch != none")
+            
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
@@ -1629,7 +1628,7 @@ def searchPublication(request):
 
             
             
-            print("im at yearsearch != none")
+            
             return render(request, 'main/search.html',{'searched':searched, 
                                                         'results':results_list, 
                                                         'count':len(results_list),
@@ -1695,13 +1694,6 @@ def searchPublication(request):
                  libFilter = []
                  libFilter = temp2.split(",")
 
-
-               
-
-
-
-        print(libFilter)
-        print(len(libFilter))
         
         if  searchFilter == "default":
 
