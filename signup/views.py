@@ -142,7 +142,8 @@ def home(request):
         if auth not in unique_author:
             unique_author.append(auth)
 
-    authors= random.choices(unique_author, k=5)
+    if unique_author:
+        authors= random.choices(unique_author, k=5)
 
     return render(request, 'main/home.html',{'searched':searched_keywords,'opened_pubs':opened_pubs, 'viewed_tags':viewed_tags,'bookmarked_pubs':bookmarked_pubs,'authors':authors})
 
