@@ -15,149 +15,149 @@
         <link rel="stylesheet" href="{% static '\users\assets\css\search.css' %}">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-          <!-- semantic UI -->
-          <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
-          <!--Chart js-->
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
-          <!-- jQuery -->
-          <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <!-- semantic UI -->
+        <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+        <!--Chart js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    
+        <script src='https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js'></script>
       
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
-          <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-      
-          <script src='https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js'></script>
-      
-          <script>
-              $(document).ready(function(){
-                const ctxBarKeyDisc = document.getElementById('myChartBarKeyDisc').getContext('2d');
-                  const myChartBarKeyDisc = new Chart(ctxBarKeyDisc, {
-                      type: 'bar',
-                      data: {
-                        labels: [{% for keyword in keyword_bar|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
-                          datasets: [{
-                            label: 'Number of Publications where Keyword is Present',
-                            data: [{% for keyword in keyword_bar|slice:"1:" %}{{keyword.1}},{% endfor %}],
-                            // data:   [{% for keyword in keyword_bar|slice:"1:" %}
-                            //         {keywordLabel: '{{keyword.0}}', keywordData: { count: {{keyword.1}}, link:'/analytics/{{keyword.0}}' }},
-                            //         {%endfor%}],
-                            backgroundColor: [
-                                {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
-                            ],
-                            borderColor: [
+        <script>
+            $(document).ready(function(){
+            const ctxBarKeyDisc = document.getElementById('myChartBarKeyDisc').getContext('2d');
+                const myChartBarKeyDisc = new Chart(ctxBarKeyDisc, {
+                    type: 'bar',
+                    data: {
+                    labels: [{% for keyword in keyword_bar|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
+                        datasets: [{
+                        label: 'Number of Publications where Keyword is Present',
+                        data: [{% for keyword in keyword_bar|slice:"1:" %}{{keyword.1}},{% endfor %}],
+                        // data:   [{% for keyword in keyword_bar|slice:"1:" %}
+                        //         {keywordLabel: '{{keyword.0}}', keywordData: { count: {{keyword.1}}, link:'/analytics/{{keyword.0}}' }},
+                        //         {%endfor%}],
+                        backgroundColor: [
                             {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
-                            ],
-                            borderWidth: 1
-                          }]
-                      },
-                      options: {
-                        tooltips:{enabled: false,},
-                          responsive:true,
-                          plugins: {
-                              labels:{
-                                  render:'value',
-                              },
-                          },
-                          scales: {
-                              y: {
-                                  beginAtZero: true,
-                              },
-                              yAxes: [{
-                                ticks: {
-                                    min: 0,
-                                    stepSize: 1,  
-                                },
-                                afterDataLimits(scale) {
-                                scale.max += 1;
-                                scale.min -= 1;
-                                }
-                            }]
-                          },
-                          events:['click'],onClick: function(c,i) {
-                                e = i[0];
-                                console.log(e._index)
-                                var x_value = this.data.labels[e._index];
-                                var y_value = this.data.datasets[0].data[e._index];
-                                console.log(x_value);
-                                console.log(y_value);
-                                window.open('http://ccscloud1.dlsu.edu.ph:11780/analyticsAuthor/{{author}}/'+x_value,'_blank');
+                        ],
+                        borderColor: [
+                        {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                        ],
+                        borderWidth: 1
+                        }]
+                    },
+                    options: {
+                    tooltips:{enabled: false,},
+                        responsive:true,
+                        plugins: {
+                            labels:{
+                                render:'value',
                             },
-                      }
-                  });
-
-                  const ctxPie = document.getElementById('myChartPie').getContext('2d');
-                  const myChartPie = new Chart(ctxPie, {
-                      type: 'pie',
-                      data: {
-                          labels: [{% for source in source_arr %}'{{source.0}}',{% endfor %}],
-                          datasets: [{
-                              label: 'Source',
-                              data: [{% for source in source_arr %}{{source.1}},{% endfor %}],
-                              backgroundColor: [
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                              ],
-                              borderColor: [
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                              ],
-                              borderWidth: 1
-                          }]
-                      },
-                      options: {
-                        tooltips:{enabled: false,},
-                          responsive:true,
-                          plugins: {
-                              labels: {
-                                  render: 'value',
-                                  precision: 0,
-                                  showZero: true,
-                                  fontSize: 12,
-                                  fontColor: '#000',
-                                  fontStyle: 'normal',
-                                  fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-                                  textShadow: false,
-                                  arc: false,
-                                  position: 'default',
-                                  overlap: true,
-                                  showActualPercentages: true,
-                                  outsidePadding: 4,
-                                  textMargin: 4
-                              }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
                             },
-                            events:['click'],onClick: function(c,i) {
+                            yAxes: [{
+                            ticks: {
+                                min: 0,
+                                stepSize: 1,  
+                            },
+                            afterDataLimits(scale) {
+                            scale.max += 1;
+                            scale.min -= 1;
+                            }
+                        }]
+                        },
+                        events:['click'],onClick: function(c,i) {
                             e = i[0];
                             console.log(e._index)
                             var x_value = this.data.labels[e._index];
                             var y_value = this.data.datasets[0].data[e._index];
                             console.log(x_value);
                             console.log(y_value);
-                            sourcePieClick(x_value)
-                            // window.open('http://ccscloud1.dlsu.edu.ph:11780/analytics/{{searched}}/'+x_value,'_blank');
-                            },
-                      }
-                  });
-              });
-          </script>
-              <!-- CloudChart -->
+                            window.open('http://ccscloud1.dlsu.edu.ph:11780/analyticsAuthor/{{author}}/'+x_value,'_blank');
+                        },
+                    }
+                });
+
+                const ctxPie = document.getElementById('myChartPie').getContext('2d');
+                const myChartPie = new Chart(ctxPie, {
+                    type: 'pie',
+                    data: {
+                        labels: [{% for source in source_arr %}'{{source.0}}',{% endfor %}],
+                        datasets: [{
+                            label: 'Source',
+                            data: [{% for source in source_arr %}{{source.1}},{% endfor %}],
+                            backgroundColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            ],
+                            borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                    tooltips:{enabled: false,},
+                        responsive:true,
+                        plugins: {
+                            labels: {
+                                render: 'value',
+                                precision: 0,
+                                showZero: true,
+                                fontSize: 12,
+                                fontColor: '#000',
+                                fontStyle: 'normal',
+                                fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                                textShadow: false,
+                                arc: false,
+                                position: 'default',
+                                overlap: true,
+                                showActualPercentages: true,
+                                outsidePadding: 4,
+                                textMargin: 4
+                            }
+                        },
+                        events:['click'],onClick: function(c,i) {
+                        e = i[0];
+                        console.log(e._index)
+                        var x_value = this.data.labels[e._index];
+                        var y_value = this.data.datasets[0].data[e._index];
+                        console.log(x_value);
+                        console.log(y_value);
+                        sourcePieClick(x_value)
+                        // window.open('http://ccscloud1.dlsu.edu.ph:11780/analytics/{{searched}}/'+x_value,'_blank');
+                        },
+                    }
+                });
+            });
+    </script>
+    <!-- CloudChart -->
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
 </head>
