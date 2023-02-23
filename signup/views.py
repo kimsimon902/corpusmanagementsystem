@@ -665,6 +665,9 @@ def authorAnalytics(request, author):
                 for auth in pub.author:
                     if auth == "":
                         pub.author.remove(auth)
+            
+            for auth in pub.author:
+                auth.replace(";","")
 
 
         filteredPubs = []
@@ -3033,6 +3036,10 @@ def PublicationPage(request, id):
             for author in pub.author:
                 if author == "":
                     pub.author.remove(author)
+        
+        for auth in pub.author:
+            auth = auth.replace(";","")
+
 
 
     return render(request, 'publication.html', {'publication':results,
