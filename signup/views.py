@@ -452,15 +452,15 @@ def create_dictionary(clean_list, id):
 def centerReports(request):
     center_pubs = publications.objects.filter(Q(source__icontains="CAR") | Q(source__icontains="COMET") | Q(source__icontains="CITE4D") |Q(source__icontains="CeLT") |Q(source__icontains="CeHCI") |Q(source__icontains="CNIS") |Q(source__icontains="GameLab") |Q(source__icontains="TE3D House") |Q(source__icontains="Bioinformatics Lab") )
 
-    car_pubs = center_pubs.objects.filter(source__icontains="CAR", status='Approved')
-    comet_pubs = center_pubs.objects.filter(source__icontains="COMET", status='Approved')
-    cite4d_pubs = center_pubs.objects.filter(source__icontains="CITE4D", status='Approved')
-    celt_pubs = center_pubs.objects.filter(source__icontains="CeLT", status='Approved')
-    cehci_pubs = center_pubs.objects.filter(source__icontains="CeHCI", status='Approved')
-    cnis_pubs = center_pubs.objects.filter(source__icontains="CNIS", status='Approved')
-    gamelab_pubs = center_pubs.objects.filter(source__icontains="GameLab", status='Approved')
-    te3d_pubs = center_pubs.objects.filter(source__icontains="TE3D House", status='Approved')
-    bio_pubs = center_pubs.objects.filter(source__icontains="Bioinformatics Lab", status='Approved')
+    car_pubs = publications.objects.filter(source__icontains="CAR", status='Approved')
+    comet_pubs = publications.objects.filter(source__icontains="COMET", status='Approved')
+    cite4d_pubs = publications.objects.filter(source__icontains="CITE4D", status='Approved')
+    celt_pubs = publications.objects.filter(source__icontains="CeLT", status='Approved')
+    cehci_pubs = publications.objects.filter(source__icontains="CeHCI", status='Approved')
+    cnis_pubs = publications.objects.filter(source__icontains="CNIS", status='Approved')
+    gamelab_pubs = publications.objects.filter(source__icontains="GameLab", status='Approved')
+    te3d_pubs = publications.objects.filter(source__icontains="TE3D House", status='Approved')
+    bio_pubs = publications.objects.filter(source__icontains="Bioinformatics Lab", status='Approved')
 
     return render(request, 'centerReport.html',{'pubs':center_pubs, 
                                                 'car':car_pubs, 'car_count':car_pubs.count(),
