@@ -449,8 +449,6 @@ def create_dictionary(clean_list, id):
     pubkeys.objects.bulk_create(pub_id)
 
 def centerReports(request):
-    center_pubs = records_center_uploads.objects.filter(status='Approved')
-
     car_pubs = publications.objects.filter(source__icontains="CAR", status='Approved')
     comet_pubs = publications.objects.filter(source__icontains="COMET", status='Approved')
     cite4d_pubs = publications.objects.filter(source__icontains="CITE4D", status='Approved')
@@ -460,6 +458,17 @@ def centerReports(request):
     gamelab_pubs = publications.objects.filter(source__icontains="GameLab", status='Approved')
     te3d_pubs = publications.objects.filter(source__icontains="TE3D House", status='Approved')
     bio_pubs = publications.objects.filter(source__icontains="Bioinformatics Lab", status='Approved')
+
+    center_pubs = []
+    center_pubs.append(car_pubs)
+    center_pubs.append(comet_pubs)
+    center_pubs.append(cite4d_pubs)
+    center_pubs.append(celt_pubs)
+    center_pubs.append(cehci_pubs)
+    center_pubs.append(cnis_pubs)
+    center_pubs.append(gamelab_pubs)
+    center_pubs.append(te3d_pubs)
+    center_pubs.append(bio_pubs)
 
     return render(request, 'centerReport.html',{'pubs':center_pubs, 
                                                 'car':car_pubs, 'car_count':car_pubs.count(),
