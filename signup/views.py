@@ -3038,7 +3038,7 @@ def PublicationPage(request, id):
                     pub.author.remove(author)
         
         for auth in pub.author:
-            auth.replace(";","")
+            auth = auth.replace(";","")
 
 
 
