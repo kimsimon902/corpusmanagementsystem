@@ -60,6 +60,7 @@ from django.template import *
 import random
 import re
 import fnmatch
+import mimetypes
 from django.contrib.auth.hashers import make_password, check_password
 # from .forms import PostForm
 from tablib import Dataset
@@ -3938,6 +3939,9 @@ def downloadFolderTable(request):
 
         return FileResponse(buf, as_attachment=True, filename= pair[1] + ' Summary.pdf')
 
+def downloadExtractTemplate(request):
+    templatePath = '/main/'
+    templateFile = 'Upload-Extract-Template.xslx'
 
 
 # def annotateFromPub(request):
