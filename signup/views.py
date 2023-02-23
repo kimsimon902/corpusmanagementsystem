@@ -65,6 +65,7 @@ from django.contrib.auth.hashers import make_password, check_password
 # from .forms import PostForm
 from tablib import Dataset
 from .resources import PublicationResource
+from django.db.models import Q
 
 #stopwords to be removed from scaping
 all_stopwords = stopwords.words('english')
@@ -449,26 +450,17 @@ def create_dictionary(clean_list, id):
     pubkeys.objects.bulk_create(pub_id)
 
 def centerReports(request):
-    car_pubs = publications.objects.filter(source__icontains="CAR", status='Approved')
-    comet_pubs = publications.objects.filter(source__icontains="COMET", status='Approved')
-    cite4d_pubs = publications.objects.filter(source__icontains="CITE4D", status='Approved')
-    celt_pubs = publications.objects.filter(source__icontains="CeLT", status='Approved')
-    cehci_pubs = publications.objects.filter(source__icontains="CeHCI", status='Approved')
-    cnis_pubs = publications.objects.filter(source__icontains="CNIS", status='Approved')
-    gamelab_pubs = publications.objects.filter(source__icontains="GameLab", status='Approved')
-    te3d_pubs = publications.objects.filter(source__icontains="TE3D House", status='Approved')
-    bio_pubs = publications.objects.filter(source__icontains="Bioinformatics Lab", status='Approved')
+    center_pubs = publications.objects.filter(Q(source__icontains="CAR") | Q(source__icontains="COMET") | Q(source__icontains="CITE4D") |Q(source__icontains="CeLT") |Q(source__icontains="CeHCI") |Q(source__icontains="CNIS") |Q(source__icontains="GameLab") |Q(source__icontains="TE3D House") |Q(source__icontains="Bioinformatics Lab") )
 
-    center_pubs = []
-    center_pubs.append(car_pubs)
-    center_pubs.append(comet_pubs)
-    center_pubs.append(cite4d_pubs)
-    center_pubs.append(celt_pubs)
-    center_pubs.append(cehci_pubs)
-    center_pubs.append(cnis_pubs)
-    center_pubs.append(gamelab_pubs)
-    center_pubs.append(te3d_pubs)
-    center_pubs.append(bio_pubs)
+    car_pubs = center_pubs.objects.filter(source__icontains="CAR", status='Approved')
+    comet_pubs = center_pubs.objects.filter(source__icontains="COMET", status='Approved')
+    cite4d_pubs = center_pubs.objects.filter(source__icontains="CITE4D", status='Approved')
+    celt_pubs = center_pubs.objects.filter(source__icontains="CeLT", status='Approved')
+    cehci_pubs = center_pubs.objects.filter(source__icontains="CeHCI", status='Approved')
+    cnis_pubs = center_pubs.objects.filter(source__icontains="CNIS", status='Approved')
+    gamelab_pubs = center_pubs.objects.filter(source__icontains="GameLab", status='Approved')
+    te3d_pubs = center_pubs.objects.filter(source__icontains="TE3D House", status='Approved')
+    bio_pubs = center_pubs.objects.filter(source__icontains="Bioinformatics Lab", status='Approved')
 
     return render(request, 'centerReport.html',{'pubs':center_pubs, 
                                                 'car':car_pubs, 'car_count':car_pubs.count(),
