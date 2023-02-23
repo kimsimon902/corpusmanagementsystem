@@ -665,6 +665,10 @@ def authorAnalytics(request, author):
                 for auth in pub.author:
                     if auth == "":
                         pub.author.remove(auth)
+            
+            for auth in pub.author:
+                auth.replace(";","")
+
 
         filteredPubs = []
         test_counter = 0
