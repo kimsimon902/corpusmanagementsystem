@@ -513,6 +513,10 @@ def userProfile(request, user):
                 authors = pub.author
                 split = authors.split('; ')
                 pub.author = split
+            else:
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
 
         #clean authors array
         for pub in pubs:
@@ -815,6 +819,10 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
                 authors = pub.author
                 split = authors.split('; ')
                 pub.author = split
+            else:
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
 
         #clean authors array
         for pub in pubs:
@@ -1113,6 +1121,10 @@ def analytics(request, keyword):
                 authors = pub.author
                 split = authors.split('; ')
                 pub.author = split
+            else:
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
 
         #clean authors array
         for pub in results_list:
@@ -1315,6 +1327,10 @@ def analyticsFilterKeyword(request, keyword, keyword2):
                 authors.append(pub.author)
                 pub.author = authors
             elif pub.source == 'Uploaded':
+                authors = pub.author
+                split = authors.split('; ')
+                pub.author = split
+            else:
                 authors = pub.author
                 split = authors.split('; ')
                 pub.author = split
@@ -2728,6 +2744,10 @@ def FoldersPageAnalytics(request, folderID):
             authors = pub.author
             split = authors.split('; ')
             pub.author = split
+        else:
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
 
     #clean authors array
     for pub in pubs:
@@ -2884,6 +2904,10 @@ def SharedFoldersPageAnalytics(request, folderID, owner):
             authors.append(pub.author)
             pub.author = authors
         elif pub.source == 'Uploaded':
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+        else:
             authors = pub.author
             split = authors.split('; ')
             pub.author = split
@@ -3128,6 +3152,11 @@ def PublicationPageInFolder(request, folderid, username, id):
             authors = pub.author
             split = authors.split('; ')
             pub.author = split
+        else:
+            authors = pub.author
+            split = authors.split('; ')
+            pub.author = split
+        
     
     #clean authors array
     for pub in results:
