@@ -1,13 +1,20 @@
 <nav class="navbar navbar-light navbar-expand navigation-clean" style="background: #087830;">
     <div class="container-fluid"><a class="navbar-brand" href="{% url 'home' %}" style="color:white;">
         {% load static %}
-        <img src="{% static '\users\img\dlsu.png' %}" width="30" height="30" class="d-inline-block" alt="" style="margin-right: 10px;">DLSU Corpus Management System</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
+        <img src="{% static '\users\img\dlsu.png' %}" width="30" height="30" class="d-inline-block" alt="" style="margin-right: 10px;">DLSU CCS Research Inventory System</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ms-auto">
+                {% if request.session.is_superuser == 1 %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color:white">Home</a></li>
+                {% endif %}
+
+                {% if request.session.is_superuser == 0 %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color:white">Home</a></li>
+                {% endif %}
+
                 {% if request.session.is_superuser == 1 %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'adminpage' %}" style="color:white">Upload Requests</a></li>
-                <li class="nav-item"><a class="nav-link" href="/adminpage/keywordrequests" style="color:white">Keyword Requests</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="/adminpage/keywordrequests" style="color:white">Keyword Requests</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="/adminpage/upload-extracts" style="color:white">Upload extracts</a></li>
                 {% endif %}
                 {% if request.session.is_superuser == 0 %}
@@ -16,9 +23,7 @@
                 {% if request.session.is_superuser == 0 %}
                 <li class="nav-item"><a class="nav-link" href="/folders/{{request.session.username}}" style="color:white">My Folders</a></li>
                 {% endif %}
-                {% if request.session.is_superuser == 0 or request.session.is_superuser == 1 %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'centerReports' %}" style="color:white">Center Report</a></li>
-                {% endif %}
+                
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color:white">Logout</a></li>
             </ul>
         </div>
