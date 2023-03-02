@@ -5,7 +5,7 @@
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ms-auto">
                 {% if request.session.is_superuser == 1 %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color:white">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'centerReports' %}" style="color:white">Home</a></li>
                 {% endif %}
 
                 {% if request.session.is_superuser == 0 %}
