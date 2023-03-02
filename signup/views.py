@@ -3598,9 +3598,9 @@ def uploadExtracts(request):
                 data[4],
                 data[5],
                 data[6],
-                data[7],
-                data[8],
+                data[7]
             )
+            value.status='approved'
             value.save()
 
     return render(request, 'main/uploadextracts.html')

@@ -28,19 +28,19 @@
             <form method="POST" enctype="multipart/form-data" action="{% url 'pushExcel' %}">
                 {% csrf_token %}
                 <div class="form-group">
+                    <a href="{% static 'files/Upload-Extract-Template.xlsx' %}" download>Download Template</a>
+                    <br>
+                    <div>Instructions:</div>
+                    
+                    <em>1. Download the Template to fill the information requested</em>
+                    <em>2. Leave ID blank</em></li>
+                    <em>3. Provide the full url address of where the publication can be found ex. "https://www.google.com"</em>
+                    <em>4. Indicate the primary research center affiliated with the publication (CAR, COMET, CITE4D, CeLT, CeHCI, CNIS, GameLab, TE3D House, Bioinformatics Lab)</em>
+                    <em>5. Please follow the indicated format for author's name (Lastname, Firstname; Lastname, Firstname). Use semi-colon for mulitple authors.</em>
+                    <em>Ensure that there are no blank characters/spaces in the rows that are empty</em>
+                    
                     <label for="fileUpload">Upload file</label>
                     <input type="file" class="form-control-file" id="fileUpload" name="my_file"/>
-                    <br>
-                    <div>Note:</div>
-                    <ul>
-                    <li><em>Leave id blank</em></li>
-                    <li><em>Provide full url address ie. "https://www.google.com"</em></li>
-                    <li><em>Keep status as "approved"</em></li>
-                    <li><em>For source use research center name (CAR, COMET, CITE4D, CeLT, CeHCI, CNIS, GameLab, TE3D House, Bioinformatics Lab)</em></li>
-                    <li><em>For author please follow this format (lastname, firstname; lastname, firstname)</em></li>
-                    <li><em>Ensure that there are no blank characters/spaces in the rows that are empty</em></li>
-                    </ul>
-                    <a href="{% static 'files/Upload-Extract-Template.xlsx' %}" download>Download Template</a>
                     <br>
                     <button type="submit" class="btn btn-primary" style="margin-top: 50px">Upload</button>
                 </div>
