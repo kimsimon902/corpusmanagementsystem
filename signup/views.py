@@ -3599,6 +3599,7 @@ def uploadExtracts(request):
                 data[5],
                 data[6],
                 data[7],
+                data[8]
             )
             value.status='approved'
             value.save()
