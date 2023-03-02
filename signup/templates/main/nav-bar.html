@@ -13,6 +13,10 @@
                 {% endif %}
 
                 {% if request.session.is_superuser == 1 %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color:white">Search</a></li>
+                {% endif %}
+
+                {% if request.session.is_superuser == 1 %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'adminpage' %}" style="color:white">Upload Requests</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="/adminpage/keywordrequests" style="color:white">Keyword Requests</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="/adminpage/upload-extracts" style="color:white">Upload extracts</a></li>
