@@ -3500,7 +3500,7 @@ def uploadLiterature(request):
             savepub.pdf = request.FILES.get('document')
             savepub.url = 'Uploaded'
             savepub.status = 'Pending'
-            savepub.source = 'Uploaded'
+            savepub.source = ','.join(request.POST.getlist('adriclablist[]'))
             date = datetime.datetime.now().date()
             savepub.year = date.strftime("%Y")
             savepub.save()
