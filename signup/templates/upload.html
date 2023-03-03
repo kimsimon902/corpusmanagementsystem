@@ -55,20 +55,20 @@
             <div class="mb-3"><input class="form-control" type="text" name="year" placeholder="Year" required></div>
             <div class="mb-3"><textarea class="form-control" name="abstract" placeholder="Abstract" rows="14" style="resize: none;"></textarea></div>
             <div class="mb-3"><textarea class="form-control" name="keywords" placeholder="Keywords (e.g., Augmented Reality, Computer Science, Artifical Intelligence)" rows="14" style="resize: none;"></textarea></div>
-            <input type="file" name="document" required>
             <label for="adriclablist">Choose a research center:</label>
-                    <select name="adriclablist[]" id="adriclablist" multiple="multiple">    
-                            <option value="Center for Automation Research">CAR</option>
-                            <option value="Center for Complexity and Emerging Technologies">COMET</option>
-                            <option value="Center for ICT for Development">CITE4D</option>
-                            <option value="Center for Language Technologies">CeLT</option>
-                            <option value="Center for Human-Computing Innovations">CeHCI</option>
-                            <option value="Center for Networking and Information Security">CNIS</option>
-                            <option value="Game Development Laboratory">GameLab</option>
-                            <option value="Technology, Education, Entertainment, Empathy, Design House">TE3D House</option>
-                            <option value="Bioinformatics Lab">Bioinformatics Lab</option>
-                    </select>
-                    <p style="font-size: 11px">Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</p>
+              <select name="adriclablist[]" id="adriclablist" multiple="multiple">    
+                <option value="Center for Automation Research">CAR</option>
+                <option value="Center for Complexity and Emerging Technologies">COMET</option>
+                <option value="Center for ICT for Development">CITE4D</option>
+                <option value="Center for Language Technologies">CeLT</option>
+                <option value="Center for Human-Computing Innovations">CeHCI</option>
+                <option value="Center for Networking and Information Security">CNIS</option>
+                <option value="Game Development Laboratory">GameLab</option>
+                <option value="Technology, Education, Entertainment, Empathy, Design House">TE3D House</option>
+                <option value="Bioinformatics Lab">Bioinformatics Lab</option>
+              </select>
+                <p style="font-size: 11px">Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</p>
+            <input type="file" name="document" required>
             {% if messages %}
                     <div class="messages">
                         {% for message in messages %}
