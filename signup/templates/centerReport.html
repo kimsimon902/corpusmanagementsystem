@@ -127,12 +127,22 @@
     <div class="container-fluid" style="padding-left: 25px; padding-right: 25px;">
             <div class="col-12" style="margin-top: 20px;">
                 <div class="container">
-                    <h3>Center Report</h3>
+                    <h3> Research Center Report</h3>
                     <div class="row">
                         <div class="col-sm-12" style="">
                             <div class="row">
                                 <div class="col-12">
-                                    <h4>Number of publications published per center</h4>
+                                    <div class="dropdown">
+                                        <h4>Number of publications per center as of: </h4>
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="yearDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Dropdown button
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="yearDropDown">
+                                          <a class="dropdown-item" href="#">Action</a>
+                                          <a class="dropdown-item" href="#">Another action</a>
+                                          <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
                                     <div class="chart-container" style="padding-bottom: 50px;">    
                                         <canvas id="myChart"></canvas>
                                     </div>
