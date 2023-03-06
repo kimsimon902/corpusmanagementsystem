@@ -506,7 +506,7 @@ class Center:
 def centerReports(request, year):
     center_pubs = publications.objects.filter(Q(source__icontains="CAR") | Q(source__icontains="COMET") | Q(source__icontains="CITE4D") |Q(source__icontains="CeLT") |Q(source__icontains="CeHCI") |Q(source__icontains="CNIS") |Q(source__icontains="GameLab") |Q(source__icontains="TE3D House") |Q(source__icontains="Bioinformatics Lab") )
 
-    if(year != all):
+    if(year != "all"):
         center_pubs = center_pubs.filter(Q(year=year))
 
     #Getting the years that are present
