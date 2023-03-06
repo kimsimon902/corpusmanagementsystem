@@ -503,7 +503,7 @@ class Center:
         self.pub_count = self.pubs.count()
         self.authors = authorsPerCenter(self.pubs)
 
-def centerReports(request, year):
+def centerReports(request, yearFilter):
     center_pubs = publications.objects.filter(Q(source__icontains="CAR") | Q(source__icontains="COMET") | Q(source__icontains="CITE4D") |Q(source__icontains="CeLT") |Q(source__icontains="CeHCI") |Q(source__icontains="CNIS") |Q(source__icontains="GameLab") |Q(source__icontains="TE3D House") |Q(source__icontains="Bioinformatics Lab") )
 
     
@@ -528,8 +528,8 @@ def centerReports(request, year):
         year_arr.insert(count, [year,years_tally.count(year)])
         count+=1
 
-    if(year != "all"):
-        center_pubs = center_pubs.filter(Q(year=year))
+    if(yearFilter != "all"):
+        center_pubs = center_pubs.filter(Q(year=yearFilter))
 
     centers=[]
     car = Center("CAR")
@@ -551,9 +551,9 @@ def centerReports(request, year):
     bio = Center("Bioinformatics Lab")
     centers.append(bio)
 
-    if(year!="all"):
+    if(yearFilter!="all"):
         for center in centers:
-            center.filterYear(year)
+            center.filterYear(yearFilter)
 
     return render(request, 'centerReport.html',{'pubs':center_pubs,
                                                 'years': year_arr,
