@@ -506,7 +506,7 @@ def centerReports(request, year):
     year_arr = [] 
 
     if(year):
-        center_pubs = center_pubs.objects.filter(Q(year__contains=year))
+        center_pubs = center_pubs.filter(Q(year__contains=year))
     else:
         for pub in center_pubs:
             if int(pub.year) not in years_present:
