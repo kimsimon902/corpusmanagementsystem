@@ -494,7 +494,9 @@ class Center:
     def __init__(self, name):
         self.name = name
         self.pubs = publications.objects.filter(source__icontains=name, status='Approved')
+        self.pub_count = pubs.count()
         self.authors = authorsPerCenter(self.pubs)
+        self.var_name = name.replace(" ", "")
 
 def centerReports(request):
     center_pubs = publications.objects.filter(Q(source__icontains="CAR") | Q(source__icontains="COMET") | Q(source__icontains="CITE4D") |Q(source__icontains="CeLT") |Q(source__icontains="CeHCI") |Q(source__icontains="CNIS") |Q(source__icontains="GameLab") |Q(source__icontains="TE3D House") |Q(source__icontains="Bioinformatics Lab") )
@@ -520,16 +522,25 @@ def centerReports(request):
         year_arr.insert(count, [year,years_tally.count(year)])
         count+=1
 
+    centers=[]
     car = Center("CAR")
+    centers.append(car)
     comet = Center("COMET")
+    centers.append(comet)
     cite4d = Center("CITE4D")
+    centers.append(cite4d)
     celt = Center("CeLT")
+    centers.append(celt)
     cehci = Center("CeHCI")
+    centers.append(cehci)
     cnis = Center("CNIS")
+    centers.append(cnis)
     gamelab = Center("GameLab")
+    centers.append(gamelab)
     te3d = Center("TE3D House")
+    centers.append(te3d)
     bio = Center("Bioinformatics Lab")
-
+    centers.append(bio)
 
     #Compiling pubs based on center/source
     # car_pubs = publications.objects.filter(source__icontains="CAR", status='Approved')
@@ -553,19 +564,18 @@ def centerReports(request):
     # te3d_authors = authorsPerCenter(te3d_pubs)
     # bio_authors = authorsPerCenter(bio_pubs)
 
-    centers=["CAR", "COMET", "CITE4D", "CeLT", "CeHCI", "CNIS", "GameLab", "TE3D_House", "Bioinformatics_Lab"]
-
-    return render(request, 'centerReport.html',{'pubs':center_pubs, 'car': car, 'comet': comet, 'cite4d': cite4d, 'celt': celt,
-                                                'cehci': cehci, 'cnis': cnis, 'gamelab': gamelab, 'te3d': te3d, 'bio': bio,
-                                                'car_count':car.pubs.count(),
-                                                'comet_count':comet.pubs.count(),
-                                                'cite4d_count':cite4d.pubs.count(),
-                                                'celt_count':celt.pubs.count(),
-                                                'cehci_count':cehci.pubs.count(),
-                                                'cnis_count':cnis.pubs.count(),
-                                                'gamelab_count':gamelab.pubs.count(),
-                                                'te3d_count':te3d.pubs.count(),
-                                                'bio_count':bio.pubs.count(),
+    return render(request, 'centerReport.html',{'pubs':center_pubs,
+                                                # 'car': car, 'comet': comet, 'cite4d': cite4d, 'celt': celt,
+                                                # 'cehci': cehci, 'cnis': cnis, 'gamelab': gamelab, 'te3d': te3d, 'bio': bio,
+                                                # 'car_count':car.pubs.count(),
+                                                # 'comet_count':comet.pubs.count(),
+                                                # 'cite4d_count':cite4d.pubs.count(),
+                                                # 'celt_count':celt.pubs.count(),
+                                                # 'cehci_count':cehci.pubs.count(),
+                                                # 'cnis_count':cnis.pubs.count(),
+                                                # 'gamelab_count':gamelab.pubs.count(),
+                                                # 'te3d_count':te3d.pubs.count(),
+                                                # 'bio_count':bio.pubs.count(),
                                                 # 'car_authors': car_authors,
                                                 # 'comet_authors': comet_authors,
                                                 # 'cite4d_authors': cite4d_authors,
@@ -576,7 +586,7 @@ def centerReports(request):
                                                 # 'te3d_authors':te3d_authors,
                                                 # 'bio_authors':bio_authors,
                                                 'years': year_arr,
-                                                # 'centers': centers,
+                                                'centers': centers,
                                                 })
 
 def userProfile(request, user):
