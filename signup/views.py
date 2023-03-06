@@ -498,29 +498,31 @@ class Center:
         self.authors = authorsPerCenter(self.pubs)
         self.var_name = name.replace(" ", "")
 
-def centerReports(request):
+def centerReports(request, year):
     center_pubs = publications.objects.filter(Q(source__icontains="CAR") | Q(source__icontains="COMET") | Q(source__icontains="CITE4D") |Q(source__icontains="CeLT") |Q(source__icontains="CeHCI") |Q(source__icontains="CNIS") |Q(source__icontains="GameLab") |Q(source__icontains="TE3D House") |Q(source__icontains="Bioinformatics Lab") )
-
     #Getting the years that are present
     years_present = []
     years_tally = []
-    year_arr = []   
+    year_arr = [] 
 
-    for pub in center_pubs:
-        if int(pub.year) not in years_present:
-            years_present.append(int(pub.year))
+    if(year):
+        center_pubs = center_pubs.objects.filter(Q(year__contains=year))
+    else:
+        for pub in center_pubs:
+            if int(pub.year) not in years_present:
+                years_present.append(int(pub.year))
 
-    years_present.sort()
+        years_present.sort()
 
-    for pub in center_pubs:
-        years_tally.append(int(pub.year))
+        for pub in center_pubs:
+            years_tally.append(int(pub.year))
 
-    years_tally.sort()
+        years_tally.sort()
 
-    count = 0
-    for year in years_present:
-        year_arr.insert(count, [year,years_tally.count(year)])
-        count+=1
+        count = 0
+        for year in years_present:
+            year_arr.insert(count, [year,years_tally.count(year)])
+            count+=1
 
     centers=[]
     car = Center("CAR")
@@ -542,51 +544,10 @@ def centerReports(request):
     bio = Center("Bioinformatics Lab")
     centers.append(bio)
 
-    #Compiling pubs based on center/source
-    # car_pubs = publications.objects.filter(source__icontains="CAR", status='Approved')
-    # comet_pubs = publications.objects.filter(source__icontains="COMET", status='Approved')
-    # cite4d_pubs = publications.objects.filter(source__icontains="CITE4D", status='Approved')
-    # celt_pubs = publications.objects.filter(source__icontains="CeLT", status='Approved')
-    # cehci_pubs = publications.objects.filter(source__icontains="CeHCI", status='Approved')
-    # cnis_pubs = publications.objects.filter(source__icontains="CNIS", status='Approved')
-    # gamelab_pubs = publications.objects.filter(source__icontains="GameLab", status='Approved')
-    # te3d_pubs = publications.objects.filter(source__icontains="TE3D House", status='Approved')
-    # bio_pubs = publications.objects.filter(source__icontains="Bioinformatics Lab", status='Approved')
-
-    #Getting authors per center
-    # car_authors = authorsPerCenter(car_pubs)
-    # comet_authors = authorsPerCenter(comet_pubs)
-    # cite4d_authors = authorsPerCenter(cite4d_pubs)
-    # celt_authors = authorsPerCenter(celt_pubs)
-    # cehci_authors = authorsPerCenter(cehci_pubs)
-    # cnis_authors = authorsPerCenter(cnis_pubs)
-    # gamelab_authors = authorsPerCenter(gamelab_pubs)
-    # te3d_authors = authorsPerCenter(te3d_pubs)
-    # bio_authors = authorsPerCenter(bio_pubs)
-
     return render(request, 'centerReport.html',{'pubs':center_pubs,
-                                                # 'car': car, 'comet': comet, 'cite4d': cite4d, 'celt': celt,
-                                                # 'cehci': cehci, 'cnis': cnis, 'gamelab': gamelab, 'te3d': te3d, 'bio': bio,
-                                                # 'car_count':car.pubs.count(),
-                                                # 'comet_count':comet.pubs.count(),
-                                                # 'cite4d_count':cite4d.pubs.count(),
-                                                # 'celt_count':celt.pubs.count(),
-                                                # 'cehci_count':cehci.pubs.count(),
-                                                # 'cnis_count':cnis.pubs.count(),
-                                                # 'gamelab_count':gamelab.pubs.count(),
-                                                # 'te3d_count':te3d.pubs.count(),
-                                                # 'bio_count':bio.pubs.count(),
-                                                # 'car_authors': car_authors,
-                                                # 'comet_authors': comet_authors,
-                                                # 'cite4d_authors': cite4d_authors,
-                                                # 'celt_authors':celt_authors,
-                                                # 'cehci_authors':cehci_authors,
-                                                # 'cnis_authors':cnis_authors,
-                                                # 'gamelab_authors':gamelab_authors,
-                                                # 'te3d_authors':te3d_authors,
-                                                # 'bio_authors':bio_authors,
                                                 'years': year_arr,
                                                 'centers': centers,
+                                                'year': year,
                                                 })
 
 def userProfile(request, user):

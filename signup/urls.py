@@ -43,7 +43,7 @@ urlpatterns =[
     path('analyticsAuthor/<author>/<keyword>', views.authorAnalyticsFilterKeyword, name="authorAnalyticsFilterKeyword"),
     path('testFolderAnalytics/<folderID>', views.FoldersPageAnalytics, name="FoldersPageAnalytics"),
     path('sharedFolderAnalytics/<folderID>/<owner>', views.SharedFoldersPageAnalytics, name="SharedFoldersPageAnalytics"),
-    path('centerReports/', views.centerReports, name="centerReports"),
+    path('centerReports/<year>', views.centerReports, name="centerReports"),
     path('folders/<username>/search/', views.SearchAnnotationFolder, name="searchFolder"),
     path('profile/<user>', views.userProfile, name="userProfile"),
 ]
