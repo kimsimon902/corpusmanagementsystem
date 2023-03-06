@@ -554,11 +554,12 @@ def centerReports(request, yearFilter):
     if(yearFilter!="all"):
         for center in centers:
             center.filterYear(yearFilter)
+    else: yearFilter="All"
 
     return render(request, 'centerReport.html',{'pubs':center_pubs,
                                                 'years': year_arr,
                                                 'centers': centers,
-                                                'year': year,
+                                                'year': yearFilter,
                                                 })
 
 def userProfile(request, user):
