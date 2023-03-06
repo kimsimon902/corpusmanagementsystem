@@ -99,7 +99,7 @@
             type: 'pie',
             data: {
                 labels: [
-                            '{{center.name}}'
+                            {% for author in center.authors %}'{{author.0}}',{% endfor %}
                         ],
                 datasets: [{
                     label: 'Author',
@@ -134,26 +134,26 @@
                 }]
             },
             options: {
-            // tooltips:{enabled: false,},
-            //     responsive:true,
-            //     plugins: {
-            //         labels: {
-            //             render: 'value',
-            //             precision: 0,
-            //             showZero: true,
-            //             fontSize: 12,
-            //             fontColor: '#000',
-            //             fontStyle: 'normal',
-            //             fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-            //             textShadow: false,
-            //             arc: false,
-            //             position: 'default',
-            //             overlap: true,
-            //             showActualPercentages: true,
-            //             outsidePadding: 4,
-            //             textMargin: 4
-            //         }
-            // },
+            tooltips:{enabled: false,},
+                responsive:true,
+                plugins: {
+                    labels: {
+                        render: 'value',
+                        precision: 0,
+                        showZero: true,
+                        fontSize: 12,
+                        fontColor: '#000',
+                        fontStyle: 'normal',
+                        fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                        textShadow: false,
+                        arc: false,
+                        position: 'default',
+                        overlap: true,
+                        showActualPercentages: true,
+                        outsidePadding: 4,
+                        textMargin: 4
+                    }
+            },
             events:['click'],onClick: function(c,i) {
                     e = i[0];
                     console.log(e._index)

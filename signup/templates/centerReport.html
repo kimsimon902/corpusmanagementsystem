@@ -67,14 +67,16 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12" style="">
-                            {% for center in centers %}
+                            <div class="row">
+                                {% for center in centers %}
                                 <div class="col-6">
                                     <h4>{{center.name}}</h4>
                                     <div class="chart-container" style="padding-bottom: 50px;">
                                         <canvas id="{{center.var_name}}"></canvas>
                                     </div>
                                 </div>
-                            {% endfor %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                     <h3>Publications by ADRIC</h3>
