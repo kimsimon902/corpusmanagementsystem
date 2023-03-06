@@ -7,29 +7,11 @@
             type: 'bar',
             data: {
                 labels: [   
-                            // "CAR",
-                            // "COMET",
-                            // "CITE4D",
-                            // "CeLT",
-                            // "CeHCI",
-                            // "CNIS",
-                            // "GameLab",
-                            // "TE3D House",
-                            // "Bioinformatics Lab"
                             {% for center in centers %}"{{center.name}}",{% endfor %}
                         ],
                 datasets: [{
                     label: 'Number of Publications in "Year"',
                     data: [
-                            // {{car_count}},
-                            // {{comet_count}},
-                            // {{cite4d_count}},
-                            // {{celt_count}},
-                            // {{cehci_count}},
-                            // {{cnis_count}},
-                            // {{gamelab_count}},
-                            // {{te3d_count}},
-                            // {{bio_count}},
                             {% for center in centers %}"{{center.pub_count}}",{% endfor %}
                         ],
                     backgroundColor: [

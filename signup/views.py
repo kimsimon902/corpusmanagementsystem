@@ -498,6 +498,11 @@ class Center:
         self.authors = authorsPerCenter(self.pubs)
         self.var_name = name.replace(" ", "")
 
+    def filterYear(self, year):
+        self.pubs = publications.objects.filter(source__icontains=self.name, status='Approved', year=year)
+        self.pub_count = self.pubs.count()
+        self.authors = authorsPerCenter(self.pubs)
+
 def centerReports(request, year):
     center_pubs = publications.objects.filter(Q(source__icontains="CAR") | Q(source__icontains="COMET") | Q(source__icontains="CITE4D") |Q(source__icontains="CeLT") |Q(source__icontains="CeHCI") |Q(source__icontains="CNIS") |Q(source__icontains="GameLab") |Q(source__icontains="TE3D House") |Q(source__icontains="Bioinformatics Lab") )
     #Getting the years that are present
@@ -506,7 +511,7 @@ def centerReports(request, year):
     year_arr = [] 
 
     if(year):
-        center_pubs = center_pubs.filter(Q(year__contains=year))
+        center_pubs = center_pubs.filter(Q(year=year))
     else:
         for pub in center_pubs:
             if int(pub.year) not in years_present:
@@ -543,6 +548,10 @@ def centerReports(request, year):
     centers.append(te3d)
     bio = Center("Bioinformatics Lab")
     centers.append(bio)
+
+    if(year):
+        for center in centers:
+            center.filterYear(year)
 
     return render(request, 'centerReport.html',{'pubs':center_pubs,
                                                 'years': year_arr,
