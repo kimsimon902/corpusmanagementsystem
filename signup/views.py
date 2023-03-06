@@ -550,7 +550,7 @@ def centerReports(request, year):
     bio = Center("Bioinformatics Lab")
     centers.append(bio)
 
-    if(year!=all):
+    if(year!="all"):
         for center in centers:
             center.filterYear(year)
 
