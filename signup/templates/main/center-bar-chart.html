@@ -96,14 +96,14 @@
         {% for center in centers %}
         const ctxPie{{center.var_name}} = document.getElementById('{{center.var_name}}').getContext('2d');
         const {{center.var_name}} = new Chart(ctxPie{{center.var_name}}, {
-            type: 'bar',
+            type: 'pie',
             data: {
                 labels: [
                             '{{center.name}}'
                         ],
                 datasets: [{
                     label: 'Author',
-                    data: [{% for author in center.authors %}'{{author.0}}',{% endfor %}],
+                    data: [{% for author in center.authors %}'{{author.1}}',{% endfor %}],
                     backgroundColor: [
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
