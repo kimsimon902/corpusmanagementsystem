@@ -494,7 +494,7 @@ class Center:
     def __init__(self, name):
         self.name = name
         self.pubs = publications.objects.filter(source__icontains=name, status='Approved')
-        self.pub_count = pubs.count()
+        self.pub_count = self.pubs.count()
         self.authors = authorsPerCenter(self.pubs)
         self.var_name = name.replace(" ", "")
 
