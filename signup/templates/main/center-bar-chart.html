@@ -1,0 +1,88 @@
+<script>
+    $(document).ready(function(){
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["CAR",
+                            "COMET",
+                            "CITE4D",
+                            "CeLT",
+                            "CeHCI",
+                            "CNIS",
+                            "GameLab",
+                            "TE3D House",
+                            "Bioinformatics Lab"],
+                datasets: [{
+                    label: 'Number of Publications in "Year"',
+                    data: [{{car_count}},
+                            {{comet_count}},
+                            {{cite4d_count}},
+                            {{celt_count}},
+                            {{cehci_count}},
+                            {{cnis_count}},
+                            {{gamelab_count}},
+                            {{te3d_count}},
+                            {{bio_count}},
+                        ],
+                    backgroundColor: [
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    ],
+                    borderColor: [
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    'rgba(	8, 120, 48, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                tooltips:{enabled: false,},
+                responsive:true,
+                plugins: {
+                    labels:{
+                        render:'value',
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            stepSize: 1,  
+                        },
+                        afterDataLimits(scale) {
+                        scale.max += 1;
+                        scale.min -= 1;
+                        }
+                    }]
+                },
+                events:['click'],onClick: function(c,i) {
+                        e = i[0];
+                        console.log(e._index)
+                        var x_value = this.data.labels[e._index];
+                        var y_value = this.data.datasets[0].data[e._index];
+                        console.log('xvalue: '+x_value);
+                        console.log(y_value);
+                        barClick(x_value);
+                },
+            }
+        });
+    });
+</script>

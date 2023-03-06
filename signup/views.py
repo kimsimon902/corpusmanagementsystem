@@ -452,6 +452,28 @@ def create_dictionary(clean_list, id):
 def centerReports(request):
     center_pubs = publications.objects.filter(Q(source__icontains="CAR") | Q(source__icontains="COMET") | Q(source__icontains="CITE4D") |Q(source__icontains="CeLT") |Q(source__icontains="CeHCI") |Q(source__icontains="CNIS") |Q(source__icontains="GameLab") |Q(source__icontains="TE3D House") |Q(source__icontains="Bioinformatics Lab") )
 
+    #Getting the years that are present
+    years_present = []
+    years_tally = []
+    year_arr = []   
+
+    for pub in center_pubs:
+        if int(pub.year) not in years_present:
+            years_present.append(int(pub.year))
+
+    years_present.sort()
+
+    for pub in center_pubs:
+        years_tally.append(int(pub.year))
+
+    years_tally.sort()
+
+    count = 0
+    for year in years_present:
+        year_arr.insert(count, [year,years_tally.count(year)])
+        count+=1
+
+    #Compiling pubs based on center/source
     car_pubs = publications.objects.filter(source__icontains="CAR", status='Approved')
     comet_pubs = publications.objects.filter(source__icontains="COMET", status='Approved')
     cite4d_pubs = publications.objects.filter(source__icontains="CITE4D", status='Approved')
@@ -471,7 +493,9 @@ def centerReports(request):
                                                 'cnis':cnis_pubs, 'cnis_count':cnis_pubs.count(),
                                                 'gamelab':gamelab_pubs, 'gamelab_count':gamelab_pubs.count(),
                                                 'te3d':te3d_pubs, 'te3d_count':te3d_pubs.count(),
-                                                'bio':bio_pubs, 'bio_count':bio_pubs.count()})
+                                                'bio':bio_pubs, 'bio_count':bio_pubs.count(),
+                                                'years': year_arr,
+                                                })
 
 def userProfile(request, user):
     author = user

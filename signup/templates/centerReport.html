@@ -27,95 +27,7 @@
           <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
       
           <script src='https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js'></script>
-      
-          <script>
-              $(document).ready(function(){
-                const ctx = document.getElementById('myChart').getContext('2d');
-                const myChart = new Chart(ctx, {
-                      type: 'bar',
-                      data: {
-                          labels: ["CAR",
-                                    "COMET",
-                                    "CITE4D",
-                                    "CeLT",
-                                    "CeHCI",
-                                    "CNIS",
-                                    "GameLab",
-                                    "TE3D House",
-                                    "Bioinformatics Lab"],
-                          datasets: [{
-                            label: 'Number of Publications',
-                            data: [{{car_count}},
-                                    {{comet_count}},
-                                    {{cite4d_count}},
-                                    {{celt_count}},
-                                    {{cehci_count}},
-                                    {{cnis_count}},
-                                    {{gamelab_count}},
-                                    {{te3d_count}},
-                                    {{bio_count}},
-                                ],
-                            backgroundColor: [
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            ],
-                            borderColor: [
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            'rgba(	8, 120, 48, 1)',
-                            ],
-                            borderWidth: 1
-                          }]
-                      },
-                      options: {
-                          tooltips:{enabled: false,},
-                          responsive:true,
-                          plugins: {
-                              labels:{
-                                  render:'value',
-                              },
-                          },
-                          scales: {
-                              y: {
-                                  beginAtZero: true,
-                              },
-                              yAxes: [{
-                                ticks: {
-                                    min: 0,
-                                    stepSize: 1,  
-                                },
-                                afterDataLimits(scale) {
-                                scale.max += 1;
-                                scale.min -= 1;
-                                }
-                            }]
-                          },
-                          events:['click'],onClick: function(c,i) {
-                                e = i[0];
-                                console.log(e._index)
-                                var x_value = this.data.labels[e._index];
-                                var y_value = this.data.datasets[0].data[e._index];
-                                console.log('xvalue: '+x_value);
-                                console.log(y_value);
-                                barClick(x_value);
-                          },
-                      }
-                  });
-              });
-          </script>
+
               <!-- CloudChart -->
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
@@ -135,12 +47,12 @@
                                     <div class="dropdown">
                                         <h4>Number of publications per center as of: </h4>
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="yearDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          Dropdown button
+                                            Dropdown button
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="yearDropDown">
-                                          <a class="dropdown-item" href="#">Action</a>
-                                          <a class="dropdown-item" href="#">Another action</a>
-                                          <a class="dropdown-item" href="#">Something else here</a>
+                                            {% for year in years %}
+                                            <a class="dropdown-item" href="#">{{year.0}}</a>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                     <div class="chart-container" style="padding-bottom: 50px;">    
