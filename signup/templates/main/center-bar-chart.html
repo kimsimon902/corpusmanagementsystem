@@ -94,8 +94,8 @@
 
         //Per center pie chart
         {% for center in centers %}
-        const ctxPie = document.getElementById('{{center.var_name}}').getContext('2d');
-        const {{center.var_name}} = new Chart(ctxPie, {
+        const ctxPie{{center.var_name}} = document.getElementById('{{center.var_name}}').getContext('2d');
+        const {{center.var_name}} = new Chart(ctxPie{{center.var_name}}, {
             type: 'pie',
             data: {
                 labels: [
