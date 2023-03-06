@@ -10,7 +10,7 @@
                             {% for center in centers %}"{{center.name}}",{% endfor %}
                         ],
                 datasets: [{
-                    label: 'Number of Publications in "Year"',
+                    label: 'Number of Publications in {{year}}',
                     data: [
                             {% for center in centers %}"{{center.pub_count}}",{% endfor %}
                         ],
