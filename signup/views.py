@@ -528,7 +528,7 @@ def centerReports(request):
     cnis = Center("CNIS")
     gamelab = Center("GameLab")
     te3d = Center("TE3D House")
-    bio = Center("Bioinformatics_Lab")
+    bio = Center("Bioinformatics Lab")
 
 
     #Compiling pubs based on center/source
