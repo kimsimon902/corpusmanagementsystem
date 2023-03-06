@@ -213,7 +213,7 @@ def loginView(request):
                 request.session['email']=Userdetails.email
                 request.session['username']=Userdetails.username
                 request.session['is_superuser']=Userdetails.is_superuser
-                return redirect('centerReports')
+                return redirect('centerReports/all')
             else:
                 request.session['email']=Userdetails.email
                 request.session['username']=Userdetails.username
@@ -506,7 +506,7 @@ class Center:
 def centerReports(request, year):
     center_pubs = publications.objects.filter(Q(source__icontains="CAR") | Q(source__icontains="COMET") | Q(source__icontains="CITE4D") |Q(source__icontains="CeLT") |Q(source__icontains="CeHCI") |Q(source__icontains="CNIS") |Q(source__icontains="GameLab") |Q(source__icontains="TE3D House") |Q(source__icontains="Bioinformatics Lab") )
 
-    if(year):
+    if(year != all):
         center_pubs = center_pubs.filter(Q(year=year))
 
     #Getting the years that are present
@@ -550,7 +550,7 @@ def centerReports(request, year):
     bio = Center("Bioinformatics Lab")
     centers.append(bio)
 
-    if(year):
+    if(year!=all):
         for center in centers:
             center.filterYear(year)
 
