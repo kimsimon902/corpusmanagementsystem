@@ -47,8 +47,9 @@
                                             {{year}}
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="yearDropDown">
+                                            <a class="dropdown-item" href="/centerReports/all">Show all</a>
                                             {% for year in years %}
-                                            <a class="dropdown-item" href="#">{{year.0}}</a>
+                                            <a class="dropdown-item" href="/centerReports/{{year.0}}">{{year.0}}</a>
                                             {% endfor %}
                                         </div>
                                     </div>
