@@ -1,10 +1,12 @@
 <script>
+
     $(document).ready(function(){
+        //Overall bar chart
         const ctx = document.getElementById('myChart').getContext('2d');
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["CAR",
+                labels: [   "CAR",
                             "COMET",
                             "CITE4D",
                             "CeLT",
@@ -15,15 +17,15 @@
                             "Bioinformatics Lab"],
                 datasets: [{
                     label: 'Number of Publications in "Year"',
-                    data: [{{car_count}},
-                            {{comet_count}},
-                            {{cite4d_count}},
-                            {{celt_count}},
-                            {{cehci_count}},
-                            {{cnis_count}},
-                            {{gamelab_count}},
-                            {{te3d_count}},
-                            {{bio_count}},
+                    data: [{{car.pubs.count()}},
+                            {{comet.pubs.count()}},
+                            {{cite4d.pubs.count()}},
+                            {{celt.pubs.count()t}},
+                            {{cehci.pubs.count()}},
+                            {{cnis.pubs.count()}},
+                            {{gamelab.pubs.count()}},
+                            {{te3d.pubs.count()}},
+                            {{bio.pubs.count()}},
                         ],
                     backgroundColor: [
                     'rgba(	8, 120, 48, 1)',
@@ -84,5 +86,80 @@
                 },
             }
         });
+
+        //Per center pie chart
+        // const ctxPie = document.getElementById('myChartPie').getContext('2d');
+        // {% for center in centers %}
+        // const {center.0} = new Chart(ctxPie, {
+        //     type: 'pie',
+        //     data: {
+        //         labels: [{% for source in source_arr %}'{{source.0}}',{% endfor %}],
+        //         datasets: [{
+        //             label: 'Author',
+        //             data: [{% for source in source_arr %}{{source.1}},{% endfor %}],
+        //             backgroundColor: [
+        //             'rgba(54, 162, 235, 1)',
+        //             'rgba(255, 206, 86, 1)',
+        //             'rgba(75, 192, 192, 1)',
+        //             'rgba(153, 102, 255, 1)',
+        //             'rgba(255, 159, 64, 1)',
+        //             'rgba(255, 99, 132, 1)',
+        //             'rgba(54, 162, 235, 1)',
+        //             'rgba(255, 206, 86, 1)',
+        //             'rgba(75, 192, 192, 1)',
+        //             'rgba(153, 102, 255, 1)',
+        //             'rgba(255, 159, 64, 1)',
+        //             ],
+        //             borderColor: [
+        //             'rgba(54, 162, 235, 1)',
+        //             'rgba(255, 206, 86, 1)',
+        //             'rgba(75, 192, 192, 1)',
+        //             'rgba(153, 102, 255, 1)',
+        //             'rgba(255, 159, 64, 1)',
+        //             'rgba(255, 99, 132, 1)',
+        //             'rgba(54, 162, 235, 1)',
+        //             'rgba(255, 206, 86, 1)',
+        //             'rgba(75, 192, 192, 1)',
+        //             'rgba(153, 102, 255, 1)',
+        //             'rgba(255, 159, 64, 1)',
+        //             ],
+        //             borderWidth: 1
+        //         }]
+        //     },
+        //     options: {
+        //     tooltips:{enabled: false,},
+        //         responsive:true,
+        //         plugins: {
+        //             labels: {
+        //                 render: 'value',
+        //                 precision: 0,
+        //                 showZero: true,
+        //                 fontSize: 12,
+        //                 fontColor: '#000',
+        //                 fontStyle: 'normal',
+        //                 fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+        //                 textShadow: false,
+        //                 arc: false,
+        //                 position: 'default',
+        //                 overlap: true,
+        //                 showActualPercentages: true,
+        //                 outsidePadding: 4,
+        //                 textMargin: 4
+        //             }
+        //     },
+        //     events:['click'],onClick: function(c,i) {
+        //             e = i[0];
+        //             console.log(e._index)
+        //             var x_value = this.data.labels[e._index];
+        //             var y_value = this.data.datasets[0].data[e._index];
+        //             console.log(x_value);
+        //             console.log(y_value);
+        //             sourcePieClick(x_value)
+        //             // window.open('http://ccscloud1.dlsu.edu.ph:11780/analytics/{{searched}}/'+x_value,'_blank');
+        //     },
+        //     }
+        // });
+        // {% endfor %}
+    //Closing tag for document.ready function
     });
 </script>
