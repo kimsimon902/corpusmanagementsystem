@@ -93,8 +93,8 @@
         });
 
         //Per center pie chart
-        const ctxPie = document.getElementById('myChartPie').getContext('2d');
         {% for center in centers %}
+        const ctxPie = document.getElementById('{{center.var_name}}').getContext('2d');
         const {{center.var_name}} = new Chart(ctxPie, {
             type: 'pie',
             data: {
@@ -103,7 +103,7 @@
                         ],
                 datasets: [{
                     label: 'Author',
-                    data: [{% for author in authors %}'{{author.0}}',{% endfor %}],
+                    data: [{% for author in center.authors %}'{{author.0}}',{% endfor %}],
                     backgroundColor: [
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
