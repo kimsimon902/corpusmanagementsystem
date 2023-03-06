@@ -506,9 +506,7 @@ class Center:
 def centerReports(request, year):
     center_pubs = publications.objects.filter(Q(source__icontains="CAR") | Q(source__icontains="COMET") | Q(source__icontains="CITE4D") |Q(source__icontains="CeLT") |Q(source__icontains="CeHCI") |Q(source__icontains="CNIS") |Q(source__icontains="GameLab") |Q(source__icontains="TE3D House") |Q(source__icontains="Bioinformatics Lab") )
 
-    if(year != "all"):
-        center_pubs = center_pubs.filter(Q(year=year))
-
+    
     #Getting the years that are present
     years_present = []
     years_tally = []
@@ -529,6 +527,9 @@ def centerReports(request, year):
     for year in years_present:
         year_arr.insert(count, [year,years_tally.count(year)])
         count+=1
+
+    if(year != "all"):
+        center_pubs = center_pubs.filter(Q(year=year))
 
     centers=[]
     car = Center("CAR")
