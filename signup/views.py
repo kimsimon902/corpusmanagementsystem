@@ -563,6 +563,7 @@ def centerReports(request, yearFilter):
                                                 })
 
 def centerReportsCenter(request, yearFilter, center):
+    center = center.replace('%20', ' ')
     center_pubs = publications.objects.filter(Q(source__icontains=center))
 
     #Getting the years that are present
