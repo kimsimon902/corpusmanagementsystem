@@ -562,6 +562,49 @@ def centerReports(request, yearFilter):
                                                 'year': yearFilter,
                                                 })
 
+def centerReportsCenter(request, yearFilter, center):
+    center_pubs = publications.objects.filter(Q(source__icontains=center))
+
+    #Getting the years that are present
+    years_present = []
+    years_tally = []
+    year_arr = [] 
+
+    for pub in center_pubs:
+        if int(pub.year) not in years_present:
+            years_present.append(int(pub.year))
+
+    years_present.sort()
+
+    for pub in center_pubs:
+        years_tally.append(int(pub.year))
+
+    years_tally.sort()
+
+    count = 0
+    for year in years_present:
+        year_arr.insert(count, [year,years_tally.count(year)])
+        count+=1
+
+    if(yearFilter != "all"):
+        center_pubs = center_pubs.filter(Q(year=yearFilter))
+
+    centers=[]
+    currentCenter = Center(center)
+    centers.append(currentCenter)
+
+    if(yearFilter!="all"):
+        for center in centers:
+            center.filterYear(yearFilter)
+    else: yearFilter="All"
+
+    return render(request, 'centerReport.html',{'pubs':center_pubs,
+                                                'years': year_arr,
+                                                'centers': centers,
+                                                'year': yearFilter,
+                                                })
+
+
 def userProfile(request, user):
     author = user
     if author != None:

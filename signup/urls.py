@@ -44,6 +44,7 @@ urlpatterns =[
     path('testFolderAnalytics/<folderID>', views.FoldersPageAnalytics, name="FoldersPageAnalytics"),
     path('sharedFolderAnalytics/<folderID>/<owner>', views.SharedFoldersPageAnalytics, name="SharedFoldersPageAnalytics"),
     path('centerReports/<yearFilter>', views.centerReports, name="centerReports"),
+    path('centerReports/<yearFilter>/<center>', views.centerReportsCenter, name="centerReportsCenter"),
     path('folders/<username>/search/', views.SearchAnnotationFolder, name="searchFolder"),
     path('profile/<user>', views.userProfile, name="userProfile"),
 ]
