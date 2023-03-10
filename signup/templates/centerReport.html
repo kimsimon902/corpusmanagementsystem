@@ -41,7 +41,7 @@
                         <div class="col-sm-12" style="">
                             <div class="row">
                                 <div class="col-12">
-                                    <h4 style="display: inline;">Number of publications per center in </h4>
+                                    <h4 style="display: inline;">Number of Publications per Center in </h4>
                                     <div class="dropdown" style="display: inline;">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="yearDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             {{year}}
@@ -69,6 +69,7 @@
                     <div class="row">
                         <div class="col-sm-12" style="">
                             <div class="row">
+                                <h4>Number of Publications per Author by Research Center</h4>
                                 {% for center in centers %}
                                 {% if center.pub_count > 0 %}
                                 <div class="col-6">

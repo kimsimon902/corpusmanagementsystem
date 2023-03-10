@@ -213,7 +213,7 @@ def loginView(request):
                 request.session['email']=Userdetails.email
                 request.session['username']=Userdetails.username
                 request.session['is_superuser']=Userdetails.is_superuser
-                return redirect('centerReports/all')
+                return redirect('/centerReports/all')
             else:
                 request.session['email']=Userdetails.email
                 request.session['username']=Userdetails.username
