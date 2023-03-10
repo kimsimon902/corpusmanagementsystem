@@ -117,38 +117,34 @@
                 }]
             },
             options: {
-            tooltips:{enabled: false,},
-                responsive:true,
-                plugins: {
-                    labels: {
-                        render: 'value',
-                        precision: 0,
-                        showZero: true,
-                        fontSize: 12,
-                        fontColor: '#000',
-                        fontStyle: 'normal',
-                        fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-                        textShadow: false,
-                        arc: false,
-                        position: 'default',
-                        overlap: true,
-                        showActualPercentages: true,
-                        outsidePadding: 4,
-                        textMargin: 4
-                    }
-            },
-            events:['click'],onClick: function(c,i) {
-                    e = i[0];
-                    console.log(e._index)
-                    var x_value = this.data.labels[e._index];
-                    var y_value = this.data.datasets[0].data[e._index];
-                    console.log(x_value);
-                    console.log(y_value);
-                    sourcePieClick(x_value)
-                    // window.open('http://ccscloud1.dlsu.edu.ph:11780/analytics/{{searched}}/'+x_value,'_blank');
-            },
+                tooltips:{enabled: false,},
+                    responsive:true,
+                    plugins: {
+                        labels: {
+                            render: 'value',
+                            precision: 0,
+                            showZero: true,
+                            fontSize: 12,
+                            fontColor: '#000',
+                            fontStyle: 'normal',
+                            fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                            textShadow: false,
+                            arc: false,
+                            position: 'default',
+                            overlap: true,
+                            showActualPercentages: true,
+                            outsidePadding: 4,
+                            textMargin: 4
+                        }
+                    },
             }
         });
+
+        function doubleClick{{center.var_name}}(click2){
+            console.log('{{center.var_name}}');
+        }
+
+        ctxPie{{center.var_name}}.ondblclick = doubleClick{{center.var_name}};
         {% endif %}
         {% endfor %}
     //Closing tag for document.ready function
