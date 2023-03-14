@@ -563,6 +563,7 @@ def centerReports(request, yearFilter):
                                                 })
 
 def centerReportsCenter(request, yearFilter, center):
+    centerName = center
     center = center.replace('%20', ' ')
     center_pubs = publications.objects.filter(Q(source__icontains=center))
 
@@ -599,9 +600,10 @@ def centerReportsCenter(request, yearFilter, center):
             center.filterYear(yearFilter)
     else: yearFilter="All"
 
-    return render(request, 'centerReport.html',{'pubs':center_pubs,
+    return render(request, 'centerReportsCenter.html',{'pubs':center_pubs,
                                                 'years': year_arr,
                                                 'centers': centers,
+                                                'centerName': centerName,
                                                 'year': yearFilter,
                                                 })
 
