@@ -565,7 +565,7 @@ def centerReports(request, yearFilter):
 def centerReportsCenter(request, yearFilter, center):
     centerName = center
     center = center.replace('%20', ' ')
-    center_pubs = publications.objects.filter(Q(source__icontains=center))
+    center_pubs = publications.objects.filter(Q(source__icontains=center)).order_by('year')
     if(yearFilter == "All"):
         yearFilter = "all"
 
@@ -601,8 +601,6 @@ def centerReportsCenter(request, yearFilter, center):
         for center in centers:
             center.filterYear(yearFilter)
     else: yearFilter="All"
-
-    center_pubs.sort(key=lambda x: x.year,reverse=True)
 
     return render(request, 'centerReportsCenter.html',{'pubs':center_pubs,
                                                 'years': year_arr,
