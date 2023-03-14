@@ -602,6 +602,8 @@ def centerReportsCenter(request, yearFilter, center):
             center.filterYear(yearFilter)
     else: yearFilter="All"
 
+    center_pubs.sort(key=lambda x: x.year,reverse=True)
+
     return render(request, 'centerReportsCenter.html',{'pubs':center_pubs,
                                                 'years': year_arr,
                                                 'centers': centers,
