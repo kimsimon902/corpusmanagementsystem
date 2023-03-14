@@ -27,25 +27,25 @@
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     
         <script src='https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js'></script>
-      
+
         <script>
             $(document).ready(function(){
             const ctxBarKeyDisc = document.getElementById('myChartBarKeyDisc').getContext('2d');
                 const myChartBarKeyDisc = new Chart(ctxBarKeyDisc, {
                     type: 'bar',
                     data: {
-                    labels: [{% for keyword in keyword_bar|slice:"1:" %}'{{keyword.0}}',{% endfor %}],
+                    labels: [{% for year in years %}'{{year.0}}',{% endfor %}],
                         datasets: [{
                         label: 'Number of Publications where Keyword is Present',
-                        data: [{% for keyword in keyword_bar|slice:"1:" %}{{keyword.1}},{% endfor %}],
+                        data: [{% for year in years %}{{keyword.1}},{% endfor %}],
                         // data:   [{% for keyword in keyword_bar|slice:"1:" %}
                         //         {keywordLabel: '{{keyword.0}}', keywordData: { count: {{keyword.1}}, link:'/analytics/{{keyword.0}}' }},
                         //         {%endfor%}],
                         backgroundColor: [
-                            {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                            {% for year in years %}'rgba(	8, 120, 48, 1)',{% endfor %}
                         ],
                         borderColor: [
-                        {% for keyword in keyword_bar|slice:"1:" %}'rgba(	8, 120, 48, 1)',{% endfor %}
+                        {% for year in years %}'rgba(	8, 120, 48, 1)',{% endfor %}
                         ],
                         borderWidth: 1
                         }]
@@ -173,13 +173,13 @@
                         <div class="col-sm-12" style="">
                             <div class="row">
                                 <div class="col-6">
-                                    <h4>Number of publications {{author|capfirst}} published per discipline</h4>
+                                    <h4>Number of publications {{author|capfirst}} published per year</h4>
                                     <div class="chart-container" style="padding-bottom: 50px;">    
                                         <canvas id="myChartBarKeyDisc"></canvas>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <h4>Number of publications published by {{author|capfirst}} present in the following sources</h4>
+                                    <h4>Number of publications published by {{author|capfirst}} present in the following research centers</h4>
                                     <div class="chart-container" style="padding-bottom: 50px;">
                                         <canvas id="myChartPie"></canvas>
                                     </div>
@@ -196,7 +196,7 @@
                                     <th scope="col">Title</th>
                                     <th scope="col">Author/s</th>
                                     <th scope="col">Year</th>
-                                    <th scope="col">Source</th>
+                                    <th scope="col">Research Center</th>
                                     <th scope="col">URL</th>
                                 </tr>
                             </thead>

@@ -853,6 +853,27 @@ def authorAnalytics(request, author):
 
         filteredPubs.sort(key=lambda x: x.year,reverse=True)
 
+        #Getting the years that are present
+        years_present = []
+        years_tally = []
+        year_arr = [] 
+
+        for pub in filteredPubs:
+            if int(pub.year) not in years_present:
+                years_present.append(int(pub.year))
+
+        years_present.sort()
+
+        for pub in filteredPubs:
+            years_tally.append(int(pub.year))
+
+        years_tally.sort()
+
+        count = 0
+        for year in years_present:
+            year_arr.insert(count, [year,years_tally.count(year)])
+            count+=1
+
         #Start author recos
         author_recos = []
 
@@ -925,7 +946,7 @@ def authorAnalytics(request, author):
 
         count = len(author_results)
 
-        return render(request, 'authorAnalytics.html',{'author':author.strip(), 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter,'recos':author_results[:10]})
+        return render(request, 'authorAnalytics.html',{'author':author.strip(), 'publications':filteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'query': publications_by_author,'array':pubs,'testC':test_counter,'recos':author_results[:10], 'years':year_arr})
 
 def authorAnalyticsFilterKeyword(request, author, keyword):
     if author != None:
@@ -1023,6 +1044,27 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
 
         keywordFilteredPubs.sort(key=lambda x: x.year,reverse=True)
 
+        #Getting the years that are present
+        years_present = []
+        years_tally = []
+        year_arr = [] 
+
+        for pub in filteredPubs:
+            if int(pub.year) not in years_present:
+                years_present.append(int(pub.year))
+
+        years_present.sort()
+
+        for pub in filteredPubs:
+            years_tally.append(int(pub.year))
+
+        years_tally.sort()
+
+        count = 0
+        for year in years_present:
+            year_arr.insert(count, [year,years_tally.count(year)])
+            count+=1
+
         #Start author recos
         author_recos = []
 
@@ -1092,7 +1134,7 @@ def authorAnalyticsFilterKeyword(request, author, keyword):
 
         count = len(author_results)
 
-        return render(request, 'authorAnalyticsFilterKeyword.html',{'author':author.strip(), 'publications':keywordFilteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'keywordFilter':keyword,'recos':author_results[:10]})
+        return render(request, 'authorAnalyticsFilterKeyword.html',{'author':author.strip(), 'publications':keywordFilteredPubs, 'source_arr':source_arr, 'keyword_bar':keyword_count[:10],'keywordFilter':keyword,'recos':author_results[:10], 'years': year_arr})
 
 
 def analytics(request, keyword):
