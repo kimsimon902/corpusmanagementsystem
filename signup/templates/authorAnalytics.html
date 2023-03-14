@@ -36,8 +36,8 @@
                     data: {
                     labels: [{% for year in years %}'{{year.0}}',{% endfor %}],
                         datasets: [{
-                        label: 'Number of Publications where Keyword is Present',
-                        data: [{% for year in years %}{{keyword.1}},{% endfor %}],
+                        label: 'Number of Publications per Year',
+                        data: [{% for year in years %}{{year.1}},{% endfor %}],
                         // data:   [{% for keyword in keyword_bar|slice:"1:" %}
                         //         {keywordLabel: '{{keyword.0}}', keywordData: { count: {{keyword.1}}, link:'/analytics/{{keyword.0}}' }},
                         //         {%endfor%}],
