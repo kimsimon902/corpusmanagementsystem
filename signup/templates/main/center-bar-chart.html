@@ -63,13 +63,7 @@
                     }]
                 },
                 events:['click'],onClick: function(c,i) {
-                        e = i[0];
-                        console.log(e._index)
-                        var x_value = this.data.labels[e._index];
-                        var y_value = this.data.datasets[0].data[e._index];
-                        console.log('xvalue: '+x_value);
-                        console.log(y_value);
-                        barClick(x_value);
+                    window.open('http://ccscloud1.dlsu.edu.ph:11780/centerReports/{{year}}/'+"{{center.name}}",'_blank');
                 },
             }
         });
