@@ -2646,7 +2646,7 @@ def addKeywordRequest(request, id):
         
         for j in range(0,len(name_id)):
             store = keywords.objects.get(keywordname=name_id[j])
-            pub_id.append(pubkeys(publication_id=id, keywords_id=store.id, status = "pending addition"))
+            pub_id.append(pubkeys(publication_id=id, keywords_id=store.id, status = ""))
             
         pubkeys.objects.bulk_create(pub_id)
         messages.success(request, "Request for keyword addition sent")
