@@ -2627,9 +2627,9 @@ def removeKeywordRequest(request, id, keyword):
             current_url = request.session['search_url']
         else:
             current_url = previous #request.session['search_url']
-        return redirect(request.META['HTTP_REFERER']) 
+        return HttpResponseRedirect(next)
     else:
-        return redirect(request.META['HTTP_REFERER']) 
+        return HttpResponseRedirect(next)
 
 
 def addKeywordRequest(request, id):
@@ -2680,9 +2680,9 @@ def addKeywordRequest(request, id):
         else:
             current_url = previous #request.session['search_url']
 
-        return redirect(request.META['HTTP_REFERER'])
+        return HttpResponseRedirect(next)
     else:
-        return redirect(request.META['HTTP_REFERER'])
+        return HttpResponseRedirect(next)
 
 
 def filterSearch(request, filter, search):
