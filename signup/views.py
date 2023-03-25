@@ -2610,9 +2610,9 @@ def removeKeywordRequest(request, id, keyword):
                 if keyword == keywordname.keywordname:
                     print(pubid.id)
                     edit_pubkey = pubkeys.objects.get(id=pubid.id)
-                    edit_pubkey.status= "pending deletion"
+                    edit_pubkey.status= ""
                     edit_pubkey.save()
-        messages.success(request, "Request for keyword deletion sent")
+        messages.success(request, "keyword/s deleted")
         return HttpResponseRedirect(next)  
     else:
         return HttpResponseRedirect(next)
@@ -2649,7 +2649,7 @@ def addKeywordRequest(request, id):
             pub_id.append(pubkeys(publication_id=id, keywords_id=store.id, status = ""))
             
         pubkeys.objects.bulk_create(pub_id)
-        messages.success(request, "Request for keyword addition sent")
+        messages.success(request, "Keyword/s added")
         return redirect(request.META['HTTP_REFERER'])
     else:
         return redirect(request.META['HTTP_REFERER'])
