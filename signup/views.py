@@ -2600,7 +2600,13 @@ def removeKeywordRequest(request, id, keyword):
     xlist = list(keyword_ids)
 
     if request.method == 'POST':
+        
         print(id)
+        pubkeytodelete = pubkeys.objects.get(id=pubid.id)
+        keywordtodelete= keywords.objects.get(id = pubid.keywords_id)
+        pubkeytodelete.delete()
+        keywordtodelete.delete()
+
         for pubid in xlist:
             if int(id) == int(pubid.publication_id):
                 keywordname = keywords.objects.get(id = pubid.keywords_id)
@@ -2608,8 +2614,7 @@ def removeKeywordRequest(request, id, keyword):
                 if keyword == keywordname.keywordname:
                     print(pubid.id)
                     edit_pubkey = pubkeys.objects.get(id=pubid.id)
-                    edit_pubkey.delete()
-                    keywordname.delete()
+                    
                     
                     edit_pubkey.save()
         messages.success(request, "keyword/s deleted")
