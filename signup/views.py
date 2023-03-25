@@ -2603,14 +2603,14 @@ def removeKeywordRequest(request, id, keyword):
         print(id)
         for pubid in xlist:
             if int(id) == int(pubid.publication_id):
-                print(pubid.publication_id)
-                print(pubid.keywords_id)
                 keywordname = keywords.objects.get(id = pubid.keywords_id)
                 print(keywordname.keywordname)
                 if keyword == keywordname.keywordname:
                     print(pubid.id)
                     edit_pubkey = pubkeys.objects.get(id=pubid.id)
-                    edit_pubkey.status= ""
+                    edit_pubkey.delete()
+                    keywordname.delete()
+                    
                     edit_pubkey.save()
         messages.success(request, "keyword/s deleted")
         return HttpResponseRedirect(next)  
