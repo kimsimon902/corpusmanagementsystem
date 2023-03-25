@@ -2615,9 +2615,9 @@ def removeKeywordRequest(request, id, keyword):
         messages.success(request, "keyword/s deleted")
 
     
-        return HttpResponseRedirect(previous)
+        return HttpResponseRedirect(next)
     else:
-        return HttpResponseRedirect(previous)
+        return HttpResponseRedirect(next)
 
 
 def addKeywordRequest(request, id):
@@ -2655,9 +2655,9 @@ def addKeywordRequest(request, id):
 
         
 
-        return HttpResponseRedirect(previous)
+        return HttpResponseRedirect(next)
     else:
-        return HttpResponseRedirect(previous)
+        return HttpResponseRedirect(next)
 
 
 def filterSearch(request, filter, search):
