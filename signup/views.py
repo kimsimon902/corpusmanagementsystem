@@ -2610,14 +2610,14 @@ def removeKeywordRequest(request, id, keyword):
                     pubkeys.objects.filter(id=pubkeyid.id).delete()
                     keywords.objects.filter(id=keywordname.id).delete()
                     
-                    
+                 
                     
         messages.success(request, "keyword/s deleted")
 
     
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return HttpResponseRedirect(request.session['search_url'])
     else:
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return HttpResponseRedirect(request.session['search_url'])
 
 
 def addKeywordRequest(request, id):
@@ -2655,9 +2655,9 @@ def addKeywordRequest(request, id):
 
         
 
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return HttpResponseRedirect(request.session['search_url'])
     else:
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return HttpResponseRedirect(request.session['search_url'])
 
 
 def filterSearch(request, filter, search):
