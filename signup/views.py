@@ -2592,6 +2592,7 @@ def removeKeywordRequest(request, id, keyword):
 
     email = request.session['email']
     next = request.POST.get('next', '/')
+    previous = request.POST.get('previous')
 
     keyword_ids = pubkeys.objects.all()
     keywords_list = keywords.objects.all()
@@ -2613,23 +2614,23 @@ def removeKeywordRequest(request, id, keyword):
                     
         messages.success(request, "keyword/s deleted")
 
-        previous = request.META.get('HTTP_REFERER')
+        # previous = request.META.get('HTTP_REFERER')
         
     
-        if 'analyticsAuthor' in previous:
-            request.session['search_url'] = previous
-            current_url = request.session['search_url']
-        elif 'search' in previous:
-            request.session['search_url'] = previous
-            current_url = request.session['search_url']
-        elif 'http://ccscloud1.dlsu.edu.ph:11780/home/' == previous:
-            request.session['search_url'] = previous
-            current_url = request.session['search_url']
-        else:
-            current_url = previous #request.session['search_url']
-        return HttpResponseRedirect(next)
+        # if 'analyticsAuthor' in previous:
+        #     request.session['search_url'] = previous
+        #     current_url = request.session['search_url']
+        # elif 'search' in previous:
+        #     request.session['search_url'] = previous
+        #     current_url = request.session['search_url']
+        # elif 'http://ccscloud1.dlsu.edu.ph:11780/home/' == previous:
+        #     request.session['search_url'] = previous
+        #     current_url = request.session['search_url']
+        # else:
+        #     current_url = previous #request.session['search_url']
+        return HttpResponseRedirect(previous)
     else:
-        return HttpResponseRedirect(next)
+        return HttpResponseRedirect(previous)
 
 
 def addKeywordRequest(request, id):
@@ -2665,24 +2666,24 @@ def addKeywordRequest(request, id):
         pubkeys.objects.bulk_create(pub_id)
         messages.success(request, "Keyword/s added")
 
-        previous = request.META.get('HTTP_REFERER')
+        # previous = request.META.get('HTTP_REFERER')
         
     
-        if 'analyticsAuthor' in previous:
-            request.session['search_url'] = previous
-            current_url = request.session['search_url']
-        elif 'search' in previous:
-            request.session['search_url'] = previous
-            current_url = request.session['search_url']
-        elif 'http://ccscloud1.dlsu.edu.ph:11780/home/' == previous:
-            request.session['search_url'] = previous
-            current_url = request.session['search_url']
-        else:
-            current_url = previous #request.session['search_url']
+        # if 'analyticsAuthor' in previous:
+        #     request.session['search_url'] = previous
+        #     current_url = request.session['search_url']
+        # elif 'search' in previous:
+        #     request.session['search_url'] = previous
+        #     current_url = request.session['search_url']
+        # elif 'http://ccscloud1.dlsu.edu.ph:11780/home/' == previous:
+        #     request.session['search_url'] = previous
+        #     current_url = request.session['search_url']
+        # else:
+        #     current_url = previous #request.session['search_url']
 
-        return HttpResponseRedirect(next)
+        return HttpResponseRedirect(previous)
     else:
-        return HttpResponseRedirect(next)
+        return HttpResponseRedirect(previous)
 
 
 def filterSearch(request, filter, search):
