@@ -2615,9 +2615,9 @@ def removeKeywordRequest(request, id, keyword):
         messages.success(request, "keyword/s deleted")
 
     
-        return HttpResponseRedirect(next)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
-        return HttpResponseRedirect(next)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def addKeywordRequest(request, id):
@@ -2655,9 +2655,9 @@ def addKeywordRequest(request, id):
 
         
 
-        return HttpResponseRedirect(next)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
-        return HttpResponseRedirect(next)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def filterSearch(request, filter, search):
