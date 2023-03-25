@@ -2595,23 +2595,24 @@ def removeKeywordRequest(request, id, keyword):
 
     keyword_ids = pubkeys.objects.all()
     keywords_list = keywords.objects.all()
-
+                
     
     xlist = list(keyword_ids)
 
     if request.method == 'POST':
 
-        print(id)
+        xlist = list(keyword_ids)
         
 
         for pubid in xlist:
             if int(id) == int(pubid.publication_id):
                 keywordname = keywords.objects.get(id = pubid.keywords_id)
-                print(keywordname.keywordname)
+                
                 if keyword == keywordname.keywordname:
                     print(pubid.id)
                     edit_pubkey = pubkeys.objects.get(id=pubid.id)
-                    keywordname.delete()
+                    pubkeys.objects.filter(id=pubid.id).delete()
+                    keywords.objects.filter(id=pubid.keywords_id).delete()
                     
                     
                     edit_pubkey.save()
