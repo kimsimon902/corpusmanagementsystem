@@ -2601,25 +2601,23 @@ def removeKeywordRequest(request, id, keyword):
 
     if request.method == 'POST':
 
-        xlist = list(keyword_ids)
+        
         
 
         for pubid in xlist:
             if int(id) == int(pubid.publication_id):
                 keywordname = keywords.objects.get(id = pubid.keywords_id)
-                
+                pubkeyid = pubkeys.objects.get(id=pubid.id)
                 if keyword == keywordname.keywordname:
-                    print(pubid.id)
-                    edit_pubkey = pubkeys.objects.get(id=pubid.id)
-                    pubkeys.objects.filter(id=pubid.id).delete()
-                    keywords.objects.filter(id=pubid.keywords_id).delete()
+                    pubkeys.objects.filter(id=pubkeyid.id).delete()
+                    keywords.objects.filter(id=keywordname.id).delete()
                     
                     
-                    edit_pubkey.save()
+                    
         messages.success(request, "keyword/s deleted")
-        return HttpResponseRedirect(next)  
+        return redirect(request.META['HTTP_REFERER']) 
     else:
-        return HttpResponseRedirect(next)
+        return redirect(request.META['HTTP_REFERER']) 
 
 
 def addKeywordRequest(request, id):
